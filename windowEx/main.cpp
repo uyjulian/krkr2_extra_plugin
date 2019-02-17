@@ -1,10 +1,10 @@
 #include <windows.h>
 #include "ncbind.hpp"
 
-// ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX–¼æ“¾—p‚Ìƒoƒbƒtƒ@ƒTƒCƒY
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹åå–å¾—ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define CLASSNAME_MAX 1024
 
-// ƒCƒxƒ“ƒg–¼ˆê——
+// ã‚¤ãƒ™ãƒ³ãƒˆåä¸€è¦§
 #define EXEV_MINIMIZE  TJS_W("onMinimize")
 #define EXEV_MAXIMIZE  TJS_W("onMaximize")
 #define EXEV_QUERYMAX  TJS_W("onMaximizeQuery")
@@ -36,21 +36,21 @@
 struct WindowEx
 {
 	//--------------------------------------------------------------
-	// ƒ†[ƒeƒBƒŠƒeƒB
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
 
-	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^‚ğæ“¾
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	static inline WindowEx * GetInstance(iTJSDispatch2 *obj) {
 		return ncbInstanceAdaptor<WindowEx>::GetNativeInstance(obj);
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	static HWND GetHWND(iTJSDispatch2 *obj) {
 		tTJSVariant val;
 		obj->PropGet(0, TJS_W("HWND"), 0, &val, obj);
 		return (HWND)(tjs_int)(val);
 	}
 
-	// RECT‚ğ«‘‚É•Û‘¶
+	// RECTã‚’è¾æ›¸ã«ä¿å­˜
 	static bool SetRect(ncbDictionaryAccessor &rdic, LPCRECT lprect) {
 		bool r;
 		if ((r = rdic.IsValid())) {
@@ -61,7 +61,7 @@ struct WindowEx
 		}
 		return r;
 	}
-	// «‘‚©‚çRECT‚É•Û‘¶
+	// è¾æ›¸ã‹ã‚‰RECTã«ä¿å­˜
 	static void GetRect(LPRECT rect, ncbPropAccessor &dict) {
 		ncbTypedefs::Tag<LONG> LongTypeTag;
 		rect->left   = dict.GetValue(TJS_W("x"), LongTypeTag);
@@ -72,14 +72,14 @@ struct WindowEx
 		rect->bottom += rect->top;
 	}
 
-	// SYSCOMMAND‚ğ‘—‚é
+	// SYSCOMMANDã‚’é€ã‚‹
 	static tjs_error postSysCommand(iTJSDispatch2 *objthis, WPARAM wp, LPARAM lp = 0) {
 		::PostMessage(GetHWND(objthis), WM_SYSCOMMAND, wp, lp);
 		return TJS_S_OK;
 	}
 
 	//--------------------------------------------------------------
-	// ƒNƒ‰ƒX’Ç‰Áƒƒ\ƒbƒh(RawCallbackŒ`®)
+	// ã‚¯ãƒ©ã‚¹è¿½åŠ ãƒ¡ã‚½ãƒƒãƒ‰(RawCallbackå½¢å¼)
 
 	// minimize, maximize, showRestore
 	static tjs_error TJS_INTF_METHOD minimize(   tTJSVariant *r, tjs_int n, tTJSVariant **p, iTJSDispatch2 *obj) { return postSysCommand(obj, SC_MINIMIZE); }
@@ -405,21 +405,21 @@ struct WindowEx
 	}
 
 	//--------------------------------------------------------------
-	// Šg’£ƒCƒxƒ“ƒg—p
+	// æ‹¡å¼µã‚¤ãƒ™ãƒ³ãƒˆç”¨
 
-	// ƒƒ“ƒo‚ª‘¶İ‚·‚é‚©
+	// ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã™ã‚‹ã‹
 	bool hasMember(tjs_char const *name) const {
 		tTJSVariant func;
 		return TJS_SUCCEEDED(self->PropGet(TJS_MEMBERMUSTEXIST, name, 0, &func, self));
 	}
 
-	// TJSƒƒ\ƒbƒhŒÄ‚Ño‚µ
+	// TJSãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 	tjs_error funcCall(tjs_char const *name, tTJSVariant *result, tjs_int numparams = 0, tTJSVariant **params = 0) const {
 		return Try_iTJSDispatch2_FuncCall(self, 0, name, 0, result, numparams, params, self);
 //		return self->FuncCall(0, name, 0, result, numparams, params, self);
 	}
 
-	// ˆø”‚È‚µƒR[ƒ‹ƒoƒbƒN
+	// å¼•æ•°ãªã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name) const {
 		if (!hasMember(name)) return false;
 		tTJSVariant rslt;
@@ -427,7 +427,7 @@ struct WindowEx
 		return !!rslt.AsInteger();
 	}
 
-	// variant“n‚µƒR[ƒ‹ƒoƒbƒN
+	// variantæ¸¡ã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name, tTJSVariant *v) const {
 		if (!hasMember(name)) return false;
 		tTJSVariant rslt;
@@ -435,7 +435,7 @@ struct WindowEx
 		return !!rslt.AsInteger();
 	}
 
-	// À•W“n‚µƒR[ƒ‹ƒoƒbƒN
+	// åº§æ¨™æ¸¡ã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name, int x, int y) const {
 		tTJSVariant vx(x), vy(y);
 		tTJSVariant rslt, *params[] = { &vx, &vy };
@@ -443,7 +443,7 @@ struct WindowEx
 		return !!rslt.AsInteger();
 	}
 
-	// ‚SŒÂ“n‚µƒR[ƒ‹ƒoƒbƒN
+	// ï¼”å€‹æ¸¡ã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name, int a, int b, int c, int d) const {
 		tTJSVariant va(a), vb(b), vc(c), vd(d);
 		tTJSVariant rslt, *params[] = { &va, &vb, &vc, &vd };
@@ -451,7 +451,7 @@ struct WindowEx
 		return !!rslt.AsInteger();
 	}
 
-	// ‹éŒ`“n‚µƒR[ƒ‹ƒoƒbƒN
+	// çŸ©å½¢æ¸¡ã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name, RECT *rect, int type = 0) const {
 		ncbDictionaryAccessor dict;
 		if (SetRect(dict, rect)) {
@@ -467,7 +467,7 @@ struct WindowEx
 		return false;
 	}
 
-	// ƒƒbƒZ[ƒWˆ—
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 	bool onMessage(tTVPWindowMessage *mes) {
 		switch (mes->Msg) {
 		case TVP_WM_ATTACH:
@@ -537,7 +537,7 @@ struct WindowEx
 		case WM_SIZING: if (hasResizing) callback(EXEV_RESIZING, (RECT*)mes->LParam, mes->WParam); break;
 		case WM_MOVING: if (hasMoving)   callback(EXEV_MOVING,   (RECT*)mes->LParam); break;
 		case WM_MOVE:   if (hasMove)     callback(EXEV_MOVE, (int)LOWORD(mes->LParam), (int)HIWORD(mes->LParam)); break;
-			// ƒTƒCƒY•ÏXƒJ[ƒ\ƒ‹‚ğ—}§
+			// ã‚µã‚¤ã‚ºå¤‰æ›´ã‚«ãƒ¼ã‚½ãƒ«ã‚’æŠ‘åˆ¶
 		case WM_NCHITTEST:
 			if (disableResize) {
 				LRESULT res = ::DefWindowProc(hwnd, mes->Msg, mes->WParam, mes->LParam);
@@ -569,14 +569,14 @@ struct WindowEx
 			if (HIWORD(mes->LParam)) {
 				if (sysMenu != NULL && sysMenu == (HMENU)mes->WParam) modifySystemMenu();
 				if (disableResize || disableMove) {
-					// ƒVƒXƒeƒ€ƒƒjƒ…[ƒTƒCƒY•ÏX—}§
+					// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚µã‚¤ã‚ºå¤‰æ›´æŠ‘åˆ¶
 					mes->Result = ::DefWindowProc(hwnd, mes->Msg, mes->WParam, mes->LParam);
 					if (disableResize) ::EnableMenuItem((HMENU)mes->WParam, SC_SIZE, MF_GRAYED | MF_BYCOMMAND);
 					if (disableMove)   ::EnableMenuItem((HMENU)mes->WParam, SC_MOVE, MF_GRAYED | MF_BYCOMMAND);
 					return true;
 				}
 			} else if (menuex) {
-				// ƒƒjƒ…[ƒAƒCƒRƒ“‹­§·‚µ‘Ö‚¦
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ã‚³ãƒ³å¼·åˆ¶å·®ã—æ›¿ãˆ
 				mes->Result = ::DefWindowProc(hwnd, mes->Msg, mes->WParam, mes->LParam);
 				HMENU menu = (HMENU)mes->WParam;
 				checkUpdateMenuItem(menu);
@@ -587,7 +587,7 @@ struct WindowEx
 			if (menuex) checkUpdateMenuItem(::GetMenu(hwnd));
 			break;
 
-			// ƒƒjƒ…[ŠJnI—¹
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹çµ‚äº†
 		case WM_ENTERMENULOOP:
 			callback(EXEV_ENTERMENU);
 			break;
@@ -595,7 +595,7 @@ struct WindowEx
 			callback(EXEV_EXITMENU);
 			break;
 
-			// ƒfƒBƒXƒvƒŒƒCƒ‚[ƒh•ÏX’Ê’m
+			// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´é€šçŸ¥
 		case WM_DISPLAYCHANGE:
 			callback(EXEV_DISPCHG);
 			break;
@@ -606,7 +606,7 @@ struct WindowEx
 		return false;
 	}
 
-	// ƒƒjƒ…[XVˆ—iMenuItemEx—pj
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ›´æ–°å‡¦ç†ï¼ˆMenuItemExç”¨ï¼‰
 	void setMenuItemID(iTJSDispatch2*, UINT, bool);
 	void checkUpdateMenuItem(HMENU, int, UINT);
 	void checkUpdateMenuItem(HMENU menu) {
@@ -614,13 +614,13 @@ struct WindowEx
 		for (int i = 0; i < cnt; i++) checkUpdateMenuItem(menu, i, ::GetMenuItemID(menu, i));
 	}
 
-	// ƒƒbƒZ[ƒWƒŒƒV[ƒo
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒ
 	static bool __stdcall receiver(void *userdata, tTVPWindowMessage *mes) {
 		WindowEx *inst = GetInstance((iTJSDispatch2*)userdata);
 		return inst ? inst->onMessage(mes) : false;
 	}
 
-	// Message Receiver “o˜^E‰ğœ
+	// Message Receiver ç™»éŒ²ãƒ»è§£é™¤
 	void regist(bool en) {
 		tTJSVariant mode(en ? wrmRegister : wrmUnregister); 
 		tTJSVariant func((tTVInteger)(&receiver));
@@ -629,7 +629,7 @@ struct WindowEx
 		self->FuncCall(0, TJS_W("registerMessageReceiver"), 0, &rslt, 3, params, self);
 	}
 
-	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬E”jŠü‚É‚ ‚í‚¹‚ÄƒŒƒV[ƒo‚ğ“o˜^E‰ğœ‚·‚é
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆãƒ»ç ´æ£„ã«ã‚ã‚ã›ã¦ãƒ¬ã‚·ãƒ¼ãƒã‚’ç™»éŒ²ãƒ»è§£é™¤ã™ã‚‹
 	WindowEx(iTJSDispatch2 *obj)
 		:   self(obj), menuex(0),
 			sysMenuModified(0), sysMenuModMap(0),
@@ -806,19 +806,19 @@ protected:
 
 private:
 	iTJSDispatch2 *self, *menuex;
-	iTJSDispatch2 *sysMenuModified, *sysMenuModMap; //< ƒVƒXƒeƒ€ƒƒjƒ…[‰ü•Ï—p
+	iTJSDispatch2 *sysMenuModified, *sysMenuModMap; //< ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ”¹å¤‰ç”¨
 	HWND cachedHWND;
 	HMENU sysMenu;
 	HICON externalIcon;
-	bool hasResizing, hasMoving, hasMove, hasNcMsMove; //< ƒƒ\ƒbƒh‚ª‘¶İ‚·‚é‚©ƒtƒ‰ƒO
-	bool disableResize; //< ƒTƒCƒY•ÏX‹Ö~
-	bool disableMove; //< ƒEƒBƒ“ƒhƒEˆÚ“®‹Ö~
-	bool enableNCMEvent; //< WM_SETCURSORƒR[ƒ‹ƒoƒbƒN
-	bool enableWinMsgHook; //< ƒƒbƒZ[ƒWƒtƒbƒN—LŒø
+	bool hasResizing, hasMoving, hasMove, hasNcMsMove; //< ãƒ¡ã‚½ãƒƒãƒ‰ãŒå­˜åœ¨ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	bool disableResize; //< ã‚µã‚¤ã‚ºå¤‰æ›´ç¦æ­¢
+	bool disableMove; //< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç§»å‹•ç¦æ­¢
+	bool enableNCMEvent; //< WM_SETCURSORã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	bool enableWinMsgHook; //< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯æœ‰åŠ¹
 	DWORD bitHooks[0x0400/32];
 public:
 	//----------------------------------------------------------
-	// ƒI[ƒo[ƒŒƒCƒrƒbƒgƒ}ƒbƒv—pƒTƒuƒNƒ‰ƒX
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç”¨ã‚µãƒ–ã‚¯ãƒ©ã‚¹
 	//----------------------------------------------------------
 	struct OverlayBitmap {
 		OverlayBitmap() : overlay(0), bitmap(0), bmpdc(0) {}
@@ -969,7 +969,7 @@ public:
 };
 ATOM WindowEx::OverlayBitmap::WindowClass = 0;
 
-// Šg’£ƒCƒxƒ“ƒg—pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// æ‹¡å¼µã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowEx)
 {
 	/**/  NCB_GET_INSTANCE_HOOK_CLASS () {}
@@ -980,7 +980,7 @@ NCB_GET_INSTANCE_HOOK(WindowEx)
 		return obj;
 	}
 };
-// ƒƒ\ƒbƒh’Ç‰Á
+// ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ 
 NCB_ATTACH_CLASS_WITH_HOOK(WindowEx, Window)
 {
 	Variant(TJS_W("nchtError"),       (tjs_int)(HTERROR & 0xFFFF));
@@ -1043,7 +1043,7 @@ struct MenuItemEx
 	enum { BMP_ITEM, BMP_CHK, BMP_UNCHK, BMP_MAX };
 	enum { BMT_NONE, BMT_SYS, BMT_BMP };
 
-	// ƒƒjƒ…[‚ğæ“¾
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—
 	static HMENU GetHMENU(iTJSDispatch2 *obj) {
 		if (!obj) return NULL;
 		tTJSVariant val;
@@ -1057,13 +1057,13 @@ struct MenuItemEx
 		mi->PropGet(0, TJS_W("HMENU"), 0, &val, obj);
 		return (HMENU)(tjs_int)(val);
 	}
-	// eƒƒjƒ…[‚ğæ“¾
+	// è¦ªãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—
 	static iTJSDispatch2* GetParentMenu(iTJSDispatch2 *obj) {
 		tTJSVariant val;
 		obj->PropGet(0, TJS_W("parent"), 0, &val, obj);
 		return val.AsObjectNoAddRef();
 	}
-	// ƒ‹[ƒgƒƒjƒ…[‚Ìq‚©‚Ç‚¤‚©
+	// ãƒ«ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å­ã‹ã©ã†ã‹
 	static bool IsRootChild(iTJSDispatch2 *obj) {
 		tTJSVariant par, root;
 		obj->PropGet(0, TJS_W("parent"), 0, &par,  obj);
@@ -1072,7 +1072,7 @@ struct MenuItemEx
 		iTJSDispatch2 *r = root.AsObjectNoAddRef();
 		return (p && r && p == r);
 	}
-	// i“DL‚¢è’i‚ÅjƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	// ï¼ˆæ³¥è‡­ã„æ‰‹æ®µã§ï¼‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	static UINT GetIndex(iTJSDispatch2 *obj, iTJSDispatch2 *parent) {
 		tTJSVariant val, child;
 		parent->PropGet(0, TJS_W("children"), 0, &child, parent);
@@ -1087,7 +1087,7 @@ struct MenuItemEx
 			if (charr.checkVariant(i, vitem)) {
 				ncbPropAccessor item(vitem);
 				if (item.IsValid()) {
-					// ”ñ•\¦‚Ìê‡‚ÍƒJƒEƒ“ƒg‚³‚ê‚È‚¢
+					// éè¡¨ç¤ºã®å ´åˆã¯ã‚«ã‚¦ãƒ³ãƒˆã•ã‚Œãªã„
 					if (!item.getIntValue(TJS_W("visible"))) {
 						if (i == max) return (UINT)-1;
 						ret--;
@@ -1097,7 +1097,7 @@ struct MenuItemEx
 		}
 		return ret;
 	}
-	// ƒEƒBƒ“ƒhƒE‚ğæ“¾
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å–å¾—
 	static iTJSDispatch2* GetWindow(iTJSDispatch2 *obj) {
 		if (!obj) return NULL;
 		tTJSVariant val;
@@ -1237,7 +1237,7 @@ private:
 public:
 	static bool InsertMenuItem(HMENU menu, iTJSDispatch2 *obj, WORD &curid, WORD idmv, iTJSDispatch2 *items, DWORD sysdt) {
 		if (obj == NULL) return false;
-		// ”ñ•\¦‚È‚ç‚È‚¢‚à‚µ‚È‚¢
+		// éè¡¨ç¤ºãªã‚‰ãªã„ã‚‚ã—ãªã„
 		tTJSVariant val;
 		obj->PropGet(0, TJS_W("visible"), 0, &val, obj);
 		if (val.Type() != tvtVoid && !(tjs_int)val) return false;
@@ -1246,19 +1246,19 @@ public:
 		ZeroMemory(&mi, sizeof(mi));
 		mi.cbSize = sizeof(mi);
 
-		// captionæ“¾
+		// captionå–å¾—
 		val.Clear();
 		obj->PropGet(0, TJS_W("caption"), 0, &val, obj);
 		ttstr caption(val);
 		if (caption == TJS_W("-")) {
-			// ‹æØ‚è
+			// åŒºåˆ‡ã‚Š
 			mi.fMask = MIIM_FTYPE;
 			mi.fType = MFT_SEPARATOR;
 		} else {
 			mi.fMask = MIIM_FTYPE | MIIM_STRING;
 			mi.dwTypeData = (LPWSTR)caption.c_str();
 
-			// ƒTƒuƒƒjƒ…[‚ª‚ ‚é‚©
+			// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒã‚ã‚‹ã‹
 			HMENU submenu = NULL;
 			val.Clear();
 			obj->PropGet(0, TJS_W("children"), 0, &val, obj);
@@ -1270,7 +1270,7 @@ public:
 				}
 			}
 			if (submenu == NULL) {
-				// ƒTƒuƒƒjƒ…[‚È‚µ
+				// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—
 				mi.fMask |= MIIM_ID;
 				mi.wID = curid;
 				if (items != NULL) {
@@ -1279,19 +1279,19 @@ public:
 				}
 				curid += idmv;
 
-				// ƒ`ƒFƒbƒNƒ}[ƒN
+				// ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯
 				val.Clear();
 				obj->PropGet(0, TJS_W("checked"), 0, &val, obj);
 				if (val.Type() != tvtVoid && !!(tjs_int)val) {
 					mi.fMask |= MIIM_STATE;
 					mi.fState |= MFS_CHECKED;
 				}
-				// ƒ‰ƒWƒIƒ}[ƒN
+				// ãƒ©ã‚¸ã‚ªãƒãƒ¼ã‚¯
 				val.Clear();
 				obj->PropGet(0, TJS_W("group"), 0, &val, obj);
 				if (val.Type() == tvtInteger && (tjs_int)val > 0) mi.fType |= MFT_RADIOCHECK;
 			}
-			// —LŒøE–³Œø
+			// æœ‰åŠ¹ãƒ»ç„¡åŠ¹
 			val.Clear();
 			obj->PropGet(0, TJS_W("enabled"), 0, &val, obj);
 			if (val.Type() != tvtVoid && !(tjs_int)val) {
@@ -1299,7 +1299,7 @@ public:
 				mi.fState |= MFS_DISABLED;
 			}
 		}
-		// ‰üs
+		// æ”¹è¡Œ
 		val.Clear();
 		obj->PropGet(0, TJS_W("break"), 0, &val, obj);
 		{
@@ -1308,11 +1308,11 @@ public:
 				mi.fType |= (menubreak > 0) ? MFT_MENUBARBREAK : MFT_MENUBREAK;
 		}
 
-		// ‘}“ü‚·‚éˆÊ’u
+		// æŒ¿å…¥ã™ã‚‹ä½ç½®
 		UINT pos = ::GetMenuItemCount(menu);
 		BOOL insPos = TRUE;
 		if (sysdt > 0) {
-			// DATA‚ğ–„‚ß‚ŞiƒVƒXƒeƒ€ƒƒjƒ…[—pj
+			// DATAã‚’åŸ‹ã‚è¾¼ã‚€ï¼ˆã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ï¼‰
 			mi.fMask |= MIIM_DATA;
 			mi.dwItemData = sysdt;
 
@@ -1339,7 +1339,7 @@ public:
 		HMENU       ret = NULL;
 		tjs_int     count = 0;
 		tTJSVariant val;
-		// q‚ÌŒÂ”‚ğæ“¾iƒGƒ‰[‚Ìê‡‚Í‰½‚à‚µ‚È‚¢j
+		// å­ã®å€‹æ•°ã‚’å–å¾—ï¼ˆã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„ï¼‰
 		if (obj == NULL || TJS_FAILED(obj->PropGet(0, TJS_W("count"), 0, &val, obj)) ||
 			val.Type() != tvtInteger || (count = (tjs_int)val) <= 0) return ret;
 		ret = (menu != NULL) ? menu : (::CreatePopupMenu());
@@ -1350,7 +1350,7 @@ public:
 				created |= InsertMenuItem(ret, val.AsObjectNoAddRef(), curid, idmv, items, sysdt);
 			}
 		}
-		// ‚P‚Â‚à¶¬‚³‚ê‚¸CCreatePopupMenu‚ğ‚µ‚Ä‚¢‚éê‡‚É‚Íƒƒjƒ…[‚ğ”jŠü
+		// ï¼‘ã¤ã‚‚ç”Ÿæˆã•ã‚Œãšï¼ŒCreatePopupMenuã‚’ã—ã¦ã„ã‚‹å ´åˆã«ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç ´æ£„
 		if (!created && menu == NULL) ::DestroyMenu(ret);
 		return created ? ret : NULL;
 	}
@@ -1660,19 +1660,19 @@ struct PadEx
 	}
 
 
-	// ƒƒ“ƒo‚ª‘¶İ‚·‚é‚©
+	// ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã™ã‚‹ã‹
 	bool hasMember(tjs_char const *name) const {
 		tTJSVariant func;
 		return TJS_SUCCEEDED(self->PropGet(TJS_MEMBERMUSTEXIST, name, 0, &func, self));
 	}
 
-	// TJSƒƒ\ƒbƒhŒÄ‚Ño‚µ
+	// TJSãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 	tjs_error funcCall(tjs_char const *name, tTJSVariant *result, tjs_int numparams = 0, tTJSVariant **params = 0) const {
 		return Try_iTJSDispatch2_FuncCall(self, 0, name, 0, result, numparams, params, self);
 //		return self->FuncCall(0, name, 0, result, numparams, params, self);
 	}
 
-	// ˆø”‚È‚µƒR[ƒ‹ƒoƒbƒN
+	// å¼•æ•°ãªã—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	bool callback(tjs_char const *name) const {
 		if (!hasMember(name)) return false;
 		tTJSVariant rslt;
@@ -1687,16 +1687,16 @@ struct PadEx
 	~PadEx()                { regist(false); }
 	void registerExEvents() { regist(true);  }
 
-	// “o˜^E‰ğœ
+	// ç™»éŒ²ãƒ»è§£é™¤
 	void regist(bool en) {
 		HWND now = en ? GetHWND(self) : NULL;
 		bool same = (now == hwnd && now != NULL);
 		if (hwnd != NULL && (!en || !same)) {
 			if (OrigWndProc != NULL && hwnd != NULL && ::IsWindow(hwnd)) {
-				// WndProc–ß‚µ
+				// WndProcæˆ»ã—
 				WNDPROC proc =     (WNDPROC)::GetWindowLong(hwnd, GWL_WNDPROC);
 				if (proc == HookWindowProc) ::SetWindowLong(hwnd, GWL_WNDPROC, (LONG)OrigWndProc);
-				// UserData–ß‚µ
+				// UserDataæˆ»ã—
 				LONG ud =              ::GetWindowLong(hwnd, GWL_USERDATA);
 				if ( ud == (LONG)this) ::SetWindowLong(hwnd, GWL_USERDATA, 0);
 			}
@@ -1755,9 +1755,9 @@ NCB_ATTACH_CLASS_WITH_HOOK(PadEx, Pad)
 struct System
 {
 	//--------------------------------------------------------------
-	// ƒ†[ƒeƒBƒŠƒeƒB
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
 
-	// RECT‚ğ«‘‚É•Û‘¶
+	// RECTã‚’è¾æ›¸ã«ä¿å­˜
 	static bool SetDictRect(ncbDictionaryAccessor &dict, tjs_char const *name, LPCRECT lprect) {
 		ncbDictionaryAccessor rdic;
 		if (rdic.IsValid()) {
@@ -1768,7 +1768,7 @@ struct System
 		return false;
 	}
 
-	// ˆø”‚©‚çRECT‚ğæ“¾
+	// å¼•æ•°ã‹ã‚‰RECTã‚’å–å¾—
 	static void GetDictRect(LPRECT lprect, tTJSVariant **param) {
 		lprect->left   = (LONG)param[0]->AsInteger();
 		lprect->top    = (LONG)param[1]->AsInteger();
@@ -1778,7 +1778,7 @@ struct System
 		lprect->bottom += lprect->top;
 	}
 
-	// ƒ‚ƒjƒ^î•ñ«‘‚ğ¶¬
+	// ãƒ¢ãƒ‹ã‚¿æƒ…å ±è¾æ›¸ã‚’ç”Ÿæˆ
 	static bool SetDictMonitorInfo(HMONITOR hMonitor, ncbDictionaryAccessor &dict) {
 		MONITORINFOEXW mi;
 		ZeroMemory(&mi, sizeof(mi));
@@ -1794,9 +1794,9 @@ struct System
 	}
 
 	//--------------------------------------------------------------
-	// EnumDisplayMonitorsƒR[ƒ‹ƒoƒbƒN
+	// EnumDisplayMonitorsã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-	// ”z—ñ‚Éƒ‚ƒjƒ^î•ñ«‘‚ğ’Ç‰Á
+	// é…åˆ—ã«ãƒ¢ãƒ‹ã‚¿æƒ…å ±è¾æ›¸ã‚’è¿½åŠ 
 	static BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData) {
 		ncbArrayAccessor *array = (ncbArrayAccessor*)dwData;
 		ncbDictionaryAccessor dict;
@@ -1807,7 +1807,7 @@ struct System
 		return TRUE;
 	}
 
-	// ƒvƒ‰ƒCƒ}ƒŠƒ‚ƒjƒ^ƒnƒ“ƒhƒ‹‚ğæ“¾
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¢ãƒ‹ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	static BOOL CALLBACK PrimaryGetProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData) {
 		MONITORINFO mi;
 		ZeroMemory(&mi, sizeof(mi));
@@ -1820,7 +1820,7 @@ struct System
 	}
 
 	//--------------------------------------------------------------
-	// ƒNƒ‰ƒX’Ç‰Áƒƒ\ƒbƒh
+	// ã‚¯ãƒ©ã‚¹è¿½åŠ ãƒ¡ã‚½ãƒƒãƒ‰
 
 	// System.getDisplayMonitors
 	static tjs_error TJS_INTF_METHOD getDisplayMonitors(
@@ -1829,7 +1829,7 @@ struct System
 		RECT rect;
 		bool useRect = false;
 
-		// ƒpƒ‰ƒ[ƒ^ŒÂ”‚Í 0 ‚Ü‚½‚Í 4ŒÂ‚Ì‚İ
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€‹æ•°ã¯ 0 ã¾ãŸã¯ 4å€‹ã®ã¿
 		switch (numparams) {
 		case 0: break;
 		case 4:
@@ -1855,12 +1855,12 @@ struct System
 		HMONITOR mon = NULL;
 		DWORD flag = (numparams > 0 && param[0]->AsInteger()) ? MONITOR_DEFAULTTONEAREST : MONITOR_DEFAULTTONULL;
 
-		// ƒpƒ‰ƒ[ƒ^ŒÂ”‚É‚æ‚Á‚Ä“®ì•ÏX
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€‹æ•°ã«ã‚ˆã£ã¦å‹•ä½œå¤‰æ›´
 		switch (numparams) {
-		case 0: // È—ª
+		case 0: // çœç•¥æ™‚
 			::EnumDisplayMonitors(NULL, NULL, &PrimaryGetProc, (LPARAM)&mon);
 			break;
-		case 2: // windoww’è
+		case 2: // windowæŒ‡å®š
 			iTJSDispatch2 *obj;
 			if (param[1]->Type() != tvtObject) return TJS_E_INVALIDPARAM;
 			obj = param[1]->AsObjectNoAddRef();
@@ -1869,13 +1869,13 @@ struct System
 				mon = ::MonitorFromWindow(hwnd, flag);
 			} else return TJS_E_INVALIDPARAM;
 			break;
-		case 3: // À•Ww’è
+		case 3: // åº§æ¨™æŒ‡å®š
 			POINT pt;
 			pt.x = (LONG)param[1]->AsInteger();
 			pt.y = (LONG)param[2]->AsInteger();
 			mon = ::MonitorFromPoint(pt, flag);
 			break;
-		case 5: // ”ÍˆÍw’è
+		case 5: // ç¯„å›²æŒ‡å®š
 			RECT rect;
 			GetDictRect(&rect, param+1);
 			mon = ::MonitorFromRect(&rect, flag);
@@ -1988,7 +1988,7 @@ struct System
 			if (!tmp) return TJS_E_FAIL;
 			ZeroMemory(tmp, len);
 			DWORD res = ::GetEnvironmentVariableW(name.c_str(), tmp, len);
-			//		if (res != len-1) TVPAddImportantLog(TJS_W("ŠÂ‹«•Ï”’·‚ªˆê’v‚µ‚Ü‚¹‚ñ"));
+			//		if (res != len-1) TVPAddImportantLog(TJS_W("ç’°å¢ƒå¤‰æ•°é•·ãŒä¸€è‡´ã—ã¾ã›ã‚“"));
 			*r = ttstr(tmp);
 			delete[] tmp;
 		}
@@ -2007,7 +2007,7 @@ struct System
 			if (!tmp) return TJS_E_FAIL;
 			ZeroMemory(tmp, len);
 			DWORD res = ::ExpandEnvironmentStrings(src.c_str(), tmp, len);
-			//		if (res != len) TVPAddImportantLog(TJS_W("“WŠJ’·‚ªˆê’v‚µ‚Ü‚¹‚ñ"));
+			//		if (res != len) TVPAddImportantLog(TJS_W("å±•é–‹é•·ãŒä¸€è‡´ã—ã¾ã›ã‚“"));
 			*r = ttstr(tmp);
 			delete[] tmp;
 		}
@@ -2021,7 +2021,7 @@ struct System
 	}
 	static tjs_error _setApplicationIcon(HICON icon) {
 		termExternalIcon();
-		// [XXX] Win7‚É‚ÄIDI_APPLICATION‚ÌƒAƒCƒRƒ“‚ğICON_BIG‚ÉÄİ’è‚µ‚Ä‚à‰½ŒÌ‚©•Ï‰»‚µ‚È‚¢“Ç‚İ’¼‚·
+		// [XXX] Win7ã«ã¦IDI_APPLICATIONã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ICON_BIGã«å†è¨­å®šã—ã¦ã‚‚ä½•æ•…ã‹å¤‰åŒ–ã—ãªã„èª­ã¿ç›´ã™
 		if (!icon) {
 			tTJSVariant v;
 			TVPExecuteExpression(TJS_W("System.exeName"), &v);
@@ -2076,15 +2076,15 @@ struct System
 	static tjs_int getDoubleClickTime() { return (tjs_int)::GetDoubleClickTime(); }
 };
 HICON System::externalIcon = NULL;
-// Window.setWindowIcon‚Åwithapp=true‚Æ‚µ‚½‚Æ‚«
+// Window.setWindowIconã§withapp=trueã¨ã—ãŸã¨ã
 void WindowEx::_setApplicationIcon(HICON icon) {
-	// ƒAƒCƒRƒ“w’è‚ª‚ ‚éê‡‚Í•¡»iƒAƒCƒRƒ“ƒnƒ“ƒhƒ‹‚ÌŠÇŠ‚ªˆÙ‚È‚é‚½‚ßj
+	// ã‚¢ã‚¤ã‚³ãƒ³æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯è¤‡è£½ï¼ˆã‚¢ã‚¤ã‚³ãƒ³ãƒãƒ³ãƒ‰ãƒ«ã®ç®¡è½„ãŒç•°ãªã‚‹ãŸã‚ï¼‰
 	if (icon) icon = ::DuplicateIcon(NULL, icon);
 	System::_setApplicationIcon(icon);
 }
 
 
-// System‚ÉŠÖ”‚ğ’Ç‰Á
+// Systemã«é–¢æ•°ã‚’è¿½åŠ 
 NCB_ATTACH_FUNCTION(getDisplayMonitors, System, System::getDisplayMonitors);
 NCB_ATTACH_FUNCTION(getMonitorInfo,     System, System::getMonitorInfo);
 NCB_ATTACH_FUNCTION(getCursorPos,       System, System::getCursorPos);
@@ -2114,7 +2114,7 @@ struct Scripts
 		return ret;
 	}
 
-	// Scripts.eval ƒI[ƒo[ƒ‰ƒCƒh
+	// Scripts.eval ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	static tjs_error TJS_INTF_METHOD eval(tTJSVariant *r, tjs_int n, tTJSVariant **p, iTJSDispatch2 *objthis) {
 		if (outputErrorLogOnEval) return evalOrig->FuncCall(0, NULL, NULL, r, n, p, objthis);
 
@@ -2127,7 +2127,7 @@ struct Scripts
 		TVPExecuteExpression(content, name, lineofs, r);
 		return TJS_S_OK;
 	}
-	// Œ³‚Ì Scripts.eval ‚ğ•Û‘¶E•œ‹A
+	// å…ƒã® Scripts.eval ã‚’ä¿å­˜ãƒ»å¾©å¸°
 	static void Regist() {
 		tTJSVariant var;
 		TVPExecuteExpression(TJS_W("Scripts.eval"), &var);
@@ -2139,15 +2139,15 @@ struct Scripts
 	}
 	static iTJSDispatch2 *evalOrig;
 };
-iTJSDispatch2 * Scripts::evalOrig = NULL;  // Scripts.eval‚ÌŒ³‚ÌƒIƒuƒWƒFƒNƒg
-bool            Scripts::outputErrorLogOnEval = true; // Ø‚è‘Ö‚¦ƒtƒ‰ƒO
+iTJSDispatch2 * Scripts::evalOrig = NULL;  // Scripts.evalã®å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+bool            Scripts::outputErrorLogOnEval = true; // åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°
 
-// Scripts‚ÉŠÖ”‚ğ’Ç‰Á
+// Scriptsã«é–¢æ•°ã‚’è¿½åŠ 
 NCB_ATTACH_FUNCTION(eval,            Scripts, Scripts::eval);
 NCB_ATTACH_FUNCTION(setEvalErrorLog, Scripts, Scripts::setEvalErrorLog);
 
 ////////////////////////////////////////////////////////////////
-// ƒR[ƒ‹ƒoƒbƒNw’è
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æŒ‡å®š
 
 static void PreRegistCallback()
 {

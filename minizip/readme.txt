@@ -1,10 +1,10 @@
 Title: minizip plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚Å zip ƒA[ƒJƒCƒu‚ğˆµ‚¤ƒvƒ‰ƒOƒCƒ“‚Å‚·B
-Šeíƒf[ƒ^‚Ìo—Í‚âŠÇ—‚È‚Ç‚É—˜—p‚Å‚«‚Ü‚·
+å‰é‡Œå‰é‡Œã§ zip ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’æ‰±ã†ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+å„ç¨®ãƒ‡ãƒ¼ã‚¿ã®å‡ºåŠ›ã‚„ç®¡ç†ãªã©ã«åˆ©ç”¨ã§ãã¾ã™
 
 This unzip package allow creates .ZIP file, compatible with PKZip 2.04g
 WinZip, InfoZip tools and compatible.
@@ -12,14 +12,14 @@ Multi volume ZipFile (span) are not supported.
 Encryption compatible with pkzip 2.04g only supported
 Old compressions used by old PKZip 1.x are not supported
 
-œg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs QÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-zlib •t‘®‚Ì contrib/minizip ‚ğƒvƒ‰ƒOƒCƒ“‰»‚µ‚½‚à‚Ì‚Å‚·
-zlib ƒ‰ƒCƒZƒ“ƒX‚É‚È‚è‚Ü‚·B
+zlib ä»˜å±ã® contrib/minizip ã‚’ãƒ—ãƒ©ã‚°ã‚¤ãƒ³åŒ–ã—ãŸã‚‚ã®ã§ã™
+zlib ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«ãªã‚Šã¾ã™ã€‚
 
 Version 1.01e, February 12th, 2005
 Copyright (C) 1998-2005 Gilles Vollant

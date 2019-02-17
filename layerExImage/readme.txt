@@ -1,17 +1,17 @@
 Title: layerExImage plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Layer �N���X�ɋ@�\�g�����s���v���O�C���ł�
+Layer クラスに機能拡張を行うプラグインです
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-�{�\�[�X�͈ꕔ�� CxImage ����Q�Ƃ����R�[�h���g�p���Ă��܂��B
-CxImage �� zlib �X�^�C���̃��C�Z���X�ɂȂ��Ă��܂��B
+本ソースは一部で CxImage から参照したコードを使用しています。
+CxImage は zlib スタイルのライセンスになっています。
 
-���̃v���O�C�����̂̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグイン自体のライセンスは吉里吉里本体に準拠してください。

@@ -1,22 +1,22 @@
-Title: shrinkCopy �v���O�C��
+Title: shrinkCopy プラグイン
 Author: miahmie
 
-������͉����H
+●これは何か？
 
-�ʐϕ��ϖ@���A���S���Y���ɂ��k����p�R�s�[���\�b�h��Layer�ɒǉ�����܂��B
-1/2�ȉ��̏k����stretchCopy/affineCopy��荂�i���ɏk���ł��邩�Ǝv���܂��B
-�`�摬�x�͊��ƒx���̂ŁC���A���^�C���̕`��p�r�ɂ͌����܂���B
-�c�[���p�r��Z�[�u�̃T���l�C�������p�r�Ȃǐ����ł��B
+面積平均法※アルゴリズムによる縮小専用コピーメソッドがLayerに追加されます。
+1/2以下の縮小でstretchCopy/affineCopyより高品質に縮小できるかと思います。
+描画速度は割と遅いので，リアルタイムの描画用途には向きません。
+ツール用途やセーブのサムネイル生成用途など推奨です。
 
-���������̂��߂�1/256px�𕪉�\�Ƃ��Ă���̂Ō����Ȗʐϕ��ϖ@�ł͂���܂���B
-
-
-���g����
-
-manual.tjs ���Q�Ƃ��Ă��������B
+※高速化のために1/256pxを分解能としているので厳密な面積平均法ではありません。
 
 
-�����C�Z���X
+●使い方
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+manual.tjs を参照してください。
+
+
+●ライセンス
+
+このプラグインのライセンスは吉里吉里本体に準拠してください。
 

@@ -3,7 +3,7 @@
 #include "LayerManagerInfo.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerManagerInfo::LayerManagerInfo(int id, bool visible)
 	: id(id), visible(visible), srcWidth(0), srcHeight(0),
@@ -16,7 +16,7 @@ LayerManagerInfo::LayerManagerInfo(int id, bool visible)
 };
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerManagerInfo::~LayerManagerInfo()
 {
@@ -24,7 +24,7 @@ LayerManagerInfo::~LayerManagerInfo()
 }
 
 /**
- * ƒeƒNƒXƒ`ƒƒŠ„‚è“–‚Äˆ—
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰²ã‚Šå½“ã¦å‡¦ç†
  */
 void
 LayerManagerInfo::alloc(iTVPLayerManager *manager, IDirectDraw7 *directDraw, IDirect3DDevice7 *direct3DDevice)
@@ -91,9 +91,9 @@ LayerManagerInfo::alloc(iTVPLayerManager *manager, IDirectDraw7 *directDraw, IDi
 		hr = directDraw->CreateSurface(&ddsd, &texture, NULL);
 		
 		if (hr == DD_OK) {
-			useDirectTransfer = true; // ’¼Ú‚Ìƒƒ‚ƒŠ“]‘—‚ğ—LŒø‚É‚·‚é
+			useDirectTransfer = true; // ç›´æ¥ã®ãƒ¡ãƒ¢ãƒªè»¢é€ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 		} else /*if(hr != DD_OK) */	{
-			// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ğw’è‚¹‚¸‚É¶¬‚ğ‚İ‚é
+			// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã›ãšã«ç”Ÿæˆã‚’è©¦ã¿ã‚‹
 			
 			ZeroMemory(&ddsd, sizeof(ddsd));
 			ddsd.dwSize = sizeof(ddsd);
@@ -119,7 +119,7 @@ LayerManagerInfo::alloc(iTVPLayerManager *manager, IDirectDraw7 *directDraw, IDi
 }
 
 /*
- * ƒeƒNƒXƒ`ƒƒ‰ğ•ú
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
  */
 void
 LayerManagerInfo::free()
@@ -131,7 +131,7 @@ LayerManagerInfo::free()
 }
 
 /**
- * ƒeƒNƒXƒ`ƒƒ‚ğƒƒbƒN‚µ‚Ä•`‰æ—Ìˆæî•ñ‚ğæ“¾‚·‚é
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒƒã‚¯ã—ã¦æç”»é ˜åŸŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹
  */
 void
 LayerManagerInfo::lock()
@@ -177,15 +177,15 @@ LayerManagerInfo::lock()
 }
 
 /**
- * ƒƒbƒN‚³‚ê‚½ƒeƒNƒXƒ`ƒƒ‚Éƒrƒbƒgƒ}ƒbƒv•`‰æ‚ğs‚¤
+ * ãƒ­ãƒƒã‚¯ã•ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»ã‚’è¡Œã†
  */
 void
 LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
 					   const tTVPRect &cliprect, tTVPLayerType type, tjs_int opacity)
 {
-	// bits, bitmapinfo ‚Å•\‚³‚ê‚éƒrƒbƒgƒ}ƒbƒv‚Ì cliprect ‚Ì—Ìˆæ‚ğAx, y ‚É•`‰æ‚·‚éB
+	// bits, bitmapinfo ã§è¡¨ã•ã‚Œã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã® cliprect ã®é ˜åŸŸã‚’ã€x, y ã«æç”»ã™ã‚‹ã€‚
 	if (texture &&
-		// ”ÍˆÍŠO‚Ì“]‘—‚Í(ˆê•”‚¾‚¯“]‘—‚·‚é‚Ì‚Å‚Í‚È‚­‚Ä)–³‹‚µ‚Ä‚æ‚¢
+		// ç¯„å›²å¤–ã®è»¢é€ã¯(ä¸€éƒ¨ã ã‘è»¢é€ã™ã‚‹ã®ã§ã¯ãªãã¦)ç„¡è¦–ã—ã¦ã‚ˆã„
 		!(x < 0 || y < 0 ||
 		  x + cliprect.get_width() > srcWidth ||
 		  y + cliprect.get_height() > srcHeight) &&
@@ -194,7 +194,7 @@ LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO
 		  cliprect.bottom > bitmapinfo->bmiHeader.biHeight)) {
 
 		if (useDirectTransfer) {
-			// ’¼Úƒƒ‚ƒŠ“]‘—‚ğ—p‚¢‚Ä•`‰æ‚ğs‚¤
+			// ç›´æ¥ãƒ¡ãƒ¢ãƒªè»¢é€ã‚’ç”¨ã„ã¦æç”»ã‚’è¡Œã†
 			if (textureBuffer) {
 
 				long src_y       = cliprect.top;
@@ -222,7 +222,7 @@ LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO
 				}
 			}
 		} else {
-			// DrawDibDraw ‚É‚Ä offScreenDC ‚É•`‰æ‚ğs‚¤
+			// DrawDibDraw ã«ã¦ offScreenDC ã«æç”»ã‚’è¡Œã†
 			if (offScreenDC) {
 				if (!drawDibHandle) {
 					drawDibHandle = DrawDibOpen();
@@ -248,7 +248,7 @@ LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO
 }
 
 /**
- * ƒeƒNƒXƒ`ƒƒ‚ÌƒƒbƒN‚Ì‰ğœ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ­ãƒƒã‚¯ã®è§£é™¤
  */
 void
 LayerManagerInfo::unlock()
@@ -267,7 +267,7 @@ LayerManagerInfo::unlock()
 }
 
 /**
- * ‰æ–Ê‚Ö‚Ì•`‰æ
+ * ç”»é¢ã¸ã®æç”»
  */
 void
 LayerManagerInfo::draw(IDirect3DDevice7 * direct3DDevice, int destWidth, int destHeight)

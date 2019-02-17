@@ -1,258 +1,258 @@
 //
-// squirrel �^���X���b�h�����x�����C�u����
+// squirrel 疑似スレッド処理支援ライブラリ
 //
 
 /**
- * ���I�u�W�F�N�g
+ * 基底オブジェクト
  *
- * ���v���p�e�B�@�\
- * Object ���p�������I�u�W�F�N�g�́A�ʏ�� squirrel �̃I�u�W�F�N�g�ɂ͂Ȃ��v���p�e�B�@�\��
- * �g������Ă��܂��B�Y�����郁���o�����݂��Ȃ������ꍇ�A�����I�� getter/setter
- * �t�@���N�V������T���āA���ꂪ����΂�����Ăяo���Ēl����������܂��B
- * val = obj.name; �� val = obj.getName();
- * obj.name = val; �� obj.setName(val)
+ * ●プロパティ機能
+ * Object を継承したオブジェクトは、通常の squirrel のオブジェクトにはないプロパティ機能が
+ * 拡張されています。該当するメンバが存在しなかった場合、自動的に getter/setter
+ * ファンクションを探して、それがあればそれを呼び出して値が処理されます。
+ * val = obj.name; → val = obj.getName();
+ * obj.name = val; → obj.setName(val)
  *
- * ��delegate�@�\
- * Object ���p�������I�u�W�F�N�g�́Asquirrel �̃e�[�u��/���[�U�f�[�^���T�|�[�g���Ă�悤��
- * delegate �@�\���g�����Ƃ��ł��܂��B�Ϗ���̃I�u�W�F�N�g�́Asquirrel �̕W���@�\���l��
- * �e�[�u���̑��A�ʂ̃I�u�W�F�N�g�C���X�^���X���w��\�ł��B
- * �Ϗ��I�u�W�F�N�g���C���X�^���X�̏ꍇ�́A�N���[�W�����Q�Ƃ���ہA���̃C���X�^���X����
- * �Ƃ��� bindenv ���ꂽ��ԂŎ擾����܂�(TJS�̃f�t�H���g�̋����Ɠ����悤�ɂȂ�܂�)�B
- * �e�[�u���̏ꍇ�͊����Đݒ肵�Ȃ��̂ŁA�N���[�W���͌��̃I�u�W�F�N�g�̊��Ŏ��s����܂�
+ * ●delegate機能
+ * Object を継承したオブジェクトは、squirrel のテーブル/ユーザデータがサポートしてるような
+ * delegate 機能を使うことができます。委譲先のオブジェクトは、squirrel の標準機能同様の
+ * テーブルの他、別のオブジェクトインスタンスが指定可能です。
+ * 委譲オブジェクトがインスタンスの場合は、クロージャを参照する際、そのインスタンスを環境
+ * として bindenv された状態で取得されます(TJSのデフォルトの挙動と同じようになります)。
+ * テーブルの場合は環境を再設定しないので、クロージャは元のオブジェクトの環境で実行されます
  *
- * ��wait�@�\
- * �X���b�h(Thread)�̓I�u�W�F�N�g���u�҂v���Ƃ��ł��܂��B
- * �I�u�W�F�N�g�ɑ΂���҂��́A�I�u�W�F�N�g�� notify/notifyAll ���邱�Ƃŉ�������܂��B
- * �I�u�W�F�N�g���j������鎞�ɂ� notifyAll() �����s����܂��B
+ * ●wait機能
+ * スレッド(Thread)はオブジェクトを「待つ」ことができます。
+ * オブジェクトに対する待ちは、オブジェクトが notify/notifyAll することで解除されます。
+ * オブジェクトが破棄される時には notifyAll() が実行されます。
  *
- * ���C�x���g�@�\(C++���@�\)
- * Object ���p�����č쐬���� C++ �I�u�W�F�N�g������ callEvent() ���Ăяo�����ƂŁA
- * �Y���I�u�W�F�N�g�� squirrel ���\�b�h���Ăяo���Ēl���擾�����邱�Ƃ��ł��܂��B
+ * ●イベント機能(C++側機能)
+ * Object を継承して作成した C++ オブジェクト中から callEvent() を呼び出すことで、
+ * 該当オブジェクトの squirrel メソッドを呼び出して値を取得させることができます。
  */ 
 class Object {
 
 	/**
-	 * �R���X�g���N�^
-	 * @param delegate �������Ϗ�����I�u�W�F�N�g���w�肵�܂��B
-	 * Object �̏��@�\������ɓ��삷�邽�߂ɂ�
-	 * �p���N���X�̃R���X�g���N�^�ł͂��Ȃ炸 Object.constructor() ���Ăяo���K�v������܂��B
+	 * コンストラクタ
+	 * @param delegate 処理を委譲するオブジェクトを指定します。
+	 * Object の諸機能が正常に動作するためには
+	 * 継承クラスのコンストラクタではかならず Object.constructor() を呼び出す必要があります。
 	 */
 	constructor(delegate=null);
 
 	/**
-	 * �f�X�g���N�^
-	 * ��`���Ă���ƃI�u�W�F�N�g�j�����O�ɌĂяo����܂�
+	 * デストラクタ
+	 * 定義してあるとオブジェクト破棄直前に呼び出されます
 	 */
     function destructor();
   
 	/**
-	 * ���̃I�u�W�F�N�g�ɑ΂���Ϗ���ݒ肵�܂�(�R���X�g���N�^�w��Ɠ��@�\)
-	 * @param delegate �Ϗ���I�u�W�F�N�g
+	 * このオブジェクトに対する委譲を設定します(コンストラクタ指定と同機能)
+	 * @param delegate 委譲先オブジェクト
 	 */
 	function setDelegate(delegate=null);
 
 	/**
-	 * ���̃I�u�W�F�N�g�ɑ΂���Ϗ����擾���܂��B
-	 * @return �Ϗ���I�u�W�F�N�g
+	 * このオブジェクトに対する委譲を取得します。
+	 * @return 委譲先オブジェクト
 	 */
 	function getDelegate();
 	
 	/**
-	 * @param name �v���p�e�B��
-	 * @return �w�肳�ꂽ���O�̃v���p�e�B�� setter ������� true
+	 * @param name プロパティ名
+	 * @return 指定された名前のプロパティの setter があれば true
 	 */
 	function hasSetProp(name);
 	
 	/**
-	 * ���̃I�u�W�F�N�g��҂��Ă���X���b�h1�ɏI����ʒm����
-	 * ���҂����Â����̂��珇�ɏ�������܂�
+	 * このオブジェクトを待っているスレッド1つに終了を通知する
+	 * ※待ちが古いものから順に処理されます
 	 */
 	function notify();
 
 	/**
-	 * ���̃I�u�W�F�N�g��҂��Ă���S�X���b�h�ɏI����ʒm����
-	 * �����̃��\�b�h�̓I�u�W�F�N�g�p�����ɂ����s����܂��B
+	 * このオブジェクトを待っている全スレッドに終了を通知する
+	 * ※このメソッドはオブジェクト廃棄時にも実行されます。
 	 */
 	function notifyAll();
 
 	/**
-	 * �v���p�e�B�̒l���擾����B�v���p�e�B���ɑΉ����� getter ���\�b�h���Ăяo����
-	 * ���̒l��Ԃ��܂��B_get �Ƃ��ēo�^����Ă�����̂̕ʖ��ł��B
-	 * @param propName �v���p�e�B��
-	 * @return �v���p�e�B�̒l
+	 * プロパティの値を取得する。プロパティ名に対応する getter メソッドを呼び出して
+	 * その値を返します。_get として登録されているものの別名です。
+	 * @param propName プロパティ名
+	 * @return プロパティの値
 	 */
 	function get(propName);
 
 	/**
-	 * �v���p�e�B�̒l��ݒ肷��B�v���p�e�B���ɑΉ����� setter ���\�b�h���Ăяo����
-	 * �l��ݒ肵�܂��B_set �Ƃ��ēo�^����Ă�����̂̕ʖ��ł��B
-	 * @param propName �v���p�e�B��
-	 * @param calue �v���p�e�B�̒l
+	 * プロパティの値を設定する。プロパティ名に対応する setter メソッドを呼び出して
+	 * 値を設定します。_set として登録されているものの別名です。
+	 * @param propName プロパティ名
+	 * @param calue プロパティの値
 	 */
 	function set(propName, value);
 };
 
 enum {
-	// �X���b�h�̃X�e�[�g
-	NONE = 0;     // ����
-	LOADING_FILE = 1;  // �t�@�C���ǂݍ��ݒ�
-	LOADING_FUNC = 2;  // �֐��ǂݍ��ݒ�
-	STOP = 3;     // ��~��
-	RUN  = 4;      // ���s��
-	WAIT = 5;     // �����҂�
+	// スレッドのステート
+	NONE = 0;     // 無し
+	LOADING_FILE = 1;  // ファイル読み込み中
+	LOADING_FUNC = 2;  // 関数読み込み中
+	STOP = 3;     // 停止中
+	RUN  = 4;      // 実行中
+	WAIT = 5;     // 処理待ち
 } TEREADSTATUS;
 
 /**
- * �X���b�h����p�I�u�W�F�N�g
- * �^���X���b�h�𐧌䂷�邽�߂̃I�u�W�F�N�g�ł��B
+ * スレッド制御用オブジェクト
+ * 疑似スレッドを制御するためのオブジェクトです。
  *
- * ���X���b�h���s�@�\
- * exec �ŃX�N���v�g���X���b�h���s�����邱�Ƃ��ł��܂��B
- * �X���b�h�����s���̏ꍇ�A���Ƀ��[�U�̎Q�Ƃ��Ȃ��Ȃ��Ă��V�X�e�����Q�Ƃ��ێ����܂��B
- * �w�肳�ꂽ�̂���`�ς݂̊֐��̏ꍇ�́A�X���b�h�̃X�e�[�g�͒����ɁuRUN�v�ɂȂ�A
- * ���̎��s�����P�ʂ�����s���J�n����܂��B
- * �t�@�C��������s����ꍇ�́A�t�@�C�����[�h����������܂Ŏ��s�J�n���x������ꍇ������܂��B
- * ���[�h���̓X���b�h�̃X�e�[�g���uLOADING�v�ɂȂ�܂��B
+ * ●スレッド実行機能
+ * exec でスクリプトをスレッド実行させることができます。
+ * スレッドを実行中の場合、仮にユーザの参照がなくなってもシステムが参照を維持します。
+ * 指定されたのが定義済みの関数の場合は、スレッドのステートは直ちに「RUN」になり、
+ * 次の実行処理単位から実行が開始されます。
+ * ファイルから実行する場合は、ファイルロードが完了するまで実行開始が遅延する場合があります。
+ * ロード中はスレッドのステートが「LOADING」になります。
  * 
- * ��wait�@�\
- * �X���b�h�͎��s�������ꎞ��~���āu�҂v���Ƃ��ł��܂��B���̏�Ԃ̃X�e�[�g�́uWAIT�v�ł��B
+ * ●wait機能
+ * スレッドは実行処理を一時停止して「待つ」ことができます。この状態のステートは「WAIT」です。
  *
- * - ���ԑ҂�: �w�肳�ꂽ����(tick�l)�ȏ�̊Ԏ��s���~���܂��B
- * - �g���K�҂�: �w�肳��ăg���K(������w��)�������Ă���܂Ŏ��s���~���܂��B
- * - �I�u�W�F�N�g�҂�: �w�肳�ꂽObject�^�̃I�u�W�F�N�g���� notify() ��������܂Ŏ��s���~���܂��B
+ * - 時間待ち: 指定された時間(tick値)以上の間実行を停止します。
+ * - トリガ待ち: 指定されてトリガ(文字列指定)が送られてくるまで実行を停止します。
+ * - オブジェクト待ち: 指定されたObject型のオブジェクトから notify() をうけるまで実行を停止します。
  * 
- * �I�u�W�F�N�g�� notify() �̃^�C�~���O�̓I�u�W�F�N�g�̎�������ł��B
- * �������A�I�u�W�F�N�g�j�����͎����I�� notifyAll() ����܂��B
- * �X���b�h�� Object�Ȃ̂ŁA�X���b�h����ʂ̃X���b�h��҂��Ƃ��ł��܂��B
- * �X���b�h�͎��s�I��������уI�u�W�F�N�g�j������ notifyAll() �����s���܂��B
+ * オブジェクトの notify() のタイミングはオブジェクトの実装次第です。
+ * ただし、オブジェクト破棄時は自動的に notifyAll() されます。
+ * スレッドも Objectなので、スレッドから別のスレッドを待つことができます。
+ * スレッドは実行終了時およびオブジェクト破棄時に notifyAll() を実行します。
  */
 class Thread extends Object {
 
 	/**
-	 * �R���X�g���N�^
-	 * @param delegate �������Ϗ�����I�u�W�F�N�g���w�肵�܂��B
-	 * @param func �X���b�h�𐶐�����s����t�@���N�V�����܂��̓t�@�C����
-	 * @param ... ����
+	 * コンストラクタ
+	 * @param delegate 処理を委譲するオブジェクトを指定します。
+	 * @param func スレッドを生成後実行するファンクションまたはファイル名
+	 * @param ... 引数
 	 */
 	constructor(delegate=null, func=null, ...);
 
 	/**
-	 * @return ���̃X���b�h�̎��s����(tick�l)wo
+	 * @return このスレッドの実行時間(tick値)wo
 	 */
 	function getCurrentTick();
 
 	/**
-	 * @return ���̃X���b�h�̎��s�X�e�[�^�X NONE/LOADING_FILE/LOADING_FUNC/STOP/RUN/WAIT
+	 * @return このスレッドの実行ステータス NONE/LOADING_FILE/LOADING_FUNC/STOP/RUN/WAIT
 	 */
 	function getStatus();
 
 	/**
-	 * @return ���̃X���b�h�̏I��/suspend�R�[�h
-	 * �X�N���v�g���� return, suspend, exit() ���ꂽ���̎w��l���i�[����Ă��܂�
+	 * @return このスレッドの終了/suspendコード
+	 * スクリプトから return, suspend, exit() された時の指定値が格納されています
 	 */
 	function getExitCode();
 
 	/**
-	 * �X���b�h�̎��s�J�n
-	 * @param func �Ăяo���O���[�o���֐��܂��̓X�N���v�g�t�@�C����
+	 * スレッドの実行開始
+	 * @param func 呼び出すグローバル関数またはスクリプトファイル名
 	 */
 	function exec(func, ...);
 
 	/**
-	 * �X���b�h�̏I��
-	 * @param exitCode �I���R�[�h
+	 * スレッドの終了
+	 * @param exitCode 終了コード
 	 */
 	function exit(exitCode);
 
 	/**
-	 * �X���b�h�̈ꎞ��~
+	 * スレッドの一時停止
 	 */
 	function stop();
 
 	/**
-	 * �ꎞ��~�����X���b�h�̍ĊJ
+	 * 一時停止したスレッドの再開
 	 */
 	function run();
 
 	/**
-	 * �X���b�h�̎��s�҂��B�����ꂩ�̏����ŉ�������܂��B�������w�肵�Ȃ������ꍇ�ł��A
-	 * �������񏈗������f���āA�V�X�e�����̃C�x���g/�X�V����������ɕ��A���܂��B
-	 * @param param �҂������w�� ������:�g���K�҂� �I�u�W�F�N�g:�I�u�W�F�N�g�҂� ���l:���ԑ҂�(tick�l)���ŏ��̎w�肪�L��
+	 * スレッドの実行待ち。いずれかの条件で解除されます。引数を指定しなかった場合でも、
+	 * いったん処理が中断して、システム側のイベント/更新処理完了後に復帰します。
+	 * @param param 待ち条件指定 文字列:トリガ待ち オブジェクト:オブジェクト待ち 数値:時間待ち(tick値)※最小の指定が有効
 	 */
 	function wait(param, ...);
 
 	/**
-	 * ���݂̑҂������ׂċ����I�ɃL�����Z�����܂�
+	 * 現在の待ちをすべて強制的にキャンセルします
 	 */
 	function cancelWait();
 };
 
 // ------------------------------------------------
-// �X���b�h�n�O���[�o�����\�b�h
+// スレッド系グローバルメソッド
 // ------------------------------------------------
 
 /**
- * @return �ғ����X���b�h�̈ꗗ(�z��)��Ԃ��܂��B
+ * @return 稼働中スレッドの一覧(配列)を返します。
  */
 function getThreadList();
 
 /**
- * @return ���ݎ��s���̃X���b�h(Thread)��Ԃ��܂��B
+ * @return 現在実行中のスレッド(Thread)を返します。
  */
 function getCurrentThread();
 
 /**
- * @return ���ݎ��s���̃X���b�h�̎��s����(tick�l)
+ * @return 現在実行中のスレッドの実行時間(tick値)
  */
 function getCurrentTick();
 
 /**
- * @return ���ݎ��s���̃X���b�h�̑O����s������̌o�ߎ���(tick�l)
+ * @return 現在実行中のスレッドの前回実行時からの経過時間(tick値)
  */
 function getDiffTick();
 
 /**
- * �V�����X���b�h�𐶐����Ď��s���܂��BThread(null,func, ...) �Ɠ����ł��B
- * @param func �Ăяo�����\�b�h�A�܂��̓t�@�C����
- * @return �V�K�X���b�h����I�u�W�F�N�g(Thread)
- * @param ... ����
+ * 新しいスレッドを生成して実行します。Thread(null,func, ...) と等価です。
+ * @param func 呼び出すメソッド、またはファイル名
+ * @return 新規スレッド制御オブジェクト(Thread)
+ * @param ... 引数
  */
 function fork(func, ...);
 
 /**
- * ���ݎ��s���̃X���b�h��ʂ̎��s�ɐ؂�ւ��܂�
- * @param func �Ăяo���O���[�o���֐��܂��̓X�N���v�g�t�@�C����
- * @param ... ����
+ * 現在実行中のスレッドを別の実行に切り替えます
+ * @param func 呼び出すグローバル関数またはスクリプトファイル名
+ * @param ... 引数
  */
 function exec(func, ...);
 
 /**
- * ���ݎ��s���̃X���b�h���I�����܂�
- * @param exitCode �I���R�[�h
+ * 現在実行中のスレッドを終了します
+ * @param exitCode 終了コード
  */
 function exit(exitCode);
 
 /**
- * ���ݎ��s���̃X���b�h����A�ʂ̃X�N���v�g�����s���Ă��̏I����҂��܂��B
- * @param func �Ăяo���O���[�o���֐��܂��̓X�N���v�g�t�@�C����
- * @param ... ����
- * @return �Ăяo�����X�N���v�g�̏I���R�[�h (exit()�Ŏw�肵�����́A�܂��͍Ō�� return �̒l)
+ * 現在実行中のスレッドから、別のスクリプトを実行してその終了を待ちます。
+ * @param func 呼び出すグローバル関数またはスクリプトファイル名
+ * @param ... 引数
+ * @return 呼び出したスクリプトの終了コード (exit()で指定したもの、または最後の return の値)
  */
 function system(func, ...);
 
 /**
- * ���ݎ��s���̃X���b�h�̎��s�҂��B�����ꂩ�̏����ŉ�������܂��B�������w�肵�Ȃ������ꍇ�ł��A
- * �������񏈗������f���āA�V�X�e�����̃C�x���g/�X�V����������ɕ��A���܂��B
- * @param param �҂������w�� ������:�g���K�҂� �I�u�W�F�N�g:�I�u�W�F�N�g�҂� ���l:���ԑ҂�(tick�l)���ŏ��̎w�肪�L��
- * @return wait�����̌����B�҂����������L�����Z�����ꂽ�ꍇ�� null
+ * 現在実行中のスレッドの実行待ち。いずれかの条件で解除されます。引数を指定しなかった場合でも、
+ * いったん処理が中断して、システム側のイベント/更新処理完了後に復帰します。
+ * @param param 待ち条件指定 文字列:トリガ待ち オブジェクト:オブジェクト待ち 数値:時間待ち(tick値)※最小の指定が有効
+ * @return wait解除の原因。待ちが無いかキャンセルされた場合は null
  */
 function wait(param, ...);
 
 /**
- * �g���K���M
- * �S�X���b�h�ɑ΂��ăg���K�𑗐M���܂��B
- * �Y������g���K��҂��Ă����X���b�h�̑҂�����������܂��B
- * @param trigger �g���K��
+ * トリガ送信
+ * 全スレッドに対してトリガを送信します。
+ * 該当するトリガを待っていたスレッドの待ちが解除されます。
+ * @param trigger トリガ名
  */
 function notify(trigger);
 
@@ -261,37 +261,37 @@ function notify(trigger);
 // ------------------------------------------------
 
 /**
- * �X���b�h�����O��ɌĂяo�����t�@���N�V������o�^����B
- * �t�@���N�V������ function(currentTick, diffTick) �̌`�ŌĂяo����܂��B
- * ���̌Ăяo���̓X���b�h�ɂ����̂ł͂Ȃ����߁A�������� suspend() / wait() ��
- * �ĂԂƃG���[�ɂȂ�̂Œ��ӂ��Ă��������B�K��1�x�ŌĂт������̂�n���K�v������܂��B
- * currentTick, diffTick �́A���̉�̃X���b�h�Ăяo�������`���ł̒l�ɂȂ�܂��B
- * @param func �o�^����t�@���N�V����
- * @param type 0:�X���b�h�����̑O 1:�X���b�h�����̌�
+ * スレッド処理前後に呼び出されるファンクションを登録する。
+ * ファンクションは function(currentTick, diffTick) の形で呼び出されます。
+ * この呼び出しはスレッドによるものではないため、処理中に suspend() / wait() を
+ * 呼ぶとエラーになるので注意してください。必ず1度で呼びきれるものを渡す必要があります。
+ * currentTick, diffTick は、その回のスレッド呼び出し処理冒頭での値になります。
+ * @param func 登録するファンクション
+ * @param type 0:スレッド処理の前 1:スレッド処理の後
  */
 function addContinuousHandler(func, type=1);
 
 /**
- * �`�揈���O�ɌĂяo�����t�@���N�V������o�^��������
- * @param func �o�^��������t�@���N�V����
+ * 描画処理前に呼び出されるファンクションを登録解除する
+ * @param func 登録解除するファンクション
  */
 function removeContinuousHandler(func, type=1);
 
 /**
- * �S continuous handler ����������
+ * 全 continuous handler を解除する
  */
 function clearContinuousHandler();
 
 
 // ------------------------------------------------
-// �x�[�XVM����
+// ベースVM操作
 // ------------------------------------------------
 
 /**
- * �x�[�XVM��ŃX�N���v�g�����s����B
- * ���̌Ăяo���̓X���b�h�ɂ����̂ł͂Ȃ����߁A�������� suspend() / wait() ��
- * �ĂԂƃG���[�ɂȂ�̂Œ��ӂ��Ă��������B�K��1�x�ŌĂт������̂�n���K�v������܂��B
- * @param func �O���[�o���֐��B���t�@�C���͎w��ł��܂���
- * @param ... ����
+ * ベースVM上でスクリプトを実行する。
+ * この呼び出しはスレッドによるものではないため、処理中に suspend() / wait() を
+ * 呼ぶとエラーになるので注意してください。必ず1度で呼びきれるものを渡す必要があります。
+ * @param func グローバル関数。※ファイルは指定できません
+ * @param ... 引数
  */
 function execOnBase(func);

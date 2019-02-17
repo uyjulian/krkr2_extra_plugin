@@ -10,7 +10,7 @@ extern Local<Value> ERROR_KRKR(Isolate *isolate, tjs_error error);
 extern Local<Value> ERROR_BADINSTANCE(Isolate *isolate);
 
 /**
- * ‹g—¢‹g—¢‚É‘Î‚µ‚Ä—áŠO’Ê’m
+ * å‰é‡Œå‰é‡Œã«å¯¾ã—ã¦ä¾‹å¤–é€šçŸ¥
  */
 void
 JSEXCEPTION(Isolate* isolate, TryCatch *try_catch)
@@ -22,7 +22,7 @@ JSEXCEPTION(Isolate* isolate, TryCatch *try_catch)
 
 	Local<Message> message = try_catch->Message();
 	if (!message.IsEmpty()) {
-		// —áŠO•\¦
+		// ä¾‹å¤–è¡¨ç¤º
 		String::Value filename(message->GetScriptResourceName());
 		ttstr msg;
 		msg += *filename;
@@ -37,7 +37,7 @@ JSEXCEPTION(Isolate* isolate, TryCatch *try_catch)
 		String::Value sourceline(message->GetSourceLine());
 		TVPAddLog(ttstr(*sourceline));
 
-		// ƒGƒ‰[s•\¦
+		// ã‚¨ãƒ©ãƒ¼è¡Œè¡¨ç¤º
 		ttstr wavy;
 		int start = message->GetStartColumn();
 		for (int i = 0; i < start; i++) {
@@ -49,7 +49,7 @@ JSEXCEPTION(Isolate* isolate, TryCatch *try_catch)
 		}
 		TVPAddLog(wavy);
 
-		// ƒXƒ^ƒbƒNƒgƒŒ[ƒX•\¦
+		// ã‚¹ã‚¿ãƒƒã‚¯ãƒˆãƒ¬ãƒ¼ã‚¹è¡¨ç¤º
 		String::Value stack_trace(try_catch->StackTrace());
 		if (stack_trace.length() > 0) {
 			TVPAddLog(ttstr(*stack_trace));
@@ -59,18 +59,18 @@ JSEXCEPTION(Isolate* isolate, TryCatch *try_catch)
 }
 
 /**
- * ƒƒ“ƒo“o˜^ˆ——p
+ * ãƒ¡ãƒ³ãƒç™»éŒ²å‡¦ç†ç”¨
  */
-class MemberRegister : public tTJSDispatch /** EnumMembers —p */
+class MemberRegister : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	MemberRegister(Isolate *isolate, Local<FunctionTemplate> &classTemplate) : isolate(isolate), classTemplate(classTemplate) {};
 	
-	// EnumMember—pŒJ‚è•Ô‚µÀs•”
-	// param[0] ƒƒ“ƒo–¼
-	// param[1] ƒtƒ‰ƒO
-	// param[2] ƒƒ“ƒo‚Ì’l
+	// EnumMemberç”¨ç¹°ã‚Šè¿”ã—å®Ÿè¡Œéƒ¨
+	// param[0] ãƒ¡ãƒ³ãƒå
+	// param[1] ãƒ•ãƒ©ã‚°
+	// param[2] ãƒ¡ãƒ³ãƒã®å€¤
 	virtual tjs_error TJS_INTF_METHOD FuncCall( // function invocation
 												tjs_uint32 flag,			// calling flag
 												const tjs_char * membername,// member name ( NULL for a default member )
@@ -102,12 +102,12 @@ public:
 	}
 
 private:
-	// ƒtƒ@ƒ“ƒNƒVƒ‡ƒ““o˜^
+	// ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ç™»éŒ²
 	void registerFunction(const tjs_char *functionName, tTJSVariant &function, bool staticMember) {
 		classTemplate->PrototypeTemplate()->Set(String::NewFromTwoByte(isolate, functionName), FunctionTemplate::New(isolate, TJSInstance::tjsInvoker, TJSObject::toJSObject(isolate, function)));
 	}
 	
-	// ƒvƒƒpƒeƒB“o˜^
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ç™»éŒ²
 	void registerProperty(const tjs_char *propertyName, tTJSVariant &property, bool staticMember) {
 		classTemplate->PrototypeTemplate()->SetAccessor(String::NewFromTwoByte(isolate, propertyName), TJSInstance::tjsGetter, TJSInstance::tjsSetter, TJSObject::toJSObject(isolate, property));
 	}
@@ -120,21 +120,21 @@ private:
 
 int TJSInstance::classId;
 
-// ‰Šú‰»—p
+// åˆæœŸåŒ–ç”¨
 void
 TJSInstance::init(Isolate *isolate, Local<ObjectTemplate> &globalTemplate)
 {
 	HandleScope handle_scope(isolate);
-	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX“o˜^—pƒNƒ‰ƒXID‹L˜^
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç™»éŒ²ç”¨ã‚¯ãƒ©ã‚¹IDè¨˜éŒ²
 	classId = TJSRegisterNativeClass(L"JavascriptClass");
-	// ƒƒ\ƒbƒh‚ğ“o˜^
+	// ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç™»éŒ²
 	globalTemplate->Set(String::NewFromUtf8(isolate, "createTJSClass"), FunctionTemplate::New(isolate, createTJSClass));
 }
 
 /**
- * ‹g—¢‹g—¢ƒNƒ‰ƒX‚©‚ç Javascript ƒNƒ‰ƒX‚ğ¶¬
- * @param args ˆø”
- * @return Œ‹‰Ê
+ * å‰é‡Œå‰é‡Œã‚¯ãƒ©ã‚¹ã‹ã‚‰ Javascript ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆ
+ * @param args å¼•æ•°
+ * @return çµæœ
  */
 void
 TJSInstance::createTJSClass(const FunctionCallbackInfo<Value>& args)
@@ -146,7 +146,7 @@ TJSInstance::createTJSClass(const FunctionCallbackInfo<Value>& args)
 		return;
 	}
 
-	// TJSƒNƒ‰ƒXî•ñæ“¾
+	// TJSã‚¯ãƒ©ã‚¹æƒ…å ±å–å¾—
 	String::Value tjsClassName(args[0]);
 	tTJSVariant tjsClassObj;
 	TVPExecuteExpression(*tjsClassName, &tjsClassObj);
@@ -155,11 +155,11 @@ TJSInstance::createTJSClass(const FunctionCallbackInfo<Value>& args)
 		return;
 	}
 	
-	// ƒNƒ‰ƒXƒeƒ“ƒvƒŒ[ƒg‚ğ¶¬
+	// ã‚¯ãƒ©ã‚¹ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ç”Ÿæˆ
 	Local<FunctionTemplate> classTemplate = FunctionTemplate::New(isolate, tjsConstructor, TJSObject::toJSObject(isolate, tjsClassObj));
-	classTemplate->SetClassName(args[0]->ToString()); // •\¦–¼
+	classTemplate->SetClassName(args[0]->ToString()); // è¡¨ç¤ºå
 	
-	// ƒƒ“ƒo“o˜^ˆ—
+	// ãƒ¡ãƒ³ãƒç™»éŒ²å‡¦ç†
 	for (int i=args.Length()-1;i>=0;i--) {
 		String::Value className(args[i]);
 		tTJSVariant classObj;
@@ -173,7 +173,7 @@ TJSInstance::createTJSClass(const FunctionCallbackInfo<Value>& args)
 		}
 	}
 
-	// TJS‹@”\ƒƒ\ƒbƒh‚ğ“o˜^
+	// TJSæ©Ÿèƒ½ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç™»éŒ²
 	Local<ObjectTemplate> protoTemplate = classTemplate->PrototypeTemplate();
 	protoTemplate->Set(String::NewFromUtf8(isolate, "tjsIsValid"), FunctionTemplate::New(isolate, tjsIsValid));
 	protoTemplate->Set(String::NewFromUtf8(isolate, "tjsOverride"), FunctionTemplate::New(isolate, tjsOverride));
@@ -182,8 +182,8 @@ TJSInstance::createTJSClass(const FunctionCallbackInfo<Value>& args)
 }
 
 /**
- * ‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚ğ javascriptƒIƒuƒWƒFƒNƒg‚É•ÏŠ·
- * @return “o˜^¬Œ÷
+ * å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ javascriptã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›
+ * @return ç™»éŒ²æˆåŠŸ
  */
 bool
 TJSInstance::getJSObject(Local<Object> &result, const tTJSVariant &variant)
@@ -191,7 +191,7 @@ TJSInstance::getJSObject(Local<Object> &result, const tTJSVariant &variant)
 	iTJSDispatch2 *dispatch = variant.AsObjectNoAddRef();
 	iTJSNativeInstance *ninstance;
 	if (TJS_SUCCEEDED(dispatch->NativeInstanceSupport(TJS_NIS_GETINSTANCE, classId, &ninstance))) {
-		// Javascript‘¤‚©‚ç“o˜^‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚ÍŒ³‚Ì JavascriptƒIƒuƒWƒFƒNƒgî•ñ‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·
+		// Javascriptå´ã‹ã‚‰ç™»éŒ²ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯å…ƒã® Javascriptã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’ãã®ã¾ã¾è¿”ã™
 		TJSInstance *self = (TJSInstance*)ninstance;
 		result = self->getObject();
 		return true;
@@ -201,7 +201,7 @@ TJSInstance::getJSObject(Local<Object> &result, const tTJSVariant &variant)
 
 extern Local<Context> getContext();
 
-// ƒvƒƒpƒeƒBæ“¾‹¤’Êˆ—
+// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—å…±é€šå‡¦ç†
 tjs_error
 TJSInstance::getProp(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, tTJSVariant *result)
 {
@@ -228,7 +228,7 @@ TJSInstance::getProp(Isolate *isolate, Local<Object> &obj, const tjs_char *membe
 	return TJS_S_OK;
 }
 
-// ƒvƒƒpƒeƒBİ’è‹¤’Êˆ—
+// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®šå…±é€šå‡¦ç†
 tjs_error
 TJSInstance::setProp(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, const tTJSVariant *param)
 {
@@ -259,7 +259,7 @@ TJSInstance::remove(Isolate *isolate, Local<Object> &obj, const tjs_char *member
 	return obj->Delete(String::NewFromTwoByte(isolate, membername)) ? TJS_S_OK : TJS_S_FALSE;
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ‹¤’Êˆ—
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—å…±é€šå‡¦ç†
 tjs_error
 TJSInstance::createMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, iTJSDispatch2 **result, tjs_int numparams, tTJSVariant **param)
 {
@@ -275,9 +275,9 @@ TJSInstance::createMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *
 		return TJS_E_NOTIMPL;
 	}
 	
-	// ŠÖ”’Šo
+	// é–¢æ•°æŠ½å‡º
 	Local<Function> func = Local<Function>::Cast(obj->ToObject());
-	// ˆø”
+	// å¼•æ•°
 	Handle<Value> *argv = new Handle<Value>[numparams];
 	for (int i=0;i<numparams;i++) {
 		argv[i] = toJSValue(isolate, *param[i]);
@@ -295,7 +295,7 @@ TJSInstance::createMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *
 	return TJS_S_OK;
 }
 
-// ƒƒ\ƒbƒhŒÄ‚Ño‚µ‹¤’Êˆ—
+// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—å…±é€šå‡¦ç†
 tjs_error
 TJSInstance::callMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 {
@@ -310,9 +310,9 @@ TJSInstance::callMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *me
 		return TJS_E_NOTIMPL;
 	}
 	
-	// ŠÖ”’Šo
+	// é–¢æ•°æŠ½å‡º
 	Local<Function> func = Local<Function>::Cast(method);
-	// ˆø”
+	// å¼•æ•°
 	Handle<Value> *argv = new Handle<Value>[numparams];
 	for (int i=0;i<numparams;i++) {
 		argv[i] = toJSValue(isolate, *param[i]);
@@ -334,7 +334,7 @@ TJSInstance::callMethod(Isolate *isolate, Local<Object> &obj, const tjs_char *me
 
 
 //---------------------------------------------------------------------------
-// missingŠÖ”
+// missingé–¢æ•°
 //---------------------------------------------------------------------------
 class tMissingFunction : public tTJSDispatch
 {
@@ -346,8 +346,8 @@ class tMissingFunction : public tTJSDispatch
 };
 
 /**
- * missing ˆ——p‚ÌŒû
- * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚Éƒƒ“ƒo‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í javascriptƒCƒ“ƒXƒ^ƒ“ƒX‚ğQÆ‚·‚é
+ * missing å‡¦ç†ç”¨ã®å£
+ * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ javascriptã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‚ç…§ã™ã‚‹
  */
 tjs_error TJSInstance::missing(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 							 tTJSVariant *result,
@@ -378,7 +378,7 @@ tjs_error TJSInstance::missing(tjs_uint32 flag, const tjs_char * membername, tjs
 }
 
 //---------------------------------------------------------------------------
-// callJSŠÖ”
+// callJSé–¢æ•°
 //---------------------------------------------------------------------------
 class tCallJSFunction : public tTJSDispatch
 {
@@ -390,8 +390,8 @@ class tCallJSFunction : public tTJSDispatch
 };
 
 /**
- * call ˆ——p‚ÌŒû
- * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚©‚çjavascriptƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒƒ\ƒbƒh‚ğ’¼ÚŒÄ‚Ño‚·
+ * call å‡¦ç†ç”¨ã®å£
+ * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰javascriptã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç›´æ¥å‘¼ã³å‡ºã™
  */
 tjs_error
 TJSInstance::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
@@ -410,24 +410,24 @@ TJSInstance::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint
 
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 TJSInstance::TJSInstance(Isolate *isolate, Local<Object> &obj, const tTJSVariant &variant) : isolate(isolate), TJSBase(variant)
 {
 	HandleScope handle_scope(isolate);
 
-	// Javascript ƒIƒuƒWƒFƒNƒg‚ÉŠi”[
+	// Javascript ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æ ¼ç´
 	wrap(isolate, obj);
 	self.Reset(isolate, obj);
 	self.SetWeak(this, release);
 	
 	iTJSDispatch2 *objthis = variant.AsObjectNoAddRef();
 
-	// TJSƒCƒ“ƒXƒ^ƒ“ƒX‚ÉƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚µ‚Ä‚¨‚­
+	// TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã—ã¦ãŠã
 	iTJSNativeInstance *ninstance = this;
 	objthis->NativeInstanceSupport(TJS_NIS_REGISTER, classId, &ninstance);
 
-	// callJS ƒƒ\ƒbƒh“o˜^
+	// callJS ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
 	tCallJSFunction *callJS = new tCallJSFunction();
 	if (callJS) {
 		tTJSVariant val(callJS, objthis);
@@ -435,14 +435,14 @@ TJSInstance::TJSInstance(Isolate *isolate, Local<Object> &obj, const tTJSVariant
 		callJS->Release();
 	}
 	
-	// missing ƒƒ\ƒbƒh“o˜^
+	// missing ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
 	tMissingFunction *missing = new tMissingFunction();
 	if (missing) {
 		tTJSVariant val(missing, objthis);
 		const tjs_char *missingName = TJS_W("missing");
 		objthis->PropSet(TJS_MEMBERENSURE, missingName, NULL, &val, objthis);
 		missing->Release();
-		// missing —LŒø‰»
+		// missing æœ‰åŠ¹åŒ–
 		tTJSVariant name(missingName);
 		objthis->ClassInstanceInfo(TJS_CII_SET_MISSING, 0, &name);
 	}
@@ -460,9 +460,9 @@ static void TJS_USERENTRY TryInvalidate(void * data) {
 void
 TJSInstance::invalidate()
 {
-	// TJSƒIƒuƒWƒFƒNƒg‚ğ”j‰ó‚µ‚ÄQÆ‚ğƒNƒŠƒA‚·‚é
-	// ‚±‚ê‚É‚æ‚èATJS‘¤‚Å‰ñûˆ—‚ª‘–‚è‚±‚ÌƒIƒuƒWƒFƒNƒg©‘Ì‚Í
-	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒNƒŠƒAˆ—‚Å”jŠü‚³‚ê‚é
+	// TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç ´å£Šã—ã¦å‚ç…§ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+	// ã“ã‚Œã«ã‚ˆã‚Šã€TJSå´ã§å›åå‡¦ç†ãŒèµ°ã‚Šã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè‡ªä½“ã¯
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚¯ãƒªã‚¢å‡¦ç†ã§ç ´æ£„ã•ã‚Œã‚‹
 	if (variant.Type() == tvtObject && variant.AsObjectClosureNoAddRef().IsValid(0, NULL, NULL, NULL) == TJS_S_TRUE) {
 		TVPDoTryBlock(TryInvalidate, Catch, NULL, (void *)&variant);
 	}
@@ -470,23 +470,23 @@ TJSInstance::invalidate()
 }
 
 // ---------------------------
-// NativeInstance ‘Î‰—pƒƒ“ƒo
+// NativeInstance å¯¾å¿œç”¨ãƒ¡ãƒ³ãƒ
 // ---------------------------
 
-// ¶¬ŒÄ‚Ñ•Ô‚µ
+// ç”Ÿæˆæ™‚å‘¼ã³è¿”ã—
 tjs_error TJS_INTF_METHOD
 TJSInstance::Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj)
 {
 	return TJS_S_OK;
 }
 
-// InvalidateŒÄ‚Ñ•Ô‚µ
+// Invalidateæ™‚å‘¼ã³è¿”ã—
 void TJS_INTF_METHOD
 TJSInstance::Invalidate()
 {
 }
 
-// ”jŠüŒÄ‚Ñ•Ô‚µ
+// ç ´æ£„æ™‚å‘¼ã³è¿”ã—
 void TJS_INTF_METHOD
 TJSInstance::Destruct()
 {
@@ -495,13 +495,13 @@ TJSInstance::Destruct()
 
 // -----------------------------------------------------------------------------------------------------------
 
-// TJS‚Ì—áŠO‰ñ”ğŒÄ‚Ño‚µˆ——p
+// TJSã®ä¾‹å¤–å›é¿å‘¼ã³å‡ºã—å‡¦ç†ç”¨
 class CreateInfo {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CreateInfo(const tTJSVariant &classObj, const FunctionCallbackInfo<Value>& args) : classObj(classObj), args(args), argc(0), argv(NULL) {
-		// ˆø”¶¬
+		// å¼•æ•°ç”Ÿæˆ
 		argc = args.Length();
 		if (argc > 0) {
 			argv = new tTJSVariant*[(size_t)argc];
@@ -512,9 +512,9 @@ public:
 		}
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~CreateInfo() {
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		if (argv) {
 			for (int i=0;i<argc;i++) {
 				delete argv[i];
@@ -550,7 +550,7 @@ private:
 	static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
 		CreateInfo *info = (CreateInfo*)data;
 		info->ret = info->args.GetIsolate()->ThrowException(String::NewFromTwoByte(info->args.GetIsolate(), desc.message.c_str()));
-		// —áŠO‚Íí‚É–³‹
+		// ä¾‹å¤–ã¯å¸¸ã«ç„¡è¦–
 		return false;
 	}
 
@@ -565,13 +565,13 @@ private:
 	Local<Value> ret;
 };
 
-// TJS‚Ì—áŠO‰ñ”ğŒÄ‚Ño‚µˆ——p
+// TJSã®ä¾‹å¤–å›é¿å‘¼ã³å‡ºã—å‡¦ç†ç”¨
 class FuncInfo {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	FuncInfo(const tTJSVariant &instance, const tTJSVariant &method, const FunctionCallbackInfo<Value>& args) : instance(instance), method(method), args(args), argc(0), argv(NULL) {
-		// ˆø”¶¬
+		// å¼•æ•°ç”Ÿæˆ
 		argc = args.Length();
 		if (argc > 0) {
 			argv = new tTJSVariant*[(size_t)argc];
@@ -582,9 +582,9 @@ public:
 		}
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~FuncInfo() {
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		if (argv) {
 			for (int i=0;i<argc;i++) {
 				delete argv[i];
@@ -618,7 +618,7 @@ private:
 	static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
 		FuncInfo *info = (FuncInfo*)data;
 		info->ret = info->args.GetIsolate()->ThrowException(String::NewFromTwoByte(info->args.GetIsolate(), desc.message.c_str()));
-		// —áŠO‚Íí‚É–³‹
+		// ä¾‹å¤–ã¯å¸¸ã«ç„¡è¦–
 		return false;
 	}
 
@@ -634,11 +634,11 @@ private:
 	Local<Value> ret;
 };
 
-// TJS‚Ì—áŠO‰ñ”ğŒÄ‚Ño‚µˆ——p
+// TJSã®ä¾‹å¤–å›é¿å‘¼ã³å‡ºã—å‡¦ç†ç”¨
 class PropSetter {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	PropSetter(const tTJSVariant &instance, const tTJSVariant &method, Local<Value> value, const PropertyCallbackInfo<void>& info) : instance(instance), method(method), info(info) {
 		param    = toVariant(info.GetIsolate(), value);
 	}
@@ -658,7 +658,7 @@ private:
 	}
 	
 	static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
-		// —áŠO‚Íí‚É–³‹
+		// ä¾‹å¤–ã¯å¸¸ã«ç„¡è¦–
 		return false;
 	}
 	
@@ -672,11 +672,11 @@ private:
 	tTJSVariant param;
 };
 
-// TJS‚Ì—áŠO‰ñ”ğŒÄ‚Ño‚µˆ——p
+// TJSã®ä¾‹å¤–å›é¿å‘¼ã³å‡ºã—å‡¦ç†ç”¨
 class PropGetter {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	PropGetter(const tTJSVariant &instance, const tTJSVariant &method, const PropertyCallbackInfo<Value>& info) : instance(instance), method(method), info(info) {
 	}
 	
@@ -704,7 +704,7 @@ private:
 	static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
 		PropGetter *info = (PropGetter*)data;
 		info->ret = info->info.GetIsolate()->ThrowException(String::NewFromTwoByte(info->info.GetIsolate(), desc.message.c_str()));
-		// —áŠO‚Íí‚É–³‹
+		// ä¾‹å¤–ã¯å¸¸ã«ç„¡è¦–
 		return false;
 	}
 	
@@ -719,7 +719,7 @@ private:
 };
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 void
 TJSInstance::tjsConstructor(const FunctionCallbackInfo<Value>& args)
@@ -736,9 +736,9 @@ TJSInstance::tjsConstructor(const FunctionCallbackInfo<Value>& args)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚Ìƒƒ\ƒbƒh
- * @param args ˆø”
- * @return Œ‹‰Ê
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰
+ * @param args å¼•æ•°
+ * @return çµæœ
  */
 void
 TJSInstance::tjsInvoker(const FunctionCallbackInfo<Value>& args)
@@ -756,8 +756,8 @@ TJSInstance::tjsInvoker(const FunctionCallbackInfo<Value>& args)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒQƒbƒ^[
- * @param args ˆø”
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
+ * @param args å¼•æ•°
  */
 void
 TJSInstance::tjsGetter(Local<String> property, const PropertyCallbackInfo<Value>& info)
@@ -775,9 +775,9 @@ TJSInstance::tjsGetter(Local<String> property, const PropertyCallbackInfo<Value>
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒZƒbƒ^[
- * @param args ˆø”
- * @return Œ‹‰Ê
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
+ * @param args å¼•æ•°
+ * @return çµæœ
  */
 void
 TJSInstance::tjsSetter(Local<String> property, Local<Value> value, const PropertyCallbackInfo<void>& info)
@@ -793,9 +793,9 @@ TJSInstance::tjsSetter(Local<String> property, Local<Value> value, const Propert
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚Ì—LŒøŠm”F
- * @param args ˆø”
- * @return Œ‹‰Ê
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ‰åŠ¹ç¢ºèª
+ * @param args å¼•æ•°
+ * @return çµæœ
  */
 void
 TJSInstance::tjsIsValid(const FunctionCallbackInfo<Value>& args)
@@ -811,9 +811,9 @@ TJSInstance::tjsIsValid(const FunctionCallbackInfo<Value>& args)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚ÌƒI[ƒoƒ‰ƒCƒhˆ—
- * @param args ˆø”
- * @return Œ‹‰Ê
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰å‡¦ç†
+ * @param args å¼•æ•°
+ * @return çµæœ
  */
 void
 TJSInstance::tjsOverride(const FunctionCallbackInfo<Value>& args)

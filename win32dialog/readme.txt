@@ -1,16 +1,16 @@
-Title: WIN32Dialogƒvƒ‰ƒOƒCƒ“
+Title: WIN32Dialogãƒ—ãƒ©ã‚°ã‚¤ãƒ³
 Author: miahmie
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-WindowsƒlƒCƒeƒBƒuƒ_ƒCƒAƒƒO‚ð•\Ž¦‚·‚é‚½‚ß‚Ìƒvƒ‰ƒOƒCƒ“‚Å‚·B
-i’ˆÓF–¢Š®¬‚É‚Â‚«C‚Ü‚¾ƒ}ƒgƒ‚‚ÉŽg‚¦‚Ü‚¹‚ñj
+Windowsãƒã‚¤ãƒ†ã‚£ãƒ–ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+ï¼ˆæ³¨æ„ï¼šæœªå®Œæˆã«ã¤ãï¼Œã¾ã ãƒžãƒˆãƒ¢ã«ä½¿ãˆã¾ã›ã‚“ï¼‰
 
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

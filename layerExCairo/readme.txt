@@ -1,21 +1,21 @@
-Title: ����Ă�����
-Author: �n粍�
+Title: 解説てきすと
+Author: 渡邊剛
 
-������͂ȂɁH
+●これはなに？
 
-cairo ���g���g���Ŏg����悤�ɂ��悤�Ƃ������݂̓r��
+cairo を吉里吉里で使えるようにしようという試みの途中
 
-������
+●現状
 
-���܂��܃R�[�h�������B
-�R���p�C���ɂƂ肠�����K�v�Ȃ���
+ちまちまコードかき中。
+コンパイルにとりあえず必要なもの
 
 zlib/			http://www.zlib.net/
 cairo/			http://cairographics.org/
 
-�K�X�R���p�C�����ʂ�悤�ɗv����
+適宜コンパイルが通るように要調整
 
-�����C�Z���X
+●ライセンス
 
-LGPL �ɂ��v���ӁB
-�z�z���� cairo ���Ƃ��̃v���O�C���̃\�[�X��Y�t����K�v������܂��B
+LGPL につき要注意。
+配布時は cairo ごとこのプラグインのソースを添付する必要があります。

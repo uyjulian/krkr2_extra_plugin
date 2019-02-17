@@ -1,18 +1,18 @@
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚©‚ç Irrlicht ‚ðŽæ‚èˆµ‚¤‚½‚ß‚Ìƒvƒ‰ƒOƒCƒ“‚Å‚·B
+å‰é‡Œå‰é‡Œã‹ã‚‰ Irrlicht ã‚’å–ã‚Šæ‰±ã†ãŸã‚ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
 
-œ“®ìã‚Ì“Á‹LŽ–€
+â—å‹•ä½œä¸Šã®ç‰¹è¨˜äº‹é …
 
-EDirectX9 ê—p‚Å\’z‚³‚ê‚Ä‚¢‚Ü‚·BƒRƒ“ƒpƒCƒ‹‚É‚Í DirectX9 SDK ‚ª•K—v‚Å‚·B
+ãƒ»DirectX9 å°‚ç”¨ã§æ§‹ç¯‰ã•ã‚Œã¦ã„ã¾ã™ã€‚ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«ã¯ DirectX9 SDK ãŒå¿…è¦ã§ã™ã€‚
 
-  ¦DirectX9 ‚ªŽg‚¦‚È‚¢ê‡‚Í drawdevice Ý’èŽž‚É—áŠO‚ª‚¨‚±‚è‚Ü‚·
+  â€»DirectX9 ãŒä½¿ãˆãªã„å ´åˆã¯ drawdevice è¨­å®šæ™‚ã«ä¾‹å¤–ãŒãŠã“ã‚Šã¾ã™
 
-EIrrlicht ‚©‚ç‚Ìƒtƒ@ƒCƒ‹ƒAƒNƒZƒX‚Í‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹‹óŠÔ‚É‘Î‚µ‚Äs‚í‚ê‚Ü‚·
+ãƒ»Irrlicht ã‹ã‚‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ã¯å‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«ç©ºé–“ã«å¯¾ã—ã¦è¡Œã‚ã‚Œã¾ã™
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-1. Window ‚Ì drawDevice ‚É‘Î‚µ‚ÄŽw’è‰Â”\‚Å‚·
+1. Window ã® drawDevice ã«å¯¾ã—ã¦æŒ‡å®šå¯èƒ½ã§ã™
 
 -------------------------------------------
 Plugins.link("krrlicht.dll");
@@ -23,9 +23,9 @@ class MyWindow extends Window {
   function MyWindow() {
     super.Window();
     setInnerSize(WIDTH, HEIGHT);
-    // drawdevice ‚ð·‚µ‘Ö‚¦
+    // drawdevice ã‚’å·®ã—æ›¿ãˆ
     drawDevice = new Irrlicht.DrawDevice(WIDTH,HEIGHT);
-     // ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„¶¬
+     // ãƒ—ãƒ©ã‚¤ãƒžãƒªãƒ¬ã‚¤ãƒ¤ç”Ÿæˆ
     base = new Layer(this,null);
     base.setSize(WIDTH,HEIGHT);
     add(base);
@@ -33,7 +33,7 @@ class MyWindow extends Window {
 };
 -------------------------------------------
 
-2. ƒŒƒCƒ„‚É‘Î‚µ‚Ä•`‰æ‚ªŽÀs‚Å‚«‚Ü‚·
+2. ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æç”»ãŒå®Ÿè¡Œã§ãã¾ã™
 
 -------------------------------------------
 var win = new Window();
@@ -41,11 +41,11 @@ win.visible = true;
 var irr = new Irrlicht.SimpleDevice(win, 100, 100);
 var layer = new Layer(win, null);
 
-// XXX ˆê“xƒCƒxƒ“ƒgƒ‹[ƒv‚É“ü‚Á‚ÄƒfƒoƒCƒX‚ªŽÀ‘Ì‰»‚µ‚Ä‚©‚çŽÀs‚·‚é•K—v‚ ‚è
+// XXX ä¸€åº¦ã‚¤ãƒ™ãƒ³ãƒˆãƒ«ãƒ¼ãƒ—ã«å…¥ã£ã¦ãƒ‡ãƒã‚¤ã‚¹ãŒå®Ÿä½“åŒ–ã—ã¦ã‹ã‚‰å®Ÿè¡Œã™ã‚‹å¿…è¦ã‚ã‚Š
 irr.updateToLayer(layer);
 -------------------------------------------
 
-3. ŽqƒEƒCƒ“ƒhƒE‚Æ‚µ‚Ä Irrlicht ‚ð”z’u‚Å‚«‚Ü‚·
+3. å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¨ã—ã¦ Irrlicht ã‚’é…ç½®ã§ãã¾ã™
 
 -------------------------------------------
 var win = new Window();
@@ -54,20 +54,20 @@ var irr = new Irrlicht.Window(win, 10, 10, 100, 100);
 irr.visible = true;
 -------------------------------------------
 
-‚»‚ê‚¼‚ê‚Ì‹@”\‚É‚Â‚¢‚Ä‚Í manual.tjs ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢
+ãã‚Œãžã‚Œã®æ©Ÿèƒ½ã«ã¤ã„ã¦ã¯ manual.tjs ã‚’å‚ç…§ã—ã¦ãã ã•ã„
 
-œ¡Œã‚Ì—\’è
+â—ä»Šå¾Œã®äºˆå®š
 
-EƒV[ƒ“ˆ—Œn‚ÌŽÀ‘•
-E‚à‚ë‚à‚ëƒV[ƒ“§Œäˆ—
-EŠeŽíƒvƒŠƒ~ƒeƒBƒu‘€ì‚ÌŽÀ‘•
+ãƒ»ã‚·ãƒ¼ãƒ³å‡¦ç†ç³»ã®å®Ÿè£…
+ãƒ»ã‚‚ã‚ã‚‚ã‚ã‚·ãƒ¼ãƒ³åˆ¶å¾¡å‡¦ç†
+ãƒ»å„ç¨®ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æ“ä½œã®å®Ÿè£…
 
-EIrrlicht ŠÇ—‰º‚Å‚Ìƒ€[ƒr[Ä¶ˆ—‚ÌŽÀ‘•
-@¦‚Å‚«‚ê‚Î krmovie ‚Æ‚¤‚Ü‚­˜AŒg‚Å‚«‚é‚æ‚¤‚È‚Æ—‘z‚¾‚¯‚Çc
+ãƒ»Irrlicht ç®¡ç†ä¸‹ã§ã®ãƒ ãƒ¼ãƒ“ãƒ¼å†ç”Ÿå‡¦ç†ã®å®Ÿè£…
+ã€€â€»ã§ãã‚Œã° krmovie ã¨ã†ã¾ãé€£æºã§ãã‚‹ã‚ˆã†ãªã¨ç†æƒ³ã ã‘ã©â€¦
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-Irrlicht ‚Í zlib/libpng ƒXƒ^ƒCƒ‹‚Ìƒ‰ƒCƒZƒ“ƒX‚Å‚·B
+Irrlicht ã¯ zlib/libpng ã‚¹ã‚¿ã‚¤ãƒ«ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã§ã™ã€‚
 
   The Irrlicht Engine License
   ===========================
@@ -90,4 +90,4 @@ Irrlicht ‚Í zlib/libpng ƒXƒ^ƒCƒ‹‚Ìƒ‰ƒCƒZƒ“ƒX‚Å‚·B
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“Ž©‘Ì‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è‡ªä½“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

@@ -2,51 +2,51 @@
 #include "sqlite3.h"
 
 //
-// SQLŠg’£
+// SQLæ‹¡å¼µ
 // 
-// cnt(a,b)   •¶Žš—ñ a ‚É b ‚ªŠÜ‚Ü‚ê‚ê‚Î^
-// ncnt(a,b)  ³‹K‰»‚³‚ê‚½•¶Žš—ñ a ‚É ³‹K‰»‚³‚ê‚½•¶Žš—ñ b ‚ªŠÜ‚Ü‚ê‚Ä‚ê‚Î^
+// cnt(a,b)   æ–‡å­—åˆ— a ã« b ãŒå«ã¾ã‚Œã‚Œã°çœŸ
+// ncnt(a,b)  æ­£è¦åŒ–ã•ã‚ŒãŸæ–‡å­—åˆ— a ã« æ­£è¦åŒ–ã•ã‚ŒãŸæ–‡å­—åˆ— b ãŒå«ã¾ã‚Œã¦ã‚Œã°çœŸ
 
 static const tjs_char *normalizeBefore = 
 L"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-L"‚`‚a‚b‚c‚d‚e‚f‚g‚h‚i‚j‚k‚l‚m‚n‚o‚p‚q‚r‚s‚t‚u‚v‚w‚x‚y"
-L"‚‚‚‚ƒ‚„‚…‚†‚‡‚ˆ‚‰‚Š‚‹‚Œ‚‚Ž‚‚‚‘‚’‚“‚”‚•‚–‚—‚˜‚™‚š"
-L"‚P‚Q‚R‚S‚T‚U‚V‚W‚X‚O"
-L"‚ ‚¢‚¤‚¦‚¨‚©‚«‚­‚¯‚±‚³‚µ‚·‚¹‚»‚½‚¿‚Â‚Ä‚Æ‚È‚É‚Ê‚Ë‚Ì"
-L"‚Í‚Ð‚Ó‚Ö‚Ù‚Ü‚Ý‚Þ‚ß‚à‚â‚ä‚æ‚ç‚è‚é‚ê‚ë‚í‚î‚ï‚ð‚ñ‚Ÿ‚¡‚£‚¥‚§‚Á‚á‚ã‚å"
-L"‚ª‚¬‚®‚°‚²‚´‚¶‚¸‚º‚¼‚¾‚À‚Ã‚Å‚Ç‚Î‚Ñ‚Ô‚×‚Ú‚Ï‚Ò‚Õ‚Ø‚Û"
-L"ƒAƒCƒEƒGƒIƒJƒLƒNƒPƒRƒTƒVƒXƒZƒ\ƒ^ƒ`ƒcƒeƒgƒiƒjƒkƒlƒm"
-L"ƒnƒqƒtƒwƒzƒ}ƒ~ƒ€ƒƒ‚ƒ„ƒ†ƒˆƒ‰ƒŠƒ‹ƒŒƒƒƒƒ‘ƒ’ƒ“ƒ@ƒBƒDƒFƒHƒbƒƒƒ…ƒ‡"
-L"ƒKƒMƒOƒQƒSƒUƒWƒYƒ[ƒ]ƒ_ƒaƒdƒfƒhƒoƒrƒuƒxƒ{ƒpƒsƒvƒyƒ|"
-L"§¨©ª«¯¬­®"
-L"[EAB°"
+L"ï¼¡ï¼¢ï¼£ï¼¤ï¼¥ï¼¦ï¼§ï¼¨ï¼©ï¼ªï¼«ï¼¬ï¼­ï¼®ï¼¯ï¼°ï¼±ï¼²ï¼³ï¼´ï¼µï¼¶ï¼·ï¼¸ï¼¹ï¼º"
+L"ï½ï½‚ï½ƒï½„ï½…ï½†ï½‡ï½ˆï½‰ï½Šï½‹ï½Œï½ï½Žï½ï½ï½‘ï½’ï½“ï½”ï½•ï½–ï½—ï½˜ï½™ï½š"
+L"ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™ï¼"
+L"ã‚ã„ã†ãˆãŠã‹ããã‘ã“ã•ã—ã™ã›ããŸã¡ã¤ã¦ã¨ãªã«ã¬ã­ã®"
+L"ã¯ã²ãµã¸ã»ã¾ã¿ã‚€ã‚ã‚‚ã‚„ã‚†ã‚ˆã‚‰ã‚Šã‚‹ã‚Œã‚ã‚ã‚ã‚‘ã‚’ã‚“ããƒã…ã‡ã‰ã£ã‚ƒã‚…ã‚‡"
+L"ãŒãŽãã’ã”ã–ã˜ãšãœãžã ã¢ã¥ã§ã©ã°ã³ã¶ã¹ã¼ã±ã´ã·ãºã½"
+L"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ªã‚«ã‚­ã‚¯ã‚±ã‚³ã‚µã‚·ã‚¹ã‚»ã‚½ã‚¿ãƒãƒ„ãƒ†ãƒˆãƒŠãƒ‹ãƒŒãƒãƒŽ"
+L"ãƒãƒ’ãƒ•ãƒ˜ãƒ›ãƒžãƒŸãƒ ãƒ¡ãƒ¢ãƒ¤ãƒ¦ãƒ¨ãƒ©ãƒªãƒ«ãƒ¬ãƒ­ãƒ¯ãƒ°ãƒ±ãƒ²ãƒ³ã‚¡ã‚£ã‚¥ã‚§ã‚©ãƒƒãƒ£ãƒ¥ãƒ§"
+L"ã‚¬ã‚®ã‚°ã‚²ã‚´ã‚¶ã‚¸ã‚ºã‚¼ã‚¾ãƒ€ãƒ‚ãƒ…ãƒ‡ãƒ‰ãƒãƒ“ãƒ–ãƒ™ãƒœãƒ‘ãƒ”ãƒ—ãƒšãƒ"
+L"ï½§ï½¨ï½©ï½ªï½«ï½¯ï½¬ï½­ï½®"
+L"ãƒ¼ãƒ»ã€ã€‚ï½°"
 L"[]{}"
-L"CDFGHILMOPQZ[\]^_`"
-L"befghijklmnopqrstuvwxyz{|~"
-L"ƒ„“”•–—šœŸ¡£¥¦";
+L"ï¼Œï¼Žï¼šï¼›ï¼Ÿï¼Â´ï½€ï¼¾ï¿£ï¼¿ã€‡ãƒ¼â€•â€ï¼ï¼¼ã€œ"
+L"ï½œâ€˜â€™â€œâ€ï¼ˆï¼‰ã€”ã€•ï¼»ï¼½ï½›ï½ã€ˆã€‰ã€Šã€‹ã€Œã€ã€Žã€ã€ã€‘ï¼‹âˆ’Ã—ï¼"
+L"ï¼œï¼žï¿¥ï¼„ï¼…ï¼ƒï¼†ï¼Šï¼ â˜…â—â—Žâ—†â– â–²â–¼â€»";
 
 static const tjs_char *normalizeAfter = 
 L"abcdefghijklmnopqrstuvwxyz"
 L"abcdefghijklmnopqrstuvwxyz"
 L"abcdefghijklmnopqrstuvwxyz"
 L"1234567890"
-L"±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉ"
-L"ÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ²´¦Ý±²³´µÂÔÕÖ"
-L"¶·¸¹º»¼½¾¿ÀÁÂÃÄÊËÌÍÎÊËÌÍÎ"
-L"±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉ"
-L"ÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ²´¦Ý±²³´µÂÔÕÖ"
-L"¶·¸¹º»¼½¾¿ÀÁÂÃÄÊËÌÍÎÊËÌÍÎ"
-L"±²³´µÂÔÕÖ"
-L"-¥,.-"
+L"ï½±ï½²ï½³ï½´ï½µï½¶ï½·ï½¸ï½¹ï½ºï½»ï½¼ï½½ï½¾ï½¿ï¾€ï¾ï¾‚ï¾ƒï¾„ï¾…ï¾†ï¾‡ï¾ˆï¾‰"
+L"ï¾Šï¾‹ï¾Œï¾ï¾Žï¾ï¾ï¾‘ï¾’ï¾“ï¾”ï¾•ï¾–ï¾—ï¾˜ï¾™ï¾šï¾›ï¾œï½²ï½´ï½¦ï¾ï½±ï½²ï½³ï½´ï½µï¾‚ï¾”ï¾•ï¾–"
+L"ï½¶ï½·ï½¸ï½¹ï½ºï½»ï½¼ï½½ï½¾ï½¿ï¾€ï¾ï¾‚ï¾ƒï¾„ï¾Šï¾‹ï¾Œï¾ï¾Žï¾Šï¾‹ï¾Œï¾ï¾Ž"
+L"ï½±ï½²ï½³ï½´ï½µï½¶ï½·ï½¸ï½¹ï½ºï½»ï½¼ï½½ï½¾ï½¿ï¾€ï¾ï¾‚ï¾ƒï¾„ï¾…ï¾†ï¾‡ï¾ˆï¾‰"
+L"ï¾Šï¾‹ï¾Œï¾ï¾Žï¾ï¾ï¾‘ï¾’ï¾“ï¾”ï¾•ï¾–ï¾—ï¾˜ï¾™ï¾šï¾›ï¾œï½²ï½´ï½¦ï¾ï½±ï½²ï½³ï½´ï½µï¾‚ï¾”ï¾•ï¾–"
+L"ï½¶ï½·ï½¸ï½¹ï½ºï½»ï½¼ï½½ï½¾ï½¿ï¾€ï¾ï¾‚ï¾ƒï¾„ï¾Šï¾‹ï¾Œï¾ï¾Žï¾Šï¾‹ï¾Œï¾ï¾Ž"
+L"ï½±ï½²ï½³ï½´ï½µï¾‚ï¾”ï¾•ï¾–"
+L"-ï½¥,.-"
 L"()()"
-L",.:;?!'`^~_ü---/_-"
-L"|`'\"\"()()()()()()¢£¢£()+-x="
-L"<>\\$%#&*@™››ž ¢¤*";
+L",.:;?!'`^~_â—¯---/ï¼¼-"
+L"|`'\"\"()()()()()()ï½¢ï½£ï½¢ï½£()+-x="
+L"<>\\$%#&*@â˜†â—‹â—‹â—‡â–¡â–³â–½*";
 
-// Á‹Ž•¶Žš
-static const tjs_char *clearChar = L"ÞJK";
+// æ¶ˆåŽ»æ–‡å­—
+static const tjs_char *clearChar = L"ï¾žã‚›ã‚œ";
 
-// ³‹K‰»ƒe[ƒuƒ‹
+// æ­£è¦åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«
 static tjs_char normalizeData[65536];
 
 static void
@@ -60,7 +60,7 @@ normalize(ttstr &store, const tjs_char *str)
 void
 initNormalize()
 {
-	// ³‹K‰»—pƒf[ƒ^‚Ì‰Šú‰»
+	// æ­£è¦åŒ–ç”¨ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	for (int i=0;i<65536;i++) {
 		normalizeData[i] = i;
 	}
@@ -69,7 +69,7 @@ initNormalize()
 	while (*p) {
 		normalizeData[*p++] = *q++;
 	}
-	// Á‹Ž•¶Žš
+	// æ¶ˆåŽ»æ–‡å­—
 	p = clearChar;
 	while (*p) {
 		normalizeData[*p++] = 0;
@@ -97,7 +97,7 @@ ncntFunc(sqlite3_context *context, int argc, sqlite3_value **argv)
 void
 initContainFunc(sqlite3 *db)
 {
-	// ”äŠrŠÖ”‚Ì“o˜^
+	// æ¯”è¼ƒé–¢æ•°ã®ç™»éŒ²
 	sqlite3_create_function(db, "cnt",  2, SQLITE_ANY, NULL, cntFunc,  NULL, NULL);
 	sqlite3_create_function(db, "ncnt", 2, SQLITE_ANY, NULL, ncntFunc, NULL, NULL);
 }

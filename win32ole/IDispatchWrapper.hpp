@@ -10,7 +10,7 @@
 using namespace std;
 
 /**
- * iTJSDispatch2 —p IDispatch ƒ‰ƒbƒp[
+ * iTJSDispatch2 ç”¨ IDispatch ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class IDispatchWrapper : public IDispatchEx
 {
@@ -34,14 +34,14 @@ public:
 	
 	
 	//----------------------------------------------------------------------------
-	// IUnknown À‘•
+	// IUnknown å®Ÿè£…
 public:
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void __RPC_FAR *__RPC_FAR *ppvObject);
 	ULONG STDMETHODCALLTYPE AddRef();
 	ULONG STDMETHODCALLTYPE Release();
 	
 	//-------------------------------------------------------------------
-	// IDispatch À‘•
+	// IDispatch å®Ÿè£…
 public:
 	STDMETHOD (GetTypeInfoCount) (UINT* pctinfo) { return	E_NOTIMPL; }
 	STDMETHOD (GetTypeInfo) (UINT itinfo, LCID lcid, ITypeInfo** pptinfo) {	return	E_NOTIMPL; }
@@ -49,7 +49,7 @@ public:
 	STDMETHOD (Invoke) (DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pdispparams, VARIANT* pvarResult, EXCEPINFO* pexcepinfo, UINT* puArgErr);
 
 	//-------------------------------------------------------------------
-	// IDispatchEx À‘•
+	// IDispatchEx å®Ÿè£…
 
 	virtual HRESULT STDMETHODCALLTYPE GetDispID( 
 		/* [in] */ BSTR bstrName,
@@ -103,12 +103,12 @@ public:
 };
 
 /**
- * IDispatch —p iTJSDispatch2 ƒ‰ƒbƒp[
+ * IDispatch ç”¨ iTJSDispatch2 ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class iTJSDispatch2Wrapper : public tTJSDispatch
 {
 public:
-	// IDispatch —pŒÄ‚Ño‚µˆ—
+	// IDispatch ç”¨å‘¼ã³å‡ºã—å‡¦ç†
 	static tjs_error Invoke(IDispatch *dispatch,
 							DWORD wFlags,
 							const tjs_char *membername,
@@ -118,10 +118,10 @@ public:
 							);
 
 protected:
-	/// “à•”•Û—p
+	/// å†…éƒ¨ä¿æŒç”¨
 	IDispatch *obj;
 
-	/// Àsˆ—
+	/// å®Ÿè¡Œå‡¦ç†
 	inline tjs_error Invoke(DWORD wFlags,
 							const tjs_char * membername,
 							tTJSVariant *result,
@@ -133,7 +133,7 @@ protected:
 public:
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 * @param obj IDispatch
 	 */
 	iTJSDispatch2Wrapper(IDispatch *obj) : obj(obj) {
@@ -141,14 +141,14 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~iTJSDispatch2Wrapper() {
 		obj->Release();
 	}
 
 	//----------------------------------------------------------------------------
-	// iTJSDispatch2 À‘•
+	// iTJSDispatch2 å®Ÿè£…
 public:
 	
 	tjs_error TJS_INTF_METHOD
@@ -189,7 +189,7 @@ public:
 
 
 /**
- * IDispatch ’¼‰ºƒƒ\ƒbƒh—p iTJSDispatch2 ƒ‰ƒbƒp[
+ * IDispatch ç›´ä¸‹ãƒ¡ã‚½ãƒƒãƒ‰ç”¨ iTJSDispatch2 ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class iTJSDispatch2WrapperForMethod : public tTJSDispatch
 {
@@ -198,21 +198,21 @@ protected:
 	ttstr method;
 	
 public:
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	iTJSDispatch2WrapperForMethod(IDispatch *dispatch, const tjs_char *method) : dispatch(dispatch), method(method) {
 		if (dispatch) {
 			dispatch->AddRef();
 		}
 	}
 	
-	/// ƒfƒXƒgƒ‰ƒNƒ^
+	/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~iTJSDispatch2WrapperForMethod() {
 		if (dispatch) {
 			dispatch->Release();
 		}
 	}
 
-	/// ŠÖ”ŒÄ‚Ño‚µ
+	/// é–¢æ•°å‘¼ã³å‡ºã—
 	tjs_error TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 		tTJSVariant *result,

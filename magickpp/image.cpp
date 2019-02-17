@@ -1,6 +1,6 @@
 #include "magickpp.hpp"
 
-// image‚ğƒŒƒCƒ„‚É•`‰æ‚·‚é
+// imageã‚’ãƒ¬ã‚¤ãƒ¤ã«æç”»ã™ã‚‹
 static void Image_display(Magick::Image const *image, iTJSDispatch2* lay) {
 	unsigned int w, h;
 	unsigned char *p;
@@ -8,7 +8,7 @@ static void Image_display(Magick::Image const *image, iTJSDispatch2* lay) {
 	if (!lay || TJS_FAILED(lay->IsInstanceOf(0, 0, 0, TJS_W("Layer"), lay)))
 		TVPThrowExceptionMessage(TJS_W("Magick::Image: display method needs Layer-instance param."));
 
-	// ƒŒƒCƒ„ƒTƒCƒY•ÏX
+	// ãƒ¬ã‚¤ãƒ¤ã‚µã‚¤ã‚ºå¤‰æ›´
 	tTJSVariant tmp[4], *args[4] = { tmp, tmp+1, tmp+2, tmp+3 };
 	tmp[0] = true;
 	if (TJS_FAILED(lay->PropSet(0, TJS_W("hasImage"), 0, tmp, lay))) goto error;
@@ -17,16 +17,16 @@ static void Image_display(Magick::Image const *image, iTJSDispatch2* lay) {
 //	if (TJS_FAILED(lay->FuncCall(0, TJS_W("setSize"),      0, 0, 2, args, lay))) goto error;
 	if (TJS_FAILED(lay->FuncCall(0, TJS_W("setImageSize"), 0, 0, 2, args, lay))) goto error;
 
-	// ƒoƒbƒtƒ@æ“¾
+	// ãƒãƒƒãƒ•ã‚¡å–å¾—
 	lay->PropGet(0, TJS_W("mainImageBufferForWrite"), 0, &tmp[0], lay);
 	lay->PropGet(0, TJS_W("mainImageBufferPitch"),    0, &tmp[1], lay);
 	p = reinterpret_cast<unsigned char*>((tTVInteger)tmp[0]);
 	s = static_cast<long               >((tTVInteger)tmp[1]);
 
-	// ƒRƒs[
+	// ã‚³ãƒ”ãƒ¼
 	typedef Magick::PixelPacket PixelT;
 	if (sizeof(Magick::Quantum) == 1) {
-		// 8bit quantum ê—p
+		// 8bit quantum å°‚ç”¨
 		for (unsigned int y = 0; y < h; y++, p+=s) {
 			PixelT const *px = image->getConstPixels(0, y, w, 1);
 			unsigned char *cp = p;
@@ -38,7 +38,7 @@ static void Image_display(Magick::Image const *image, iTJSDispatch2* lay) {
 			}
 		}
 	} else {
-		// ‚»‚êˆÈŠO‚ÍdoubleŒo—R‚È‚Ì‚Åd‚¢
+		// ãã‚Œä»¥å¤–ã¯doubleçµŒç”±ãªã®ã§é‡ã„
 		for (unsigned int y = 0; y < h; y++, p+=s) {
 			PixelT const *px = image->getConstPixels(0, y, w, 1);
 			unsigned char *cp = p;
@@ -52,7 +52,7 @@ static void Image_display(Magick::Image const *image, iTJSDispatch2* lay) {
 		}
 	}
 
-	// ƒAƒbƒvƒf[ƒg
+	// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	tmp[0] = tTVInteger(0), tmp[1] = tTVInteger(0);
 	tmp[2] = tTVInteger(w), tmp[3] = tTVInteger(h);
 	if (TJS_FAILED(lay->FuncCall(0, TJS_W("update"), 0, 0, 4, args, lay))) goto error;
@@ -68,14 +68,14 @@ static Magick::Image* ImageCtor_layer(iTJSDispatch2* lay) {
 	if (!lay || TJS_FAILED(lay->IsInstanceOf(0, 0, 0, TJS_W("Layer"), lay)))
 		TVPThrowExceptionMessage(TJS_W("Magick::Image: _layer method needs Layer-instance param."));
 
-	// ƒŒƒCƒ„ƒTƒCƒYæ“¾
+	// ãƒ¬ã‚¤ãƒ¤ã‚µã‚¤ã‚ºå–å¾—
 	tTJSVariant tmp[2];
 	lay->PropGet(0, TJS_W("imageWidth"),  0, &tmp[0], lay);
 	lay->PropGet(0, TJS_W("imageHeight"), 0, &tmp[1], lay);
 	w = static_cast<unsigned int>((tTVInteger)tmp[0]);
 	h = static_cast<unsigned int>((tTVInteger)tmp[1]);
 
-	// ƒoƒbƒtƒ@æ“¾
+	// ãƒãƒƒãƒ•ã‚¡å–å¾—
 	lay->PropGet(0, TJS_W("mainImageBuffer"),         0, &tmp[0], lay);
 	lay->PropGet(0, TJS_W("mainImageBufferPitch"),    0, &tmp[1], lay);
 	p = reinterpret_cast<unsigned char*>((tTVInteger)tmp[0]);
@@ -86,9 +86,9 @@ static Magick::Image* ImageCtor_layer(iTJSDispatch2* lay) {
 	Magick::Image *image = new Magick::Image(Magick::Geometry(w, h), ColorT());
 	image->modifyImage();
 	image->type(Magick::TrueColorMatteType);
-	// ƒRƒs[
+	// ã‚³ãƒ”ãƒ¼
 	if (sizeof(Magick::Quantum) == 1) {
-		// 8bit quantum ê—p
+		// 8bit quantum å°‚ç”¨
 		for (unsigned int y = 0; y < h; y++, p+=s) {
 			unsigned char *cp = p;
 			PixelT *q = image->getPixels(0, y, w, 1); 
@@ -101,7 +101,7 @@ static Magick::Image* ImageCtor_layer(iTJSDispatch2* lay) {
 			image->syncPixels();
 		}
 	} else {
-		// ‚»‚êˆÈŠO‚ÍdoubleŒo—R‚È‚Ì‚Åd‚¢
+		// ãã‚Œä»¥å¤–ã¯doubleçµŒç”±ãªã®ã§é‡ã„
 		for (unsigned int y = 0; y < h; y++, p+=s) {
 			unsigned char *cp = p;
 			PixelT *q = image->getPixels(0, y, w, 1); 

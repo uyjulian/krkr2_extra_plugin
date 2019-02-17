@@ -5,10 +5,10 @@
 #include "DrawDevice.h" // on fakeFiles/DrawDevice.h -> ../drawdevice/BasicDrawDevice.h
 
 ////////////////////////////////////////////////////////////////
-// DrawDevice‚Ìd—lˆá‚¢‚ğ‹zû
+// DrawDeviceã®ä»•æ§˜é•ã„ã‚’å¸å
 class myTVPDrawDevice : public tTVPDrawDevice {
 protected:
-	tTVPRect ClipRect; //!< ƒNƒŠƒbƒsƒ“ƒO‹éŒ`
+	tTVPRect ClipRect; //!< ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°çŸ©å½¢
 public:
 	virtual void TJS_INTF_METHOD SetDestRectangle(const tTVPRect & rect) {
 		ClipRect = rect;
@@ -41,7 +41,7 @@ public:
 #undef tTVPDrawDevice
 
 ////////////////////////////////////////////////////////////////
-// TJS‹óŠÔ‚ÉDrawDeviceƒNƒ‰ƒX‚ğ“o˜^
+// TJSç©ºé–“ã«DrawDeviceã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²
 
 class DrawDeviceZ : public tTJSNI_BasicDrawDevice {
 public:
@@ -85,7 +85,7 @@ bool onV2Unlink() { return Entry(false); }
 
 
 ////////////////////////////////////////////////////////////////
-// [XXX] krkrZ‚ÌdrawDeviceƒNƒ‰ƒXÀ‘•‚ğƒRƒ“ƒpƒCƒ‹‚Å‚«‚é‚æ‚¤‚É’²®‚µ‚Â‚Âinclude
+// [XXX] krkrZã®drawDeviceã‚¯ãƒ©ã‚¹å®Ÿè£…ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã§ãã‚‹ã‚ˆã†ã«èª¿æ•´ã—ã¤ã¤include
 
 #include "MsgIntf.h"
 
@@ -159,7 +159,7 @@ IDirect3D9 * TVPGetDirect3DObjectNoAddRef()
 	return TVPDirect3D;
 }
 
-// WaitForVBlank ‚Í‹g—¢‹g—¢2‚Å‚Í–¢g—pƒCƒ“ƒ^[ƒtƒF[ƒX‚Ì‚½‚ß
+// WaitForVBlank ã¯å‰é‡Œå‰é‡Œ2ã§ã¯æœªä½¿ç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ãŸã‚
 inline DWORD myTimeGetTime() { return (DWORD)TVPGetTickCount(); }
 #define timeGetTime myTimeGetTime
 

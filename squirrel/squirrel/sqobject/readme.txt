@@ -1,106 +1,106 @@
-Author: �n粍�(go@wamsoft.jp)
+Author: 渡邊剛(go@wamsoft.jp)
 Date: 2009/4/22
 
-���T�v
+●概要
 
-squirrel �ŋ^���X���b�h�������������郉�C�u�����ł��B
+squirrel で疑似スレッド処理を実現するライブラリです。
 
-���g����
+●使い方
 
-�ڍׂ� manual.nut ���Q�Ƃ��Ă�������
+詳細は manual.nut を参照してください
 
-���g�ݍ���
+●組み込み
 
-������g�ݍ��ނ��߂ɂ́A�����̃V�X�e���ɂ��킹��
-���b�p�[�������ꕔ�Ǝ���������K�v������܂��B
+処理を組み込むためには、自分のシステムにあわせた
+ラッパー処理を一部独自実装する必要があります。
 
-���������Ǘ������̎���
+◇メモリ管理処理の実装
 
-�{�@�\�̃N���X�͕W���ł͒ʏ��C�̃q�[�v�@�\�������Ă��܂��B
-�v���v���Z�b�T�� SQOBJHEAP ���`���邱�ƂŁA�S�� squirrel 
-�̕W���@�\ (sq_malloc/sq_free) �������ăq�[�v���m��
-����悤�ɂȂ�܂��B
+本機構のクラスは標準では通常のCのヒープ機構をつかっています。
+プリプロセッサで SQOBJHEAP を定義することで、全て squirrel 
+の標準機構 (sq_malloc/sq_free) をつかってヒープを確保
+するようになります。
 
-�Ȃ��A���̒�`���̂������ւ������ꍇ�� sqobjectinfo.h �� 
-SQHEAPDEFINE �̒�`�������ւ��Ă�������
+なお、この定義自体を差し替えたい場合は sqobjectinfo.h の 
+SQHEAPDEFINE の定義を差し替えてください
 
-���񓯊��t�@�C�����[�h�̎���
+◇非同期ファイルロードの実装
 
-�t�@�C����񓯊��ɓǂݍ��ޏ������s�����߂Ɉȉ��̃��\�b�h���������Ă��������B
+ファイルを非同期に読み込む処理を行うために以下のメソッドを実装してください。
 
-�� squirrel �W���@�\�� sqstd_loadfile ���͑S���g���Ă܂���B
-�@ �T���v���� sqfunc / sqratfunc ���̏����������ł� 
-   sqstdmath �� sqstdstring �����o�^���Ă��܂��B
+※ squirrel 標準機構の sqstd_loadfile 他は全く使ってません。
+　 サンプルの sqfunc / sqratfunc 中の初期化処理では 
+   sqstdmath と sqstdstring だけ登録しています。
 
-   ���[������������̂ŁAdofile() �̗��p�ɂ͂����ӂ��������B
+   ルールが混乱するので、dofile() の利用にはご注意ください。
 
 -----------------------------------------------------------------------------
 /**
- * �t�@�C����񓯊��ɊJ��
- * @param filename �X�N���v�g�t�@�C����
- * @param binary �o�C�i���w��ŊJ��
- * @return �t�@�C���n���h��
+ * ファイルを非同期に開く
+ * @param filename スクリプトファイル名
+ * @param binary バイナリ指定で開く
+ * @return ファイルハンドラ
  */
 extern void *sqobjOpenFile(const SQChar *filename, bool binary);
 
 /**
- * �t�@�C�����J���ꂽ���ǂ����̃`�F�b�N
- * @param handler �t�@�C���n���h��
- * @param dataPtr �f�[�^�i�[��A�h���X(�o��) (�G���[����NULL)
- * @param dataSize �f�[�^�T�C�Y(�o��)
- * @return ���[�h�������Ă����� true
+ * ファイルが開かれたかどうかのチェック
+ * @param handler ファイルハンドラ
+ * @param dataPtr データ格納先アドレス(出力) (エラー時はNULL)
+ * @param dataSize データサイズ(出力)
+ * @return ロード完了していたら true
  */
 extern bool sqobjCheckFile(void *handler, const char **dataAddr, int *dataSize);
 
 /**
- * �t�@�C�������
- * @param handler �t�@�C���n���h��
+ * ファイルを閉じる
+ * @param handler ファイルハンドラ
  */
 extern void sqobjCloseFile(void *handler);
 ----------------------------------------------------------------------------
 
-���O���[�o��VM�֌W���\�b�h�̎���
+◇グローバルVM関係メソッドの実装
 
-SQObject �� SQThread �́A����̃O���[�o�� Squirrel VM �Ɉˑ����܂��B
-������擾���邽�߂̈ȉ��̃��\�b�h���������܂�
+SQObject や SQThread は、特定のグローバル Squirrel VM に依存します。
+これを取得するための以下のメソッドを実装します
 
 ----------------------------------------------------------
 namespace sqobject{
-  extern HSQUIRRELVM�@init();        /// < VM������
-  extern void done();                /// < VM�j��
-  extern HSQUIRRELVM�@getGlobalVM(); /// < �O���[�o��VM�擾
+  extern HSQUIRRELVM　init();        /// < VM初期化
+  extern void done();                /// < VM破棄
+  extern HSQUIRRELVM　getGlobalVM(); /// < グローバルVM取得
 }
 ----------------------------------------------------------
 
-���I�u�W�F�N�g�Q�Ə����̎���
+◇オブジェクト参照処理の実装
 
-�o�C���_�ɉ������l�C�e�B�u�I�u�W�F�N�g�̎Q��(push/get)�������K�v�ɂȂ�܂��B
-�W���ł� sqrat ���g���R�[�h�ɂȂ��Ă��܂��B�ʓr�Ǝ������p�̃R�[�h��
-�g���ꍇ�͕K�v�ɉ����ăv���v���Z�b�T�ňȉ����`���Ă�������
+バインダに応じたネイティブオブジェクトの参照(push/get)処理が必要になります。
+標準では sqrat を使うコードになっています。別途独自実装用のコードを
+使う場合は必要に応じてプリプロセッサで以下を定義してください
 
-NOUSESQRAT   sqrat ���o�C���_�Ƃ��Ďg�p���Ȃ�
+NOUSESQRAT   sqrat をバインダとして使用しない
 
-������`�����ꍇ�͓Ǝ��̊ȈՃo�C���_ (sqfunc.h) �ɂ�鏈���ɂȂ�܂�
+これを定義した場合は独自の簡易バインダ (sqfunc.h) による処理になります
 
-���o�^�p�� ObjectInfo �̏��@�\���g�����߈ȉ��̃��\�b�h���K�v�ɂȂ�܂��B
+※登録用に ObjectInfo の諸機能を使うため以下のメソッドが必要になります。
 
-// Object �p���I�u�W�F�N�g�� push
+// Object 継承オブジェクトの push
 template<typename T>
 void pushValue(HSQUIRRELVM v, T *value);
 
-// ���̑��̃I�u�W�F�N�g�p�̔ėp push
+// その他のオブジェクト用の汎用 push
 template<typename T>
 void pushOtherValue(HSQUIRRELVM v, T *value) {
 
-// �I�u�W�F�N�g�̒l�擾
+// オブジェクトの値取得
 template<typename T>
 SQRESULT getValue(HSQUIRRELVM v, T **value, int idx=-1) {
 
-���I�u�W�F�N�g�o�^�����̎���
+◇オブジェクト登録処理の実装
 
-�I�u�W�F�N�g���N���X�Ƃ��ēo�^���邽�߂̈ȉ��̃��\�b�h���������܂��B
-�v���O�����͂���ƁAThread::registGlobal() ���Ăяo�����Ƃ�
-���\�b�h��o�^�ł��܂�
+オブジェクトをクラスとして登録するための以下のメソッドを実装します。
+プログラムはこれと、Thread::registGlobal() を呼び出すことで
+メソッドを登録できます
 
 -----------------------------------------------
 namespace sqobject{
@@ -109,137 +109,137 @@ namespace sqobject{
 }
 -----------------------------------------------
 
-���Ǝ��I�u�W�F�N�g�̎����Ɠo�^
+◇独自オブジェクトの実装と登録
 
-sqobject::Object ��P��p������`�ŃI�u�W�F�N�g���쐬���Ă��������B
+sqobject::Object を単一継承する形でオブジェクトを作成してください。
 
-Object �̓Ǝ��@�\���g���ꍇ�́A�R���X�g���N�^ 
-Object(HSQUIRRELVM v, int delegateIdx=2) ���Ăяo�����A
-���Ăяo���悤�ɂ��邩�A���邢�́A�o�^��� initSelf(HSQUIRRELVM v, int idx=1)
-���g���āA���ȃI�u�W�F�N�g�Q�Ƃ��L�^����K�v������܂��B
+Object の独自機能を使う場合は、コンストラクタ 
+Object(HSQUIRRELVM v, int delegateIdx=2) を呼び出すか、
+を呼び出すようにするか、あるいは、登録後に initSelf(HSQUIRRELVM v, int idx=1)
+を使って、自己オブジェクト参照を記録する必要があります。
 
-���̏������K�v�ȋ@�\
-�E�f�X�g���N�^�@�\
-�E�f���Q�[�g�@�\
-�E�v���p�e�B�@�\
-�Ewait�@�\ (wait/notify)
-�EC++����̃C�x���g�R�[���o�b�N
+この処理が必要な機能
+・デストラクタ機能
+・デルゲート機能
+・プロパティ機能
+・wait機能 (wait/notify)
+・C++からのイベントコールバック
 
-Object �N���X�Ɋg������Ă���A�v���p�e�B��f���Q�[�g��
-�@�\���g�����Ƃ��ł���ق��A�^���X���b�h�� wait �ΏۂƂ��ăI�u�W�F�N�g
-���������Ƃ��ł��܂��B
+Object クラスに拡張されている、プロパティやデルゲートの
+機能を使うことができるほか、疑似スレッドの wait 対象としてオブジェクト
+を扱うことができます。
 
-���I�u�W�F�N�g�̌p���������͓̂Ǝ��Ɏ�������K�v������܂�
+※オブジェクトの継承処理自体は独自に実装する必要があります
 
-�����s�����̎���
+◇実行処理の実装
 
-�����̏����n�ɑg�ݓ����ꍇ�̊�{�I�ȏ����菇��������܂�
+自分の処理系に組み入れる場合の基本的な処理手順を説明します
 
-��������
+■初期化
 
-1. sqobject::init() ���Ăяo��
-2. print�֐��o�^���K�v�ȏ������s��
-3. �N���X�o�^
+1. sqobject::init() を呼び出す
+2. print関数登録他必要な処理を行う
+3. クラス登録
 
-  �g�ݍ��݋@�\�͈ȉ��̏����ŃO���[�o���ɓǂݍ��܂�܂�
+  組み込み機能は以下の処理でグローバルに読み込まれます
 
   Object::registerClass();
   Thread::registerClass();
   Thread::registerGlobal();
 
-  ���K�v�ɉ����ăN���X��o�^
+  他必要に応じてクラスを登録
 
-�����s��������
+■実行処理実装
 
-�^���X���b�h���ғ�������ɂ̓A�v���̃��C�����[�v��
-����ȉ��̏������Ăяo���Ă��������B
+疑似スレッドを稼働させるにはアプリのメインループ中
+から以下の処理を呼び出してください。
 
 -----------------------------------------------
 /*
- * ���ԍX�V
- * @param diff �o�ߎ���
+ * 時間更新
+ * @param diff 経過時間
  */
 int Thread::update(long diff);
 
 /**
- * ���s�������C�����[�v
- * @return ���쒆�̃X���b�h�̐�
+ * 実行処理メインループ
+ * @return 動作中のスレッドの数
  */	
 int Thread::main();
 -----------------------------------------------
 
-��{�\���͎��̂悤�ɂ���̂��Ó��ł��B
+基本構造は次のようにするのが妥当です。
 
 while(true) {
-  �C�x���g����
-�@Thread::update(���ԍ���)
-  beforeContinuous(); // ���Ocontinuous����:��q
-�@Thread::main()
-  afterContinuous(); // ����continuous����:��q
-�@��ʍX�V����
+  イベント処理
+　Thread::update(時間差分)
+  beforeContinuous(); // 事前continuous処理:後述
+　Thread::main()
+  afterContinuous(); // 事後continuous処理:後述
+　画面更新処理
 };
 
-���Ԃ̊T�O�̓V�X�e�����ŔC�ӂɑI���ł��܂��B
-��ʓI�ɂ̓t���[�������Ams �w����g���܂��B����Ŏw�肵���l��
-wait() ���߂ɓn�����l�p�����[�^�̈Ӗ��ɂȂ�܂��B
+時間の概念はシステム側で任意に選択できます。
+一般的にはフレーム数か、ms 指定を使います。これで指定した値が
+wait() 命令に渡す数値パラメータの意味になります。
 
-���I�������̎���
+■終了処理の実装
 
-1. Thread::done() �ŃX���b�h�̏��������j��
-2. roottable �̏���S�N���A
-3. sqobject::done() �Ăяo���� VM �����
+1. Thread::done() でスレッドの情報を強制破棄
+2. roottable の情報を全クリア
+3. sqobject::done() 呼び出して VM を解放
 
-��continuous handler �@�\
+■continuous handler 機能
 
-�X���b�h�@�\�Ƃ͕ʂɁA�P���ɃG���W������������ squirrel 
-�X�N���v�g�����I�ɌĂяo���@�\�ł��B
+スレッド機構とは別に、単純にエンジン側から特定の squirrel 
+スクリプトを定期的に呼び出す機能です。
 
-�X���b�h����      : ���[�U�ɂ�鐧�䏈��
-continuous handler: ���䂪�I��������Ƃ̎����v�Z����
+スレッド処理      : ユーザによる制御処理
+continuous handler: 制御が終わったあとの自律計算処理
 
-�Ƃ������g��������z�肵�Ă��܂��Bcontinuous handler��
-�Ăяo���́A���ׂẴX���b�h��������U suspend ������ɂȂ�܂��B
+といった使い分けを想定しています。continuous handlerの
+呼び出しは、すべてのスレッド処理が一旦 suspend した後になります。
 
-��continuous handler �̌Ăяo���́A��ɒʏ�� sq_call ��
-  �����̂Ȃ̂ŃX�N���v�g�� suspend() ���ĕ��A���邱�Ƃ͂ł��܂���B
+※continuous handler の呼び出しは、常に通常の sq_call に
+  よるものなのでスクリプトを suspend() して復帰することはできません。
 
-�Esqobject::registerContinuous() ���Ăяo�����Ƃŋ@�\�o�^����܂�
+・sqobject::registerContinuous() を呼び出すことで機能登録されます
 
-�Esqobject::beforeContinuous() �� sqobject::afterContinuous() ��
-  ���ꂼ�� sqobject::Thread::main() �̑O��ŌĂяo���Ă��������B
+・sqobject::beforeContinuous() と sqobject::afterContinuous() を
+  それぞれ sqobject::Thread::main() の前後で呼び出してください。
 
-�E�����I�����ɂ́@sqoject::doneContinuous() ���Ăяo���܂�
+・処理終了時には　sqoject::doneContinuous() を呼び出します
 
-�E�X�N���v�g����� addContinuous() / removeContinuous() ��
-  �֐���o�^/�����ł��܂��B
+・スクリプトからは addContinuous() / removeContinuous() で
+  関数を登録/解除できます。
 
-�������T���v���R�[�h
+■実装サンプルコード
 
- sqfunc.cpp     �V���v���Ȍp��/�����o�֐������̎�����
- sqratfunc.cpp	SQRat���g���ꍇ�̎�����
+ sqfunc.cpp     シンプルな継承/メンバ関数処理の実装例
+ sqratfunc.cpp	SQRatを使う場合の実装例
 
-���X�N���v�g�̌Ăяo��
+●スクリプトの呼び出し
 
-C++������X�N���v�g���N������ꍇ�́AThread::fork() ���g�����A
-squirrel �� API ���g���āA�O���[�o���֐� fork() ���Ăяo���悤�ɂ��Ă��������B
+C++側からスクリプトを起動する場合は、Thread::fork() を使うか、
+squirrel の API を使って、グローバル関数 fork() を呼び出すようにしてください。
 
-sqrat�ł̗�
+sqratでの例
 ---------------------------------------------------------------
 Sqrat::Function forkFunc(Sqrat::RootTable(), _SC("fork"));
 forkFunc.Evaluate<int>(NULL, _SC("file.nut"));
 ---------------------------------------------------------------
 
-���X���b�h���s���̒���
+※スレッド実行時の注意
 
-�ʂ̃X�N���v�g�́A�҂���ԂɂȂ�܂Ŏ��s�𒆒f���Ȃ����߁A
-�e�Ղ� busy loop �ɂȂ�܂��B����I�� wait() �܂��� suspend() 
-������ăV�X�e���ɏ�����߂��悤�ɂ���K�v������܂��B
-�����Ƃ��ẮA��ʍX�V���K�v�ȃ^�C�~���O�� suspend() 
-���s���Ηǂ����ƂɂȂ�܂��B
+個別のスクリプトは、待ち状態になるまで実行を中断しないため、
+容易に busy loop になります。定期的に wait() または suspend() 
+をいれてシステムに処理を戻すようにする必要があります。
+原則としては、画面更新が必要なタイミングで suspend() 
+を行えば良いことになります。
 
-�����C�Z���X
+●ライセンス
 
-squirrel ���l zlib���C�Z���X�ɏ]���ė��p���Ă��������B
+squirrel 同様 zlibライセンスに従って利用してください。
 
 /*
  * copyright (c)2009 Go Watanabe go@wamsoft.jp

@@ -1,38 +1,38 @@
-Author: “nç²„(go@wamsoft.jp)
+Author: æ¸¡é‚Šå‰›(go@wamsoft.jp)
 Date: 2011/2/20
 
-œ‰ğà
+â—è§£èª¬
 
-‘g‚İ‚İŒ¾Œê squirrel (http://squirrel-lang.org/) ‚ÌƒJƒXƒ^ƒ€”Å‚Å‚·B
-ÀÛ‚ÉƒQ[ƒ€ƒGƒ“ƒWƒ“‚È‚Ç‚É‘g‚İ‚ŞÛ‚É’²®‚µ‚½•”•ª‚È‚Ç‚ğ‚Ü‚Æ‚ß‚Ä
-‚ ‚è‚Ü‚·B
+çµ„ã¿è¾¼ã¿è¨€èª squirrel (http://squirrel-lang.org/) ã®ã‚«ã‚¹ã‚¿ãƒ ç‰ˆã§ã™ã€‚
+å®Ÿéš›ã«ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ã‚¸ãƒ³ãªã©ã«çµ„ã¿è¾¼ã‚€éš›ã«èª¿æ•´ã—ãŸéƒ¨åˆ†ãªã©ã‚’ã¾ã¨ã‚ã¦
+ã‚ã‚Šã¾ã™ã€‚
 
-ˆÈ‰º‚ÌƒR[ƒh‚à“à•ï‚µ‚Ü‚·
+ä»¥ä¸‹ã®ã‚³ãƒ¼ãƒ‰ã‚‚å†…åŒ…ã—ã¾ã™
 
-sqrat  C++—p‚ÌsquirrelƒoƒCƒ“ƒhƒc[ƒ‹
+sqrat  C++ç”¨ã®squirrelãƒã‚¤ãƒ³ãƒ‰ãƒ„ãƒ¼ãƒ«
  http://sourceforge.net/projects/scrat/
- ¦‰ü‘¢‚³‚ê‚Ä‚¢‚Ü‚·
+ â€»æ”¹é€ ã•ã‚Œã¦ã„ã¾ã™
 
-œMANIFEST
+â—MANIFEST
 
-include/	squirrelƒwƒbƒ_ƒtƒ@ƒCƒ‹
-squirrel/	squirrel–{‘Ìƒ\[ƒX
-sqstdlib/	squirrel•W€ƒ‰ƒCƒuƒ‰ƒŠƒ\[ƒX
-sq/			sq ƒRƒ}ƒ“ƒh
-sqrat/		sqrat ‹@”\’Ç‰Á”Å
-sqobject/	Object/Threadƒ‰ƒCƒuƒ‰ƒŠ
-sqengine/	squirrelƒQ[ƒ€ƒGƒ“ƒWƒ“‘g‚İ‚İƒTƒ“ƒvƒ‹
+include/	squirrelãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+squirrel/	squirrelæœ¬ä½“ã‚½ãƒ¼ã‚¹
+sqstdlib/	squirrelæ¨™æº–ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+sq/			sq ã‚³ãƒãƒ³ãƒ‰
+sqrat/		sqrat æ©Ÿèƒ½è¿½åŠ ç‰ˆ
+sqobject/	Object/Threadãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+sqengine/	squirrelã‚²ãƒ¼ãƒ ã‚¨ãƒ³ã‚¸ãƒ³çµ„ã¿è¾¼ã¿ã‚µãƒ³ãƒ—ãƒ«
 
-squirrel.sln	Visual Studio —pƒ\ƒŠƒ…[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹
-¦ƒvƒƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚Í‚»‚ê‚¼‚ê‚ÌƒtƒHƒ‹ƒ_‚É‚ ‚è‚Ü‚·
+squirrel.sln	Visual Studio ç”¨ã‚½ãƒªãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«
+â€»ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã¯ãã‚Œãã‚Œã®ãƒ•ã‚©ãƒ«ãƒ€ã«ã‚ã‚Šã¾ã™
 
-‹@”\’Ç‰Á.txt	squirrel‚Ìd—l•ÏX/’Ç‰Á‹@”\‚Ì‰ğà
-“Ç‚ñ‚Å‚Ë.txt	‚±‚Ìƒtƒ@ƒCƒ‹
+æ©Ÿèƒ½è¿½åŠ .txt	squirrelã®ä»•æ§˜å¤‰æ›´/è¿½åŠ æ©Ÿèƒ½ã®è§£èª¬
+èª­ã‚“ã§ã­.txt	ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-squirrel/sqrat “¯—l ‚É
-zlibƒ‰ƒCƒZƒ“ƒX‚É]‚Á‚Ä—˜—p‚µ‚Ä‚­‚¾‚³‚¢B
+squirrel/sqrat åŒæ§˜ ã«
+zlibãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«å¾“ã£ã¦åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚
 
 /*
  * copyright (c)2010 Go Watanabe go@wamsoft.jp

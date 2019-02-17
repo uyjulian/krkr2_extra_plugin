@@ -1,18 +1,18 @@
 Title: memfile plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-ƒƒ‚ƒŠã‚É‹g—¢‹g—¢—p‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ð\’z‚·‚éƒvƒ‰ƒOƒCƒ“‚Å‚·B
+ãƒ¡ãƒ¢ãƒªä¸Šã«å‰é‡Œå‰é‡Œç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’æ§‹ç¯‰ã™ã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-ƒAƒNƒZƒXƒpƒX–¼
- mem://./ƒpƒX–¼
+ã‚¢ã‚¯ã‚»ã‚¹ãƒ‘ã‚¹å
+ mem://./ãƒ‘ã‚¹å
 
-ƒhƒƒCƒ“‚Í . ‚ÅŒÅ’è‚Å‚·B
-§Œä‹@”\‚É‚Â‚¢‚Ä‚Í manual.tjs ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢
+ãƒ‰ãƒ¡ã‚¤ãƒ³ã¯ . ã§å›ºå®šã§ã™ã€‚
+åˆ¶å¾¡æ©Ÿèƒ½ã«ã¤ã„ã¦ã¯ manual.tjs ã‚’å‚ç…§ã—ã¦ãã ã•ã„
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

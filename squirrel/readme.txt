@@ -1,155 +1,155 @@
 Title: Squirrel Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Squirrel (http://squirrel-lang.org/) �̋g���g���o�C���h�ł��B
+Squirrel (http://squirrel-lang.org/) の吉里吉里バインドです。
 
-Squirrel �g�ݍ��ݗp�I�u�W�F�N�g�w������ł��B
-���@�I�ɂ� C ���ꕗ�ŁATJS2 �ƍ\�����T�O���悭���Ă��܂��B
+Squirrel 組み込み用オブジェクト指向言語です。
+文法的には C 言語風で、TJS2 と構造も概念もよく似ています。
 
-Squirrel �́A�����X���b�h�i�R���[�`���j���T�|�[�g���Ă���A
-�X�N���v�g�̎��s������C�ӂ̃^�C�~���O�Œ��f�ł��邽�߁A
-�Q�[���p�̃��W�b�N��g�ނ̂ɔ��ɓK���Ă��܂��B
+Squirrel は、協調スレッド（コルーチン）をサポートしており、
+スクリプトの実行処理を任意のタイミングで中断できるため、
+ゲーム用のロジックを組むのに非常に適しています。
 
-���V�X�e���T�v
+●システム概要
 
-�����O���
+◇名前空間
 
-�ESquirrel �̃O���[�o����Ԃ͋g���g���S�̂ɑ΂��ĂP�������݂��܂��B
-�@
-�@Squirrel �p�̃X�N���v�g�̎��s�͂��̃O���[�o����ԏ�ł����Ȃ��A
-�@��`���ꂽ�t�@���N�V������N���X�����̃O���[�o����Ԃɓo�^����Ă����܂��B
+・Squirrel のグローバル空間は吉里吉里全体に対して１つだけ存在します。
+　
+　Squirrel 用のスクリプトの実行はこのグローバル空間上でおこなわれ、
+　定義されたファンクションやクラスもこのグローバル空間に登録されていきます。
 
-�ETJS2 �̃O���[�o����Ԃ� Squirrel ������ "::krkr" �ŎQ�Ƃł��܂��B
+・TJS2 のグローバル空間を Squirrel 側から "::krkr" で参照できます。
 
-�ESquirrel �̃O���[�o����Ԃ� TJS2 ������ "sqglobal" �ŎQ�Ƃł��܂��B
+・Squirrel のグローバル空間を TJS2 側から "sqglobal" で参照できます。
 
-�EI/O ��Ԃ� OS���ڂł͂Ȃ��ATJS �̃X�g���[�W��Ԃ��Q�Ƃ���܂��B
+・I/O 空間は OS直接ではなく、TJS のストレージ空間が参照されます。
 
-�@�t�@�C������ TJS �̃X�g���[�W���ɂȂ�܂��B
-�@stdin/stdout/stderr �͗��p�ł��܂���
+　ファイル名も TJS のストレージ名になります。
+　stdin/stdout/stderr は利用できません
 
-��TJS2/Squirrel�l�ϊ����[��
+◇TJS2/Squirrel値変換ルール
 
-�E�����A�����A������Ȃǂ̃v���~�e�B�u�l�͒l�n���ɂȂ�܂��B
+・整数、実数、文字列などのプリミティブ値は値渡しになります。
 
-�ETJS2 �� void �� squirrel �� null �ƑΉ����܂�
+・TJS2 の void は squirrel の null と対応します
 
-�ETJS�� null �� squirrel �ł͒l0�� userpointer �ƑΉ����܂�
+・TJSの null は squirrel では値0の userpointer と対応します
 
-  ���̒l�� squirrel �ł̓O���[�o���ϐ� tjsNull �ŎQ�Ɖ\�ł��B
+  この値は squirrel ではグローバル変数 tjsNull で参照可能です。
 
-�ETJS2�I�u�W�F�N�g(iTJSDispatch2*) �́ASquirrel �ł� userData �Ƃ��ĎQ�Ɖ\�ł�
+・TJS2オブジェクト(iTJSDispatch2*) は、Squirrel では userData として参照可能です
 
-�@���^���\�b�h exist/get/set/call ��ʂ��đ���\�ł��B
-�@�N���X�I�u�W�F�N�g�� call �����ꍇ�́ATJS2 ����
-�@�C���X�^���X���쐬���ꂻ��� UserData �ŎQ�Ƃ������̂��A��܂�
-  Dictionary/Array�̑��݂��Ȃ������o�Q�Ƃ̓G���[�ɂȂ�܂�
+　メタメソッド exist/get/set/call を通じて操作可能です。
+　クラスオブジェクトを call した場合は、TJS2 側で
+　インスタンスが作成されそれを UserData で参照したものが帰ります
+  Dictionary/Arrayの存在しないメンバ参照はエラーになります
 
-�Esquirrel �I�u�W�F�N�g�́ATJS2 ���ł� iTJSDispatch2 �Ƃ��ĎQ�Ɖ\�ł�
+・squirrel オブジェクトは、TJS2 側では iTJSDispatch2 として参照可能です
 
   PropGet/PropGetByNum/PropSet/PropSetByNum/FuncCall/CreateNew 
-  ��ʂ��đ���\�ł��Bincontextof �w��͖�������܂��B
-  table / array �̑��݂��Ȃ������o���Q�Ƃ����ꍇ�� void ���A��܂�
-  table / array �ɑ΂��鏑�����݂� create �����ɂȂ�܂�
+  を通じて操作可能です。incontextof 指定は無視されます。
+  table / array の存在しないメンバを参照した場合は void が帰ります
+  table / array に対する書き込みは create 扱いになります
 
-�EcreateTJSClass()�ŁATJS�̃N���X�� Squirrel�N���X�Ƃ��Ĉ������Ƃ��ł��܂�
+・createTJSClass()で、TJSのクラスを Squirrelクラスとして扱うことができます
 
-  - ���̃N���X������ꂽ squirrel �C���X�^���X�� TJS2���ɓn�鎞��
-�@�@����� TJS �C���X�^���X�̎Q�Ƃ��n����܂�
+  - このクラスから作られた squirrel インスタンスは TJS2側に渡る時に
+　　内包した TJS インスタンスの参照が渡されます
 
-  - TJS2 ���o�R���� Squirrel ���ɒl���߂�Ƃ��́A
-�@�@���̂܂܌��� Squirrel�C���X�^���X���A��܂��B
+  - TJS2 を経由して Squirrel 側に値が戻るときは、
+　　そのまま元の Squirrelインスタンスが帰ります。
 
-  - tjsOverride() �Ő������ꂽTJS�C���X�^���X���ɒ��ڃ��\�b�h��o�^�ł��܂�
+  - tjsOverride() で生成されたTJSインスタンス部に直接メソッドを登録できます
 
-  - TJS�C���X�^���X���� callSQ() �Ƃ��đΉ����� squirrel �C���X�^���X��
-�@  ���\�b�h�𖾎��I�ɌĂяo�����߂��g������܂��B
+  - TJSインスタンス側に callSQ() として対応する squirrel インスタンスの
+　  メソッドを明示的に呼び出す命令が拡張されます。
 
-  - TJS�C���X�^���X���ł� missing �@�\���ݒ肳��A���݂��Ȃ������o��
-�@  �Q�Ƃ��ꂽ�ꍇ�� squirrel �C���X�^���X�̓��������o���Q�Ƃ���܂��B
-    TJS�C���X�^���X��������̃C�x���g�Ăяo���ɂ����ꂪ�K�p����邽�߁A
-�@  TJS�C���X�^���X���ɒ�`���Ȃ���Ύ����I�� squirrel �C���X�^���X��
-�@  ���ꂪ�Ăяo����܂�
+  - TJSインスタンス側では missing 機能が設定され、存在しないメンバが
+　  参照された場合は squirrel インスタンスの同名メンバが参照されます。
+    TJSインスタンス内部からのイベント呼び出しにもこれが適用されるため、
+　  TJSインスタンス中に定義がなければ自動的に squirrel インスタンスの
+　  それが呼び出されます
   
-  - ���̌`�ō��ꂽTJS�C���X�^���X�� squirrel �C���X�^���X���j�������
-    �Ƃ��� invalidate ����܂�
+  - この形で作られたTJSインスタンスは squirrel インスタンスが破棄される
+    ときに invalidate されます
 
-�EScripts.registerSQ() �� TJS2 �̒l�� squirrel ���ɓo�^�ł��܂��B
+・Scripts.registerSQ() で TJS2 の値を squirrel 側に登録できます。
 
-���W�����C�u����
+◇標準ライブラリ
 
-�ESquirrel �W�����C�u�����̂����ȉ��̂��̂����p�\�ł�
+・Squirrel 標準ライブラリのうち以下のものが利用可能です
 
   - I/O
   - blob
   - math
   - string
 
-���g�p���@
+●使用方法
 
-��Scripts �g��
+◇Scripts 拡張
 
-Squirrel �X�N���v�g�̎��s�@�\��A�I�u�W�F�N�g�� Squirrel �̏�����
-�����񉻂�����A�t�@�C���ɕۑ������肷�郁�\�b�h�� Scripts �N���X
-�Ɋg������܂��B�ڍׂ� manual.tjs ���Q�Ƃ��Ă�������
+Squirrel スクリプトの実行機能や、オブジェクトを Squirrel の書式で
+文字列化したり、ファイルに保存したりするメソッドが Scripts クラス
+に拡張されます。詳細は manual.tjs を参照してください
 
-��SQFunction �g��
+◇SQFunction 拡張
 
-Squirrel ��global�t�@���N�V�����𒼐ڌĂяo����悤�ɕێ�����N���X�ł��B
-TJS2 ���b�s���O�ɂ��]���ȕ��ׂȂ��ɌĂяo���������s�����Ƃ��ł��܂��B
-�ڍׂ� manual.tjs ���Q�Ƃ��Ă��������B
+Squirrel のglobalファンクションを直接呼び出せるように保持するクラスです。
+TJS2 ラッピングによる余分な負荷なしに呼び出し処理を行うことができます。
+詳細は manual.tjs を参照してください。
 
-��SQContinous �g��
+◇SQContinous 拡張
 
-Squirrel ��global�t�@���N�V�����𒼐ڌĂяo�� Continuous Handler ��
-�ێ�����N���X�ł��B
-TJS2 ���b�s���O�ɂ��]���ȕ��ׂȂ��ɌĂяo���������s�����Ƃ��ł��܂��B
-�ڍׂ� manual.tjs ���Q�Ƃ��Ă��������B
+Squirrel のglobalファンクションを直接呼び出す Continuous Handler を
+保持するクラスです。
+TJS2 ラッピングによる余分な負荷なしに呼び出し処理を行うことができます。
+詳細は manual.tjs を参照してください。
 
-���g���g���N���X�� squirrel�N���X��
+◇吉里吉里クラスの squirrelクラス化
 
-�g���g���̃N���X�� squirrel �̃N���X�Ƃ��Čp���\�ȏ�Ԃ�
-�������Ƃ��ł��܂��B�ڍׂ� manual.nut ���Q�Ƃ��Ă��������B
+吉里吉里のクラスを squirrel のクラスとして継承可能な状態で
+扱うことができます。詳細は manual.nut を参照してください。
 
-���X���b�h�g����
+◇スレッド拡張他
 
-squirrel�ɂ�镡���̃X���b�h�̕�����s��������������Ă��܂��B
-���̂��߂ɗ��p�ł�������N���X Object / Thread ����`����Ă��܂��B
-�ڍׂ� squirrel/sqobject/manual.nut ���Q�Ƃ��Ă��������B
+squirrelによる複数のスレッドの並列実行処理が実装されています。
+このために利用できる内部クラス Object / Thread が定義されています。
+詳細は squirrel/sqobject/manual.nut を参照してください。
 
-���̃X���b�h�������ғ�������ꍇ�Acontinuous handler �Ȃǂ���
-����I�� Scripts.driveSQ() ���Ăяo���K�v������܂��B
-�܂��A�����̋������f�͂Ȃ����߁A�ʂ̃X���b�h�Œ���I�� wait() ��
-�s��Ȃ�������t���[�Y��ԂƂȂ�̂Œ��ӂ���K�v������܂��B
-��TJS���l�A�e�Ղ� busy loop �������N�����܂�
+このスレッド処理を稼働させる場合、continuous handler などから
+定期的に Scripts.driveSQ() を呼び出す必要があります。
+また、処理の強制中断はないため、個別のスレッドで定期的に wait() を
+行わないかぎりフリーズ状態となるので注意する必要があります。
+※TJS同様、容易に busy loop を引き起こします
 
-���N�����X�N���v�g���s
+◇起動時スクリプト実行
 
-���S�� squirrel �ŋg���g���𐧌䂳����ꍇ�́A
-�ȉ��̂悤�� startup.tjs ���������܂��B
-startup.nut ���X���b�h�N������A����ȍ~ squirrel 
-�X���b�h�������Ȃ�܂œ�����p�����܂��B
+完全に squirrel で吉里吉里を制御させる場合は、
+以下のような startup.tjs を準備します。
+startup.nut がスレッド起動され、それ以降 squirrel 
+スレッドが無くなるまで動作を継続します。
 
 -----------------------------------------------------------------------------
 Plugins.link("squirrel.dll");
-System.exitOnNoWindowStartup = false; // �N�����E�C���h�E�����I���̗}��
-System.exitOnWindowClose = false; // ���C���E�C���h�E�����鎞�̏I���̗}��
+System.exitOnNoWindowStartup = false; // 起動時ウインドウ無し終了の抑制
+System.exitOnWindowClose = false; // メインウインドウが閉じる時の終了の抑制
 
-// ���C�����[�v�o�^
+// メインループ登録
 var prevTick = System.getTickCount();
 function main(tick)
 {
 	if (Scripts.driveSQ(tick - prevTick) == 0) {
-		// squirrel �X���b�h���S�ďI��������~�߂�
+		// squirrel スレッドが全て終了したら止める
 		System.terminate();
 	}
 	prevTick = tick;
 }
 System.addContinuousHandler(main);
 
-// ����������
+// 引数を処理
 var argc = 0;
 var args = [];
 var arg;
@@ -157,15 +157,15 @@ while ((arg = System.getArgument("-arg" + argc)) !== void) {
 	args.add(arg);
 	argc++;
 }
-// squirrel �̃X�N���v�g���N��
+// squirrel のスクリプトを起動
 Scripts.forkStorageSQ("startup.nut", args*);
 -----------------------------------------------------------------------------
 
-��System.exitOnNoWindowStartup �� ���r�W����4577�ȍ~�̋g���g���ł̂ݎg���܂�
+※System.exitOnNoWindowStartup は リビジョン4577以降の吉里吉里でのみ使えます
 
-�����C�Z���X
+●ライセンス
 
-Squirrel �� ������ zlib/libpng�X�^�C�����C�Z���X�ł��B
+Squirrel は いわゆる zlib/libpngスタイルライセンスです。
 
 Copyright (c) 2003-2009 Alberto Demichelis
 
@@ -197,4 +197,4 @@ to the following restrictions:
 -----------------------------------------------------
 END OF COPYRIGHT
 
-���̃v���O�C�����̂̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグイン自体のライセンスは吉里吉里本体に準拠してください。

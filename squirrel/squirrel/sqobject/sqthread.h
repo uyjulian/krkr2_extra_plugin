@@ -14,24 +14,24 @@
 #include "sqobjectclass.h"
 
 /**
- * ƒtƒ@ƒCƒ‹‚ğ”ñ“¯Šú‚ÉŠJ‚­
- * @param filename ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼
- * @return ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’éåŒæœŸã«é–‹ã
+ * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
  */
 extern void *sqobjOpenFile(const SQChar *filename, bool binary=false);
 
 /**
- * ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚½‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param handler ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
- * @param dataPtr ƒf[ƒ^Ši”[æƒAƒhƒŒƒX(o—Í)
- * @param dataSize ƒf[ƒ^ƒTƒCƒY(o—Í)
- * @return ƒ[ƒhŠ®—¹‚µ‚Ä‚¢‚½‚ç true
+ * ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param handler ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
+ * @param dataPtr ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹(å‡ºåŠ›)
+ * @param dataSize ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(å‡ºåŠ›)
+ * @return ãƒ­ãƒ¼ãƒ‰å®Œäº†ã—ã¦ã„ãŸã‚‰ true
  */
 extern bool sqobjCheckFile(void *handler, const char **dataAddr, int *dataSize);
 
 /**
- * ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
- * @param handler ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
+ * @param handler ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
  */
 extern void sqobjCloseFile(void *handler);
 
@@ -40,196 +40,196 @@ namespace sqobject {
 class Thread : public Object {
 
 protected:
-	long _currentTick; ///< ‚±‚ÌƒXƒŒƒbƒh‚ÌÀsŠÔ
+	long _currentTick; ///< ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡Œæ™‚é–“
 
-	ObjectInfo _scriptName; ///< ƒXƒNƒŠƒvƒg–¼
+	ObjectInfo _scriptName; ///< ã‚¹ã‚¯ãƒªãƒ—ãƒˆå
 	
-	void *_fileHandler; ///< ‚±‚ÌƒXƒŒƒbƒh‚ªŠJ‚±‚¤‚Æ‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+	void *_fileHandler; ///< ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã“ã†ã¨ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 
-	// ƒXƒŒƒbƒhƒf[ƒ^
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿
 	ObjectInfo _thread;
 
-	// ÀsƒXƒNƒŠƒvƒg
+	// å®Ÿè¡Œã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	ObjectInfo _func;
 
-	// ˆø”ƒŠƒXƒg
+	// å¼•æ•°ãƒªã‚¹ãƒˆ
 	ObjectInfo _args;
 
-	// system—p‘Ò‚¿
+	// systemç”¨å¾…ã¡
 	ObjectInfo _waitSystem;
-	// ‘Ò‚¿‘ÎÛ
+	// å¾…ã¡å¯¾è±¡
 	ObjectInfo _waitList;
-	// ‘Ò‚¿ŠÔ
+	// å¾…ã¡æ™‚é–“
 	SQInteger _waitTimeout;
 
-	// ‘Ò‚¿‚ÌŒ‹‰Ê
+	// å¾…ã¡ã®çµæœ
 	ObjectInfo _waitResult;
 	
-	/// I—¹ƒR[ƒh
+	/// çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	ObjectInfo _exitCode;
 	
 	/**
-	 * ƒXƒŒƒbƒhó‘Ô
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰çŠ¶æ…‹
 	 */
 	enum ThreadStatus {
-		THREAD_NONE,           // –¢‰Šú‰»
-		THREAD_LOADING_FILE,   // ƒtƒ@ƒCƒ‹ƒ[ƒh’†
-		THREAD_LOADING_FUNC,   // ŠÖ”ƒ[ƒh’†
-		THREAD_STOP,   // ’â~
-		THREAD_RUN,    // “®ì’†
-		THREAD_WAIT,   // ‘Ò‚¿’†
+		THREAD_NONE,           // æœªåˆæœŸåŒ–
+		THREAD_LOADING_FILE,   // ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰ä¸­
+		THREAD_LOADING_FUNC,   // é–¢æ•°ãƒ­ãƒ¼ãƒ‰ä¸­
+		THREAD_STOP,   // åœæ­¢
+		THREAD_RUN,    // å‹•ä½œä¸­
+		THREAD_WAIT,   // å¾…ã¡ä¸­
 	} _status;
 
 	/**
-	 * @return ˆ—‘Ò‚¿’†‚©
+	 * @return å‡¦ç†å¾…ã¡ä¸­ã‹
 	 */
 	bool isWait();
 
 	/**
-	 * @return ŠY“–ƒXƒŒƒbƒh‚ÆŒ»İŠÇ—’†‚ÌƒXƒŒƒbƒh‚ªˆê’v‚µ‚Ä‚ê‚Î true
+	 * @return è©²å½“ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ç¾åœ¨ç®¡ç†ä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒä¸€è‡´ã—ã¦ã‚Œã° true
 	 */
 	bool isSameThread(HSQUIRRELVM v);
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Thread();
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Thread(HSQUIRRELVM v);
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~Thread();
 
 protected:
 	/**
-	 * ƒXƒŒƒbƒhî•ñ‰Šú‰»
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±åˆæœŸåŒ–
 	 */
 	void _init();
 
 	/**
-	 * ƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğƒNƒŠƒA‚·‚é
-	 * @param status ƒLƒƒƒ“ƒZƒ‹‚Ìê‡‚Í true
+	 * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+	 * @param status ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆã¯ true
 	 */
 	void _clearWait();
 
 	/**
-	 * î•ñ”jŠü
+	 * æƒ…å ±ç ´æ£„
 	 */
 	void _clear();
 
 	/**
-	 * exit“à•”ˆ—
+	 * exitå†…éƒ¨å‡¦ç†
 	 */
 	void _exit();
 	
 	// ------------------------------------------------------------------
 	//
-	// Object ‚©‚ç‚Ì§Œä—p
+	// Object ã‹ã‚‰ã®åˆ¶å¾¡ç”¨
 	//
 	// ------------------------------------------------------------------
 	
 public:
 
 	/**
-	 * ƒgƒŠƒK‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğŠ®—¹‚³‚¹‚é
-	 * @param name ƒgƒŠƒK–¼
-	 * @return ŠY“–ƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚½ê‡‚Í true
+	 * ãƒˆãƒªã‚¬ã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’å®Œäº†ã•ã›ã‚‹
+	 * @param name ãƒˆãƒªã‚¬å
+	 * @return è©²å½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ãŸå ´åˆã¯ true
 	 */
 	bool notifyTrigger(const SQChar *name);
 
 	/**
-	 * ƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğŠ®—¹‚³‚¹‚é
-	 * @param target ‘Ò‚¿‘ÎÛ
-	 * @return ŠY“–ƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚½ê‡‚Í true
+	 * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’å®Œäº†ã•ã›ã‚‹
+	 * @param target å¾…ã¡å¯¾è±¡
+	 * @return è©²å½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ãŸå ´åˆã¯ true
 	 */
 	bool notifyObject(ObjectInfo &target);
 	
 	// ------------------------------------------------------------------
 	//
-	// ƒƒ\ƒbƒh
+	// ãƒ¡ã‚½ãƒƒãƒ‰
 	//
 	// ------------------------------------------------------------------
 
 protected:
 
 	/**
-	 * “à•”—p:fork ˆ—BƒXƒŒƒbƒh‚ğ‚P‚Â¶¬‚µ‚Ä VM‚ÉPUSH‚·‚é
+	 * å†…éƒ¨ç”¨:fork å‡¦ç†ã€‚ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ï¼‘ã¤ç”Ÿæˆã—ã¦ VMã«PUSHã™ã‚‹
 	 * @param v squirrelVM
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool _fork(HSQUIRRELVM v);
 
 	/**
-	 * “à•”—p: waitˆ—
+	 * å†…éƒ¨ç”¨: waitå‡¦ç†
 	 * @param v squirrelVM
-	 * @param idx ŠY“– idx ˆÈ~‚É‚ ‚é‚à‚Ì‚ğ‘Ò‚Â
+	 * @param idx è©²å½“ idx ä»¥é™ã«ã‚ã‚‹ã‚‚ã®ã‚’å¾…ã¤
 	 */
 	void _wait(HSQUIRRELVM v, int idx=2);
 
 	/**
-	 * “à•”—p: systemˆ—‚Ì‘Ò‚¿BƒXƒ^ƒbƒNæ“ª‚É‚ ‚éƒXƒŒƒbƒh‚ğ‘Ò‚Â
+	 * å†…éƒ¨ç”¨: systemå‡¦ç†ã®å¾…ã¡ã€‚ã‚¹ã‚¿ãƒƒã‚¯å…ˆé ­ã«ã‚ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…ã¤
 	 * @param v squirrelVM
 	 */
 	void _system(HSQUIRRELVM v);
 
 	
 	/**
-	 * “à•”—p: execˆ—
+	 * å†…éƒ¨ç”¨: execå‡¦ç†
 	 * @param v squirrelVM
-	 * @param idx ‚±‚ÌƒCƒ“ƒfƒbƒNƒX‚©‚çæ‚É‚ ‚é‚à‚Ì‚ğÀsŠJn‚·‚éB•¶š—ñ‚È‚çƒXƒNƒŠƒvƒgAƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚È‚ç’¼Ú
+	 * @param idx ã“ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰å…ˆã«ã‚ã‚‹ã‚‚ã®ã‚’å®Ÿè¡Œé–‹å§‹ã™ã‚‹ã€‚æ–‡å­—åˆ—ãªã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãªã‚‰ç›´æ¥
 	 */
 	void _exec(HSQUIRRELVM v, int idx=2);
 
 	/**
-	 * Œ»İ‚ÌƒIƒuƒWƒFƒNƒg‚ğÀsƒXƒŒƒbƒh‚Æ‚µ‚Ä“o˜^
+	 * ç¾åœ¨ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦ç™»éŒ²
 	 */
 	void _entryThread(HSQUIRRELVM v);
 	
 public:
 	/**
-	 * ‘Ò‚¿“o˜^
+	 * å¾…ã¡ç™»éŒ²
 	 */
 	SQRESULT wait(HSQUIRRELVM v);
 
 	/**
-	 * wait‚ÌƒLƒƒƒ“ƒZƒ‹
+	 * waitã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	 */
 	void cancelWait();
 
 	/**
-	 * ÀsŠJn
-	 * @param func Às‘ÎÛƒtƒ@ƒ“ƒNƒVƒ‡ƒ“B•¶š—ñ‚Ìê‡ŠY“–ƒXƒNƒŠƒvƒg‚ğ“Ç‚İ‚Ş
+	 * å®Ÿè¡Œé–‹å§‹
+	 * @param func å®Ÿè¡Œå¯¾è±¡ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã€‚æ–‡å­—åˆ—ã®å ´åˆè©²å½“ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­ã¿è¾¼ã‚€
 	 */
 	SQRESULT exec(HSQUIRRELVM v);
 
 	/**
-	 * ÀsI—¹
-	 * @param exitCode I—¹ƒR[ƒh
+	 * å®Ÿè¡Œçµ‚äº†
+	 * @param exitCode çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	SQRESULT exit(HSQUIRRELVM v);
 
 	/**
-	 * exitCodeæ“¾
+	 * exitCodeå–å¾—
 	 */
 	SQRESULT getExitCode(HSQUIRRELVM v);
 	
 	/**
-	 * Às’â~
+	 * å®Ÿè¡Œåœæ­¢
 	 */
 	void stop();
 
 	/**
-	 * ÀsÄŠJ
+	 * å®Ÿè¡Œå†é–‹
 	 */
 	void run();
 
 	/**
-	 * @return ÀsƒXƒe[ƒ^ƒX
+	 * @return å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	 */
 	int getStatus();
 
 	/**
-	 * @return Œ»İ
+	 * @return ç¾åœ¨æ™‚åˆ»
 	 */
 	int getCurrentTick() {
 		return _currentTick;
@@ -237,180 +237,180 @@ public:
 
 	// ------------------------------------------------------------------
 	//
-	// Àsˆ—
+	// å®Ÿè¡Œå‡¦ç†
 	//
 	// ------------------------------------------------------------------
 	
 protected:
 
 	/**
-	 * ƒXƒŒƒbƒh‚ÌƒGƒ‰[î•ñ‚Ì•\¦
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ©ãƒ¼æƒ…å ±ã®è¡¨ç¤º
 	 */
 	void printError();
 
 	/**
-	 * ƒXƒŒƒbƒh‚ÌƒƒCƒ“ˆ—
-	 * @param diff Œo‰ßŠÔ
-	 * @return ƒXƒŒƒbƒhÀsI—¹‚È‚ç true
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†
+	 * @param diff çµŒéæ™‚é–“
+	 * @return ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œçµ‚äº†ãªã‚‰ true
 	 */
 	bool _main(long diff);
 
 public:
 
 	/**
-	 * “®ìƒXƒŒƒbƒh‰Šú‰»
+	 * å‹•ä½œã‚¹ãƒ¬ãƒƒãƒ‰åˆæœŸåŒ–
 	 */
 	static void init();
 
 	/*
-	 * ŠÔXV
-	 * @param diff Œo‰ßŠÔ
+	 * æ™‚é–“æ›´æ–°
+	 * @param diff çµŒéæ™‚é–“
 	 */
 	static void update(long diff);
 
 	/**
-	 * ƒXƒŒƒbƒhˆ——pƒR[ƒ‹ƒoƒbƒN
-	 * @param th ƒXƒŒƒbƒhƒIƒuƒWƒFƒNƒg
-	 * @param userData ƒ†[ƒUƒf[ƒ^
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param th ã‚¹ãƒ¬ãƒƒãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param userData ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
 	 */
 	typedef void ThreadCallback(ObjectInfo th, void *userData);
 	
 	/*
-	 * Àsˆ—ƒƒCƒ“ƒ‹[ƒv
-	 * Œ»İ‘¶İ‚·‚éƒXƒŒƒbƒh‚ğ‘‚È‚ß‚Å‚P“x‚¾‚¯Às‚·‚éB
-	 * ƒVƒXƒeƒ€–{‘Ì‚ÌƒƒCƒ“ƒ‹[ƒv(ƒCƒxƒ“ƒgˆ—{‰æ‘œˆ—)
-	 * ‚©‚ç1“x‚¾‚¯ŒÄ‚Ño‚·‚±‚Æ‚Å‹@”\‚·‚éB‚»‚ê‚¼‚ê‚ÌƒXƒŒƒbƒh‚ÍA
-	 * ©•ª‚©‚ç–¾¦“I‚É suspend() ‚Ü‚½‚Í waitŒn‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Äˆ—‚ğ
-	 * Ÿ‚ÌƒXƒŒƒbƒh‚ÉˆÏ÷‚·‚é•K—v‚ª‚ ‚éB
-	 * @param onThreadDone ƒXƒŒƒbƒhI—¹‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
-	 * @param userData ƒR[ƒ‹ƒoƒbƒN‚É“n‚·ƒ†[ƒUƒf[ƒ^ˆø”
-	 * @return “®ì’†‚ÌƒXƒŒƒbƒh‚Ì”
+	 * å®Ÿè¡Œå‡¦ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+	 * ç¾åœ¨å­˜åœ¨ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç·ãªã‚ã§ï¼‘åº¦ã ã‘å®Ÿè¡Œã™ã‚‹ã€‚
+	 * ã‚·ã‚¹ãƒ†ãƒ æœ¬ä½“ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—(ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ï¼‹ç”»åƒå‡¦ç†)
+	 * ã‹ã‚‰1åº¦ã ã‘å‘¼ã³å‡ºã™ã“ã¨ã§æ©Ÿèƒ½ã™ã‚‹ã€‚ãã‚Œãã‚Œã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯ã€
+	 * è‡ªåˆ†ã‹ã‚‰æ˜ç¤ºçš„ã« suspend() ã¾ãŸã¯ waitç³»ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¦å‡¦ç†ã‚’
+	 * æ¬¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã«å§”è­²ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+	 * @param onThreadDone ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param userData ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æ¸¡ã™ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿å¼•æ•°
+	 * @return å‹•ä½œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
 	 */
 	static int main(ThreadCallback *onThreadDone=NULL, void *userData=NULL);
 
 	/**
-	 * ƒXƒNƒŠƒvƒgÀsŠJn—p
-	 * @param scriptName ƒXƒNƒŠƒvƒg–¼
-	 * @param argc ˆø”‚Ì”
-	 * @param argv ˆø”
-	 * @return ¬Œ÷‚È‚ç true
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œé–‹å§‹ç”¨
+	 * @param scriptName ã‚¹ã‚¯ãƒªãƒ—ãƒˆå
+	 * @param argc å¼•æ•°ã®æ•°
+	 * @param argv å¼•æ•°
+	 * @return æˆåŠŸãªã‚‰ true
 	 */
 	static bool fork(const SQChar *scriptName, int argc=0, const SQChar **argv=NULL);
 
 	/**
-	 * ‘SƒXƒŒƒbƒh‚Ö‚ÌƒgƒŠƒK’Ê’m
-	 * @param name ˆ—‘Ò‚¿ƒgƒŠƒK–¼
+	 * å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒˆãƒªã‚¬é€šçŸ¥
+	 * @param name å‡¦ç†å¾…ã¡ãƒˆãƒªã‚¬å
 	 */
 	static void trigger(const SQChar *name);
 	
 	/**
-	 * “®ìƒXƒŒƒbƒh‚Ì”jŠü
+	 * å‹•ä½œã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„
 	 */
 	static void done();
 
 	/**
-	 * “®ìƒXƒŒƒbƒh”
+	 * å‹•ä½œã‚¹ãƒ¬ãƒƒãƒ‰æ•°
 	 */
 	static int getThreadCount();
 
 	// -------------------------------------------------------------
-	// ƒXƒŒƒbƒhˆ——p
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ç”¨
 	// -------------------------------------------------------------
 
 public:
-	static long currentTick;  ///< ¡‰ñ‚ÌŒÄ‚Ño‚µŠÔ
-	static long diffTick;     ///< ·•ªŒÄ‚Ño‚µŠÔ
+	static long currentTick;  ///< ä»Šå›ã®å‘¼ã³å‡ºã—æ™‚é–“
+	static long diffTick;     ///< å·®åˆ†å‘¼ã³å‡ºã—æ™‚é–“
 	
 protected:
-	static ObjectInfo *threadList; ///< ƒXƒŒƒbƒhˆê——
-	static ObjectInfo *newThreadList; ///< ƒXƒŒƒbƒhˆê——
+	static ObjectInfo *threadList; ///< ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§
+	static ObjectInfo *newThreadList; ///< ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§
 
 	// -------------------------------------------------------------
-	// ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh—p
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ç”¨
 	// -------------------------------------------------------------
 
 	/**
-	 * Œ»İ‚Ìæ“¾
+	 * ç¾åœ¨æ™‚åˆ»ã®å–å¾—
 	 */
 	static SQRESULT global_getCurrentTick(HSQUIRRELVM v);
 
 	/**
-	 * ·•ª‚Ìæ“¾
+	 * å·®åˆ†æ™‚åˆ»ã®å–å¾—
 	 */
 	static SQRESULT global_getDiffTick(HSQUIRRELVM v);
 	
 	/*
-	 * @return Œ»İ‚ÌƒXƒŒƒbƒh‚ğ•Ô‚·
+	 * @return ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’è¿”ã™
 	 */
 	static SQRESULT global_getCurrentThread(HSQUIRRELVM v);
 	
 	/*
-	 * @return Œ»İ‚ÌƒXƒŒƒbƒhˆê——‚ğ•Ô‚·
+	 * @return ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’è¿”ã™
 	 */
 	static SQRESULT global_getThreadList(HSQUIRRELVM v);
 
 	/*
-	 * ƒXƒNƒŠƒvƒg‚ğV‚µ‚¢ƒXƒŒƒbƒh‚Æ‚µ‚ÄÀs‚·‚é
-	 * ¦ return Thread(func); ‘Š“–
-	 * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
-	 * @return VƒXƒŒƒbƒh
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æ–°ã—ã„ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦å®Ÿè¡Œã™ã‚‹
+	 * â€» return Thread(func); ç›¸å½“
+	 * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
+	 * @return æ–°ã‚¹ãƒ¬ãƒƒãƒ‰
 	 */
 	static SQRESULT global_fork(HSQUIRRELVM v);
 
 	/**
-	 * @return Œ»İÀs’†‚ÌƒXƒŒƒbƒhî•ñƒIƒuƒWƒFƒNƒg(Thread*)
+	 * @return ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(Thread*)
 	 */
 	static Thread *getCurrentThread(HSQUIRRELVM v);
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚ğØ‚è‘Ö‚¦‚é
-	 * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+	 * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
 	 */
 	static SQRESULT global_exec(HSQUIRRELVM v);
 
 	/**
-	 * Às’†ƒXƒŒƒbƒh‚ÌI—¹
-	 * @param exitCode I—¹ƒR[ƒh
+	 * å®Ÿè¡Œä¸­ã‚¹ãƒ¬ãƒƒãƒ‰ã®çµ‚äº†
+	 * @param exitCode çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	static SQRESULT global_exit(HSQUIRRELVM v);
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚ğÀs‚µ‚Ä‚»‚ÌI—¹‚ğ‘Ò‚Â
-	 * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
-	 * @return ƒXƒNƒŠƒvƒg‚ÌI—¹ƒR[ƒh
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å®Ÿè¡Œã—ã¦ãã®çµ‚äº†ã‚’å¾…ã¤
+	 * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	static SQRESULT global_system(HSQUIRRELVM v);
 	
 	/**
-	 * Às’†ƒXƒŒƒbƒh‚Ìˆ—‘Ò‚¿
-	 * @param target int:ŠÔ‘Ò‚¿(ms), string:ƒgƒŠƒK‘Ò‚¿, obj:ƒIƒuƒWƒFƒNƒg‘Ò‚¿
-	 * @param timeout ƒ^ƒCƒ€ƒAƒEƒg(È—ª‚Í–³ŒÀ‚É‘Ò‚Â)
-	 * @return ‘Ò‚¿‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚ç true
+	 * å®Ÿè¡Œä¸­ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†å¾…ã¡
+	 * @param target int:æ™‚é–“å¾…ã¡(ms), string:ãƒˆãƒªã‚¬å¾…ã¡, obj:ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¾…ã¡
+	 * @param timeout ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ(çœç•¥æ™‚ã¯ç„¡é™ã«å¾…ã¤)
+	 * @return å¾…ã¡ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚‰ true
 	 */
 	static SQRESULT global_wait(HSQUIRRELVM v);
 
 	/**
-	 * ‘SƒXƒŒƒbƒh‚Ö‚ÌƒgƒŠƒK’Ê’m
-	 * @param name ˆ—‘Ò‚¿ƒgƒŠƒK–¼
+	 * å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒˆãƒªã‚¬é€šçŸ¥
+	 * @param name å‡¦ç†å¾…ã¡ãƒˆãƒªã‚¬å
 	 */
 	static SQRESULT global_trigger(HSQUIRRELVM v);
 
 	/**
-	 * ƒx[ƒXVMã‚ÅƒXƒNƒŠƒvƒg‚ğÀs‚·‚éB
-	 * ‚±‚ÌŒÄ‚Ño‚µ‚ÍƒXƒŒƒbƒh‚É‚æ‚é‚à‚Ì‚Å‚Í‚È‚¢‚½‚ßAˆ—’†‚É suspend() / wait() ‚ğ
-	 * ŒÄ‚Ô‚ÆƒGƒ‰[‚É‚È‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B•K‚¸1“x‚ÅŒÄ‚Ñ‚«‚ê‚é‚à‚Ì‚ğ“n‚·•K—v‚ª‚ ‚è‚Ü‚·B
-	 * @param func ƒOƒ[ƒoƒ‹ŠÖ”B¦ƒtƒ@ƒCƒ‹‚Íw’è‚Å‚«‚Ü‚¹‚ñ
+	 * ãƒ™ãƒ¼ã‚¹VMä¸Šã§ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+	 * ã“ã®å‘¼ã³å‡ºã—ã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚ˆã‚‹ã‚‚ã®ã§ã¯ãªã„ãŸã‚ã€å‡¦ç†ä¸­ã« suspend() / wait() ã‚’
+	 * å‘¼ã¶ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚å¿…ãš1åº¦ã§å‘¼ã³ãã‚Œã‚‹ã‚‚ã®ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+	 * @param func ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã€‚â€»ãƒ•ã‚¡ã‚¤ãƒ«ã¯æŒ‡å®šã§ãã¾ã›ã‚“
 	 */
 	static SQRESULT global_execOnBase(HSQUIRRELVM v);
 	
 public:
 	/**
-	 * ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh‚Ì“o˜^
+	 * ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ã®ç™»éŒ²
 	 */
 	static void registerGlobal();
 
 	/**
-	 * ƒNƒ‰ƒX‚Ì“o˜^
+	 * ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
 	 */
 	static void registerClass();
 

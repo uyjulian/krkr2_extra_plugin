@@ -9,7 +9,7 @@
 namespace sqobject {
 
 /**
- * ƒNƒ[ƒWƒƒ‚©‚Ç‚¤‚©
+ * ã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£ã‹ã©ã†ã‹
  */
 static bool
 isClosure(SQObjectType type)
@@ -19,10 +19,10 @@ isClosure(SQObjectType type)
 
 
 /**
- * •¶š—ñæ“¾—p
+ * æ–‡å­—åˆ—å–å¾—ç”¨
  * @param v VM
- * @param idx ƒCƒ“ƒfƒbƒNƒX
- * @return •¶š—ñ
+ * @param idx ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @return æ–‡å­—åˆ—
  */
 const SQChar *getString(HSQUIRRELVM v, SQInteger idx) {
 	const SQChar *x = NULL;
@@ -30,7 +30,7 @@ const SQChar *getString(HSQUIRRELVM v, SQInteger idx) {
 	return x;
 };
 
-// setter–¼‘OŒˆ’è
+// setteråå‰æ±ºå®š
 static void pushSetterName(HSQUIRRELVM v, const SQChar *name)
 {
 	int len = sizeof(SQChar) * (scstrlen(name) + 4);
@@ -46,7 +46,7 @@ static void pushSetterName(HSQUIRRELVM v, const SQChar *name)
 	sq_free(buf, len);
 }
 
-// getter–¼‘OŒˆ’è
+// getteråå‰æ±ºå®š
 static void pushGetterName(HSQUIRRELVM v, const SQChar *name)
 {
 	int len = sizeof(SQChar) * (scstrlen(name) + 4);
@@ -67,8 +67,8 @@ static void pushGetterName(HSQUIRRELVM v, const SQChar *name)
 // ---------------------------------------------------------
 
 /**
- * ƒIƒuƒWƒFƒNƒg‘Ò‚¿‚Ì“o˜^
- * @param thread ƒXƒŒƒbƒh
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¾…ã¡ã®ç™»éŒ²
+ * @param thread ã‚¹ãƒ¬ãƒƒãƒ‰
  */
 void
 Object::addWait(ObjectInfo &thread)
@@ -77,8 +77,8 @@ Object::addWait(ObjectInfo &thread)
 }
 
 /**
- * ƒIƒuƒWƒFƒNƒg‘Ò‚¿‚Ì‰ğœ
- * @param thread ƒXƒŒƒbƒh
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¾…ã¡ã®è§£é™¤
+ * @param thread ã‚¹ãƒ¬ãƒƒãƒ‰
  */
 void
 Object::removeWait(ObjectInfo &thread)
@@ -87,7 +87,7 @@ Object::removeWait(ObjectInfo &thread)
 }
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 Object::Object()
 {
@@ -95,7 +95,7 @@ Object::Object()
 }
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 Object::Object(HSQUIRRELVM v, int delegateIdx)
 {
@@ -107,7 +107,7 @@ Object::Object(HSQUIRRELVM v, int delegateIdx)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 Object::~Object()
 {
@@ -118,10 +118,10 @@ Object::~Object()
 }
 
 /**
- * ©ŒÈQÆ‰Šú‰»—p
- * ƒIƒuƒWƒFƒNƒg¶¬Œã•K‚¸‚±‚Ìˆ—‚ğ‚æ‚Ô‚±‚Æ
+ * è‡ªå·±å‚ç…§åˆæœŸåŒ–ç”¨
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆå¾Œå¿…ãšã“ã®å‡¦ç†ã‚’ã‚ˆã¶ã“ã¨
  * @param v SQUIRREL vm
- * @param idx ©•ª‚ÌƒIƒuƒWƒFƒNƒg‚ª‚ ‚éƒCƒ“ƒfƒbƒNƒX
+ * @param idx è‡ªåˆ†ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 void
 Object::initSelf(HSQUIRRELVM v, int idx)
@@ -132,7 +132,7 @@ Object::initSelf(HSQUIRRELVM v, int idx)
 }
 
 /**
- * I—¹ˆ—
+ * çµ‚äº†æ™‚å‡¦ç†
  */
 void
 Object::destructor()
@@ -141,7 +141,7 @@ Object::destructor()
 }
 
 /**
- * ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚¢‚é‚PƒXƒŒƒbƒh‚Ì‘Ò‚¿‚ğ‰ğœ
+ * ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ã„ã‚‹ï¼‘ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾…ã¡ã‚’è§£é™¤
  */
 void
 Object::notify()
@@ -157,7 +157,7 @@ Object::notify()
 }
 	
 /**
- * ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚¢‚é‘SƒXƒŒƒbƒh‚Ì‘Ò‚¿‚ğ‰ğœ
+ * ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ã„ã‚‹å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾…ã¡ã‚’è§£é™¤
  */
 void
 Object::notifyAll()
@@ -173,9 +173,9 @@ Object::notifyAll()
 }
 
 /**
- * ƒvƒƒpƒeƒB‚©‚ç’l‚ğæ“¾
- * @param name ƒvƒƒpƒeƒB–¼
- * @return ƒvƒƒpƒeƒB’l
+ * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å€¤ã‚’å–å¾—
+ * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+ * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
  */
 SQRESULT
 Object::_get(HSQUIRRELVM v)
@@ -183,16 +183,16 @@ Object::_get(HSQUIRRELVM v)
 	SQRESULT result = SQ_OK;
 	const SQChar *name = getString(v, 2);
 	if (name && *name) {
-		// delegate‚ÌQÆ
+		// delegateã®å‚ç…§
 		if (delegate.isDelegate()) {
 			delegate.push(v);
 			sq_pushstring(v, name, -1);
 			if (SQ_SUCCEEDED(result = sq_get(v,-2))) {
-				// ƒƒ\ƒbƒh‚Ìê‡‚Í‘©”›ˆ—
+				// ãƒ¡ã‚½ãƒƒãƒ‰ã®å ´åˆã¯æŸç¸›å‡¦ç†
 				if (isClosure(sq_gettype(v,-1)) && delegate.isBindDelegate()) {
 					delegate.push(v);
 					if (SQ_SUCCEEDED(sq_bindenv(v, -2))) {
-						sq_remove(v, -2); // Œ³‚ÌƒNƒ[ƒWƒƒ
+						sq_remove(v, -2); // å…ƒã®ã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£
 					}
 				}
 				sq_remove(v, -2);
@@ -202,13 +202,13 @@ Object::_get(HSQUIRRELVM v)
 			}
 		}
 		
-		// getter ‚ğ’T‚µ‚ÄƒAƒNƒZƒX
+		// getter ã‚’æ¢ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹
 		sq_push(v, 1); // self
-		pushGetterName(v,name); // getter–¼
+		pushGetterName(v,name); // getterå
 		if (SQ_SUCCEEDED(result = sq_rawget(v,-2))) {
 			sq_push(v, 1); //  self;
 			if (SQ_SUCCEEDED(result = sq_call(v,1,SQTrue,SQTrue))) {
-				//sqprintf("ŒÄ‚Ño‚µ¬Œ÷:%s\n", name);
+				//sqprintf("å‘¼ã³å‡ºã—æˆåŠŸ:%s\n", name);
 				sq_remove(v, -2); // func
 				sq_remove(v, -2); // self
 				return 1;
@@ -218,7 +218,7 @@ Object::_get(HSQUIRRELVM v)
 		} else {
 			sq_pop(v, 1); // self
 #if 0
-			// ƒOƒ[ƒoƒ‹•Ï”‚ğQÆ
+			// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’å‚ç…§
 			sq_pushroottable(v);
 			sq_pushstring(v, name, -1);
 			if (SQ_SUCCEEDED(sq_rawget(v,-2))) {
@@ -234,9 +234,9 @@ Object::_get(HSQUIRRELVM v)
 }
 
 /**
- * ƒvƒƒpƒeƒB‚É’l‚ğİ’è
- * @param name ƒvƒƒpƒeƒB–¼
- * @param value ƒvƒƒpƒeƒB’l
+ * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«å€¤ã‚’è¨­å®š
+ * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+ * @param value ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
  */
 SQRESULT
 Object::_set(HSQUIRRELVM v)
@@ -244,7 +244,7 @@ Object::_set(HSQUIRRELVM v)
 	SQRESULT result = SQ_OK;
 	const SQChar *name = getString(v, 2);
 	if (name && *name) {
-		// delegate‚ÌQÆ
+		// delegateã®å‚ç…§
 		if (delegate.isDelegate()) {
 			delegate.push(v);
 			sq_push(v, 2); // name
@@ -257,14 +257,14 @@ Object::_set(HSQUIRRELVM v)
 			}
 		}
 		
-		// setter ‚ğ’T‚µ‚ÄƒAƒNƒZƒX
+		// setter ã‚’æ¢ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹
 		sq_push(v, 1); // self
 		pushSetterName(v, name);
 		if (SQ_SUCCEEDED(result = sq_rawget(v,-2))) {
 			sq_push(v, 1); // self
 			sq_push(v, 3); // value
 			if (SQ_SUCCEEDED(result = sq_call(v,2,SQFalse,SQTrue))) {
-				//sqprintf("ŒÄ‚Ño‚µ¬Œ÷:%s\n", name);
+				//sqprintf("å‘¼ã³å‡ºã—æˆåŠŸ:%s\n", name);
 				sq_pop(v,2); // func, self
 				return SQ_OK;
 			} else {
@@ -278,9 +278,9 @@ Object::_set(HSQUIRRELVM v)
 }
 
 /**
- * setƒvƒƒpƒeƒB‚Ì‘¶İŠm”F
- * @param name ƒvƒƒpƒeƒB–¼
- * @return setƒvƒƒpƒeƒB‚ª‘¶İ‚µ‚½‚ç true
+ * setãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å­˜åœ¨ç¢ºèª
+ * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+ * @return setãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒå­˜åœ¨ã—ãŸã‚‰ true
  */
 SQRESULT
 Object::hasSetProp(HSQUIRRELVM v)
@@ -291,7 +291,7 @@ Object::hasSetProp(HSQUIRRELVM v)
 		const SQChar *name = getString(v, 2);
 		if (name && *name) {
 			sq_push(v, 1); // object
-			pushSetterName(v, name); // setter–¼
+			pushSetterName(v, name); // setterå
 			if (SQ_SUCCEEDED(result = sq_rawget(v,-2))) {
 				sq_pop(v,1);
 				ret = SQTrue;
@@ -314,7 +314,7 @@ Object::hasSetProp(HSQUIRRELVM v)
 }
 
 /**
- * ˆÏ÷‚Ìİ’è
+ * å§”è­²ã®è¨­å®š
  */
 SQRESULT
 Object::setDelegate(HSQUIRRELVM v)
@@ -328,7 +328,7 @@ Object::setDelegate(HSQUIRRELVM v)
 }
 
 /**
- * ˆÏ÷‚Ìİ’è
+ * å§”è­²ã®è¨­å®š
  */
 SQRESULT
 Object::getDelegate(HSQUIRRELVM v)

@@ -4,7 +4,7 @@
 #include <math.h>
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -19,25 +19,25 @@ static void log(const tjs_char *format, ...)
 #include "../layerExDraw/LayerExBase.hpp"
 
 /*
- * ƒAƒEƒgƒ‰ƒCƒ“ƒx[ƒX‚ÌƒeƒLƒXƒg•`‰æƒƒ\ƒbƒh‚Ì’Ç‰Á
+ * ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ãƒ™ãƒ¼ã‚¹ã®ãƒ†ã‚­ã‚¹ãƒˆæç”»ãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ 
  */
 struct layerExRaster : public layerExBase
 {
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	layerExRaster(DispatchT obj) : layerExBase(obj) {}
 
 	/**
-	 * ƒ‰ƒXƒ^[ƒRƒs[ˆ—
-	 * @param layer •`‰æŒ³ƒŒƒCƒ„
-	 * @param maxh  Å‘åU•(pixel)
-	 * @param lines ‚PüŠú‚ ‚½‚èƒ‰ƒCƒ“”
-	 * @param cycle üŠúw’è(msec)
-	 * @param time Œ»İ
+	 * ãƒ©ã‚¹ã‚¿ãƒ¼ã‚³ãƒ”ãƒ¼å‡¦ç†
+	 * @param layer æç”»å…ƒãƒ¬ã‚¤ãƒ¤
+	 * @param maxh  æœ€å¤§æŒ¯å¹…(pixel)
+	 * @param lines ï¼‘å‘¨æœŸã‚ãŸã‚Šãƒ©ã‚¤ãƒ³æ•°
+	 * @param cycle å‘¨æœŸæŒ‡å®š(msec)
+	 * @param time ç¾åœ¨æ™‚åˆ»
 	 */
 	void copyRaster(tTJSVariant layer, int maxh, int lines, int cycle, tjs_int64 time) {
 		
-		// ƒŒƒCƒ„‰æ‘œî•ñ
+		// ãƒ¬ã‚¤ãƒ¤ç”»åƒæƒ…å ±
 		tjs_int width, height, pitch;
 		unsigned char* buffer;
 		{
@@ -57,22 +57,22 @@ public:
 			return;
 		}
 
-		// Šp‘¬“xŒvZ
+		// è§’é€Ÿåº¦è¨ˆç®—
 		double omega = 2 * M_PI / lines;
 		
 		//double tt = sin((3.14159265358979/2.0) * time / cycle);
 		//tjs_int CurH = (tjs_int)(tt * maxh);
 		tjs_int CurH = (tjs_int)maxh;
 		
-		// ‰Šúƒpƒ‰ƒ[ƒ^‚ğŒvZ
+		// åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨ˆç®—
 		double rad = - omega * time / cycle * (height/2);
 
-		// ƒNƒŠƒbƒvˆ—
+		// ã‚¯ãƒªãƒƒãƒ—å‡¦ç†
 		rad += omega * _clipTop;
 		_buffer += _pitch * _clipTop + _clipLeft * 4;
 		buffer  +=  pitch * _clipTop + _clipLeft * 4;
 
-		// ƒ‰ƒCƒ“‚²‚Æ‚Éˆ—
+		// ãƒ©ã‚¤ãƒ³ã”ã¨ã«å‡¦ç†
 		tjs_int n;
 		for (n = 0; n < _clipHeight; n++, rad += omega) {
 			tjs_int d = (tjs_int)(sin(rad) * CurH);
@@ -97,27 +97,27 @@ public:
 	}
 };
 
-// ----------------------------------- ƒNƒ‰ƒX‚Ì“o˜^
+// ----------------------------------- ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
 
 NCB_GET_INSTANCE_HOOK(layerExRaster)
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		obj->reset();
 		return obj;
 	}
-	// ƒfƒXƒgƒ‰ƒNƒ^iÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 	}
 };
 
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(layerExRaster, Layer) {
 	NCB_METHOD(copyRaster);
 }

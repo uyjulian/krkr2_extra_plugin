@@ -1,43 +1,43 @@
 Title: csvparser plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚Å Agg ‚ðŽg‚¤ŽŽ‚Ý
+å‰é‡Œå‰é‡Œã§ Agg ã‚’ä½¿ã†è©¦ã¿
 
-œƒRƒ“ƒpƒCƒ‹•û–@
+â—ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ–¹æ³•
 
-‚±‚ÌƒtƒHƒ‹ƒ_‚Ìƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹‚É‚ÍˆÈ‰º‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ª•K—v‚É‚È‚è‚Ü‚·
+ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«ã¯ä»¥ä¸‹ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå¿…è¦ã«ãªã‚Šã¾ã™
 
-Elibexpat 2.0.0  ( 1.95.8 ‚à‰Â )
+ãƒ»libexpat 2.0.0  ( 1.95.8 ã‚‚å¯ )
 
-  $(EXPAT_HOME) ‚Æ‚µ‚Ä”z’uB
-  ¦•W€‚ÌƒoƒCƒiƒŠƒpƒbƒP[ƒW‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚Æ‚±‚±‚É“ü‚è‚Ü‚·
+  $(EXPAT_HOME) ã¨ã—ã¦é…ç½®ã€‚
+  â€»æ¨™æº–ã®ãƒã‚¤ãƒŠãƒªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã¨ã“ã“ã«å…¥ã‚Šã¾ã™
 
-  ƒXƒ^ƒeƒBƒbƒNƒŠƒ“ƒN‚·‚é‚æ‚¤‚É‚µ‚Ä‚ ‚è‚Ü‚·B
-@ƒ_ƒCƒiƒ~ƒbƒNƒŠƒ“ƒN‚·‚é‚É‚ÍA
-@Eƒ‰ƒCƒuƒ‰ƒŠŽQÆƒtƒHƒ‹ƒ_‚ð $(EXPAT_HOME)\Libs ‚É•ÏX
-@EƒŠƒ“ƒN‚·‚éƒ‰ƒCƒuƒ‰ƒŠŽw’è‚ð libexpatMT.lib ‚©‚ç libexpat.lib ‚É•ÏX
-@EƒvƒŠƒvƒƒZƒbƒT‚Å‚Ì XML_STATIC ‚Ì’è‹`‚ð‰ðœ
-@‚Æ‚·‚ê‚ÎOK‚Å‚·BŽÀsŽž‚É libexpat.dll ‚ª‹g—¢‹g—¢ŽÀsƒtƒ@ƒCƒ‹ƒtƒHƒ‹ƒ_‚É
-  ‚È‚¢‚ÆAƒAƒNƒZƒX—áŠO‚ð‚¨‚±‚µ‚Ü‚·B
+  ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯ãƒªãƒ³ã‚¯ã™ã‚‹ã‚ˆã†ã«ã—ã¦ã‚ã‚Šã¾ã™ã€‚
+ã€€ãƒ€ã‚¤ãƒŠãƒŸãƒƒã‚¯ãƒªãƒ³ã‚¯ã™ã‚‹ã«ã¯ã€
+ã€€ãƒ»ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå‚ç…§ãƒ•ã‚©ãƒ«ãƒ€ã‚’ $(EXPAT_HOME)\Libs ã«å¤‰æ›´
+ã€€ãƒ»ãƒªãƒ³ã‚¯ã™ã‚‹ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæŒ‡å®šã‚’ libexpatMT.lib ã‹ã‚‰ libexpat.lib ã«å¤‰æ›´
+ã€€ãƒ»ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µã§ã® XML_STATIC ã®å®šç¾©ã‚’è§£é™¤
+ã€€ã¨ã™ã‚Œã°OKã§ã™ã€‚å®Ÿè¡Œæ™‚ã« libexpat.dll ãŒå‰é‡Œå‰é‡Œå®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ«ãƒ€ã«
+  ãªã„ã¨ã€ã‚¢ã‚¯ã‚»ã‚¹ä¾‹å¤–ã‚’ãŠã“ã—ã¾ã™ã€‚
 
-@1.95.8 ‚ðŽg‚¤ê‡‚ÍƒvƒƒWƒFƒNƒg‚ÌÝ’è‚ÅƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒN
-@ƒgƒŠ‚Æƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒfƒBƒŒƒNƒgƒŠ‚ð‘‚«Š·‚¦‚Ä‚­‚¾‚³‚¢B
+ã€€1.95.8 ã‚’ä½¿ã†å ´åˆã¯ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®è¨­å®šã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯
+ã€€ãƒˆãƒªã¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ›¸ãæ›ãˆã¦ãã ã•ã„ã€‚
 
-EAGG 2.3
+ãƒ»AGG 2.3
 
   Anti Grain Geometry 
 
-@(1) ƒJƒŒƒ“ƒgƒtƒHƒ‹ƒ_‚É agg23/ ‚Æ‚µ‚Ä”z’u‚µ‚Ü‚·
-@   ¦•W€‚ÌWIN—p”z•z‚ð“WŠJ‚µ‚½‚¾‚¯‚Ì‚à‚Ì‚Å‚·
+ã€€(1) ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ã‚©ãƒ«ãƒ€ã« agg23/ ã¨ã—ã¦é…ç½®ã—ã¾ã™
+ã€€   â€»æ¨™æº–ã®WINç”¨é…å¸ƒã‚’å±•é–‹ã—ãŸã ã‘ã®ã‚‚ã®ã§ã™
 
-  (2) agg23.diff ‚ð patch ‚ ‚Ä
-     SVG ‚ÌƒŠ[ƒ_‚ð IStream ‚É‘Î‰ž‚³‚¹‚é‚½‚ß‚Ìƒpƒbƒ`‚Å‚·
+  (2) agg23.diff ã‚’ patch ã‚ã¦
+     SVG ã®ãƒªãƒ¼ãƒ€ã‚’ IStream ã«å¯¾å¿œã•ã›ã‚‹ãŸã‚ã®ãƒ‘ãƒƒãƒã§ã™
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-Agg 2.3 ‚Í Agg “ÆŽ©ƒ‰ƒCƒZƒ“ƒX‚Å”z•z‚³‚ê‚Ä‚¢‚Ü‚·
+Agg 2.3 ã¯ Agg ç‹¬è‡ªãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã§é…å¸ƒã•ã‚Œã¦ã„ã¾ã™
 
 The Anti-Grain Geometry Project
 A high quality rendering engine for C++
@@ -51,4 +51,4 @@ is granted provided this copyright notice appears in all copies.
 This software is provided "as is" without express or implied
 warranty, and with no claim as to its suitability for any purpose.
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“Ž©‘Ì‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è‡ªä½“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

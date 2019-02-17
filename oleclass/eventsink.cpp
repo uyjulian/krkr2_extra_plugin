@@ -1,7 +1,7 @@
 /**
- * OLE -> ‹g—¢‹g—¢ ƒCƒxƒ“ƒgƒfƒBƒXƒpƒbƒ`ƒƒ
- * sender (IUnknown) ‚©‚ç DIID ‚ÌƒCƒxƒ“ƒg‚ğó—‚µA
- * receiver (tTJSDispatch2) ‚É‘—M‚·‚éB
+ * OLE -> å‰é‡Œå‰é‡Œ ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒãƒ£
+ * sender (IUnknown) ã‹ã‚‰ DIID ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ç†ã—ã€
+ * receiver (tTJSDispatch2) ã«é€ä¿¡ã™ã‚‹ã€‚
  */ 
 class EventSink : public IDispatch
 {
@@ -32,7 +32,7 @@ public:
 	}
 
 	//----------------------------------------------------------------------------
-	// IUnknown À‘•
+	// IUnknown å®Ÿè£…
 	
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,
 											 void __RPC_FAR *__RPC_FAR *ppvObject) {
@@ -65,7 +65,7 @@ public:
 	}
 	
 	// -------------------------------------
-	// IDispatch ‚ÌÀ‘•
+	// IDispatch ã®å®Ÿè£…
 public:
 	STDMETHOD (GetTypeInfoCount) (UINT* pctinfo)
 	{

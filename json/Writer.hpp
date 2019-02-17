@@ -1,5 +1,5 @@
 /**
- * o—Íˆ——pƒCƒ“ƒ^[ƒtƒF[ƒX
+ * å‡ºåŠ›å‡¦ç†ç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  */
 class IWriter {
 protected:
@@ -44,14 +44,14 @@ public:
 };
 
 /**
- * •¶š—ño—Í
+ * æ–‡å­—åˆ—å‡ºåŠ›
  */
 class IStringWriter : public IWriter {
 
 public:
 	ttstr buf;
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	IStringWriter(int newlinetype=0) : IWriter(newlinetype) {};
 
@@ -88,13 +88,13 @@ public:
 };
 
 /**
- * ƒtƒ@ƒCƒ‹o—Í
+ * ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›
  */
 class IFileWriter : public IWriter {
 
-	/// o—Íƒoƒbƒtƒ@
+	/// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡
 	ttstr buf;
-	/// o—ÍƒXƒgƒŠ[ƒ€
+	/// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	IStream *stream;
 	bool utf;
 	char *dat;
@@ -103,7 +103,7 @@ class IFileWriter : public IWriter {
 public:
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	IFileWriter(const tjs_char *filename, bool utf=false, int newlinetype=0) : IWriter(newlinetype) {
 		stream = TVPCreateIStream(filename, TJS_BS_WRITE);
@@ -113,7 +113,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~IFileWriter() {
 		if (stream) {
@@ -132,7 +132,7 @@ public:
 		if (stream) {
 			ULONG s;
 			if (utf) {
-				// UTF-8 ‚Åo—Í
+				// UTF-8 ã§å‡ºåŠ›
 				int maxlen = buf.length() * 6 + 1;
 				if (maxlen > datlen) {
 					datlen = maxlen;
@@ -143,7 +143,7 @@ public:
 					stream->Write(dat, len, &s);
 				}
 			} else {
-				// Œ»İ‚ÌƒR[ƒhƒy[ƒW‚Åo—Í
+				// ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ã§å‡ºåŠ›
 				int len = buf.GetNarrowStrLen() + 1;
 				if (len > datlen) {
 					datlen = len;

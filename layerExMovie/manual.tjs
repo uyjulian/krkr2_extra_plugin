@@ -1,56 +1,56 @@
 /**
- * �[���R�[�h�ɂ��}�j���A��
+ * 擬似コードによるマニュアル
  * @description
- * ���K�v�ȃf�[�^�\���͂����̊g�����߂����s�����Ƃ��ɂ͂��߂č\�z����܂�
+ * ※必要なデータ構造はこれらの拡張命令を実行したときにはじめて構築されます
  *
- * ���̋@�\���g���ɂ������Ă̒��ӓ_
- * �E���[�r�[���J�������_�ŁA���C���� imageWidth, imageHeight ��
- *   ���[�r�[�̃T�C�Y�Ɋg�傳��܂��B
- * �E���[�r�[�Đ���ɃT�C�Y��ύX���Ă����[�r�[�͒Ǐ]���܂���
- * �E����f�[�^�̍X�V����ʂɔ��f����ɂ́A�ʓr onUpdateMovie �Ȃǂ�
- *   update() ���s���K�v������܂�
- * �E�����Ԃ̍X�V�� Continuous �n���h���ōs���Ă��܂�
+ * この機能を使うにあたっての注意点
+ * ・ムービーを開いた時点で、レイヤの imageWidth, imageHeight は
+ *   ムービーのサイズに拡大されます。
+ * ・ムービー再生後にサイズを変更してもムービーは追従しません
+ * ・動画データの更新を画面に反映するには、別途 onUpdateMovie などで
+ *   update() を行う必要があります
+ * ・動画状態の更新は Continuous ハンドラで行われています
  */
 class Layer {
 
 	/**
-	 * �Đ��p�̃��[�r�[�t�@�C�����J��
-	 * @param filename �t�@�C����
-	 * @param alpha true �̏ꍇ�͉�ʃT�C�Y���{�ł��̕��������Ƃ݂Ȃ����[�r�[
+	 * 再生用のムービーファイルを開く
+	 * @param filename ファイル名
+	 * @param alpha true の場合は画面サイズ横倍でその部分をαとみなすムービー
 	 */
 	function openMovie(filename, alpha);
 
 	/**
-	 * ���[�r�[�̍Đ����J�n����
-	 * @param loop true �Ȃ烋�[�v�Đ�
+	 * ムービーの再生を開始する
+	 * @param loop true ならループ再生
 	 */
 	function startMovie(loop);
 
 	/**
-	 * ���[�r�[�̍Đ����~����
+	 * ムービーの再生を停止する
 	 */
 	function stopMovie();
 
 	/**
-	 * ���[�r�[�Đ������ǂ���
-	 * @return �Đ����Ȃ� true
+	 * ムービー再生中かどうか
+	 * @return 再生中なら true
 	 */
 	function isPlayingMovie();
 
-	// �C�x���g
+	// イベント
 	
 	/**
-	 * ���[�r�[���Đ��J�n�����Ƃ��ɌĂ΂�郁�\�b�h
+	 * ムービーが再生開始したときに呼ばれるメソッド
 	 */
 	function onStartMovie();
 
 	/**
-	 * ���[�r�[���Đ��I�������Ƃ��ɌĂ΂�郁�\�b�h
+	 * ムービーが再生終了したときに呼ばれるメソッド
 	 */
 	function onStopMovie();
 
 	/**
-	 * ���C���̓��e���X�V���ꂽ�Ƃ��ɌĂ΂�郁�\�b�h
+	 * レイヤの内容が更新されたときに呼ばれるメソッド
 	 */
 	function onUpdateMovie();
 

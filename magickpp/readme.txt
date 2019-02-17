@@ -1,146 +1,146 @@
 Title: Magick++ Plugin
 Author: Miahmie.
 
-���y���Ӂz�ꉞ������Ԃł͂���܂����C�܂��������ł��I 
-  ��ImageMagick/Magick++�̂��ׂĂ̋@�\���g�p�ł���킯�ł͂���܂���
+※【注意】一応動く状態ではありますが，まだ未完成です！ 
+  ⇒ImageMagick/Magick++のすべての機能が使用できるわけではありません
 
 
-�� �Ȃɂ��H
+● なにか？
 
-ImageMagick �� Magick++ �� TJS �Ŏg����悤�ɂȂ邩������܂���B
-�Ƃ肠�������K�v�ȋ@�\�͂������������Ă��܂����̂ŁC
-����C�`��Ȃǂ̋@�\��S���������邩�ǂ��������ȂƂ���ł��B
+ImageMagick の Magick++ を TJS で使えるようになるかもしれません。
+とりあえず今必要な機能はだいたい揃ってしまったので，
+今後，描画などの機能を全部実装するかどうか微妙なところです。
 
 
-�� �g�p���@
+● 使用方法
 
 MagickPP
-MagickPP.�N���X�� (MagickPP.Image, MagickPP.Geometry, MagickPP.Color, etc.)
-MagickPP.Enum�^.Enum�l (MagickPP.ColorspaceType.RGBColorspace, etc.)
+MagickPP.クラス名 (MagickPP.Image, MagickPP.Geometry, MagickPP.Color, etc.)
+MagickPP.Enum型.Enum値 (MagickPP.ColorspaceType.RGBColorspace, etc.)
 
-�����肪�g������܂��B���y���Ӂz���O�͏����ύX�����\��������܂��B
+あたりが拡張されます。※【注意】名前は将来変更される可能性があります。
 
-���\�b�h����v���p�e�B�͂ق� Magick++ �����ł�������d�l�ɂ��
-�ʖ�������U���Ă���ꍇ������܂��B
+メソッド名やプロパティはほぼ Magick++ 準拠ですが言語仕様により
+別名が割り振られている場合があります。
 
-enum �l�͂����p�̌^�������Ă���킯�ł͂Ȃ��C
-int�ɃL���X�g���ꂽ�l��Ԃ��܂��B
-
-
-����ł͏ڂ����̓\�[�X���Ă���������Ԃł��B�i���݂܂���j
+enum 値はそれ専用の型を持っているわけではなく，
+intにキャストされた値を返します。
 
 
-���ƁC���_�Ƃ��āC
-�d���������iPSD�̓ǂݍ��ݓ��j�͊��S�ɋg���g���̔������~�܂�܂��B
-�V���O���X���b�h�d�l�Ȃ̂Ō���ŉ����@�͂���܂���B
+現状では詳しくはソース見てください状態です。（すみません）
 
-�d���������̃��b�Z�[�W��C�E�B���h�E�Ȃǂ�\���������Ƃ��́C
-System.inform �ŏ����O�ɃN���b�N�҂��𑣂����C
-AsyncTrigger ���g�p���āC��x���b�Z�[�W�������������Ă���
-�g���K�t�@���N�V�������ŏd���������s���Ɨǂ��ł��傤�B
 
-	// ���ꂾ�ƃR���\�[���Ƀ��b�Z�[�W���\�������O��
-	// ���[�h�����Ōł܂��Ă��܂��C���b�Z�[�W�������Ȃ�
-	Debug.message("���[�h���ł�");
+あと，問題点として，
+重い処理中（PSDの読み込み等）は完全に吉里吉里の反応が止まります。
+シングルスレッド仕様なので現状で回避方法はありません。
+
+重い処理中のメッセージや，ウィンドウなどを表示したいときは，
+System.inform で処理前にクリック待ちを促すか，
+AsyncTrigger を使用して，一度メッセージ処理を完遂してから
+トリガファンクション内で重い処理を行うと良いでしょう。
+
+	// これだとコンソールにメッセージが表示される前に
+	// ロード処理で固まってしまい，メッセージが見えない
+	Debug.message("ロード中です");
 	image.read(filename);
 
-	// �N���b�N�҂��������Ă��ǂ��Ȃ�
-	// ���[�_���_�C�A���O�Œ��ӂ𑣂�
-	System.inform("���[�h���܂�" + filename);
+	// クリック待ちがあっても良いなら
+	// モーダルダイアログで注意を促す
+	System.inform("ロードします" + filename);
 	image.read(filename);
 
-	// �N���b�N�҂��Ȃ��ŒP�ɕ\���������Ȃ炱��Ȋ���
-	Debug.message("���[�h���ł�");
+	// クリック待ちなしで単に表示したいならこんな感じ
+	Debug.message("ロード中です");
 	(new AsyncTrigger(function() {
 	  image.read(filename);
 	  load_finished(image);
 	}, "")).trigger();
-	// �����������̍s����������i�K�ł͂܂��ǂݍ��݂�
-	// �������ĂȂ��̂ŁC�g���K�t�@���N�V������
-	// ���ׂĂ̏������L�q����K�v������
+	// ただしここの行を処理する段階ではまだ読み込みが
+	// 完了してないので，トリガファンクションに
+	// すべての処理を記述する必要がある
 	return;
 
 
-�� ������
+● 実装状況
 
-���̃��C�u����������Ȃ̂� ncbind �������Ă��Ă�
-���\�b�h�̌�����邾���ł���ρB
-�܂���������Ă���@�\��S���e�X�g���Ă���킯�ł͂���܂���B
+元のライブラリが巨大なので ncbind をもってしても
+メソッドの口を作るだけでも大変。
+また実装されている機能を全部テストしているわけではありません。
 
-�EGeometry
-�EColor
-	�قڊ���
-	������ϊ��� string �v���p�e�B��ǂݏ������邱�Ƃōs���B
-		��F
+・Geometry
+・Color
+	ほぼ完了
+	文字列変換は string プロパティを読み書きすることで行う。
+		例：
 			myColor.string = "#102030";
 			Debug.message(myGeometry.string);
 
-�EImage
-	�قڋ@�\�͑����Ă邪�C�I�[�o�[���[�h����Ă��郁�\�b�h��
-	�z���n���悤�ȃ��\�b�h�͎�������Ă��Ȃ��B
+・Image
+	ほぼ機能は揃ってるが，オーバーロードされているメソッドや
+	配列を渡すようなメソッドは実装されていない。
 
-	�l�𕡐��n���悤�ȃv���p�e�B�̓��\�b�h�Ƃ��Ď�������Ă���
-	�����F
-	attribute   �� getAttribute(str), setAttribute(str, str)
-	colorMap    �� getColorMap(int),  setColorMap(int, color)
-	defineValue �� getDefineValue(str, str), setDefineValue(str, str, str)
-	defineSet   �� getDefineValue(str, str), setDefineValue(str, str, bool)
+	値を複数渡すようなプロパティはメソッドとして実装されている
+	メモ：
+	attribute   ⇒ getAttribute(str), setAttribute(str, str)
+	colorMap    ⇒ getColorMap(int),  setColorMap(int, color)
+	defineValue ⇒ getDefineValue(str, str), setDefineValue(str, str, str)
+	defineSet   ⇒ getDefineValue(str, str), setDefineValue(str, str, bool)
 
-	gamma �� double�̓ǂݏ����v���p�e�B �� setGamma(r,g,b) ���\�b�h
+	gamma ⇒ doubleの読み書きプロパティ と setGamma(r,g,b) メソッド
 
-	fontTypeMetrics �� method �Ŏ���
+	fontTypeMetrics ⇒ method で実装
 			   TypeMetric imageInstance.fontTypeMetrics(str);
 
-	fillRule �� ncbind �̕s��ŕۗ�
+	fillRule ⇒ ncbind の不具合で保留
 
 	chroma{Red,Blue,Green}Primary
 	chromaWhitePoint
-			�˒l�𕡐��Ԃ��̂ŕۗ�
+			⇒値を複数返すので保留
 
-	strokeDashArray		�� double * ��n���̂ŕۗ�
-	convolve		�� double * ��n���̂ŕۗ�
-
-
-	display() ���\�b�h�� display(layer) ���\�b�h�ɕύX
-	�\���ł͂Ȃ����C���ɃC���[�W���R�s�[���鏈���ɂ��Ă���
+	strokeDashArray		⇒ double * を渡すので保留
+	convolve		⇒ double * を渡すので保留
 
 
-�ECoderInfo
-	�����BMagickPP.support �Ŏg�p
-
-�E���̑�
-	�C���X�^���X�̃��b�p�͑��݂��邪���\�b�h�̌��͗p�ӂ���Ă��Ȃ�
-	enum �l�̓w�b�_�ɗp�ӂ���Ă�����̂͂��ׂēo�^��������
-	(Magick++�Ŏg�p����Ȃ�PreviewType������)
-
-�EMagickPP
-	STL�֘A�̒P�̃��\�b�h�� enum �Ȃǂ��W�񂷂�\��
-	���ׂ� static �ȃ��\�b�h/�v���p�e�B�ŁC�C���X�^���X�͐����s��
-
-	����ł�
-		version �v���p�e�B �� �o�[�W�����������Ԃ�
-		support �v���p�e�B �� �T�|�[�g�����CoderInfo�̔z���Ԃ�
-
-		readImages(string) �� Magick::readImages
-					�ǂݍ��� Image �̔z���Ԃ�
-
-	�����݂���B
+	display() メソッドは display(layer) メソッドに変更
+	表示ではなくレイヤにイメージをコピーする処理にしてある
 
 
-�� �R���p�C��
+・CoderInfo
+	完了。MagickPP.support で使用
 
-MSYS/MinGW �ŃR���p�C�����m�F���Ă���܂��B
-���炩���� static link archive �� ImageMagick ��
-�R���p�C���E�C���X�g�[�����Ă�������Ԃ� make ����� OK �ł��B
+・その他
+	インスタンスのラッパは存在するがメソッドの口は用意されていない
+	enum 値はヘッダに用意されているものはすべて登録したつもり
+	(Magick++で使用されないPreviewTypeを除く)
 
-make test �ɂ��e�X�g���� svn ��̃c���[�`��Ɠ������ł�
-���s��O��Ƃ��Ă��܂��B�����B
+・MagickPP
+	STL関連の単体メソッドや enum などを集約する予定
+	すべて static なメソッド/プロパティで，インスタンスは生成不可
+
+	現状では
+		version プロパティ ⇒ バージョン文字列を返す
+		support プロパティ ⇒ サポートされるCoderInfoの配列を返す
+
+		readImages(string) ⇒ Magick::readImages
+					読み込んだ Image の配列を返す
+
+	が存在する。
 
 
-�� ���C�Z���X
+● コンパイル
 
-ImageMagick �� GPL �݊����C���Z���X�ł��B�����B
-�ڂ����� http://www.imagemagick.org/script/license.php ���������������B
+MSYS/MinGW でコンパイルを確認してあります。
+あらかじめ static link archive な ImageMagick を
+コンパイル・インストールしておいた状態で make すれば OK です。
+
+make test によるテスト環境は svn 上のツリー形状と同じ環境での
+実行を前提としています。多分。
+
+
+● ライセンス
+
+ImageMagick は GPL 互換ラインセンスです。多分。
+詳しくは http://www.imagemagick.org/script/license.php をご覧ください。
 
 ------------------------------------------------------------------------------
 Copyright 1999-2009 ImageMagick Studio LLC, a non-profit organization dedicated to making software imaging solutions freely available.

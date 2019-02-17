@@ -1,35 +1,35 @@
-POCO C++ Libraries ‚ğ http://pocoproject.org/ ‚©‚çƒ_ƒEƒ“ƒ[ƒh‚µ‚ÄA
-ƒA[ƒJƒCƒu“à‚Ì
+POCO C++ Libraries ã‚’ http://pocoproject.org/ ã‹ã‚‰ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã€
+ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®
 
 	Foundation/include
 	Net/include
 
-‚ğ include/ ‚É’u‚¢‚Ä‚­‚¾‚³‚¢B‹ï‘Ì“I‚É‚ÍˆÈ‰º‚Ì‚æ‚¤‚È\¬‚É‚È‚è‚Ü‚·B
+ã‚’ include/ ã«ç½®ã„ã¦ãã ã•ã„ã€‚å…·ä½“çš„ã«ã¯ä»¥ä¸‹ã®ã‚ˆã†ãªæ§‹æˆã«ãªã‚Šã¾ã™ã€‚
 
-	include/Poco/Net/*.h	(Net/include ‚Ìƒtƒ@ƒCƒ‹)
-	include/Poco/*.h	(Foundation/include ‚Ìƒtƒ@ƒCƒ‹)
+	include/Poco/Net/*.h	(Net/include ã®ãƒ•ã‚¡ã‚¤ãƒ«)
+	include/Poco/*.h	(Foundation/include ã®ãƒ•ã‚¡ã‚¤ãƒ«)
 
-‚Ü‚½AVC‚Å
+ã¾ãŸã€VCã§
 
 	Foundation
 	Util
 	Net
 	XML
 
-‚ğ static_debug/release ‚ÅƒRƒ“ƒpƒCƒ‹‚µ‚Ä
-¶¬‚³‚ê‚½ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğ lib/ ‚É’u‚¢‚Ä‰º‚³‚¢B
-i•t‘®ƒvƒƒWƒFƒNƒg‚ÍƒR[ƒh¶¬‚ªuƒ}ƒ‹ƒ`ƒXƒŒƒbƒhDLLv‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÅA
-@DLL‚ğg—p‚µ‚È‚¢‚æ‚¤‚ÉƒIƒvƒVƒ‡ƒ“‚ğ•ÏX‚µ‚Ä‚©‚çƒRƒ“ƒpƒCƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-@‚»‚¤‚µ‚È‚¢‚ÆƒŠƒ“ƒN‚ÉƒGƒ‰[‚ªo‚Ü‚·j
+ã‚’ static_debug/release ã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦
+ç”Ÿæˆã•ã‚ŒãŸãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ lib/ ã«ç½®ã„ã¦ä¸‹ã•ã„ã€‚
+ï¼ˆä»˜å±ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ã‚³ãƒ¼ãƒ‰ç”ŸæˆãŒã€Œãƒãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰DLLã€ã«ãªã£ã¦ã„ã‚‹ã®ã§ã€
+ã€€DLLã‚’ä½¿ç”¨ã—ãªã„ã‚ˆã†ã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã—ã¦ã‹ã‚‰ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ãã ã•ã„ã€‚
+ã€€ãã†ã—ãªã„ã¨ãƒªãƒ³ã‚¯æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒå‡ºã¾ã™ï¼‰
 
-ƒ‰ƒCƒuƒ‰ƒŠ‚ÍˆÈ‰º‚Ì‚æ‚¤‚È\¬‚É‚È‚è‚Ü‚·B
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ä»¥ä¸‹ã®ã‚ˆã†ãªæ§‹æˆã«ãªã‚Šã¾ã™ã€‚
 
-	lib/PocoFoundationmt.lib	(Foundationmt‚Ìstatic_release)
-	lib/PocoFoundationmtd.lib	(Foundationmt‚Ìstatic_debug)
-	lib/PocoUtilmt.lib		(Util‚Ìstatic_release)
-	lib/PocoUtilmtd.lib		(Util‚Ìstatic_debug)
-	lib/PocoNetmt.lib		(Net‚Ìstatic_release)
-	lib/PocoNetmtd.lib		(Net‚Ìstatic_debug)
-	lib/PocoXMLmt.lib		(XML‚Ìstatic_release)
-	lib/PocoXMLmtd.lib		(XML‚Ìstatic_debug)
+	lib/PocoFoundationmt.lib	(Foundationmtã®static_release)
+	lib/PocoFoundationmtd.lib	(Foundationmtã®static_debug)
+	lib/PocoUtilmt.lib		(Utilã®static_release)
+	lib/PocoUtilmtd.lib		(Utilã®static_debug)
+	lib/PocoNetmt.lib		(Netã®static_release)
+	lib/PocoNetmtd.lib		(Netã®static_debug)
+	lib/PocoXMLmt.lib		(XMLã®static_release)
+	lib/PocoXMLmtd.lib		(XMLã®static_debug)
 

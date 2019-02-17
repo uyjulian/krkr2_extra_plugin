@@ -6,7 +6,7 @@
 
 
 //---------------------------------------------------------------------------
-// w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚Ìˆê——‚ğ“¾‚éŠÖ”
+// æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸€è¦§ã‚’å¾—ã‚‹é–¢æ•°
 //---------------------------------------------------------------------------
 class tGetDirListFunction : public tTJSDispatch
 {
@@ -17,7 +17,7 @@ class tGetDirListFunction : public tTJSDispatch
 	{
 		if(membername) return TJS_E_MEMBERNOTFOUND;
 
-		// ˆø” : ƒfƒBƒŒƒNƒgƒŠ
+		// å¼•æ•° : ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 		if(numparams < 1) return TJS_E_BADPARAMCOUNT;
 
 		ttstr dir(*param[0]);
@@ -25,18 +25,18 @@ class tGetDirListFunction : public tTJSDispatch
 		if(dir.GetLastChar() != TJS_W('/'))
 			TVPThrowExceptionMessage(TJS_W("'/' must be specified at the end of given directory name."));
 
-		// OSƒlƒCƒeƒBƒu‚È•\Œ»‚É•ÏŠ·
+		// OSãƒã‚¤ãƒ†ã‚£ãƒ–ãªè¡¨ç¾ã«å¤‰æ›
 		dir = TVPNormalizeStorageName(dir);
 		TVPGetLocalName(dir);
 
-		// Array ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ğì¬
+		// Array ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 		iTJSDispatch2 * array;
 
 		{
 			tTJSVariant result;
 			TVPExecuteExpression(TJS_W("[]"), &result);
-			// ‚È‚É‚© TJS ƒXƒNƒŠƒvƒg‚Åo—ˆ‚»‚¤‚È‚±‚Æ‚ğC++‚Å‚â‚é‚Ì‚ª–Ê“|‚È‚ç‚Î
-			// ‚±‚Ì‚æ‚¤‚É TJS ®‚ğÀs‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ªè‚Áæ‚è‘‚¢
+			// ãªã«ã‹ TJS ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§å‡ºæ¥ãã†ãªã“ã¨ã‚’C++ã§ã‚„ã‚‹ã®ãŒé¢å€’ãªã‚‰ã°
+			// ã“ã®ã‚ˆã†ã« TJS å¼ã‚’å®Ÿè¡Œã—ã¦ã—ã¾ã†ã®ãŒæ‰‹ã£å–ã‚Šæ—©ã„
 			array = result.AsObject();
 		}
 
@@ -47,14 +47,14 @@ class tGetDirListFunction : public tTJSDispatch
 			char ndir[MAX_PATH + 1];
 			char nwildcard[MAX_PATH + 1];
 
-			// dir ‚ğ ndir ‚É•ÏŠ·
+			// dir ã‚’ ndir ã«å¤‰æ›
 			int dir_narrow_len = dir.GetNarrowStrLen();
 			if(dir_narrow_len >= MAX_PATH - 3)
 				TVPThrowExceptionMessage(TJS_W("Too long directory name."));
 
 			dir.ToNarrowStr(ndir, MAX_PATH);
 
-			// FindFirstFile ‚ğg‚Á‚Äƒtƒ@ƒCƒ‹‚ğ—ñ‹“
+			// FindFirstFile ã‚’ä½¿ã£ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ—æŒ™
 			strcpy(nwildcard, ndir);
 			strcat(nwildcard, "*.*");
 
@@ -70,17 +70,17 @@ class tGetDirListFunction : public tTJSDispatch
 
 					if(GetFileAttributes(nfile) & FILE_ATTRIBUTE_DIRECTORY)
 					{
-						// ƒfƒBƒŒƒNƒgƒŠ‚Ìê‡‚ÍÅŒã‚É / ‚ğ‚Â‚¯‚é
+						// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å ´åˆã¯æœ€å¾Œã« / ã‚’ã¤ã‘ã‚‹
 						strcpy(nfile, data.cFileName);
 						strcat(nfile, "/");
 					}
 					else
 					{
-						// •’Ê‚Ìƒtƒ@ƒCƒ‹‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü
+						// æ™®é€šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆã¯ãã®ã¾ã¾
 						strcpy(nfile, data.cFileName);
 					}
 
-					// ”z—ñ‚É’Ç‰Á‚·‚é
+					// é…åˆ—ã«è¿½åŠ ã™ã‚‹
 					tTJSVariant val((ttstr)(nfile));
 					array->PropSetByNum(0, count++, &val, array);
 
@@ -103,7 +103,7 @@ class tGetDirListFunction : public tTJSDispatch
 
 		array->Release();
 
-		// –ß‚é
+		// æˆ»ã‚‹
 		return TJS_S_OK;
 	}
 } * GetDirListFunction;
@@ -122,94 +122,94 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason, void* lpReserved
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
-	// GetDirListFunction ‚Ìì¬‚Æ“o˜^
+	// GetDirListFunction ã®ä½œæˆã¨ç™»éŒ²
 	tTJSVariant val;
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// 1 ‚Ü‚¸ƒIƒuƒWƒFƒNƒg‚ğì¬
+	// 1 ã¾ãšã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 	GetDirListFunction = new tGetDirListFunction();
 
-	// 2 GetDirListFunction ‚ğ tTJSVariant Œ^‚É•ÏŠ·
+	// 2 GetDirListFunction ã‚’ tTJSVariant å‹ã«å¤‰æ›
 	val = tTJSVariant(GetDirListFunction);
 
-	// 3 ‚·‚Å‚É val ‚ª GetDirListFunction ‚ğ•Û‚µ‚Ä‚¢‚é‚Ì‚ÅAGetDirListFunction ‚Í
-	//   Release ‚·‚é
+	// 3 ã™ã§ã« val ãŒ GetDirListFunction ã‚’ä¿æŒã—ã¦ã„ã‚‹ã®ã§ã€GetDirListFunction ã¯
+	//   Release ã™ã‚‹
 	GetDirListFunction->Release();
 
 
-	// 4 global ‚Ì PropSet ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚·‚é
+	// 4 global ã® PropSet ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã™ã‚‹
 	global->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		TJS_W("getDirList"), // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&val, // “o˜^‚·‚é’l
-		global // ƒRƒ“ƒeƒLƒXƒg ( global ‚Å‚æ‚¢ )
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		TJS_W("getDirList"), // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&val, // ç™»éŒ²ã™ã‚‹å€¤
+		global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ ( global ã§ã‚ˆã„ )
 		);
 
 
-	// - global ‚ğ Release ‚·‚é
+	// - global ã‚’ Release ã™ã‚‹
 	global->Release();
 
-	// val ‚ğƒNƒŠƒA‚·‚éB
-	// ‚±‚ê‚Í•K‚¸s‚¤B‚»‚¤‚µ‚È‚¢‚Æ val ‚ª•Û‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg
-	// ‚ª Release ‚³‚ê‚¸AŸ‚Ég‚¤ TVPPluginGlobalRefCount ‚ª³Šm‚É‚È‚ç‚È‚¢B
+	// val ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
+	// ã“ã‚Œã¯å¿…ãšè¡Œã†ã€‚ãã†ã—ãªã„ã¨ val ãŒä¿æŒã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// ãŒ Release ã•ã‚Œãšã€æ¬¡ã«ä½¿ã† TVPPluginGlobalRefCount ãŒæ­£ç¢ºã«ãªã‚‰ãªã„ã€‚
 	val.Clear();
 
 
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
 	TVPAddLog(TVPPluginGlobalRefCount);
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall _export V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	TVPAddLog(TVPPluginGlobalRefCount);
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚É“o˜^‚µ‚½ getDirList ŠÖ”‚ğíœ‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²ã—ãŸ getDirList é–¢æ•°ã‚’å‰Šé™¤ã™ã‚‹
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if(global)
 	{
-		// TJS ©‘Ì‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚Æ‚«‚È‚Ç‚Í
-		// global ‚Í NULL ‚É‚È‚è“¾‚é‚Ì‚Å global ‚ª NULL ‚Å‚È‚¢
-		// ‚±‚Æ‚ğƒ`ƒFƒbƒN‚·‚é
+		// TJS è‡ªä½“ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã¨ããªã©ã¯
+		// global ã¯ NULL ã«ãªã‚Šå¾—ã‚‹ã®ã§ global ãŒ NULL ã§ãªã„
+		// ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 		global->DeleteMember(
-			0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-			TJS_W("getDirList"), // ƒƒ“ƒo–¼
-			NULL, // ƒqƒ“ƒg
-			global // ƒRƒ“ƒeƒLƒXƒg
+			0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+			TJS_W("getDirList"), // ãƒ¡ãƒ³ãƒå
+			NULL, // ãƒ’ãƒ³ãƒˆ
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 			);
-			// “o˜^‚µ‚½ŠÖ”‚ª•¡”‚ ‚éê‡‚Í ‚±‚ê‚ğŒJ‚è•Ô‚·
+			// ç™»éŒ²ã—ãŸé–¢æ•°ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ ã“ã‚Œã‚’ç¹°ã‚Šè¿”ã™
 	}
 
-	// - global ‚ğ Release ‚·‚é
+	// - global ã‚’ Release ã™ã‚‹
 	if(global) global->Release();
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

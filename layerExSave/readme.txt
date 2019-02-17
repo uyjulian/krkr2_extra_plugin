@@ -1,68 +1,68 @@
 Title: layerExSave plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Layer/Window �N���X��TGL5/PNG �`���ł̕ۑ����\�b�h��ǉ�����v���O�C���ł��B
+Layer/Window クラスにTGL5/PNG 形式での保存メソッドを追加するプラグインです。
 
-���g���g��Z�ł͕W����TLG5/TLG6/PNG/JPEG�̕ۑ��@�\������̂�
-�@���̃v���O�C���ł͂Ȃ��A������𗘗p���邱�Ƃ𐄏����܂��B
-���ڍׂ�Layer.saveLayerImage/Bitmap.save�̃}�j���A�����Q�Ƃ��Ă�������
+※吉里吉里Zでは標準でTLG5/TLG6/PNG/JPEGの保存機能があるので
+　このプラグインではなく、そちらを利用することを推奨します。
+＞詳細はLayer.saveLayerImage/Bitmap.saveのマニュアルを参照してください
 
-��PNG�ۑ��̐���
+●PNG保存の制限
 
-PNG�ۑ���libpng���g�p�����C���L���\�b�h���Ƃɕۑ��̎������قȂ�܂��B
+PNG保存はlibpngを使用せず，下記メソッドごとに保存の実装が異なります。
 
-	Window.startSaveLayerImage   : �Ǝ������ɂ��ۑ�
-	Layer.saveLayerImagePng      : LodePNG�ɂ��ۑ�
-	Layer.saveLayerImagePngOctet : �V
+	Window.startSaveLayerImage   : 独自実装による保存
+	Layer.saveLayerImagePng      : LodePNGによる保存
+	Layer.saveLayerImagePngOctet : 〃
 
-�Ǝ������̓v���O���X�����̓s���ɂ��ȈՏ����̂��߁A
-�t�H�[�}�b�g�ɂ́A���L�̐���������܂��B
+独自実装はプログレス処理の都合による簡易処理のため、
+フォーマットには、下記の制限があります。
 
-�E32bitRGBA�Œ�i�����x����j
-�E�t�B���^/�C���^�[���[�X�����Ȃ�
+・32bitRGBA固定（透明度あり）
+・フィルタ/インターレース処理なし
 
-�t�B���^�������Ȃ��̂ŁA���k���� libpng/LodePNG �̎����̂��̂����܂��B
-�����k�����d�v�ɂȂ�悤�ȉ摜�́ALodePNG�ł̕ۑ��𐄏����܂��B
+フィルタ処理がないので、圧縮率は libpng/LodePNG の実装のものより劣ります。
+※圧縮率が重要になるような画像は、LodePNGでの保存を推奨します。
 
-LodePNG ( http://lodev.org/lodepng/ )�̓|�[�^�u����PNG�̃��[�h/�Z�[�u�̎����ł��B
-./LodePNG/* ��2�t�@�C�����Y�����܂��B(version 20161127���g�p)
-
-
-�^�O���ioffs_*, reso_*, vpag_*�j���T�|�[�g����܂�������m�F���s�\���ł��B
-
-�^�O��񎫏��� comp_lv ��n���ƈ��k����ύX�ł��܂��B
-�i0�`9�܂ŁF���̏���PNG�̃`�����N�Ƃ��Ă͕ۑ�����܂���j
-��LodePNG����comp_lv���w�肷���zlib��deflate�������g�p���܂��B
-�@���w��̏ꍇ��LodePNG�g�ݍ��݂�deflate�������g�p���܂��B
+LodePNG ( http://lodev.org/lodepng/ )はポータブルなPNGのロード/セーブの実装です。
+./LodePNG/* の2ファイルが該当します。(version 20161127を使用)
 
 
-���g����
+タグ情報（offs_*, reso_*, vpag_*）もサポートされますが動作確認が不十分です。
 
-manual.tjs �Q��
+タグ情報辞書に comp_lv を渡すと圧縮率を変更できます。
+（0〜9まで：この情報はPNGのチャンクとしては保存されません）
+※LodePNG側でcomp_lvを指定するとzlibのdeflate処理を使用します。
+　未指定の場合はLodePNG組み込みのdeflate処理を使用します。
 
 
-���R���p�C��
+●使い方
 
-premake4�ɂăv���W�F�N�g���쐬���Ă��������B(vs20xx�t�H���_�쐬�ς݁j
-�R���p�C���ɂ�
+manual.tjs 参照
+
+
+●コンパイル
+
+premake4にてプロジェクトを作成してください。(vs20xxフォルダ作成済み）
+コンパイルには
 ../tp_stub.*
 ../ncbind/*
 ../zlib/*
 ../../../tools/win32/krdevui/tpc/tlg5/slide.*
-�̃t�H���_�E�t�@�C�����K�v�ł��B
+のフォルダ・ファイルが必要です。
 
-LAYEREXSAVE_DISABLE_LODEPNG ���w�肵�ăR���p�C�������LodePNG���g�p����
-���ׂēƎ������ɂ��ۑ������ƂȂ�܂��B�i���łƓ����d�l�ł��j
-
-
-�����C�Z���X
-
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+LAYEREXSAVE_DISABLE_LODEPNG を指定してコンパイルするとLodePNGを使用せず
+すべて独自実装による保存処理となります。（旧版と同じ仕様です）
 
 
-LodePNG �̃��C�Z���X�� zlib license �ɂȂ�܂��B
+●ライセンス
+
+このプラグインのライセンスは吉里吉里本体に準拠してください。
+
+
+LodePNG のライセンスは zlib license になります。
 
 LodePNG version 20151208
 

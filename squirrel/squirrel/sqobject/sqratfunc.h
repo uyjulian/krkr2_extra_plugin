@@ -4,13 +4,13 @@
 #include "sqobjectclass.h"
 
 /**
- * sqobject::sqobject ‚ğŒp³‚µ‚½ƒIƒuƒWƒFƒNƒg—p‚É sqrat ‚ ‚í‚¹‚Åƒeƒ“ƒvƒŒ[ƒg‚ğì¬
+ * sqobject::sqobject ã‚’ç¶™æ‰¿ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã« sqrat ã‚ã‚ã›ã§ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ä½œæˆ
  */
 
 namespace sqobject {
 
 	/**
-	 * ˆø”‚È‚µƒRƒ“ƒXƒgƒ‰ƒNƒ^—pƒAƒƒP[ƒ^
+	 * å¼•æ•°ãªã—ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç”¨ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	 */
 	template <class C>
 	class DefaultConstructor {
@@ -53,7 +53,7 @@ namespace sqobject {
 	};
 	
 	/**
-	 * HSQUIRRELVM‚ğˆø”‚É‚Æ‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^—p‚ÌƒAƒƒP[ƒ^
+	 * HSQUIRRELVMã‚’å¼•æ•°ã«ã¨ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç”¨ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	 */
 	template <class C>
 	class VMConstructor : public DefaultConstructor<C> {
@@ -72,7 +72,7 @@ namespace sqobject {
 	};
 
 	/**
-	 * ƒtƒ@ƒNƒgƒŠ[Œ`®ƒRƒ“ƒXƒgƒ‰ƒNƒ^—p‚ÌƒAƒƒP[ƒ^
+	 * ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å½¢å¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç”¨ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	 */
 	template <class C>
 	class Factory : public DefaultConstructor<C> {
@@ -93,7 +93,7 @@ namespace sqobject {
 
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚È‚µƒIƒuƒWƒFƒNƒg—pƒAƒƒP[ƒ^Bnew‚·‚é‚Æ—áŠO
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãªã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã€‚newã™ã‚‹ã¨ä¾‹å¤–
 	 */
 	template <class C>
 	class NOConstructor : public DefaultConstructor<C> {
@@ -106,9 +106,9 @@ namespace sqobject {
 	// ---------------------------------------------------------------------------
 
 	/**
-	 * _get/_set ‚ÉŠ„‚è‚İ‚·‚éˆ—B
-	 * sqrat ‚ÌƒvƒƒpƒeƒBˆ—‚ª¸”s‚µ‚½ê‡‚ÍƒCƒ“ƒXƒ^ƒ“ƒX‚Ì _set/_get ‚ğ
-	 * ŒÄ‚Ño‚·‚æ‚¤‚É‚·‚é
+	 * _get/_set ã«å‰²ã‚Šè¾¼ã¿ã™ã‚‹å‡¦ç†ã€‚
+	 * sqrat ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å‡¦ç†ãŒå¤±æ•—ã—ãŸå ´åˆã¯ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã® _set/_get ã‚’
+	 * å‘¼ã³å‡ºã™ã‚ˆã†ã«ã™ã‚‹
 	 */
 	template<class C>
 	struct OverrideSetGet {
@@ -155,7 +155,7 @@ namespace sqobject {
 			// push the class
 			sq_pushobject(vm, Sqrat::ClassType<C>::ClassObject());
 			
-			// sqrat ‚Ì‹@”\‚ğƒI[ƒoƒ‰ƒCƒh‚·‚é
+			// sqrat ã®æ©Ÿèƒ½ã‚’ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰ã™ã‚‹
 
 			// override _set
 			sq_pushstring(vm, _SC("_set"), -1);
@@ -168,8 +168,8 @@ namespace sqobject {
 			sq_newclosure(vm, _get, 1);
 			sq_newslot(vm, -3, false);
 
-			// _get / _set ‚Å“o˜^‚µ‚½‚à‚Ì‚ÍŒã‚©‚çQÆ‚Å‚«‚È‚¢‚Ì‚ÅA
-			// ƒXƒNƒŠƒvƒg‚ÌŒp³æ‚ÅƒI[ƒoƒ‰ƒCƒh‚·‚é‚Æ‚«‚Ì‚½‚ß•Ê–¼‚Å“o˜^‚µ‚Ä‚¨‚­
+			// _get / _set ã§ç™»éŒ²ã—ãŸã‚‚ã®ã¯å¾Œã‹ã‚‰å‚ç…§ã§ããªã„ã®ã§ã€
+			// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¨ãã®ãŸã‚åˆ¥åã§ç™»éŒ²ã—ã¦ãŠã
 
 			// override _set
 			sq_pushstring(vm, _SC("set"), -1);
@@ -188,46 +188,46 @@ namespace sqobject {
 }; // namespace
 
 // ----------------------------------------------
-// ƒNƒ‰ƒX“o˜^—pƒ}ƒNƒ
+// ã‚¯ãƒ©ã‚¹ç™»éŒ²ç”¨ãƒã‚¯ãƒ­
 // ----------------------------------------------
 
-// ”ñŒp³ƒNƒ‰ƒX
+// éç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 #define SQCLASS_NOCONSTRUCTOR(Target, Name)\
   Sqrat::Class<Target, Sqrat::CopyOnly<Target> > cls(sqobject::getGlobalVM());\
   Sqrat::RootTable(sqobject::getGlobalVM()).Bind(Name, cls);
 
-// ObjectŒp³ƒNƒ‰ƒX
+// Objectç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 #define SQCLASSEX(Target, Parent, Name)\
   Sqrat::DerivedClass<Target, Parent, sqobject::DefaultConstructor<Target> > cls(sqobject::getGlobalVM());\
   sqobject::OverrideSetGet<Target>::Func(sqobject::getGlobalVM());\
   Sqrat::RootTable(sqobject::getGlobalVM()).Bind(Name, cls);
 
-// ObjectŒp³ƒNƒ‰ƒXEVMw’èƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// Objectç¶™æ‰¿ã‚¯ãƒ©ã‚¹ãƒ»VMæŒ‡å®šã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 #define SQCLASSEX_VCONSTRUCTOR(Target, Parent, Name)\
   Sqrat::DerivedClass<Target, Parent, sqobject::VMConstructor<Target> > cls(sqobject::getGlobalVM());\
   sqobject::OverrideSetGet<Target>::Func(sqobject::getGlobalVM());\
   Sqrat::RootTable(sqobject::getGlobalVM()).Bind(Name, cls);
 
-// ObjectŒp³ƒNƒ‰ƒXEƒtƒ@ƒNƒgƒŠŒ`®
+// Objectç¶™æ‰¿ã‚¯ãƒ©ã‚¹ãƒ»ãƒ•ã‚¡ã‚¯ãƒˆãƒªå½¢å¼
 #define SQCLASSEX_FACTORY(Target, Parent, Name)\
   Sqrat::DerivedClass<Target, Parent, sqobject::Factory<Target> > cls(sqobject::getGlobalVM());\
   sqobject::OverrideSetGet<Target>::Func(sqobject::getGlobalVM());\
   Sqrat::RootTable(sqobject::getGlobalVM()).Bind(Name, cls);
 
-// ObjectŒp³ƒNƒ‰ƒXEƒRƒ“ƒXƒgƒ‰ƒNƒ^–³‚µ
+// Objectç¶™æ‰¿ã‚¯ãƒ©ã‚¹ãƒ»ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç„¡ã—
 #define SQCLASSEX_NOCONSTRUCTOR(Target, Parent, Name)\
   Sqrat::DerivedClass<Target, Parent, sqobject::NOConstructor<Target> > cls(sqobject::getGlobalVM());\
   sqobject::OverrideSetGet<Target>::Func(sqobject::getGlobalVM());\
   Sqrat::RootTable(sqobject::getGlobalVM()).Bind(Name, cls);
 
-// ObjectŒp³ƒNƒ‰ƒX
+// Objectç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 #define SQCLASSOBJ(Target, Name) SQCLASSEX(Target, Object, Name)
 #define SQCLASSOBJ_VCONSTRUCTOR(Target, Name) SQCLASSEX_VCONSTRUCTOR(Target, Object, Name)
 #define SQCLASSOBJ_FACTORY(Target, Name) SQCLASSEX_FACTORY(Target, Object, Name)
 #define SQCLASSOBJ_NOCONSTRUCTOR(Target, Name) SQCLASSEX_NOCONSTRUCTOR(Target, Object, Name)
 
 // ----------------------------------------------
-// ƒtƒ@ƒ“ƒNƒVƒ‡ƒ““o˜^—pƒ}ƒNƒ
+// ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ç™»éŒ²ç”¨ãƒã‚¯ãƒ­
 // ----------------------------------------------
 
 #define SQFUNC(Class, Name)  cls.Func(_SC(#Name), &Class::Name)

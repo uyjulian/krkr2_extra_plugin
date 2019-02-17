@@ -2,27 +2,27 @@
 #include "layerExMovie.hpp"
 #include "ncbind/ncbind.hpp"
 
-// ----------------------------------- ƒNƒ‰ƒX‚Ì“o˜^
+// ----------------------------------- ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
 
 NCB_GET_INSTANCE_HOOK(layerExMovie)
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ð iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^Žæ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* åž‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ðƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^iŽÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 	}
 };
 
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(layerExMovie, Layer) {
 	NCB_METHOD(openMovie);
 	NCB_METHOD(startMovie);
@@ -30,25 +30,25 @@ NCB_ATTACH_CLASS_WITH_HOOK(layerExMovie, Layer) {
 	NCB_METHOD(isPlayingMovie);
 }
 
-// ----------------------------------- ‹N“®EŠJ•úˆ—
+// ----------------------------------- èµ·å‹•ãƒ»é–‹æ”¾å‡¦ç†
 
 static bool coInitialized;
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 void PreRegistCallback()
 {
 	coInitialized = SUCCEEDED(CoInitialize(0));
 	if (coInitialized) {
-		TVPAddLog("‰Šú‰»¬Œ÷");
+		TVPAddLog("åˆæœŸåŒ–æˆåŠŸ");
 	} else {
-		TVPAddLog("‰Šú‰»Ž¸”s");
+		TVPAddLog("åˆæœŸåŒ–å¤±æ•—");
 	}
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 void PostUnregistCallback()
 {

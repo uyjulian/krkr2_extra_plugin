@@ -1,91 +1,91 @@
-TITLE: �S�ԃv���O�C��(experimental)
+TITLE: 鬼車プラグイン(experimental)
 AUTHOR: miahmie
 
-������͂ȂɁH
+●これはなに？
 
-RegExp�̐��K�\���G���W�����S�ԂɕύX����v���O�C���ł��B
-�g���g��Z�R���̃R�[�h���g�p���Ă��܂��B
+RegExpの正規表現エンジンを鬼車に変更するプラグインです。
+吉里吉里Z由来のコードを使用しています。
 
-�g���g��2�Ƌg���g��Z�̐��K�\���̎d�l�����z���������ꍇ�Ɏg�p���Ă��������B
-�i���R�Ȃ���Z�̕��̎d�l�ɂ��킹�邱�ƂɂȂ�܂��j
+吉里吉里2と吉里吉里Zの正規表現の仕様差を吸収したい場合に使用してください。
+（当然ながらZの方の仕様にあわせることになります）
 
-����Ō����ȓ���`�F�b�N���s���Ă���܂���̂Ŏ��H�����ɂ�
-����Ȃ�̃��X�N�����邱�Ƃ�\�߂����m���������B
-
-
-���g����
-
-Plugins.link�Ń����N���邾���ł��B
-unlink����ƌ��ɖ߂�܂��B
-
-�@�\�ɂ��Ă� ���� RegExp �N���X�Ɠ��l�ł��B
-���K�\���̃��[�����኱�قȂ�܂��B
-�ڍׂ͋S�Ԃ̎d�l���Q�Ƃ��Ă��������B
+現状で厳密な動作チェックを行っておりませんので実践投入には
+それなりのリスクがあることを予めご承知ください。
 
 
-���R���p�C��
+●使い方
 
-onig�t�H���_�ɋS�Ԃ̃\�[�X��W�J���Ēu���Ă��������B
+Plugins.linkでリンクするだけです。
+unlinkすると元に戻ります。
+
+機能については 元の RegExp クラスと同様です。
+正規表現のルールが若干異なります。
+詳細は鬼車の仕様を参照してください。
+
+
+●コンパイル
+
+onigフォルダに鬼車のソースを展開して置いてください。
 http://www.geocities.jp/kosako3/oniguruma/index_ja.html
-ver 5.9.5 �ɂăR���p�C���^����m�F���Ă��܂��B
+ver 5.9.5 にてコンパイル／動作確認しています。
 
-premake4�ɂăv���W�F�N�g���쐬���Ă��������B(vs20xx�t�H���_�쐬�ς݁j
-�R���p�C���ɂ�
+premake4にてプロジェクトを作成してください。(vs20xxフォルダ作成済み）
+コンパイルには
 ../tp_stub.*
 ../00_simplebinder/*
-�̃t�H���_�E�t�@�C�����K�v�ł��B
+のフォルダ・ファイルが必要です。
 
 
-���R�[�h�ɂ��ď�����
+●コードについて諸注意
 
-Main.cpp����tjsRegExp��include���C���O�ɂ������̒�`��
-#define �Œu�������Ė{�̂ƃv���O�C�����ł̍��ق��z������Ƃ���
-�኱�g���b�L�[�ȍ\���ɂȂ��Ă��܂��B
-����tTJSNativeClass�̓v���O�C�����ł͒�`���Ȃ��̂�
-�Ǝ��Ɏ�������tTJSNativeClassForRegExp�ɒu�������đΉ����Ă���܂��B
-	�E�v���O�C���p��NativeClass�Ǘ�
-	�E����RegExp/Array.split�̕ۑ��i�y�ѕ��A�j
-	�EArray.split�̌Ăяo���̃t�b�N����RegExp.split���Ăяo��
-�R�[�h��ǂޏꍇ�͂��̕ӂɒ��ӂ��Ă��������B
+Main.cppからtjsRegExpをincludeし，事前にいくつかの定義を
+#define で置き換えて本体とプラグイン側での差異を吸収するという
+若干トリッキーな構成になっています。
+特にtTJSNativeClassはプラグイン側では定義がないので
+独自に実装したtTJSNativeClassForRegExpに置き換えて対応してあります。
+	・プラグイン用のNativeClass管理
+	・元のRegExp/Array.splitの保存（及び復帰）
+	・Array.splitの呼び出しのフックからRegExp.splitを呼び出し
+コードを読む場合はその辺に注意してください。
 
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂���ыg���g��Z�ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体および吉里吉里Zに準拠してください。
 
-tjsRegExp.* �̃t�@�C���͋g���g��Z�̃\�[�X�����ς������̂��g�p���Ă��܂��B
-Main.cpp �̈ꕔ�̃R�[�h�� xpressive �v���O�C���̃R�[�h�𗬗p���Ă��܂��B
+tjsRegExp.* のファイルは吉里吉里Zのソースを改変したものを使用しています。
+Main.cpp の一部のコードは xpressive プラグインのコードを流用しています。
 
 
 ----------------------------------------------------------------------------
-�g���g��Z���C�Z���X:
+吉里吉里Zライセンス:
 
 Copyright (c), W.Dee and contributors All rights reserved.
 Contributors
  Go Watanabe, Kenjo, Kiyobee, Kouhei Yanagita, mey, MIK, Takenori Imoto, yun
 Kirikiri Z Project Contributors
-W.Dee, casper, �L�����MCF, Biscrat, �L, nagai, ���[, ���� ��V, �i��,
-�����T��, ��傤���i���͖������̐��j, AZ-UME, �� �H�l, 
-Katsumasa Tsuneyoshi, ���r��, miahmie, �T�[�N����, �A�U�i�V, �͂�����, 
-�I�����쏊, ����ӂ�/waffle, �����\�t�g, TYPE-MOON, �L����ЃG���c�[
+W.Dee, casper, 有限会社MCF, Biscrat, 青猫, nagai, ルー, 高際 雅之, 永劫,
+ゆんゆん探偵, りょうご（今は無きあの星）, AZ-UME, 京 秋人, 
+Katsumasa Tsuneyoshi, 小池潤, miahmie, サークル獏, アザナシ, はっしぃ, 
+棚中製作所, わっふる/waffle, ワムソフト, TYPE-MOON, 有限会社エムツー
 ----------------------------------------------------------------------------
-�\�[�X�R�[�h�`�����o�C�i���`�����A�ύX���邩���Ȃ������킸�A�ȉ��̏�����
-�����ꍇ�Ɍ���A�ĔЕz����юg�p��������܂��B
+ソースコード形式かバイナリ形式か、変更するかしないかを問わず、以下の条件を満
+たす場合に限り、再頒布および使用が許可されます。
 
-�E�\�[�X�R�[�h���ĔЕz����ꍇ�A��L�̒��쌠�\���A�{�����ꗗ�A����щ��L�Ɛ�
-  �������܂߂邱�ƁB
-�E�o�C�i���`���ōĔЕz����ꍇ�A�Еz���ɕt���̃h�L�������g���̎����ɁA��L��
-  ���쌠�\���A�{�����ꗗ�A����щ��L�Ɛӏ������܂߂邱�ƁB
-�E���ʂɂ����ʂ̋��Ȃ��ɁA�{�\�t�g�E�F�A����h���������i�̐�`�܂��͔̔�
-  ���i�ɁA�g�D�̖��O�܂��̓R���g���r���[�^�[�̖��O���g�p���Ă͂Ȃ�Ȃ��B
+・ソースコードを再頒布する場合、上記の著作権表示、本条件一覧、および下記免責
+  条項を含めること。
+・バイナリ形式で再頒布する場合、頒布物に付属のドキュメント等の資料に、上記の
+  著作権表示、本条件一覧、および下記免責条項を含めること。
+・書面による特別の許可なしに、本ソフトウェアから派生した製品の宣伝または販売
+  促進に、組織の名前またはコントリビューターの名前を使用してはならない。
 
-�{�\�t�g�E�F�A�́A���쌠�҂���уR���g���r���[�^�[�ɂ���āu����̂܂܁v��
-����Ă���A�����َ����킸�A���ƓI�Ȏg�p�\���A����ѓ���̖ړI�ɑ΂���K
-�����Ɋւ���Öق̕ۏ؂��܂߁A�܂�����Ɍ��肳��Ȃ��A�����Ȃ�ۏ؂�����܂�
-��B���쌠�҂��R���g���r���[�^�[���A���R�̂�������킸�A���Q�����̌�������
-����킸�A���ӔC�̍������_��ł��邩���i�ӔC�ł��邩�i�ߎ����̑��́j�s�@
-�s�ׂł��邩���킸�A���ɂ��̂悤�ȑ��Q����������\����m�炳��Ă����Ƃ�
-�Ă��A�{�\�t�g�E�F�A�̎g�p�ɂ���Ĕ��������i��֕i�܂��͑�p�T�[�r�X�̒��B�A
-�g�p�̑r���A�f�[�^�̑r���A���v�̑r���A�Ɩ��̒��f���܂߁A�܂�����Ɍ��肳���
-���j���ڑ��Q�A�Ԑڑ��Q�A�����I�ȑ��Q�A���ʑ��Q�A�����I���Q�A�܂��͌��ʑ��Q��
-���āA��ؐӔC�𕉂�Ȃ����̂Ƃ��܂��B
+本ソフトウェアは、著作権者およびコントリビューターによって「現状のまま」提供
+されており、明示黙示を問わず、商業的な使用可能性、および特定の目的に対する適
+合性に関する暗黙の保証も含め、またそれに限定されない、いかなる保証もありませ
+ん。著作権者もコントリビューターも、事由のいかんを問わず、損害発生の原因いか
+んを問わず、かつ責任の根拠が契約であるか厳格責任であるか（過失その他の）不法
+行為であるかを問わず、仮にそのような損害が発生する可能性を知らされていたとし
+ても、本ソフトウェアの使用によって発生した（代替品または代用サービスの調達、
+使用の喪失、データの喪失、利益の喪失、業務の中断も含め、またそれに限定されな
+い）直接損害、間接損害、偶発的な損害、特別損害、懲罰的損害、または結果損害に
+ついて、一切責任を負わないものとします。

@@ -6,8 +6,8 @@
 #define PROTOCOL L"krkr"
 
 /**
- * Asynchronous Pluggable Protocols ‚É‚æ‚é IE/URL Moniker ‚©‚ç‚Ì
- * ƒA[ƒJƒCƒu‚Ö‚ÌƒAƒNƒZƒXˆ—
+ * Asynchronous Pluggable Protocols ã«ã‚ˆã‚‹ IE/URL Moniker ã‹ã‚‰ã®
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†
  */
 class CArchive : public IInternetProtocol, public IClassFactory {
 
@@ -28,7 +28,7 @@ public:
 	}
 	
 	//----------------------------------------------------------------------------
-	// IUnknown À‘•
+	// IUnknown å®Ÿè£…
 public:
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void __RPC_FAR *__RPC_FAR *ppvObject) {
 		
@@ -60,7 +60,7 @@ public:
 	}
 	
 	//----------------------------------------------------------------------------
-	// IInternetProtocolRoot À‘•
+	// IInternetProtocolRoot å®Ÿè£…
 
 public:
 	HRESULT STDMETHODCALLTYPE Start( 
@@ -79,7 +79,7 @@ public:
 
 			//TVPAddLog(ttstr(p));
 			
-			// ƒpƒX–¼‚ÌØ‚èo‚µ
+			// ãƒ‘ã‚¹åã®åˆ‡ã‚Šå‡ºã—
 			int i=0;
 			while (p[i] && p[i] != '#' && p[i] != '?') i++;
 			ttstr name(p, i);
@@ -94,7 +94,7 @@ public:
 				STATSTG stat;
 				memset(&stat, 0, sizeof(stat));
 				stream->Stat(&stat, STATFLAG_NONAME);
-				ULONG size = stat.cbSize.LowPart; // XXX 32bit‚Ì•Ç‚±‚¦‚é‚Æ‚Í‚Ü‚éƒR[ƒh
+				ULONG size = stat.cbSize.LowPart; // XXX 32bitã®å£ã“ãˆã‚‹ã¨ã¯ã¾ã‚‹ã‚³ãƒ¼ãƒ‰
 				pOIProtSink->ReportData(BSCF_DATAFULLYAVAILABLE,size,size);
 				pOIProtSink->ReportResult(S_OK,0,NULL);
 			} else {
@@ -134,7 +134,7 @@ public:
 	}		// Not implemented
 
 	//----------------------------------------------------------------------------
-	// IInternetProtocol À‘•
+	// IInternetProtocol å®Ÿè£…
 public:
     HRESULT STDMETHODCALLTYPE Read( 
         /* [length_is][size_is][out][in] */ void __RPC_FAR *pv,
@@ -171,7 +171,7 @@ public:
 	}
 
 	//----------------------------------------------------------------------------
-	// IClassFactory À‘•
+	// IClassFactory å®Ÿè£…
 	
 	HRESULT STDMETHODCALLTYPE CreateInstance(IUnknown * pUnkOuter, REFIID riid,void ** ppvObject) {
 		*ppvObject = NULL;
@@ -196,7 +196,7 @@ static IInternetSession *pIInternetSession = NULL;
 static IClassFactory *pcf = NULL;
 
 /**
- * ƒA[ƒJƒCƒuˆ—‚ğƒvƒƒZƒX‚ÌƒCƒ“ƒ^[ƒlƒbƒgƒZƒbƒVƒ‡ƒ“‚É“o˜^‚·‚é
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å‡¦ç†ã‚’ãƒ—ãƒ­ã‚»ã‚¹ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã‚»ãƒƒã‚·ãƒ§ãƒ³ã«ç™»éŒ²ã™ã‚‹
  */
 void registerArchive()
 {
@@ -208,7 +208,7 @@ void registerArchive()
 }
 
 /**
- * ƒA[ƒJƒCƒuˆ—‚ğƒvƒƒZƒX‚ÌƒCƒ“ƒ^[ƒlƒbƒgƒZƒbƒVƒ‡ƒ“‚©‚ç‰ğœ‚·‚é
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å‡¦ç†ã‚’ãƒ—ãƒ­ã‚»ã‚¹ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰è§£é™¤ã™ã‚‹
  */
 void unregisterArchive()
 {

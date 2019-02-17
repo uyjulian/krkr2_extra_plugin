@@ -8,7 +8,7 @@
 
 namespace sqobject {
 
-// roottable ‚Ìæ“¾
+// roottable ã®å–å¾—
 ObjectInfo
 ObjectInfo::getRoot()
 {
@@ -35,7 +35,7 @@ ObjectInfo::createTable()
 	return ret;
 }
 
-// “à—eÁ‹
+// å†…å®¹æ¶ˆå»
 void
 ObjectInfo::clear()
 {
@@ -44,7 +44,7 @@ ObjectInfo::clear()
 	sq_resetobject(&obj);
 }
 
-// ƒXƒ^ƒbƒN‚©‚çæ“¾
+// ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å–å¾—
 void
 ObjectInfo::getStack(HSQUIRRELVM v, SQInteger idx)
 {
@@ -56,7 +56,7 @@ ObjectInfo::getStack(HSQUIRRELVM v, SQInteger idx)
 	sq_pop(gv, 1);
 }
 
-// ƒXƒ^ƒbƒN‚©‚çãQÆ‚Æ‚µ‚Äæ“¾
+// ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å¼±å‚ç…§ã¨ã—ã¦å–å¾—
 void
 ObjectInfo::getStackWeak(HSQUIRRELVM v, SQInteger idx)
 {
@@ -70,7 +70,7 @@ ObjectInfo::getStackWeak(HSQUIRRELVM v, SQInteger idx)
 	sq_pop(gv, 1);
 }
 
-// ƒIƒuƒWƒFƒNƒg‚ğãQÆ‚Æ‚µ‚Äæ“¾
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¼±å‚ç…§ã¨ã—ã¦å–å¾—
 void
 ObjectInfo::getWeak(const ObjectInfo &src)
 {
@@ -83,19 +83,19 @@ ObjectInfo::getWeak(const ObjectInfo &src)
 	sq_pop(gv, 2);
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectInfo::ObjectInfo() {
 	sq_resetobject(&obj);
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectInfo::ObjectInfo(HSQOBJECT obj) : obj(obj)
 {
 	HSQUIRRELVM gv = getGlobalVM();
 	sq_addref(gv, &obj);
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectInfo::ObjectInfo(HSQUIRRELVM v, SQInteger idx)
 {
 	sq_resetobject(&obj);
@@ -106,7 +106,7 @@ ObjectInfo::ObjectInfo(HSQUIRRELVM v, SQInteger idx)
 	sq_pop(gv, 1);
 }
 
-// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectInfo::ObjectInfo(const ObjectInfo &orig)
 {
 	HSQUIRRELVM gv = getGlobalVM();
@@ -115,7 +115,7 @@ ObjectInfo::ObjectInfo(const ObjectInfo &orig)
 	sq_addref(gv, &obj);
 }
 
-// ‘ã“ü
+// ä»£å…¥
 ObjectInfo& ObjectInfo::operator =(const ObjectInfo &orig)
 {
 	HSQUIRRELVM gv = getGlobalVM();
@@ -125,27 +125,27 @@ ObjectInfo& ObjectInfo::operator =(const ObjectInfo &orig)
 	return *this;
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectInfo::~ObjectInfo()
 {
 	clear();
 }
 
-// “¯‚¶ƒXƒŒƒbƒh‚©H
+// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ï¼Ÿ
 bool
 ObjectInfo::isSameThread(const HSQUIRRELVM v) const
 {
 	return sq_isthread(obj) && obj._unVal.pThread == v;
 }
 
-// ƒXƒŒƒbƒh‚ğæ“¾
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å–å¾—
 ObjectInfo::operator HSQUIRRELVM() const
 {
 	HSQUIRRELVM vm = sq_isthread(obj) ? obj._unVal.pThread : NULL;
 	return vm;
 }
 	
-// ƒIƒuƒWƒFƒNƒg‚ğPUSH
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’PUSH
 void
 ObjectInfo::push(HSQUIRRELVM v) const
 {
@@ -158,7 +158,7 @@ ObjectInfo::push(HSQUIRRELVM v) const
 	}
 }
 
-/// •¡»‚ğ“o˜^(¸”s‚µ‚½‚çnull‚ğ“o˜^
+/// è¤‡è£½ã‚’ç™»éŒ²(å¤±æ•—ã—ãŸã‚‰nullã‚’ç™»éŒ²
 void
 ObjectInfo::pushClone(HSQUIRRELVM v) const
 {
@@ -170,10 +170,10 @@ ObjectInfo::pushClone(HSQUIRRELVM v) const
 }
 
 // ---------------------------------------------------
-// delegate ˆ——p
+// delegate å‡¦ç†ç”¨
 // ---------------------------------------------------
 
-// delegate ‚Æ‚µ‚Ä‹@”\‚·‚é‚©‚Ç‚¤‚©
+// delegate ã¨ã—ã¦æ©Ÿèƒ½ã™ã‚‹ã‹ã©ã†ã‹
 bool
 ObjectInfo::isDelegate() const
 {
@@ -181,7 +181,7 @@ ObjectInfo::isDelegate() const
 	return t == OT_INSTANCE || t == OT_TABLE;
 }
 
-// bindenv ‚³‚¹‚é‚©‚Ç‚¤‚©
+// bindenv ã•ã›ã‚‹ã‹ã©ã†ã‹
 bool
 ObjectInfo::isBindDelegate() const
 {
@@ -189,7 +189,7 @@ ObjectInfo::isBindDelegate() const
 }
 
 // ---------------------------------------------------
-// ƒf[ƒ^æ“¾
+// ãƒ‡ãƒ¼ã‚¿å–å¾—
 // ---------------------------------------------------
 
 const SQChar *
@@ -207,11 +207,11 @@ ObjectInfo::getString()
 }
 
 // ---------------------------------------------------
-// ”z—ñˆ——pƒƒ\ƒbƒh
+// é…åˆ—å‡¦ç†ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 // ---------------------------------------------------
 
 
-/// ”z—ñ‚Æ‚µ‚Ä‰Šú‰»
+/// é…åˆ—ã¨ã—ã¦åˆæœŸåŒ–
 void
 ObjectInfo::initArray(SQInteger size)
 {
@@ -223,7 +223,7 @@ ObjectInfo::initArray(SQInteger size)
 	sq_pop(gv, 1);
 }
 
-/// ”z—ñ‚Æ‚µ‚Ä‰Šú‰»
+/// é…åˆ—ã¨ã—ã¦åˆæœŸåŒ–
 void
 ObjectInfo::initTable()
 {
@@ -235,7 +235,7 @@ ObjectInfo::initTable()
 	sq_pop(gv, 1);
 }
 
-/// ”z—ñ‚É’l‚ğ’Ç‰Á
+/// é…åˆ—ã«å€¤ã‚’è¿½åŠ 
 SQRESULT ObjectInfo::append(HSQUIRRELVM v, SQInteger idx)
 {
 	HSQUIRRELVM gv = getGlobalVM();
@@ -246,7 +246,7 @@ SQRESULT ObjectInfo::append(HSQUIRRELVM v, SQInteger idx)
 	return ret;
 }
 
-/// ”z—ñ‚É”z—ñ‚ğ’Ç‰Á
+/// é…åˆ—ã«é…åˆ—ã‚’è¿½åŠ 
 SQRESULT ObjectInfo::appendArray(ObjectInfo &array)
 {
 	SQRESULT result = SQ_OK;
@@ -263,7 +263,7 @@ SQRESULT ObjectInfo::appendArray(ObjectInfo &array)
 	return result;
 }
 
-/// ”z—ñ‚Ì’·‚³
+/// é…åˆ—ã®é•·ã•
 SQInteger
 ObjectInfo::len() const
 {
@@ -275,9 +275,9 @@ ObjectInfo::len() const
 }
 
 /**
- * ”z—ñ‚Ì“à—e‚ğ‘S•”PUSH
+ * é…åˆ—ã®å†…å®¹ã‚’å…¨éƒ¨PUSH
  * @param v squirrelVM
- * @return push ‚µ‚½”
+ * @return push ã—ãŸæ•°
  */
 SQInteger
 ObjectInfo::pushArray(HSQUIRRELVM v) const
@@ -300,7 +300,7 @@ ObjectInfo::pushArray(HSQUIRRELVM v) const
 }
 
 // ---------------------------------------------------
-// ŠÖ”ˆ——pƒƒ\ƒbƒh
+// é–¢æ•°å‡¦ç†ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 // ---------------------------------------------------
 
 SQRESULT ObjectInfo::call(ObjectInfo *self)
@@ -318,7 +318,7 @@ SQRESULT ObjectInfo::call(ObjectInfo *self)
 }
 
 // -------------------------------------------------------------
-// ƒNƒ‰ƒXˆ——p
+// ã‚¯ãƒ©ã‚¹å‡¦ç†ç”¨
 // -------------------------------------------------------------
 
 bool
@@ -328,7 +328,7 @@ ObjectInfo::isClass() const
 }
 
 // ---------------------------------------------------
-// •¶š—ñˆ—‘¼
+// æ–‡å­—åˆ—å‡¦ç†ä»–
 // ---------------------------------------------------
 
 sqstring
@@ -346,7 +346,7 @@ ObjectInfo::toString() const
 	return ret;
 }
 
-// ’l‚Ì push
+// å€¤ã® push
 void pushValue(HSQUIRRELVM v, bool value) { sq_pushbool(v,value ? SQTrue : SQFalse); }
 void pushValue(HSQUIRRELVM v, SQInteger value) { sq_pushinteger(v,value); }
 void pushValue(HSQUIRRELVM v, SQFloat value) { sq_pushfloat(v,value); }
@@ -358,7 +358,7 @@ void pushValue(HSQUIRRELVM v, SQFUNCTION func) { sq_newclosure(v, func, 0); }
 void pushValue(HSQUIRRELVM v, HSQOBJECT obj) { sq_pushobject(v, obj); }
 void pushValue(HSQUIRRELVM v, const ObjectInfo::ObjectInfoReference &obj) { obj.pushData(v); }
 
-// ’l‚Ìæ“¾
+// å€¤ã®å–å¾—
 SQRESULT getValue(HSQUIRRELVM v, bool *value, int idx) { SQBool b;SQRESULT ret = sq_getbool(v, idx, &b); *value = b != SQFalse; return ret; }
 SQRESULT getValue(HSQUIRRELVM v, SQInteger *value, int idx) { return sq_getinteger(v, idx, value); }
 SQRESULT getValue(HSQUIRRELVM v, SQFloat *value, int idx) { return sq_getfloat(v, idx, value); }
@@ -367,7 +367,7 @@ SQRESULT getValue(HSQUIRRELVM v, SQUserPointer *value, int idx) { return sq_getu
 SQRESULT getValue(HSQUIRRELVM v, ObjectInfo *value, int idx) { value->getStack(v,idx); return SQ_OK; }
 SQRESULT getValue(HSQUIRRELVM v, sqstring *value, int idx) {const SQChar *str; SQRESULT ret; if (SQ_SUCCEEDED((ret = sq_getstring(v, idx, &str)))) { *value = str;} return ret;}
 
-// ’l‚Ì‹­§‰Šú‰»
+// å€¤ã®å¼·åˆ¶åˆæœŸåŒ–
 void clearValue(bool *value) { *value = false; }
 void clearValue(SQInteger *value) { *value = 0; }
 void clearValue(SQFloat *value) { *value = 0.0f; }
@@ -376,7 +376,7 @@ void clearValue(SQUserPointer *value) { *value = 0; }
 void clearValue(ObjectInfo *value) { value->clear(); }
 void clearValue(sqstring *value) { *value = _SC(""); }
 
-// ’l‚Ìæ“¾FŠî–{ª‚ÌƒRƒsƒyB•¶š—ñ‚ÍˆÀ‘S‚Å‚È‚¢ê‡‚ª‚ ‚é‚Ì‚Å”rœ‚·‚é•K—v‚ ‚è
+// å€¤ã®å–å¾—ï¼šåŸºæœ¬â†‘ã®ã‚³ãƒ”ãƒšã€‚æ–‡å­—åˆ—ã¯å®‰å…¨ã§ãªã„å ´åˆãŒã‚ã‚‹ã®ã§æ’é™¤ã™ã‚‹å¿…è¦ã‚ã‚Š
 SQRESULT getResultValue(HSQUIRRELVM v, bool *value) { SQBool b;SQRESULT ret = sq_getbool(v, -1, &b); *value = b != SQFalse; return ret; }
 SQRESULT getResultValue(HSQUIRRELVM v, SQInteger *value) { return sq_getinteger(v, -1, value); }
 SQRESULT getResultValue(HSQUIRRELVM v, SQFloat *value) { return sq_getfloat(v, -1, value); }

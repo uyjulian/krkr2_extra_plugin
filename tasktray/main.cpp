@@ -19,8 +19,8 @@ public:
 protected:
     static UINT sTaskbarRestart;
 
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
-	bool tasktrayEnable;     //< ƒ^ƒXƒNƒgƒŒƒC‚ª—LŒø‚©‚Ç‚¤‚©
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
+	bool tasktrayEnable;     //< ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
     HWND hwnd;
     ttstr hint;
     tjs_int infoIcon;
@@ -31,19 +31,19 @@ protected:
 	typedef bool (__stdcall *NativeReceiver)(iTJSDispatch2 *obj, void *userdata, tTVPWindowMessage *Message);
   
 	static bool __stdcall MyReceiver(void *userdata, tTVPWindowMessage *Message) {
-		iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ‚ÌƒIƒuƒWƒFƒNƒg
-		// ‹g—¢‹g—¢‚Ì“à•”ˆ—‚ÌŠÖŒW‚ÅƒCƒxƒ“ƒgˆ—’†‚Í“o˜^”jŠüŒã‚Å‚àŒÄ‚Î‚ê‚é‚±‚Æ‚ª‚ ‚é‚Ì‚Å
-		// Window ‚Ì–{‘ÌƒIƒuƒWƒFƒNƒg‚©‚çƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ğæ‚è’¼‚·
+		iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		// å‰é‡Œå‰é‡Œã®å†…éƒ¨å‡¦ç†ã®é–¢ä¿‚ã§ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ä¸­ã¯ç™»éŒ²ç ´æ£„å¾Œã§ã‚‚å‘¼ã°ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ã®ã§
+		// Window ã®æœ¬ä½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–ã‚Šç›´ã™
 		WindowTasktray *self = ncbInstanceAdaptor<WindowTasktray>::GetNativeInstance(obj);
 		if (self == NULL) {
 			return false;
 		}
 		switch (Message->Msg) {
-		case TVP_WM_DETACH: // ƒEƒCƒ“ƒhƒE‚ªØ‚è—£‚³‚ê‚½
+		case TVP_WM_DETACH: // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒåˆ‡ã‚Šé›¢ã•ã‚ŒãŸ
 			break; 
-		case TVP_WM_ATTACH: // ƒEƒCƒ“ƒhƒE‚ªİ’è‚³‚ê‚½
+		case TVP_WM_ATTACH: // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒè¨­å®šã•ã‚ŒãŸ
 			break;
-		case WM_TASKTRAY: // ŠO•”‚©‚ç‚Ì’ÊM
+		case WM_TASKTRAY: // å¤–éƒ¨ã‹ã‚‰ã®é€šä¿¡
 			{
               tTJSVariant cursorX, cursorY;
               obj->PropGet(0 , L"cursorX", NULL, &cursorX, obj);
@@ -56,72 +56,72 @@ protected:
               tTJSVariant button;
               switch ( Message->LParam ){
               case WM_MOUSEMOVE: {
-                /* ƒ}ƒEƒXˆÚ“®‚Ìˆ— */
+                /* ãƒã‚¦ã‚¹ç§»å‹•ã®å‡¦ç† */
                 tTJSVariant *params[] = { &cursorX, &cursorY, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseMove", NULL, NULL, 3, params, obj));
               }
               case WM_LBUTTONUP: {
-                /* ¶ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½ˆ— */
+                /* å·¦ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸå‡¦ç† */
                 button = mbLeft;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseUp", NULL, NULL, 4, params, obj));
               }
               case WM_RBUTTONUP: {
-                /* ‰Eƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½ˆ— */
+                /* å³ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸå‡¦ç† */
                 button = mbRight;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseUp", NULL, NULL, 4, params, obj));
               }
               case WM_MBUTTONUP: {
-                /* ’†ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½ˆ— */
+                /* ä¸­ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸå‡¦ç† */
                 button = mbMiddle;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseUp", NULL, NULL, 4, params, obj));
               }
               case WM_LBUTTONDOWN: {
-                /* ¶ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ˆ— */
+                /* å·¦ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå‡¦ç† */
                 button = mbLeft;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseDown", NULL, NULL, 4, params, obj));
               }
               case WM_RBUTTONDOWN: {
-                /* ‰Eƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ˆ— */
+                /* å³ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå‡¦ç† */
                 button = mbRight;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseDown", NULL, NULL, 4, params, obj));
               }
               case WM_MBUTTONDOWN: {
-                /* ’†ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ˆ— */
+                /* ä¸­ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå‡¦ç† */
                 button = mbMiddle;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayMouseDown", NULL, NULL, 4, params, obj));
               }
               case WM_LBUTTONDBLCLK: {
-                /* ¶ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚³‚ê‚½ˆ— */
+                /* å·¦ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸå‡¦ç† */
                 button = mbLeft;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayDoubleClick", NULL, NULL, 4, params, obj));
               }
               case WM_RBUTTONDBLCLK: {
-                /* ‰Eƒ_ƒuƒ‹ƒNƒŠƒbƒN‚³‚ê‚½ˆ— */
+                /* å³ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸå‡¦ç† */
                 button = mbRight;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayDoubleClick", NULL, NULL, 4, params, obj));
               }
               case WM_MBUTTONDBLCLK: {
-                /* ’†ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚³‚ê‚½ˆ— */
+                /* ä¸­ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸå‡¦ç† */
                 button = mbMiddle;
                 tTJSVariant *params[] = { &cursorX, &cursorY, &button, &shift };
                 return ! TJS_SUCCEEDED(Try_iTJSDispatch2_FuncCall(obj, 0, L"onTasktrayDoubleClick", NULL, NULL, 4, params, obj));
               }
               default:
-                /* ã‹LˆÈŠO‚Ìˆ— */
+                /* ä¸Šè¨˜ä»¥å¤–ã®å‡¦ç† */
                 break;
               }
               return true;
             }
 		default:
-          // ƒ^ƒXƒNƒo[‚ªÄì¬‚³‚ê‚½Û‚É“o˜^‚ğ‚µ’¼‚·
+          // ã‚¿ã‚¹ã‚¯ãƒãƒ¼ãŒå†ä½œæˆã•ã‚ŒãŸéš›ã«ç™»éŒ²ã‚’ã—ç›´ã™
           if (Message->Msg == sTaskbarRestart
               && self->tasktrayEnable) {
             self->registerTasktray(true);
@@ -132,10 +132,10 @@ protected:
 	}
 
 	/**
-	 * ƒŒƒV[ƒo‚Ì“o˜^
+	 * ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²
 	 */
 	void registerReceiver(bool enable) {
-		// ƒŒƒV[ƒoXV
+		// ãƒ¬ã‚·ãƒ¼ãƒæ›´æ–°
 		tTJSVariant mode    = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)MyReceiver;
 		tTJSVariant userdata = (tTVInteger)(tjs_int)objthis;
@@ -144,7 +144,7 @@ protected:
 	}
 
   /**
-   * ƒ^ƒXƒNƒgƒŒƒC‚Ì“o˜^
+   * ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã®ç™»éŒ²
    */
   void registerTasktray(bool enable) {
     if (enable) {
@@ -162,17 +162,17 @@ protected:
       wcsncpy_s(nid.szTip, sizeof(nid.szTip) / sizeof(TCHAR), hint.c_str(), hint.length());
       for (;;) {
 		if (Shell_NotifyIcon(NIM_ADD, &nid))
-          // “o˜^‚Å‚«‚½‚çI‚í‚è
+          // ç™»éŒ²ã§ããŸã‚‰çµ‚ã‚ã‚Š
           break;
-        // ƒ^ƒCƒ€ƒAƒEƒg‚©‚Ç‚¤‚©’²‚×‚é
+        // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‹ã©ã†ã‹èª¿ã¹ã‚‹
         if (::GetLastError() != ERROR_TIMEOUT)
-          // ƒAƒCƒRƒ““o˜^ƒGƒ‰[
+          // ã‚¢ã‚¤ã‚³ãƒ³ç™»éŒ²ã‚¨ãƒ©ãƒ¼
           TVPThrowExceptionMessage(L"tasktray register failed.");
-        // ‘Ò‹@
+        // å¾…æ©Ÿ
         ::Sleep(1000);
-        // “o˜^‚Å‚«‚Ä‚¢‚È‚¢‚±‚Æ‚ğŠm”F‚·‚é
+        // ç™»éŒ²ã§ãã¦ã„ãªã„ã“ã¨ã‚’ç¢ºèªã™ã‚‹
         if (Shell_NotifyIcon(NIM_MODIFY, &nid))
-          // “o˜^‚Å‚«‚Ä‚¢‚½
+          // ç™»éŒ²ã§ãã¦ã„ãŸ
           break;
       }
       DestroyIcon(nid.hIcon);
@@ -201,22 +201,22 @@ protected:
   }
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	WindowTasktray(iTJSDispatch2 *objthis) : objthis(objthis), tasktrayEnable(false) {
       tTJSVariant val;
       objthis->PropGet(0, TJS_W("HWND"), NULL, &val, objthis);
       hwnd = reinterpret_cast<HWND>((tjs_int64)(val));
     }
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~WindowTasktray() {
-		// ƒŒƒV[ƒo‚ğ‰ğ•ú
+		// ãƒ¬ã‚·ãƒ¼ãƒã‚’è§£æ”¾
       setTasktrayEnable(false);
 	}
 
 	/**
-	 * ƒ^ƒXƒNƒgƒŒƒC‚ª—LŒø‚©‚Ç‚¤‚©‚ğİ’è
-	 * @param enable true ‚È‚ç—LŒø
+	 * ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’è¨­å®š
+	 * @param enable true ãªã‚‰æœ‰åŠ¹
 	 */
 	void setTasktrayEnable(bool enable) {
 		if (tasktrayEnable != enable) {
@@ -227,15 +227,15 @@ public:
 	}
 
 	/**
-	 * @return ƒ^ƒXƒNƒgƒŒƒC‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾
+	 * @return ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—
 	 */
 	bool getTasktrayEnable() {
 		return tasktrayEnable;
 	}
 
   /**
-   * ƒ^ƒXƒNƒgƒŒƒC‚Ìƒqƒ“ƒg‚ğİ’è‚·‚é
-   * @param text ƒeƒLƒXƒg
+   * ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã®ãƒ’ãƒ³ãƒˆã‚’è¨­å®šã™ã‚‹
+   * @param text ãƒ†ã‚­ã‚¹ãƒˆ
    */
   void setTasktrayHint(ttstr text) {
     hint = text;
@@ -244,19 +244,19 @@ public:
   }
 
   /**
-   * ƒ^ƒXƒNƒgƒŒƒC‚Ìƒqƒ“ƒg‚ğæ“¾İ’è‚·‚é
-   * @return ƒeƒLƒXƒg
+   * ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã®ãƒ’ãƒ³ãƒˆã‚’å–å¾—è¨­å®šã™ã‚‹
+   * @return ãƒ†ã‚­ã‚¹ãƒˆ
    */
   ttstr getTasktrayHint(void) {
     return hint;
   }
 
   /**
-   * ƒ^ƒXƒNƒgƒŒƒC‚Ìƒoƒ‹[ƒ“ƒ`ƒbƒv‚ğİ’è‚·‚é
-   * @param icon ƒAƒCƒRƒ“
-   * @param title ƒ^ƒCƒgƒ‹
-   * @param msg ƒƒbƒZ[ƒW
-   * @param timeout ƒ^ƒCƒ€ƒAƒEƒg(msB10000`30000‚ÌŠÔ‚Åİ’è‚·‚é)
+   * ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã®ãƒãƒ«ãƒ¼ãƒ³ãƒãƒƒãƒ—ã‚’è¨­å®šã™ã‚‹
+   * @param icon ã‚¢ã‚¤ã‚³ãƒ³
+   * @param title ã‚¿ã‚¤ãƒˆãƒ«
+   * @param msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+   * @param timeout ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ(msã€‚10000ã€œ30000ã®é–“ã§è¨­å®šã™ã‚‹)
    */
   void popupTasktrayInfo(tjs_int icon, ttstr title, ttstr msg, tjs_int timeout) {
     infoIcon = icon;
@@ -289,20 +289,20 @@ void PostUnregistCallback()
   TVPExecuteScript(L"delete global[\"niifError\"];");
 }
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowTasktray)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
 };
     
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(WindowTasktray, Window) {
 	Property(L"tasktrayEnable", &WindowTasktray::getTasktrayEnable, &WindowTasktray::setTasktrayEnable);
 	Property(L"tasktrayHint", &WindowTasktray::getTasktrayHint, &WindowTasktray::setTasktrayHint);

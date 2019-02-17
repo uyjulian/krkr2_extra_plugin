@@ -1,13 +1,13 @@
 // libexpat
-// XMLParser ƒNƒ‰ƒX
+// XMLParser ã‚¯ãƒ©ã‚¹
 Plugins.link("expat.dll");
 
 /**
- * W3C DOM Level1 €‹’À‘• for TJS
+ * W3C DOM Level1 æº–æ‹ å®Ÿè£… for TJS
  */
 
 /**
- * ƒm[ƒh
+ * ãƒãƒ¼ãƒ‰
  */
 class DOMNode {
     
@@ -131,7 +131,7 @@ class DOMNode {
 };
 
 /**
- * ƒm[ƒh‚ÌƒŠƒXƒg
+ * ãƒãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆ
  */
 class DOMNodeList {
 
@@ -168,7 +168,7 @@ class DOMNodeList {
 };
 
 /**
- * ƒm[ƒh‚Ìƒ}ƒbƒv
+ * ãƒãƒ¼ãƒ‰ã®ãƒãƒƒãƒ—
  */
 class DOMNamedNodeMap {
     
@@ -235,7 +235,7 @@ DOMNode.DOCUMENT_FRAGMENT_NODE      = 11;
 DOMNode.NOTATION_NODE               = 12;
 
 /**
- * ‘®«’l
+ * å±æ€§å€¤
  */
 class DOMAttr extends DOMNode {
     
@@ -282,7 +282,7 @@ class DOMAttr extends DOMNode {
     }
     
     /**
-     * ƒAƒgƒŠƒrƒ…[ƒgî•ñ—pƒm[ƒh
+     * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæƒ…å ±ç”¨ãƒãƒ¼ãƒ‰
      */
     function DOMAttr(doc, n, v, specified) {
         super.DOMNode(doc);
@@ -354,22 +354,22 @@ class DOMElement extends DOMNode {
     }
     
     /**
-     * @param docunment ƒx[ƒXƒhƒLƒ…ƒƒ“ƒg
-     * @param parent eƒm[ƒh
-     * @param t ƒ^ƒO–¼
+     * @param docunment ãƒ™ãƒ¼ã‚¹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+     * @param parent è¦ªãƒãƒ¼ãƒ‰
+     * @param t ã‚¿ã‚°å
      */
     function DOMElement(doc, t) {
         super.DOMNode(doc);
         _tagName = t;
         _attributes = new DOMNamedNodeMap();
 
-        // ƒvƒƒpƒeƒB‰Šú‰»
+        // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åˆæœŸåŒ–
         _nodeType = global.DOMNode.ELEMENT_NODE;
     }
 
     function cloneNode(deep) {
         var ret = new DOMElement(_ownerDocument, _tagName);
-        // ‘®«‚ÌƒRƒs[
+        // å±æ€§ã®ã‚³ãƒ”ãƒ¼
         for (var i=0;i<_attributes.length;i++) {
             ret.setAttributeNode(_attributes.item(i).cloneNode(deep));
         }
@@ -378,7 +378,7 @@ class DOMElement extends DOMNode {
     // ------------------------------------------
     
     function setAttributes(dict) {
-        // ‘®«’l‚Ì“WŠJ
+        // å±æ€§å€¤ã®å±•é–‹
         if (dict) {
             var keys = [];
             keys.assign(dict);
@@ -391,7 +391,7 @@ class DOMElement extends DOMNode {
 };
 
 /**
- * DOM •¶š—ñƒf[ƒ^
+ * DOM æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
  */
 class DOMCharacterData extends DOMNode {
 
@@ -446,7 +446,7 @@ class DOMCharacterData extends DOMNode {
             if (_parentNode) {
                 var ret = 0;
                 var list = parentNode.childNodes;
-                // ƒeƒLƒXƒg”Ô†‚ÌƒJƒEƒ“ƒg
+                // ãƒ†ã‚­ã‚¹ãƒˆç•ªå·ã®ã‚«ã‚¦ãƒ³ãƒˆ
                 for (var i=0;i<list.length;i++) {
                     if (list.item(i) === this) {
                         break;
@@ -473,7 +473,7 @@ class DOMCharacterData extends DOMNode {
 };
 
 /**
- * DOM ƒeƒLƒXƒg
+ * DOM ãƒ†ã‚­ã‚¹ãƒˆ
  */
 class DOMText extends DOMCharacterData {
     
@@ -488,7 +488,7 @@ class DOMText extends DOMCharacterData {
 };
 
 /**
- * DOM ƒRƒƒ“ƒg
+ * DOM ã‚³ãƒ¡ãƒ³ãƒˆ
  */
 class DOMComment extends DOMCharacterData {
     
@@ -504,8 +504,8 @@ class DOMComment extends DOMCharacterData {
 
 
 /**
- * DOM ƒhƒLƒ…ƒƒ“ƒg
- * ƒp[ƒXˆ—‚Â‚«
+ * DOM ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ * ãƒ‘ãƒ¼ã‚¹å‡¦ç†ã¤ã
  */
 class DOMDocument extends DOMNode, XMLParser {
 
@@ -560,13 +560,13 @@ class DOMDocument extends DOMNode, XMLParser {
     }
     
     // -----------------------------------
-    // ƒp[ƒXˆ—
+    // ãƒ‘ãƒ¼ã‚¹å‡¦ç†
 
-    // Œ»İˆ—’†‚ÌƒGƒŒƒƒ“ƒg
+    // ç¾åœ¨å‡¦ç†ä¸­ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
     var _currentElement;
 
     /**
-     * ‰Šú‰»ˆ—
+     * åˆæœŸåŒ–å‡¦ç†
      */
     function parseInit() {
         _currentElement = null;
@@ -577,8 +577,8 @@ class DOMDocument extends DOMNode, XMLParser {
     }
 
     /**
-     * ƒp[ƒXˆ—‚ÌÀs
-     * @param xml XML•¶‘
+     * ãƒ‘ãƒ¼ã‚¹å‡¦ç†ã®å®Ÿè¡Œ
+     * @param xml XMLæ–‡æ›¸
      */
     function parse(xml) {
         parseInit();
@@ -586,15 +586,15 @@ class DOMDocument extends DOMNode, XMLParser {
     }
 
     /**
-     * ƒp[ƒXˆ—‚ÌÀs
-     * @param file XML•¶‘ƒtƒ@ƒCƒ‹–¼
+     * ãƒ‘ãƒ¼ã‚¹å‡¦ç†ã®å®Ÿè¡Œ
+     * @param file XMLæ–‡æ›¸ãƒ•ã‚¡ã‚¤ãƒ«å
      */
     function parseStorage(file) {
         parseInit();
         return global.XMLParser.parseStorage(file);
     }
 
-    // —v‘fŠJn
+    // è¦ç´ é–‹å§‹
     function startElement(name, attributes) {
         var element = createElement(name);
         element.setAttributes(attributes);
@@ -606,15 +606,15 @@ class DOMDocument extends DOMNode, XMLParser {
         _currentElement = element;
     }
 
-    // —v‘fI—¹
+    // è¦ç´ çµ‚äº†
     function endElement(name) {
-        // eŠK‘w‚É‚à‚Ç‚é
+        // è¦ªéšå±¤ã«ã‚‚ã©ã‚‹
         if (_currentElement) {
             _currentElement = _currentElement.parentNode;
         }
     }
 
-    // •¶š—ñƒf[ƒ^
+    // æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
     function characterData(data) {
         var text = createTextNode(data);
         if (_currentElement == null) {
@@ -623,7 +623,7 @@ class DOMDocument extends DOMNode, XMLParser {
         _currentElement.appendChild(text);
     }
 
-    // ƒRƒƒ“ƒg
+    // ã‚³ãƒ¡ãƒ³ãƒˆ
     function comment(data) {
         var comment = createComment(data);
         if (_currentElement == null) {

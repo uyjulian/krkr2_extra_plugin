@@ -10,27 +10,27 @@ static const char *copyright =
 
 #include "LayerExImage.h"
 
-// ----------------------------------- �N���X�̓o�^
+// ----------------------------------- クラスの登録
 
 NCB_GET_INSTANCE_HOOK(layerExImage)
 {
-	// �C���X�^���X�Q�b�^
-	NCB_INSTANCE_GETTER(objthis) { // objthis �� iTJSDispatch2* �^�̈����Ƃ���
-		ClassT* obj = GetNativeInstance(objthis);	// �l�C�e�B�u�C���X�^���X�|�C���^�擾
+	// インスタンスゲッタ
+	NCB_INSTANCE_GETTER(objthis) { // objthis を iTJSDispatch2* 型の引数とする
+		ClassT* obj = GetNativeInstance(objthis);	// ネイティブインスタンスポインタ取得
 		if (!obj) {
-			obj = new ClassT(objthis);				// �Ȃ��ꍇ�͐�������
-			SetNativeInstance(objthis, obj);		// objthis �� obj ���l�C�e�B�u�C���X�^���X�Ƃ��ēo�^����
+			obj = new ClassT(objthis);				// ない場合は生成する
+			SetNativeInstance(objthis, obj);		// objthis に obj をネイティブインスタンスとして登録する
 		}
 		obj->reset();
 		return obj;
 	}
-	// �f�X�g���N�^�i���ۂ̃��\�b�h���Ă΂ꂽ��ɌĂ΂��j
+	// デストラクタ（実際のメソッドが呼ばれた後に呼ばれる）
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 	}
 };
 
 
-// �t�b�N���A�^�b�`
+// フックつきアタッチ
 NCB_ATTACH_CLASS_WITH_HOOK(layerExImage, Layer) {
 	NCB_METHOD(light);
 	NCB_METHOD(colorize);

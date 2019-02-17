@@ -60,8 +60,8 @@ public:
 
 	/**
 	 * function setLang(prim, sub);
-	 * @param prim ŽåŒ¾Œê(int, string)
-	 * @param sub •›Œ¾Œê(int, string)
+	 * @param prim ä¸»è¨€èªž(int, string)
+	 * @param sub å‰¯è¨€èªž(int, string)
 	 */
 	tjs_error setLang(tTJSVariant *r, tTJSVariant *arg, tjs_int optnum, tTJSVariant **optargs) {
 		tjs_int primlang = 0, sublang = 0;
@@ -119,8 +119,8 @@ protected:
 public:
 	/**
 	 * function ResorceWriter(file, clean) { if (file !== void) open(file, clean); }
-	 * @param optional file ‘€ì‘ÎÛƒtƒ@ƒCƒ‹
-	 * @param optional clean Šù‘¶ƒŠƒ\[ƒX‚ð‘SƒNƒŠƒA‚·‚é‚©
+	 * @param optional file æ“ä½œå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param optional clean æ—¢å­˜ãƒªã‚½ãƒ¼ã‚¹ã‚’å…¨ã‚¯ãƒªã‚¢ã™ã‚‹ã‹
 	 */
 	static tjs_error CreateNew(ResourceWriter* &inst, tjs_int optnum, tTJSVariant **optargs) {
 		if (optnum > 0) {
@@ -133,8 +133,8 @@ public:
 
 	/**
 	 * function open(file, clean = false);
-	 * @param file ‘€ì‘ÎÛƒtƒ@ƒCƒ‹
-	 * @param optional clean Šù‘¶ƒŠƒ\[ƒX‚ð‘SƒNƒŠƒA‚·‚é‚©
+	 * @param file æ“ä½œå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param optional clean æ—¢å­˜ãƒªã‚½ãƒ¼ã‚¹ã‚’å…¨ã‚¯ãƒªã‚¢ã™ã‚‹ã‹
 	 */
 	tjs_error open(tTJSVariant *r, tTJSVariant *filename, tjs_int optnum, tTJSVariant **optargs) {
 		open_(filename->GetString(), optnum>0 && optargs[0]->operator bool());
@@ -143,7 +143,7 @@ public:
 	}
 	/**
 	 * function close(write = true);
-	 * @param optional write Œ‹‰Ê‚ð‘‚«o‚·‚©‚Ç‚¤‚©
+	 * @param optional write çµæžœã‚’æ›¸ãå‡ºã™ã‹ã©ã†ã‹
 	 */
 	tjs_error close(tTJSVariant *r, tjs_int optnum, tTJSVariant **optargs) {
 		close_(optnum==0 || optargs[0]->operator bool());
@@ -153,8 +153,8 @@ public:
 
 	/**
 	 * function clear(type, name)
-	 * @param type ƒŠƒ\[ƒXƒ^ƒCƒv(int, string) -> rt*’è”
-	 * @param name ƒŠƒ\[ƒX–¼(int, string)
+	 * @param type ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—(int, string) -> rt*å®šæ•°
+	 * @param name ãƒªã‚½ãƒ¼ã‚¹å(int, string)
 	 */
 	tjs_error clear(tTJSVariant *r, tTJSVariant *type, tTJSVariant *name) {
 		if (!handle_) return TJS_E_FAIL;
@@ -173,9 +173,9 @@ public:
 
 	/**
 	 * function writeFromText(type, name, text, utf8=false);
-	 * @param type ƒŠƒ\[ƒXƒ^ƒCƒv(int, string) -> rt*’è”
-	 * @param name ƒŠƒ\[ƒX–¼(int, string)
-	 * @param text ƒŠƒ\[ƒX“à—e(string)
+	 * @param type ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—(int, string) -> rt*å®šæ•°
+	 * @param name ãƒªã‚½ãƒ¼ã‚¹å(int, string)
+	 * @param text ãƒªã‚½ãƒ¼ã‚¹å†…å®¹(string)
 	 */
 	tjs_error writeFromText(tTJSVariant *r, tTJSVariant *type, tTJSVariant *name, tTJSVariant *text, tjs_int optnum, tTJSVariant **optargs) {
 		if (!handle_) return TJS_E_FAIL;
@@ -219,9 +219,9 @@ public:
 
 	/**
 	 * function writeFromOctet(type, name, oct);
-	 * @param type ƒŠƒ\[ƒXƒ^ƒCƒv(int, string) -> rt*’è”
-	 * @param name ƒŠƒ\[ƒX–¼(int, string)
-	 * @param oct  ƒŠƒ\[ƒX“à—e(octet)
+	 * @param type ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—(int, string) -> rt*å®šæ•°
+	 * @param name ãƒªã‚½ãƒ¼ã‚¹å(int, string)
+	 * @param oct  ãƒªã‚½ãƒ¼ã‚¹å†…å®¹(octet)
 	 */
 	tjs_error writeFromOctet(tTJSVariant *r, tTJSVariant *type, tTJSVariant *name, tTJSVariant *oct) {
 		if (!handle_) return TJS_E_FAIL;
@@ -245,9 +245,9 @@ public:
 
 	/**
 	 * function writeFromFile(type, name, file);
-	 * @param type ƒŠƒ\[ƒXƒ^ƒCƒv(int, string) -> rt*’è”
-	 * @param name ƒŠƒ\[ƒX–¼(int, string)
-	 * @param file ƒŠƒ\[ƒX“à—eƒtƒ@ƒCƒ‹(string)
+	 * @param type ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—(int, string) -> rt*å®šæ•°
+	 * @param name ãƒªã‚½ãƒ¼ã‚¹å(int, string)
+	 * @param file ãƒªã‚½ãƒ¼ã‚¹å†…å®¹ãƒ•ã‚¡ã‚¤ãƒ«(string)
 	 */
 	tjs_error writeFromFile(tTJSVariant *r, tTJSVariant *type, tTJSVariant *name, tTJSVariant *file) {
 		if (!handle_) return TJS_E_FAIL;
@@ -382,7 +382,7 @@ protected:
 public:
 	/**
 	 * function ResorceReader(file) { if (file !== void) open(file); }
-	 * @param optional file ‘€ì‘ÎÛƒtƒ@ƒCƒ‹
+	 * @param optional file æ“ä½œå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
 	 */
 	static tjs_error CreateNew(ResourceReader* &inst, tjs_int optnum, tTJSVariant **optargs) {
 		if (optnum > 0) {
@@ -395,7 +395,7 @@ public:
 
 	/**
 	 * function open(file);
-	 * @param file ‘€ì‘ÎÛƒtƒ@ƒCƒ‹
+	 * @param file æ“ä½œå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
 	 */
 	tjs_error open(tTJSVariant *r, tTJSVariant *filename) {
 		open_(filename->GetString());

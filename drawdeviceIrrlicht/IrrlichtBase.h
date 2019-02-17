@@ -7,89 +7,89 @@
 
 
 /**
- * Irrlicht ˆ—‚Ìƒx[ƒX
+ * Irrlicht å‡¦ç†ã®ãƒ™ãƒ¼ã‚¹
  */
 class IrrlichtBase : public irr::IEventReceiver, public tTVPContinuousEventCallbackIntf
 {
 public:
 	enum EventMask {
-		EMASK_ATTACH       = 1<<0, //< ƒAƒ^ƒbƒ`
-		EMASK_DETACH       = 1<<1, //< ƒfƒ^ƒbƒ`
-		EMASK_EVENT        = 1<<2, //< IrrlichtƒCƒxƒ“ƒg
-		EMASK_BEFORE_SCENE = 1<<3, //< ƒV[ƒ“ƒ}ƒl[ƒWƒƒ•`‰æ‘O
-		EMASK_AFTER_SCENE  = 1<<4, //< ƒV[ƒ“ƒ}ƒl[ƒWƒƒ•`‰æŒã
-		EMASK_BEFORE_GUI   = 1<<5, //< GUI•`‰æ‘O
-		EMASK_AFTER_GUI    = 1<<6, //< GUI•`‰æŒã
+		EMASK_ATTACH       = 1<<0, //< ã‚¢ã‚¿ãƒƒãƒæ™‚
+		EMASK_DETACH       = 1<<1, //< ãƒ‡ã‚¿ãƒƒãƒæ™‚
+		EMASK_EVENT        = 1<<2, //< Irrlichtã‚¤ãƒ™ãƒ³ãƒˆ
+		EMASK_BEFORE_SCENE = 1<<3, //< ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æç”»å‰
+		EMASK_AFTER_SCENE  = 1<<4, //< ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æç”»å¾Œ
+		EMASK_BEFORE_GUI   = 1<<5, //< GUIæç”»å‰
+		EMASK_AFTER_GUI    = 1<<6, //< GUIæç”»å¾Œ
 	};
 	
 protected:
-	/// TJSƒIƒuƒWƒFƒNƒg
+	/// TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	iTJSDispatch2 *objthis;
-	/// ƒfƒoƒCƒX
+	/// ãƒ‡ãƒã‚¤ã‚¹
 	irr::IrrlichtDevice *device;
 
 	void showDriverInfo();
 
 protected:
-	// ƒCƒxƒ“ƒgƒ}ƒXƒN
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¹ã‚¯
 	int eventMask;
 	
 	/**
-	 * TJSƒCƒxƒ“ƒgŒÄ‚Ño‚µB©ŒÈƒIƒuƒWƒFƒNƒg‚ÌŠY“–ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·B
-	 * @param eventName ƒCƒxƒ“ƒg–¼
+	 * TJSã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ã€‚è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è©²å½“ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã€‚
+	 * @param eventName ã‚¤ãƒ™ãƒ³ãƒˆå
 	 */
 	void sendTJSEvent(const tjs_char *eventName);
 
 protected:
-	// ƒfƒoƒCƒXŠ„‚è“–‚ÄÏ‚İ
+	// ãƒ‡ãƒã‚¤ã‚¹å‰²ã‚Šå½“ã¦æ¸ˆã¿
 	bool attached;
 
 	/**
-	 * ƒfƒoƒCƒX‚ÌŠ„‚è“–‚Ä
-	 * @param hwnd eƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	 * @param width ƒoƒbƒNƒoƒbƒtƒ@ƒTƒCƒY‰¡•
-	 * @param height ƒoƒbƒNƒoƒbƒtƒ@ƒTƒCƒYc•
+	 * ãƒ‡ãƒã‚¤ã‚¹ã®å‰²ã‚Šå½“ã¦
+	 * @param hwnd è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºæ¨ªå¹…
+	 * @param height ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºç¸¦å¹…
 	 */
 	void attach(HWND hwnd, int width=0, int height=0);
 
-	// ƒfƒoƒCƒX‚ÌŠ„‚è“–‚ÄŒãˆ—
+	// ãƒ‡ãƒã‚¤ã‚¹ã®å‰²ã‚Šå½“ã¦å¾Œå‡¦ç†
 	virtual void onAttach() {}
 	
 	/**
-	 * ƒfƒoƒCƒX‚Ì”jŠü
+	 * ãƒ‡ãƒã‚¤ã‚¹ã®ç ´æ£„
 	 */
 	void detach();
 
-	// ƒfƒoƒCƒX‚Ì”jŠü‘Oˆ—
+	// ãƒ‡ãƒã‚¤ã‚¹ã®ç ´æ£„å‰å‡¦ç†
 	virtual void onDetach() {};
 	
 public:
-	IrrlichtBase(iTJSDispatch2 *objthis); //!< ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~IrrlichtBase(); //!< ƒfƒXƒgƒ‰ƒNƒ^
+	IrrlichtBase(iTJSDispatch2 *objthis); //!< ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~IrrlichtBase(); //!< ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	// ------------------------------------------------------------
-	// XVˆ—
+	// æ›´æ–°å‡¦ç†
 	// ------------------------------------------------------------
 protected:
 	/**
-	 * ƒNƒ‰ƒXŒÅ—LXVˆ—
-	 * ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‚Ìˆ—ŒãAGUI‚Ìˆ—‘O‚ÉŒÄ‚Î‚ê‚é
+	 * ã‚¯ãƒ©ã‚¹å›ºæœ‰æ›´æ–°å‡¦ç†
+	 * ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‡¦ç†å¾Œã€GUIã®å‡¦ç†å‰ã«å‘¼ã°ã‚Œã‚‹
 	 */
 	virtual void update(irr::video::IVideoDriver *driver) {};
 
 protected:
 
 	/**
-	 * Irrlicht•`‰æˆ—
-	 * @param destRect •`‰ææ—ÌˆæBÈ—ª‚·‚é‚Æ•\¦æ‘S–Ê
-	 * @param srcRect •`‰æŒ³—ÌˆæBÈ—ª‚·‚é‚Æ‘S–Ê
-	 * @param destDC •`‰ææDCBw’è‚·‚é‚Æ–{—ˆ‚Ì•\¦æ‚Ì‘ã‚í‚è‚É‚±‚ÌDC‚É•`‰æ
-	 * @return •`‰æ‚³‚ê‚½‚ç true
+	 * Irrlichtæç”»å‡¦ç†
+	 * @param destRect æç”»å…ˆé ˜åŸŸã€‚çœç•¥ã™ã‚‹ã¨è¡¨ç¤ºå…ˆå…¨é¢
+	 * @param srcRect æç”»å…ƒé ˜åŸŸã€‚çœç•¥ã™ã‚‹ã¨å…¨é¢
+	 * @param destDC æç”»å…ˆDCã€‚æŒ‡å®šã™ã‚‹ã¨æœ¬æ¥ã®è¡¨ç¤ºå…ˆã®ä»£ã‚ã‚Šã«ã“ã®DCã«æç”»
+	 * @return æç”»ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool show(irr::core::rect<irr::s32> *destRect=NULL, irr::core::rect<irr::s32> *srcRect=NULL, HDC destDC=0);
 
 	// ------------------------------------------------------------
-	// Irrlicht ‹¤’ÊƒvƒƒpƒeƒB
+	// Irrlicht å…±é€šãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	// ------------------------------------------------------------
 public:
 
@@ -102,52 +102,52 @@ public:
 	}
 
 	/**
-	 * @return ƒhƒ‰ƒCƒoî•ñ‚Ìæ“¾
+	 * @return ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±ã®å–å¾—
 	 */
 	irr::video::IVideoDriver *getVideoDriver() {
 		return device ? device->getVideoDriver() : NULL;
 	}
 	
 	/**
-	 * @return ƒV[ƒ“ƒ}ƒl[ƒWƒƒî•ñ‚Ìæ“¾
+	 * @return ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æƒ…å ±ã®å–å¾—
 	 */
 	irr::scene::ISceneManager *getSceneManager() {
 		return device ? device->getSceneManager() : NULL;
 	}
 
 	/**
-	 * @return GUIŠÂ‹«î•ñ‚Ìæ“¾
+	 * @return GUIç’°å¢ƒæƒ…å ±ã®å–å¾—
 	 */
 	irr::gui::IGUIEnvironment *getGUIEnvironment() {
 		return device ? device->getGUIEnvironment() : NULL;
 	}
 
 	/**
-	 * @return ƒƒK[‚Ìæ“¾
+	 * @return ãƒ­ã‚¬ãƒ¼ã®å–å¾—
 	 */
 	irr::ILogger *getLogger() {
 		return device ? device->getLogger() : NULL;
 	}
 
 	/**
-	 * @return ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìæ“¾
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®å–å¾—
 	 */
 	irr::io::IFileSystem *getFileSystem() {
 		return device ? device->getFileSystem() : NULL;
 	}
 	
 	// ------------------------------------------------------------
-	// Irrlicht ƒCƒxƒ“ƒgˆ——p
+	// Irrlicht ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ç”¨
 	// ------------------------------------------------------------
 public:
-	// Irrlicht ‚ÉƒCƒxƒ“ƒg‚ğ‘—‚é
+	// Irrlicht ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’é€ã‚‹
 	bool postEvent(irr::SEvent &ev);
 
 	/**
-	 * ƒCƒxƒ“ƒgó—
-	 * GUI Environment ‚©‚ç‚ÌƒCƒxƒ“ƒg‚ª‚±‚±‚É‘—‚ç‚ê‚Ä‚­‚é
-	 * @param event ƒCƒxƒ“ƒgî•ñ
-	 * @return ˆ—‚µ‚½‚ç true
+	 * ã‚¤ãƒ™ãƒ³ãƒˆå—ç†
+	 * GUI Environment ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒã“ã“ã«é€ã‚‰ã‚Œã¦ãã‚‹
+	 * @param event ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±
+	 * @return å‡¦ç†ã—ãŸã‚‰ true
 	 */
 	bool OnEvent(const irr::SEvent &event);
 
@@ -156,12 +156,12 @@ public:
 	// -----------------------------------------------------------------------
 public:
 	/**
-	 * Irrlicht ŒÄ‚Ño‚µˆ—ŠJn
+	 * Irrlicht å‘¼ã³å‡ºã—å‡¦ç†é–‹å§‹
 	 */
 	void start();
 
 	/**
-	 * Irrlicht ŒÄ‚Ño‚µˆ—’†’f
+	 * Irrlicht å‘¼ã³å‡ºã—å‡¦ç†ä¸­æ–­
 	 */
 	void stop();
 };

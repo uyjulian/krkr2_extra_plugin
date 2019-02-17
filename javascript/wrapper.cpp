@@ -1,25 +1,25 @@
 /**
- * Javascript ©¨ ‹g—¢‹g—¢ƒuƒŠƒbƒWˆ—
- * ‹g—¢‹g—¢‚ÌƒIƒuƒWƒFƒNƒg‚Í XXXX ‚Æ‚µ‚ÄŠÇ—‚·‚é
+ * Javascript â†â†’ å‰é‡Œå‰é‡Œãƒ–ãƒªãƒƒã‚¸å‡¦ç†
+ * å‰é‡Œå‰é‡Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ XXXX ã¨ã—ã¦ç®¡ç†ã™ã‚‹
  */
 
 #include "tjsobj.h"
 #include "tjsinstance.h"
 
-// ’l‚ÌŠi”[Eæ“¾—p
+// å€¤ã®æ ¼ç´ãƒ»å–å¾—ç”¨
 Local<Value> toJSValue(Isolate *isolate, const tTJSVariant &variant);
 tTJSVariant toVariant(Isolate *isolate, Local<Value> &value);
 
 #define JSOBJECTCLASS L"JavascriptObject"
 
 /**
- * Javascript object —p iTJSDispatch2 ƒ‰ƒbƒp[
+ * Javascript object ç”¨ iTJSDispatch2 ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class iTJSDispatch2Wrapper : public tTJSDispatch
 {
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 * @param obj IDispatch
 	 */
 	iTJSDispatch2Wrapper(Isolate *isolate, Local<Object> &obj) : isolate(isolate) {
@@ -27,21 +27,21 @@ public:
 	}
 	
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~iTJSDispatch2Wrapper() {
 		obj.Reset();
 	}
 
 	/**
-	 * •Û‚µ‚Ä‚é’l‚ğ•Ô‚·
+	 * ä¿æŒã—ã¦ã‚‹å€¤ã‚’è¿”ã™
 	 */
 	Local<Object> getObject() {
 		return Local<Object>::New(isolate, obj);
 	}
 
 public:
-	// ƒIƒuƒWƒFƒNƒg¶¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	tjs_error TJS_INTF_METHOD CreateNew(
 		tjs_uint32 flag,
 		const tjs_char * membername,
@@ -54,7 +54,7 @@ public:
 		return TJSInstance::createMethod(isolate, getObject(), membername, result, numparams, param);
 	}
 
-	// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+	// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 	tjs_error TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag,
 		const tjs_char * membername,
@@ -68,7 +68,7 @@ public:
 		return TJSInstance::callMethod(isolate, getObject(), membername, result, numparams, param, objthis);
 	}
 
-	// ƒvƒƒpƒeƒBæ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	tjs_error TJS_INTF_METHOD PropGet(
 		tjs_uint32 flag,
 		const tjs_char * membername,
@@ -82,7 +82,7 @@ public:
 		return TJSInstance::getProp(isolate, getObject(), membername, result);
 	}
 
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	tjs_error TJS_INTF_METHOD PropSet(
 		tjs_uint32 flag,
 		const tjs_char *membername,
@@ -93,7 +93,7 @@ public:
 		return TJSInstance::setProp(isolate, getObject(), membername, param);
 	}
 
-	// ƒƒ“ƒoíœ
+	// ãƒ¡ãƒ³ãƒå‰Šé™¤
 	tjs_error TJS_INTF_METHOD DeleteMember(
 		tjs_uint32 flag, const tjs_char *membername, tjs_uint32 *hint,
 		iTJSDispatch2 *objthis) {
@@ -115,17 +115,17 @@ public:
 	}
 
 protected:
-	/// “à•”•Û—p
+	/// å†…éƒ¨ä¿æŒç”¨
 	Persistent<Object> obj;
 	Isolate *isolate;
 };
 
 //----------------------------------------------------------------------------
-// •ÏŠ·—p
+// å¤‰æ›ç”¨
 //----------------------------------------------------------------------------
 
 /**
- * tTJSVariant ‚ğ squirrel ‚Ì‹óŠÔ‚É“Š“ü‚·‚é
+ * tTJSVariant ã‚’ squirrel ã®ç©ºé–“ã«æŠ•å…¥ã™ã‚‹
  * @param result javascrpt value
  * @param variant tTJSVariant
  */
@@ -139,19 +139,19 @@ toJSValue(Isolate *isolate, const tTJSVariant &variant)
 		{
 			iTJSDispatch2 *obj = variant.AsObjectNoAddRef();
 			if (obj == NULL) {
-				// NULL‚Ìˆ—
+				// NULLã®å‡¦ç†
 				return Null(isolate);
 			} else if (obj->IsInstanceOf(0, NULL, NULL, JSOBJECTCLASS, obj) == TJS_S_TRUE) {
-				// Javascript ƒ‰ƒbƒsƒ“ƒOƒIƒuƒWƒFƒNƒg‚Ìê‡
+				// Javascript ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆ
 				iTJSDispatch2Wrapper *wobj = (iTJSDispatch2Wrapper*)obj;
 				return wobj->getObject();
 			} else {
 				Local<Object> result;
 				if (TJSInstance::getJSObject(result, variant)) {
-					// “o˜^Ï‚İƒCƒ“ƒXƒ^ƒ“ƒX‚Ìê‡
+					// ç™»éŒ²æ¸ˆã¿ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å ´åˆ
 					return result;
 				}
-				// ’Pƒƒ‰ƒbƒsƒ“ƒO
+				// å˜ç´”ãƒ©ãƒƒãƒ”ãƒ³ã‚°
 				return TJSObject::toJSObject(isolate, variant);
 			}
 		}
@@ -200,8 +200,8 @@ toVariant(Isolate *isolate, Local<Object> &object)
 }
 
 /**
- * javascript’l‚ğ tTJSVariant ‚É•ÏŠ·‚·‚é
- * @param value Javascript’l
+ * javascriptå€¤ã‚’ tTJSVariant ã«å¤‰æ›ã™ã‚‹
+ * @param value Javascriptå€¤
  * @return tTJSVariant
  */
 tTJSVariant
@@ -218,13 +218,13 @@ toVariant(Isolate *isolate, Local<Value> &value)
 		String::Value str(value);
 		result = *str;
 	} else if (value->IsFunction() || value->IsArray() || value->IsDate()) {
-		// ’Pƒƒ‰ƒbƒsƒ“ƒO
+		// å˜ç´”ãƒ©ãƒƒãƒ”ãƒ³ã‚°
 		result = toVariant(isolate, value->ToObject());
 	} else if (value->IsObject()) {
 		HandleScope handle_scope(isolate);
 		Local<Object> obj = value->ToObject();
 		if (!TJSBase::getVariant(isolate, result, obj)) {
-			// ’Pƒƒ‰ƒbƒsƒ“ƒO
+			// å˜ç´”ãƒ©ãƒƒãƒ”ãƒ³ã‚°
 			result = toVariant(isolate, obj);
 		}
 	} else if (value->IsBoolean()) {

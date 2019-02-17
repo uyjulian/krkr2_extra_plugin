@@ -6,7 +6,7 @@
 #define PNGTYPE_RGBA8888 (0x08060000L)
 
 //---------------------------------------------------------------------------
-// ˆ³kˆ——p
+// åœ§ç¸®å‡¦ç†ç”¨
 
 class PngChunk : public CompressBase {
 	int level;
@@ -112,13 +112,13 @@ public:
 };
 
 /**
- * ‰æ‘œî•ñ‚Ì‘‚«o‚µ
- * @param width ‰æ‘œ‰¡•
- * @param height ‰æ‘œc•
- * @param buffer ‰æ‘œƒoƒbƒtƒ@
- * @param pitch ‰æ‘œƒf[ƒ^‚Ìƒsƒbƒ`
- * @param tagsDict ƒ^ƒOî•ñ
- * @return ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚ç true
+ * ç”»åƒæƒ…å ±ã®æ›¸ãå‡ºã—
+ * @param width ç”»åƒæ¨ªå¹…
+ * @param height ç”»åƒç¸¦å¹…
+ * @param buffer ç”»åƒãƒãƒƒãƒ•ã‚¡
+ * @param pitch ç”»åƒãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒ
+ * @param tagsDict ã‚¿ã‚°æƒ…å ±
+ * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚‰ true
  */
 bool CompressPNG::compress(long width, long height, BufRefT buffer, long pitch, iTJSDispatch2 *tagsDict)
 {
@@ -242,7 +242,7 @@ static void b64e(tjs_char *p, unsigned char const *r, long len) {
 }
 
 //---------------------------------------------------------------------------
-// ƒ_ƒCƒŒƒNƒg•Û‘¶ˆ—
+// ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆä¿å­˜å‡¦ç†
 //---------------------------------------------------------------------------
 #if defined(LAYEREXSAVE_DISABLE_LODEPNG) && (LAYEREXSAVE_DISABLE_LODEPNG != 0)
 
@@ -328,7 +328,7 @@ static unsigned CustomDeflate(unsigned char** out, size_t* outsize,
 
 static void SetInitialState(lodepng::State &state, bool alpha)
 {
-	state.encoder.auto_convert = 0; // ©“®ƒJƒ‰[”»’èˆ—‚ğ–³Œø‰»
+	state.encoder.auto_convert = 0; // è‡ªå‹•ã‚«ãƒ©ãƒ¼åˆ¤å®šå‡¦ç†ã‚’ç„¡åŠ¹åŒ–
 	state.info_png.color.colortype = alpha ? LCT_RGBA : LCT_RGB;
 	state.info_png.color.bitdepth  = 8;
 	state.info_png.color.key_defined = 0;
@@ -436,13 +436,13 @@ void CompressPNG::encodeToOctet(iTJSDispatch2 *layer, tTJSVariant *vclv, tTJSVar
 
 
 //---------------------------------------------------------------------------
-// ƒŒƒCƒ„Šg’£
+// ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µ
 //---------------------------------------------------------------------------
 
 /**
- * PNG Œ`®‚Å‚Ì‰æ‘œ‚Ì•Û‘¶B’ˆÓ“_:ƒf[ƒ^‚Ì•Û‘¶‚ªI‚í‚é‚Ü‚Åˆ—‚ª‹A‚è‚Ü‚¹‚ñB
- * @param filename ƒtƒ@ƒCƒ‹–¼
- * @param tags ƒ^ƒOî•ñ
+ * PNG å½¢å¼ã§ã®ç”»åƒã®ä¿å­˜ã€‚æ³¨æ„ç‚¹:ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜ãŒçµ‚ã‚ã‚‹ã¾ã§å‡¦ç†ãŒå¸°ã‚Šã¾ã›ã‚“ã€‚
+ * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param tags ã‚¿ã‚°æƒ…å ±
  */
 static tjs_error TJS_INTF_METHOD saveLayerImagePngFunc(tTJSVariant *result,
 														tjs_int numparams,
@@ -461,8 +461,8 @@ static tjs_error TJS_INTF_METHOD saveLayerImagePngFunc(tTJSVariant *result,
 NCB_ATTACH_FUNCTION(saveLayerImagePng,       Layer, saveLayerImagePngFunc);
 
 /**
- * PNG Œ`®‰æ‘œ‚ğoctet‚Å•Ô‚·B’ˆÓ“_:ƒf[ƒ^‚Ì•Û‘¶‚ªI‚í‚é‚Ü‚Åˆ—‚ª‹A‚è‚Ü‚¹‚ñB
- * @param compression_level ˆ³k—¦
+ * PNG å½¢å¼ç”»åƒã‚’octetã§è¿”ã™ã€‚æ³¨æ„ç‚¹:ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜ãŒçµ‚ã‚ã‚‹ã¾ã§å‡¦ç†ãŒå¸°ã‚Šã¾ã›ã‚“ã€‚
+ * @param compression_level åœ§ç¸®ç‡
  */
 static tjs_error TJS_INTF_METHOD saveLayerImagePngOctet(tTJSVariant *result,
 														tjs_int numparams,

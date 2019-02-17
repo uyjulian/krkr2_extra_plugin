@@ -4,20 +4,20 @@
 #include "tjsbase.h"
 
 /**
- * ‹g—¢‹g—¢—pƒIƒuƒWƒFƒNƒg‚ğ’Pƒ•Û‚·‚éJavaScript—pƒNƒ‰ƒXî•ñ
+ * å‰é‡Œå‰é‡Œç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å˜ç´”ä¿æŒã™ã‚‹JavaScriptç”¨ã‚¯ãƒ©ã‚¹æƒ…å ±
  */
 class TJSObject : public TJSBase {
 
 public:
-	// ‰Šú‰»—p
+	// åˆæœŸåŒ–ç”¨
 	static void init(Isolate *isolate);
 	static void done(Isolate *isolate);
 
-	// ƒIƒuƒWƒFƒNƒg¶¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	static Local<Object> toJSObject(Isolate *isolate, const tTJSVariant &variant);
 
 private:
-	// ƒIƒuƒWƒFƒNƒg’è‹`
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®šç¾©
 	static Persistent<ObjectTemplate> objectTemplate;
 
 	template<class T>
@@ -25,12 +25,12 @@ private:
 		delete data.GetParameter();
 	}
 	
-	// ƒAƒNƒZƒX—pƒƒ\ƒbƒh
+	// ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 	static void getter(Local<String> property, const PropertyCallbackInfo<Value>& info);
 	static void setter(Local<String> property, Local<Value> value, const PropertyCallbackInfo<Value>& info);
 	static void caller(const FunctionCallbackInfo<Value>& info);
 
-	// Ši”[î•ñƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// æ ¼ç´æƒ…å ±ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TJSObject(Isolate *isolate, Local<Object> &obj, const tTJSVariant &variant);
 };
 

@@ -12,7 +12,7 @@ Path::~Path()
 }
 
 /**
- * Œ»İ‚Ì}Œ`‚ğ•Â‚¶‚¸‚ÉŸ‚Ì}Œ`‚ğŠJn‚µ‚Ü‚·
+ * ç¾åœ¨ã®å›³å½¢ã‚’é–‰ã˜ãšã«æ¬¡ã®å›³å½¢ã‚’é–‹å§‹ã—ã¾ã™
  */
 void
 Path::startFigure()
@@ -22,7 +22,7 @@ Path::startFigure()
 
 
 /**
- * Œ»İ‚Ì}Œ`‚ğ•Â‚¶‚Ü‚·
+ * ç¾åœ¨ã®å›³å½¢ã‚’é–‰ã˜ã¾ã™
  */
 void
 Path::closeFigure()
@@ -31,13 +31,13 @@ Path::closeFigure()
 }
 
 /**
- * ‰~ŒÊ‚Ì•`‰æ
- * @param x ¶ãÀ•W
- * @param y ¶ãÀ•W
- * @param width ‰¡•
- * @param height c•
- * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
- * @param sweepAngle •`‰æŠp“x
+ * å††å¼§ã®æç”»
+ * @param x å·¦ä¸Šåº§æ¨™
+ * @param y å·¦ä¸Šåº§æ¨™
+ * @param width æ¨ªå¹…
+ * @param height ç¸¦å¹…
+ * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+ * @param sweepAngle æç”»è§’åº¦
  */
 void
 Path::drawArc(REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle)
@@ -46,8 +46,8 @@ Path::drawArc(REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL swe
 }
 
 /**
- * ƒxƒWƒF‹Èü‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x1
  * @param y1
  * @param x2
@@ -64,9 +64,9 @@ Path::drawBezier(REAL x1, REAL y1, REAL x2, REAL y2, REAL x3, REAL y3, REAL x4, 
 }
 
 /**
- * ˜A‘±ƒxƒWƒF‹Èü‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * é€£ç¶šãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  */
 void
 Path::drawBeziers(tTJSVariant points)
@@ -77,9 +77,9 @@ Path::drawBeziers(tTJSVariant points)
 }
 
 /**
- * Closed cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * Closed cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  */
 void
 Path::drawClosedCurve(tTJSVariant points)
@@ -90,9 +90,9 @@ Path::drawClosedCurve(tTJSVariant points)
 }
 
 /**
- * Closed cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * Closed cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @pram tension tension
  */
 void
@@ -104,9 +104,9 @@ Path::drawClosedCurve2(tTJSVariant points, REAL tension)
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  */
 void
 Path::drawCurve(tTJSVariant points)
@@ -117,9 +117,9 @@ Path::drawCurve(tTJSVariant points)
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @parma tension tension
  */
 void
@@ -131,9 +131,9 @@ Path::drawCurve2(tTJSVariant points, REAL tension)
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @param offset
  * @param numberOfSegments
  * @param tension tension
@@ -147,13 +147,13 @@ Path::drawCurve3(tTJSVariant points, int offset, int numberOfSegments, REAL tens
 }
 
 /**
- * ‰~‚Ì•`‰æ
- * @param x ¶ãÀ•W
- * @param y ¶ãÀ•W
- * @param width ‰¡•
- * @param height c•
- * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
- * @param sweepAngle •`‰æŠp“x
+ * å††éŒã®æç”»
+ * @param x å·¦ä¸Šåº§æ¨™
+ * @param y å·¦ä¸Šåº§æ¨™
+ * @param width æ¨ªå¹…
+ * @param height ç¸¦å¹…
+ * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+ * @param sweepAngle æç”»è§’åº¦
  */
 void
 Path::drawPie(REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle)
@@ -162,8 +162,8 @@ Path::drawPie(REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL swe
 }
 
 /**
- * ‘È‰~‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * æ¥•å††ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x
  * @param y
  * @param width
@@ -176,12 +176,12 @@ Path::drawEllipse(REAL x, REAL y, REAL width, REAL height)
 }
 
 /**
- * ü•ª‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param x1 n“_XÀ•W
- * @param y1 n“_YÀ•W
- * @param x2 I“_XÀ•W
- * @param y2 I“_YÀ•W
+ * ç·šåˆ†ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param x1 å§‹ç‚¹Xåº§æ¨™
+ * @param y1 å§‹ç‚¹Yåº§æ¨™
+ * @param x2 çµ‚ç‚¹Xåº§æ¨™
+ * @param y2 çµ‚ç‚¹Yåº§æ¨™
  */
 void
 Path::drawLine(REAL x1, REAL y1, REAL x2, REAL y2)
@@ -190,9 +190,9 @@ Path::drawLine(REAL x1, REAL y1, REAL x2, REAL y2)
 }
 
 /**
- * ˜A‘±ü•ª‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * é€£ç¶šç·šåˆ†ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  */
 void
 Path::drawLines(tTJSVariant points)
@@ -203,9 +203,9 @@ Path::drawLines(tTJSVariant points)
 }
 
 /**
- * ‘½ŠpŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * å¤šè§’å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
 
  */
 void
@@ -218,8 +218,8 @@ Path::drawPolygon(tTJSVariant points)
 
 
 /**
- * ‹éŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * çŸ©å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x
  * @param y
  * @param width
@@ -233,9 +233,9 @@ Path::drawRectangle(REAL x, REAL y, REAL width, REAL height)
 }
 
 /**
- * •¡”‹éŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param rects ‹éŒ`î•ñ‚Ì”z—ñ
+ * è¤‡æ•°çŸ©å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param rects çŸ©å½¢æƒ…å ±ã®é…åˆ—
  */
 void
 Path::drawRectangles(tTJSVariant rects)
@@ -246,8 +246,8 @@ Path::drawRectangles(tTJSVariant rects)
 }
 
 /**
- * ƒpƒX‚Ì•`‰æ
- * @param path ƒpƒXî•ñ
+ * ãƒ‘ã‚¹ã®æç”»
+ * @param path ãƒ‘ã‚¹æƒ…å ±
  */
 void
 Path::drawPath(const Path *srcpath, bool connect)

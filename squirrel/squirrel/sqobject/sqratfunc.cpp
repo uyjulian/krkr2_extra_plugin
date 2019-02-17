@@ -1,8 +1,8 @@
 /**
- * sqrat ”Å‚Ì sqobject À‘•
+ * sqrat ç‰ˆã® sqobject å®Ÿè£…
  *
- * sqrat ‚ğg‚Á‚½ Object, Thread “o˜^ˆ—‚ÌÀ‘•—á‚Å‚·B
- * sqrat ‚Ì‹@”\‚ğ‚Â‚©‚Á‚ÄŒp³‚ğˆ—‚µ‚Ä‚¢‚Ü‚·B
+ * sqrat ã‚’ä½¿ã£ãŸ Object, Thread ç™»éŒ²å‡¦ç†ã®å®Ÿè£…ä¾‹ã§ã™ã€‚
+ * sqrat ã®æ©Ÿèƒ½ã‚’ã¤ã‹ã£ã¦ç¶™æ‰¿ã‚’å‡¦ç†ã—ã¦ã„ã¾ã™ã€‚
  */
 #include "sqratfunc.h"
 #include "sqobjectclass.h"
@@ -19,7 +19,7 @@ namespace sqobject {
 // global vm
 HSQUIRRELVM vm;
 
-/// vm ‰Šú‰»
+/// vm åˆæœŸåŒ–
 HSQUIRRELVM init() {
 	vm = sq_open(1024);
 	sq_pushroottable(vm);
@@ -30,32 +30,32 @@ HSQUIRRELVM init() {
 	return vm;
 }
 
-/// î•ñ•Û—pƒOƒ[ƒoƒ‹VM‚Ìæ“¾
+/// æƒ…å ±ä¿æŒç”¨ã‚°ãƒ­ãƒ¼ãƒãƒ«VMã®å–å¾—
 HSQUIRRELVM getGlobalVM()
 {
 	return vm;
 }
 
-/// vm I—¹
+/// vm çµ‚äº†
 void done()
 {
 	sq_close(vm);
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^“o˜^—p
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç™»éŒ²ç”¨
 static SQRESULT destructor(HSQUIRRELVM v) {
 	return SQ_OK;
 }
 
 /**
- * Object ƒNƒ‰ƒX‚Ì“o˜^
+ * Object ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
  */
 void
 Object::registerClass()
 {
 	Sqrat::Class<Object, sqobject::VMConstructor<Object> > cls(vm, (SQUserPointer)SQOBJECTNAME);
 	cls.SquirrelFunc(_SC("destructor"), ::destructor);
-	// sqrat ‚Ì set/get ‚ğã‘‚«‚µ‚Ä sqobject ‹@”\‚Æ®‡‚ğ‚Æ‚é
+	// sqrat ã® set/get ã‚’ä¸Šæ›¸ãã—ã¦ sqobject æ©Ÿèƒ½ã¨æ•´åˆã‚’ã¨ã‚‹
 	sqobject::OverrideSetGet<Object>::Func(vm);
 	Sqrat::RootTable(vm).Bind(SQOBJECTNAME, cls);
 
@@ -67,7 +67,7 @@ Object::registerClass()
 };
 
 /**
- * Thread ƒNƒ‰ƒX‚Ì“o˜^
+ * Thread ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
  */
 void
 Thread::registerClass()

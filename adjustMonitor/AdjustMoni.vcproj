@@ -110,7 +110,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="¡ì¬‚µ‚½Release”ÅDLL‚ð‹g—¢‹g—¢ƒvƒƒWƒFƒNƒg‚ÌPluginƒtƒHƒ‹ƒ_‚ÉƒRƒs[‚µ‚Ü‚·¡"
+				Description="â– ä½œæˆã—ãŸReleaseç‰ˆDLLã‚’å‰é‡Œå‰é‡Œãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®Pluginãƒ•ã‚©ãƒ«ãƒ€ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™â– "
 				CommandLine=""
 			/>
 		</Configuration>
@@ -208,7 +208,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="¡ì¬‚µ‚½Debug”ÅDLL‚ð‹g—¢‹g—¢ƒvƒƒWƒFƒNƒg‚ÌPluginƒtƒHƒ‹ƒ_‚ÉƒRƒs[‚µ‚Ü‚·¡"
+				Description="â– ä½œæˆã—ãŸDebugç‰ˆDLLã‚’å‰é‡Œå‰é‡Œãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®Pluginãƒ•ã‚©ãƒ«ãƒ€ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™â– "
 			/>
 		</Configuration>
 	</Configurations>

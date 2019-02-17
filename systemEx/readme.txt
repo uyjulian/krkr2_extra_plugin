@@ -1,23 +1,23 @@
 Title: SystemEx Plugin
-Author: �킽�Ȃׂ���/miahmie/Kiyobee
+Author: わたなべごう/miahmie/Kiyobee
 
-������͂ȂɁH
+●これはなに？
 
-System �ɍׂ����@�\�𑫂��v���O�C���ł�
+System に細かい機能を足すプラグインです
 
-�����ӎ���
-writeRegValue �� registory �v���O�C���̂���Ɠ���ł�
-readEnvValue/expandEnvString �� windowEx �v���O�C���̂���Ɠ���ł�
+※注意事項
+writeRegValue は registory プラグインのそれと同一です
+readEnvValue/expandEnvString は windowEx プラグインのそれと同一です
 
-writeEnvValue�̓v���Z�X���ϐ���ύX���邾���ł��B
-���[�U�[���ϐ���V�X�e�����ϐ���ύX�������ꍇ��writeRegValue�œK�؂ȃ��W�X�g���ɒl��ݒ肵�Ă��������B
-TODO: WM_SETTINGCHANGE ���b�Z�[�W���u���[�h�L���X�g����悤�Ȏ�i��񋟂���K�v����
+writeEnvValueはプロセス環境変数を変更するだけです。
+ユーザー環境変数やシステム環境変数を変更したい場合はwriteRegValueで適切なレジストリに値を設定してください。
+TODO: WM_SETTINGCHANGE メッセージをブロードキャストするような手段を提供する必要あり
 
 
-���g�p���@
+●使用方法
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+ライセンスは吉里吉里本体に準拠してください。

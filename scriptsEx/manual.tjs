@@ -1,107 +1,107 @@
 class Scripts {
 
 	/**
-	 * �I�u�W�F�N�g�̃����o���ꗗ��Ԃ�
-	 * @param obj �ΏۃI�u�W�F�N�g
-	 * @return �L�[���i�[���ꂽ�z��
+	 * オブジェクトのメンバ名一覧を返す
+	 * @param obj 対象オブジェクト
+	 * @return キーが格納された配列
 	 */
 	function getObjectKeys(obj);
 
 	/**
-	 * �I�u�W�F�N�g�̃����o����Ԃ�
-	 * @param obj �ΏۃI�u�W�F�N�g
-	 * @return ����Ԃ�
+	 * オブジェクトのメンバ個数を返す
+	 * @param obj 対象オブジェクト
+	 * @return 個数を返す
 	 */
 	function getObjectCount(obj);
 
 	/**
-	 * �I�u�W�F�N�g�̃R���e�L�X�g��Ԃ�
-	 * @param obj �ΏۃI�u�W�F�N�g
-	 * @return �R���e�L�X�g�I�u�W�F�N�g
+	 * オブジェクトのコンテキストを返す
+	 * @param obj 対象オブジェクト
+	 * @return コンテキストオブジェクト
 	 */
 	function getObjectContext(obj);
 
 	/**
-	 * �I�u�W�F�N�g�̃R���e�L�X�g����
-	 * @param obj �ΏۃI�u�W�F�N�g
-	 * @return �R���e�L�X�g�� null
+	 * オブジェクトのコンテキスト判定
+	 * @param obj 対象オブジェクト
+	 * @return コンテキストが null
 	 */
 	function isNullContext(obj);
 	
 	/**
-	 * �I�u�W�F�N�g���m���r����B����/�z��̏ꍇ�͒��g�̗v�f���ċA�I�ɔ�r����܂�
-	 * @param obj1 �I�u�W�F�N�g����1
-	 * @param obj2 �I�u�W�F�N�g����2
-	 * @return ��������� true
+	 * オブジェクト同士を比較する。辞書/配列の場合は中身の要素が再帰的に比較されます
+	 * @param obj1 オブジェクトその1
+	 * @param obj2 オブジェクトその2
+	 * @return 等しければ true
 	 */
 	function equalStruct(obj1, obj2);
 
 	/**
-	 * �I�u�W�F�N�g���m���r����B����/�z��̏ꍇ�͒��g�̗v�f���ċA�I�ɔ�r����܂�
-	 * ���l����邭��r����܂�(0.0 �� 0 �𓙂����Ƃ��Ĉ����܂�)
-	 * @param obj1 �I�u�W�F�N�g����1
-	 * @param obj2 �I�u�W�F�N�g����2
-	 * @return ��������� true
+	 * オブジェクト同士を比較する。辞書/配列の場合は中身の要素が再帰的に比較されます
+	 * 数値がゆるく比較されます(0.0 と 0 を等しいとして扱います)
+	 * @param obj1 オブジェクトその1
+	 * @param obj2 オブジェクトその2
+	 * @return 等しければ true
 	 */
 	function equalStructNumericLoose(obj1, obj2);
 
 	/**
-	 * �I�u�W�F�N�g�̃����o�̑S�Q��
-	 * @param obj �����ΏۃI�u�W�F�N�g(�����܂��͔z��)
-	 * @param func �Ăяo���֐��Bfunc(key, value, args*) �̌`�ŌĂ΂�܂��B
-	 * �����֐��ȂǃR���e�L�X�g�� null �̏ꍇ�͎����I�� this�R���e�L�X�g�œ��삵�܂�
-	 * �֐����Ȃɂ�����l��Ԃ��Ə��������f����܂�
-	 * @param args �ǉ�����
-	 * �z��̏ꍇ�͒P���Ƀ��[�v�ɂ��Q�ƂɂȂ�܂��B������I�u�W�F�N�g�� iTJSDispatch2::EnumMebers �̌Ăяo���ɂȂ�܂�
-	 * @return ���f���ɕԂ��ꂽ�l
+	 * オブジェクトのメンバの全参照
+	 * @param obj 処理対象オブジェクト(辞書または配列)
+	 * @param func 呼び出し関数。func(key, value, args*) の形で呼ばれます。
+	 * 無名関数などコンテキストが null の場合は自動的に thisコンテキストで動作します
+	 * 関数がなにかしら値を返すと処理が中断されます
+	 * @param args 追加引数
+	 * 配列の場合は単純にループによる参照になります。辞書やオブジェクトは iTJSDispatch2::EnumMebers の呼び出しになります
+	 * @return 中断時に返された値
 	 */
 	function foreach(obj, func, args*);
 
 	/**
-	 * octet �� MD5�n�b�V���l�̎擾
-	 * @param octet �ΏۃI�N�e�b�g
-	 * @return �n�b�V���l�i32������16�i���n�b�V��������i�������j�j
+	 * octet の MD5ハッシュ値の取得
+	 * @param octet 対象オクテット
+	 * @return ハッシュ値（32文字の16進数ハッシュ文字列（小文字））
 	 */
 	function getMD5HashString(octet);
 	
 	/**
-	 * �l�̃N���[����Ԃ��B
-	 * @param obj �N���[����
-	 * void/���l/������/octet �͌��̒l�����̂܂ܕԂ��܂��B
-	 * �����E�z��I�u�W�F�N�g�́Adeep copy �����������̂�Ԃ��܂��B����q�͍ċA��������܂��B
-	 * ��ʃI�u�W�F�N�g�� "clone" ���\�b�h�����݂���΂��̋A��l���A�Ȃ���Ό��̒l�����̂܂ܕԂ��܂�
+	 * 値のクローンを返す。
+	 * @param obj クローン元
+	 * void/数値/文字列/octet は元の値をそのまま返します。
+	 * 辞書・配列オブジェクトは、deep copy 処理したものを返します。入れ子は再帰処理されます。
+	 * 一般オブジェクトは "clone" メソッドが存在すればその帰り値を、なければ元の値をそのまま返します
 	 */
 	function clone(obj);
 
 	/**
-	 * TJSDoRehash()���Ă�
+	 * TJSDoRehash()を呼ぶ
 	 * @description
-	 * TJSCustomObject�x�[�X�̃I�u�W�F�N�g�̃n�b�V���e�[�u���T�C�Y�̍č\�z�t���O�𗧂Ă܂��B
-	 * �i������قƂ�ǂ̃N���X����уC���X�^���X�̃I�u�W�F�N�g���ΏۂɂȂ�܂��j
+	 * TJSCustomObjectベースのオブジェクトのハッシュテーブルサイズの再構築フラグを立てます。
+	 * （辞書やほとんどのクラスおよびインスタンスのオブジェクトが対象になります）
 	 *
-	 * ����F
-	 *  �n�b�V���e�[�u���T�C�Y�͂��̃I�u�W�F�N�g�̎��v�f���ɂ�茈�肳��܂��B
-	 *  �t���O����������C�I�u�W�F�N�g�ɉ����������񂾃^�C�~���O�ōČv�Z���s���C
-	 *  �e�[�u���T�C�Y���ς�����ꍇ�ɂ̂ݍč\�z���s���܂��B�i�T�C�Y��2^(�v�f���̃r�b�g��+2)���x�H�j
-	 *  ���i�C�g���g���͒���I�i�A�C�h�������O�񂩂�1.5�b�ȏ�o�߂��Ă��鎞�j��
-	 *  TJSDoRehash()���Ă΂�Ă���̂œ��ɋC�ɂ���K�v�͂���܂��񂪁C
-	 *  �A�C�h�������܂��ɑ�ʂɗv�f��ǉ�����ꍇ�ɂ�����
-	 *  �J�E���^�ŉ���`�����1�񓙂̊Ԋu�ŌĂяo���悤�ɂ���ƌ��ʓI���Ǝv���܂��B
+	 * 解説：
+	 *  ハッシュテーブルサイズはそのオブジェクトの持つ要素数により決定されます。
+	 *  フラグが立った後，オブジェクトに何か書き込んだタイミングで再計算を行い，
+	 *  テーブルサイズが変わった場合にのみ再構築が行われます。（サイズ＝2^(要素数のビット数+2)程度？）
+	 *  普段，吉里吉里は定期的（アイドル時かつ前回から1.5秒以上経過している時）に
+	 *  TJSDoRehash()が呼ばれているので特に気にする必要はありませんが，
+	 *  アイドルを挟まずに大量に要素を追加する場合において
+	 *  カウンタで何千〜万回に1回等の間隔で呼び出すようにすると効果的かと思われます。
 	 */
 	function rehash();
 
 	/**
-	 * �w��I�u�W�F�N�g��PropSet/Get���Ă�
-	 * @param obj �ΏۃI�u�W�F�N�g
-	 * @param member �����o��(typeof member == "Integer"�Ȃ�Prop{Set,Get}ByNum���Ă�)
-	 * @param value �Z�b�g����l(propSet�̂�)
-	 * @param flag �t���O(Scripts.pf* ��"|"(or)�ɂ��g�ݍ��킹�w��C��������0)
-	 *             Scripts.pfMemberEnsure    : (set��)�����o��V�K�ǉ�����ꍇ�Ɏw��i�Ȃ��ꍇ�͊��������o�̂ݏ��������\�j
-	 *             Scripts.pfMemberMustExist : (get��)�����o���Ȃ��ꍇ�̓G���[�i������undefined��void��Ԃ����G���[�ɂȂ�܂��j
-	 *             Scripts.pfIgnoreProp      : (get/set��)�v���p�e�B�̓���𖳎��iTJS��&�w��Ɠ�������ł��j
-	 *             Scripts.pfHiddenMember    : (set��)�B�������o�w��iassignStruct/saveStruct����EnumMembers�n�̏����Ŗ�������܂��j
-	 *             Scripts.pfStaticMember    : (set��)Static�����o�w��i�N���X�I�u�W�F�N�g�ȂǂɎg�p���܂��j
-	 * @return �擾�����l(propGet�̂݁Cset����void)
+	 * 指定オブジェクトのPropSet/Getを呼ぶ
+	 * @param obj 対象オブジェクト
+	 * @param member メンバ名(typeof member == "Integer"ならProp{Set,Get}ByNumを呼ぶ)
+	 * @param value セットする値(propSetのみ)
+	 * @param flag フラグ(Scripts.pf* の"|"(or)による組み合わせ指定，もしくは0)
+	 *             Scripts.pfMemberEnsure    : (set時)メンバを新規追加する場合に指定（ない場合は既存メンバのみ書き換え可能）
+	 *             Scripts.pfMemberMustExist : (get時)メンバがない場合はエラー（辞書のundefinedもvoidを返さずエラーになります）
+	 *             Scripts.pfIgnoreProp      : (get/set時)プロパティの動作を無視（TJSの&指定と同じ動作です）
+	 *             Scripts.pfHiddenMember    : (set時)隠しメンバ指定（assignStruct/saveStruct等のEnumMembers系の処理で無視されます）
+	 *             Scripts.pfStaticMember    : (set時)Staticメンバ指定（クラスオブジェクトなどに使用します）
+	 * @return 取得した値(propGetのみ，set時はvoid)
 	 */
 	function propSet(obj, member, value, flag=Scripts.pfMemberEnsure);
 	function propGet(obj, member, flag=Scripts.pfMemberMustExist);
@@ -112,14 +112,14 @@ class Scripts {
 	var pfStaticMember    = 0x00010000; //TJS_STATICMEMBER
 
 	/**
-	 * (const)�������^�z������S�ɕ]������
-	 * @param storage �]������X�g���[�W�i�o�C�g�R�[�h�o�C�i���͕s�^saveStruct��(const)���ŕۑ����ꂽ�����^�z�񂪑Ώہj
-	 * @param mode ���[�h������
-	 * @param context ���s�R���e�L�X�g
-	 * @return �]�����ꂽ�f�[�^
+	 * (const)つき辞書／配列を安全に評価する
+	 * @param storage 評価するストレージ（バイトコードバイナリは不可／saveStructで(const)つきで保存された辞書／配列が対象）
+	 * @param mode モード文字列
+	 * @param context 実行コンテキスト
+	 * @return 評価されたデータ
 	 */
 	function safeEvalStorage(storage, mode, context) {
-		// �T�v�R�[�h
+		// 概要コード
 		return Scripts.eval("(const)["+ ([].load(storage, mode)).join("") + "]", Storages.extractStorageName(storage),, context)[0];
 	}
 }

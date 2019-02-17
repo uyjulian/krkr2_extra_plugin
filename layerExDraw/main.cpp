@@ -2,7 +2,7 @@
 #include "layerExDraw.hpp"
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 void
 message_log(const char* format, ...)
@@ -16,7 +16,7 @@ message_log(const char* format, ...)
 }
 
 /**
- * ƒGƒ‰[ƒƒOo—Í—p
+ * ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 void
 error_log(const char* format, ...)
@@ -35,29 +35,29 @@ extern Image *loadImage(const tjs_char *name);
 extern RectF *getBounds(Image *image);
 
 // ----------------------------------------------------------------
-// À‘ÌŒ^‚Ì“o˜^
-// ”’lƒpƒ‰ƒ[ƒ^Œn‚Í”z—ñ‚©«‘‚ğg‚¦‚é‚æ‚¤‚È“ÁêƒRƒ“ƒo[ƒ^‚ğ\’z
+// å®Ÿä½“å‹ã®ç™»éŒ²
+// æ•°å€¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç³»ã¯é…åˆ—ã‹è¾æ›¸ã‚’ä½¿ãˆã‚‹ã‚ˆã†ãªç‰¹æ®Šã‚³ãƒ³ãƒãƒ¼ã‚¿ã‚’æ§‹ç¯‰
 // ----------------------------------------------------------------
 
-// —¼•û©‘OƒRƒ“ƒo[ƒ^
+// ä¸¡æ–¹è‡ªå‰ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #define NCB_SET_CONVERTOR_BOTH(type, convertor)\
 NCB_TYPECONV_SRCMAP_SET(type, convertor<type>, true);\
 NCB_TYPECONV_DSTMAP_SET(type, convertor<type>, true)
 
-// SRC‚¾‚¯©‘OƒRƒ“ƒo[ƒ^
+// SRCã ã‘è‡ªå‰ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #define NCB_SET_CONVERTOR_SRC(type, convertor)\
 NCB_TYPECONV_SRCMAP_SET(type, convertor<type>, true);\
 NCB_TYPECONV_DSTMAP_SET(type, ncbNativeObjectBoxing::Unboxing, true)
 
-// DST‚¾‚¯©‘OƒRƒ“ƒo[ƒ^
+// DSTã ã‘è‡ªå‰ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #define NCB_SET_CONVERTOR_DST(type, convertor)\
 NCB_TYPECONV_SRCMAP_SET(type, ncbNativeObjectBoxing::Boxing,   true); \
 NCB_TYPECONV_DSTMAP_SET(type, convertor<type>, true)
 
 /**
- * ”z—ñ‚©‚Ç‚¤‚©‚Ì”»’è
+ * é…åˆ—ã‹ã©ã†ã‹ã®åˆ¤å®š
  * @param var VARIANT
- * @return ”z—ñ‚È‚ç true
+ * @return é…åˆ—ãªã‚‰ true
  */
 bool IsArray(const tTJSVariant &var)
 {
@@ -68,21 +68,21 @@ bool IsArray(const tTJSVariant &var)
 	return false;
 }
 
-// ƒƒ“ƒo•Ï”‚ğƒvƒƒpƒeƒB‚Æ‚µ‚Ä“o˜^
+// ãƒ¡ãƒ³ãƒå¤‰æ•°ã‚’ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨ã—ã¦ç™»éŒ²
 #define NCB_MEMBER_PROPERTY(name, type, membername) \
 	struct AutoProp_ ## name { \
 		static void ProxySet(Class *inst, type value) { inst->membername = value; } \
 		static type ProxyGet(Class *inst) {      return inst->membername; } }; \
 	NCB_PROPERTY_PROXY(name,AutoProp_ ## name::ProxyGet, AutoProp_ ## name::ProxySet)
 
-// ƒ|ƒCƒ“ƒ^ˆø”Œ^‚Ì getter ‚ğ•ÏŠ·“o˜^
+// ãƒã‚¤ãƒ³ã‚¿å¼•æ•°å‹ã® getter ã‚’å¤‰æ›ç™»éŒ²
 #define NCB_ARG_PROPERTY_RO(name, type, methodname) \
 	struct AutoProp_ ## name { \
 		static type ProxyGet(Class *inst) { type var; inst->methodname(&var); return var; } }; \
 	Property(TJS_W(# name), &AutoProp_ ## name::ProxyGet, (int)0, Proxy)
 
 // ------------------------------------------------------
-// Œ^ƒRƒ“ƒo[ƒ^“o˜^
+// å‹ã‚³ãƒ³ãƒãƒ¼ã‚¿ç™»éŒ²
 // ------------------------------------------------------
 
 NCB_TYPECONV_CAST_INTEGER(Status);
@@ -207,11 +207,11 @@ RectF getRect(const tTJSVariant &var)
 }
 
 // --------------------------------------------------------------------
-// GDI+‚ÌƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^/ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ‚½‚È‚¢Œ^‚Ì“o˜^
+// GDI+ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿/ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’æŒãŸãªã„å‹ã®ç™»éŒ²
 // --------------------------------------------------------------------
 
 /**
- * GDI+ƒIƒuƒWƒFƒNƒg‚Ìƒ‰ƒbƒsƒ“ƒO—pƒeƒ“ƒvƒŒ[ƒgƒNƒ‰ƒX
+ * GDI+ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ©ãƒƒãƒ”ãƒ³ã‚°ç”¨ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚¯ãƒ©ã‚¹
  */
 template <class T>
 class GdipWrapper {
@@ -220,24 +220,24 @@ class GdipWrapper {
 protected:
 	GdipClassT *obj;
 public:
-	// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	GdipWrapper() : obj(NULL) {
 	}
 
-	// ŠÖ”‚Ì‹A‚è’l‚Æ‚µ‚Ä‚ÌƒIƒuƒWƒFƒNƒg¶¬—pB
-	// ‚»‚Ì‚Ü‚Ü“n‚³‚ê‚½ƒ|ƒCƒ“ƒ^‚ğg‚¤
+	// é–¢æ•°ã®å¸°ã‚Šå€¤ã¨ã—ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆæ™‚ç”¨ã€‚
+	// ãã®ã¾ã¾æ¸¡ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿ã‚’ä½¿ã†
 	GdipWrapper(GdipClassT *obj) : obj(obj) {
 	}
 
-	// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	// “à‘ ƒIƒuƒWƒFƒNƒg‚Í Clone‚·‚é
+	// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// å†…è”µã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ Cloneã™ã‚‹
 	GdipWrapper(const GdipWrapper &orig) : obj(NULL) {
 		if (orig.obj) {
 			obj = orig.obj->Clone();
 		}
 	}
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~GdipWrapper() {
 		if (obj) {
 			delete obj;
@@ -269,7 +269,7 @@ public:
 };
 
 /**
- * GDI+ƒIƒuƒWƒFƒNƒg‚ğƒ‰ƒbƒsƒ“ƒO‚µ‚½ƒNƒ‰ƒX—p‚ÌƒRƒ“ƒo[ƒ^i”Ä—pj
+ * GDI+ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã—ãŸã‚¯ãƒ©ã‚¹ç”¨ã®ã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼ˆæ±ç”¨ï¼‰
  */
 template <class T>
 struct GdipTypeConvertor {
@@ -278,7 +278,7 @@ struct GdipTypeConvertor {
 	typedef GdipWrapper<GdipClassT> WrapperT;
 	typedef ncbInstanceAdaptor<WrapperT> AdaptorT;
 protected:
-	GdipClassT *result; // Œ‹‰Ê‚Ìˆê•Û—p
+	GdipClassT *result; // çµæœã®ä¸€æ™‚ä¿æŒç”¨
 public:
 	GdipTypeConvertor() : result(NULL) {}
 	~GdipTypeConvertor() {delete result;}
@@ -307,7 +307,7 @@ public:
 	}
 };
 
-// ƒRƒ“ƒo[ƒ^“o˜^—p“o˜^—pƒ}ƒNƒ
+// ã‚³ãƒ³ãƒãƒ¼ã‚¿ç™»éŒ²ç”¨ç™»éŒ²ç”¨ãƒã‚¯ãƒ­
 
 #define NCB_GDIP_CONVERTOR(type) \
 NCB_SET_CONVERTOR(type*, GdipTypeConvertor<type>);\
@@ -317,14 +317,14 @@ NCB_SET_CONVERTOR(const type*, GdipTypeConvertor<const type>)
 NCB_SET_CONVERTOR(type*, convertor<type>);\
 NCB_SET_CONVERTOR(const type*, convertor<const type>)
 
-// ƒ‰ƒbƒsƒ“ƒOˆ——p
+// ãƒ©ãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ç”¨
 #define NCB_REGISTER_GDIP_SUBCLASS(Class) NCB_GDIP_CONVERTOR(Class);NCB_REGISTER_SUBCLASS(GdipWrapper<Class>) { typedef Class GdipClass;
 #define NCB_REGISTER_GDIP_SUBCLASS2(Class, Convertor) NCB_GDIP_CONVERTOR2(Class, Convertor);NCB_REGISTER_SUBCLASS(GdipWrapper<Class>) { typedef Class GdipClass;
 #define NCB_GDIP_METHOD(name)  Method(TJS_W(# name), &GdipClass::name, Bridge<GdipWrapper<GdipClass>::BridgeFunctor>())
 #define NCB_GDIP_MCAST(ret, method, args) static_cast<ret (GdipClass::*) args>(&GdipClass::method)
 #define NCB_GDIP_METHOD2(name, ret, method, args) Method(TJS_W(# name), NCB_GDIP_MCAST(ret, method, args), Bridge<GdipWrapper<GdipClass>::BridgeFunctor>())
 #define NCB_GDIP_PROPERTY(name,get,set)  Property(TJS_W(# name), &GdipClass::get, &GdipClass::set, Bridge<GdipWrapper<GdipClass>::BridgeFunctor>())
-// XXX ‚¤‚Ü‚­‚¤‚²‚©‚È‚¢
+// XXX ã†ã¾ãã†ã”ã‹ãªã„
 #define NCB_GDIP_PROPERTY_RO(name,get)  Property(TJS_W(# name), &GdipClass::get, (int)0, Bridge<GdipWrapper<GdipClass>::BridgeFunctor>())
 #define NCB_GDIP_MEMBER_PROPERTY(name, type, membername) \
 	struct AutoProp_ ## name { \
@@ -398,7 +398,7 @@ Factory(MatrixFactory);
 NCB_GDIP_METHOD(OffsetX);
 NCB_GDIP_METHOD(OffsetY);
 NCB_GDIP_METHOD(Equals);
-// NCB_GDIP_METHOD(getElements); // ”z—ñ‚ğ•Ô‚·
+// NCB_GDIP_METHOD(getElements); // é…åˆ—ã‚’è¿”ã™
 NCB_GDIP_METHOD(SetElements);
 NCB_GDIP_METHOD(GetLastStatus);
 NCB_GDIP_METHOD(Invert);
@@ -410,16 +410,16 @@ NCB_GDIP_METHOD(Rotate);
 NCB_GDIP_METHOD(RotateAt);
 NCB_GDIP_METHOD(Scale);
 NCB_GDIP_METHOD(Shear);
-//	NCB_GDIP_METHOD_DETAIL(TransformPoints, Class, Status, TransformPoints, (PointF*, INT)); XXX ˆø”‚ª”z—ñ
-//	NCB_GDIP_METHOD_DETAIL(TransformVectors, Class, Status, TransformVectors, (PointF*, INT)); XXX ˆø”‚ª”z—ñ
+//	NCB_GDIP_METHOD_DETAIL(TransformPoints, Class, Status, TransformPoints, (PointF*, INT)); XXX å¼•æ•°ãŒé…åˆ—
+//	NCB_GDIP_METHOD_DETAIL(TransformVectors, Class, Status, TransformVectors, (PointF*, INT)); XXX å¼•æ•°ãŒé…åˆ—
 NCB_GDIP_METHOD(Translate);
 };
 
 // ------------------------------------------------------- Image
 
 /**
- * ƒCƒ[ƒW—pƒRƒ“ƒo[ƒ^
- * •¶š—ñ‚©‚ç‚à•ÏX‰Â”\
+ * ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã‚³ãƒ³ãƒãƒ¼ã‚¿
+ * æ–‡å­—åˆ—ã‹ã‚‰ã‚‚å¤‰æ›´å¯èƒ½
  */
 template <class T>
 struct ImageConvertor : public GdipTypeConvertor<T> {
@@ -436,7 +436,7 @@ struct ImageConvertor : public GdipTypeConvertor<T> {
 					dst = NULL;
 				}
 			}
-		} else if (src.Type() == tvtString) { // •¶š—ñ‚©‚ç¶¬
+		} else if (src.Type() == tvtString) { // æ–‡å­—åˆ—ã‹ã‚‰ç”Ÿæˆ
 			dst = result = loadImage(src.GetString());
 		} else {
 			dst = NULL;
@@ -547,7 +547,7 @@ NCB_GDIP_METHOD(RotateFlip);
 };
 
 // ------------------------------------------------------
-// ©‘O‹LqƒNƒ‰ƒX“o˜^
+// è‡ªå‰è¨˜è¿°ã‚¯ãƒ©ã‚¹ç™»éŒ²
 // ------------------------------------------------------
 
 NCB_REGISTER_SUBCLASS(FontInfo) {
@@ -812,17 +812,17 @@ LAYEREXCONV(Graphics);
 
 NCB_GET_INSTANCE_HOOK(LayerExDraw)
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		obj->reset();
 		return obj;
 	}
-	// ƒfƒXƒgƒ‰ƒNƒ^iÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 	}
 };
@@ -830,7 +830,7 @@ NCB_GET_INSTANCE_HOOK(LayerExDraw)
 #define LAYEREX_METHOD(type,name)  Method(TJS_W(# name), &Type::name, Bridge<LayerExDraw::BridgeFunctor<type>>())
 
 /**
- * Image ‚Íƒ‰ƒbƒsƒ“ƒO‚·‚é•K—v‚ª‚ ‚é‚Ì‚Å rawcallback ‚Å‘Î‰
+ * Image ã¯ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ rawcallback ã§å¯¾å¿œ
  */
 static tjs_error TJS_INTF_METHOD
 GetRecordImage(tTJSVariant *result, tjs_int numparams,
@@ -856,7 +856,7 @@ GetRecordImage(tTJSVariant *result, tjs_int numparams,
 	return TJS_S_OK;
 }
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(LayerExDraw, Layer) {
 	NCB_PROPERTY(updateWhenDraw, getUpdateWhenDraw, setUpdateWhenDraw);
 	NCB_PROPERTY(smoothingMode, getSmoothingMode, setSmoothingMode);
@@ -895,7 +895,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(LayerExDraw, Layer) {
 	NCB_METHOD(drawString);
 	NCB_METHOD(measureString);
 	NCB_METHOD(measureStringInternal);
-// Šî–{“I‚É”ñŒöŠJŠÖ”
+// åŸºæœ¬çš„ã«éå…¬é–‹é–¢æ•°
 //	NCB_METHOD(drawPathString2);
 //	NCB_METHOD(measureString2);
 //	NCB_METHOD(measureStringInternal);
@@ -935,7 +935,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(LayerExDraw, Layer) {
 
 }
 
-// ----------------------------------- ‹N“®EŠJ•úˆ—
+// ----------------------------------- èµ·å‹•ãƒ»é–‹æ”¾å‡¦ç†
 
 NCB_PRE_REGIST_CALLBACK(initGdiPlus);
 NCB_POST_UNREGIST_CALLBACK(deInitGdiPlus);

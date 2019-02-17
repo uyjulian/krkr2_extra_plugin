@@ -66,7 +66,7 @@ psd_status psd_get_layer_hue_saturation(psd_context * context, psd_layer_record 
 	// Photoshop 5.0: The actual values are stored for the new version. Hue is -
 	// 180...180, Saturation is 0...100, and Lightness is -100...100.
 	// Photoshop 4.0: Three psd_short integers Hue, Saturation, and Lightness
-	// from 每100...100. The user interface represents hue as 每180...180,
+	// from 嚚每100...100. The user interface represents hue as 嚚每180...180,
 	// saturation as 0...100, and Lightness as -100...1000, as the traditional
 	// HSB color wheel, with red = 0.
 	data->colorization_hue = psd_stream_get_short(context);
@@ -84,15 +84,15 @@ psd_status psd_get_layer_hue_saturation(psd_context * context, psd_layer_record 
 		//For RGB and CMYK, those values apply to each of the six hextants in
 		// the HSB color wheel: those image pixels nearest to red, yellow, green,
 		// cyan, blue, or magenta. These numbers appear in the user interface
-		// from 每60...60, however the slider will reflect each of the possible 201
-		// values from 每100...100.
+		// from 嚚每60...60, however the slider will reflect each of the possible 201
+		// values from 嚚每100...100.
 		for(j = 0; j < 4; j ++)
 			data->range_values[i][j] = psd_stream_get_short(context);
 
 		// For Lab, the first four of the six values are applied to image pixels in the
 		// four Lab color quadrants, yellow, green, blue, and magenta. The other
 		// two values are ignored ( = 0). The values appear in the user interface
-		// from 每90 to 90.
+		// from 嚚每90 to 90.
 		for(j = 0; j < 3; j ++)
 			data->setting_values[i][j] = psd_stream_get_short(context);
 	}

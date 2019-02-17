@@ -1,60 +1,60 @@
 #include "layerExCairo.hpp"
 #include "ncbind/ncbind.hpp"
 
-// ----------------------------------- ƒNƒ‰ƒX‚Ì“o˜^
+// ----------------------------------- ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
 
 NCB_GET_INSTANCE_HOOK(layerExCairo)
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
 		
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
-		if (obj) obj->reset();						// ƒƒ\ƒbƒh‚ğŒÄ‚Ô‘O‚É•K‚¸ŒÄ‚Î‚ê‚é
-		return (_obj = obj);						//< ƒfƒXƒgƒ‰ƒNƒ^‚Åg—p‚µ‚½‚¢ê‡‚Íƒvƒ‰ƒCƒx[ƒg•Ï”‚É•Û‘¶
+		if (obj) obj->reset();						// ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã¶å‰ã«å¿…ãšå‘¼ã°ã‚Œã‚‹
+		return (_obj = obj);						//< ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ä½¿ç”¨ã—ãŸã„å ´åˆã¯ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆå¤‰æ•°ã«ä¿å­˜
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^iÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
-		if (_obj) _obj->redraw();					// ƒƒ\ƒbƒh‚ğŒÄ‚ñ‚¾Œã‚É•K‚¸ŒÄ‚Î‚ê‚é
+		if (_obj) _obj->redraw();					// ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã‚“ã å¾Œã«å¿…ãšå‘¼ã°ã‚Œã‚‹
 	}
 
 private:
 	ClassT *_obj;
-}; // À‘Ì‚Í class ’è‹`‚È‚Ì‚Å ; ‚ğ–Y‚ê‚È‚¢‚Å‚Ë
+}; // å®Ÿä½“ã¯ class å®šç¾©ãªã®ã§ ; ã‚’å¿˜ã‚Œãªã„ã§ã­
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(layerExCairo, Layer) {
 }
 
-// ----------------------------------- ‹N“®EŠJ•úˆ—
+// ----------------------------------- èµ·å‹•ãƒ»é–‹æ”¾å‡¦ç†
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 void PreRegistCallback()
 {
 }
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 void PostRegistCallback()
 {
 }
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 void PreUnregistCallback()
 {
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 void PostUnregistCallback()
 {

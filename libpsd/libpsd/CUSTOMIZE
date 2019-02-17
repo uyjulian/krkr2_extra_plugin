@@ -43,7 +43,7 @@ How to customize the compilation of the Libpsd
  not useful for your project. Read the file image_resource.c, to undef this macro
  will hide some information and reduce the time of parsing.
  
- PSD_INCLUDE_LIBXML : XMP¡ªthe Extensible Metadata Platform¡ªis designed to provide
+ PSD_INCLUDE_LIBXML : XMPï½¡ï½ªthe Extensible Metadata Platformï½¡ï½ªis designed to provide
  XMP metadata, it standardizes the definition, creation, and processing, and it's 
  the XML format. We use the libxml to parse the XMP. Most of the projects don't need
  this, to undef this macro and reduce the parsing time.

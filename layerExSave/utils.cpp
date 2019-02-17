@@ -2,22 +2,22 @@
 #include "utils.hpp"
 
 //----------------------------------------------
-// ѓЊѓCѓ„ѓCѓЃЃ[ѓW‘ЂЌмѓ†Ѓ[ѓeѓBѓЉѓeѓB
+// гѓ¬г‚¤гѓ¤г‚¤гѓЎгѓјг‚ёж“ЌдЅњгѓ¦гѓјгѓ†г‚ЈгѓЄгѓ†г‚Ј
 
 /**
- * ѓЊѓCѓ„‚МѓTѓCѓY‚Жѓoѓbѓtѓ@‚рЋж“ѕ‚·‚й
+ * гѓ¬г‚¤гѓ¤гЃ®г‚µг‚¤г‚єгЃЁгѓђгѓѓгѓ•г‚Ўг‚’еЏ–еѕ—гЃ™г‚‹
  */
 bool
 GetLayerSize(iTJSDispatch2 *lay, long &w, long &h, long &pitch)
 {
-	// ѓЊѓCѓ„ѓCѓ“ѓXѓ^ѓ“ѓX€ИЉO‚Е‚НѓGѓ‰Ѓ[
+	// гѓ¬г‚¤гѓ¤г‚¤гѓіг‚№г‚їгѓіг‚№д»Ґе¤–гЃ§гЃЇг‚Ёгѓ©гѓј
 	if (!lay || TJS_FAILED(lay->IsInstanceOf(0, 0, 0, TJS_W("Layer"), lay))) return false;
 
-	// ѓЊѓCѓ„ѓCѓЃЃ[ѓW‚НЌЭ‚й‚©ЃH
+	// гѓ¬г‚¤гѓ¤г‚¤гѓЎгѓјг‚ёгЃЇењЁг‚‹гЃ‹пјџ
 	tTJSVariant val;
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("hasImage"), 0, &val, lay)) || (val.AsInteger() == 0)) return false;
 
-	// ѓЊѓCѓ„ѓTѓCѓY‚рЋж“ѕ
+	// гѓ¬г‚¤гѓ¤г‚µг‚¤г‚єг‚’еЏ–еѕ—
 	val.Clear();
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("imageWidth"), 0, &val, lay))) return false;
 	w = (long)val.AsInteger();
@@ -26,35 +26,35 @@ GetLayerSize(iTJSDispatch2 *lay, long &w, long &h, long &pitch)
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("imageHeight"), 0, &val, lay))) return false;
 	h = (long)val.AsInteger();
 
-	// ѓsѓbѓ`Ћж“ѕ
+	// гѓ”гѓѓгѓЃеЏ–еѕ—
 	val.Clear();
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBufferPitch"), 0, &val, lay))) return false;
 	pitch = (long)val.AsInteger();
 
-	// ђіЏн‚И’l‚©‚З‚¤‚©
+	// ж­ЈеёёгЃЄеЂ¤гЃ‹гЃ©гЃ†гЃ‹
 	return (w > 0 && h > 0 && pitch != 0);
 }
 
-// “З‚ЭЌћ‚Э—p
+// иЄ­гЃїиѕјгЃїз”Ё
 bool
 GetLayerBufferAndSize(iTJSDispatch2 *lay, long &w, long &h, BufRefT &ptr, long &pitch)
 {
 	if (!GetLayerSize(lay, w, h, pitch)) return false;
 
-	// ѓoѓbѓtѓ@Ћж“ѕ
+	// гѓђгѓѓгѓ•г‚ЎеЏ–еѕ—
 	tTJSVariant val;
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBuffer"), 0, &val, lay))) return false;
 	ptr = reinterpret_cast<BufRefT>(val.AsInteger());
 	return  (ptr != 0);
 }
 
-// Џ‘‚«Ќћ‚Э—p
+// ж›ёгЃЌиѕјгЃїз”Ё
 bool
 GetLayerBufferAndSize(iTJSDispatch2 *lay, long &w, long &h, WrtRefT &ptr, long &pitch)
 {
 	if (!GetLayerSize(lay, w, h, pitch)) return false;
 
-	// ѓoѓbѓtѓ@Ћж“ѕ
+	// гѓђгѓѓгѓ•г‚ЎеЏ–еѕ—
 	tTJSVariant val;
 	if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBufferForWrite"), 0, &val, lay))) return false;
 	ptr = reinterpret_cast<WrtRefT>(val.AsInteger());
@@ -62,7 +62,7 @@ GetLayerBufferAndSize(iTJSDispatch2 *lay, long &w, long &h, WrtRefT &ptr, long &
 }
 
 /**
- * ‹йЊ`—М€ж‚МЋ«Џ‘‚рђ¶ђ¬
+ * зџ©еЅўй еџџгЃ®иѕћж›ёг‚’з”џж€ђ
  */
 static void
 MakeResult(tTJSVariant *result, long x, long y, long w, long h)
@@ -76,7 +76,7 @@ MakeResult(tTJSVariant *result, long x, long y, long w, long h)
 }
 
 /**
- * •s“§–ѕѓ`ѓFѓbѓNЉЦђ”
+ * дёЌйЂЏжЋгѓЃг‚§гѓѓг‚Їй–ўж•°
  */
 static bool
 CheckTransp(BufRefT p, long next, long count)
@@ -86,32 +86,32 @@ CheckTransp(BufRefT p, long next, long count)
 }
 
 /**
- * ѓЊѓCѓ„ѓCѓЃЃ[ѓW‚рѓNѓЌѓbѓvЃiЏг‰єЌ¶‰E‚М—]”’“§–ѕ•”•Є‚рђШ‚иЋж‚йЃj‚µ‚Ѕ‚Ж‚«‚МѓTѓCѓY‚рЋж“ѕ‚·‚й
+ * гѓ¬г‚¤гѓ¤г‚¤гѓЎгѓјг‚ёг‚’г‚Їгѓ­гѓѓгѓ—пј€дёЉдё‹е·¦еЏігЃ®дЅ™з™ЅйЂЏжЋйѓЁе€†г‚’е€‡г‚ЉеЏ–г‚‹пј‰гЃ—гЃџгЃЁгЃЌгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—гЃ™г‚‹
  *
  * Layer.getCropRect = function();
- * @return %[ x, y, w, h] Њ`Ћ®‚МЋ«Џ‘ЃC‚Ь‚Ѕ‚НvoidЃi‘S•”“§–ѕ‚М‚Ж‚«Ѓj
+ * @return %[ x, y, w, h] еЅўејЏгЃ®иѕћж›ёпјЊгЃѕгЃџгЃЇvoidпј€е…ЁйѓЁйЂЏжЋгЃ®гЃЁгЃЌпј‰
  */
 static tjs_error TJS_INTF_METHOD
 GetCropRect(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
 {
-	// ѓЊѓCѓ„ѓoѓbѓtѓ@‚МЋж“ѕ
+	// гѓ¬г‚¤гѓ¤гѓђгѓѓгѓ•г‚ЎгЃ®еЏ–еѕ—
 	BufRefT p, r = 0;
 	long w, h, nl, nc = 4;
 	if (!GetLayerBufferAndSize(lay, w, h, r, nl))
 		TVPThrowExceptionMessage(TJS_W("Invalid layer image."));
 
-	// Њ‹‰К—М€ж
+	// зµђжћњй еџџ
 	long x1=0, y1=0, x2=w-1, y2=h-1;
 	result->Clear();
 
-	for (p=r;             x1 <  w; x1++,p+=nc) if (CheckTransp(p, nl,  h)) break; // Ќ¶‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                      */ if (x1 >= w) return TJS_S_OK;      // ‘S•”“§–ѕ‚И‚з void ‚р•Ф‚·
-	for (p=r+x2*nc;       x2 >= 0; x2--,p-=nc) if (CheckTransp(p, nl,  h)) break; // ‰E‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                      */ long rw = x2 - x1 + 1;             // Ќ¶‰E‚Й‹І‚Ь‚к‚ЅЋc‚и‚М•ќ
-	for (p=r+x1*nc;       y1 <  h; y1++,p+=nl) if (CheckTransp(p, nc, rw)) break; // Џг‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	for (p=r+x1*nc+y2*nl; y2 >= 0; y2--,p-=nl) if (CheckTransp(p, nc, rw)) break; // ‰є‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
+	for (p=r;             x1 <  w; x1++,p+=nc) if (CheckTransp(p, nl,  h)) break; // е·¦гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                      */ if (x1 >= w) return TJS_S_OK;      // е…ЁйѓЁйЂЏжЋгЃЄг‚‰ void г‚’иї”гЃ™
+	for (p=r+x2*nc;       x2 >= 0; x2--,p-=nc) if (CheckTransp(p, nl,  h)) break; // еЏігЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                      */ long rw = x2 - x1 + 1;             // е·¦еЏігЃ«жЊџгЃѕг‚ЊгЃџж®‹г‚ЉгЃ®е№…
+	for (p=r+x1*nc;       y1 <  h; y1++,p+=nl) if (CheckTransp(p, nc, rw)) break; // дёЉгЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	for (p=r+x1*nc+y2*nl; y2 >= 0; y2--,p-=nl) if (CheckTransp(p, nc, rw)) break; // дё‹гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
 
-	// Њ‹‰К‚рЋ«Џ‘‚Й•Ф‚·
+	// зµђжћњг‚’иѕћж›ёгЃ«иї”гЃ™
 	MakeResult(result, x1, y1, rw, y2 - y1 + 1);
 
 	return TJS_S_OK;
@@ -120,7 +120,7 @@ GetCropRect(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDis
 NCB_ATTACH_FUNCTION(getCropRect, Layer, GetCropRect);
 
 /**
- * •s“§–ѕѓ`ѓFѓbѓNЉЦђ”
+ * дёЌйЂЏжЋгѓЃг‚§гѓѓг‚Їй–ўж•°
  */
 static bool
 CheckZerop(BufRefT p, long next, long count)
@@ -130,32 +130,32 @@ CheckZerop(BufRefT p, long next, long count)
 }
 
 /**
- * ѓЊѓCѓ„ѓCѓЃЃ[ѓW‚рѓNѓЌѓbѓvЃiЏг‰єЌ¶‰E‚МЉ®‘S“§–ѕ•”•Є‚рђШ‚иЋж‚йЃj‚µ‚Ѕ‚Ж‚«‚МѓTѓCѓY‚рЋж“ѕ‚·‚й
+ * гѓ¬г‚¤гѓ¤г‚¤гѓЎгѓјг‚ёг‚’г‚Їгѓ­гѓѓгѓ—пј€дёЉдё‹е·¦еЏігЃ®е®Ње…ЁйЂЏжЋйѓЁе€†г‚’е€‡г‚ЉеЏ–г‚‹пј‰гЃ—гЃџгЃЁгЃЌгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—гЃ™г‚‹
  *
  * Layer.getCropRectZero = function();
- * @return %[ x, y, w, h] Њ`Ћ®‚МЋ«Џ‘ЃC‚Ь‚Ѕ‚НvoidЃi‘S•”“§–ѕ‚М‚Ж‚«Ѓj
+ * @return %[ x, y, w, h] еЅўејЏгЃ®иѕћж›ёпјЊгЃѕгЃџгЃЇvoidпј€е…ЁйѓЁйЂЏжЋгЃ®гЃЁгЃЌпј‰
  */
 static tjs_error TJS_INTF_METHOD
 GetCropRectZero(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
 {
-	// ѓЊѓCѓ„ѓoѓbѓtѓ@‚МЋж“ѕ
+	// гѓ¬г‚¤гѓ¤гѓђгѓѓгѓ•г‚ЎгЃ®еЏ–еѕ—
 	BufRefT p, r = 0;
 	long w, h, nl, nc = 4;
 	if (!GetLayerBufferAndSize(lay, w, h, r, nl))
 		TVPThrowExceptionMessage(TJS_W("Invalid layer image."));
 
-	// Њ‹‰К—М€ж
+	// зµђжћњй еџџ
 	long x1=0, y1=0, x2=w-1, y2=h-1;
 	result->Clear();
 
-	for (p=r;             x1 <  w; x1++,p+=nc) if (CheckZerop(p, nl,  h)) break; // Ќ¶‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                      */ if (x1 >= w) return TJS_S_OK;      // ‘S•”“§–ѕ‚И‚з void ‚р•Ф‚·
-	for (p=r+x2*nc;       x2 >= 0; x2--,p-=nc) if (CheckZerop(p, nl,  h)) break; // ‰E‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                      */ long rw = x2 - x1 + 1;             // Ќ¶‰E‚Й‹І‚Ь‚к‚ЅЋc‚и‚М•ќ
-	for (p=r+x1*nc;       y1 <  h; y1++,p+=nl) if (CheckZerop(p, nc, rw)) break; // Џг‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	for (p=r+x1*nc+y2*nl; y2 >= 0; y2--,p-=nl) if (CheckZerop(p, nc, rw)) break; // ‰є‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
+	for (p=r;             x1 <  w; x1++,p+=nc) if (CheckZerop(p, nl,  h)) break; // е·¦гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                      */ if (x1 >= w) return TJS_S_OK;      // е…ЁйѓЁйЂЏжЋгЃЄг‚‰ void г‚’иї”гЃ™
+	for (p=r+x2*nc;       x2 >= 0; x2--,p-=nc) if (CheckZerop(p, nl,  h)) break; // еЏігЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                      */ long rw = x2 - x1 + 1;             // е·¦еЏігЃ«жЊџгЃѕг‚ЊгЃџж®‹г‚ЉгЃ®е№…
+	for (p=r+x1*nc;       y1 <  h; y1++,p+=nl) if (CheckZerop(p, nc, rw)) break; // дёЉгЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	for (p=r+x1*nc+y2*nl; y2 >= 0; y2--,p-=nl) if (CheckZerop(p, nc, rw)) break; // дё‹гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
 
-	// Њ‹‰К‚рЋ«Џ‘‚Й•Ф‚·
+	// зµђжћњг‚’иѕћж›ёгЃ«иї”гЃ™
 	MakeResult(result, x1, y1, rw, y2 - y1 + 1);
 
 	return TJS_S_OK;
@@ -164,7 +164,7 @@ GetCropRectZero(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJ
 NCB_ATTACH_FUNCTION(getCropRectZero, Layer, GetCropRectZero);
 
 /**
- * ђF”дЉrЉЦђ”
+ * и‰ІжЇ”ијѓй–ўж•°
  */
 #define IS_SAME_COLOR(A1,R1,G1,B1, A2,R2,G2,B2) \
 	(((A1)==(A2)) && ((A1)==0 || ((R1)==(R2) && (G1)==(G2) && (B1)==(B2))))
@@ -181,44 +181,44 @@ CheckDiff(BufRefT p1, long p1n, BufRefT p2, long p2n, long count)
 }
 
 /**
- * ѓЊѓCѓ„‚МЌ·•Є—М€ж‚рЋж“ѕ‚·‚й
+ * гѓ¬г‚¤гѓ¤гЃ®е·®е€†й еџџг‚’еЏ–еѕ—гЃ™г‚‹
  * 
  * Layer.getDiffRegion = function(base);
- * @param base Ќ·•ЄЊі‚Ж‚И‚йѓxЃ[ѓX—p‚М‰ж‘њЃiѓCѓ“ѓXѓ^ѓ“ѓXЋ©ђg‚Ж“Ї‚¶‰ж‘њѓTѓCѓY‚Е‚ ‚й‚±‚ЖЃj
- * @return %[ x, y, w, h ] Њ`Ћ®‚МЋ«Џ‘ЃC‚Ь‚Ѕ‚НvoidЃiЉ®‘S‚Й“Ї‚¶‰ж‘њ‚М‚Ж‚«Ѓj
+ * @param base е·®е€†е…ѓгЃЁгЃЄг‚‹гѓ™гѓјг‚№з”ЁгЃ®з”»еѓЏпј€г‚¤гѓіг‚№г‚їгѓіг‚№и‡Єиє«гЃЁеђЊгЃз”»еѓЏг‚µг‚¤г‚єгЃ§гЃ‚г‚‹гЃ“гЃЁпј‰
+ * @return %[ x, y, w, h ] еЅўејЏгЃ®иѕћж›ёпјЊгЃѕгЃџгЃЇvoidпј€е®Ње…ЁгЃ«еђЊгЃз”»еѓЏгЃ®гЃЁгЃЌпј‰
  */
 
 static tjs_error TJS_INTF_METHOD
 GetDiffRect(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
 {
-	// €шђ”‚Мђ”ѓ`ѓFѓbѓN
+	// еј•ж•°гЃ®ж•°гѓЃг‚§гѓѓг‚Ї
 	if (numparams < 1) return TJS_E_BADPARAMCOUNT;
 
 	iTJSDispatch2 *base = param[0]->AsObjectNoAddRef();
 
-	// ѓЊѓCѓ„ѓoѓbѓtѓ@‚МЋж“ѕ
+	// гѓ¬г‚¤гѓ¤гѓђгѓѓгѓ•г‚ЎгЃ®еЏ–еѕ—
 	BufRefT fp, tp, fr = 0, tr = 0;
 	long w, h, tnl, fw, fh, fnl, nc = 4;
 	if (!GetLayerBufferAndSize(lay,   w,  h, tr, tnl) || 
 		!GetLayerBufferAndSize(base, fw, fh, fr, fnl))
 		TVPThrowExceptionMessage(TJS_W("Invalid layer image."));
 
-	// ѓЊѓCѓ„‚МѓTѓCѓY‚Н“Ї‚¶‚©
+	// гѓ¬г‚¤гѓ¤гЃ®г‚µг‚¤г‚єгЃЇеђЊгЃгЃ‹
 	if (w != fw || h != fh)
 		TVPThrowExceptionMessage(TJS_W("Different layer size."));
 
-	// Њ‹‰К—М€ж
+	// зµђжћњй еџџ
 	long x1=0, y1=0, x2=w-1, y2=h-1;
 	result->Clear();
 
-	for (fp=fr,             tp=tr;              x1 <  w; x1++,fp+=nc, tp+=nc ) if (CheckDiff(fp, fnl, tp, tnl,  h)) break; // Ќ¶‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                                                      */ if (x1 >= w) return TJS_S_OK;               // ‘S•”“§–ѕ‚И‚з void ‚р•Ф‚·
-	for (fp=fr+x2*nc,       tp=tr+x2*nc;        x2 >= 0; x2--,fp-=nc, tp-=nc ) if (CheckDiff(fp, fnl, tp, tnl,  h)) break; // ‰E‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	/*                                                                      */ long rw = x2 - x1 + 1;                      // Ќ¶‰E‚Й‹І‚Ь‚к‚ЅЋc‚и‚М•ќ
-	for (fp=fr+x1*nc,       tp=tr+x1*nc;        y1 <  h; y1++,fp+=fnl,tp+=tnl) if (CheckDiff(fp, nc,  tp, nc,  rw)) break; // Џг‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
-	for (fp=fr+x1*nc+y2*fnl,tp=tr+x1*nc+y2*tnl; y2 >= 0; y2--,fp-=fnl,tp-=tnl) if (CheckDiff(fp, nc,  tp, nc,  rw)) break; // ‰є‚©‚з“§–ѕ—М€ж‚р’І‚Ч‚й
+	for (fp=fr,             tp=tr;              x1 <  w; x1++,fp+=nc, tp+=nc ) if (CheckDiff(fp, fnl, tp, tnl,  h)) break; // е·¦гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                                                      */ if (x1 >= w) return TJS_S_OK;               // е…ЁйѓЁйЂЏжЋгЃЄг‚‰ void г‚’иї”гЃ™
+	for (fp=fr+x2*nc,       tp=tr+x2*nc;        x2 >= 0; x2--,fp-=nc, tp-=nc ) if (CheckDiff(fp, fnl, tp, tnl,  h)) break; // еЏігЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	/*                                                                      */ long rw = x2 - x1 + 1;                      // е·¦еЏігЃ«жЊџгЃѕг‚ЊгЃџж®‹г‚ЉгЃ®е№…
+	for (fp=fr+x1*nc,       tp=tr+x1*nc;        y1 <  h; y1++,fp+=fnl,tp+=tnl) if (CheckDiff(fp, nc,  tp, nc,  rw)) break; // дёЉгЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
+	for (fp=fr+x1*nc+y2*fnl,tp=tr+x1*nc+y2*tnl; y2 >= 0; y2--,fp-=fnl,tp-=tnl) if (CheckDiff(fp, nc,  tp, nc,  rw)) break; // дё‹гЃ‹г‚‰йЂЏжЋй еџџг‚’иЄїгЃ№г‚‹
 
-	// Њ‹‰К‚рЋ«Џ‘‚Й•Ф‚·
+	// зµђжћњг‚’иѕћж›ёгЃ«иї”гЃ™
 	MakeResult(result, x1, y1, rw, y2 - y1 + 1);
 
 	return TJS_S_OK;
@@ -227,13 +227,13 @@ GetDiffRect(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDis
 NCB_ATTACH_FUNCTION(getDiffRect, Layer, GetDiffRect);
 
 /**
- * ѓЊѓCѓ„‚МѓsѓNѓZѓ‹”дЉr‚рЌs‚¤
+ * гѓ¬г‚¤гѓ¤гЃ®гѓ”г‚Їг‚»гѓ«жЇ”ијѓг‚’иЎЊгЃ†
  * 
  * Layer.getDiffPixel = function(base, samecol, diffcol);
- * @param base Ќ·•ЄЊі‚Ж‚И‚йѓxЃ[ѓX—p‚М‰ж‘њЃiѓCѓ“ѓXѓ^ѓ“ѓXЋ©ђg‚Ж“Ї‚¶‰ж‘њѓTѓCѓY‚Е‚ ‚й‚±‚ЖЃj
- * @param samecol “Ї‚¶ЏкЌ‡‚Й“h‚и‚В‚Ф‚·ђF(0xAARRGGBB)ЃivoidЃEЏИ—Є‚И‚з“h‚и‚В‚Ф‚і‚И‚ўЃj
- * @param diffcol €б‚¤ЏкЌ‡‚Й“h‚и‚В‚Ф‚·ђF(0xAARRGGBB)ЃivoidЃEЏИ—Є‚И‚з“h‚и‚В‚Ф‚і‚И‚ўЃj
- * @return €б‚¤ѓsѓNѓZѓ‹‚МѓJѓEѓ“ѓg
+ * @param base е·®е€†е…ѓгЃЁгЃЄг‚‹гѓ™гѓјг‚№з”ЁгЃ®з”»еѓЏпј€г‚¤гѓіг‚№г‚їгѓіг‚№и‡Єиє«гЃЁеђЊгЃз”»еѓЏг‚µг‚¤г‚єгЃ§гЃ‚г‚‹гЃ“гЃЁпј‰
+ * @param samecol еђЊгЃе ґеђ€гЃ«еЎ—г‚ЉгЃ¤гЃ¶гЃ™и‰І(0xAARRGGBB)пј€voidгѓ»зњЃз•ҐгЃЄг‚‰еЎ—г‚ЉгЃ¤гЃ¶гЃ•гЃЄгЃ„пј‰
+ * @param diffcol йЃ•гЃ†е ґеђ€гЃ«еЎ—г‚ЉгЃ¤гЃ¶гЃ™и‰І(0xAARRGGBB)пј€voidгѓ»зњЃз•ҐгЃЄг‚‰еЎ—г‚ЉгЃ¤гЃ¶гЃ•гЃЄгЃ„пј‰
+ * @return йЃ•гЃ†гѓ”г‚Їг‚»гѓ«гЃ®г‚«г‚¦гѓігѓ€
  */
 
 static tjs_error TJS_INTF_METHOD
@@ -243,7 +243,7 @@ GetDiffPixel(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDi
 	bool sfill = false, dfill = false;
 	tTVInteger count = 0;
 
-	// €шђ”‚Мђ”ѓ`ѓFѓbѓN
+	// еј•ж•°гЃ®ж•°гѓЃг‚§гѓѓг‚Ї
 	if (numparams < 1) return TJS_E_BADPARAMCOUNT;
 
 	if (numparams >= 2 && param[1]->Type() != tvtVoid) {
@@ -258,7 +258,7 @@ GetDiffPixel(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDi
 
 	iTJSDispatch2 *base = param[0]->AsObjectNoAddRef();
 
-	// ѓЊѓCѓ„ѓoѓbѓtѓ@‚МЋж“ѕ
+	// гѓ¬г‚¤гѓ¤гѓђгѓѓгѓ•г‚ЎгЃ®еЏ–еѕ—
 	BufRefT fp, fr = 0;
 	WrtRefT tp, tr = 0;
 	long w, h, tnl, fw, fh, fnl, nc = 4;
@@ -266,11 +266,11 @@ GetDiffPixel(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDi
 		!GetLayerBufferAndSize(base, fw, fh, fr, fnl))
 		TVPThrowExceptionMessage(TJS_W("Invalid layer image."));
 
-	// ѓЊѓCѓ„‚МѓTѓCѓY‚Н“Ї‚¶‚©
+	// гѓ¬г‚¤гѓ¤гЃ®г‚µг‚¤г‚єгЃЇеђЊгЃгЃ‹
 	if (w != fw || h != fh)
 		TVPThrowExceptionMessage(TJS_W("Different layer size."));
 
-	// “h‚и‚В‚Ф‚µ
+	// еЎ—г‚ЉгЃ¤гЃ¶гЃ—
 	for (long y = 0; (fp=fr, tp=tr, y < h); y++, fr+=fnl, tr+=tnl) {
 		for (long x = 0; x < w; x++, fp+=nc, tp+=nc) {
 			bool same = IS_SAME_COLOR(fp[3],fp[2],fp[1],fp[0], tp[3],tp[2],tp[1],tp[0]);
@@ -286,23 +286,23 @@ GetDiffPixel(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDi
 NCB_ATTACH_FUNCTION(getDiffPixel, Layer, GetDiffPixel);
 
 
-// ђF‚р‰БЋZ
+// и‰Іг‚’еЉ з®—
 static inline void AddColor(DWORD &r, DWORD &g, DWORD &b, BufRefT p) {
 	r += p[2], g += p[1], b += p[0];
 }
 
 /**
- * ѓЊѓCѓ„‚М•Ј‚МђF‚р“§–ѕ•”•Є‚Ь‚Е€ш‚«ђL‚О‚·ЃiЏkЏ¬Ћћ‚Й‹UђF‚ЄЏo‚й‚М‚р–h‚®Ѓj
+ * гѓ¬г‚¤гѓ¤гЃ®ж·µгЃ®и‰Іг‚’йЂЏжЋйѓЁе€†гЃѕгЃ§еј•гЃЌдјёгЃ°гЃ™пј€зё®е°Џж™‚гЃ«еЃЅи‰ІгЃЊе‡єг‚‹гЃ®г‚’йІгЃђпј‰
  * 
  * Layer.oozeColor = function(level, threshold=1);
- * @param level Џ€—ќ‚рЌs‚¤‰сђ”ЃB‘е‚«‚ў‚Щ‚З€ш‚«ђL‚О‚µ—М€ж‚Є‘ќ‚¦‚й
- * @param threshold ѓAѓ‹ѓtѓ@‚Ми‡’l(1Ѓ`255)‚±‚к‚ж‚и’б‚ўѓsѓNѓZѓ‹‚Ц€ш‚«ђL‚О‚·
- * @param fillColor Џ€—ќ—М€ж€ИЉO‚М“h‚и‚В‚Ф‚µђF
+ * @param level е‡¦зђ†г‚’иЎЊгЃ†е›ћж•°гЂ‚е¤§гЃЌгЃ„гЃ»гЃ©еј•гЃЌдјёгЃ°гЃ—й еџџгЃЊеў—гЃ€г‚‹
+ * @param threshold г‚ўгѓ«гѓ•г‚ЎгЃ®й–ѕеЂ¤(1гЂњ255)гЃ“г‚Њг‚€г‚ЉдЅЋгЃ„гѓ”г‚Їг‚»гѓ«гЃёеј•гЃЌдјёгЃ°гЃ™
+ * @param fillColor е‡¦зђ†й еџџд»Ґе¤–гЃ®еЎ—г‚ЉгЃ¤гЃ¶гЃ—и‰І
  */
 static tjs_error TJS_INTF_METHOD
 OozeColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
 {
-	// €шђ”‚Мђ”ѓ`ѓFѓbѓN
+	// еј•ж•°гЃ®ж•°гѓЃг‚§гѓѓг‚Ї
 	if (numparams < 1) return TJS_E_BADPARAMCOUNT;
 	int level = (int)(param[0]->AsInteger());
 	if (level <= 0) 
@@ -317,18 +317,18 @@ OozeColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispa
 	else if (threshold > 255)
 		threshold = 255;
 
-	// ѓЊѓCѓ„ѓoѓbѓtѓ@‚МЋж“ѕ
+	// гѓ¬г‚¤гѓ¤гѓђгѓѓгѓ•г‚ЎгЃ®еЏ–еѕ—
 	WrtRefT p, r = 0;
 	long x, y, w, h, nl, nc = 4, ow, oh;
 	if (!GetLayerBufferAndSize(lay, w, h, r, nl))
 		TVPThrowExceptionMessage(TJS_W("Invalid layer image."));
 
-	ow = w+2, oh = h+2; // oozed map ‚МѓTѓCѓY
+	ow = w+2, oh = h+2; // oozed map гЃ®г‚µг‚¤г‚є
 	char *o, *otop, *oozed = new char[ow*oh];
-	otop = oozed + ow + 1; // oozed map Ќ¶Џг
-	ZeroMemory(oozed, ow*oh); // ѓNѓЉѓA
+	otop = oozed + ow + 1; // oozed map е·¦дёЉ
+	ZeroMemory(oozed, ow*oh); // г‚ЇгѓЄг‚ў
 	try {
-		// ѓAѓ‹ѓtѓ@ѓ}ѓbѓv‚р’І‚Ч‚й
+		// г‚ўгѓ«гѓ•г‚Ўгѓћгѓѓгѓ—г‚’иЄїгЃ№г‚‹
 		for (y = 0; y < h; y++) {
 			o = otop + y*ow;
 			p = r    + y*nl;
@@ -337,22 +337,22 @@ OozeColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispa
 				else {
 					p[2] = fillR;
 					p[1] = fillG;
-					p[0] = fillB; // и‡’l€И‰є‚М•s“§–ѕ•”•Є‚МђF‚рЋw’иђF‚ЕѓNѓЉѓA
+					p[0] = fillB; // й–ѕеЂ¤д»Ґдё‹гЃ®дёЌйЂЏжЋйѓЁе€†гЃ®и‰Іг‚’жЊ‡е®љи‰ІгЃ§г‚ЇгѓЄг‚ў
 				}
 			}
 		}
 
-		// €ш‚«ђL‚О‚µЏ€—ќ
+		// еј•гЃЌдјёгЃ°гЃ—е‡¦зђ†
 		for (int i = 0; i < level; i++) {
 			bool L, R, U, D;
 			for (y = 0; y < h; y++) {
 				o = otop + y*ow;
 				p = r    + y*nl;
 				for (x = 0; x < w; x++, p+=nc, o++) {
-					// –ўЏ€—ќ—М€ж‚рѓ`ѓFѓbѓN
+					// жњЄе‡¦зђ†й еџџг‚’гѓЃг‚§гѓѓг‚Ї
 					if (!*o) {
 						DWORD cr = 0, cg = 0, cb = 0;
-						// Џг‰єЌ¶‰E‚М—М€ж‚рѓ`ѓFѓbѓN
+						// дёЉдё‹е·¦еЏігЃ®й еџџг‚’гѓЃг‚§гѓѓг‚Ї
 						U=o[-ow]<0, D=o[ow]<0, L=o[-1]<0, R=o[1]<0;
 						if (U || D || L || R) {
 							int cnt = 0;
@@ -368,7 +368,7 @@ OozeColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispa
 					}
 				}
 			}
-			// Џ€—ќЌПѓ}ѓbѓv‚М’l‚рЌДђЭ’и
+			// е‡¦зђ†жё€гѓћгѓѓгѓ—гЃ®еЂ¤г‚’е†ЌиЁ­е®љ
 			for (y = 0; y < h; y++) {
 				o = otop + y*ow;
 				for (x = 0; x < w; x++, o++) if (*o>0) *o=-1;
@@ -387,7 +387,7 @@ NCB_ATTACH_FUNCTION(oozeColor, Layer, OozeColor);
 
 /**
  * Layer.copyAlpha = function(src);
- * src ‚М B’l‚р ѓї—М€ж‚ЙѓRѓsЃ[‚·‚й
+ * src гЃ® BеЂ¤г‚’ О±й еџџгЃ«г‚ігѓ”гѓјгЃ™г‚‹
  */
 static tjs_error TJS_INTF_METHOD
 CopyBlueToAlpha(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
@@ -396,26 +396,26 @@ CopyBlueToAlpha(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJ
 		return TJS_E_BADPARAMCOUNT;
 	}
 
-	// “З‚ЭЌћ‚Э‚а‚Ж
+	// иЄ­гЃїиѕјгЃїг‚‚гЃЁ
 	BufRefT sbuf = 0;
 	long sw, sh, spitch;
 	if (!GetLayerBufferAndSize(param[0]->AsObjectNoAddRef(), sw, sh, sbuf, spitch)) {
 		TVPThrowExceptionMessage(TJS_W("src must be Layer."));
 	}
-	// Џ‘‚«Ќћ‚Эђж
+	// ж›ёгЃЌиѕјгЃїе…€
 	WrtRefT dbuf = 0;
 	long dw, dh, dpitch;
 	if (!GetLayerBufferAndSize(lay, dw, dh, dbuf, dpitch)) {
 		TVPThrowExceptionMessage(TJS_W("dest must be Layer."));
 	}
 
-	// Џ¬‚і‚ў—М€ж•Є
+	// е°ЏгЃ•гЃ„й еџџе€†
 	int w = (sw < dw ? sw : dw);
 	int h = sh < dh ? sh : dh;
-	// ѓRѓsЃ[
+	// г‚ігѓ”гѓј
 	for (int i=0;i<h;i++) {
-		BufRefT p = sbuf;     // B—М€ж
-		WrtRefT q = dbuf+3;   // A—М€ж
+		BufRefT p = sbuf;     // Bй еџџ
+		WrtRefT q = dbuf+3;   // Aй еџџ
 		for (int j=0;j<w;j++) {
 			*q = *p;
 			p += 4;
@@ -431,7 +431,7 @@ NCB_ATTACH_FUNCTION(copyBlueToAlpha, Layer, CopyBlueToAlpha);
 
 /**
  * Layer.isBlank = function(x,y,w,h);
- * Ћw’и—М€ж‚Єѓuѓ‰ѓ“ѓNѓfЃ[ѓ^‚©‚З‚¤‚©Љm”F‚·‚й
+ * жЊ‡е®љй еџџгЃЊгѓ–гѓ©гѓіг‚Їгѓ‡гѓјг‚їгЃ‹гЃ©гЃ†гЃ‹зўєиЄЌгЃ™г‚‹
  */
 static tjs_error TJS_INTF_METHOD
 isBlank(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -440,7 +440,7 @@ isBlank(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatc
 		return TJS_E_BADPARAMCOUNT;
 	}
 
-	// “З‚ЭЌћ‚Э‚а‚Ж
+	// иЄ­гЃїиѕјгЃїг‚‚гЃЁ
 	BufRefT sbuf = 0;
 	long sw, sh, spitch;
 	if (!GetLayerBufferAndSize(objthis, sw, sh, sbuf, spitch)) {
@@ -452,16 +452,16 @@ isBlank(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatc
 	tjs_int width  = *param[2];
 	tjs_int height = *param[3];
 
-	// ѓ\Ѓ[ѓX”Н€Н‚ЕѓNѓЉѓbѓsѓ“ѓO
+	// г‚Ѕгѓјг‚№зЇ„е›ІгЃ§г‚ЇгѓЄгѓѓгѓ”гѓіг‚°
 	if (left < 0) { width += left; left = 0; }
 	if (top  < 0) { height += top; top  = 0; }
 	tjs_int cut;
 	if ((cut = left + width  - sw) > 0) width  -= cut;
 	if ((cut = top  + height - sh) > 0) height -= cut;
 
-	// ”Н€Нѓ`ѓFѓbѓN
+	// зЇ„е›ІгѓЃг‚§гѓѓг‚Ї
 	if (width >= 0 && height >= 0) {
-		// ”»’иЏ€—ќ
+		// е€¤е®ље‡¦зђ†
 		for (tjs_int y = top; y < top + height; y++) {
 			BufRefT buffer = sbuf + left * 4 + spitch * y;
 			for (tjs_int x = left; x < left + width; x++, buffer += 4) {
@@ -485,7 +485,7 @@ NCB_ATTACH_FUNCTION(isBlank, Layer, isBlank);
 
 /**
  * Layer.clearAlpha = function (threthold, fillColor=0)
- * ѓї‚ЄЋw’и‚ж‚иЏ¬‚і‚ў•”•Є‚рЉ®‘S“§–ѕ‰»‚·‚й
+ * О±гЃЊжЊ‡е®љг‚€г‚Ље°ЏгЃ•гЃ„йѓЁе€†г‚’е®Ње…ЁйЂЏжЋеЊ–гЃ™г‚‹
  */
 static tjs_error TJS_INTF_METHOD
 clearAlpha(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *lay)
@@ -493,16 +493,16 @@ clearAlpha(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDisp
 	int threthold = numparams <= 0 ? 0 : *param[0];
 	unsigned long fillColor = (unsigned long) ((numparams > 1 ? param[1]->AsInteger() : 0) & 0xffffff);
 	
-	// Џ‘‚«Ќћ‚Эђж
+	// ж›ёгЃЌиѕјгЃїе…€
 	WrtRefT dbuf = 0;
 	long w, h, pitch;
 	if (!GetLayerBufferAndSize(lay, w, h, dbuf, pitch)) {
 		TVPThrowExceptionMessage(TJS_W("dest must be Layer."));
 	}
 
-	// ѓRѓsЃ[
+	// г‚ігѓ”гѓј
 	for (int i=0;i<h;i++) {
-		WrtRefT q = dbuf;   // A—М€ж
+		WrtRefT q = dbuf;   // Aй еџџ
 		for (int j=0;j<w;j++) {
 			if (q[3] <= threthold) {
 				*((unsigned long*)q) = fillColor;
@@ -518,7 +518,7 @@ NCB_ATTACH_FUNCTION(clearAlpha, Layer, clearAlpha);
 
 /**
  * Layer.getAverageColor = function(x,y,w,h);
- * Ћw’и—М€ж‚М•Ѕ‹ПђF‚р•Ф‚·
+ * жЊ‡е®љй еџџгЃ®е№іеќ‡и‰Іг‚’иї”гЃ™
  */
 static tjs_error TJS_INTF_METHOD
 getAverageColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -527,7 +527,7 @@ getAverageColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJ
 		return TJS_E_BADPARAMCOUNT;
 	}
 
-	// “З‚ЭЌћ‚Э‚а‚Ж
+	// иЄ­гЃїиѕјгЃїг‚‚гЃЁ
 	BufRefT sbuf = 0;
 	long sw, sh, spitch;
 	if (!GetLayerBufferAndSize(objthis, sw, sh, sbuf, spitch)) {
@@ -539,14 +539,14 @@ getAverageColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJ
 	tjs_int width  = *param[2];
 	tjs_int height = *param[3];
 
-	// ѓ\Ѓ[ѓX”Н€Н‚ЕѓNѓЉѓbѓsѓ“ѓO
+	// г‚Ѕгѓјг‚№зЇ„е›ІгЃ§г‚ЇгѓЄгѓѓгѓ”гѓіг‚°
 	if (left < 0) { width += left; left = 0; }
 	if (top  < 0) { height += top; top  = 0; }
 	tjs_int cut;
 	if ((cut = left + width  - sw) > 0) width  -= cut;
 	if ((cut = top  + height - sh) > 0) height -= cut;
 
-	// ”Н€Нѓ`ѓFѓbѓN
+	// зЇ„е›ІгѓЃг‚§гѓѓг‚Ї
 	if (width <= 0 || height <= 0) 
 		TVPThrowExceptionMessage(L"invalid layer range");
 
@@ -556,7 +556,7 @@ getAverageColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJ
 	double b = 0;
 	double size = width * height;
 	
-	// ’lЋж“ѕ
+	// еЂ¤еЏ–еѕ—
 	for (tjs_int y = top; y < top + height; y++) {
 		BufRefT buffer = sbuf + left * 4 + spitch * y;
 		for (tjs_int x = left; x < left + width; x++, buffer += 4) {

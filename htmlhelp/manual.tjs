@@ -1,12 +1,12 @@
 /**
- * ‹^Ž—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * ç–‘ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 
 
 class HtmlHelp {
 /**
- * HTMLƒwƒ‹ƒv‚ð•\Ž¦‚µ‚Ü‚·B
- * @param url URL•¶Žš—ñ
+ * HTMLãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+ * @param url URLæ–‡å­—åˆ—
  */
 function displayTopic(url);
 }

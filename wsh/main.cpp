@@ -7,7 +7,7 @@
 
 #define GLOBAL L"kirikiri"
 
-// ƒƒOo—Í—p
+// ãƒ­ã‚°å‡ºåŠ›ç”¨
 static void log(const tjs_char *format, ...)
 {
 	va_list args;
@@ -23,7 +23,7 @@ static void log(const tjs_char *format, ...)
 //---------------------------------------------------------------------------
 
 /*
- * Windows Script Host ˆ——pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * Windows Script Host å‡¦ç†ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 class WindowsScriptHost : IActiveScriptSite
 {
@@ -42,10 +42,10 @@ public:
 	}
 	
 protected:
-	/// tjs global •Û—p
+	/// tjs global ä¿æŒç”¨
 	IDispatchEx *global;
 
-	// ƒRƒ“ƒeƒLƒXƒgî•ñ
+	// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæƒ…å ±
 	map<DWORD, ttstr> contextMap;
 	DWORD contextCount;
 	
@@ -66,7 +66,7 @@ protected:
 	}
 	
 	// ------------------------------------------------------
-	// IUnknown À‘•
+	// IUnknown å®Ÿè£…
 	// ------------------------------------------------------
 protected:
 	ULONG refCount;
@@ -84,7 +84,7 @@ public:
 	}
 
 	// ------------------------------------------------------
-	// IActiveScriptSite À‘•
+	// IActiveScriptSite å®Ÿè£…
 	// ------------------------------------------------------
 public:
 	virtual HRESULT __stdcall GetLCID(LCID *plcid) {
@@ -154,13 +154,13 @@ public:
 	}
 
 	// ------------------------------------------------------
-	// ˆ—•”
+	// å‡¦ç†éƒ¨
 	// ------------------------------------------------------
 
 protected:
-	/// Šg’£q‚ÆProgId ‚Ìƒ}ƒbƒsƒ“ƒO
+	/// æ‹¡å¼µå­ã¨ProgId ã®ãƒãƒƒãƒ”ãƒ³ã‚°
 	map<ttstr, ttstr> extMap;
-	// CLSID ”äŠr—p
+	// CLSID æ¯”è¼ƒç”¨
 	struct CompareCLSID : public binary_function<CLSID,CLSID,bool> {
 		bool operator() (const CLSID &key1, const CLSID &key2) const {
 #define CHK(a) if (key1.a!=key2.a) { return key1.a<key2.a; }
@@ -181,15 +181,15 @@ protected:
 	map<CLSID, IActiveScript*, CompareCLSID> scriptMap;
 
 	/**
-	 * w’è‚³‚ê‚½ ActiveScript ƒGƒ“ƒWƒ“‚ğæ“¾‚·‚é
-	 * @param type Šg’£q ‚Ü‚½‚Í progId ‚Ü‚½‚Í CLSID
-	 * @return ƒGƒ“ƒWƒ“ƒCƒ“ƒ^[ƒtƒF[ƒX
+	 * æŒ‡å®šã•ã‚ŒãŸ ActiveScript ã‚¨ãƒ³ã‚¸ãƒ³ã‚’å–å¾—ã™ã‚‹
+	 * @param type æ‹¡å¼µå­ ã¾ãŸã¯ progId ã¾ãŸã¯ CLSID
+	 * @return ã‚¨ãƒ³ã‚¸ãƒ³ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	 */
 	IActiveScript *getScript(const tjs_char *type) {
 		HRESULT hr;
 		CLSID   clsid;
 		
-		// ProgId ‚Ü‚½‚Í CLSID ‚Ì•¶š—ñ•\Œ»‚©‚çƒGƒ“ƒWƒ“‚Ì CLSID ‚ğŒˆ’è‚·‚é
+		// ProgId ã¾ãŸã¯ CLSID ã®æ–‡å­—åˆ—è¡¨ç¾ã‹ã‚‰ã‚¨ãƒ³ã‚¸ãƒ³ã® CLSID ã‚’æ±ºå®šã™ã‚‹
 		OLECHAR *oleType = ::SysAllocString(type);
 		if (FAILED(hr = CLSIDFromProgID(oleType, &clsid))) {
 			hr = CLSIDFromString(oleType, &clsid);
@@ -199,20 +199,20 @@ protected:
 		if (SUCCEEDED(hr)) {
 			map<CLSID, IActiveScript*, CompareCLSID>::const_iterator n = scriptMap.find(clsid);
 			if (n != scriptMap.end()) {
-				// ‚·‚Å‚Éæ“¾Ï‚İ‚ÌƒGƒ“ƒWƒ“‚Ìê‡‚Í‚»‚ê‚ğ•Ô‚·
+				// ã™ã§ã«å–å¾—æ¸ˆã¿ã®ã‚¨ãƒ³ã‚¸ãƒ³ã®å ´åˆã¯ãã‚Œã‚’è¿”ã™
 				return n->second;
 			} else {
-				// V‹Kæ“¾
+				// æ–°è¦å–å¾—
 				IActiveScript *pScript;
 				hr = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER, IID_IActiveScript, (void**)&pScript);
 				if (SUCCEEDED(hr)) {
 					IActiveScriptParse *pScriptParse;
 					if (SUCCEEDED(pScript->QueryInterface(IID_IActiveScriptParse, (void **)&pScriptParse))) {
-						// ActiveScriptSite ‚ğ“o˜^
+						// ActiveScriptSite ã‚’ç™»éŒ²
 						pScript->SetScriptSite(this);
-						// ƒOƒ[ƒoƒ‹•Ï”‚Ì–¼‘O‚ğ“o˜^
+						// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®åå‰ã‚’ç™»éŒ²
 						pScript->AddNamedItem(GLOBAL, SCRIPTITEM_ISVISIBLE | SCRIPTITEM_ISSOURCE);
-						// ‰Šú‰»
+						// åˆæœŸåŒ–
 						pScriptParse->InitNew();
 						pScriptParse->Release();
 						scriptMap[clsid] = pScript;
@@ -233,14 +233,14 @@ protected:
 	
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	WindowsScriptHost() : global(NULL), contextCount(1), refCount(1) {
-		// global ‚Ìæ“¾
+		// global ã®å–å¾—
 		iTJSDispatch2 * tjsGlobal = TVPGetScriptDispatch();
 		global = new IDispatchWrapper(tjsGlobal);
 		tjsGlobal->Release();
-		// Šg’£q‚É‘Î‚·‚é ProgId ‚Ìƒ}ƒbƒsƒ“ƒO‚Ì“o˜^
+		// æ‹¡å¼µå­ã«å¯¾ã™ã‚‹ ProgId ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã®ç™»éŒ²
 		extMap["js"]  = "JScript";
 		extMap["vbs"] = "VBScript";
 		extMap["pl"]  = "PerlScript";
@@ -250,23 +250,23 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~WindowsScriptHost() {
-		// ƒGƒ“ƒWƒ“‚ÌŠJ•ú
+		// ã‚¨ãƒ³ã‚¸ãƒ³ã®é–‹æ”¾
 		map<CLSID, IActiveScript*, CompareCLSID>::iterator i = scriptMap.begin();
 		while (i != scriptMap.end()) {
 			i->second->Close();
 			i->second->Release();
 			i = scriptMap.erase(i);
 		}
-		// global ‚ğŠJ•ú
+		// global ã‚’é–‹æ”¾
 		global->Release();
 	}
 
 	/**
-	 * Šg’£q‚ğ ProgId ‚É•ÏŠ·‚·‚é
-	 * @param exe Šg’£q
+	 * æ‹¡å¼µå­ã‚’ ProgId ã«å¤‰æ›ã™ã‚‹
+	 * @param exe æ‹¡å¼µå­
 	 * @return ProgId
 	 */
 	const tjs_char *getProgId(const tjs_char *ext) {
@@ -280,10 +280,10 @@ public:
 	}
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒg•¶š—ñ
-	 * @param progId ƒXƒNƒŠƒvƒg‚Ìí•Ê
-	 * @param result Œ‹‰ÊŠi”[æ
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡å­—åˆ—
+	 * @param progId ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç¨®åˆ¥
+	 * @param result çµæœæ ¼ç´å…ˆ
 	 */
 	tjs_error exec(const tjs_char *script, const tjs_char *progId, tTJSVariant *result, DWORD cookie=0) {
 		IActiveScript *pScript = getScript(getProgId(progId));
@@ -291,7 +291,7 @@ public:
 			IActiveScriptParse *pScriptParse;
 			if (SUCCEEDED(pScript->QueryInterface(IID_IActiveScriptParse, (void **)&pScriptParse))) {
 				
-				// Œ‹‰ÊŠi”[—p
+				// çµæœæ ¼ç´ç”¨
 				HRESULT hr;
 				EXCEPINFO ei;
 				VARIANT rs;
@@ -332,10 +332,10 @@ public:
 	}
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼
-	 * @param progId ƒXƒNƒŠƒvƒg‚Ìí•Ê
-	 * @param result Œ‹‰ÊŠi”[æ
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param progId ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç¨®åˆ¥
+	 * @param result çµæœæ ¼ç´å…ˆ
 	 */
 	tjs_error execStorage(const tjs_char *filename, const tjs_char *progId, tTJSVariant *result) {
 		
@@ -367,8 +367,8 @@ public:
 	}
 
 	/**
-	 * Šg’£q‚Æ ProgId ‚Ì‘g‚ğ’Ç‰Á“o˜^‚·‚é
-	 * @param exe Šg’£q
+	 * æ‹¡å¼µå­ã¨ ProgId ã®çµ„ã‚’è¿½åŠ ç™»éŒ²ã™ã‚‹
+	 * @param exe æ‹¡å¼µå­
 	 * @param progId ProgId
 	 */
 	void addProgId(const tjs_char *ext, const tjs_char *progId) {
@@ -384,10 +384,10 @@ public:
 	}
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒg•¶š—ñ
-	 * @param progId ƒXƒNƒŠƒvƒg‚Ìí•Ê
-	 * @param result Œ‹‰ÊŠi”[æ
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡å­—åˆ—
+	 * @param progId ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç¨®åˆ¥
+	 * @param result çµæœæ ¼ç´å…ˆ
 	 */
 	static tjs_error execMethod(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		if (numparams < 2) {
@@ -400,10 +400,10 @@ public:
 	}
 
 	/**
-	 * ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼
-	 * @param progId ƒXƒNƒŠƒvƒg‚Ìí•Ê
-	 * @param result Œ‹‰ÊŠi”[æ
+	 * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param progId ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç¨®åˆ¥
+	 * @param result çµæœæ ¼ç´å…ˆ
 	 */
 	static tjs_error execStorageMethod(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -429,7 +429,7 @@ WindowsScriptHost *WindowsScriptHost::singleton = NULL;
 static BOOL gOLEInitialized = false;
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 static void PreRegistCallback()
 {
@@ -437,13 +437,13 @@ static void PreRegistCallback()
 		if (SUCCEEDED(OleInitialize(NULL))) {
 			gOLEInitialized = true;
 		} else {
-			log(L"OLE ‰Šú‰»¸”s");
+			log(L"OLE åˆæœŸåŒ–å¤±æ•—");
 		}
 	}
 }
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 static void PostRegistCallback()
 {
@@ -451,7 +451,7 @@ static void PostRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 static void PreUnregistCallback()
 {
@@ -459,7 +459,7 @@ static void PreUnregistCallback()
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {

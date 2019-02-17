@@ -3,7 +3,7 @@
 #include <string>
 #include "ncbind/ncbind.hpp"
 
-// ƒƒOo—Í—p
+// ãƒ­ã‚°å‡ºåŠ›ç”¨
 #if 0
 static void log(const tjs_char *format, ...)
 {
@@ -38,7 +38,7 @@ class FlashPlayer : public IOleClientSite,
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	FlashPlayer(iTJSDispatch2 *objthis)
 		 : objthis(objthis), refCount(0), control(NULL), oleobj(NULL),
@@ -48,7 +48,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~FlashPlayer() {
 		if (conPoint) {
@@ -85,7 +85,7 @@ public:
 	}
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(FlashPlayer **result, tjs_int numparams, tTJSVariant **params, iTJSDispatch2 *objthis) {
 		if (numparams < 2) {
@@ -849,7 +849,7 @@ public:
 	}
 
 	/**
-	 * ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+	 * ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 	 */
 	static tjs_error callFunction(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, FlashPlayer *self) {
 		if (numparams < 1) {
@@ -871,7 +871,7 @@ public:
 	}
 
 	/**
-	 * TJSŒÄ‚Ño‚µŒ‹‰Êæ“¾
+	 * TJSå‘¼ã³å‡ºã—çµæœå–å¾—
 	 */
 	static tjs_error getLastTJSError(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, FlashPlayer *self) {
 		if (result) {
@@ -881,7 +881,7 @@ public:
 	}
 	
 	// --------------------------------------------------
-	// ƒvƒŒƒCƒ„[§Œä
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åˆ¶å¾¡
 	// --------------------------------------------------
 
 	bool clearMovie() {
@@ -915,9 +915,9 @@ public:
 	}
 	
 	/**
-	 * w’è‚µ‚½‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹‚ğ“®‰æ‚Æ‚İ‚È‚µ‚Ä‰Šú‰»‚·‚é
-	 * @param storage ‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹
-	 * @return “Ç‚İ‚İ‚É¬Œ÷‚µ‚½‚ç true
+	 * æŒ‡å®šã—ãŸå‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‹•ç”»ã¨ã¿ãªã—ã¦åˆæœŸåŒ–ã™ã‚‹
+	 * @param storage å‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @return èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool initMovie(const tjs_char *storage) {
 		bool ret = false;
@@ -929,7 +929,7 @@ public:
 					if (in) {
 						STATSTG stat;
 						in->Stat(&stat, STATFLAG_NONAME);
-						// ƒTƒCƒY‚ ‚Ó‚ê–³‹XXX
+						// ã‚µã‚¤ã‚ºã‚ãµã‚Œç„¡è¦–XXX
 						ULONG size = (ULONG)stat.cbSize.QuadPart;
 						HGLOBAL hBuffer = ::GlobalAlloc(GMEM_MOVEABLE, size + 8);
 						if (hBuffer)	{
@@ -960,9 +960,9 @@ public:
 	}
 	
 	/**
-	 * ƒTƒCƒY‚ğw’è
-	 * @param width ‰¡•
-	 * @param height c•
+	 * ã‚µã‚¤ã‚ºã‚’æŒ‡å®š
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
 	 */
 	void setSize(int width, int height) {
 		RECT rect = {0,0,width,height};
@@ -995,7 +995,7 @@ public:
 	}
 
 	/**
-	 * “ü—Í”»’è
+	 * å…¥åŠ›åˆ¤å®š
 	 * @param x
 	 * @param y
 	 */
@@ -1012,9 +1012,9 @@ public:
 	}
 
 	/**
-	 * ƒŒƒCƒ„‚É‘Î‚µ‚Ä“à—e‚ğ‘S•`‰æ
-	 * @param layer ƒŒƒCƒ„
-	 * @param onlyUpdate XV•”‚Ì‚İ•`‰æ
+	 * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦å†…å®¹ã‚’å…¨æç”»
+	 * @param layer ãƒ¬ã‚¤ãƒ¤
+	 * @param onlyUpdate æ›´æ–°éƒ¨ã®ã¿æç”»
 	 */
 	void _draw(iTJSDispatch2 *layer, bool onlyUpdate=false) {
 
@@ -1088,7 +1088,7 @@ public:
 			tTJSVariant *varsp[4] = { vars, vars+1, vars+2, vars+3 };
 			layer->FuncCall(0, L"update", NULL, NULL, 4, varsp, layer);
 		}
-		// XVî•ñ‚Ì–•Á
+		// æ›´æ–°æƒ…å ±ã®æŠ¹æ¶ˆ
 		updateFlag = false;
 		SetRect(&updateRect,0,0,0,0);
 	}
@@ -1105,9 +1105,9 @@ public:
 	}
 	
 	/**
-	 * ƒL[ƒ_ƒEƒ“‚Ì’Ê’m
-	 * @param key ƒL[ƒR[ƒh
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ã‚­ãƒ¼ãƒ€ã‚¦ãƒ³ã®é€šçŸ¥
+	 * @param key ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doKeyDown(int key) {
 		if (windowless) {
@@ -1118,9 +1118,9 @@ public:
 	}
 
 	/**
-	 * ƒL[ƒAƒbƒv‚Ì’Ê’m
-	 * @param key ƒL[ƒR[ƒh
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ã‚­ãƒ¼ã‚¢ãƒƒãƒ—ã®é€šçŸ¥
+	 * @param key ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doKeyUp(int key) {
 		if (windowless) {
@@ -1131,26 +1131,26 @@ public:
 	}
 
 	/**
-	 * ƒ}ƒEƒX‚ª—Ìˆæ‚É“ü‚Á‚½’Ê’m
+	 * ãƒã‚¦ã‚¹ãŒé ˜åŸŸã«å…¥ã£ãŸé€šçŸ¥
 	 */
 	void doMouseEnter() {
 		mousemap = 0;
 	}
 
 	/**
-	 * ƒ}ƒEƒX‚ª—Ìˆæ‚©‚ço‚½’Ê’m
+	 * ãƒã‚¦ã‚¹ãŒé ˜åŸŸã‹ã‚‰å‡ºãŸé€šçŸ¥
 	 */
 	void doMouseLeave() {
 		mousemap = 0;
 	}
 
 	/**
-	 * ƒ}ƒEƒXƒL[‚¨‚µ‚³‚°’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param button ‰Ÿ‚µ‰º‚°‚½ƒ{ƒ^ƒ“
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ã‚­ãƒ¼ãŠã—ã•ã’é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param button æŠ¼ã—ä¸‹ã’ãŸãƒœã‚¿ãƒ³
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doMouseDown(int x, int y, int button, int shift) {
 		if (windowless) {
@@ -1170,11 +1170,11 @@ public:
 	}
 
 	/**
-	 * ƒ}ƒEƒXˆÚ“®’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ç§»å‹•é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doMouseMove(int x, int y, int shift) {
 		if (windowless) {
@@ -1188,12 +1188,12 @@ public:
 	}
 	
 	/**
-	 * ƒ}ƒEƒXƒL[‚¨‚µ‚ ‚°’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param button ‰Ÿ‚µã‚°‚½ƒ{ƒ^ƒ“
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ã‚­ãƒ¼ãŠã—ã‚ã’é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param button æŠ¼ã—ä¸Šã’ãŸãƒœã‚¿ãƒ³
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doMouseUp(int x, int y, int button, int shift) {
 		if (windowless) {
@@ -1213,12 +1213,12 @@ public:
 	}
 
 	/**
-	 * ƒ}ƒEƒXƒzƒC[ƒ‹’Ê’m
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @param delta ƒzƒC[ƒ‹‰ñ“]—Ê
-	 * @param x À•W
-	 * @param y À•W
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«é€šçŸ¥
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @param delta ãƒ›ã‚¤ãƒ¼ãƒ«å›è»¢é‡
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	bool doMouseWheel(int shift, int delta, int x, int y) {
 		if (windowless) {
@@ -1388,7 +1388,7 @@ public:
         /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
 		/* [out] */ UINT __RPC_FAR *puArgErr) { 
 
-		// _IShockwaveFlashEvents—p‚ÉÀ‘•
+		// _IShockwaveFlashEventsç”¨ã«å®Ÿè£…
 
 		int      argc = pDispParams->cArgs;
 		VARIANT *rargv = pDispParams->rgvarg;
@@ -1447,10 +1447,10 @@ public:
 protected:
 
 	/**
-	 * ƒRƒ“ƒgƒ[ƒ‹¶¬
-	 * @param width  ƒRƒ“ƒgƒ[ƒ‹‰¡•
-	 * @param height ƒRƒ“ƒgƒ[ƒ‹c•
-	 * @return ƒRƒ“ƒgƒ[ƒ‹‚Ì¶¬‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+	 * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”Ÿæˆ
+	 * @param width  ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ¨ªå¹…
+	 * @param height ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç¸¦å¹…
+	 * @return ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ç”Ÿæˆã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
 	 */
 	BOOL Create(int width, int height) {
 		if (FAILED(OleCreate(ShockwaveFlashObjects::CLSID_ShockwaveFlash, IID_IOleObject, OLERENDER_DRAW,
@@ -1492,15 +1492,15 @@ protected:
 	}
 
 	/**
-	 * ƒVƒtƒgó‘Ôˆ——p
+	 * ã‚·ãƒ•ãƒˆçŠ¶æ…‹å‡¦ç†ç”¨
 	 */
 	WORD getMouseShift(int shift) {
 		return mousemap | ((shift & TVP_SS_SHIFT) ? MK_SHIFT : 0) | ((shift & TVP_SS_CTRL) ? MK_CONTROL : 0);
 	}
 	
 private:
-	iTJSDispatch2 *objthis; ///< ©ŒÈƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
-	int refCount; ///< ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg
+	iTJSDispatch2 *objthis; ///< è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
+	int refCount; ///< ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆ
 	
 	IOleObject *oleobj;
 	ShockwaveFlashObjects::IShockwaveFlash *control;
@@ -1522,8 +1522,8 @@ private:
 	HBITMAP bmp;
 	BYTE *pixels;
 
-	WORD mousemap; //< ƒ}ƒEƒX“ü—Íó‘Ô
-	ttstr lastTJSErrorMsg;; //< ÅŒã‚Ì‹g—¢‹g—¢ŒÄ‚Ño‚µƒGƒ‰[
+	WORD mousemap; //< ãƒã‚¦ã‚¹å…¥åŠ›çŠ¶æ…‹
+	ttstr lastTJSErrorMsg;; //< æœ€å¾Œã®å‰é‡Œå‰é‡Œå‘¼ã³å‡ºã—ã‚¨ãƒ©ãƒ¼
 };
 
 NCB_REGISTER_CLASS(FlashPlayer) {
@@ -1621,7 +1621,7 @@ NCB_REGISTER_CLASS(FlashPlayer) {
 static BOOL gOLEInitialized = false;
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 static void PreRegistCallback()
 {
@@ -1631,13 +1631,13 @@ static void PreRegistCallback()
 		if (SUCCEEDED(OleInitialize(NULL))) {
 			gOLEInitialized = true;
 		} else {
-			TVPAddLog(L"OLE ‰Šú‰»¸”s");
+			TVPAddLog(L"OLE åˆæœŸåŒ–å¤±æ•—");
 		}
 	}
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {

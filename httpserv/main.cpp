@@ -1,8 +1,8 @@
 #include "ncbind.hpp"
 #include "serv.hpp"
 
-// ƒƒbƒZ[ƒWƒR[ƒh
-#define	WM_HTTP_REQUEST	(WM_APP+8)	// ƒŠƒNƒGƒXƒg‚³‚ê‚½
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ‰
+#define	WM_HTTP_REQUEST	(WM_APP+8)	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸ
 
 #define CP_SJIS 932
 #define CP_EUC  20932 //51932
@@ -109,16 +109,16 @@ public:
 	}
 	void response() {
 		PwStr tempstr;
-		// ƒtƒ@ƒCƒ‹“]‘—‚Íæ‚É‘¶İƒ`ƒFƒbƒNi–³‚¯‚ê‚Î404j
+		// ãƒ•ã‚¡ã‚¤ãƒ«è»¢é€æ™‚ã¯å…ˆã«å­˜åœ¨ãƒã‚§ãƒƒã‚¯ï¼ˆç„¡ã‘ã‚Œã°404ï¼‰
 		if (transfer_type == FILE) {
 			ttstr fname = TVPGetPlacedPath(transfer_file);
 			if (fname.length() > 0 && TVPIsExistentStorage(fname)) {
 				ttstr local = TVPGetLocallyAccessibleName(fname);
 				if (local.length() > 0) {
-					// ’Êí‚Ìƒtƒ@ƒCƒ‹‚Íƒ[ƒJƒ‹ƒpƒX‚Å’¼Ú“n‚·
+					// é€šå¸¸ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‘ã‚¹ã§ç›´æ¥æ¸¡ã™
 					transfer_file = local;
 				} else {
-					// ƒA[ƒJƒCƒu“à‚Ìê‡‚ÍƒIƒ“ƒƒ‚ƒŠ‚ÅƒoƒCƒiƒŠ“]‘—‚É•ÏX‚·‚é
+					// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®å ´åˆã¯ã‚ªãƒ³ãƒ¡ãƒ¢ãƒªã§ãƒã‚¤ãƒŠãƒªè»¢é€ã«å¤‰æ›´ã™ã‚‹
 					IStream *file = TVPCreateIStream(fname, TJS_BS_READ);
 					if (!file) setError(404, TJS_W("file not found"), transfer_file.c_str());
 					else {
@@ -126,7 +126,7 @@ public:
 						try {
 							STATSTG stat;
 							file->Stat(&stat, STATFLAG_NONAME);
-							PwSize size = (PwSize)stat.cbSize.QuadPart; // XXX ‹‘åƒtƒ@ƒCƒ‹‚Í–³—
+							PwSize size = (PwSize)stat.cbSize.QuadPart; // XXX å·¨å¤§ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç„¡ç†
 							tjs_uint8 *p = new tjs_uint8[size];
 							file->Read(p, size, &transfer_binsize);
 							transfer_binptr = transfer_allocated = p;
@@ -144,13 +144,13 @@ public:
 				setError(404, TJS_W("file not found"), transfer_file.c_str());
 			}
 		}
-		// ƒXƒe[ƒ^ƒXİ’è
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
 		if (status > 0) {
 			PwStr tmp(toNarrowString(ttstr((tjs_int)status)));
 			rr->setStatus(tmp.c_str());
 		}
 
-		// content-typeİ’è
+		// content-typeè¨­å®š
 		if (content_type.length() > 0) {
 			PwStr tmp(toNarrowString(content_type));
 			rr->setContentType(tmp.c_str());
@@ -158,7 +158,7 @@ public:
 			ttstr cset(tmp.c_str());
 			if (cset.length() > 0) {
 				cset.ToLowerCase();
-				// “Š‚°‚â‚è‚È charset -> codepage ”»’è
+				// æŠ•ã’ã‚„ã‚Šãª charset -> codepage åˆ¤å®š
 				if      (cset.StartsWith(TJS_W("utf-8"      ))) codepage = CP_UTF8;
 				else if (cset.StartsWith(TJS_W("shift"      ))) codepage = CP_SJIS;
 				else if (cset.StartsWith(TJS_W("sjis"       ))) codepage = CP_SJIS;
@@ -169,7 +169,7 @@ public:
 				else if (cset.StartsWith(TJS_W("jis"        ))) codepage = CP_JIS;
 			}
 		}
-		// “]‘—ˆ—
+		// è»¢é€å‡¦ç†
 		switch (transfer_type) {
 		case UNKNOWN:
 			rr->sendBuffer("", 0);
@@ -202,19 +202,19 @@ public:
 		setError(500, desc.type.c_str(), desc.message.c_str());
 	}
 
-	// textƒf[ƒ^
+	// textãƒ‡ãƒ¼ã‚¿
 	void setTransferText(ttstr const& text) {
 		transfer_type = TEXT;
 		transfer_text = text;
 		if (status < 0) status = 200;
 	}
-	// file(IStream)ƒf[ƒ^
+	// file(IStream)ãƒ‡ãƒ¼ã‚¿
 	void setTransferFile(ttstr const& file) {
 		transfer_type = FILE;
 		transfer_file = file;
 		if (status < 0) status = 200;
 	}
-	// Arrayƒf[ƒ^
+	// Arrayãƒ‡ãƒ¼ã‚¿
 	void setTransferObject(iTJSDispatch2 *obj, const tjs_char* method) {
 		if (!obj->IsInstanceOf(0, NULL, NULL, TJS_W("Array"), obj)) 
 			setError(501, TJS_W("invalid data"), TJS_W("no array object returned from"), method);
@@ -228,7 +228,7 @@ public:
 			}
 		}
 	}
-	// Octetƒf[ƒ^
+	// Octetãƒ‡ãƒ¼ã‚¿
 	void setTransferOctet(tTJSVariantOctet *oct, const tjs_char* method) {
 		transfer_binsize = oct->GetLength();
 		if (!transfer_binsize) 
@@ -236,13 +236,13 @@ public:
 		transfer_binptr = oct->GetData();
 	}
 
-	// ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‚ğ‰ğÍ
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ
 	void setResult(iTJSDispatch2 *obj, const tjs_char* method) {
 		ncbPropAccessor dic(obj);
 		status         = dic.getIntValue(TJS_W("status"), -1);
 		content_type   = dic.getStrValue(TJS_W("content_type"));
 
-		// “]‘—ƒ^ƒCƒv•Êˆ—
+		// è»¢é€ã‚¿ã‚¤ãƒ—åˆ¥å‡¦ç†
 		ncbTypedefs::Tag<tTJSVariant> tag;
 		if      (dic.HasValue(TJS_W("text")))  setTransferText (dic.getStrValue(TJS_W("text")));
 		else if (dic.HasValue(TJS_W("file")))  setTransferFile (dic.getStrValue(TJS_W("file")));
@@ -257,7 +257,7 @@ public:
 			}
 		}
 
-		// ƒŠƒ_ƒCƒŒƒNƒgˆ—
+		// ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå‡¦ç†
 		ttstr redirect = dic.getStrValue(TJS_W("redirect"));
 		if (redirect.length() > 0) {
 			if (status != 301 && status != 302 && status != 307) status = 301;
@@ -274,7 +274,7 @@ public:
 			}
 		}
 
-		// ‰½‚à“]‘—‚·‚é‚à‚Ì‚ª–³‚¢
+		// ä½•ã‚‚è»¢é€ã™ã‚‹ã‚‚ã®ãŒç„¡ã„
 		if (transfer_type == UNKNOWN || status < 0) {
 			int st = (status < 0) ? 500 : status;
 			ttstr type = dic.getStrValue(TJS_W("error_type"));
@@ -375,13 +375,13 @@ public:
 		return TJS_S_OK;
 	}
 
-	// •ÊƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚é‚Ì‚ÅƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ğ“Š‚°‚ÄƒƒCƒ“ƒXƒŒƒbƒh‘¤‚ÅÀs‚·‚é
+	// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã®ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ã’ã¦ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰å´ã§å®Ÿè¡Œã™ã‚‹
 	static void RequestCallback(PwRequestResponse *rr, void *param) {
 		HWND hwnd = (HWND)param;
 		if (hwnd) ::PostMessage(hwnd, WM_HTTP_REQUEST, 0, (LPARAM)rr);
 	}
 
-	// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚©‚ç‚ÌŒÄ‚Ñ•Ô‚µ‚É‚æ‚Á‚ÄƒŠƒNƒGƒXƒg‚É‘Î‰
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‹ã‚‰ã®å‘¼ã³è¿”ã—ã«ã‚ˆã£ã¦ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¯¾å¿œ
 	void onRequest(PwRequestResponse *rr) {
 		SimpleHTTPServerResponse res(self, rr, codepage);
 		res.request();

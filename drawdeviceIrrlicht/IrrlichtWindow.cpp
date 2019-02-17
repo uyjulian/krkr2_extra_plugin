@@ -14,13 +14,13 @@ using namespace io;
 using namespace gui;
 
 /**
- * ƒEƒCƒ“ƒhƒEƒvƒƒV[ƒWƒƒ
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
  */
 LRESULT CALLBACK
 IrrlichtWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// Ql: irrlicht/source/Irrlicht/CIrrDeviceWin32.cpp
-	// ‚±‚±‚Éˆ—‚ğ‚¢‚ë‚¢‚ë‘‚­•K—v‚ ‚è
+	// å‚è€ƒ: irrlicht/source/Irrlicht/CIrrDeviceWin32.cpp
+	// ã“ã“ã«å‡¦ç†ã‚’ã„ã‚ã„ã‚æ›¸ãå¿…è¦ã‚ã‚Š
 
 	#ifndef WM_MOUSEWHEEL
 	#define WM_MOUSEWHEEL 0x020A
@@ -53,7 +53,7 @@ IrrlichtWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_ERASEBKGND:
 		return 0;
 
-		// ƒL[ƒCƒxƒ“ƒg‚ÍƒtƒH[ƒJƒX‚ª‚ ‚Á‚Ä‚È‚¢‚©‚Ç‚¤‚©‚Å‚±‚È‚¢–Í—l
+		// ã‚­ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã¯ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã£ã¦ãªã„ã‹ã©ã†ã‹ã§ã“ãªã„æ¨¡æ§˜
 	case WM_KEYDOWN:
 	case WM_KEYUP:
 		if (self) {
@@ -254,7 +254,7 @@ void unregisterWindowClass()
 
 
 
-// ƒCƒxƒ“ƒgˆ—
+// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 bool __stdcall
 IrrlichtWindow::messageHandler(void *userdata, tTVPWindowMessage *Message)
 {
@@ -272,7 +272,7 @@ IrrlichtWindow::messageHandler(void *userdata, tTVPWindowMessage *Message)
 	return false;
 }
 
-// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 void
 IrrlichtWindow::setReceiver(tTVPWindowMessageReceiver receiver, bool enable)
 {
@@ -288,8 +288,8 @@ IrrlichtWindow::setReceiver(tTVPWindowMessageReceiver receiver, bool enable)
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ğ¶¬
- * @param krkr eƒEƒCƒ“ƒhƒE
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
+ * @param krkr è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  */
 void
 IrrlichtWindow::createWindow(HWND krkr)
@@ -308,7 +308,7 @@ IrrlichtWindow::createWindow(HWND krkr)
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ğ”jŠü
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
  */
 void
 IrrlichtWindow::destroyWindow()
@@ -323,11 +323,11 @@ IrrlichtWindow::destroyWindow()
 }
 
 /**
- * e‘‹‚ÉƒƒbƒZ[ƒW‚ğ‘—•t
- * @param message ƒƒbƒZ[ƒW
+ * è¦ªçª“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä»˜
+ * @param message ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  * @param wParam WPARAM
  * @param lParam LPARAM
- * @param convPosition lParam ‚Ìƒ}ƒEƒXÀ•W’l‚ğe‚Ì‚à‚Ì‚É•ÏŠ·
+ * @param convPosition lParam ã®ãƒã‚¦ã‚¹åº§æ¨™å€¤ã‚’è¦ªã®ã‚‚ã®ã«å¤‰æ›
  */
 void
 IrrlichtWindow::sendMessage(UINT message, WPARAM wParam, LPARAM lParam, bool convPosition)
@@ -346,7 +346,7 @@ IrrlichtWindow::sendMessage(UINT message, WPARAM wParam, LPARAM lParam, bool con
 }
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtWindow::IrrlichtWindow(iTJSDispatch2 *objthis, iTJSDispatch2 *win, int left, int top, int width, int height)
 	: IrrlichtBase(objthis), window(NULL), parent(0), hwnd(0), visible(false), transparentEvent(true)
@@ -355,7 +355,7 @@ IrrlichtWindow::IrrlichtWindow(iTJSDispatch2 *objthis, iTJSDispatch2 *win, int l
 	window->AddRef();
 	setReceiver(messageHandler, true);
 	
-	tTJSVariant krkrHwnd; // e‚Ìƒnƒ“ƒhƒ‹
+	tTJSVariant krkrHwnd; // è¦ªã®ãƒãƒ³ãƒ‰ãƒ«
 	if (window->PropGet(0, TJS_W("HWND"), NULL, &krkrHwnd, window) == TJS_S_OK) {
 		HWND parent = ::FindWindowEx((HWND)(tjs_int)krkrHwnd, NULL, KRKRDISPWINDOWCLASS, NULL);
 		if (parent) {
@@ -379,7 +379,7 @@ IrrlichtWindow::IrrlichtWindow(iTJSDispatch2 *objthis, iTJSDispatch2 *win, int l
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtWindow::~IrrlichtWindow()
 {
@@ -392,7 +392,7 @@ IrrlichtWindow::~IrrlichtWindow()
 }
 
 /**
- * ¶¬ƒtƒ@ƒNƒgƒŠ
+ * ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
  */
 tjs_error
 IrrlichtWindow::Factory(IrrlichtWindow **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -418,9 +418,9 @@ IrrlichtWindow::Factory(IrrlichtWindow **obj, tjs_int numparams, tTJSVariant **p
 // -----------------------------------------------------------------------
 
 /**
- * Continuous ƒR[ƒ‹ƒoƒbƒN
- * ‹g—¢‹g—¢‚ª‰É‚È‚Æ‚«‚Éí‚ÉŒÄ‚Î‚ê‚é
- * ‚±‚ê‚ª–Àã‚ÌƒƒCƒ“ƒ‹[ƒv‚É‚È‚é
+ * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * å‰é‡Œå‰é‡ŒãŒæš‡ãªã¨ãã«å¸¸ã«å‘¼ã°ã‚Œã‚‹
+ * ã“ã‚ŒãŒäº‹å®Ÿä¸Šã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã«ãªã‚‹
  */
 void TJS_INTF_METHOD
 IrrlichtWindow::OnContinuousCallback(tjs_uint64 tick)
@@ -432,7 +432,7 @@ IrrlichtWindow::OnContinuousCallback(tjs_uint64 tick)
 }
 
 // -----------------------------------------------------------------------
-// •\¦w’è
+// è¡¨ç¤ºæŒ‡å®š
 // -----------------------------------------------------------------------
 
 void
@@ -510,7 +510,7 @@ IrrlichtWindow::getHeight()
 }
 	
 /**
- * ‘‹êŠw’è
+ * çª“å ´æ‰€æŒ‡å®š
  */	
 void
 IrrlichtWindow::setPos(int l, int t)
@@ -521,7 +521,7 @@ IrrlichtWindow::setPos(int l, int t)
 }
 
 /**
- * ‘‹ƒTƒCƒYw’è
+ * çª“ã‚µã‚¤ã‚ºæŒ‡å®š
  */	
 void
 IrrlichtWindow::setSize(int w, int h)

@@ -1,37 +1,37 @@
 /**
- * �V�X�e���g��
+ * システム拡張
  */
 class System
 {
 	/**
-	 * �����_�����O�ς݃t�H���g�f�[�^���t�@�C���ɕۑ�����
+	 * レンダリング済みフォントデータをファイルに保存する
 	 *
-	 * @param storage    �ۑ�����t�@�C����
-	 * @param characters �ۑ����镶���i�L�����N�^�R�[�h�j�̓������z��
-	 * @param callback   ���ƃC���[�W���擾����R�[���o�b�N
-	 *                   �L�����N�^�R�[�h�������Ɏ��C���C��(PreRenderedFontImage)��Ԃ��֐��ł��邱��
+	 * @param storage    保存するファイル名
+	 * @param characters 保存する文字（キャラクタコード）の入った配列
+	 * @param callback   情報とイメージを取得するコールバック
+	 *                   キャラクタコードを引数に取り，レイヤ(PreRenderedFontImage)を返す関数であること
 	 *                   function(ch) { return layer; }
 	 */
 	function savePreRenderedFont(storage, characters, callback);
 
 	/**
-	 * �����_�����O�ς݃t�H���g�f�[�^���t�@�C������ǂݍ���
+	 * レンダリング済みフォントデータをファイルから読み込む
 	 *
-	 * @param storage    �ǂݍ��݃t�@�C����
-	 * @param characters �ꗗ�̕������󂯎�邽�߂̔z��
-	 * @param callback   �����I�ɉ摜�C���[�W���󂯎��R�[���o�b�N�����������\��(����ł͕K��void��n�����Ɓj
+	 * @param storage    読み込みファイル名
+	 * @param characters 一覧の文字を受け取るための配列
+	 * @param callback   将来的に画像イメージを受け取るコールバックが実装される予定(現状では必ずvoidを渡すこと）
 	 */
 	function loadPreRenderedFont(storage, characters, callback);
 }
 
 /**
- * @description �t�H���g�C���[�W�i�����̃N���X�͎��ۂɂ͑��݂��܂���I�j
+ * @description フォントイメージ（※このクラスは実際には存在しません！）
  *
- * callback�ŕԂ����C���I�u�W�F�N�g�ɕt������ǉ������`���܂��B
- * ���ʂ̃��C���I�u�W�F�N�g�ɑ΂��āC�l�������ēn���Ă��������B
- * ���C���̉摜��(0,0)-(blackbox_x-1,blackbox_y-1)�̗̈�̃����̂ݎQ�Ƃ���C65�i�K�i0�`64�j�Ƀ��T���v������܂��B
+ * callbackで返すレイヤオブジェクトに付加する追加情報を定義します。
+ * 普通のレイヤオブジェクトに対して，値を代入して渡してください。
+ * レイヤの画像は(0,0)-(blackbox_x-1,blackbox_y-1)の領域のα情報のみ参照され，65段階（0〜64）にリサンプルされます。
  *
- * callback�̕Ԃ�l�Ƃ��ē����C���X�^���X�����x���g���܂킵�Ă���肠��܂���B
+ * callbackの返り値として同じインスタンスを何度も使いまわしても問題ありません。
  */
 class PreRenderedFontImage extends Layer
 {
@@ -47,29 +47,29 @@ class PreRenderedFontImage extends Layer
 	property inc_x;      
 	// GLYPHMETRICS.gmCellIncY
 	property inc_y;      
-	// GetTextExtentPoint32 �̕Ԃ��T�C�Y�� SIZE.cx
+	// GetTextExtentPoint32 の返すサイズの SIZE.cx
 	property inc;        
 }
 
 /**
- * ���C���g��
+ * レイヤ拡張
  */
 class Layer
 {
 	/**
-	 * System.savePreRenderedFont�p�̕�����`�悷��
-	 * @param ch   �L�����N�^�R�[�h
+	 * System.savePreRenderedFont用の文字を描画する
+	 * @param ch   キャラクタコード
 	 *
-	 * @description �������g�̃I�u�W�F�N�g�� PreRenderedFontImage �̃v���p�e�B���X�V���܂�
+	 * @description 自分自身のオブジェクトの PreRenderedFontImage のプロパティを更新します
 	 */
 	function drawGlyph(ch);
 
 	/**
-	 * �O���t����ݒ肷��
-	 * @param ch   �L�����N�^�R�[�h
+	 * グリフ情報を設定する
+	 * @param ch   キャラクタコード
 	 *
-	 * @description ���g�̃I�u�W�F�N�g�� PreRenderedFontImage �̃v���p�e�B�݂̂��X�V���܂�
-	 * �idrawGlyph �̃O���t�摜��`�悵�Ȃ��֐��ł��j
+	 * @description 自身のオブジェクトの PreRenderedFontImage のプロパティのみを更新します
+	 * （drawGlyph のグリフ画像を描画しない関数です）
 	 */
 	function setGlyphInfo(ch);
 }

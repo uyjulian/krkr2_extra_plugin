@@ -1,20 +1,20 @@
 Title: [obsolete] shellExecute Plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚ÉŠO•”ƒvƒƒOƒ‰ƒ€ŽÀs{ŽÀsŠ®—¹ŒŸ’mˆ—‚ð’ñ‹Ÿ‚µ‚Ü‚·B
-System.shellExecute ‚ÆˆÙ‚È‚èA‹N“®‚µ‚½ƒAƒvƒŠ‚ÌŽÀsI—¹‚ðŒŸ’m‚Å‚«‚Ü‚·B
-ŽÀsI—¹ƒCƒxƒ“ƒg‚ÍAŽÀsˆ—‚ðs‚Á‚½ƒEƒCƒ“ƒhƒE‚É‘Î‚µ‚Ä’Ê’m‚³‚ê‚Ü‚·B
+å‰é‡Œå‰é‡Œã«å¤–éƒ¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®Ÿè¡Œï¼‹å®Ÿè¡Œå®Œäº†æ¤œçŸ¥å‡¦ç†ã‚’æä¾›ã—ã¾ã™ã€‚
+System.shellExecute ã¨ç•°ãªã‚Šã€èµ·å‹•ã—ãŸã‚¢ãƒ—ãƒªã®å®Ÿè¡Œçµ‚äº†ã‚’æ¤œçŸ¥ã§ãã¾ã™ã€‚
+å®Ÿè¡Œçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã¯ã€å®Ÿè¡Œå‡¦ç†ã‚’è¡Œã£ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«å¯¾ã—ã¦é€šçŸ¥ã•ã‚Œã¾ã™ã€‚
 
-¦’‹LFWindowƒIƒuƒWƒFƒNƒg‚ÉˆË‘¶‚µ‚È‚¢processƒvƒ‰ƒOƒCƒ“‚ªì¬‚³‚ê‚Ü‚µ‚½
-	V‹K‚ÉŽg—p‚³‚ê‚é‚©‚½‚Í‚»‚¿‚ç‚ð‚²—˜—p‚­‚¾‚³‚¢
+â€»æ³¨è¨˜ï¼šWindowã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ä¾å­˜ã—ãªã„processãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãŒä½œæˆã•ã‚Œã¾ã—ãŸ
+	æ–°è¦ã«ä½¿ç”¨ã•ã‚Œã‚‹ã‹ãŸã¯ãã¡ã‚‰ã‚’ã”åˆ©ç”¨ãã ã•ã„
 
-œŽg—p•û–@
+â—ä½¿ç”¨æ–¹æ³•
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-ƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚
 

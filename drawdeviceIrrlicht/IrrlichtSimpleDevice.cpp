@@ -11,7 +11,7 @@ using namespace scene;
 using namespace io;
 using namespace gui;
 
-// ƒCƒxƒ“ƒgˆ—
+// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 bool __stdcall
 IrrlichtSimpleDevice::messageHandler(void *userdata, tTVPWindowMessage *Message)
 {
@@ -29,7 +29,7 @@ IrrlichtSimpleDevice::messageHandler(void *userdata, tTVPWindowMessage *Message)
 	return false;
 }
 
-// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 void
 IrrlichtSimpleDevice::setReceiver(tTVPWindowMessageReceiver receiver, bool enable)
 {
@@ -44,14 +44,14 @@ IrrlichtSimpleDevice::setReceiver(tTVPWindowMessageReceiver receiver, bool enabl
 	}
 }
 
-// ƒfƒoƒCƒXŠ„‚è“–‚ÄŒãˆ—
+// ãƒ‡ãƒã‚¤ã‚¹å‰²ã‚Šå½“ã¦å¾Œå‡¦ç†
 void
 IrrlichtSimpleDevice::onAttach()
 {
 	if (useRender) {
 		if (device) {
 			IVideoDriver *driver = device->getVideoDriver();
-			// •`‰æŠJn
+			// æç”»é–‹å§‹
 			if (driver) {
 				target = driver->createRenderTargetTexture(driver->getScreenSize());
 				if (target) {
@@ -64,7 +64,7 @@ IrrlichtSimpleDevice::onAttach()
 	}
 }
 
-	/// ƒfƒoƒCƒX”jŠü‘Oˆ—
+	/// ãƒ‡ãƒã‚¤ã‚¹ç ´æ£„å‰å‡¦ç†
 void
 IrrlichtSimpleDevice::onDetach()
 {
@@ -75,8 +75,8 @@ IrrlichtSimpleDevice::onDetach()
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ğ¶¬
- * @param krkr eƒEƒCƒ“ƒhƒE
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
+ * @param krkr è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  */
 void
 IrrlichtSimpleDevice::createWindow(HWND krkr)
@@ -88,7 +88,7 @@ IrrlichtSimpleDevice::createWindow(HWND krkr)
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ğ”jŠü
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
  */
 void
 IrrlichtSimpleDevice::destroyWindow()
@@ -99,11 +99,11 @@ IrrlichtSimpleDevice::destroyWindow()
 }
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
- * @param widow ƒEƒCƒ“ƒhƒE
- * @param width ‰¡•
- * @param height c•
- * @param useRender ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚¤(ƒ¿‚ªŠmÀ‚É—LŒø)
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * @param widow ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+ * @param width æ¨ªå¹…
+ * @param height ç¸¦å¹…
+ * @param useRender ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã†(Î±ãŒç¢ºå®Ÿã«æœ‰åŠ¹)
  */
 IrrlichtSimpleDevice::IrrlichtSimpleDevice(iTJSDispatch2 *objthis, iTJSDispatch2 *window, int width, int height, bool useRender)
 	: IrrlichtBase(objthis), window(window), hwnd(0), width(width), height(height),
@@ -112,14 +112,14 @@ IrrlichtSimpleDevice::IrrlichtSimpleDevice(iTJSDispatch2 *objthis, iTJSDispatch2
 	window->AddRef();
 	setReceiver(messageHandler, true);
 	
-	tTJSVariant krkrHwnd; // e‚Ìƒnƒ“ƒhƒ‹
+	tTJSVariant krkrHwnd; // è¦ªã®ãƒãƒ³ãƒ‰ãƒ«
 	if (window->PropGet(0, TJS_W("HWND"), NULL, &krkrHwnd, window) == TJS_S_OK) {
 		createWindow((HWND)(tjs_int)krkrHwnd);
 	}
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtSimpleDevice::~IrrlichtSimpleDevice()
 {
@@ -143,7 +143,7 @@ static s32 getTextureSizeFromImageSize(s32 size)
 }
 
 /**
- * ¶¬ƒtƒ@ƒNƒgƒŠ
+ * ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
  */
 tjs_error
 IrrlichtSimpleDevice::Factory(IrrlichtSimpleDevice **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -175,9 +175,9 @@ IrrlichtSimpleDevice::Factory(IrrlichtSimpleDevice **obj, tjs_int numparams, tTJ
 // -----------------------------------------------------------------------
 
 /**
- * Continuous ƒR[ƒ‹ƒoƒbƒN
- * ‹g—¢‹g—¢‚ª‰É‚È‚Æ‚«‚Éí‚ÉŒÄ‚Î‚ê‚é
- * ‚±‚ê‚ª–Àã‚ÌƒƒCƒ“ƒ‹[ƒv‚É‚È‚é
+ * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * å‰é‡Œå‰é‡ŒãŒæš‡ãªã¨ãã«å¸¸ã«å‘¼ã°ã‚Œã‚‹
+ * ã“ã‚ŒãŒäº‹å®Ÿä¸Šã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã«ãªã‚‹
  */
 void TJS_INTF_METHOD
 IrrlichtSimpleDevice::OnContinuousCallback(tjs_uint64 tick)
@@ -189,7 +189,7 @@ IrrlichtSimpleDevice::OnContinuousCallback(tjs_uint64 tick)
 }
 
 // -----------------------------------------------------------------------
-// ŒÅ—L‹@”\
+// å›ºæœ‰æ©Ÿèƒ½
 // -----------------------------------------------------------------------
 
 void
@@ -207,7 +207,7 @@ IrrlichtSimpleDevice::_setSize()
 }
 
 /**
- * DC‚ğ”jŠü
+ * DCã‚’ç ´æ£„
  */
 void
 IrrlichtSimpleDevice::clearDC()
@@ -223,15 +223,15 @@ IrrlichtSimpleDevice::clearDC()
 }
 
 /**
- * DC‚ğXV
+ * DCã‚’æ›´æ–°
  */
 void
 IrrlichtSimpleDevice::updateDC(tjs_int dwidth, tjs_int dheight)
 {
 	if (this->dwidth != dwidth || this->dheight != dheight) {
-		// ˆê“x”jŠü
+		// ä¸€åº¦ç ´æ£„
 		clearDC();
-		// •`‰ææ‚ÌDIB‚ğì‚é
+		// æç”»å…ˆã®DIBã‚’ä½œã‚‹
 		BITMAPINFO biBMP;
 		ZeroMemory(&biBMP, sizeof biBMP);
 		biBMP.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -241,7 +241,7 @@ IrrlichtSimpleDevice::updateDC(tjs_int dwidth, tjs_int dheight)
 		biBMP.bmiHeader.biHeight = -dheight;
 		hbmp = CreateDIBSection(NULL, &biBMP, DIB_RGB_COLORS, &bmpbuffer, NULL, 0);
 		if (hbmp) {
-			// •`‰æ—p‚ÉDC‚ğì‚é
+			// æç”»ç”¨ã«DCã‚’ä½œã‚‹
 			destDC = CreateCompatibleDC(NULL);
 			if (destDC) {
 				oldbmp = (HBITMAP)SelectObject(destDC, hbmp);
@@ -256,35 +256,35 @@ IrrlichtSimpleDevice::updateDC(tjs_int dwidth, tjs_int dheight)
 }
 
 /**
- * ƒŒƒCƒ„‚É‘Î‚µ‚ÄXV•`‰æ
- * ƒoƒbƒNƒoƒbƒtƒ@‚©‚çƒRƒs[‚µ‚Ü‚·B
- * @param layer ƒŒƒCƒ„
- * @param srcRect ƒ\[ƒX—Ìˆæ
+ * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æ›´æ–°æç”»
+ * ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã—ã¾ã™ã€‚
+ * @param layer ãƒ¬ã‚¤ãƒ¤
+ * @param srcRect ã‚½ãƒ¼ã‚¹é ˜åŸŸ
  */
 void
 IrrlichtSimpleDevice::_updateToLayer(iTJSDispatch2 *layer, irr::core::rect<s32> *srcRect)
 {
 	if (device) {
-		// ƒŒƒCƒ„î•ñæ“¾
+		// ãƒ¬ã‚¤ãƒ¤æƒ…å ±å–å¾—
 		ncbPropAccessor obj(layer);
 		tjs_int dwidth  = obj.GetValue(L"imageWidth", ncbTypedefs::Tag<tjs_int>());
 		tjs_int dheight = obj.GetValue(L"imageHeight", ncbTypedefs::Tag<tjs_int>());
 		tjs_int dPitch  = obj.GetValue(L"mainImageBufferPitch", ncbTypedefs::Tag<tjs_int>());
 		unsigned char *dbuffer = (unsigned char *)obj.GetValue(L"mainImageBufferForWrite", ncbTypedefs::Tag<tjs_int>());
 		
-		// •`‰ææDC‚ÌXV
+		// æç”»å…ˆDCã®æ›´æ–°
 		updateDC(dwidth, dheight);
 		
 		if (destDC) {
 			irr::core::rect<s32> destRect(0,0,dwidth,dheight);
 			if (show(&destRect, srcRect, destDC)) {
-				// ƒrƒbƒgƒ}ƒbƒv‚©‚çƒRƒs[
+				// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‹ã‚‰ã‚³ãƒ”ãƒ¼
 				for (tjs_int y = 0; y < dheight; y++) {
 					unsigned char *src = (unsigned char *)(bmpbuffer) + dwidth * y * 4;
 					CopyMemory(dbuffer, src, dwidth*4);
 					dbuffer += dPitch;
 				}
-				// ƒŒƒCƒ„‚ğXV
+				// ãƒ¬ã‚¤ãƒ¤ã‚’æ›´æ–°
 				layer->FuncCall(0, L"update", NULL, NULL, 0, NULL, layer);
 			} else {
 				error_log("failed to show");
@@ -303,12 +303,12 @@ IrrlichtSimpleDevice::updateToLayer(tTJSVariant *result, tjs_int numparams, tTJS
 	if (numparams < 1) {
 		return TJS_E_BADPARAMCOUNT;
 	}
-	// ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg‚©‚Ç‚¤‚©
+	// ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã©ã†ã‹
 	iTJSDispatch2 *layer = param[0]->AsObjectNoAddRef();
 	if (layer == NULL || layer->IsInstanceOf(0, NULL, NULL, L"Layer", layer) != TJS_S_TRUE) {
 		TVPThrowExceptionMessage(L"must set Layer object");
 	}
-	// ƒ\[ƒX—Ìˆæ”»’è
+	// ã‚½ãƒ¼ã‚¹é ˜åŸŸåˆ¤å®š
 	irr::core::rect<s32> *srcRect = NULL, _srcRect;
 	if (numparams >= 5) {
 		_srcRect.setLeft((tjs_int)*param[1]);

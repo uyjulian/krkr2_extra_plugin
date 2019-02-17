@@ -1,32 +1,32 @@
 Title: libpsd plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-libpsd ���g����PSD�𑀍삷��N���X�ł�
+libpsd を使ってPSDを操作するクラスです
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-libpsd �ɏ������� 
+libpsd に準拠して 
 
  GNU LIBRARY GENERAL PUBLIC LICENSE
  Version 2, June 1991
 
-�ɂȂ�܂��B
+になります。
 
-�ڍׂ� libpsd/COPYING ���Q��
+詳細は libpsd/COPYING を参照
 
-�\�[�X����J�̃A�v���P�[�V�����ł����p�ł��܂����A
-���̏ꍇ�� LGPL �ɏ]�����z�z���s���悤�ɂ��Ă��������B
+ソース非公開のアプリケーションでも利用できますが、
+その場合は LGPL に従った配布を行うようにしてください。
 
-���g���g���v���O�C���̓_�C�i�~�b�N�����N����邽�߁A
-�@��{�I�ɂ͂��̃v���O�C���̃\�[�X�����̂܂܃����[�X��
-�@�ǂ����ɂӂ��߂Ă����΂n�j�Ƃ������ƂɂȂ�܂��B
+※吉里吉里プラグインはダイナミックリンクされるため、
+　基本的にはこのプラグインのソースをそのままリリースの
+　どこかにふくめておけばＯＫということになります。
 
-�z�z���̃x�[�X�͈ȉ��ɂȂ�܂�
+配布元のベースは以下になります
   https://sv.kikyou.info/svn/kirikiri2/trunk/kirikiri2/src/plugins/win32/libpsd
 

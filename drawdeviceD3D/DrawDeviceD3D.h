@@ -8,19 +8,19 @@
 #include "BasicDrawDevice.h"
 
 /**
- * Irrlicht ƒx[ƒX‚Ì DrawDevice
+ * Irrlicht ãƒ™ãƒ¼ã‚¹ã® DrawDevice
  */
 class DrawDeviceD3D : public tTVPDrawDevice
 {
 	typedef tTVPDrawDevice inherited;
 
 protected:
-	tjs_int width;        //< ƒ†[ƒUw’è‚Ì‰æ–Ê‰¡•
-	tjs_int height;       //< ƒ†[ƒUw’è‚Ì‰æ–Êc•
-	tjs_int destTop;      //< À•`‰æ—Ìˆæ‚Ì‰¡•
-	tjs_int destLeft;     //< À•`‰æ—Ìˆæ‚Ìc•
-	tjs_int destWidth;    //< À•`‰æ—Ìˆæ‚Ì‰¡•
-	tjs_int destHeight;   //< À•`‰æ—Ìˆæ‚Ìc•
+	tjs_int width;        //< ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ç”»é¢æ¨ªå¹…
+	tjs_int height;       //< ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ç”»é¢ç¸¦å¹…
+	tjs_int destTop;      //< å®Ÿæç”»é ˜åŸŸã®æ¨ªå¹…
+	tjs_int destLeft;     //< å®Ÿæç”»é ˜åŸŸã®ç¸¦å¹…
+	tjs_int destWidth;    //< å®Ÿæç”»é ˜åŸŸã®æ¨ªå¹…
+	tjs_int destHeight;   //< å®Ÿæç”»é ˜åŸŸã®ç¸¦å¹…
 
 	HWND hWnd;
 	
@@ -31,62 +31,62 @@ protected:
 	IDirectDrawSurface7 *Surface;
 	
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	DrawDeviceD3D(int width, int height);
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~DrawDeviceD3D();
 
 protected:
-	// ƒfƒoƒCƒXŠ„‚è“–‚Ä
+	// ãƒ‡ãƒã‚¤ã‚¹å‰²ã‚Šå½“ã¦
 	void attach(HWND hwnd);
 
-	// ƒfƒoƒCƒX‰ğ•úˆ—
+	// ãƒ‡ãƒã‚¤ã‚¹è§£æ”¾å‡¦ç†
 	void detach();
 	
 	/**
-	 * Device¨ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	 * Deviceâ†’ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformToManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y);
 
-	/** ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	/** ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformFromManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y);
 
 	/**
-	 * Device¨•W€À•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	 * Deviceâ†’æ¨™æº–åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformTo(tjs_int &x, tjs_int &y);
 	
-	/** •W€À•W¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	/** æ¨™æº–åº§æ¨™â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformFrom(tjs_int &x, tjs_int &y);
 	
 public:
-	//---- LayerManager ‚ÌŠÇ—ŠÖ˜A
+	//---- LayerManager ã®ç®¡ç†é–¢é€£
 	virtual void TJS_INTF_METHOD AddLayerManager(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD RemoveLayerManager(iTVPLayerManager * manager);
 
-	//---- •`‰æˆÊ’uEƒTƒCƒYŠÖ˜A
+	//---- æç”»ä½ç½®ãƒ»ã‚µã‚¤ã‚ºé–¢é€£
 	virtual void TJS_INTF_METHOD SetTargetWindow(HWND wnd, bool is_main);
 	virtual void TJS_INTF_METHOD SetDestRectangle(const tTVPRect & rect);
 	virtual void TJS_INTF_METHOD GetSrcSize(tjs_int &w, tjs_int &h);
 	virtual void TJS_INTF_METHOD NotifyLayerResize(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD NotifyLayerImageChange(iTVPLayerManager * manager);
 
-	//---- ƒ†[ƒU[ƒCƒ“ƒ^[ƒtƒF[ƒXŠÖ˜A
-	// window ¨ drawdevice
+	//---- ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹é–¢é€£
+	// window â†’ drawdevice
 	virtual void TJS_INTF_METHOD OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags);
 	virtual void TJS_INTF_METHOD OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags);
 	virtual void TJS_INTF_METHOD OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags);
@@ -96,10 +96,10 @@ public:
 	virtual void TJS_INTF_METHOD SetCursorPos(iTVPLayerManager * manager, tjs_int x, tjs_int y);
 	virtual void TJS_INTF_METHOD RequestInvalidation(const tTVPRect & rect);
 	
-	//---- Ä•`‰æŠÖ˜A
+	//---- å†æç”»é–¢é€£
 	virtual void TJS_INTF_METHOD Show();
 	
-	//---- LayerManager ‚©‚ç‚Ì‰æ‘œó‚¯“n‚µŠÖ˜A
+	//---- LayerManager ã‹ã‚‰ã®ç”»åƒå—ã‘æ¸¡ã—é–¢é€£
 	virtual void TJS_INTF_METHOD StartBitmapCompletion(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD NotifyBitmapCompleted(iTVPLayerManager * manager,
 		tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
@@ -107,12 +107,12 @@ public:
 	virtual void TJS_INTF_METHOD EndBitmapCompletion(iTVPLayerManager * manager);
 
 	// -----------------------------------------------------------------------
-	// ŒÅ—Lƒƒ\ƒbƒh
+	// å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰
 	// -----------------------------------------------------------------------
 	
 public:
 	/**
-	 * @return ƒfƒoƒCƒXî•ñ
+	 * @return ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 	 */
 	tjs_int64 getDevice() {
 		return reinterpret_cast<tjs_int64>((tTVPDrawDevice*)this);
@@ -152,7 +152,7 @@ public:
 	
 protected:
 	/*
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•W€‚Ì visible
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®æ¨™æº–ã® visible
 	 */
 	bool defaultVisible;
 
@@ -166,16 +166,16 @@ public:
 	}
 
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @param visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @param visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	void setVisible(int id, bool visible);
 
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @return visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @return visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	bool getVisible(int id);
 	

@@ -1,8 +1,8 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  *
- * ‰´‚Ì”\—Í‚ª‚¨‚Á‚Â‚©‚È‚¢‚Ì‚Å AGG ‚Ì trans_perspective ‚Â‚©‚Á‚Ä‚Ü‚·B
- * ‚¾‚ê‚©“¯‚¶‚æ‚¤‚Èˆ—‚ğƒAƒZƒ“ƒuƒŠ‚Å‘‚«‹N‚±‚µ‚Ä‚­‚ê‚È‚¢‚©‚È[
+ * ä¿ºã®èƒ½åŠ›ãŒãŠã£ã¤ã‹ãªã„ã®ã§ AGG ã® trans_perspective ã¤ã‹ã£ã¦ã¾ã™ã€‚
+ * ã ã‚Œã‹åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã‚¢ã‚»ãƒ³ãƒ–ãƒªã§æ›¸ãèµ·ã“ã—ã¦ãã‚Œãªã„ã‹ãªãƒ¼
  *
  * The Anti-Grain Geometry Project
  * A high quality rendering engine for C++
@@ -20,20 +20,20 @@
 class Layer {
 
     /**
-     * “§‹•ÏŒ`ƒRƒs[
-     * @param src ƒRƒs[Œ³ƒŒƒCƒ„
-     * @param left ƒRƒs[Œ³ left
-     * @param top ƒRƒs[Œ³ top
-     * @param width ƒRƒs[Œ³ width
-     * @param height ƒRƒs[Œ³ height
-     * @param x1 ¶ãƒRƒs[æ
-     * @param y1 ¶ãƒRƒs[æ
-     * @param x2 ‰EãƒRƒs[æ
-     * @param y2 ‰EãƒRƒs[æ
-     * @param x3 ¶‰ºƒRƒs[æ
-     * @param y3 ¶‰ºƒRƒs[æ
-     * @param x4 ‰E‰ºƒRƒs[æ
-     * @param y4 ‰E‰ºƒRƒs[æ
+     * é€è¦–å¤‰å½¢ã‚³ãƒ”ãƒ¼
+     * @param src ã‚³ãƒ”ãƒ¼å…ƒãƒ¬ã‚¤ãƒ¤
+     * @param left ã‚³ãƒ”ãƒ¼å…ƒ left
+     * @param top ã‚³ãƒ”ãƒ¼å…ƒ top
+     * @param width ã‚³ãƒ”ãƒ¼å…ƒ width
+     * @param height ã‚³ãƒ”ãƒ¼å…ƒ height
+     * @param x1 å·¦ä¸Šã‚³ãƒ”ãƒ¼å…ˆ
+     * @param y1 å·¦ä¸Šã‚³ãƒ”ãƒ¼å…ˆ
+     * @param x2 å³ä¸Šã‚³ãƒ”ãƒ¼å…ˆ
+     * @param y2 å³ä¸Šã‚³ãƒ”ãƒ¼å…ˆ
+     * @param x3 å·¦ä¸‹ã‚³ãƒ”ãƒ¼å…ˆ
+     * @param y3 å·¦ä¸‹ã‚³ãƒ”ãƒ¼å…ˆ
+     * @param x4 å³ä¸‹ã‚³ãƒ”ãƒ¼å…ˆ
+     * @param y4 å³ä¸‹ã‚³ãƒ”ãƒ¼å…ˆ
      */
     function perspectiveCopy(src, left, top, width, height, x1, y1, x2, y2, x3, y3, x4, y4);
 };

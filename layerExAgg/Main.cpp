@@ -18,7 +18,7 @@ static const char *copyright =
 "----- AntiGrainGeometry Copyright END -----\n";
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -34,9 +34,9 @@ static void log(const tjs_char *format, ...)
 #include "Primitive.hpp"
 
 /**
- * Anti-Grain Geometry ƒvƒŠƒ~ƒeƒBƒuƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * Anti-Grain Geometry ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
-class NI_AGGPrimitive : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class NI_AGGPrimitive : public tTJSNativeInstance // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
 	friend class NI_AntiGrainGeometry;
 protected:
@@ -55,7 +55,7 @@ void AGGPrimitive::redraw()
 }
 
 /*
- * ƒŒƒCƒ„‚É’¼Œ‹‚µ‚½ Anti-Grain Geometry î•ñ‚ğ•Û‚·‚é‚½‚ß‚ÌƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * ãƒ¬ã‚¤ãƒ¤ã«ç›´çµã—ãŸ Anti-Grain Geometry æƒ…å ±ã‚’ä¿æŒã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 class NI_AntiGrainGeometry : public tTJSNativeInstance
 {
@@ -65,11 +65,11 @@ protected:
 	iTJSDispatch2 * _layerobj;
 
 protected:
-	/// Ä•`‰æ
+	/// å†æç”»
 	bool _redraw;
 public:
 	/**
-	 * Ä•`‰æ—v¿
+	 * å†æç”»è¦è«‹
 	 */
 	void redraw() {
 		if (!_redraw) {
@@ -82,16 +82,16 @@ public:
 	}
 
 	//-------------------------------------------
-	// •\¦ˆÊ’u
+	// è¡¨ç¤ºä½ç½®
 	//-------------------------------------------
 protected:
-	/// •\¦ˆÊ’uX
+	/// è¡¨ç¤ºä½ç½®X
 	double _x;
-	/// •\¦ˆÊ’uY
+	/// è¡¨ç¤ºä½ç½®Y
 	double _y;
-	/// Šg‘å
+	/// æ‹¡å¤§
 	double _scale;
-	/// ‰ñ“]
+	/// å›è»¢
 	double _rotate;
 
 public:
@@ -108,9 +108,9 @@ public:
 	inline void setScale(double scale) { _scale = scale; redraw(); };
 	
 	/*
-	 * À•Ww’è
-	 * @param x XˆÚ“®—Ê
-	 * @param y YˆÚ“®—Ê
+	 * åº§æ¨™æŒ‡å®š
+	 * @param x Xç§»å‹•é‡
+	 * @param y Yç§»å‹•é‡
 	 */
 	void setPos(double x, double y) {
 		_x = x;
@@ -119,7 +119,7 @@ public:
 	}
 
 	//-------------------------------------------
-	// •`‰æ—v‘f
+	// æç”»è¦ç´ 
 	//-------------------------------------------
 protected:
 	list<NI_AGGPrimitive*> _primitives;
@@ -135,7 +135,7 @@ public:
 	
 public:
 	/**
-	 * “h‚è‚È‚¨‚µˆ—
+	 * å¡—ã‚ŠãªãŠã—å‡¦ç†
 	 */
 	void onPaint() {
 
@@ -145,30 +145,30 @@ public:
 			if ((base = NI_LayerExBase::getNative(_layerobj))) {
 				base->reset(_layerobj);
 
-				// AGG —p‚Éæ“ªˆÊ’u‚É•â³
+				// AGG ç”¨ã«å…ˆé ­ä½ç½®ã«è£œæ­£
 				unsigned char *buffer = base->_buffer;
 				if (base->_pitch < 0) {
 					buffer += int(base->_height - 1) * base->_pitch;
 				}
 				
-				/// ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒoƒbƒtƒ@
+				/// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒãƒƒãƒ•ã‚¡
 				agg::rendering_buffer rbuf(buffer, base->_width, base->_height, base->_pitch);
 				
-				// ƒŒƒ“ƒ_ƒ‰‚Ì€”õ
+				// ãƒ¬ãƒ³ãƒ€ãƒ©ã®æº–å‚™
 				pixfmt pixf(rbuf);
 				renderer_base rb(pixf);
 				
-				// ˆê“xÁ‹‚·‚é XXX ƒtƒ‰ƒO‚ğ‚½‚Ä‚½‚çÁ‹‚µ‚È‚­‚·‚éH
+				// ä¸€åº¦æ¶ˆå»ã™ã‚‹ XXX ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ãŸã‚‰æ¶ˆå»ã—ãªãã™ã‚‹ï¼Ÿ
 				rb.clear(color_type(0,0,0,0));
 				
-				// •ÏŒ`ˆ—
+				// å¤‰å½¢å‡¦ç†
 				agg::trans_affine mtx;
 				mtx *= agg::trans_affine_translation((base->_width) * -0.5, (base->_height) * -0.5);
 				mtx *= agg::trans_affine_scaling(_scale);
 				mtx *= agg::trans_affine_rotation(agg::deg2rad(_rotate));
 				mtx *= agg::trans_affine_translation(base->_width * 0.5 + _x, base->_height * 0.5 + _y);
 				
-				// ƒvƒŠƒ~ƒeƒBƒu‚ÌÄ•`‰æ
+				// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®å†æç”»
 				{
 					list<NI_AGGPrimitive*>::iterator i =  _primitives.begin();
 					while (i != _primitives.end()) {
@@ -184,7 +184,7 @@ public:
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_AntiGrainGeometry(iTJSDispatch2 *layerobj) {
 		_layerobj = layerobj; // no addRef
@@ -196,29 +196,29 @@ public:
 	}
 };
 
-// ƒNƒ‰ƒXID
+// ã‚¯ãƒ©ã‚¹ID
 static tjs_int32 ClassID_AntiGrainGeometry = -1;
 
 /**
- * Layer ‚Ì onPaint ˆ—‚Ì‚Ì‚Á‚Æ‚è—pƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+ * Layer ã® onPaint å‡¦ç†ã®ã®ã£ã¨ã‚Šç”¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
  */
 class tOnPaintFunction : public tTJSDispatch
 {
 protected:
-	/// Œ³‚Ìƒƒ\ƒbƒh
+	/// å…ƒã®ãƒ¡ã‚½ãƒƒãƒ‰
 	iTJSDispatch2 *original;
 public:
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	tOnPaintFunction(iTJSDispatch2 *original) : original(original) {}
 	
-	/// ƒfƒXƒgƒ‰ƒNƒ^
+	/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~tOnPaintFunction() {
 		if (original) {
 			original->Release();
 		}
 	}
 
-	/// ŠÖ”ŒÄ‚Ño‚µ
+	/// é–¢æ•°å‘¼ã³å‡ºã—
 	tjs_error TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 		tTJSVariant *result,
@@ -231,19 +231,19 @@ addMember(iTJSDispatch2 *dispatch, const tjs_char *memberName, iTJSDispatch2 *me
 	tTJSVariant var = tTJSVariant(member);
 	member->Release();
 	dispatch->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		memberName, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&var, // “o˜^‚·‚é’l
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		memberName, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&var, // ç™»éŒ²ã™ã‚‹å€¤
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
 /**
- * ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg‚©‚ç Anti-Grain Geometry —pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
- * ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‚Á‚Ä‚È‚¢ê‡‚Í©“®“I‚ÉŠ„‚è“–‚Ä‚é
- * @param objthis ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
- * @return Anti-Grain Geometry —pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXBæ“¾¸”s‚µ‚½‚ç NULL
+ * ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ Anti-Grain Geometry ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+ * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æŒã£ã¦ãªã„å ´åˆã¯è‡ªå‹•çš„ã«å‰²ã‚Šå½“ã¦ã‚‹
+ * @param objthis ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @return Anti-Grain Geometry ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
  */
 static NI_AntiGrainGeometry *
 getAntiGrainGeometryNative(iTJSDispatch2 *layerobj)
@@ -254,7 +254,7 @@ getAntiGrainGeometryNative(iTJSDispatch2 *layerobj)
 	if (TJS_FAILED(layerobj->NativeInstanceSupport(TJS_NIS_GETINSTANCE,
 												   ClassID_AntiGrainGeometry, (iTJSNativeInstance**)&_this))) {
 
-		// ƒŒƒCƒ„Šg’£•”¶¬
+		// ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µéƒ¨ç”Ÿæˆ
 		if (NI_LayerExBase::getNative(layerobj) == NULL) {
 			return NULL;
 		}
@@ -266,7 +266,7 @@ getAntiGrainGeometryNative(iTJSDispatch2 *layerobj)
 			return NULL;
 		}
 
-		// onPaint ‚ğ‚Ì‚Á‚Æ‚é
+		// onPaint ã‚’ã®ã£ã¨ã‚‹
 		{
 			const tjs_char *memberName = TJS_W("onPaint");
 			tTJSVariant var;
@@ -281,7 +281,7 @@ getAntiGrainGeometryNative(iTJSDispatch2 *layerobj)
 	return _this;
 }
 
-	/// ŠÖ”ŒÄ‚Ño‚µ
+	/// é–¢æ•°å‘¼ã³å‡ºã—
 tjs_error TJS_INTF_METHOD
 tOnPaintFunction::FuncCall(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 						   tTJSVariant *result,
@@ -388,7 +388,7 @@ PROPEND
 
 //---------------------------------------------------------------------------
 
-// Œ^“o˜^—p
+// å‹ç™»éŒ²ç”¨
 list<RegistType*> *typeList = NULL;
 map<ttstr,RegistType*> typeMap;
 
@@ -401,7 +401,7 @@ void registType(RegistType *type)
 }
 
 /**
- * ƒvƒŠƒ~ƒeƒBƒuƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒƒ\ƒbƒh
+ * ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
  */
 NI_AGGPrimitive::NI_AGGPrimitive()
 {
@@ -418,17 +418,17 @@ NI_AGGPrimitive::Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2
 		TVPThrowExceptionMessage(TJS_W("first parameter must Layer."));
 	}
 	
-	// eƒŒƒCƒ„
+	// è¦ªãƒ¬ã‚¤ãƒ¤
 	_layer = param[0]->AsObject();
 	try {
 		NI_AntiGrainGeometry *agg;
 
-		// eƒŒƒCƒ„‚©‚ç AGG î•ñƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾B–³‚¢ê‡‚Í¶¬‚·‚éB
+		// è¦ªãƒ¬ã‚¤ãƒ¤ã‹ã‚‰ AGG æƒ…å ±ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã€‚ç„¡ã„å ´åˆã¯ç”Ÿæˆã™ã‚‹ã€‚
 		if ((agg = getAntiGrainGeometryNative(_layer)) == NULL) {
 			TVPThrowExceptionMessage(TJS_W("failed to get AGG Instance from Layer."));
 		}
 
-		// ƒIƒuƒWƒFƒNƒg¶¬
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 		map<ttstr,RegistType*>::const_iterator n = typeMap.find(*param[1]);
 		if (n != typeMap.end()) {
 			_primitive = n->second->create(this, numparams-2, param+2, tjs_obj);
@@ -436,7 +436,7 @@ NI_AGGPrimitive::Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2
 			TVPThrowExceptionMessage((ttstr(L"failed to create ") + (ttstr)*param[1]).c_str());
 		}
 
-		// e‚É©•ª‚ğ“o˜^
+		// è¦ªã«è‡ªåˆ†ã‚’ç™»éŒ²
 		agg->addPrimitive(this);
 
 	} catch (...) {
@@ -455,7 +455,7 @@ NI_AGGPrimitive::Invalidate()
 		NI_AntiGrainGeometry *agg;
 		if (TJS_SUCCEEDED(_layer->NativeInstanceSupport(TJS_NIS_GETINSTANCE,
 														  ClassID_AntiGrainGeometry, (iTJSNativeInstance**)&agg))) {
-			// e‚©‚ç©•ª‚ğÁ‹
+			// è¦ªã‹ã‚‰è‡ªåˆ†ã‚’æ¶ˆå»
 			agg->removePrimitive(this);
 		} else {
 			log(TJS_W("failed to get AGG Instance from Layer"));
@@ -472,7 +472,7 @@ NI_AGGPrimitive::redraw()
 		NI_AntiGrainGeometry *agg;
 		if (TJS_SUCCEEDED(_layer->NativeInstanceSupport(TJS_NIS_GETINSTANCE,
 														  ClassID_AntiGrainGeometry, (iTJSNativeInstance**)&agg))) {
-			// e‚ğÄ•`‰æ
+			// è¦ªã‚’å†æç”»
 			agg->redraw();
 		} else {
 			log(TJS_W("failed to get AGG Instance from Layer"));
@@ -482,8 +482,8 @@ NI_AGGPrimitive::redraw()
 
 //---------------------------------------------------------------------------
 /*
-	‚±‚ê‚Í NI_AGGPrimitive ‚ÌƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ä•Ô‚·‚¾‚¯‚ÌŠÖ”‚Å‚·B
-	Œãq‚Ì TJSCreateNativeClassForPlugin ‚Ìˆø”‚Æ‚µ‚Ä“n‚µ‚Ü‚·B
+	ã“ã‚Œã¯ NI_AGGPrimitive ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¦è¿”ã™ã ã‘ã®é–¢æ•°ã§ã™ã€‚
+	å¾Œè¿°ã® TJSCreateNativeClassForPlugin ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã—ã¾ã™ã€‚
 */
 static iTJSNativeInstance * TJS_INTF_METHOD Create_NI_AGGPrimitive()
 {
@@ -491,23 +491,23 @@ static iTJSNativeInstance * TJS_INTF_METHOD Create_NI_AGGPrimitive()
 }
 //---------------------------------------------------------------------------
 /*
-	TJS2 ‚ÌƒlƒCƒeƒBƒuƒNƒ‰ƒX‚ÍˆêˆÓ‚È ID ‚Å‹æ•Ê‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
-	‚±‚ê‚ÍŒãq‚Ì TJS_BEGIN_NATIVE_MEMBERS ƒ}ƒNƒ‚Å©“®“I‚Éæ“¾‚³‚ê‚Ü‚·‚ªA
-	‚»‚Ì ID ‚ğŠi”[‚·‚é•Ï”–¼‚ÆA‚»‚Ì•Ï”‚ğ‚±‚±‚ÅéŒ¾‚µ‚Ü‚·B
-	‰Šú’l‚É‚Í–³Œø‚È ID ‚ğ•\‚· -1 ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+	TJS2 ã®ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¯ãƒ©ã‚¹ã¯ä¸€æ„ãª ID ã§åŒºåˆ¥ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+	ã“ã‚Œã¯å¾Œè¿°ã® TJS_BEGIN_NATIVE_MEMBERS ãƒã‚¯ãƒ­ã§è‡ªå‹•çš„ã«å–å¾—ã•ã‚Œã¾ã™ãŒã€
+	ãã® ID ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°åã¨ã€ãã®å¤‰æ•°ã‚’ã“ã“ã§å®£è¨€ã—ã¾ã™ã€‚
+	åˆæœŸå€¤ã«ã¯ç„¡åŠ¹ãª ID ã‚’è¡¨ã™ -1 ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
 */
 #define TJS_NATIVE_CLASSID_NAME ClassID_AGGPrimitive
 static tjs_int32 TJS_NATIVE_CLASSID_NAME = -1;
 //---------------------------------------------------------------------------
 /*
-	TJS2 —p‚ÌuƒNƒ‰ƒXv‚ğì¬‚µ‚Ä•Ô‚·ŠÖ”‚Å‚·B
+	TJS2 ç”¨ã®ã€Œã‚¯ãƒ©ã‚¹ã€ã‚’ä½œæˆã—ã¦è¿”ã™é–¢æ•°ã§ã™ã€‚
 */
 static iTJSDispatch2 * Create_NC_AGGPrimitive()
 {
-	/// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Ìì¬
+	/// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	tTJSNativeClassForPlugin * classobj = TJSCreateNativeClassForPlugin(TJS_W("AGGPrimitive"), Create_NI_AGGPrimitive);
 
-	/// ƒƒ“ƒo’è‹`
+	/// ãƒ¡ãƒ³ãƒå®šç¾©
 	TJS_BEGIN_NATIVE_MEMBERS(/*TJS class name*/AGGPrimitive)
 
 		TJS_DECL_EMPTY_FINALIZE_METHOD
@@ -624,10 +624,10 @@ static iTJSDispatch2 * Create_NC_AGGPrimitive()
 }
 
 /**
- * ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg‚©‚ç Anti-Grain Geometry —pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
- * ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‚Á‚Ä‚È‚¢ê‡‚Í©“®“I‚ÉŠ„‚è“–‚Ä‚é
- * @param objthis ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
- * @return ŠY“–ƒvƒŠƒ~ƒeƒBƒu‚Ì AGGPrimitive Bæ“¾¸”s‚µ‚½‚ç NULL
+ * ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ Anti-Grain Geometry ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+ * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æŒã£ã¦ãªã„å ´åˆã¯è‡ªå‹•çš„ã«å‰²ã‚Šå½“ã¦ã‚‹
+ * @param objthis ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @return è©²å½“ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã® AGGPrimitive ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
  */
 AGGPrimitive *
 getAGGPrimitive(iTJSDispatch2 *obj)
@@ -657,12 +657,12 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason,
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
 	TVPAddImportantLog(ttstr(copyright));
 	
-	// Œ^ƒŠƒXƒg‚ğŒ^ƒ}ƒbƒv‚É•ÏŠ·
+	// å‹ãƒªã‚¹ãƒˆã‚’å‹ãƒãƒƒãƒ—ã«å¤‰æ›
 	{
 		list<RegistType*>::iterator i = typeList->begin();
 		while (i != typeList->end()) {
@@ -671,27 +671,27 @@ extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 		}
 	}
 
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒgƒ`ƒFƒbƒN
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚§ãƒƒã‚¯
 	if ((NI_LayerExBase::classId = TJSFindNativeClassID(L"LayerExBase")) <= 0) {
 		NI_LayerExBase::classId = TJSRegisterNativeClass(L"LayerExBase");
 	}
 	
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg“o˜^
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
 	ClassID_AntiGrainGeometry = TJSRegisterNativeClass(TJS_W("AntiGrainGeometry"));
 
 	{
-		// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+		// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 		iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-		// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		tTJSVariant varScripts;
 		TVPExecuteExpression(TJS_W("Layer"), &varScripts);
 		iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
 		if (dispatch) {
-			// ƒvƒƒpƒeƒB‰Šú‰»
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åˆæœŸåŒ–
 			NI_LayerExBase::init(dispatch);
 
-			// ê—pƒƒ\ƒbƒh‚Ì’Ç‰Á
+			// å°‚ç”¨ãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ 
 			addMember(dispatch, L"aggSetPos", new tSetPosFunction());
 			addMember(dispatch, L"aggRotate", new tRotateProp());
 			addMember(dispatch, L"aggScale",  new tScaleProp());
@@ -699,50 +699,50 @@ extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 			addMember(dispatch, L"aggY",      new tYProp());
 		}
 
-		// AGGPrimitive Œ^“o˜^
+		// AGGPrimitive å‹ç™»éŒ²
 		addMember(global, L"AGGPrimitive", Create_NC_AGGPrimitive());
 		
 		global->Release();
 	}
 			
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall _export V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// ƒvƒƒpƒeƒBŠJ•ú
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 	NI_LayerExBase::unInit();
 	
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if (global) {
-		// TJS ©‘Ì‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚Æ‚«‚È‚Ç‚Í
-		// global ‚Í NULL ‚É‚È‚è“¾‚é‚Ì‚Å global ‚ª NULL ‚Å‚È‚¢
-		// ‚±‚Æ‚ğƒ`ƒFƒbƒN‚·‚é
+		// TJS è‡ªä½“ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã¨ããªã©ã¯
+		// global ã¯ NULL ã«ãªã‚Šå¾—ã‚‹ã®ã§ global ãŒ NULL ã§ãªã„
+		// ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		global->Release();
 	}
 
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

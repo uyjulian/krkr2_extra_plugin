@@ -1,134 +1,134 @@
-Title: KAGParserEx �v���O�C��
+Title: KAGParserEx プラグイン
 Author: miahmie, wtnbgo
 
-������͉����H
+●これは何か？
 
-KAGParser��u�������Ċg������v���O�C���ł��B
-���肵����{�̑���contrib����\��ł����C
-�󋵎���ł͂��̂܂܂ōs����������܂���B
+KAGParserを置き換えて拡張するプラグインです。
+安定したら本体側にcontribする予定ですが，
+状況次第ではこのままで行くかもしれません。
 
-���݂̂Ƃ���C�g�������͉̂��L�S�_�݂̂ł��B
-�Ȃ��C�d�l�͗\�������ύX�����ꍇ������܂��B
+現在のところ，拡張されるのは下記４点のみです。
+なお，仕様は予告無く変更される場合があります。
 
 
-�E�^�O�̕����s�L�q���\�ɂȂ� multiLineTagEnabled �v���p�e�B�̒ǉ�
+・タグの複数行記述が可能になる multiLineTagEnabled プロパティの追加
 
-�@�s���� "\" ���L�q���C���̍s�̐擪�� ";" �����邱�ƂŁC
-�@�����s�ɂ킽��^�O���L�q�ł��܂��B
-�@���s���� "\" �݂̂Ŏ��̍s���� ";" ���Ȃ��ƃG���[�ɂȂ�܂��B
+　行末に "\" を記述し，次の行の先頭に ";" を入れることで，
+　複数行にわたるタグを記述できます。
+　※行末に "\" のみで次の行頭に ";" がないとエラーになります。
 
 	@tag hoge=123 fuga=test \
 	;    someoption=true \
 	;    andmore=false
 
-�@�s���� ";" ������̂́C���d�l�̃p�[�T�[�ɒʂ��Ă� ch �^�O�Ƃ���
-�@�F������Ȃ��悤�ɃR�����g�Ƃ��閳������ adhoc �d�l�ł��B
+　行頭に ";" を入れるのは，旧仕様のパーサーに通しても ch タグとして
+　認識されないようにコメントとする無理やりな adhoc 仕様です。
 
-�@"\" �̑O�ɂ͕K���P�ȏ�̃X�y�[�X���󂯂Ă��������B
-�@�󂯂Ȃ��ƑO�̗v�f�Ƃ������ĔF������Ă��܂��܂��B
-�@�܂��C�^�O���͕K���P�s�ڂɋL�q���܂��B
+　"\" の前には必ず１つ以上のスペースを空けてください。
+　空けないと前の要素とくっついて認識されてしまいます。
+　また，タグ名は必ず１行目に記述します。
 
-	; �_���ȗ�F
-	@tag hoge=123\			�� hoge="123\"�ƔF��
-	@tag hoge\			�� hoge\=true�ƔF��
-	@ \				�� \ �Ƃ����^�O���ŔF��
+	; ダメな例：
+	@tag hoge=123\			← hoge="123\"と認識
+	@tag hoge\			← hoge\=trueと認識
+	@ \				← \ というタグ名で認識
 
-�@���d�l�ł́C[�`]�\�L�ŕ����s�̃^�O���L�q����ꍇ�C���̃^�O������ȍ~��
-�@����Ƀ^�O�𑱂��Ă����������悤�ɂȂ��Ă��܂��B
-�@�i���s�^�O�������ő}������܂���j
+　現仕様では，[〜]表記で複数行のタグを記述する場合，そのタグを閉じた以降に
+　さらにタグを続けても無視されるようになっています。
+　（改行タグも自動で挿入されません）
 
 	[tag hoge=123 fuga=test \
 	;    someoption=true \
-	;    andmore=false][���̃^�O�͖��������]
+	;    andmore=false][このタグは無視される]
 
 
-�EgetNextTag() �̋A��l���� "taglist" �����o��ǉ�
+・getNextTag() の帰り値中に "taglist" メンバを追加
 
-�@�ݒ肳��Ă���l�̓^�O�����L�ڏ��i�[���ꂽ�z��ł��B
-�@�L�ڂ��ꂽ���ɃR�}���h�����������ꍇ�ɗL�p�ł��B
-
-
-�E�p�����[�^�}�N���W�J�@�\
-
-  paramMacros (�����I�u�W�F�N�g) �ɑ΂��Ĉȉ��̌`�̃}�N������o�^�ł��܂�
-
-�@�p�����[�^�� => [�p�����[�^��,�l,�p�����[�^��,�l ... ]
-
-�@���̓o�^�ɍ��v����p�����[�^�����������ꍇ�ɁA
-  �o�^����Ă���p�����[�^�ꗗ�������ɍ������񂾂��̂Ƃ��ď������܂�
-  �p�����[�^�l�̐擪�� % �� & ������Ƃ���͎��ۂ̎��s���ɉ��߂����
-�@���ꂼ��}�N���W�J/���̎Q�ƂƂ��ċ@�\���܂��B
-
-�@�֘A���Ĉȉ��̃V�X�e���^�O���ǉ�����Ă��܂�
-
- �p�����[�^�}�N���o�^
-  @pmacro name=�p�����[�^�}�N���� param1=value param2=value ...
-
-  &��%�̎w��́A���ʂɏ����� pmacro �̓o�^���ɏ�������Ă��܂�
-  �̂Ń}�N�����s���ɏ������������ꍇ�̓G�X�P�[�v���Ă����ĉ�����
-
- �p�����[�^�}�N���폜
-  @erasepmacro name=�p�����[�^�}�N����
+　設定されている値はタグ名が記載順格納された配列です。
+　記載された順にコマンド処理したい場合に有用です。
 
 
-�Eemb�^�O��escape�p�����[�^�̒ǉ�
+・パラメータマクロ展開機能
 
-�@emb�^�O��"[�`]"��Ԃ��Ă��C��ɃG�X�P�[�v����Ēʏ�̕�����Ƃ���
-�@�]������Ă���������Cescape �p�����[�^�ŃG�X�P�[�v�L�����w��ł��܂��B
-�@�G�X�P�[�v���Ȃ��ꍇ�́C�ʏ�̃^�O�Ƃ��ĕ]������܂��B
+  paramMacros (辞書オブジェクト) に対して以下の形のマクロ情報を登録できます
 
-�@[emb exp="'[tag1][tag2]'" escape=false] �� [tag1][tag2]���W�J�E�]������܂�
+　パラメータ名 => [パラメータ名,値,パラメータ名,値 ... ]
 
-�@�p�����[�^�ȗ����� escape=true�i�]���ʂ�̓���j�ł��B
-�@�g�p�ɍۂ��Ă�
-�@[macro name=extract][emb escape=false exp=%exp][endmacro]
-�@�ȂǂƂ��ēK���ȃ}�N������Ďg���Ɨǂ����Ǝv���܂��B
+　この登録に合致するパラメータ名があった場合に、
+  登録されているパラメータ一覧をそこに差し込んだものとして処理します
+  パラメータ値の先頭に % や & があるとそれは実際の実行時に解釈されて
+　それぞれマクロ展開/実体参照として機能します。
 
-�@�Ȃ��C"@�`"�`���̕�����ŕԂ��Ă��ʏ�̃e�L�X�g�Ƃ��ĕ]�������̂�
-�@�K��"[�`]"�̌`���Ń^�O�������Ԃ��Ă��������B
+　関連して以下のシステムタグが追加されています
 
-�@���I�ɐ��������}�N�����܂ރ^�O�Ȃǂ��]�������̂ŕ֗��ł����C
-�@emb�̖����ċA���\�ɂȂ��Ă��܂��Ă���̂Ŏg�p�ɂ͏\�����ӂ��Ă��������B
+ パラメータマクロ登録
+  @pmacro name=パラメータマクロ名 param1=value param2=value ...
+
+  &や%の指定は、普通に書くと pmacro の登録時に処理されてしまう
+  のでマクロ実行時に処理させたい場合はエスケープしておいて下さい
+
+ パラメータマクロ削除
+  @erasepmacro name=パラメータマクロ名
 
 
-���}�N���p�����[�^�̓W�J�u*�v�̋����̈Ⴂ�ɂ���
+・embタグのescapeパラメータの追加
 
-KAGParser�ł̓}�N���W�J�́u*�v�ȑO�ɏ�����Ă���I�v�V�������㏑�������
-�����Ă��܂��Ƃ����o�O���ۂ�����������܂����CKAGParserEx�ł�
-paramMacros�Ή��̂��ߍ\����ς����֌W�Łu*�v�ȑO�̃p�����[�^���L���ƂȂ�܂��B
+　embタグで"[〜]"を返しても，常にエスケープされて通常の文字列として
+　評価されていた動作を，escape パラメータでエスケープ有無を指定できます。
+　エスケープしない場合は，通常のタグとして評価されます。
 
-��F
+　[emb exp="'[tag1][tag2]'" escape=false] ⇒ [tag1][tag2]が展開・評価されます
+
+　パラメータ省略時は escape=true（従来通りの動作）です。
+　使用に際しては
+　[macro name=extract][emb escape=false exp=%exp][endmacro]
+　などとして適当なマクロを介して使うと良いかと思います。
+
+　なお，"@〜"形式の文字列で返しても通常のテキストとして評価されるので
+　必ず"[〜]"の形式でタグ文字列を返してください。
+
+　動的に生成したマクロを含むタグなども評価されるので便利ですが，
+　embの無限再帰も可能になってしまっているので使用には十分注意してください。
+
+
+●マクロパラメータの展開「*」の挙動の違いについて
+
+KAGParserではマクロ展開の「*」以前に書かれているオプションが上書きされて
+消えてしまうというバグっぽい挙動がありますが，KAGParserExでは
+paramMacros対応のため構造を変えた関係で「*」以前のパラメータも有効となります。
+
+例：
 	[macro name=hoge]
 		[tag foo=bar * baz]
 	[endmacro]
 
-	�ɂ�����
+	において
 
 	[hoge fuga=piyo]
 
-	�Ƃ���ƁC
-	�EKAGParser   �ł� [tag fuga=piyo baz]
-	�EKAGParserEx �ł� [tag foo=bar fuga=piyo baz]
-	���n��
+	とすると，
+	・KAGParser   では [tag fuga=piyo baz]
+	・KAGParserEx では [tag foo=bar fuga=piyo baz]
+	が渡る
 
 
-���\�[�X�ɂ���
+●ソースについて
 
-KAGParser�̃\�[�X�����̂܂ܗ��p���������đg�ݍ���ł��܂��B
-�\�[�X��svn copy���Ă���̂ŁC���O����{�̑�����̕ύX�_��ǂ����Ƃ��ł��܂��B
+KAGParserのソースをそのまま流用＆改造して組み込んでいます。
+ソースはsvn copyしているので，ログから本体側からの変更点を追うことができます。
 
 	KAGParser.cpp   <- src/core/utils/KAGParser.cpp
 	KAGParser.h     <- src/core/utils/KAGParser.h
 	tjsHashSearch.h <- src/core/tjs/tjsHashSearch.h
 
 
-���g����
+●使い方
 
-KAGParserEx.dll �������N����ƁCKAGParser�N���X���u�������܂��B
-�A�������N����ƁC���ɖ߂�܂��B
+KAGParserEx.dll をリンクすると，KAGParserクラスが置き換わります。
+アンリンクすると，元に戻ります。
 
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。
 

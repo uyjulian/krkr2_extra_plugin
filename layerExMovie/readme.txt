@@ -1,30 +1,30 @@
 Title: layerExMovie plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Layer �N���X�ɓ���Đ��@�\�g�����s���v���O�C���ł��B
-VideoOverlay �N���X�Ƃ͕ʋ@�\�̓���Đ��ɂȂ�܂�
+Layer クラスに動画再生機能拡張を行うプラグインです。
+VideoOverlay クラスとは別機構の動画再生になります
 
-��ʍ����^�C�~���O�ɂ��킹������X�V���s���̂ŁA
-fpslimit �v���O�C���Ȃǂɂ�镉�ג������\�ɂȂ�܂��B
-�������T�C�Y�̌��ʃ��[�r�[���Đ����邽�߂̋@�\�ł��B
-�ʏ�̃��[�r�[�Đ��ɂ� VideoOverlay �𗘗p�����ق���
-�ǂ��ł��傤
+画面合成タイミングにあわせた動画更新を行うので、
+fpslimit プラグインなどによる負荷調整が可能になります。
+小さいサイズの効果ムービーを再生するための機構です。
+通常のムービー再生には VideoOverlay を利用したほうが
+良いでしょう
 
-���R���p�C�����@
+●コンパイル方法
 
- DirectX Extras �܂��� Platform SDK ����ADirectShow ��
- �T���v���́ABaseClasses �������Ă���K�v������܂��B
- �v���W�F�N�g�t�@�C���� strmbase.vcproj �Ƃ��ď�������
- ����̂ŁABaseClasses �̓��e�݂̂����Ă��Ă��������B
+ DirectX Extras または Platform SDK から、DirectShow の
+ サンプルの、BaseClasses をもってくる必要があります。
+ プロジェクトファイルは strmbase.vcproj として準備して
+ あるので、BaseClasses の内容のみもってきてください。
 
- �R���p�C�����ʂ炸�A�K�X�\�[�X�ύX���K�v�ȏꍇ������܂��B
+ コンパイルが通らず、適宜ソース変更が必要な場合があります。
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

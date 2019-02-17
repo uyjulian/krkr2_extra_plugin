@@ -1,8 +1,8 @@
 /**
- * ˆê”Ê“I‚È sqobject À‘•
+ * ä¸€èˆ¬çš„ãª sqobject å®Ÿè£…
  * 
- * Object, Thread ‚Ì“o˜^ˆ—‚ÌÀ‘•—á‚Å‚·B
- * Œp³î•ñ‚Í’PƒƒŠƒXƒgŠÇ—‚µ‚Ä‚Ü‚·
+ * Object, Thread ã®ç™»éŒ²å‡¦ç†ã®å®Ÿè£…ä¾‹ã§ã™ã€‚
+ * ç¶™æ‰¿æƒ…å ±ã¯å˜ç´”ãƒªã‚¹ãƒˆç®¡ç†ã—ã¦ã¾ã™
  */
 #include "sqobjectinfo.h"
 #include "sqobjectclass.h"
@@ -30,7 +30,7 @@ namespace sqobject {
 // global vm
 HSQUIRRELVM vm;
 
-/// vm ‰Šú‰»
+/// vm åˆæœŸåŒ–
 HSQUIRRELVM init() {
 	vm = sq_open(1024);
 	sq_pushroottable(vm);
@@ -41,20 +41,20 @@ HSQUIRRELVM init() {
 	return vm;
 }
 
-/// î•ñ•Û—pƒOƒ[ƒoƒ‹VM‚Ìæ“¾
+/// æƒ…å ±ä¿æŒç”¨ã‚°ãƒ­ãƒ¼ãƒãƒ«VMã®å–å¾—
 HSQUIRRELVM getGlobalVM()
 {
 	return vm;
 }
 
-/// vm I—¹
+/// vm çµ‚äº†
 void done()
 {
-	// ƒNƒ‰ƒXQÆ‚ğ‰ğ•ú
+	// ã‚¯ãƒ©ã‚¹å‚ç…§ã‚’è§£æ”¾
 	SQClassType<Thread>::done(vm);
 	SQClassType<Object>::done(vm);
 	
-	// ƒ‹[ƒgƒe[ƒuƒ‹‚ğƒNƒŠƒA
+	// ãƒ«ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚¯ãƒªã‚¢
 	sq_pushroottable(vm);
 	sq_clear(vm,-1);
 	sq_pop(vm,1);
@@ -62,7 +62,7 @@ void done()
 }
 
 // ------------------------------------------------------------------
-// ƒNƒ‰ƒX“o˜^—pƒ}ƒNƒ
+// ã‚¯ãƒ©ã‚¹ç™»éŒ²ç”¨ãƒã‚¯ãƒ­
 // ------------------------------------------------------------------
 
 #ifndef USE_SQOBJECT_TEMPLATE
@@ -135,7 +135,7 @@ static SQRESULT Object_set(HSQUIRRELVM v)
 #endif
 
 /**
- * ƒNƒ‰ƒX‚Ì“o˜^
+ * ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
  * @param v squirrel VM
  */
 void
@@ -258,7 +258,7 @@ static SQRESULT Thread_cancelWait(HSQUIRRELVM v)
 #endif
 
 /**
- * ƒNƒ‰ƒX‚Ì“o˜^
+ * ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
  * @param v squirrel VM
  */
 void

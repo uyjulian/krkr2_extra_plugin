@@ -6,35 +6,35 @@
 #include "../layerExDraw/layerExBase.hpp"
 
 /**
- * ƒŒƒCƒ„‰æ‘œ/‰¹º˜^‰æ‹@\
+ * ãƒ¬ã‚¤ãƒ¤ç”»åƒ/éŸ³å£°éŒ²ç”»æ©Ÿæ§‹
  */
 class LayerExAVI : public layerExBase {
 
 protected:
-	// “®‰æ‹L˜^—p‚Ìî•ñ
-	PAVIFILE      pavi; //< AVIƒtƒ@ƒCƒ‹
-	PAVISTREAM    pstm; //< AVIƒXƒgƒŠ[ƒ€
-        PAVISTREAM    ptmp; //< ˆ³kƒXƒgƒŠ[ƒ€
+	// å‹•ç”»è¨˜éŒ²ç”¨ã®æƒ…å ±
+	PAVIFILE      pavi; //< AVIãƒ•ã‚¡ã‚¤ãƒ«
+	PAVISTREAM    pstm; //< AVIã‚¹ãƒˆãƒªãƒ¼ãƒ 
+        PAVISTREAM    ptmp; //< åœ§ç¸®ã‚¹ãƒˆãƒªãƒ¼ãƒ 
         COMPVARS cv;
         bool hasCv;
         AVICOMPRESSOPTIONS opt;
-	int aviWidth;  //< ŠJn‰¡•
-	int aviHeight; //< ŠJnc•
-	int lastFrame; //< ÅI˜^‰æƒtƒŒ[ƒ€
+	int aviWidth;  //< é–‹å§‹æ™‚æ¨ªå¹…
+	int aviHeight; //< é–‹å§‹æ™‚ç¸¦å¹…
+	int lastFrame; //< æœ€çµ‚éŒ²ç”»ãƒ•ãƒ¬ãƒ¼ãƒ 
 
 protected:
-	// ‰¹º‹L˜^—p‚Ìî•ñ
-	HWAVEIN hwi; //< ‰¹º“ü—Íƒnƒ“ƒhƒ‹
-	WAVEHDR wvhdr; //< •Û‘¶—pƒwƒbƒ_
-	IStream *wvout; //< o—Íæ
+	// éŸ³å£°è¨˜éŒ²ç”¨ã®æƒ…å ±
+	HWAVEIN hwi; //< éŸ³å£°å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«
+	WAVEHDR wvhdr; //< ä¿å­˜ç”¨ãƒ˜ãƒƒãƒ€
+	IStream *wvout; //< å‡ºåŠ›å…ˆ
 	
 	/**
-	 * ‰¹º“ü—ÍƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @param hwi ‰¹º“ü—Íƒnƒ“ƒhƒ‹
-	 * @param uMsg ƒRƒ}ƒ“ƒh
-	 * @param dwInstance ƒCƒ“ƒXƒ^ƒ“ƒXî•ñ
-	 * @param dwParam1 ƒpƒ‰ƒ[ƒ^1
-	 * @param dwParam1 ƒpƒ‰ƒ[ƒ^2
+	 * éŸ³å£°å…¥åŠ›ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @param hwi éŸ³å£°å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«
+	 * @param uMsg ã‚³ãƒãƒ³ãƒ‰
+	 * @param dwInstance ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æƒ…å ±
+	 * @param dwParam1 ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿1
+	 * @param dwParam1 ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿2
 	 */
 	static void CALLBACK waveInProc(HWAVEIN hwi, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2) {
 		LayerExAVI *owner = (LayerExAVI*)dwInstance;
@@ -42,14 +42,14 @@ protected:
 	}
 
 	/**
-	 * ‰¹º“ü—ÍƒR[ƒ‹ƒoƒbƒN
-	 * @param hwi ‰¹º“ü—Íƒnƒ“ƒhƒ‹
-	 * @param uMsg ƒRƒ}ƒ“ƒh
-	 * @param dwParam1 ƒpƒ‰ƒ[ƒ^1
-	 * @param dwParam1 ƒpƒ‰ƒ[ƒ^2
+	 * éŸ³å£°å…¥åŠ›ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param hwi éŸ³å£°å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«
+	 * @param uMsg ã‚³ãƒãƒ³ãƒ‰
+	 * @param dwParam1 ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿1
+	 * @param dwParam1 ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿2
 	 */
 	void waveIn(HWAVEIN hwi, UINT uMsg, DWORD dwParam1, DWORD dwParam2) {
-		/* ƒCƒxƒ“ƒgˆ— */
+		/* ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç† */
 		switch(uMsg){
 		case WIM_DATA:
 			{
@@ -63,33 +63,33 @@ protected:
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	LayerExAVI(DispatchT obj) : layerExBase(obj), pavi(NULL), pstm(NULL), ptmp(NULL), hwi(NULL), wvout(NULL) {
 		ZeroMemory(&wvhdr, sizeof wvhdr);
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~LayerExAVI() {
 		closeAVI();
 	}
 
 	/**
-	 * AVIƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @param fps •bŠÔƒtƒŒ[ƒ€”
+	 * AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fps ç§’é–“ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	 */
 	void openAVI(const tjs_char *filename, int fps) {
 
 		closeAVI();
 
-		// ˜^‰æŠJn‚ÌƒTƒCƒY‚ğ‹L˜^‚µ‚Ä‚¨‚­
+		// éŒ²ç”»é–‹å§‹æ™‚ã®ã‚µã‚¤ã‚ºã‚’è¨˜éŒ²ã—ã¦ãŠã
 		aviWidth  = _width;
 		aviHeight = _height;
 
-		// AVIƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		ttstr path = TVPNormalizeStorageName(ttstr(filename));
 		TVPGetLocalName(path);
 		if (AVIFileOpen(&pavi, path.c_str(), OF_CREATE | OF_WRITE | OF_SHARE_DENY_NONE,NULL) != 0)	{
@@ -98,7 +98,7 @@ public:
 			TVPThrowExceptionMessage(msg.c_str());
 		}
 
-		// AVIƒXƒgƒŠ[ƒ€‚Ì¶¬
+		// AVIã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç”Ÿæˆ
 		AVISTREAMINFO si = {	
 			streamtypeVIDEO, // Video Stream
 			comptypeDIB,
@@ -106,15 +106,15 @@ public:
 			0,
 			0,
 			0,
-			1,               // ŠÔ’PˆÊ dwScale
-			fps,             // ƒtƒŒ[ƒ€ dwRate
+			1,               // æ™‚é–“å˜ä½ dwScale
+			fps,             // ãƒ•ãƒ¬ãƒ¼ãƒ  dwRate
 			0,
-			0,         // ƒXƒgƒŠ[ƒ€‚Ì’·‚³ XXX
+			0,         // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®é•·ã• XXX
 			0,
 			0,
-			(DWORD)-1,       // -1: Default•i¿ [0-10000]
+			(DWORD)-1,       // -1: Defaultå“è³ª [0-10000]
 			0,
-			// •\¦‚·‚é‹éŒ`ƒTƒCƒY
+			// è¡¨ç¤ºã™ã‚‹çŸ©å½¢ã‚µã‚¤ã‚º
 			{ 0, 0, aviWidth, aviHeight },
 			0,
 			0,
@@ -126,7 +126,7 @@ public:
                 }
 
 
-		// ƒXƒgƒŠ[ƒ€‚É“Š‚°‚Şƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğw’è
+		// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æŠ•ã’è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 
 		BITMAPINFOHEADER bih;
 		bih.biSize = sizeof(bih);
@@ -146,27 +146,27 @@ public:
 			TVPThrowExceptionMessage(L"AVIFileCreateStream");
 		}
 
-		// æ“ªƒtƒŒ[ƒ€
+		// å…ˆé ­ãƒ•ãƒ¬ãƒ¼ãƒ 
                 lastFrame = -1;
 
                 hasCv = false;
         }
 
 	/**
-	 * AVIƒtƒ@ƒCƒ‹‚ğˆ³kƒtƒH[ƒ}ƒbƒg‚ğw’è‚µ‚ÄŠJ‚­
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @param fps •bŠÔƒtƒŒ[ƒ€”
-         * @param return ˆ³kƒ_ƒCƒAƒƒO‚ÅƒLƒƒƒ“ƒZƒ‹‚ğ‰Ÿ‚µ‚½ê‡falseB
+	 * AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’åœ§ç¸®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã—ã¦é–‹ã
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fps ç§’é–“ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+         * @param return åœ§ç¸®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’æŠ¼ã—ãŸå ´åˆfalseã€‚
 	 */
 	bool openCompressedAVI(const tjs_char *filename, int fps) {
 
 		closeAVI();
 
-		// ˜^‰æŠJn‚ÌƒTƒCƒY‚ğ‹L˜^‚µ‚Ä‚¨‚­
+		// éŒ²ç”»é–‹å§‹æ™‚ã®ã‚µã‚¤ã‚ºã‚’è¨˜éŒ²ã—ã¦ãŠã
 		aviWidth  = _width;
 		aviHeight = _height;
 
-		// ƒXƒgƒŠ[ƒ€‚É“Š‚°‚Şƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğw’è
+		// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æŠ•ã’è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 
 		BITMAPINFOHEADER bih;
 		bih.biSize = sizeof(bih);
@@ -181,7 +181,7 @@ public:
 		bih.biClrUsed = 0;
 		bih.biClrImportant = 0;
 
-                // ˆ³kƒIƒvƒVƒ‡ƒ“‚ğæ“¾
+                // åœ§ç¸®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—
                 memset(&cv,0,sizeof(COMPVARS));
                 cv.cbSize=sizeof(COMPVARS);
                 cv.dwFlags=ICMF_COMPVARS_VALID;
@@ -192,7 +192,7 @@ public:
                   return false;
                 }
 
-                // ƒIƒvƒVƒ‡ƒ“‚ğw’è
+                // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®š
                 opt.fccType=streamtypeVIDEO;
                 opt.fccHandler=cv.fccHandler;
                 opt.dwKeyFrameEvery=cv.lKey;
@@ -207,7 +207,7 @@ public:
                 opt.dwInterleaveEvery=0;
                 
 
-		// AVIƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		ttstr path = TVPNormalizeStorageName(ttstr(filename));
 		TVPGetLocalName(path);
 		if (AVIFileOpen(&pavi, path.c_str(), OF_CREATE | OF_WRITE | OF_SHARE_DENY_NONE,NULL) != 0)	{
@@ -216,7 +216,7 @@ public:
 			TVPThrowExceptionMessage(msg.c_str());
 		}
 
-		// AVIƒXƒgƒŠ[ƒ€‚Ì¶¬
+		// AVIã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç”Ÿæˆ
 		AVISTREAMINFO si = {	
 			streamtypeVIDEO, // Video Stream
 			comptypeDIB,
@@ -224,15 +224,15 @@ public:
 			0,
 			0,
 			0,
-			1,               // ŠÔ’PˆÊ dwScale
-			fps,             // ƒtƒŒ[ƒ€ dwRate
+			1,               // æ™‚é–“å˜ä½ dwScale
+			fps,             // ãƒ•ãƒ¬ãƒ¼ãƒ  dwRate
 			0,
-			10,         // ƒXƒgƒŠ[ƒ€‚Ì’·‚³ XXX
+			10,         // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®é•·ã• XXX
 			0,
 			0,
-			(DWORD)-1,       // -1: Default•i¿ [0-10000]
+			(DWORD)-1,       // -1: Defaultå“è³ª [0-10000]
 			0,
-			// •\¦‚·‚é‹éŒ`ƒTƒCƒY
+			// è¡¨ç¤ºã™ã‚‹çŸ©å½¢ã‚µã‚¤ã‚º
 			{ 0, 0, aviWidth, aviHeight },
 			0,
 			0,
@@ -253,7 +253,7 @@ public:
 			TVPThrowExceptionMessage(L"AVIFileCreateStream");
 		}
 
-		// æ“ªƒtƒŒ[ƒ€
+		// å…ˆé ­ãƒ•ãƒ¬ãƒ¼ãƒ 
 		lastFrame = -1;
 
                 hasCv = true;
@@ -262,17 +262,17 @@ public:
 	}
 
 	/**
-	 * AVIƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‹L˜^
+	 * AVIãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨˜éŒ²
 	 */
 	void recordAVI(int frame) {
 		if (pavi && pstm) {
 			if (frame > lastFrame) {
-				// ƒTƒCƒY‚ª•Ï‚í‚Á‚Ä‚½‚ç—áŠO
+				// ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã£ã¦ãŸã‚‰ä¾‹å¤–
 				if (aviWidth != _width ||
 					aviHeight != _height) {
 					TVPThrowExceptionMessage(L"layer size has changed");
 				}
-				// ‹g—¢‹g—¢‚Ìƒoƒbƒtƒ@‚Í DIB ‚Æ“¯‚¶\‘¢‚È‚Ì‚Å‚±‚Ìˆ—‚Å’Ê‚é
+				// å‰é‡Œå‰é‡Œã®ãƒãƒƒãƒ•ã‚¡ã¯ DIB ã¨åŒã˜æ§‹é€ ãªã®ã§ã“ã®å‡¦ç†ã§é€šã‚‹
 				int size = _height * -_pitch;
 				const unsigned char *buffer = _buffer + (_height-1) * _pitch;
 				if (AVIStreamWrite(hasCv ? ptmp : pstm, frame, 1, (void*)buffer, size, AVIIF_KEYFRAME, NULL, NULL ) != 0) {
@@ -286,7 +286,7 @@ public:
 	}
 
 	/**
-	 * AVIƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	 * AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	 */
 	void closeAVI() {
                 if (ptmp) {
@@ -307,21 +307,21 @@ public:
 	}
 
 	/**
-	 * WAV˜^‰¹€”õ
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @param channel ƒ`ƒƒƒ“ƒlƒ‹
-	 * @param rate ƒŒ[ƒg
-	 * @param bits ƒrƒbƒg”
-	 * @param interval æ“¾ƒ^ƒCƒ~ƒ“ƒO
+	 * WAVéŒ²éŸ³æº–å‚™
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param channel ãƒãƒ£ãƒ³ãƒãƒ«
+	 * @param rate ãƒ¬ãƒ¼ãƒˆ
+	 * @param bits ãƒ“ãƒƒãƒˆæ•°
+	 * @param interval å–å¾—ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 	 */
 	void openWAV(const tjs_char *filename, int channel, int rate, int bits, int interval) {
 
 		closeWAV();
 		
-		// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		wvout = TVPCreateIStream(filename, TJS_BS_WRITE);
 		
-		// ƒtƒH[ƒ}ƒbƒg‚ğw’è
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 		WAVEFORMATEX waveForm;
 		waveForm.wFormatTag      = WAVE_FORMAT_PCM;
 		waveForm.nChannels       = channel;
@@ -330,25 +330,25 @@ public:
 		waveForm.nBlockAlign     = waveForm.nChannels * waveForm.wBitsPerSample / 8;
 		waveForm.nAvgBytesPerSec = waveForm.nSamplesPerSec * waveForm.nBlockAlign;
 		
-		// waveIn ‚ğŠJ‚­
+		// waveIn ã‚’é–‹ã
 		if (waveInOpen(&hwi, WAVE_MAPPER, &waveForm, (DWORD)waveInProc, (DWORD)this, CALLBACK_FUNCTION) != MMSYSERR_NOERROR) {
 			TVPThrowExceptionMessage(L"waveInOpen");
 		}
 		
-		/* ƒLƒƒƒvƒ`ƒƒƒoƒbƒtƒ@Šm•Û */
+		/* ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒãƒƒãƒ•ã‚¡ç¢ºä¿ */
 		int length = waveForm.nAvgBytesPerSec * interval / 1000;
 		wvhdr.lpData         = new char[length];
 		wvhdr.dwBufferLength = length;
 		wvhdr.dwFlags        = 0;
 		wvhdr.reserved       = 0;
 
-		// ƒoƒbƒtƒ@‚ğİ’è
+		// ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
 		waveInPrepareHeader(hwi, &wvhdr, sizeof(wvhdr));
 		waveInAddBuffer(hwi, &wvhdr, sizeof(wvhdr));
 	}
 
 	/**
-	 * WAV˜^‰¹ŠJn
+	 * WAVéŒ²éŸ³é–‹å§‹
 	 */
 	void startWAV() {
 		if (hwi) {
@@ -359,7 +359,7 @@ public:
 	}
 
 	/**
-	 * WAV˜^‰¹’â~
+	 * WAVéŒ²éŸ³åœæ­¢
 	 */
 	void stopWAV() {
 		if (hwi) {
@@ -370,7 +370,7 @@ public:
 	}
 
 	/**
-	 * WAV˜^‰¹I—¹
+	 * WAVéŒ²éŸ³çµ‚äº†
 	 */
 	void closeWAV() {
 		if (hwi) {
@@ -379,13 +379,13 @@ public:
 			waveInReset(hwi);
 			waveInClose(hwi);
 			hwi = NULL;
-			// ƒoƒbƒtƒ@ƒNƒŠƒA
+			// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 			if (wvhdr.lpData) {
 				delete[] wvhdr.lpData;
 			}
 			ZeroMemory(&wvhdr, sizeof wvhdr);
 		}
-		// ƒtƒ@ƒCƒ‹ƒNƒ[ƒY
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 		if (wvout) {
 			wvout->Release();
 			wvout = NULL;
@@ -396,17 +396,17 @@ public:
 
 NCB_GET_INSTANCE_HOOK(LayerExAVI)
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		obj->reset();
 		return obj;
 	}
-	// ƒfƒXƒgƒ‰ƒNƒ^iÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 	}
 };
@@ -422,10 +422,10 @@ NCB_ATTACH_CLASS_WITH_HOOK(LayerExAVI, Layer) {
 	NCB_METHOD(closeWAV);
 }
 
-// ----------------------------------- ‹N“®EŠJ•úˆ—
+// ----------------------------------- èµ·å‹•ãƒ»é–‹æ”¾å‡¦ç†
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 void PreRegistCallback()
 {
@@ -433,7 +433,7 @@ void PreRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 void PostUnregistCallback()
 {

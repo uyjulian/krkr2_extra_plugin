@@ -1,21 +1,21 @@
 Title: messenger Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-����}�V����ŋN�����Ă���g���g���Ԃł̑��ݒʐM�@�\��񋟂��܂��B
-window message ���o�R���ē��񃁃b�Z�[�W�𑗐M���܂��B
+同一マシン上で起動している吉里吉里間での相互通信機能を提供します。
+window message を経由して同報メッセージを送信します。
  
-���g�p���@
+●使用方法
 
-manual.tjs �Q��
+manual.tjs 参照
 
-���O���A�v���P�[�V��������̐����
+●外部アプリケーションからの制御例
 
-storeHWND �� "hwnd" ���w�肵�āA�O���A�v������ HWND �����m���A
-���̃E�C���h�E�ɑ΂��� WM_COPYDATA ��ʒm���܂��B
+storeHWND に "hwnd" を指定して、外部アプリから HWND を検知し、
+そのウインドウに対して WM_COPYDATA を通知します。
 
-ruby �ł̐����
+ruby での制御例
 --------------------------------------------------------------------
 exename = "krkr"
 hwnd = open(exename + ".exe.hwnd").gets.to_i;
@@ -46,6 +46,6 @@ cd.lpData = msg
 CopyData::sendMessage(hwnd, CopyData::WM_COPYDATA, 0, cd.to_ptr.to_i)
 --------------------------------------------------------------------
 
-�����C�Z���X
+●ライセンス
 
-���C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+ライセンスは吉里吉里本体に準拠してください。

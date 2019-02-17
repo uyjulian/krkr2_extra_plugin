@@ -2,7 +2,7 @@
 #include "agg_svg_parser.h"
 
 /**
- * SVG �ێ��p
+ * SVG 保持用
  */
 class AGGSVG : public AGGPrimitive
 {
@@ -10,10 +10,10 @@ public:
 	static const tjs_char *getTypeName() { return L"SVG"; }
 
 protected:
-	/// SVG �p�p�X���
+	/// SVG 用パス情報
 	agg::svg::path_renderer _path;
 
-	// �o�E���f�B���O
+	// バウンディング
 	double _min_x;
 	double _min_y;
     double _max_x;
@@ -21,9 +21,9 @@ protected:
 
 public:
 	/**
-	 * �`�揈��
-	 * @param rb �x�[�X�����_��
-	 * @param mtx ��{�A�t�B���ό`
+	 * 描画処理
+	 * @param rb ベースレンダラ
+	 * @param mtx 基本アフィン変形
 	 */
 	void paint(renderer_base &rb, agg::trans_affine &mtx) {
 
@@ -31,37 +31,37 @@ public:
 		scanline sl;
 		renderer_scanline ren(rb);
 
-		// �ό`����
+		// 変形処理
 		agg::trans_affine selfMtx;
 		selfMtx *= agg::trans_affine_translation((_min_x + _max_x) * -0.5, (_min_y + _max_y) * -0.5);
 		selfMtx *= agg::trans_affine_scaling(_scale);
 		selfMtx *= agg::trans_affine_rotation(agg::deg2rad(_rotate));
 		selfMtx *= agg::trans_affine_translation((_min_x + _max_x) * 0.5 + _x, (_min_y + _max_y) * 0.5 + _y);
 
-		// �S�̕ό`
+		// 全体変形
 		selfMtx *= mtx;
 
-		// ���̊g��
+		// 線の拡張
 		_path.expand(_expand);
 
-		// �`��
+		// 描画
 		_path.render(ras, sl, ren, selfMtx, rb.clip_box(), 1.0);
 	}
 	
 public:
 	
 	/**
-	 * �摜�̃p�[�X
+	 * 画像のパース
 	 */
 	void parse(const ttstr &name) {
 
-		// �摜�ǂݍ���
+		// 画像読み込み
 		IStream *in = TVPCreateIStream(name, TJS_BS_READ);
 		if(!in) {
 			TVPThrowExceptionMessage((ttstr(TJS_W("cannot open : ")) + ttstr(name)).c_str());
 		}
 		try	{
-			// �����_�����O����
+			// レンダリング処理
 			agg::svg::parser p(_path);
 			p.parse(in);
 			_path.arrange_orientations();
@@ -79,7 +79,7 @@ public:
 	}
 
 public:
-	/// �R���X�g���N�^
+	/// コンストラクタ
 	AGGSVG(NI_AGGPrimitive *owner, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) : AGGPrimitive(owner) {
 		_min_x = 0.0;
 		_min_y = 0.0;
@@ -90,7 +90,7 @@ public:
 			parse(*param[0]);
 		}
 
-		// tjs_obj �Ƀ��\�b�h�ǉ� XXX
+		// tjs_obj にメソッド追加 XXX
 	}
 };
 

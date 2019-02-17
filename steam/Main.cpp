@@ -7,7 +7,7 @@
 #include <steam_api.h>
 #pragma comment(lib,"steam_api.lib")
 
-// ttstr‚ğUTF8•¶š—ñ‚Ö•ÏŠ·
+// ttstrã‚’UTF8æ–‡å­—åˆ—ã¸å¤‰æ›
 std::string
 convertTtstrToUtf8String(ttstr &buf)
 {
@@ -19,7 +19,7 @@ convertTtstrToUtf8String(ttstr &buf)
   return result;
 }
 
-// std::string‚ğttstr‚É•ÏŠ·
+// std::stringã‚’ttstrã«å¤‰æ›
 ttstr
 convertUtf8StringToTtstr(const char *buf, size_t length)
 {
@@ -45,34 +45,34 @@ class SteamBroadcastCallback;
 class LayerImageToRGB;
 
 /**
- * Steamî•ñŠî‘bƒNƒ‰ƒX
+ * Steamæƒ…å ±åŸºç¤ã‚¯ãƒ©ã‚¹
  */
 class Steam : public tTVPContinuousEventCallbackIntf {
 public:
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	static void registerSteam() {
 		instance = new Steam();
 		instance->init();
 		initStorage();
 	}
-	// ‰ğœ
+	// è§£é™¤
 	static void unregisterSteam() {
 		doneStorage();
 		delete instance;
 	}
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^—p(í‚É—áŠO)
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç”¨(å¸¸ã«ä¾‹å¤–)
 	static tjs_error Factory(Steam **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		TVPThrowExceptionMessage(TJSGetMessageMapMessage(TJS_W("TVPCannotCreateInstance")).c_str());
 		return TJS_E_FAIL;
 	}
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Steam() : inited(false), achieve(0), screenshot(0), broadcast(0) {}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~Steam();
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void init() {
 		if ((inited = SteamAPI_Init())) {
 			ISteamUtils *utils = SteamUtils();
@@ -87,7 +87,7 @@ public:
 	}
 
 	// ---------------------------------------------------------
-	// ÀÑ
+	// å®Ÿç¸¾
 	// ---------------------------------------------------------
 
 	static bool requestInitialize() {
@@ -133,10 +133,10 @@ public:
 	}
 
 	// ---------------------------------------------------------
-	// î•ñ
+	// æƒ…å ±
 	// ---------------------------------------------------------
 	
-	// Œ»İ‚ÌŒ¾Œê‚ğæ“¾
+	// ç¾åœ¨ã®è¨€èªã‚’å–å¾—
 	static ttstr getLanguage() {
 		ttstr ret;
 		ISteamApps *app = SteamApps();
@@ -148,7 +148,7 @@ public:
 	}
 
 	// ---------------------------------------------------------
-	// ƒNƒ‰ƒEƒh
+	// ã‚¯ãƒ©ã‚¦ãƒ‰
 	// ---------------------------------------------------------
 
 	static bool getCloudEnabled() {
@@ -252,11 +252,11 @@ public:
 		return ret;
 	}
 	// ---------------------------------------------------------
-	// ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg§Œä
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆåˆ¶å¾¡
 	// ---------------------------------------------------------
 	
 	/**
-	 * ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒgˆ—‚ğƒAƒvƒŠ‘¤‚©‚ç‹N“®‚³‚¹‚é
+	 * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆå‡¦ç†ã‚’ã‚¢ãƒ—ãƒªå´ã‹ã‚‰èµ·å‹•ã•ã›ã‚‹
 	 */
 	static void triggerScreenshot() {
 		ISteamScreenshots *shots = SteamScreenshots();
@@ -266,8 +266,8 @@ public:
 	}
 
 	/**
-	 * @param callback ‚ğƒtƒbƒN‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”(void‚È‚çŠJ•ú)
-	 * @return “o˜^E‰ğœ‚É¬Œ÷‚µ‚½‚çtrue
+	 * @param callback ã‚’ãƒ•ãƒƒã‚¯ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°(voidãªã‚‰é–‹æ”¾)
+	 * @return ç™»éŒ²ãƒ»è§£é™¤ã«æˆåŠŸã—ãŸã‚‰true
 	 */
 	static bool hookScreenshots(tTJSVariant callback) {
 		if (instance) {
@@ -277,9 +277,9 @@ public:
 	}
 	
 	/**
-	 * ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚Ì“o˜^
-	 * @param layer ‰æ‘œ
-	 * @param location êŠ•¶š—ñ
+	 * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã®ç™»éŒ²
+	 * @param layer ç”»åƒ
+	 * @param location å ´æ‰€æ–‡å­—åˆ—
 	 */
 	static void writeScreenshot(iTJSDispatch2 *layer, ttstr location) {
 		if (instance) {
@@ -288,7 +288,7 @@ public:
 	}
 
 	// ---------------------------------------------------------
-	// ƒuƒ[ƒhƒLƒƒƒXƒg§Œä
+	// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆåˆ¶å¾¡
 	// ---------------------------------------------------------
 	
 	static bool isBroadcasting() {
@@ -325,7 +325,7 @@ protected:
 
 
 /**
- * SteamCallbackƒNƒ‰ƒX
+ * SteamCallbackã‚¯ãƒ©ã‚¹
  */
 class SteamCallback : public tTJSVariantClosure {
 public:
@@ -352,7 +352,7 @@ private:
 };
 
 /**
- * SteamScreenshotCallbackƒNƒ‰ƒX
+ * SteamScreenshotCallbackã‚¯ãƒ©ã‚¹
  */
 class SteamScreenshotCallback : public SteamCallback {
 public:
@@ -367,14 +367,14 @@ public:
 void
 SteamScreenshotCallback::OnScreenShotRequested(ScreenshotRequested_t *pCallback)
 {
-	// ‹°‚ç‚­SteamAPI_RunCallbacks() ‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅŒÄ‚Î‚ê‚é‚Æv‚í‚ê‚é
+	// æã‚‰ãSteamAPI_RunCallbacks() ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å‘¼ã°ã‚Œã‚‹ã¨æ€ã‚ã‚Œã‚‹
 	invokeCallback(0, NULL);
 
-	// FuncCall ‚Å‚È‚­‚Ä TVPPostEvent ‚È‚ñ‚½‚ç‚Ì‚ª‚æ‚©‚Á‚½‚©‚à
+	// FuncCall ã§ãªãã¦ TVPPostEvent ãªã‚“ãŸã‚‰ã®ãŒã‚ˆã‹ã£ãŸã‹ã‚‚
 	//::TVPPostEvent(source, target, TJS_W("onSteamScreenShotRequested"), 0, TVP_EPT_EXCLUSIVE, numargs, args);
 }
 /*
-// ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚ğB‚Á‚½Œã‚ÉŒÄ‚Î‚ê‚éHiƒ^ƒO•t‚¯‚âlocation‚ğİ’è‚·‚éê‡‚È‚Çj
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã‚’æ’®ã£ãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼Ÿï¼ˆã‚¿ã‚°ä»˜ã‘ã‚„locationã‚’è¨­å®šã™ã‚‹å ´åˆãªã©ï¼‰
 void
 SteamScreenshotCallback::OnScreenShotReady(ScreenshotReady_t *pCallback)
 {
@@ -390,7 +390,7 @@ SteamScreenshotCallback::OnScreenShotReady(ScreenshotReady_t *pCallback)
 
 
 /**
- * SteamBroadcastCallbackƒNƒ‰ƒX
+ * SteamBroadcastCallbackã‚¯ãƒ©ã‚¹
  */
 class SteamBroadcastCallback : public SteamCallback {
 public:
@@ -497,7 +497,7 @@ private:
 iTJSDispatch2 *LayerImageToRGB::LayerClass = 0;
 
 // ---------------------------------------------------------
-// À‘•
+// å®Ÿè£…
 
 Steam::~Steam() {
 	if (achieve) {

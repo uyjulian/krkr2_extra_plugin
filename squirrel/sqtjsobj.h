@@ -4,34 +4,34 @@
 #include <sqobjectclass.h>
 
 /**
- * ‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚ğ•Û‚·‚ésquirrelƒNƒ‰ƒX
+ * å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¿æŒã™ã‚‹squirrelã‚¯ãƒ©ã‚¹
  */
 class TJSObject : public sqobject::Object, iTJSNativeInstance {
 
 public:
 	/**
-	 * ‰Šú‰»—p
+	 * åˆæœŸåŒ–ç”¨
 	 */
 	static void init(HSQUIRRELVM vm);
 
 	/**
-	 * ”pŠü—p
+	 * å»ƒæ£„ç”¨
 	 */
 	static void done(HSQUIRRELVM vm);
 
 	// ---------------------------------------------------------------
 
 	/**
-	 * call ˆ——p‚ÌŒû
-	 * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚©‚çsquirrelƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒƒ\ƒbƒh‚ğ’¼ÚŒÄ‚Ño‚·
+	 * call å‡¦ç†ç”¨ã®å£
+	 * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰squirrelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç›´æ¥å‘¼ã³å‡ºã™
 	 */
 	static tjs_error call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 						  tTJSVariant *result,
 						  tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
 	
 	/**
-	 * missing ˆ——p‚ÌŒû
-	 * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚Éƒƒ“ƒo‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í squirrelƒCƒ“ƒXƒ^ƒ“ƒX‚ğQÆ‚·‚é
+	 * missing å‡¦ç†ç”¨ã®å£
+	 * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ squirrelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‚ç…§ã™ã‚‹
 	 */
 	static tjs_error missing(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 							 tTJSVariant *result,
@@ -41,25 +41,25 @@ public:
 
 	
 	/**
-	 * ƒXƒ^ƒbƒN‚©‚ç‚Ì‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+	 * ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ã®å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
 	 * @param v squirrelVM
-	 * @param idx ƒCƒ“ƒfƒbƒNƒX
-	 * @param variant Ši”[æ
-	 * @return Ši”[¬Œ÷‚µ‚½‚ç true
+	 * @param idx ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	 * @param variant æ ¼ç´å…ˆ
+	 * @return æ ¼ç´æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool getVariant(HSQUIRRELVM v, SQInteger idx, tTJSVariant *variant);
 
 	/**
-	 * ƒXƒ^ƒbƒN‚Ö‚Ì‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚Ì“o˜^
-	 * @parma variant ƒIƒuƒWƒFƒNƒg
-	 * @return “o˜^¬Œ÷‚µ‚½‚ç true
+	 * ã‚¹ã‚¿ãƒƒã‚¯ã¸ã®å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
+	 * @parma variant ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return ç™»éŒ²æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool pushVariant(HSQUIRRELVM v, tTJSVariant &variant);
 
 	// ---------------------------------------------------------------
 	
 	/**
-	 * ‹g—¢‹g—¢ƒNƒ‰ƒX‚©‚ç squirrel ƒNƒ‰ƒX‚ğ¶¬
+	 * å‰é‡Œå‰é‡Œã‚¯ãƒ©ã‚¹ã‹ã‚‰ squirrel ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆ
 	 * @param v squirrelVM
 	 */
 	static SQRESULT createTJSClass(HSQUIRRELVM v);
@@ -67,96 +67,96 @@ public:
 	// ---------------------------------------------------------------
 	
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚Ìƒƒ\ƒbƒh
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2`”z—ñ
-	 * ©—R•Ï”1 ƒƒ\ƒbƒh
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2ã€œé…åˆ—
+	 * è‡ªç”±å¤‰æ•°1 ãƒ¡ã‚½ãƒƒãƒ‰
 	 */
 	static SQRESULT tjsInvoker(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒQƒbƒ^[
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ©—R•Ï”1 ƒvƒƒpƒeƒB
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * è‡ªç”±å¤‰æ•°1 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	 */
 	static SQRESULT tjsGetter(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒZƒbƒ^[
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2 İ’è’l
-	 * ©—R•Ï”1 ƒvƒƒpƒeƒB
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2 è¨­å®šå€¤
+	 * è‡ªç”±å¤‰æ•°1 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	 */
 	static SQRESULT tjsSetter(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“Iƒƒ\ƒbƒh
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2`”z—ñ
-	 * ©—R•Ï”1 ƒNƒ‰ƒX
-	 * ©—R•Ï”2 ƒƒ“ƒo
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ¡ã‚½ãƒƒãƒ‰
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2ã€œé…åˆ—
+	 * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹
+	 * è‡ªç”±å¤‰æ•°2 ãƒ¡ãƒ³ãƒ
 	 */
 	static SQRESULT tjsStaticInvoker(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“IƒvƒƒpƒeƒBƒQƒbƒ^[
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ©—R•Ï”1 ƒNƒ‰ƒX
-	 * ©—R•Ï”2 ƒvƒƒpƒeƒB
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹
+	 * è‡ªç”±å¤‰æ•°2 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	 */
 	static SQRESULT tjsStaticGetter(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“IƒvƒƒpƒeƒBƒZƒbƒ^[
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2 İ’è’l
-	 * ©—R•Ï”1 ƒNƒ‰ƒX
-	 * ©—R•Ï”2 ƒvƒƒpƒeƒB
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2 è¨­å®šå€¤
+	 * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹
+	 * è‡ªç”±å¤‰æ•°2 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	 */
 	static SQRESULT tjsStaticSetter(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚Ì—LŒøŠm”F
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ‰åŠ¹ç¢ºèª
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	static SQRESULT tjsIsValid(HSQUIRRELVM v);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚éƒI[ƒoƒ‰ƒCƒhˆ—
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2 –¼‘O
-	 * ˆø”3 squirrelƒNƒ[ƒWƒƒ
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰å‡¦ç†
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2 åå‰
+	 * å¼•æ•°3 squirrelã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£
 	 */
 	static SQRESULT tjsOverride(HSQUIRRELVM v);
 
 protected:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 * @param v squirrel VM
-	 * @param idx ƒIƒuƒWƒFƒNƒgQÆŒ³ƒCƒ“ƒfƒbƒNƒX
-	 * @param instance ƒoƒCƒ“ƒh‘ÎÛ‚ÌTJSƒIƒuƒWƒFƒNƒg
+	 * @param idx ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‚ç…§å…ƒã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	 * @param instance ãƒã‚¤ãƒ³ãƒ‰å¯¾è±¡ã®TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	TJSObject(HSQUIRRELVM v, int idx, tTJSVariant &instance);
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~TJSObject();
 
 	/**
-	 * ”jŠüˆ—
+	 * ç ´æ£„å‡¦ç†
 	 */
 	void invalidate();
 	
 	/**
-	 * ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒŠ[ƒT
+	 * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªãƒªãƒ¼ã‚µ
 	 */
 	static SQRESULT release(SQUserPointer up, SQInteger size);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * TJSƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * ˆø”1 ƒIƒuƒWƒFƒNƒg
-	 * ˆø”2` ˆø”
-	 * ©—R•Ï”1 ƒNƒ‰ƒX–¼
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * å¼•æ•°2ã€œ å¼•æ•°
+	 * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹å
 	 */
 	static SQRESULT tjsConstructor(HSQUIRRELVM v);
 
@@ -164,11 +164,11 @@ private:
 	// NativeClass ID
 	static int classId;
 	
-	// ˆ—‘ÎÛƒIƒuƒWƒFƒNƒg
+	// å‡¦ç†å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	tTJSVariant instance;
 	
 public:
-	// NativeInstance ‘Î‰—pƒƒ“ƒo
+	// NativeInstance å¯¾å¿œç”¨ãƒ¡ãƒ³ãƒ
 	virtual tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj);
 	virtual void TJS_INTF_METHOD Invalidate();
 	virtual void TJS_INTF_METHOD Destruct();

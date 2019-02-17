@@ -1,13 +1,13 @@
 #include "ncbind/ncbind.hpp"
 
 //------------------------------------------------------------------------------------------------
-// ‹Œ•û®iŒİŠ·‚Ì‚½‚ß‚Éc‚³‚ê‚Ä‚¢‚Ü‚·j
+// æ—§æ–¹å¼ï¼ˆäº’æ›ã®ãŸã‚ã«æ®‹ã•ã‚Œã¦ã„ã¾ã™ï¼‰
 
 /**
- * ƒTƒ“ƒvƒ‹’l‚Ìæ“¾i‹Œ•û®j
- * Œ»İ‚ÌÄ¶ˆÊ’u‚©‚çw’è”‚ÌƒTƒ“ƒvƒ‹‚ğæ“¾‚µ‚Ä‚»‚Ì•½‹Ï’l‚ğ•Ô‚µ‚Ü‚·B
- * ’l‚ª•‰‚ÌƒTƒ“ƒvƒ‹’l‚Í–³‹‚³‚ê‚Ü‚·B
- * @param n æ“¾‚·‚éƒTƒ“ƒvƒ‹‚Ì”BÈ—ª‚·‚é‚Æ 100
+ * ã‚µãƒ³ãƒ—ãƒ«å€¤ã®å–å¾—ï¼ˆæ—§æ–¹å¼ï¼‰
+ * ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‹ã‚‰æŒ‡å®šæ•°ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’å–å¾—ã—ã¦ãã®å¹³å‡å€¤ã‚’è¿”ã—ã¾ã™ã€‚
+ * å€¤ãŒè² ã®ã‚µãƒ³ãƒ—ãƒ«å€¤ã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
+ * @param n å–å¾—ã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®æ•°ã€‚çœç•¥ã™ã‚‹ã¨ 100
  */
 tjs_error
 getSample(tTJSVariant *result,tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -41,11 +41,11 @@ NCB_ATTACH_FUNCTION(getSample, WaveSoundBuffer, getSample);
 
 
 //------------------------------------------------------------------------------------------------
-// V•û®‚ÌŠg’£ƒvƒƒpƒeƒBEƒƒ\ƒbƒh
+// æ–°æ–¹å¼ã®æ‹¡å¼µãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ»ãƒ¡ã‚½ãƒƒãƒ‰
 
 class WaveSoundBufferAdd {
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 	int counts, aheads;
 	tjs_uint32 hint;
 	tTJSVariant vBuffer, vNumSamples, vChannel, vAheads, *params[4];
@@ -60,13 +60,13 @@ public:
 			hint(0)
 	{
 		buf = new short[counts];
-		// useVisBuffer = true; ‚É‚·‚é
+		// useVisBuffer = true; ã«ã™ã‚‹
 		tTJSVariant val(1);
 		tjs_error r = objthis->PropSet(0, TJS_W("useVisBuffer"), NULL, &val, objthis);
 		if (r != TJS_S_OK)
 			TVPAddLog(ttstr(TJS_W("useVisBuffer=1 failed: ")) + ttstr(r));
 
-		// getVisBuffer—p‚Ìˆø”‚ğì‚é
+		// getVisBufferç”¨ã®å¼•æ•°ã‚’ä½œã‚‹
 		vBuffer     = (tjs_int)buf;
 		vChannel    = 1;
 		vNumSamples = counts;
@@ -81,10 +81,10 @@ public:
 	}
 
 	/**
-	 * ƒTƒ“ƒvƒ‹’l‚Ìæ“¾iV•û®j
-	 * getVisBuffer(buf, sampleCount, 1, sampleAhead)‚ÅƒTƒ“ƒvƒ‹‚ğæ“¾‚µC
-	 * (value/32768)^2‚ÌÅ‘å’l‚ğæ“¾‚µ‚Ü‚·B(0`1‚ÌÀ”‚Å•Ô‚è‚Ü‚·)
-	 * ¦‚±‚ÌƒvƒƒpƒeƒB‚ğ“Ç‚İo‚·‚ÆˆÃ–Ù‚ÅuseVisBuffer=true‚Éİ’è‚³‚ê‚Ü‚·
+	 * ã‚µãƒ³ãƒ—ãƒ«å€¤ã®å–å¾—ï¼ˆæ–°æ–¹å¼ï¼‰
+	 * getVisBuffer(buf, sampleCount, 1, sampleAhead)ã§ã‚µãƒ³ãƒ—ãƒ«ã‚’å–å¾—ã—ï¼Œ
+	 * (value/32768)^2ã®æœ€å¤§å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚(0ã€œ1ã®å®Ÿæ•°ã§è¿”ã‚Šã¾ã™)
+	 * â€»ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’èª­ã¿å‡ºã™ã¨æš—é»™ã§useVisBuffer=trueã«è¨­å®šã•ã‚Œã¾ã™
 	 */
 	double getSampleValue() {
 		memset(buf, 0, counts*sizeof(short));
@@ -96,7 +96,7 @@ public:
 		int cnt = (int)result.AsInteger();
 		if (cnt > counts || cnt < 0) cnt = counts;
 
-		// ƒTƒ“ƒvƒ‹‚Ì“ñæ’†‚ÌÅ‘å’l‚ğ•Ô‚·
+		// ã‚µãƒ³ãƒ—ãƒ«ã®äºŒä¹—ä¸­ã®æœ€å¤§å€¤ã‚’è¿”ã™
 		double max = 0;
 		for (int i=cnt-1;i>=0;i--) {
 			double s = ((double)buf[i]) / +32768.0;
@@ -107,8 +107,8 @@ public:
 	}
 
 	/**
-	 * ƒoƒbƒtƒ@æ“¾—pƒpƒ‰ƒ[ƒ^ƒvƒƒpƒeƒBisampleValue‚ğQÆj
-	 * ƒfƒtƒHƒ‹ƒg‚ÍsetDefaultCounts/setDefaultAheads‚ÅŒˆ’è‚³‚ê‚Ü‚·
+	 * ãƒãƒƒãƒ•ã‚¡å–å¾—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ˆsampleValueã‚’å‚ç…§ï¼‰
+	 * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯setDefaultCounts/setDefaultAheadsã§æ±ºå®šã•ã‚Œã¾ã™
 	 */
 	int  getSampleCount() const  { return counts; }
 	void setSampleCount(int cnt) {
@@ -124,9 +124,9 @@ public:
 	}
 
 	/**
-	 * V•û®‚ÌƒfƒtƒHƒ‹ƒg‚Ìƒpƒ‰ƒ[ƒ^İ’è—pŠÖ”
-	 * ˆÈ~‚Å¶¬‚³‚ê‚éWaveSoundBuffer‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚É‚Â‚¢‚Ä
-	 * sampleCount/sampleAhead‚ÌƒfƒtƒHƒ‹ƒg’l‚ğİ’è‚Å‚«‚Ü‚·
+	 * æ–°æ–¹å¼ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šç”¨é–¢æ•°
+	 * ä»¥é™ã§ç”Ÿæˆã•ã‚Œã‚‹WaveSoundBufferã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ã¤ã„ã¦
+	 * sampleCount/sampleAheadã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’è¨­å®šã§ãã¾ã™
 	 */
 	static void setDefaultCounts(int cnt) { defaultCounts = cnt; }
 	static void setDefaultAheads(int ahd) { defaultAheads = ahd; }
@@ -135,20 +135,20 @@ public:
 int WaveSoundBufferAdd::defaultCounts = 100;
 int WaveSoundBufferAdd::defaultAheads = 0;
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WaveSoundBufferAdd)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
 };
 
-// “o˜^
+// ç™»éŒ²
 NCB_ATTACH_CLASS_WITH_HOOK(WaveSoundBufferAdd, WaveSoundBuffer) {
 	Property(L"sampleValue", &Class::getSampleValue, (int)0);
 	Property(L"sampleCount", &Class::getSampleCount, &Class::setSampleCount);

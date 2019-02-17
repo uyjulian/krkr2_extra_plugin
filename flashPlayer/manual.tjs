@@ -1,170 +1,170 @@
 /**
- * ‹[—‹Lqƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼è¨˜è¿°ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  * @description
- * FlashPlayerƒNƒ‰ƒX
- * FlashPlayer‚ğƒŒƒCƒ„ã‚ÅÄ¶§Œä‚·‚éƒIƒuƒWƒFƒNƒg‚Å‚·B
+ * FlashPlayerã‚¯ãƒ©ã‚¹
+ * FlashPlayerã‚’ãƒ¬ã‚¤ãƒ¤ä¸Šã§å†ç”Ÿåˆ¶å¾¡ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 
- * <h2>ExternalInterface‹@”\</h2>
- *@
- * <h3>TJSƒƒ\ƒbƒh‚ÌActionScript‚©‚ç‚ÌŒÄ‚Ño‚µ</h3>
+ * <h2>ExternalInterfaceæ©Ÿèƒ½</h2>
+ *ã€€
+ * <h3>â—‡TJSãƒ¡ã‚½ãƒƒãƒ‰ã®ActionScriptã‹ã‚‰ã®å‘¼ã³å‡ºã—</h3>
  *
- * ƒIƒuƒWƒFƒNƒg‚Ì”CˆÓ‚Ìƒƒ\ƒbƒh‚ªAÄ¶’†‚Ì swf‚Ì ActionScript‚©‚ç ExternalInterface ‚ÅŒÄ‚Ño‚µ‰Â”\‚Å‚·
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä»»æ„ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒã€å†ç”Ÿä¸­ã® swfã® ActionScriptã‹ã‚‰ ExternalInterface ã§å‘¼ã³å‡ºã—å¯èƒ½ã§ã™
  * <pre>
  * -----------------------------------------------------------
  * import flash.external.ExternalInterface;
  * trace(ExternalInterface.call("tjsFunction", 10, "test"));
  * -----------------------------------------------------------
  * </pre>
- * ‹g—¢‹g—¢‘¤‚Å—áŠO‚ª”­¶‚µ‚ÄŒÄ‚Ño‚µ‚É¸”s‚µ‚Ä‚à ActionScript ‘¤‚Å‚Í
- * —áŠO‚É‚È‚è‚Ü‚¹‚ñ‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
- * —áŠOî•ñ‚Í getLastTJSError() ‚Åæ“¾‰Â”\‚Å‚·B
+ * å‰é‡Œå‰é‡Œå´ã§ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦å‘¼ã³å‡ºã—ã«å¤±æ•—ã—ã¦ã‚‚ ActionScript å´ã§ã¯
+ * ä¾‹å¤–ã«ãªã‚Šã¾ã›ã‚“ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
+ * ä¾‹å¤–æƒ…å ±ã¯ getLastTJSError() ã§å–å¾—å¯èƒ½ã§ã™ã€‚
  *
- * <h3>ActionScriptƒƒ\ƒbƒh‚ÌTJS‚©‚ç‚ÌŒÄ‚Ño‚µ</h3>
+ * <h3>â—‡ActionScriptãƒ¡ã‚½ãƒƒãƒ‰ã®TJSã‹ã‚‰ã®å‘¼ã³å‡ºã—</h3>
  *
- * callFunction() ‚Å¤ExternalInterface ‚ÅŒöŠJ‚³‚ê‚Ä‚¢‚é
- * ActionScript ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Å‚«‚Ü‚·B
+ * callFunction() ã§ï½¤ExternalInterface ã§å…¬é–‹ã•ã‚Œã¦ã„ã‚‹
+ * ActionScript ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã§ãã¾ã™ã€‚
  * <pre>
- * ActionScript‚Å‚ÌŠÖ”‚Ì€”õ
+ * ActionScriptã§ã®é–¢æ•°ã®æº–å‚™
  * -----------------------------------------------------------
  * import flash.external.ExternalInterface;
- * // ŒÄ‚Ño‚µƒƒ\ƒbƒh
+ * // å‘¼ã³å‡ºã—ãƒ¡ã‚½ãƒƒãƒ‰
  * function flashFunction(a:Number, b:String):String {
  * 	return StringUtil.substitute("{0}:{1}", a, b);
  * }
- * // “o˜^
+ * // ç™»éŒ²
  * ExternalInterface.addCallback("flashFunction", flashFunction);
  * -----------------------------------------------------------
  *
- * TJS‚©‚ç‚ÌŒÄ‚Ño‚µ
+ * TJSã‹ã‚‰ã®å‘¼ã³å‡ºã—
  * -----------------------------------------------------------
  * var flash = new FlashPlayer(100,100);
  * flash.initMovie("sample.swf");
  * Debug.message(flash.callFunction("flashFunction", 1, "test"));
  * -----------------------------------------------------------
  * </pre>
- * ŒÄ‚Ño‚µ‚É¸”s‚·‚é‚Æ—áŠO‚É‚È‚è‚Ü‚·B
+ * å‘¼ã³å‡ºã—ã«å¤±æ•—ã™ã‚‹ã¨ä¾‹å¤–ã«ãªã‚Šã¾ã™ã€‚
  *
  */
 class FlashPlayer {
 
     /**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @description Flash OCX‚Ì‰Šú‰»‚É¸”s‚µ‚½ê‡‚Í—áŠO‚É‚È‚è‚Ü‚·
-	 * @param width ƒvƒŒƒCƒ„[‰¡•
-	 * @param height ƒvƒŒƒCƒ„[c•
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @description Flash OCXã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸå ´åˆã¯ä¾‹å¤–ã«ãªã‚Šã¾ã™
+	 * @param width ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ¨ªå¹…
+	 * @param height ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç¸¦å¹…
 	 */
 	function FlashPlayer(width, height);
 
 	/*
-	 * “®‰æî•ñ‚ğŠ®‘S‚ÉƒNƒŠƒA‚·‚é
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * å‹•ç”»æƒ…å ±ã‚’å®Œå…¨ã«ã‚¯ãƒªã‚¢ã™ã‚‹
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function clearMovie()
 	
 	/*
-	 * w’è‚µ‚½‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹‚ğ“®‰æ‚Æ‚µ‚Ä‰Šú‰»‚·‚é
-	 * @param storage ‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹
-	 * @return “Ç‚İ‚İ‚É¬Œ÷‚µ‚½‚ç true
+	 * æŒ‡å®šã—ãŸå‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‹•ç”»ã¨ã—ã¦åˆæœŸåŒ–ã™ã‚‹
+	 * @param storage å‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @return èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function initMovie(storage);
 	
 	/**
-	 * ƒvƒŒƒCƒ„[ƒTƒCƒY‚Ì•ÏX
+	 * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚µã‚¤ã‚ºã®å¤‰æ›´
 	 * @param width
 	 * @param height
 	 */
 	function setSize(width, height);
 
 	/**
-	 * ƒŒƒCƒ„‚É‘Î‚µ‚ÄŒ»İ‚Ì•`‰æ“à—e‚ğo—Í‚·‚éBƒŒƒCƒ„‚ÌƒTƒCƒY‚ª¬‚³‚¢ê‡‚ÍƒgƒŠƒ~ƒ“ƒO‚³‚ê‚Ü‚·
-	 * @param layer ‘ÎÛƒŒƒCƒ„
-	 * @param onlyUpdate true:‘O‰ñ‚©‚ç‚ÌXV—Ìˆæ‚Ì‚İ‘‚«o‚· false:‘S‰æ–Ê‘‚«o‚·
+	 * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦ç¾åœ¨ã®æç”»å†…å®¹ã‚’å‡ºåŠ›ã™ã‚‹ã€‚ãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºãŒå°ã•ã„å ´åˆã¯ãƒˆãƒªãƒŸãƒ³ã‚°ã•ã‚Œã¾ã™
+	 * @param layer å¯¾è±¡ãƒ¬ã‚¤ãƒ¤
+	 * @param onlyUpdate true:å‰å›ã‹ã‚‰ã®æ›´æ–°é ˜åŸŸã®ã¿æ›¸ãå‡ºã™ false:å…¨ç”»é¢æ›¸ãå‡ºã™
 	 */
 	function draw(layer, onlyUpdate=false);
 
 	/**
-	 * w’è‚³‚ê‚½À•W‚ÌˆÊ’u‚É‘Î‚·‚é“ü—Í‚ğ‚¤‚¯‚Â‚¯‚é‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·
+	 * æŒ‡å®šã•ã‚ŒãŸåº§æ¨™ã®ä½ç½®ã«å¯¾ã™ã‚‹å…¥åŠ›ã‚’ã†ã‘ã¤ã‘ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™
 	 * @param x
 	 * @param y
-	 * @return “ü—Í‚ğ‚¤‚¯‚Â‚¯‚é‚È‚ç true
+	 * @return å…¥åŠ›ã‚’ã†ã‘ã¤ã‘ã‚‹ãªã‚‰ true
 	 */
 	function hitTest(x, y);
 	
 	/**
-	 * ƒL[ƒ_ƒEƒ“‚Ì’Ê’m
-	 * @param key ƒL[ƒR[ƒh
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ã‚­ãƒ¼ãƒ€ã‚¦ãƒ³ã®é€šçŸ¥
+	 * @param key ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doKeyDown(key);
 
 	/**
-	 * ƒL[ƒAƒbƒv‚Ì’Ê’m
-	 * @param key ƒL[ƒR[ƒh
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ã‚­ãƒ¼ã‚¢ãƒƒãƒ—ã®é€šçŸ¥
+	 * @param key ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doKeyUp(key);
 
 	/**
-	 * ƒ}ƒEƒX‚ª—Ìˆæ‚É“ü‚Á‚½’Ê’m
+	 * ãƒã‚¦ã‚¹ãŒé ˜åŸŸã«å…¥ã£ãŸé€šçŸ¥
 	 */
 	function doMouseEnter();
 
 	/**
-	 * ƒ}ƒEƒX‚ª—Ìˆæ‚©‚ço‚½’Ê’m
+	 * ãƒã‚¦ã‚¹ãŒé ˜åŸŸã‹ã‚‰å‡ºãŸé€šçŸ¥
 	 */
 	function doMouseLeave();
 
 	/**
-	 * ƒ}ƒEƒXƒL[‚¨‚µ‚³‚°’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param button ‰Ÿ‚µ‰º‚°‚½ƒ{ƒ^ƒ“
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ã‚­ãƒ¼ãŠã—ã•ã’é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param button æŠ¼ã—ä¸‹ã’ãŸãƒœã‚¿ãƒ³
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doMouseDown(x, y, button, shift);
 
 	/**
-	 * ƒ}ƒEƒXˆÚ“®’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ç§»å‹•é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doMouseMove(x, y, shift);
 
 	/**
-	 * ƒ}ƒEƒXƒL[‚¨‚µ‚ ‚°’Ê’m
-	 * @param x À•W
-	 * @param y À•W
-	 * @param button ‰Ÿ‚µã‚°‚½ƒ{ƒ^ƒ“
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ã‚­ãƒ¼ãŠã—ã‚ã’é€šçŸ¥
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @param button æŠ¼ã—ä¸Šã’ãŸãƒœã‚¿ãƒ³
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doMouseUp(x, y, button, shift);
 
 	/**
-	 * ƒ}ƒEƒXƒzƒC[ƒ‹’Ê’m
-	 * @param shift ƒVƒtƒgó‘Ô
-	 * @param delta ƒzƒC[ƒ‹‰ñ“]—Ê
-	 * @param x À•W
-	 * @param y À•W
-	 * @return ˆ—‚³‚ê‚½‚ç true
+	 * ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«é€šçŸ¥
+	 * @param shift ã‚·ãƒ•ãƒˆçŠ¶æ…‹
+	 * @param delta ãƒ›ã‚¤ãƒ¼ãƒ«å›è»¢é‡
+	 * @param x åº§æ¨™
+	 * @param y åº§æ¨™
+	 * @return å‡¦ç†ã•ã‚ŒãŸã‚‰ true
 	 */
 	function doMouseWheel(shift, delta, x, y);
 		
 	// -------------------------------------------------
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// -------------------------------------------------
 
 	/*
-	 * •`‰æ“à—e‚ªXV‚³‚ê‚½ê‡‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
-	 * @description ’Êí‚Í‚±‚ÌƒCƒxƒ“ƒg‚ª‚«‚½ê‡‚É draw() ‚Å•`‰æ“à—e‚ğæ“¾‚µ‚Ü‚·
+	 * æç”»å†…å®¹ãŒæ›´æ–°ã•ã‚ŒãŸå ´åˆã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+	 * @description é€šå¸¸ã¯ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒããŸå ´åˆã« draw() ã§æç”»å†…å®¹ã‚’å–å¾—ã—ã¾ã™
 	 */
 	function onFrameUpdate();
 
 	// -------------------------------------------------
-	// Flash ƒvƒƒpƒeƒB
+	// Flash ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 	// -------------------------------------------------
 
 	// RO
@@ -208,7 +208,7 @@ class FlashPlayer {
 	property profilePort;
 	
 	// -------------------------------------------------
-	// Flash §ŒäƒRƒ}ƒ“ƒh
+	// Flash åˆ¶å¾¡ã‚³ãƒãƒ³ãƒ‰
 	// -------------------------------------------------
 
 	/**
@@ -264,10 +264,10 @@ class FlashPlayer {
 	function getFrameLoaded(frameNum);
 
 	/**
-	 * ƒ€[ƒr[‚ğƒ[ƒh‚·‚é
+	 * ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 	 * @param layer
-	 * @param url ƒ€[ƒr[‚ÌURLB
-	 * @description ‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW–¼‚Å‚Í‚È‚­Aƒ[ƒJƒ‹ƒtƒ@ƒCƒ‹–¼‚È‚¢‚µƒlƒbƒgã‚Ìƒtƒ@ƒCƒ‹‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+	 * @param url ãƒ ãƒ¼ãƒ“ãƒ¼ã®URLã€‚
+	 * @description å‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸åã§ã¯ãªãã€ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«åãªã„ã—ãƒãƒƒãƒˆä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 	 */
 	function loadMovie(layer, url);
 
@@ -289,43 +289,43 @@ class FlashPlayer {
 	function disableLocalSecurity();
 
 	// -------------------------------------------------
-	// Flash ƒCƒxƒ“ƒg
+	// Flash ã‚¤ãƒ™ãƒ³ãƒˆ
 	// -------------------------------------------------
 	
 	/**
-	 * ReadyStateChangeƒCƒxƒ“ƒg‚Ì’Ê’m
-	 * @param newState V‚µ‚¢ƒXƒe[ƒg
+	 * ReadyStateChangeã‚¤ãƒ™ãƒ³ãƒˆã®é€šçŸ¥
+	 * @param newState æ–°ã—ã„ã‚¹ãƒ†ãƒ¼ãƒˆ
 	 */
 	function onReadyStateChange(newState);
 
 	/**
-	 * ProgressƒCƒxƒ“ƒg‚Ì’Ê’m
-	 * @param percentDone “Ç‚İ‚ñ‚¾ƒhƒLƒ…ƒƒ“ƒg‚Ìƒp[ƒZƒ“ƒe[ƒW
+	 * Progressã‚¤ãƒ™ãƒ³ãƒˆã®é€šçŸ¥
+	 * @param percentDone èª­ã¿è¾¼ã‚“ã ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 	 */
 	function onProgress(percentDone);
 
 	/**
-	 * FSCommandƒCƒxƒ“ƒg‚Ì’Ê’m
-	 * @param command ƒRƒ}ƒ“ƒh–¼ƒpƒ‰ƒ[ƒ^
-	 * @param arg ˆø”ƒpƒ‰ƒ[ƒ^
+	 * FSCommandã‚¤ãƒ™ãƒ³ãƒˆã®é€šçŸ¥
+	 * @param command ã‚³ãƒãƒ³ãƒ‰åãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	 * @param arg å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	 */
 	function onFSCommand(command, arg);
 
 	// -------------------------------------------------
-	// ExternalInterface‹@”\
+	// ExternalInterfaceæ©Ÿèƒ½
 	// -------------------------------------------------
 
 	/**
-	 * Flash ‚Ì ExternalInterface “o˜^‚³‚ê‚½ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Ü‚·B
-	 * @param methodName ƒƒ\ƒbƒh–¼
-	 * @param ... ˆø”
-	 * @throw "flash com error:*" COMÀs—áŠO
+	 * Flash ã® ExternalInterface ç™»éŒ²ã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param ... å¼•æ•°
+	 * @throw "flash com error:*" COMå®Ÿè¡Œæ™‚ä¾‹å¤–
 	 */
 	function callFunction(methodName, ...);
 
 	/**
-	 * TJSŒÄ‚Ño‚µƒGƒ‰[‚Ìæ“¾B
-	 * @return ÅŒã‚ÌActionScript‚©‚çTJSŒÄ‚Ño‚µ‚ÌƒGƒ‰[•¶š—ñBƒGƒ‰[‚Å‚È‚¢ê‡‚Í‹ó•¶š—ñ
+	 * TJSå‘¼ã³å‡ºã—ã‚¨ãƒ©ãƒ¼ã®å–å¾—ã€‚
+	 * @return æœ€å¾Œã®ActionScriptã‹ã‚‰TJSå‘¼ã³å‡ºã—æ™‚ã®ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—ã€‚ã‚¨ãƒ©ãƒ¼ã§ãªã„å ´åˆã¯ç©ºæ–‡å­—åˆ—
 	 */
 	function getLastTJSError();
 };

@@ -9,46 +9,46 @@
 using namespace Ogre;
 
 /**
- * Ogre ��{���N���X
- * �g���g���̃��C�����[�v����펞��΂�邱�Ƃ�z��
+ * Ogre 基本情報クラス
+ * 吉里吉里のメインループから常時よばれることを想定
  */
 class OgreInfo : public tTVPContinuousEventCallbackIntf
 {
 public:
-	// ���[�g���
+	// ルート情報
 	Ogre::Root *root;
 
 	/**
-	 * �R���X�g���N�^
+	 * コンストラクタ
 	 */
 	OgreInfo();
 
 	/**
-	 * �f�X�g���N�^
+	 * デストラクタ
 	 */
 	virtual ~OgreInfo();
 
 public:
 
 	/**
-	 * Ogre Config �Ăяo��
+	 * Ogre Config 呼び出し
 	 */
 	bool config();
 
 	/**
-	 * Ogre �Ăяo�������J�n
+	 * Ogre 呼び出し処理開始
 	 */
 	void start();
 
 	/**
-	 * Ogre �Ăяo���������f
+	 * Ogre 呼び出し処理中断
 	 */
 	void stop();
 	
 	/**
-	 * Continuous �R�[���o�b�N
-	 * �g���g�����ɂȂƂ��ɏ�ɌĂ΂��
-	 * �h�蒼������
+	 * Continuous コールバック
+	 * 吉里吉里が暇なときに常に呼ばれる
+	 * 塗り直し処理
 	 */
 	virtual void TJS_INTF_METHOD OnContinuousCallback(tjs_uint64 tick);
 };

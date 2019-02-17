@@ -8,17 +8,17 @@ extern SQRESULT sqstd_loadmemory(HSQUIRRELVM v, const char *dataBuffer, int data
 
 namespace sqobject {
 
-// ƒpƒ‰ƒ[ƒ^‚ª•s³
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£
 static SQRESULT ERROR_INVALIDPARAM(HSQUIRRELVM v) {
 	return sq_throwerror(v, _SC("invalid param"));
 }
 
-// ƒXƒŒƒbƒh‚ª‘¶İ‚µ‚È‚¢
+// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå­˜åœ¨ã—ãªã„
 static SQRESULT ERROR_NOTHREAD(HSQUIRRELVM v) {
 	return sq_throwerror(v, _SC("no thread"));
 }
 
-// fork ‚É¸”s‚µ‚½
+// fork ã«å¤±æ•—ã—ãŸ
 static SQRESULT ERROR_FORK(HSQUIRRELVM v) {
 	return sq_throwerror(v,_SC("failed to fork"));
 }
@@ -30,7 +30,7 @@ Thread::isWait()
 }
 
 /**
- * @return ŠY“–ƒXƒŒƒbƒh‚ÆŒ»İŠÇ—’†‚ÌƒXƒŒƒbƒh‚ªˆê’v‚µ‚Ä‚ê‚Î true
+ * @return è©²å½“ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ç¾åœ¨ç®¡ç†ä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒä¸€è‡´ã—ã¦ã‚Œã° true
  */
 bool
 Thread::isSameThread(HSQUIRRELVM v)
@@ -39,15 +39,15 @@ Thread::isSameThread(HSQUIRRELVM v)
 }
 
 /**
- * ƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğŠ®—¹‚³‚¹‚é
- * @param target ‘Ò‚¿‘ÎÛ
- * @return ŠY“–ƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚½ê‡‚Í true
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’å®Œäº†ã•ã›ã‚‹
+ * @param target å¾…ã¡å¯¾è±¡
+ * @return è©²å½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ãŸå ´åˆã¯ true
  */
 bool
 Thread::notifyObject(ObjectInfo &target)
 {
 	bool find = false;
-	if (!_waitSystem.isNull() && _waitSystem == target) { // systemƒRƒ}ƒ“ƒhê—p‚Ì‘Ò‚¿
+	if (!_waitSystem.isNull() && _waitSystem == target) { // systemã‚³ãƒãƒ³ãƒ‰å°‚ç”¨ã®å¾…ã¡
 		find = true;
 		Thread *th = _waitSystem;
 		if (th) {
@@ -76,9 +76,9 @@ Thread::notifyObject(ObjectInfo &target)
 }
 
 /**
- * ƒgƒŠƒK‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğŠ®—¹‚³‚¹‚é
- * @param name ƒgƒŠƒK–¼
- * @return ŠY“–ƒIƒuƒWƒFƒNƒg‚ğ‘Ò‚Á‚Ä‚½ê‡‚Í true
+ * ãƒˆãƒªã‚¬ã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’å®Œäº†ã•ã›ã‚‹
+ * @param name ãƒˆãƒªã‚¬å
+ * @return è©²å½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾…ã£ã¦ãŸå ´åˆã¯ true
 	 */
 bool
 Thread::notifyTrigger(const SQChar *name)
@@ -103,24 +103,24 @@ Thread::notifyTrigger(const SQChar *name)
 	return find;
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Thread::Thread() : _currentTick(0), _fileHandler(NULL), _waitTimeout(-1), _status(THREAD_NONE)
 {
 	_waitList.initArray();
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Thread::Thread(HSQUIRRELVM v) : Object(v), _currentTick(0), _fileHandler(NULL), _waitTimeout(-1), _status(THREAD_NONE)
 {
 	_waitList.initArray();
-	// Às
+	// å®Ÿè¡Œ
 	if (sq_gettop(v) >= 3) {
 		_exec(v,3);
 		_entryThread(v);
 	}
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Thread::~Thread()
 {
 	_exit();
@@ -129,7 +129,7 @@ Thread::~Thread()
 }
 
 /**
- * î•ñ”jŠü
+ * æƒ…å ±ç ´æ£„
  */
 void
 Thread::_init()
@@ -141,7 +141,7 @@ Thread::_init()
 }
 
 /**
- * î•ñ”jŠü
+ * æƒ…å ±ç ´æ£„
  */
 void
 Thread::_clear()
@@ -164,20 +164,20 @@ Thread::_exit()
 }
 
 /**
- * ƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚é‘Ò‚¿î•ñ‚ğƒNƒŠƒA‚·‚é
- * @param status ƒLƒƒƒ“ƒZƒ‹‚Ìê‡‚Í true
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹å¾…ã¡æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+ * @param status ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆã¯ true
  */
 void
 Thread::_clearWait()
 {
-	// system—p‚Ì wait‚Ì‰ğœ
+	// systemç”¨ã® waitã®è§£é™¤
 	Object *obj = _waitSystem;
 	if (obj) {
 		obj->removeWait(self);
 	}
 	_waitSystem.clear();
 
-	// ‚»‚Ì‘¼‚Ì wait ‚Ì‰ğœ
+	// ãã®ä»–ã® wait ã®è§£é™¤
 	SQInteger max = _waitList.len();
 	for (SQInteger i=0;i<max;i++) {
 		Object *obj = _waitList.get(i);
@@ -186,27 +186,27 @@ Thread::_clearWait()
 		}
 	}
 	_waitList.clearData();
-	// ƒ^ƒCƒ€ƒAƒEƒgw’è‚Ì‰ğœ
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæŒ‡å®šã®è§£é™¤
 	_waitTimeout = -1;
 }
 
 /**
- * “à•”—p:fork ˆ—BƒXƒŒƒbƒh‚ğ‚P‚Â¶¬‚µ‚Ä VM‚ÉPUSH‚·‚é
+ * å†…éƒ¨ç”¨:fork å‡¦ç†ã€‚ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ï¼‘ã¤ç”Ÿæˆã—ã¦ VMã«PUSHã™ã‚‹
  * @param v squirrelVM
- * @return ¬Œ÷‚µ‚½‚ç true
+ * @return æˆåŠŸã—ãŸã‚‰ true
  */
 bool
 Thread::_fork(HSQUIRRELVM v)
 {
-	// ƒXƒŒƒbƒhƒIƒuƒWƒFƒNƒg‚ÍƒOƒ[ƒoƒ‹ã‚É¶¬‚·‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ä¸Šã«ç”Ÿæˆã™ã‚‹
 	SQInteger max = sq_gettop(v);
 	HSQUIRRELVM gv = getGlobalVM();
 	sq_pushroottable(gv); // root
 	sq_pushstring(gv, SQTHREADNAME, -1);
 	if (SQ_SUCCEEDED(sq_get(gv,-2))) { // class
-		sq_pushroottable(gv); // ˆø”:self(root)
-		sq_pushnull(gv);      // ˆø”:delegate
-		// ˆø”‚ğƒRƒs[
+		sq_pushroottable(gv); // å¼•æ•°:self(root)
+		sq_pushnull(gv);      // å¼•æ•°:delegate
+		// å¼•æ•°ã‚’ã‚³ãƒ”ãƒ¼
 		int argc = 2;
 		if (gv == v) {
 			for (int i=2;i<=max;i++) {
@@ -219,12 +219,12 @@ Thread::_fork(HSQUIRRELVM v)
 				argc++;
 			}
 		}
-		if (SQ_SUCCEEDED(sq_call(gv, argc, SQTrue, SQTrue))) { // ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ
+		if (SQ_SUCCEEDED(sq_call(gv, argc, SQTrue, SQTrue))) { // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—
 			if (gv == v) {
 				sq_remove(gv, -2); // class
 				sq_remove(gv, -2); // root
 			} else {
-				sq_move(v, gv, sq_gettop(gv)); // Œ³VM‚Ì‚Ù‚¤‚ÉˆÚ‚·
+				sq_move(v, gv, sq_gettop(gv)); // å…ƒVMã®ã»ã†ã«ç§»ã™
 				sq_pop(gv, 3); // thread,class,root
 			}
 			return true;
@@ -236,9 +236,9 @@ Thread::_fork(HSQUIRRELVM v)
 }
 
 /**
- * “à•”—p: waitˆ—
+ * å†…éƒ¨ç”¨: waitå‡¦ç†
  * @param v squirrelVM
- * @param idx ŠY“– idx ˆÈ~‚É‚ ‚é‚à‚Ì‚ğ‘Ò‚Â
+ * @param idx è©²å½“ idx ä»¥é™ã«ã‚ã‚‹ã‚‚ã®ã‚’å¾…ã¤
  */
 void
 Thread::_wait(HSQUIRRELVM v, int idx)
@@ -250,7 +250,7 @@ Thread::_wait(HSQUIRRELVM v, int idx)
 		switch (sq_gettype(v, i)) {
 		case OT_INTEGER:
 		case OT_FLOAT:
-			// ”’l‚Ìê‡‚Íƒ^ƒCƒ€ƒAƒEƒg‘Ò‚¿
+			// æ•°å€¤ã®å ´åˆã¯ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå¾…ã¡
 			{
 				SQInteger timeout;
 				sq_getinteger(v, i, &timeout);
@@ -263,11 +263,11 @@ Thread::_wait(HSQUIRRELVM v, int idx)
 			}
 			break;
 		case OT_STRING:
-			// ‘Ò‚¿ƒŠƒXƒg‚É“o˜^
+			// å¾…ã¡ãƒªã‚¹ãƒˆã«ç™»éŒ²
 			_waitList.append(ObjectInfo(v,i));
 			break;
 		case OT_INSTANCE:
-			// ƒIƒuƒWƒFƒNƒg‚É‘Ò‚¿“o˜^‚µ‚Ä‚©‚ç‘Ò‚¿ƒŠƒXƒg‚É“o˜^
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¾…ã¡ç™»éŒ²ã—ã¦ã‹ã‚‰å¾…ã¡ãƒªã‚¹ãƒˆã«ç™»éŒ²
 			{
 				ObjectInfo o;
 				o.getStackWeak(v,i);
@@ -285,7 +285,7 @@ Thread::_wait(HSQUIRRELVM v, int idx)
 }
 
 /**
- * “à•”—p: systemˆ—‚Ì‘Ò‚¿“o˜^BƒXƒ^ƒbƒNæ“ª‚É‚ ‚éƒXƒŒƒbƒh‚ğ‘Ò‚Â
+ * å†…éƒ¨ç”¨: systemå‡¦ç†ã®å¾…ã¡ç™»éŒ²ã€‚ã‚¹ã‚¿ãƒƒã‚¯å…ˆé ­ã«ã‚ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…ã¤
  * @param v squirrelVM
  */
 void
@@ -310,7 +310,7 @@ Thread::wait(HSQUIRRELVM v)
 }
 
 /**
- * wait‚ÌƒLƒƒƒ“ƒZƒ‹
+ * waitã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  */
 void
 Thread::cancelWait()
@@ -320,28 +320,28 @@ Thread::cancelWait()
 }
 
 /**
- * “à•”—p: execˆ—
+ * å†…éƒ¨ç”¨: execå‡¦ç†
  * @param v squirrelVM
- * @param idx ‚±‚ÌƒCƒ“ƒfƒbƒNƒX‚©‚çæ‚É‚ ‚é‚à‚Ì‚ğÀsŠJn‚·‚éB•¶š—ñ‚È‚çƒXƒNƒŠƒvƒgAƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚È‚ç’¼Ú
+ * @param idx ã“ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰å…ˆã«ã‚ã‚‹ã‚‚ã®ã‚’å®Ÿè¡Œé–‹å§‹ã™ã‚‹ã€‚æ–‡å­—åˆ—ãªã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãªã‚‰ç›´æ¥
  */
 void
 Thread::_exec(HSQUIRRELVM v, int idx)
 {
 	_clear();
 	_thread.clear();
-	// ƒXƒŒƒbƒhæ“ª‚ÉƒXƒNƒŠƒvƒg‚ğƒ[ƒh
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å…ˆé ­ã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ãƒ­ãƒ¼ãƒ‰
 	if (sq_gettype(v, idx) == OT_STRING) {
-		// ƒXƒNƒŠƒvƒgw’è‚Å’x‰„ƒ[ƒh
+		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæŒ‡å®šã§é…å»¶ãƒ­ãƒ¼ãƒ‰
 		_scriptName.getStack(v, idx);
 		_fileHandler = sqobjOpenFile(getString(v, idx));
 		_status = THREAD_LOADING_FILE;
 	} else {
-		// ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“w’è
+		// ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³æŒ‡å®š
 		_func.getStack(v, idx);
 		_status = THREAD_LOADING_FUNC;
 	}
 
-	// ˆø”‚ğ‹L˜^
+	// å¼•æ•°ã‚’è¨˜éŒ²
 	SQInteger max = sq_gettop(v);
 	if (max > idx) {
 		_args.initArray();
@@ -352,12 +352,12 @@ Thread::_exec(HSQUIRRELVM v, int idx)
 }
 
 /**
- * ƒXƒŒƒbƒh‚Æ‚µ‚Ä“o˜^‚·‚é
+ * ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
  */
 void
 Thread::_entryThread(HSQUIRRELVM v)
 {
-	// ƒXƒŒƒbƒhî•ñ‚Æ‚µ‚Ä“o˜^
+	// ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã¨ã—ã¦ç™»éŒ²
 	ObjectInfo thinfo(v,1);
 	SQInteger max = threadList->len();
 	for (int i=0;i<max;i++) {
@@ -370,8 +370,8 @@ Thread::_entryThread(HSQUIRRELVM v)
 
 
 /**
- * ÀsŠJn
- * @param func Às‘ÎÛƒtƒ@ƒ“ƒNƒVƒ‡ƒ“B•¶š—ñ‚Ìê‡ŠY“–ƒXƒNƒŠƒvƒg‚ğ“Ç‚İ‚Ş
+ * å®Ÿè¡Œé–‹å§‹
+ * @param func å®Ÿè¡Œå¯¾è±¡ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã€‚æ–‡å­—åˆ—ã®å ´åˆè©²å½“ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­ã¿è¾¼ã‚€
  */
 SQRESULT
 Thread::exec(HSQUIRRELVM v)
@@ -387,7 +387,7 @@ Thread::exec(HSQUIRRELVM v)
 }
 
 /**
- * ÀsI—¹
+ * å®Ÿè¡Œçµ‚äº†
  */
 SQRESULT
 Thread::exit(HSQUIRRELVM v)
@@ -402,7 +402,7 @@ Thread::exit(HSQUIRRELVM v)
 }
 
 /**
- * @return ÀsƒXƒe[ƒ^ƒX
+ * @return å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 SQRESULT
 Thread::getExitCode(HSQUIRRELVM v)
@@ -412,7 +412,7 @@ Thread::getExitCode(HSQUIRRELVM v)
 }
 
 /**
- * Às’â~
+ * å®Ÿè¡Œåœæ­¢
  */
 void
 Thread::stop()
@@ -423,7 +423,7 @@ Thread::stop()
 }
 
 /**
- * ÀsÄŠJ
+ * å®Ÿè¡Œå†é–‹
  */
 void
 Thread::run()
@@ -434,7 +434,7 @@ Thread::run()
 }
 
 /**
- * @return ÀsƒXƒe[ƒ^ƒX
+ * @return å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 int
 Thread::getStatus()
@@ -443,20 +443,20 @@ Thread::getStatus()
 }
 
 /**
- * ƒXƒŒƒbƒh‚ÌƒƒCƒ“ˆ—
- * @param diff Œo‰ßŠÔ
- * @return ƒXƒŒƒbƒhÀsI—¹‚È‚ç true
+ * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†
+ * @param diff çµŒéæ™‚é–“
+ * @return ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œçµ‚äº†ãªã‚‰ true
  */
 bool
 Thread::_main(long diff)
 {
-	// ƒXƒŒƒbƒh‚Æ‚µ‚Ä“®ì‚Å‚«‚Ä‚È‚¢ê‡‚Í‘¦I—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦å‹•ä½œã§ãã¦ãªã„å ´åˆã¯å³çµ‚äº†
 	if (_status == THREAD_NONE) {
 		return true;
 	}
 
 	if (_status == THREAD_LOADING_FILE) {
-		// ƒtƒ@ƒCƒ‹“Ç‚İ‚İˆ—
+		// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç†
 		const char *dataAddr;
 		int dataSize;
 		if (sqobjCheckFile(_fileHandler, &dataAddr, &dataSize)) {
@@ -467,17 +467,17 @@ Thread::_main(long diff)
 			if (SQ_SUCCEEDED(ret)) {
 				_status = THREAD_RUN;
 			} else {
-				// exit‘Š“–
+				// exitç›¸å½“
 				printError();
 				_exit();
 				return true;
 			}
 		} else {
-			// “Ç‚İ‚İŠ®—¹‘Ò‚¿
+			// èª­ã¿è¾¼ã¿å®Œäº†å¾…ã¡
 			return false;
 		}
 	} else if (_status == THREAD_LOADING_FUNC) {
-		// ƒXƒNƒŠƒvƒg“Ç‚İ‚İˆ—
+		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿å‡¦ç†
 		_init();
 		_func.push(_thread);
 		_func.clear();
@@ -486,7 +486,7 @@ Thread::_main(long diff)
 
 	_currentTick += diff;
 	
-	// ƒ^ƒCƒ€ƒAƒEƒgˆ—
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†
 	if (_waitTimeout >= 0) {
 		_waitTimeout -= diff;
 		if (_waitTimeout < 0) {
@@ -494,7 +494,7 @@ Thread::_main(long diff)
 		}
 	}
 		
-	// ƒXƒŒƒbƒhÀs
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œ
 	if (!isWait() && _status == THREAD_RUN) {
 		SQRESULT result;
 		if (sq_getvmstate(_thread) == SQ_VMSTATE_SUSPENDED) {
@@ -508,15 +508,15 @@ Thread::_main(long diff)
 			result = sq_call(_thread, n, SQTrue, SQTrue);
 		}
 		if (SQ_FAILED(result)) {
-			// ƒXƒŒƒbƒh‚ªƒGƒ‰[I—¹
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚¨ãƒ©ãƒ¼çµ‚äº†
 			printError();
 			_exit();
 		} else {
-			// I—¹ƒR[ƒhæ“¾Breturn/suspend ‚Ì’l‚ªŠi”[‚³‚ê‚é
+			// çµ‚äº†ã‚³ãƒ¼ãƒ‰å–å¾—ã€‚return/suspend ã®å€¤ãŒæ ¼ç´ã•ã‚Œã‚‹
 			_exitCode.getStack(_thread, -1);
 			sq_pop(_thread, 1);
 			if (sq_getvmstate(_thread) == SQ_VMSTATE_IDLE) {
-				// ƒXƒŒƒbƒh‚ªI—¹
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†
 				_exit();
 			}
 		}
@@ -528,7 +528,7 @@ Thread::_main(long diff)
 // -------------------------------------------------------------------------
 
 /**
- * ƒXƒŒƒbƒh‚ÌƒGƒ‰[î•ñ‚Ì•\¦
+ * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ©ãƒ¼æƒ…å ±ã®è¡¨ç¤º
  */
 void
 Thread::printError()
@@ -546,7 +546,7 @@ Thread::printError()
 }
 
 /**
- * “®ìƒXƒŒƒbƒh‚Ì”jŠü
+ * å‹•ä½œã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„
  */
 void
 Thread::init()
@@ -558,8 +558,8 @@ Thread::init()
 }
 
 /*
- * ŠÔXV
- * @param diff Œo‰ßŠÔ
+ * æ™‚é–“æ›´æ–°
+ * @param diff çµŒéæ™‚é–“
  */
 void
 Thread::update(long diff)
@@ -569,13 +569,13 @@ Thread::update(long diff)
 }
 
 /*
- * Àsˆ—ƒƒCƒ“ƒ‹[ƒv
- * Œ»İ‘¶İ‚·‚éƒXƒŒƒbƒh‚ğ‘‚È‚ß‚Å‚P“x‚¾‚¯Às‚·‚éB
- * ƒVƒXƒeƒ€–{‘Ì‚ÌƒƒCƒ“ƒ‹[ƒv(ƒCƒxƒ“ƒgˆ—{‰æ‘œˆ—)
- * ‚©‚ç1“x‚¾‚¯ŒÄ‚Ño‚·‚±‚Æ‚Å‹@”\‚·‚éB‚»‚ê‚¼‚ê‚ÌƒXƒŒƒbƒh‚ÍA
- * ©•ª‚©‚ç–¾¦“I‚É suspend() ‚Ü‚½‚Í waitŒn‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Äˆ—‚ğ
- * Ÿ‚ÌƒXƒŒƒbƒh‚ÉˆÏ÷‚·‚é•K—v‚ª‚ ‚éB
- * @return “®ì’†‚ÌƒXƒŒƒbƒh‚Ì”
+ * å®Ÿè¡Œå‡¦ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+ * ç¾åœ¨å­˜åœ¨ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç·ãªã‚ã§ï¼‘åº¦ã ã‘å®Ÿè¡Œã™ã‚‹ã€‚
+ * ã‚·ã‚¹ãƒ†ãƒ æœ¬ä½“ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—(ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ï¼‹ç”»åƒå‡¦ç†)
+ * ã‹ã‚‰1åº¦ã ã‘å‘¼ã³å‡ºã™ã“ã¨ã§æ©Ÿèƒ½ã™ã‚‹ã€‚ãã‚Œãã‚Œã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯ã€
+ * è‡ªåˆ†ã‹ã‚‰æ˜ç¤ºçš„ã« suspend() ã¾ãŸã¯ waitç³»ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¦å‡¦ç†ã‚’
+ * æ¬¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã«å§”è­²ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+ * @return å‹•ä½œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
  */
 int
 Thread::main(ThreadCallback *onThreadDone, void *userData)
@@ -607,11 +607,11 @@ Thread::getThreadCount()
 }
 
 /**
- * ƒXƒNƒŠƒvƒgÀsŠJn—p
- * @param scriptName ƒXƒNƒŠƒvƒg–¼
- * @param argc ˆø”‚Ì”
- * @param argv ˆø”
- * @return ¬Œ÷‚È‚ç true
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œé–‹å§‹ç”¨
+ * @param scriptName ã‚¹ã‚¯ãƒªãƒ—ãƒˆå
+ * @param argc å¼•æ•°ã®æ•°
+ * @param argv å¼•æ•°
+ * @return æˆåŠŸãªã‚‰ true
  */
 bool
 Thread::fork(const SQChar *scriptName, int argc, const SQChar **argv)
@@ -620,15 +620,15 @@ Thread::fork(const SQChar *scriptName, int argc, const SQChar **argv)
 	sq_pushroottable(gv); // root
 	sq_pushstring(gv, SQTHREADNAME, -1);
 	if (SQ_SUCCEEDED(sq_get(gv,-2))) { // class
-		sq_pushroottable(gv); // ˆø”:self(root)
-		sq_pushnull(gv);      // ˆø”:delegate
-		sq_pushstring(gv, scriptName, -1); // ˆø”:func
+		sq_pushroottable(gv); // å¼•æ•°:self(root)
+		sq_pushnull(gv);      // å¼•æ•°:delegate
+		sq_pushstring(gv, scriptName, -1); // å¼•æ•°:func
 		int n = 3;
 		for (int i=0;i<argc;i++) {
 			sq_pushstring(gv, argv[i], -1);
 			n++;
 		}
-		if (SQ_SUCCEEDED(sq_call(gv, n, SQTrue, SQTrue))) { // ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ
+		if (SQ_SUCCEEDED(sq_call(gv, n, SQTrue, SQTrue))) { // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—
 			sq_pop(gv, 3); // thread,class,root
 			return true;
 		}
@@ -639,8 +639,8 @@ Thread::fork(const SQChar *scriptName, int argc, const SQChar **argv)
 }
 
 /**
- * ‘SƒXƒŒƒbƒh‚Ö‚ÌƒgƒŠƒK’Ê’m
- * @param name ˆ—‘Ò‚¿ƒgƒŠƒK–¼
+ * å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒˆãƒªã‚¬é€šçŸ¥
+ * @param name å‡¦ç†å¾…ã¡ãƒˆãƒªã‚¬å
  */
 void
 Thread::trigger(const SQChar *name)
@@ -655,12 +655,12 @@ Thread::trigger(const SQChar *name)
 }
 
 /**
- * “®ìƒXƒŒƒbƒh‚Ì”jŠü
+ * å‹•ä½œã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„
  */
 void
 Thread::done()
 {
-	// ‘SƒXƒŒƒbƒh‚ğ‹­§’†’f
+	// å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¼·åˆ¶ä¸­æ–­
 	threadList->appendArray(*newThreadList);
 	newThreadList->clearData();
 	SQInteger max = threadList->len();
@@ -669,7 +669,7 @@ Thread::done()
 		if (th) { th->_exit();}
 	}
 	threadList->clearData();
-	// ƒŠƒXƒg©‘Ì‚ğ”jŠü
+	// ãƒªã‚¹ãƒˆè‡ªä½“ã‚’ç ´æ£„
 	threadList->clear();
 	newThreadList->clear();
 	delete threadList;
@@ -677,20 +677,20 @@ Thread::done()
 }
 
 // -------------------------------------------------------------
-// ƒOƒ[ƒoƒ‹ƒXƒŒƒbƒh—p
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨
 // -------------------------------------------------------------
 
-ObjectInfo *Thread::threadList; //< ƒXƒŒƒbƒhˆê——
-ObjectInfo *Thread::newThreadList; //< V‹KƒXƒŒƒbƒhˆê——
-long Thread::currentTick = 0;  //< Œ»İ‚ÌƒVƒXƒeƒ€tick
-long Thread::diffTick = 0;  //< ¡‰ñ‚ÌŒÄ‚Ño‚µ·•ª
+ObjectInfo *Thread::threadList; //< ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§
+ObjectInfo *Thread::newThreadList; //< æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§
+long Thread::currentTick = 0;  //< ç¾åœ¨ã®ã‚·ã‚¹ãƒ†ãƒ tick
+long Thread::diffTick = 0;  //< ä»Šå›ã®å‘¼ã³å‡ºã—å·®åˆ†
 
 // -------------------------------------------------------------
-// ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh—p
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ç”¨
 // -------------------------------------------------------------
 
 /**
- * Œ»İ‚Ìæ“¾
+ * ç¾åœ¨æ™‚åˆ»ã®å–å¾—
  */
 SQRESULT
 Thread::global_getCurrentTick(HSQUIRRELVM v)
@@ -700,7 +700,7 @@ Thread::global_getCurrentTick(HSQUIRRELVM v)
 }
 
 /**
- * ·•ª‚Ìæ“¾
+ * å·®åˆ†æ™‚åˆ»ã®å–å¾—
  */
 SQRESULT
 Thread::global_getDiffTick(HSQUIRRELVM v)
@@ -710,7 +710,7 @@ Thread::global_getDiffTick(HSQUIRRELVM v)
 }
 
 /*
- * @return Œ»İ‚ÌƒXƒŒƒbƒh‚ğ•Ô‚·
+ * @return ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’è¿”ã™
  */
 SQRESULT
 Thread::global_getCurrentThread(HSQUIRRELVM v)
@@ -727,7 +727,7 @@ Thread::global_getCurrentThread(HSQUIRRELVM v)
 }
 
 /*
- * @return Œ»İ‚ÌƒXƒŒƒbƒhˆê——‚ğ•Ô‚·
+ * @return ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’è¿”ã™
  */
 SQRESULT
 Thread::global_getThreadList(HSQUIRRELVM v)
@@ -737,10 +737,10 @@ Thread::global_getThreadList(HSQUIRRELVM v)
 }
 
 /*
- * ƒXƒNƒŠƒvƒg‚ğV‚µ‚¢ƒXƒŒƒbƒh‚Æ‚µ‚ÄÀs‚·‚é
- * ¦ return Thread(func); ‘Š“–
- * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
- * @return VƒXƒŒƒbƒh
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æ–°ã—ã„ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦å®Ÿè¡Œã™ã‚‹
+ * â€» return Thread(func); ç›¸å½“
+ * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
+ * @return æ–°ã‚¹ãƒ¬ãƒƒãƒ‰
  */
 SQRESULT
 Thread::global_fork(HSQUIRRELVM v)
@@ -752,7 +752,7 @@ Thread::global_fork(HSQUIRRELVM v)
 }
 
 /**
- * @return Œ»İÀs’†‚ÌƒXƒŒƒbƒhî•ñƒIƒuƒWƒFƒNƒg(Thread*)
+ * @return ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(Thread*)
  */
 Thread *
 Thread::getCurrentThread(HSQUIRRELVM v)
@@ -768,8 +768,8 @@ Thread::getCurrentThread(HSQUIRRELVM v)
 }
 
 /**
- * ƒXƒNƒŠƒvƒg‚ğØ‚è‘Ö‚¦‚é
- * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+ * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
  */
 SQRESULT
 Thread::global_exec(HSQUIRRELVM v)
@@ -786,7 +786,7 @@ Thread::global_exec(HSQUIRRELVM v)
 }
 
 /**
- * Às’†ƒXƒŒƒbƒh‚ÌI—¹
+ * å®Ÿè¡Œä¸­ã‚¹ãƒ¬ãƒƒãƒ‰ã®çµ‚äº†
  */
 SQRESULT
 Thread::global_exit(HSQUIRRELVM v)
@@ -800,9 +800,9 @@ Thread::global_exit(HSQUIRRELVM v)
 }
 
 /**
- * ƒRƒ}ƒ“ƒhÀs
- * @param func ƒXƒŒƒbƒh‚ÅÀs‚·‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
- * @return I—¹ƒR[ƒh
+ * ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
+ * @param func ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
+ * @return çµ‚äº†ã‚³ãƒ¼ãƒ‰
  */
 SQRESULT
 Thread::global_system(HSQUIRRELVM v)
@@ -820,10 +820,10 @@ Thread::global_system(HSQUIRRELVM v)
 }
 
 /**
- * Às’†ƒXƒŒƒbƒh‚Ìˆ—‘Ò‚¿
- * @param target int:ŠÔ‘Ò‚¿(ms), string:ƒgƒŠƒK‘Ò‚¿, obj:ƒIƒuƒWƒFƒNƒg‘Ò‚¿
- * @param timeout ƒ^ƒCƒ€ƒAƒEƒg(È—ª‚Í–³ŒÀ‚É‘Ò‚Â)
- * @return ‘Ò‚¿‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚ç true
+ * å®Ÿè¡Œä¸­ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†å¾…ã¡
+ * @param target int:æ™‚é–“å¾…ã¡(ms), string:ãƒˆãƒªã‚¬å¾…ã¡, obj:ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¾…ã¡
+ * @param timeout ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ(çœç•¥æ™‚ã¯ç„¡é™ã«å¾…ã¤)
+ * @return å¾…ã¡ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚‰ true
  */
 SQRESULT
 Thread::global_wait(HSQUIRRELVM v)
@@ -837,8 +837,8 @@ Thread::global_wait(HSQUIRRELVM v)
 }
 
 /**
- * ‘SƒXƒŒƒbƒh‚Ö‚ÌƒgƒŠƒK’Ê’m
- * @param name ˆ—‘Ò‚¿ƒgƒŠƒK–¼
+ * å…¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒˆãƒªã‚¬é€šçŸ¥
+ * @param name å‡¦ç†å¾…ã¡ãƒˆãƒªã‚¬å
  */
 SQRESULT
 Thread::global_trigger(HSQUIRRELVM v)
@@ -848,11 +848,11 @@ Thread::global_trigger(HSQUIRRELVM v)
 }
 
 /**
- * ƒx[ƒXVMã‚ÅƒXƒNƒŠƒvƒg‚ğÀs‚·‚éB
- * ‚±‚ÌŒÄ‚Ño‚µ‚ÍƒXƒŒƒbƒh‚É‚æ‚é‚à‚Ì‚Å‚Í‚È‚¢‚½‚ßAˆ—’†‚É suspend() / wait() ‚ğ
- * ŒÄ‚Ô‚ÆƒGƒ‰[‚É‚È‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B•K‚¸1“x‚ÅŒÄ‚Ñ‚«‚ê‚é‚à‚Ì‚ğ“n‚·•K—v‚ª‚ ‚è‚Ü‚·B
- * @param func ƒOƒ[ƒoƒ‹ŠÖ”B¦ƒtƒ@ƒCƒ‹‚Íw’è‚Å‚«‚Ü‚¹‚ñ
- * @param ... ˆø”
+ * ãƒ™ãƒ¼ã‚¹VMä¸Šã§ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+ * ã“ã®å‘¼ã³å‡ºã—ã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚ˆã‚‹ã‚‚ã®ã§ã¯ãªã„ãŸã‚ã€å‡¦ç†ä¸­ã« suspend() / wait() ã‚’
+ * å‘¼ã¶ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚å¿…ãš1åº¦ã§å‘¼ã³ãã‚Œã‚‹ã‚‚ã®ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ * @param func ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã€‚â€»ãƒ•ã‚¡ã‚¤ãƒ«ã¯æŒ‡å®šã§ãã¾ã›ã‚“
+ * @param ... å¼•æ•°
  */
 SQRESULT
 Thread::global_execOnBase(HSQUIRRELVM v)
@@ -865,7 +865,7 @@ Thread::global_execOnBase(HSQUIRRELVM v)
 	SQRESULT result = SQ_OK;
 	if (gv == v) {
 		sq_push(gv, 2);
-		sq_pushroottable(gv); // ˆø”:self(root)
+		sq_pushroottable(gv); // å¼•æ•°:self(root)
 		int argc = 1;
 		for (int i=3;i<=max;i++) {
 			sq_push(v, i);
@@ -878,7 +878,7 @@ Thread::global_execOnBase(HSQUIRRELVM v)
 		}
 	} else {
 		sq_move(gv, v, 2);    // func
-		sq_pushroottable(gv); // ˆø”:self(root)
+		sq_pushroottable(gv); // å¼•æ•°:self(root)
 		int argc = 1;
 		for (int i=3;i<=max;i++) {
 			sq_move(gv, v, i);
@@ -895,26 +895,26 @@ Thread::global_execOnBase(HSQUIRRELVM v)
 }
 
 /**
- * ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh“o˜^
+ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
  */
 void
 Thread::registerGlobal()
 {
-	// ƒƒ\ƒbƒh“o˜^i–¼‘O‚Â‚«j
+	// ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²ï¼ˆåå‰ã¤ãï¼‰
 #define REGISTERMETHODNAME(name, method) \
 	sq_pushstring(v, _SC(#name), -1);\
 	sq_newclosure(v, method, 0);\
 	sq_createslot(v, -3);
 
-	// enum “o˜^i–¼‘O‚Â‚«j
+	// enum ç™»éŒ²ï¼ˆåå‰ã¤ãï¼‰
 #define REGISTERENUM(name, value) \
-	sq_pushstring(v, _SC(#name), -1); /* –¼‘O‚ğ push */ \
-	sq_pushinteger(v, value);          /* ’l‚ğ push */ \
-	sq_createslot(v, -3)              /* ƒe[ƒuƒ‹‚É“o˜^ */
+	sq_pushstring(v, _SC(#name), -1); /* åå‰ã‚’ push */ \
+	sq_pushinteger(v, value);          /* å€¤ã‚’ push */ \
+	sq_createslot(v, -3)              /* ãƒ†ãƒ¼ãƒ–ãƒ«ã«ç™»éŒ² */
 	
 	HSQUIRRELVM v = getGlobalVM();
 
-	// ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh‚Ì“o˜^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ã®ç™»éŒ²
 	sq_pushroottable(v); // root
 	REGISTERMETHODNAME(getCurrentTick, global_getCurrentTick);
 	REGISTERMETHODNAME(getDiffTick, global_getDiffTick);
@@ -929,17 +929,17 @@ Thread::registerGlobal()
 	REGISTERMETHODNAME(execOnBase, global_execOnBase);
 	sq_pop(v, 1); // root
 	
-	// ’è”‚Ì“o˜^
+	// å®šæ•°ã®ç™»éŒ²
 	sq_pushconsttable(v); // consttable
-	sq_pushstring(v, _SC("THREADSTATUS"), -1); // ƒe[ƒuƒ‹–¼‚ğ push
-	sq_newtable(v);                  // V‚µ‚¢ enum ƒe[ƒuƒ‹
+	sq_pushstring(v, _SC("THREADSTATUS"), -1); // ãƒ†ãƒ¼ãƒ–ãƒ«åã‚’ push
+	sq_newtable(v);                  // æ–°ã—ã„ enum ãƒ†ãƒ¼ãƒ–ãƒ«
 	REGISTERENUM(NONE,THREAD_NONE);
 	REGISTERENUM(LOADING_FILE,THREAD_LOADING_FILE);
 	REGISTERENUM(LOADING_FUNC,THREAD_LOADING_FUNC);
 	REGISTERENUM(STOP,THREAD_STOP);
 	REGISTERENUM(RUN,THREAD_RUN);
 	REGISTERENUM(WAIT,THREAD_WAIT);
-	sq_createslot(v, -3);              /* ƒe[ƒuƒ‹‚É“o˜^ */
+	sq_createslot(v, -3);              /* ãƒ†ãƒ¼ãƒ–ãƒ«ã«ç™»éŒ² */
 	sq_pop(v, 1); // consttable
 }
 

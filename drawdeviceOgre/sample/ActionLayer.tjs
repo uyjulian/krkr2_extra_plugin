@@ -1,13 +1,13 @@
 /**
- * ƒAƒNƒVƒ‡ƒ“‹@”\‚ğŠg’£‚µ‚½ƒŒƒCƒ„
+ * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æ©Ÿèƒ½ã‚’æ‹¡å¼µã—ãŸãƒ¬ã‚¤ãƒ¤
  */
 class ActionLayer extends AffineLayer {
 
-    var _modules;  ///< ƒ‚ƒWƒ…[ƒ‹•Û—p”z—ñ
-    var _actionTimer;    ///< ƒAƒNƒVƒ‡ƒ“‹ì“®—pƒ^ƒCƒ}
+    var _modules;  ///< ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ä¿æŒç”¨é…åˆ—
+    var _actionTimer;    ///< ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é§†å‹•ç”¨ã‚¿ã‚¤ãƒ
     
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
     function ActionLayer(win,par=null) {
         super.AffineLayer(win,par);
@@ -19,7 +19,7 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ƒtƒ@ƒCƒiƒ‰ƒCƒU
+     * ãƒ•ã‚¡ã‚¤ãƒŠãƒ©ã‚¤ã‚¶
      */
     function finalize() {
         stopAction();
@@ -29,7 +29,7 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ‰Šú‰»ˆ—
+     * åˆæœŸåŒ–å‡¦ç†
      */
     function reset() {
         stopAction();
@@ -38,15 +38,15 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ƒAƒNƒVƒ‡ƒ“‚ğƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ìw’è
-     * •W€‚Å‚ÍƒXƒLƒbƒv‚µ‚È‚¢B“K‹XŒp³‚·‚é‚±‚ÆB
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã®æŒ‡å®š
+     * æ¨™æº–ã§ã¯ã‚¹ã‚­ãƒƒãƒ—ã—ãªã„ã€‚é©å®œç¶™æ‰¿ã™ã‚‹ã“ã¨ã€‚
      */
     function isSkip() {
         return false;
     }
 
     /**
-     * ƒAƒNƒVƒ‡ƒ“ˆ——p
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‡¦ç†ç”¨
      */
     function actionHandler() {
         var now = System.getTickCount();
@@ -67,14 +67,14 @@ class ActionLayer extends AffineLayer {
     }
     
     /**
-     * ƒAƒNƒVƒ‡ƒ“‚ğŠJn‚·‚é
-     * •¡”‰ñŒÄ‚Ño‚µ‰Â”\Bƒ‚ƒWƒ…[ƒ‹‚Ì type ‚ªˆÙ‚È‚é‚à‚Ì‚Í“¯‚É“K—p‰Â”\
-     * @param moduleTyep ƒ‚ƒWƒ…[ƒ‹í•ÊBLayerModule ƒNƒ‰ƒX‚ÌqƒNƒ‰ƒX‚ÌƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğw’è‚·‚é
-     * @param options ƒpƒ‰ƒ[ƒ^˜A‘z”z—ñ
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‹å§‹ã™ã‚‹
+     * è¤‡æ•°å›å‘¼ã³å‡ºã—å¯èƒ½ã€‚ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã® type ãŒç•°ãªã‚‹ã‚‚ã®ã¯åŒæ™‚ã«é©ç”¨å¯èƒ½
+     * @param moduleTyep ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç¨®åˆ¥ã€‚LayerModule ã‚¯ãƒ©ã‚¹ã®å­ã‚¯ãƒ©ã‚¹ã®ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã™ã‚‹
+     * @param options ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€£æƒ³é…åˆ—
      */
     function beginAction(moduleType, options=void) {
         if (typeof moduleType == "Object" && moduleType.LayerModule != void) {
-            // ƒ‚ƒWƒ…[ƒ‹‚Ì¶¬‚Æ“o˜^
+            // ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ç”Ÿæˆã¨ç™»éŒ²
             var module = new moduleType(this, options);
             _modules[module.type] = module;
         } else if (moduleType instanceof "Dictionary") {
@@ -87,15 +87,15 @@ class ActionLayer extends AffineLayer {
                 moduleType = moduleName;
             }
             if (typeof moduleType == "Object" && moduleType.LayerModule != void) {
-                // ƒ‚ƒWƒ…[ƒ‹‚Ì¶¬‚Æ“o˜^
+                // ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ç”Ÿæˆã¨ç™»éŒ²
                 var module = new moduleType(this, options);
                 _modules[module.type] = module;
             } else {
-                throw new Exception("w’è‚³‚ê‚½ƒ‚ƒWƒ…[ƒ‹" + moduleName + "‚Í‘¶İ‚µ‚È‚¢‚© LayerModule ‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
+                throw new Exception("æŒ‡å®šã•ã‚ŒãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«" + moduleName + "ã¯å­˜åœ¨ã—ãªã„ã‹ LayerModule ã§ã¯ã‚ã‚Šã¾ã›ã‚“");
             }
 
         } else {
-            throw new Exception("LayerModule ‚ğŒp³‚µ‚½ƒNƒ‰ƒX‚ğ“n‚·•K—v‚ª‚ ‚è‚Ü‚·");
+            throw new Exception("LayerModule ã‚’ç¶™æ‰¿ã—ãŸã‚¯ãƒ©ã‚¹ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚Šã¾ã™");
         }
         if (!_actionTimer.enabled) {
             _actionTimer.enabled = true;
@@ -103,7 +103,7 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ƒAƒNƒVƒ‡ƒ“‚Ì‹­§I—¹
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®å¼·åˆ¶çµ‚äº†
      */
     function stopAction() {
         //Debug.message("stop");
@@ -116,13 +116,13 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ƒAƒNƒVƒ‡ƒ“I—¹‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
      */
     function onActionCompleted() {
     }
 
     /**
-     * ƒAƒNƒVƒ‡ƒ“Às’†‚©
+     * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å®Ÿè¡Œä¸­ã‹
      */
     property inAction {
         getter() {
@@ -131,13 +131,13 @@ class ActionLayer extends AffineLayer {
     }
     
     // --------------------------------------------
-    // ƒRƒ“ƒrƒjƒGƒ“ƒgƒƒ\ƒbƒh
+    // ã‚³ãƒ³ãƒ“ãƒ‹ã‚¨ãƒ³ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
     // --------------------------------------------
 
     /**
-     * •s“§–¾“x‚ğw’è‚·‚é
-     * @param opacity •s“§–¾“x
-     * @time •ÏX‚É‚©‚©‚éŠÔ
+     * ä¸é€æ˜åº¦ã‚’æŒ‡å®šã™ã‚‹
+     * @param opacity ä¸é€æ˜åº¦
+     * @time å¤‰æ›´ã«ã‹ã‹ã‚‹æ™‚é–“
      */
     function setOpacity(o, time) {
         if (time) {
@@ -148,9 +148,9 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ‰ñ“]—Ê‚ğw’è‚·‚é
-     * @param r ‰ñ“]—Ê
-     * @time •ÏX‚É‚©‚©‚éŠÔ
+     * å›è»¢é‡ã‚’æŒ‡å®šã™ã‚‹
+     * @param r å›è»¢é‡
+     * @time å¤‰æ›´ã«ã‹ã‹ã‚‹æ™‚é–“
      */
     function setRotate(r, time) {
         if (time) {
@@ -161,9 +161,9 @@ class ActionLayer extends AffineLayer {
     }
     
     /**
-     * ƒY[ƒ€—Ê‚ğw’è‚·‚é
-     * @param zoom ‰ñ“]—Ê
-     * @time •ÏX‚É‚©‚©‚éŠÔ
+     * ã‚ºãƒ¼ãƒ é‡ã‚’æŒ‡å®šã™ã‚‹
+     * @param zoom å›è»¢é‡
+     * @time å¤‰æ›´ã«ã‹ã‹ã‚‹æ™‚é–“
      */
     function setZoom(z, time) {
         if (time) {
@@ -174,11 +174,11 @@ class ActionLayer extends AffineLayer {
     }
 
     /**
-     * ©“®ˆÚ“®‚ğw’è‚·‚é
-     * @param x XˆÊ’u
-     * @param y YˆÊ’u
-     * @param accele •‰:Œ¸‘¬ 0:üŒ` ³:‰Á‘¬
-     * @time •ÏX‚É‚©‚©‚éŠÔ
+     * è‡ªå‹•ç§»å‹•ã‚’æŒ‡å®šã™ã‚‹
+     * @param x Xä½ç½®
+     * @param y Yä½ç½®
+     * @param accele è² :æ¸›é€Ÿ 0:ç·šå½¢ æ­£:åŠ é€Ÿ
+     * @time å¤‰æ›´ã«ã‹ã‹ã‚‹æ™‚é–“
      */
     function setMove(x, y, accel, time) {
         if (time) {
@@ -191,7 +191,7 @@ class ActionLayer extends AffineLayer {
                 beginAction(LayerDecelMoveModule, elm);
             }
         } else {
-            // ‘¼‚ÌƒAƒNƒVƒ‡ƒ“‚ğ’â~
+            // ä»–ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’åœæ­¢
             _modules[0] = void;
             setPos(x, y);
         }
@@ -200,23 +200,23 @@ class ActionLayer extends AffineLayer {
 };
 
 /**
- * ƒŒƒCƒ„ƒAƒNƒVƒ‡ƒ“ƒ‚ƒWƒ…[ƒ‹Šî’êƒNƒ‰ƒX
+ * ãƒ¬ã‚¤ãƒ¤ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åŸºåº•ã‚¯ãƒ©ã‚¹
  */
 class LayerModule {
 
-    var type;   /// ƒAƒNƒVƒ‡ƒ“í•Ê
-    var layer;  /// ‘€ì‘ÎÛƒŒƒCƒ„
+    var type;   /// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ç¨®åˆ¥
+    var layer;  /// æ“ä½œå¯¾è±¡ãƒ¬ã‚¤ãƒ¤
     var first;  
     var startTime;
-    var time;   // ˆ—ŠÔ
-    var delay;  // ŠJn’x‰„
+    var time;   // å‡¦ç†æ™‚é–“
+    var delay;  // é–‹å§‹é…å»¶
     var options;
     var done;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * @param layer ƒŒƒCƒ„
-     * @param params ƒpƒ‰ƒ[ƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     * @param layer ãƒ¬ã‚¤ãƒ¤
+     * @param params ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
      */
     function LayerModule(layer, options) {
         this.layer = layer;
@@ -229,9 +229,9 @@ class LayerModule {
     }
 
     /**
-     * ˆ—Às
-     * @param now Œ»İ(tick)
-     * @param skip ƒXƒLƒbƒvw’è
+     * å‡¦ç†å®Ÿè¡Œ
+     * @param now ç¾åœ¨æ™‚åˆ»(tick)
+     * @param skip ã‚¹ã‚­ãƒƒãƒ—æŒ‡å®š
      */
     function run(now, skip) {
         if (first) {
@@ -255,8 +255,8 @@ class LayerModule {
     }
 
     /**
-     * ˆ—ÀsiŒÂ•ÊÀ‘•)
-     * @param now Œ»İ(tick)
+     * å‡¦ç†å®Ÿè¡Œï¼ˆå€‹åˆ¥å®Ÿè£…)
+     * @param now ç¾åœ¨æ™‚åˆ»(tick)
      */
     function action(now) {}
 };
@@ -264,9 +264,9 @@ class LayerModule {
 // -------------------------------------------------------------------------
 
 /**
- * ˆÚ“®ƒ‚ƒWƒ…[ƒ‹
- * ƒpƒ‰ƒ[ƒ^: x ˆÚ“®æˆÊ’u
- * ƒpƒ‰ƒ[ƒ^: y ˆÚ“®æˆÊ’u
+ * ç§»å‹•ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿: x ç§»å‹•å…ˆä½ç½®
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿: y ç§»å‹•å…ˆä½ç½®
  */
 class LayerMoveModule extends LayerModule {
     var start_x;
@@ -284,7 +284,7 @@ class LayerMoveModule extends LayerModule {
 }
 
 /**
- * üŒ`ˆÚ“®
+ * ç·šå½¢ç§»å‹•
  */
 class LayerNormalMoveModule extends LayerMoveModule {
     function LayerNormalMoveModule(layer, options) {
@@ -302,7 +302,7 @@ class LayerNormalMoveModule extends LayerMoveModule {
 };
 
 /**
- * ‰Á‘¬ˆÚ“®
+ * åŠ é€Ÿç§»å‹•
  */
 class LayerAccelMoveModule extends LayerMoveModule {
     function LayerAccelMoveModule(layer, options) {
@@ -321,7 +321,7 @@ class LayerAccelMoveModule extends LayerMoveModule {
 };
 
 /**
- * Œ¸‘¬ˆÚ“®
+ * æ¸›é€Ÿç§»å‹•
  */
 class LayerDecelMoveModule extends LayerMoveModule {
     function LayerDecelMoveModule(layer, options) {
@@ -340,12 +340,12 @@ class LayerDecelMoveModule extends LayerMoveModule {
 };
 
 /**
- * •ú•¨üˆÚ“®
- * x/y: •ú•¨ü’¸“_iÅI“_‚Å‚Í‚È‚¢‚±‚Æ‚É’ˆÓj
- * topTime: ’¸“_’Ê‰ßŠÔi‘ŠÔ‚Ì1/2‚ğw’è‚·‚é‚Æ’š“x—‰º‚µ‚«‚é “r’†‚Å~‚ß‚½‚¢ê‡‚Í‘ŠÔ‚Æ’²®j
+ * æ”¾ç‰©ç·šç§»å‹•
+ * x/y: æ”¾ç‰©ç·šé ‚ç‚¹ï¼ˆæœ€çµ‚ç‚¹ã§ã¯ãªã„ã“ã¨ã«æ³¨æ„ï¼‰
+ * topTime: é ‚ç‚¹é€šéæ™‚é–“ï¼ˆç·æ™‚é–“ã®1/2ã‚’æŒ‡å®šã™ã‚‹ã¨ä¸åº¦è½ä¸‹ã—ãã‚‹ é€”ä¸­ã§æ­¢ã‚ãŸã„å ´åˆã¯ç·æ™‚é–“ã¨èª¿æ•´ï¼‰
  */
 class LayerParabolaMoveModule extends LayerMoveModule {
-    var t0;    // ’¸“_’Ê‰ßŠÔi‚Ì2”{’lj
+    var t0;    // é ‚ç‚¹é€šéæ™‚é–“ï¼ˆã®2å€å€¤ï¼‰
     function LayerParabolaMoveModule(layer, options) {
         super.LayerMoveModule(layer, options);
         var topTime = (int)options["topTime"];
@@ -353,13 +353,13 @@ class LayerParabolaMoveModule extends LayerMoveModule {
     }
     function action(now) {
         if ( t0 ) {
-            // X²‚Í“™‘¬ˆÚ“®AY²‚Í2ŸŠÖ”ˆÚ“®
+            // Xè»¸ã¯ç­‰é€Ÿç§»å‹•ã€Yè»¸ã¯2æ¬¡é–¢æ•°ç§»å‹•
             var t = now*2/t0;
-            // Œ´“_‚Æ(1,1)‚ğ’Ê‚èA‹tUšŒ^‚ÌƒJ[ƒu‚ğ•`‚­2ŸŠÖ”
+            // åŸç‚¹ã¨(1,1)ã‚’é€šã‚Šã€é€†Uå­—å‹ã®ã‚«ãƒ¼ãƒ–ã‚’æã2æ¬¡é–¢æ•°
             var n = ( 1-(1-t)*(1-t) );
             layer.setPos(start_x + diff_x*t, start_y + diff_y*n);
         } else {
-            // ŠÔw’è‚ÌÈ—ª‚Í•s‰Â‚¾‚ªAˆê‰—‰º‚µ‚½‚à‚Ì‚Æ‚İ‚È‚µ‚ÄX²‚¾‚¯ˆÚ“®‚·‚é
+            // æ™‚é–“æŒ‡å®šã®çœç•¥ã¯ä¸å¯ã ãŒã€ä¸€å¿œè½ä¸‹ã—ãŸã‚‚ã®ã¨ã¿ãªã—ã¦Xè»¸ã ã‘ç§»å‹•ã™ã‚‹
             layer.setPos(start_x + diff_x, start_y);
             done = true;
         }
@@ -369,7 +369,7 @@ class LayerParabolaMoveModule extends LayerMoveModule {
 // -------------------------------------------------------------------------
 
 /**
- * ƒAƒNƒVƒ‡ƒ“ƒ‚ƒWƒ…[ƒ‹
+ * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 class LayerActionModule extends LayerModule {
     function LayerActionModule(layer, options) {
@@ -385,9 +385,9 @@ class LayerActionModule extends LayerModule {
 };
 
 /**
- * U“®ƒAƒNƒVƒ‡ƒ“
- * vibration U“®—Ê(pixel)
- * waitTime U“®ŠÔ‚Ì‘Ò‚¿ŠÔ(ms)
+ * æŒ¯å‹•ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+ * vibration æŒ¯å‹•é‡(pixel)
+ * waitTime æŒ¯å‹•é–“ã®å¾…ã¡æ™‚é–“(ms)
  */
 class LayerVibrateActionModule extends LayerActionModule {
     var vibration;
@@ -411,9 +411,9 @@ class LayerVibrateActionModule extends LayerActionModule {
 };
 
 /**
- * c‚ä‚êƒAƒNƒVƒ‡ƒ“
- * vibration ã‰ºU“®—Ê(pixel)
- * cycle üŠú(ms)
+ * ç¸¦ã‚†ã‚Œã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+ * vibration ä¸Šä¸‹æŒ¯å‹•é‡(pixel)
+ * cycle å‘¨æœŸ(ms)
  */
 class LayerJumpActionModule extends LayerActionModule {
     var vibration;
@@ -429,9 +429,9 @@ class LayerJumpActionModule extends LayerActionModule {
 };
 
 /**
- * c‚ä‚êƒAƒNƒVƒ‡ƒ“(’P”­)
- * vibration ã‰ºU“®—Ê(pixel)
- * cycle üŠú(ms)
+ * ç¸¦ã‚†ã‚Œã‚¢ã‚¯ã‚·ãƒ§ãƒ³(å˜ç™º)
+ * vibration ä¸Šä¸‹æŒ¯å‹•é‡(pixel)
+ * cycle å‘¨æœŸ(ms)
  */
 class LayerJumpOnceActionModule extends LayerActionModule {
     var vibration;
@@ -451,9 +451,9 @@ class LayerJumpOnceActionModule extends LayerActionModule {
 };
 
 /**
- * ‰¡‚ä‚êƒAƒNƒVƒ‡ƒ“
- * vibration ã‰ºU“®—Ê(pixel)
- * cycle üŠú(ms)
+ * æ¨ªã‚†ã‚Œã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+ * vibration ä¸Šä¸‹æŒ¯å‹•é‡(pixel)
+ * cycle å‘¨æœŸ(ms)
  */
 class LayerWaveActionModule extends LayerActionModule {
     var vibration;
@@ -469,9 +469,9 @@ class LayerWaveActionModule extends LayerActionModule {
 };
 
 /**
- * ‰¡‚ä‚êƒAƒNƒVƒ‡ƒ“(’P”­)
- * vibration ã‰ºU“®—Ê(pixel)
- * cycle üŠú(ms)
+ * æ¨ªã‚†ã‚Œã‚¢ã‚¯ã‚·ãƒ§ãƒ³(å˜ç™º)
+ * vibration ä¸Šä¸‹æŒ¯å‹•é‡(pixel)
+ * cycle å‘¨æœŸ(ms)
  */
 class LayerWaveOnceActionModule extends LayerActionModule {
     var vibration;
@@ -491,9 +491,9 @@ class LayerWaveOnceActionModule extends LayerActionModule {
 };
 
 /**
- * —‰ºƒAƒNƒVƒ‡ƒ“
- * distance —‰º‹——£
- * fallTime —‰ºŠÔ
+ * è½ä¸‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+ * distance è½ä¸‹è·é›¢
+ * fallTime è½ä¸‹æ™‚é–“
  */
 class LayerFallActionModule extends LayerActionModule {
     var distance;
@@ -518,7 +518,7 @@ class LayerFallActionModule extends LayerActionModule {
 // -------------------------------------------------------------------------
 
 /**
- * Šg‘åk¬ƒ‚ƒWƒ…[ƒ‹
+ * æ‹¡å¤§ç¸®å°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 class LayerZoomModule extends LayerModule {
     var startZoomX;
@@ -532,8 +532,8 @@ class LayerZoomModule extends LayerModule {
 };
 
 /**
- * ’PƒŠg‘å
- * zoom: ÅIƒTƒCƒYic’·E‰¡’·‚É‚È‚Á‚Ä‚¢‚éó‘Ô‚©‚ç‚Ì•ÏX‚Íl—¶‚µ‚È‚¢j
+ * å˜ç´”æ‹¡å¤§
+ * zoom: æœ€çµ‚ã‚µã‚¤ã‚ºï¼ˆç¸¦é•·ãƒ»æ¨ªé•·ã«ãªã£ã¦ã„ã‚‹çŠ¶æ…‹ã‹ã‚‰ã®å¤‰æ›´ã¯è€ƒæ…®ã—ãªã„ï¼‰
  */
 class LayerNormalZoomModule extends LayerZoomModule {
     var zoom;
@@ -546,7 +546,7 @@ class LayerNormalZoomModule extends LayerZoomModule {
     function action(now) {
         if (time) {
             var t = now/time;
-            // Šg‘å‚Í‰Á‘¬Ak¬‚ÍŒ¸‘¬
+            // æ‹¡å¤§æ™‚ã¯åŠ é€Ÿã€ç¸®å°æ™‚ã¯æ¸›é€Ÿ
             var n = (diff<0)?( 1-(1-t)*(1-t) ):( t*t );
             layer.zoom = startZoomX + diff*n;
         } else {
@@ -557,8 +557,8 @@ class LayerNormalZoomModule extends LayerZoomModule {
 };
 
 /**
- * Šgk‚ğg‚Á‚½‹[—3D‰ñ“]ic²j
- * angvel: Šp‘¬“xi“x/secj
+ * æ‹¡ç¸®ã‚’ä½¿ã£ãŸæ“¬ä¼¼3Då›è»¢ï¼ˆç¸¦è»¸ï¼‰
+ * angvel: è§’é€Ÿåº¦ï¼ˆåº¦/secï¼‰
  */
 class LayerVRotateZoomModule extends LayerZoomModule {
     var angvel;
@@ -573,8 +573,8 @@ class LayerVRotateZoomModule extends LayerZoomModule {
 };
 
 /**
- * Šgk‚ğg‚Á‚½‹[—3D‰ñ“]i‰¡²j
- * angvel: Šp‘¬“xi“x/secj
+ * æ‹¡ç¸®ã‚’ä½¿ã£ãŸæ“¬ä¼¼3Då›è»¢ï¼ˆæ¨ªè»¸ï¼‰
+ * angvel: è§’é€Ÿåº¦ï¼ˆåº¦/secï¼‰
  */
 class LayerHRotateZoomModule extends LayerZoomModule {
     var angvel;
@@ -589,8 +589,8 @@ class LayerHRotateZoomModule extends LayerZoomModule {
 };
 
 /**
- * ƒn[ƒgƒr[ƒg
- * zoom: Å‘åŠg‘å—¦
+ * ãƒãƒ¼ãƒˆãƒ“ãƒ¼ãƒˆ
+ * zoom: æœ€å¤§æ‹¡å¤§ç‡
  */
 class LayerHeartBeatZoomModule extends LayerZoomModule {
     var diff;
@@ -609,9 +609,9 @@ class LayerHeartBeatZoomModule extends LayerZoomModule {
 };
 
 /**
- * ƒY[ƒ€U“®
- * vibration U“®—Ê(“)
- * waitTime U“®ŠÔ‚Ì‘Ò‚¿ŠÔ(ms)
+ * ã‚ºãƒ¼ãƒ æŒ¯å‹•
+ * vibration æŒ¯å‹•é‡(ï¼…)
+ * waitTime æŒ¯å‹•é–“ã®å¾…ã¡æ™‚é–“(ms)
  */
 class LayerVibrateZoomModule extends LayerZoomModule {
     var vibration;
@@ -651,8 +651,8 @@ class LayerRotateModule extends LayerModule {
 };
 
 /**
- * ’Pƒ‰ñ“]
- * angvel: Šp‘¬“xi“x/secj
+ * å˜ç´”å›è»¢
+ * angvel: è§’é€Ÿåº¦ï¼ˆåº¦/secï¼‰
  */
 class LayerNormalRotateModule extends LayerRotateModule {
     var angvel;
@@ -666,9 +666,9 @@ class LayerNormalRotateModule extends LayerRotateModule {
 };
 
 /**
- * ‰ñ“]U“®i‹N‚«ã‚ª‚è‚±‚Ú‚µ^U‚èqj
- * vibration: U•(“x)
- * cycle: üŠú(ms)
+ * å›è»¢æŒ¯å‹•ï¼ˆèµ·ãä¸ŠãŒã‚Šã“ã¼ã—ï¼æŒ¯ã‚Šå­ï¼‰
+ * vibration: æŒ¯å¹…(åº¦)
+ * cycle: å‘¨æœŸ(ms)
  */
 class LayerVibrateRotateModule extends LayerRotateModule {
     var vibration;
@@ -684,8 +684,8 @@ class LayerVibrateRotateModule extends LayerRotateModule {
 };
 
 /**
- * “]“|
- * angle: “]“|Å‘åŠpi-90`90‚ª“K³ ³‚Å¶A•‰‚Å‰E‚É“]“|j
+ * è»¢å€’
+ * angle: è»¢å€’æ™‚æœ€å¤§è§’ï¼ˆ-90ã€œ90ãŒé©æ­£ æ­£ã§å·¦ã€è² ã§å³ã«è»¢å€’ï¼‰
  */
 class LayerFalldownRotateModule extends LayerRotateModule {
     var angle;
@@ -705,8 +705,8 @@ class LayerFalldownRotateModule extends LayerRotateModule {
 };
 
 /**
- * w’èŠp“x‚Ö
- * angle: w’èŠp“x
+ * æŒ‡å®šè§’åº¦ã¸
+ * angle: æŒ‡å®šè§’åº¦
  */
 class LayerToRotateModule extends LayerRotateModule {
     var angle;
@@ -727,7 +727,7 @@ class LayerToRotateModule extends LayerRotateModule {
 // -------------------------------------------------------------------------
 
 /**
- * ƒAƒNƒVƒ‡ƒ“ƒ‚ƒWƒ…[ƒ‹
+ * ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 class LayerModeModule extends LayerModule {
     function LayerModeModule(layer, options) {
@@ -737,9 +737,9 @@ class LayerModeModule extends LayerModule {
 };
 
 /**
- * “_–Åˆ——p
- * showTime •\¦ŠÔ
- * hideTime Á‹ŠÔ
+ * ç‚¹æ»…å‡¦ç†ç”¨
+ * showTime è¡¨ç¤ºæ™‚é–“
+ * hideTime æ¶ˆå»æ™‚é–“
  */
 class LayerBlinkModeModule extends LayerModeModule {
     var showFlag;
@@ -765,9 +765,9 @@ class LayerBlinkModeModule extends LayerModeModule {
 };
 
 /**
- * ƒtƒF[ƒhˆ——p
- * intime  ƒtƒF[ƒhƒCƒ“ŠÔ   (0‚Ìê‡ƒtƒF[ƒhƒCƒ“‚µ‚È‚¢)
- * outtime ƒtƒF[ƒhƒAƒEƒgŠÔ (0‚Ìê‡ƒtƒF[ƒhƒAƒEƒg‚µ‚È‚¢)
+ * ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ç”¨
+ * intime  ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“   (0ã®å ´åˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã—ãªã„)
+ * outtime ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ (0ã®å ´åˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã—ãªã„)
  */
 class LayerFadeModeModule extends LayerModeModule {
     var opacity;
@@ -804,8 +804,8 @@ class LayerFadeModeModule extends LayerModeModule {
 };
 
 /**
- * w’è‚³‚ê‚½•s“§–¾“x‚É•ÏX
- * opacity •s“§–¾“x
+ * æŒ‡å®šã•ã‚ŒãŸä¸é€æ˜åº¦ã«å¤‰æ›´
+ * opacity ä¸é€æ˜åº¦
  */
 class LayerFadeToModeModule extends LayerModeModule {
     var opacity;

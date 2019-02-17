@@ -6,7 +6,7 @@ namespace sqobject {
 ObjectInfo *beforeContinuousList;
 ObjectInfo *afterContinuousList;
 
-// ƒŠƒXƒg‚É’Ç‰Á(Šù‚É“o˜^‚³‚ê‚Ä‚éê‡‚Í–³Ž‹)
+// ãƒªã‚¹ãƒˆã«è¿½åŠ (æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã‚‹å ´åˆã¯ç„¡è¦–)
 static void add(ObjectInfo &list, ObjectInfo &info)
 {
 	SQInteger max = list.len();
@@ -31,7 +31,7 @@ static void call(ObjectInfo &list, int tick, int diff)
 	}
 }
 
-/// ƒnƒ“ƒhƒ‰“o˜^
+/// ãƒãƒ³ãƒ‰ãƒ©ç™»éŒ²
 static SQRESULT addContinuousHandler(HSQUIRRELVM v)
 {
 	ObjectInfo info(v,2);
@@ -49,7 +49,7 @@ static SQRESULT addContinuousHandler(HSQUIRRELVM v)
 	return SQ_OK;
 }
 
-/// ƒnƒ“ƒhƒ‰íœ
+/// ãƒãƒ³ãƒ‰ãƒ©å‰Šé™¤
 static SQRESULT removeContinuousHandler(HSQUIRRELVM v)
 {
 	ObjectInfo info(v,2);
@@ -77,7 +77,7 @@ static SQRESULT clearContinuousHandler(HSQUIRRELVM v)
 }
 
 
-/// ‹@”\“o˜^
+/// æ©Ÿèƒ½ç™»éŒ²
 void registerContinuous()
 {
 #define REGISTERMETHOD(name, n, type) \
@@ -99,19 +99,19 @@ void registerContinuous()
 	afterContinuousList->initArray();
 }
 
-/// ƒnƒ“ƒhƒ‰ˆ—ŒÄ‚Ño‚µBThread::main ‚Ì‘O‚ÅŒÄ‚Ño‚·
+/// ãƒãƒ³ãƒ‰ãƒ©å‡¦ç†å‘¼ã³å‡ºã—ã€‚Thread::main ã®å‰ã§å‘¼ã³å‡ºã™
 void beforeContinuous()
 {
 	call(*beforeContinuousList, Thread::currentTick, Thread::diffTick);
 }
 
-/// ƒnƒ“ƒhƒ‰ˆ—ŒÄ‚Ño‚µBThread::main ‚ÌŒã‚ÅŒÄ‚Ño‚·
+/// ãƒãƒ³ãƒ‰ãƒ©å‡¦ç†å‘¼ã³å‡ºã—ã€‚Thread::main ã®å¾Œã§å‘¼ã³å‡ºã™
 void afterContinuous()
 {
 	call(*afterContinuousList, Thread::currentTick, Thread::diffTick);
 }
 
-/// ‹@”\I—¹
+/// æ©Ÿèƒ½çµ‚äº†
 void doneContinuous()
 {
 	beforeContinuousList->clearData();

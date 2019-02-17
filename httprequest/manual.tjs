@@ -1,166 +1,166 @@
-// ‹^—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+// ç–‘ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
 
 /**
- * HttpRequestƒNƒ‰ƒX
- * @description HTTP/HTTPS ‚É‚æ‚é”ñ“¯Šú’ÊM‹@”\‚ğ’ñ‹Ÿ‚µ‚Ü‚·B
- * ƒtƒ@ƒCƒ‹‚Ì‘—óMˆ—‚ÍƒoƒbƒNƒOƒ‰ƒEƒ“ƒhÀs‚³‚ê‚Ü‚·B
+ * HttpRequestã‚¯ãƒ©ã‚¹
+ * @description HTTP/HTTPS ã«ã‚ˆã‚‹éåŒæœŸé€šä¿¡æ©Ÿèƒ½ã‚’æä¾›ã—ã¾ã™ã€‚
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã®é€å—ä¿¡å‡¦ç†ã¯ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰å®Ÿè¡Œã•ã‚Œã¾ã™ã€‚
  */
 class HttpRequest {
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param window ƒXƒŒƒbƒh“¯Šúˆ——peƒEƒCƒ“ƒhƒE
-	 * @param cert HTTP’ÊM‚ÉØ–¾‘ƒ`ƒFƒbƒN‚ğs‚¤‚©‚Ç‚¤‚©Bfalse‚É‚·‚é‚Æ‹­§‹–‰Â‚É‚È‚è‚Ü‚·B
-	 * @param agentName HTTP’ÊM‚ÌƒG[ƒWƒFƒ“ƒg–¼
-	 * @throw InvalidObject eƒEƒCƒ“ƒhƒEw’è‚ª•s³
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param window ã‚¹ãƒ¬ãƒƒãƒ‰åŒæœŸå‡¦ç†ç”¨è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @param cert HTTPé€šä¿¡æ™‚ã«è¨¼æ˜æ›¸ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‹ã©ã†ã‹ã€‚falseã«ã™ã‚‹ã¨å¼·åˆ¶è¨±å¯ã«ãªã‚Šã¾ã™ã€‚
+	 * @param agentName HTTPé€šä¿¡æ™‚ã®ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå
+	 * @throw InvalidObject è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æŒ‡å®šãŒä¸æ­£
 	 */
 	function HttpRequest(window, cert=true, agentName="KIRIKIRI");
 
 	/**
-	 * w’è‚µ‚½ƒƒ\ƒbƒh‚Åw’èURL‚ÉƒŠƒNƒGƒXƒg‚·‚é
-	 * @description ¦í‚É”ñ“¯Šú‚Å‚ÌŒÄ‚Ño‚µ‚É‚È‚è‚Ü‚·
-	 * @param method ƒAƒNƒZƒXƒƒ\ƒbƒh
-	 * @param url ƒŠƒNƒGƒXƒgæ‚ÌURL
-	 * @param userName ƒ†[ƒU–¼Bw’è‚·‚é‚Æ”FØƒwƒbƒ_‚ğ‚Â‚¯‚Ü‚·
-	 * @param password ƒpƒXƒ[ƒh
-	 * @throw ’ÊMƒGƒ‰[‚à‚ë‚à‚ëiƒGƒ‰[ƒƒbƒZ[ƒWj
+	 * æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã§æŒ‡å®šURLã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã™ã‚‹
+	 * @description â€»å¸¸ã«éåŒæœŸã§ã®å‘¼ã³å‡ºã—ã«ãªã‚Šã¾ã™
+	 * @param method ã‚¢ã‚¯ã‚»ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+	 * @param url ãƒªã‚¯ã‚¨ã‚¹ãƒˆå…ˆã®URL
+	 * @param userName ãƒ¦ãƒ¼ã‚¶åã€‚æŒ‡å®šã™ã‚‹ã¨èªè¨¼ãƒ˜ãƒƒãƒ€ã‚’ã¤ã‘ã¾ã™
+	 * @param password ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
+	 * @throw é€šä¿¡ã‚¨ãƒ©ãƒ¼ã‚‚ã‚ã‚‚ã‚ï¼ˆã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‰
 	 */
 	function open(method, url, userName=void, password=void);
 
 	/**
-	 * ‘—M‚É‘—‚ç‚ê‚éƒwƒbƒ_[‚ğ’Ç‰Á‚·‚é
-	 * @param name ƒwƒbƒ_–¼
-	 * @param value ’l
-	 * @throw "already running" Šù‚É‘—M’†
-	 * Content-Type ‚ğw’è‚µ‚½ê‡‚Íw’è‚µ‚½ƒGƒ“ƒR[ƒh‚ª send ‚Ì‹K’è‚ÌƒGƒ“ƒR[ƒh‚É‚È‚è‚Ü‚·B
+	 * é€ä¿¡æ™‚ã«é€ã‚‰ã‚Œã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
+	 * @param name ãƒ˜ãƒƒãƒ€å
+	 * @param value å€¤
+	 * @throw "already running" æ—¢ã«é€ä¿¡ä¸­
+	 * Content-Type ã‚’æŒ‡å®šã—ãŸå ´åˆã¯æŒ‡å®šã—ãŸã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ãŒ send æ™‚ã®è¦å®šã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã«ãªã‚Šã¾ã™ã€‚
 	 */
 	function setRequestHeader(name, value);
 
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—MB‘—Mˆ—‚Í”ñ“¯ŠúÀs‚³‚ê‚Ü‚·B
-	 * @description ƒGƒ‰[‚à—áŠO‚Í”­¶‚µ‚Ü‚¹‚ñ‚Ì‚ÅAreadyState ‚Æ status ‚Å”»’è‚µ‚Ä‚­‚¾‚³‚¢B
-	 * @param data ‘—M‚·‚éƒf[ƒ^
-	 * octet‚Ìê‡  : ‚»‚Ì‚Ü‚Ü‘—M
-	 * •¶š—ñ‚Ìê‡ : ‹K’è‚ÌƒGƒ“ƒR[ƒh‚Åˆ—‚µ‚Ä‘—M
-	 * ‚»‚Ì‘¼       : ƒf[ƒ^‚Í‘—M‚³‚ê‚Ü‚¹‚ñ
-	 * @param storeStrorage ƒŒƒXƒ|ƒ“ƒX•Û‘¶æƒtƒ@ƒCƒ‹Bw’è‚³‚ê‚½ê‡‚ÍƒvƒƒpƒeƒB response‚Í İ’è‚³‚ê‚Ü‚¹‚ñ
-	 * @throw "not open" open‚³‚ê‚Ä‚¢‚È‚¢
-	 * @throw "already running" Šù‚É‘—M’†
-	 * @throw "saveStorage open failed" •Û‘¶æƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚©‚Á‚½ê‡
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡ã€‚é€ä¿¡å‡¦ç†ã¯éåŒæœŸå®Ÿè¡Œã•ã‚Œã¾ã™ã€‚
+	 * @description ã‚¨ãƒ©ãƒ¼æ™‚ã‚‚ä¾‹å¤–ã¯ç™ºç”Ÿã—ã¾ã›ã‚“ã®ã§ã€readyState ã¨ status ã§åˆ¤å®šã—ã¦ãã ã•ã„ã€‚
+	 * @param data é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+	 * octetã®å ´åˆ  : ãã®ã¾ã¾é€ä¿¡
+	 * æ–‡å­—åˆ—ã®å ´åˆ : è¦å®šã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã§å‡¦ç†ã—ã¦é€ä¿¡
+	 * ãã®ä»–       : ãƒ‡ãƒ¼ã‚¿ã¯é€ä¿¡ã•ã‚Œã¾ã›ã‚“
+	 * @param storeStrorage ãƒ¬ã‚¹ãƒãƒ³ã‚¹ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ã€‚æŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ responseã¯ è¨­å®šã•ã‚Œã¾ã›ã‚“
+	 * @throw "not open" openã•ã‚Œã¦ã„ãªã„
+	 * @throw "already running" æ—¢ã«é€ä¿¡ä¸­
+	 * @throw "saveStorage open failed" ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã‹ã£ãŸå ´åˆ
 	 */
 	function send(data=void, storeStorage=void);
 	
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—MB‘—óM‚Í”ñ“¯ŠúÀs‚³‚ê‚Ü‚·B
-	 * @description ƒGƒ‰[‚à—áŠO‚Í”­¶‚µ‚Ü‚¹‚ñ‚Ì‚ÅAreadyState ‚Æ status ‚Å”»’è‚µ‚Ä‚­‚¾‚³‚¢B
-	 * @param storage ‘—M‚·‚éƒtƒ@ƒCƒ‹ƒf[ƒ^
-	 * @param storeStrorage ƒŒƒXƒ|ƒ“ƒX•Û‘¶æƒtƒ@ƒCƒ‹Bw’è‚³‚ê‚½ê‡‚ÍƒvƒƒpƒeƒB response‚Í İ’è‚³‚ê‚Ü‚¹‚ñ
-	 * @throw "not open" open‚³‚ê‚Ä‚¢‚È‚¢
-	 * @throw "already running" Šù‚É‘—M’†
-	 * @throw "sendStorage open failed" ‘—Mƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚©‚Á‚½ê‡
-	 * @throw "saveStorage open failed" •Û‘¶æƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚©‚Á‚½ê‡
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡ã€‚é€å—ä¿¡ã¯éåŒæœŸå®Ÿè¡Œã•ã‚Œã¾ã™ã€‚
+	 * @description ã‚¨ãƒ©ãƒ¼æ™‚ã‚‚ä¾‹å¤–ã¯ç™ºç”Ÿã—ã¾ã›ã‚“ã®ã§ã€readyState ã¨ status ã§åˆ¤å®šã—ã¦ãã ã•ã„ã€‚
+	 * @param storage é€ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	 * @param storeStrorage ãƒ¬ã‚¹ãƒãƒ³ã‚¹ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ã€‚æŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ responseã¯ è¨­å®šã•ã‚Œã¾ã›ã‚“
+	 * @throw "not open" openã•ã‚Œã¦ã„ãªã„
+	 * @throw "already running" æ—¢ã«é€ä¿¡ä¸­
+	 * @throw "sendStorage open failed" é€ä¿¡ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã‹ã£ãŸå ´åˆ
+	 * @throw "saveStorage open failed" ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã‹ã£ãŸå ´åˆ
 	 */
 	function sendStorage(storage, storeStorage=void);
 	
 	/**
-	 * Œ»İÀs’†‚Ì‘—óM‚ÌƒLƒƒƒ“ƒZƒ‹
+	 * ç¾åœ¨å®Ÿè¡Œä¸­ã®é€å—ä¿¡ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	 */
 	function abort();
 
 	/**
-	 * ‚·‚×‚Ä‚Ì HTTPƒwƒbƒ_‚ğæ“¾‚·‚é
-	 * @return HTTPƒwƒbƒ_‚ªŠi”[‚³‚ê‚½«‘
+	 * ã™ã¹ã¦ã® HTTPãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã™ã‚‹
+	 * @return HTTPãƒ˜ãƒƒãƒ€ãŒæ ¼ç´ã•ã‚ŒãŸè¾æ›¸
 	 */
 	function getAllResponseHeaders();
 
 	/**
-	 * w’è‚µ‚½HTTPƒwƒbƒ_‚ğæ“¾‚·‚é
-	 * @param name ƒwƒbƒ_ƒ‰ƒxƒ‹–¼
-	 * @return ƒwƒbƒ_‚Ì’l
+	 * æŒ‡å®šã—ãŸHTTPãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã™ã‚‹
+	 * @param name ãƒ˜ãƒƒãƒ€ãƒ©ãƒ™ãƒ«å
+	 * @return ãƒ˜ãƒƒãƒ€ã®å€¤
 	 */
 	function getResponseHeader(name);
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚ğƒeƒLƒXƒg‚ÌŒ`‚Åæ“¾
-	 * @param encoding ƒGƒ“ƒR[ƒhw’èBÈ—ª‚Í Content-type ‚Ìw’è‚É]‚¢‚Ü‚·B
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’ãƒ†ã‚­ã‚¹ãƒˆã®å½¢ã§å–å¾—
+	 * @param encoding ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æŒ‡å®šã€‚çœç•¥æ™‚ã¯ Content-type ã®æŒ‡å®šã«å¾“ã„ã¾ã™ã€‚
 	 */
 	function getResponseText(encoding=void);
 
-	// readyState ‰Šúó‘Ô
+	// readyState åˆæœŸçŠ¶æ…‹
 	const UNINITIALIZED = 0;
-	// readyState ˆ—ŠJn
+	// readyState å‡¦ç†é–‹å§‹
 	const OPEN = 1;
-	// readyState ƒŠƒNƒGƒXƒg‘—M
+	// readyState ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡
 	const SENT = 2;
-	// readyState óM’†
+	// readyState å—ä¿¡ä¸­
 	const RECEIVING = 3;
-	// readyState “Ç‚İ‚İŠ®—¹
+	// readyState èª­ã¿è¾¼ã¿å®Œäº†
 	const LOADED = 4;
 	
 	/**
-	 * ’ÊMó‘ÔB“Ç‚İ‚İê—p
-	 * @return Œ»İ‚Ì’ÊMó‘Ô
+	 * é€šä¿¡çŠ¶æ…‹ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ç¾åœ¨ã®é€šä¿¡çŠ¶æ…‹
 	 */
 	property readyState;
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒXB“Ç‚İ‚İê—pB
-	 * @return ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^
-	 * ContentType ‚ª text ‚Ìê‡FƒGƒ“ƒR[ƒhw’è‚Å•ÏŠ·‚³‚ê‚½•¶š—ñ‚ª‹A‚è‚Ü‚·
-	 * ‚»‚Ì‘¼ : octet ƒf[ƒ^‚»‚Ì‚Ü‚Ü
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨ã€‚
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿
+	 * ContentType ãŒ text ã®å ´åˆï¼šã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æŒ‡å®šã§å¤‰æ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒå¸°ã‚Šã¾ã™
+	 * ãã®ä»– : octet ãƒ‡ãƒ¼ã‚¿ãã®ã¾ã¾
 	 */
 	property response;
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX¡“Ç‚İ‚İê—p
-	 * @return ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^(octet)
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ï½¡èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿(octet)
 	 */
 	property responseData;
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì HTTPƒXƒe[ƒ^ƒXƒR[ƒhB“Ç‚İ‚İê—p
-	 * @return ƒXƒe[ƒ^ƒXƒR[ƒh -1:ƒLƒƒƒ“ƒZƒ‹ 0:’ÊMƒGƒ‰[ ‚»‚Ì‘¼:httpƒXƒe[ƒ^ƒXƒR[ƒh
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ -1:ã‚­ãƒ£ãƒ³ã‚»ãƒ« 0:é€šä¿¡ã‚¨ãƒ©ãƒ¼ ãã®ä»–:httpã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
 	 */
 	property status;
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì HTTPƒXƒe[ƒ^ƒX‚Ì•¶š—ñ
-	 * @return ƒŒƒXƒ|ƒ“ƒX•¶š—ñB’ÊMƒGƒ‰[‚Í‚»‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚É‚È‚è‚Ü‚·B
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®æ–‡å­—åˆ—
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹æ–‡å­—åˆ—ã€‚é€šä¿¡ã‚¨ãƒ©ãƒ¼æ™‚ã¯ãã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ãªã‚Šã¾ã™ã€‚
 	 */
 	property statusText;
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì Content-Type (ƒGƒ“ƒR[ƒfƒBƒ“ƒOw’è‚ÍŠÜ‚Ü‚È‚¢)
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® Content-Type (ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã¯å«ã¾ãªã„)
 	 */
 	property contentType;
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì Content-Type ‚ÌƒGƒ“ƒR[ƒhw’è
-	 * @description ƒwƒbƒ_‚Ìw’è‚ª—Dæ‚³‚ê‚Ü‚·‚ªA–¢w’èA‚©‚ÂóMƒf[ƒ^‚ª text/html ‚Ìê‡‚Í
-	 * ƒtƒ@ƒCƒ‹–`“ª‚É‚ ‚é META w’è‚àQÆ‚µ‚Ü‚·B
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® Content-Type ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æŒ‡å®š
+	 * @description ãƒ˜ãƒƒãƒ€ã®æŒ‡å®šãŒå„ªå…ˆã•ã‚Œã¾ã™ãŒã€æœªæŒ‡å®šã€ã‹ã¤å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒ text/html ã®å ´åˆã¯
+	 * ãƒ•ã‚¡ã‚¤ãƒ«å†’é ­ã«ã‚ã‚‹ META æŒ‡å®šã‚‚å‚ç…§ã—ã¾ã™ã€‚
 	 */
 	property contentTypeEncoding;
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì Content-Length
-	 * @description ƒwƒbƒ_‚É–³‚¢ê‡‚Íƒtƒ@ƒCƒ‹ƒ_ƒEƒ“ƒ[ƒhŠ®—¹Œã‚ÉƒTƒCƒYŠm’è‚µ‚Ü‚·B
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® Content-Length
+	 * @description ãƒ˜ãƒƒãƒ€ã«ç„¡ã„å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†å¾Œã«ã‚µã‚¤ã‚ºç¢ºå®šã—ã¾ã™ã€‚
 	 */
 	property contentLength;
 	
 	// ------------------------------------
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// ------------------------------------
 
 	/**
-	 * readyState ‚ª•Ï‰»‚µ‚½ê‡‚ÌƒCƒxƒ“ƒg
-	 * @param readyState V‚µ‚¢ƒXƒe[ƒg
+	 * readyState ãŒå¤‰åŒ–ã—ãŸå ´åˆã®ã‚¤ãƒ™ãƒ³ãƒˆ
+	 * @param readyState æ–°ã—ã„ã‚¹ãƒ†ãƒ¼ãƒˆ
 	 */
 	function onReadyStateChange(readyState);
 
 	/**
-	 * ƒf[ƒ^‘—óMƒCƒxƒ“ƒg
-	 * @param upload ‘—M’†‚Í true
-	 * @param percent i’»ó‘Ô(0`100%)
+	 * ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã‚¤ãƒ™ãƒ³ãƒˆ
+	 * @param upload é€ä¿¡ä¸­ã¯ true
+	 * @param percent é€²æ—çŠ¶æ…‹(0ã€œ100%)
 	 */
 	function onProgress(upload, percent);
 };

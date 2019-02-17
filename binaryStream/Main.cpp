@@ -128,7 +128,7 @@ class BinaryStream
 			inputOffset  = elm.GetValue(TJS_W("offset"), ncbTypedefs::Tag<tjs_int64>());
 			inputMaxsize = elm.GetValue(TJS_W("length"), ncbTypedefs::Tag<tjs_int64>());
 			filterProc   = 0;
-			{   // filterProcæ“¾
+			{   // filterProcå–å¾—
 				tTJSVariantType type = tvtVoid;
 				const tjs_char *key = TJS_W("filter");
 				if (elm.HasValue(key, 0, &type)) {
@@ -296,9 +296,9 @@ public:
 	}
 
 	/**
-	 * ƒXƒgƒŒ[ƒW‚ğŠJ‚­
-	 * @param storage ‘ÎÛƒXƒgƒŒ[ƒW
-	 * @param mode    ƒ‚[ƒhw’è(bsRead, bsWrite, bsAppend, bsUpdate)
+	 * ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’é–‹ã
+	 * @param storage å¯¾è±¡ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
+	 * @param mode    ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(bsRead, bsWrite, bsAppend, bsUpdate)
 	 */
 	void open(tjs_char const *storage, int mode) {
 		close();
@@ -312,7 +312,7 @@ public:
 	}
 
 	/**
-	 * ƒI[ƒvƒ“’†‚ÌƒXƒgƒŒ[ƒW‚ğ•Â‚¶‚é
+	 * ã‚ªãƒ¼ãƒ—ãƒ³ä¸­ã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’é–‰ã˜ã‚‹
 	 */
 	void close() {
 		if (stream) {
@@ -324,10 +324,10 @@ public:
 	}
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğ•ÏX‚·‚é
-	 * @param pos    ˆÊ’u
-	 * @param whence Šî€ˆÊ’u(bsSeekSet, bsSeekCur, bsSeekEnd)
-	 * @return       ˆÚ“®Œã‚ÌˆÊ’u
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
+	 * @param pos    ä½ç½®
+	 * @param whence åŸºæº–ä½ç½®(bsSeekSet, bsSeekCur, bsSeekEnd)
+	 * @return       ç§»å‹•å¾Œã®ä½ç½®
 	 */
 	tjs_int64 seek(tjs_int64 pos, int whence) {
 		ULONG org;
@@ -349,14 +349,14 @@ public:
 	}
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚ÌŒ»İ‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾‚·‚é
-	 * @return ˆÊ’u
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
+	 * @return ä½ç½®
 	 */
 	tjs_int64 tell() { return seek(0, STREAM_SEEK_CUR); }
 
 
 	/**
-	 * Œ»İŠJ‚¢‚Ä‚¢‚éƒXƒgƒŒ[ƒW^ƒ‚[ƒh‚ğæ“¾
+	 * ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ï¼ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 	 */
 	int   getMode()    const { return mode;    }
 	ttstr getStorage() const { return storage; }
@@ -365,9 +365,9 @@ public:
 	//--------------------------------------------------------------
 
 	/**
-	 * w’èƒoƒCƒg“Ç‚İ‚Ş
-	 * @param size “Ç‚İ‚ŞƒTƒCƒYiƒoƒCƒgj
-	 * @return     “Ç‚İ‚ñ‚¾ƒf[ƒ^ioctetŒ`®j I’[‚È‚Ç‚Å“Ç‚ß‚È‚©‚Á‚½ê‡‚Ívoidilength=0‚Ìoctet‚Å‚Í‚È‚¢‚Ì‚Å’ˆÓj
+	 * æŒ‡å®šãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚€
+	 * @param size èª­ã¿è¾¼ã‚€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
+	 * @return     èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ï¼ˆoctetå½¢å¼ï¼‰ çµ‚ç«¯ãªã©ã§èª­ã‚ãªã‹ã£ãŸå ´åˆã¯voidï¼ˆlength=0ã®octetã§ã¯ãªã„ã®ã§æ³¨æ„ï¼‰
 	 */
 	static tjs_error TJS_INTF_METHOD read(tTJSVariant *r, tjs_int n, tTJSVariant **p, BinaryStream *self) {
 		if (n < 1) return TJS_E_BADPARAMCOUNT;
@@ -402,10 +402,10 @@ public:
 	}
 
 	/**
-	 * {1,2,4,8}ƒoƒCƒg‚ğ”’l‚Æ‚µ‚Ä“Ç‚İ‚Ş
-	 * @return     “Ç‚İ‚ñ‚¾”’l / I’[‚È‚Ç‚Å“Ç‚ß‚È‚©‚Á‚½ê‡‚Ívoid
-	 * ¦void‚ğ•Ô‚·‚Ì‚Í1byte‚à“Ç‚ß‚È‚©‚Á‚½ê‡‚Ì‚İ
-	 *   1byteˆÈãw’èbyte–¢–‚µ‚©“Ç‚ß‚È‚©‚Á‚½ê‡‚Í‘«‚è‚È‚¢•”•ª‚ğ0‚Å–„‚ß‚½’l‚ª•Ô‚³‚ê‚é‚Ì‚Å’ˆÓ
+	 * {1,2,4,8}ãƒã‚¤ãƒˆã‚’æ•°å€¤ã¨ã—ã¦èª­ã¿è¾¼ã‚€
+	 * @return     èª­ã¿è¾¼ã‚“ã æ•°å€¤ / çµ‚ç«¯ãªã©ã§èª­ã‚ãªã‹ã£ãŸå ´åˆã¯void
+	 * â€»voidã‚’è¿”ã™ã®ã¯1byteã‚‚èª­ã‚ãªã‹ã£ãŸå ´åˆã®ã¿
+	 *   1byteä»¥ä¸ŠæŒ‡å®šbyteæœªæº€ã—ã‹èª­ã‚ãªã‹ã£ãŸå ´åˆã¯è¶³ã‚Šãªã„éƒ¨åˆ†ã‚’0ã§åŸ‹ã‚ãŸå€¤ãŒè¿”ã•ã‚Œã‚‹ã®ã§æ³¨æ„
 	 */
 	static tjs_error TJS_INTF_METHOD readI8   (tTJSVariant *r, tjs_int n, tTJSVariant **p, BinaryStream *self) { return self ? self->_readByte(r)    : TJS_E_NATIVECLASSCRASH; }
 
@@ -446,9 +446,9 @@ public:
 	//--------------------------------------------------------------
 
 	/**
-	 * ƒf[ƒ^‚ğ‘‚«‚Ş
-	 * @param data ‘‚«‚Şƒf[ƒ^ioctetŒ`®j
-	 * @return     ‘‚«‚ñ‚¾ƒoƒCƒg”
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
+	 * @param data æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ï¼ˆoctetå½¢å¼ï¼‰
+	 * @return     æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 	 */
 	static tjs_error TJS_INTF_METHOD write(tTJSVariant *r, tjs_int n, tTJSVariant **p, BinaryStream *self) {
 		if (n < 1) return TJS_E_BADPARAMCOUNT;
@@ -480,9 +480,9 @@ public:
 	}
 
 	/**
-	 * {1,2,4,8}ƒoƒCƒg‚Å”’l‚ğ‘‚«‚Ş
-	 * @param num ‘‚«‚Ş”’l
-	 * @return    ‘‚«‚ñ‚¾ƒoƒCƒg”
+	 * {1,2,4,8}ãƒã‚¤ãƒˆã§æ•°å€¤ã‚’æ›¸ãè¾¼ã‚€
+	 * @param num æ›¸ãè¾¼ã‚€æ•°å€¤
+	 * @return    æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 	 */
 	static tjs_error TJS_INTF_METHOD writeI8   (tTJSVariant *r, tjs_int n, tTJSVariant **p, BinaryStream *self) { return self ? self->_writeByte(r,p[0])    : TJS_E_NATIVECLASSCRASH; }
 

@@ -16,18 +16,18 @@ class WindowSigCheck;
 class SigChecker {
 
 protected:
-	// ‰Šú‰»•Ï”
+	// åˆæœŸåŒ–å¤‰æ•°
 	WindowSigCheck *notify;
 	ttstr filename;
 	string publickey;
 
-	/// ƒ†[ƒUî•ñ
+	/// ãƒ¦ãƒ¼ã‚¶æƒ…å ±
 	tTJSVariant info; 
 
-	// ƒLƒƒƒ“ƒZƒ‹w¦
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«æŒ‡ç¤º
 	bool canceled;
 
-	// Œ‹‰Ê•Ï”
+	// çµæœå¤‰æ•°
 	tTJSVariant handler;
 	tTJSVariant progressPercent;
 	tTJSVariant result;
@@ -40,40 +40,40 @@ protected:
 	int CheckSignature();
 
 public:
-	// Œo‰ßƒCƒxƒ“ƒg‘—M
+	// çµŒéã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
 	void eventProgress(iTJSDispatch2 *objthis) {
 		tTJSVariant *vars[] = {&handler, &info, &progressPercent};
 		objthis->FuncCall(0, L"onCheckSignatureProgress", NULL, NULL, 3, vars, objthis);
 	}
 
-	// I—¹ƒCƒxƒ“ƒg‘—M
+	// çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
 	void eventDone(iTJSDispatch2 *objthis) {
 		tTJSVariant *vars[] = {&handler, &info, &result, &errormsg};
 		objthis->FuncCall(0, L"onCheckSignatureDone", NULL, NULL, 4, vars, objthis);
 	}
 	
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	SigChecker(int handler, WindowSigCheck *notify, const tjs_char *filename, const char *publickey, tTJSVariant &info)
 		: handler(handler), notify(notify), filename(filename), publickey(publickey), info(info), canceled(false) {}
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~SigChecker() {}
 
-	// ƒnƒ“ƒhƒ‰æ“¾
+	// ãƒãƒ³ãƒ‰ãƒ©å–å¾—
 	int getHandler() {
 		return (int)handler;
 	}
 	
-	// ˆ—ŠJn
+	// å‡¦ç†é–‹å§‹
 	void start();
 
-	// ˆ—ƒLƒƒƒ“ƒZƒ‹
+	// å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	void cancel() {
 		canceled = true;
 	}
 
-	// ‹­§I—¹
+	// å¼·åˆ¶çµ‚äº†
 	void stop() {
 		canceled = true;
 		notify = NULL;
@@ -84,9 +84,9 @@ public:
 class WindowSigCheck {
 
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(tTVPWindowMessageReceiver receiver, bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -98,9 +98,9 @@ protected:
 	}
 
 public:
-	// ƒƒbƒZ[ƒW‘—M
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 	void postMessage(UINT msg, WPARAM wparam=NULL, LPARAM lparam=NULL) {
-		// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾‚µ‚Ä’Ê’m
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦é€šçŸ¥
 		tTJSVariant val;
 		objthis->PropGet(0, TJS_W("HWND"), NULL, &val, objthis);
 		HWND hwnd = reinterpret_cast<HWND>((tjs_int)(val));
@@ -111,12 +111,12 @@ protected:
 
 	vector<SigChecker*> checkers;
 
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static void checkThread(void *data) {
 		((SigChecker*)data)->start();
 	}
 
-	// i’»’Ê’m
+	// é€²æ—é€šçŸ¥
 	void eventProgress(SigChecker *sender) {
 		int handler = sender->getHandler();
 		if (checkers[handler] == sender) {
@@ -124,7 +124,7 @@ protected:
 		}
 	}
 
-	// I—¹’Ê’m
+	// çµ‚äº†é€šçŸ¥
 	void eventDone(SigChecker *sender) {
 		int handler = sender->getHandler();
 		if (checkers[handler] == sender) {
@@ -134,7 +134,7 @@ protected:
 		delete sender;
 	}
 
-	// ƒEƒCƒ“ƒhƒEƒCƒxƒ“ƒgˆ—
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 	static bool __stdcall sigcheckevent(void *userdata, tTVPWindowMessage *Message) {
 		if (Message->Msg == WM_SIGCHECKPROGRESS) {
 			iTJSDispatch2 *obj = (iTJSDispatch2*)userdata;
@@ -172,10 +172,10 @@ public:
 	}
 
 	/**
-	 * –¼ƒ`ƒFƒbƒN‚ğs‚¤
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹
-	 * @param publickey ŒöŠJŒ®
-	 * @return ƒnƒ“ƒhƒ‰
+	 * ç½²åãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param publickey å…¬é–‹éµ
+	 * @return ãƒãƒ³ãƒ‰ãƒ©
 	 */
 	int checkSignature(const tjs_char *filename, const char *publickey, tTJSVariant info) {
 		int handler = checkers.size();
@@ -195,7 +195,7 @@ public:
 	}
 
 	/**
-	 * Às‚ÌƒLƒƒƒ“ƒZƒ‹
+	 * å®Ÿè¡Œã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	 */
 	void cancelCheckSignature(int handler) {
 		if (handler < checkers.size() && checkers[handler] != NULL) {
@@ -204,7 +204,7 @@ public:
 	}
 
 	/**
-	 * Às‚Ì’â~
+	 * å®Ÿè¡Œã®åœæ­¢
 	 */
 	void stopCheckSignature(int handler) {
 		if (handler < checkers.size() && checkers[handler] != NULL) {
@@ -218,7 +218,7 @@ public:
 
 //---------------------------------------------------------------------------
 
-// IStream ‚Ì“Ç‚İ‚İˆÊ’uæ“¾
+// IStream ã®èª­ã¿è¾¼ã¿ä½ç½®å–å¾—
 static DWORD getPosition(IStream *is)
 {
 	if (is) {
@@ -232,7 +232,7 @@ static DWORD getPosition(IStream *is)
 
 }
 
-// IStream ‚Ì“Ç‚İ‚İˆÊ’uw’è
+// IStream ã®èª­ã¿è¾¼ã¿ä½ç½®æŒ‡å®š
 static void setPosition(IStream *is, DWORD offset)
 {
 	if (is) {
@@ -243,7 +243,7 @@ static void setPosition(IStream *is, DWORD offset)
 	}
 }
 
-// IStream ‚ÌƒTƒCƒYæ“¾
+// IStream ã®ã‚µã‚¤ã‚ºå–å¾—
 static DWORD getSize(IStream *is)
 {
 	if (is) {
@@ -392,7 +392,7 @@ SigChecker::CheckSignatureOfFile(int ignorestart, int ignoreend, int ofs)
 			setPosition(st, ofs);
 		}
 		if (st == NULL) {
-			// –¼ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚¢‚Ì‚Å¸”s
+			// ç½²åãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã„ã®ã§å¤±æ•—
 			errormsg = L"can't open signature file";
 			return EXCEPTION;
 		}
@@ -510,7 +510,7 @@ SigChecker::CheckSignatureOfFile(int ignorestart, int ignoreend, int ofs)
 		return CANCELED;
 	}
 	
-	// Œ‹‰Ê”»’è
+	// çµæœåˆ¤å®š
 	int stat = 0;
 	{
 		rsa_key key;
@@ -540,7 +540,7 @@ SigChecker::CheckSignatureOfFile(int ignorestart, int ignoreend, int ofs)
 //---------------------------------------------------------------------------
 
 /**
- * @return Œ‹‰Ê -2:¸”s -1:’†’f 0:¸”s 1:¬Œ÷
+ * @return çµæœ -2:å¤±æ•— -1:ä¸­æ–­ 0:å¤±æ•— 1:æˆåŠŸ
  */
 int
 SigChecker::CheckSignature() {
@@ -604,14 +604,14 @@ SigChecker::start()
 
 //---------------------------------------------------------------------------
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowSigCheck)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
@@ -624,7 +624,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(WindowSigCheck, Window) {
 };
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 static void PostRegistCallback()
 {

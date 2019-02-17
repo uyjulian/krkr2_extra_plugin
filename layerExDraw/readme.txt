@@ -1,29 +1,29 @@
 Title: layerExDraw plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Layer �N���X�� GDI+ �ɂ��`��@�\�g�����s���v���O�C���ł��B
+Layer クラスに GDI+ による描画機能拡張を行うプラグインです。
 
-��LayreExText �͖{�v���O�C���ɓ�������܂���
+※LayreExText は本プラグインに統合されました
 
- == ���� ==
+ == 特徴 ==
 
-�E�A�E�g���C���x�[�X�̕`�悪�\
+・アウトラインベースの描画が可能
 
-�@������ PATH/FILL ��g�ݍ��킹�ėl�X�ȃv���~�e�B�u��`�悷�邱�Ƃ��ł��܂�
+　複数の PATH/FILL を組み合わせて様々なプリミティブを描画することができます
 
-�E�e�L�X�g�`��Ƀv���C�x�[�g�t�H���g�Z�b�g�����p�ł���
+・テキスト描画にプライベートフォントセットが利用できる
 
-�@�A�[�J�C�u���ɂ���t�H���g�t�@�C����
-  ���ڎw�肵�ăt�H���g���������邱�Ƃ��ł��܂�
+　アーカイブ中にあるフォントファイルを
+  直接指定してフォント生成させることができます
 
-���g����
+●使い方
 
-manual.tjs �Q��
-Windows2000 ���ł� GDI+ ���C���X�g�[������K�v��
-����ꍇ������܂��B
+manual.tjs 参照
+Windows2000 環境では GDI+ をインストールする必要が
+ある場合があります。
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

@@ -6,21 +6,21 @@
 
 using namespace v8;
 
-// ‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒgƒNƒ‰ƒXˆ—
+// å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¯ãƒ©ã‚¹å‡¦ç†
 #include "tjsobj.h"
 #include "tjsinstance.h"
 
-// javascript ã‚Å‚Ì TJS2‚ÌƒOƒ[ƒoƒ‹‹óŠÔ‚ÌQÆ–¼
+// javascript ä¸Šã§ã® TJS2ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ç©ºé–“ã®å‚ç…§å
 #define KIRIKIRI_GLOBAL L"krkr"
-// TJS2 ã‚Å‚Ì javascript ‚ÌƒOƒ[ƒoƒ‹‹óŠÔ‚ÌQÆ–¼
+// TJS2 ä¸Šã§ã® javascript ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ç©ºé–“ã®å‚ç…§å
 #define JAVASCRIPT_GLOBAL L"jsglobal"
 
-// ’l‚ÌŠi”[Eæ“¾—p
+// å€¤ã®æ ¼ç´ãƒ»å–å¾—ç”¨
 extern Local<Value> toJSValue(Isolate *isolate, const tTJSVariant &variant);
 extern tTJSVariant toVariant(Isolate *isolate, Local<Value> &value);
 extern void JSEXCEPTION(Isolate *isolate, TryCatch *try_catch);
 
-// ƒRƒs[ƒ‰ƒCƒg•\‹L
+// ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆè¡¨è¨˜
 static const char *copyright =
 #include "LICENSE.h"
 ;
@@ -28,32 +28,32 @@ static const char *copyright =
 //---------------------------------------------------------------------------
 
 /**
- * Scripts ƒNƒ‰ƒX‚Ö‚Ì Javascript Àsƒƒ\ƒbƒh‚Ì’Ç‰Á
+ * Scripts ã‚¯ãƒ©ã‚¹ã¸ã® Javascript å®Ÿè¡Œãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ 
  */
 class ScriptsJavascript {
 
 public:
 	/**
-	 * “o˜^ˆ—‘O
+	 * ç™»éŒ²å‡¦ç†å‰
 	 */
 	static void PreRegisterCallback() {
-		// Copyright •\¦
+		// Copyright è¡¨ç¤º
 		TVPAddImportantLog(ttstr(copyright));
 		V8::SetFatalErrorHandler(OnFatalError);
 		getInstance();
 	}
 	
 	/**
-	 * ŠJ•úˆ—Œã
+	 * é–‹æ”¾å‡¦ç†å¾Œ
 	 */
 	static void PostUnregisterCallback() {
 		destroy();
 	}
 
 	/**
-	 * javascript ƒXƒNƒŠƒvƒg‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒg
-	 * @return ÀsŒ‹‰Ê
+	 * javascript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD exec(tTJSVariant *result,
 										  tjs_int numparams,
@@ -64,10 +64,10 @@ public:
 	}
 
 	/**
-	 * javascript ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌÀs
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param ... ˆø”
-	 * @return ÀsŒ‹‰Ê
+	 * javascript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å®Ÿè¡Œ
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param ... å¼•æ•°
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD execStorage(tTJSVariant *result,
 												 tjs_int numparams,
@@ -90,9 +90,9 @@ public:
 	}
 
 	/**
-	 * ƒfƒoƒbƒK‚Ì—LŒø‰»
-	 * @param port ƒ|[ƒg”Ô†(ƒfƒtƒHƒ‹ƒg‚Í5858)
-	 * @return ÀsŒ‹‰Ê
+	 * ãƒ‡ãƒãƒƒã‚¬ã®æœ‰åŠ¹åŒ–
+	 * @param port ãƒãƒ¼ãƒˆç•ªå·(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯5858)
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD enableDebug(tTJSVariant *result,
 												 tjs_int numparams,
@@ -104,7 +104,7 @@ public:
 		return TJS_S_OK;
 	}
 	
-	// ƒfƒoƒbƒK‹ì“®—p
+	// ãƒ‡ãƒãƒƒã‚¬é§†å‹•ç”¨
 	static tjs_error TJS_INTF_METHOD processDebug(tTJSVariant *result,
 												  tjs_int numparams,
 												  tTJSVariant **param,
@@ -147,7 +147,7 @@ protected:
 
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	ScriptsJavascript(){
 		v8::V8::InitializeICU();
@@ -161,31 +161,31 @@ protected:
 		{
 			HandleScope handle_scope(isolate);
 		
-			// ƒOƒ[ƒoƒ‹ƒeƒ“ƒvƒŒ[ƒg‚Ì€”õ
+			// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®æº–å‚™
 			Local<ObjectTemplate> globalTemplate = ObjectTemplate::New(isolate);
-			// ƒOƒ[ƒoƒ‹ŠÖ”‚É“o˜^
+			// ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã«ç™»éŒ²
 			globalTemplate->Set(String::NewFromUtf8(isolate, "log"), FunctionTemplate::New(isolate, LogCallback));
 			
 			TJSInstance::init(isolate, globalTemplate);
 			TJSObject::init(isolate);
 			
-			// ƒRƒ“ƒeƒLƒXƒg¶¬
+			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆç”Ÿæˆ
 			Local<Context> context = Context::New(isolate, 0, globalTemplate);
-			// ‹L˜^‚µ‚Ä‚¨‚­
+			// è¨˜éŒ²ã—ã¦ãŠã
 			mainContext.Reset(isolate, context);
 
 			{
 				Context::Scope context_scope(context);
-				// ƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚Ì€”õ
+				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æº–å‚™
 				iTJSDispatch2 * global = TVPGetScriptDispatch();
 				if (global) {
-					// ‹g—¢‹g—¢‚ÌƒOƒ[ƒoƒ‹‚É Javascript ‚ÌƒOƒ[ƒoƒ‹‚ğ“o˜^‚·‚é
+					// å‰é‡Œå‰é‡Œã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã« Javascript ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚’ç™»éŒ²ã™ã‚‹
 					{
 						Local<Value> g = context->Global();
 						tTJSVariant result = toVariant(isolate, g);
 						global->PropSet(TJS_MEMBERENSURE, JAVASCRIPT_GLOBAL, NULL, &result, global);
 					}
-					// Javascript ‚Ì ƒOƒ[ƒoƒ‹‚É‹g—¢‹g—¢‚Ì ƒOƒ[ƒoƒ‹‚ğ“o˜^‚·‚é
+					// Javascript ã® ã‚°ãƒ­ãƒ¼ãƒãƒ«ã«å‰é‡Œå‰é‡Œã® ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚’ç™»éŒ²ã™ã‚‹
 					context->Global()->Set(String::NewFromTwoByte(isolate, KIRIKIRI_GLOBAL), toJSValue(isolate, tTJSVariant(global, global)));
 					global->Release();
 				}
@@ -194,7 +194,7 @@ protected:
 	};
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~ScriptsJavascript(){
 		mainContext.Reset();
@@ -206,10 +206,10 @@ protected:
 	}
 	
 	/**
-	 * javascript ƒXƒNƒŠƒvƒg‚ÌÀs
-	 * @param script ƒXƒNƒŠƒvƒg
-	 * @param ... ˆø”
-	 * @return ÀsŒ‹‰Ê
+	 * javascript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œ
+	 * @param script ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	 * @param ... å¼•æ•°
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	tjs_error _exec(const tjs_char *filename,
 					const tjs_char *scriptText,
@@ -228,7 +228,7 @@ protected:
 			if (ret.IsEmpty()) {
 				JSEXCEPTION(isolate, &try_catch);
 			} else {
-				// Œ‹‰Ê‚ğŠi”[
+				// çµæœã‚’æ ¼ç´
 				if (result) {
 					*result = toVariant(isolate, ret);
 				}
@@ -275,7 +275,7 @@ static void PreRegisterCallback()
 }
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 static void PostUnregisterCallback()
 {

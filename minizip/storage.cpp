@@ -17,15 +17,15 @@
 
 #define BASENAME L"zip"
 
-// UTF8‚Èƒtƒ@ƒCƒ‹–¼‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+// UTF8ãªãƒ•ã‚¡ã‚¤ãƒ«åã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 #define FLAG_UTF8 (1<<11)
 extern void storeFilename(ttstr &name, const char *narrowName, bool utf8);
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒX—p
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ç”¨
 extern zlib_filefunc64_def TVPZlibFileFunc;
 
 /**
- * Zip “WŠJˆ—ƒNƒ‰ƒX
+ * Zip å±•é–‹å‡¦ç†ã‚¯ãƒ©ã‚¹
  */
 class UnzipBase {
 
@@ -47,8 +47,8 @@ public:
 	};
 	
 	/**
-	 * ZIPƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
+	 * ZIPãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
 	 */
 	bool init(const ttstr &filename) {
 		done();
@@ -56,7 +56,7 @@ public:
 			lock();
 			unzGoToFirstFile(uf);
 			unz_file_info file_info;
-			// UTF8”»’è
+			// UTF8åˆ¤å®š
 			if (unzGetCurrentFileInfo(uf, &file_info,NULL,0,NULL,0,NULL,0) == UNZ_OK) {
 				utf8 = (file_info.flag & FLAG_UTF8) != 0;
 			}
@@ -76,7 +76,7 @@ public:
 	}
 
 	/**
-	 * ŒÂ•Ê‚Ì“WŠJ—pƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	 * å€‹åˆ¥ã®å±•é–‹ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	 */
 	bool open(const ttstr &srcname, ULONG *size) {
 		if (uf) {
@@ -98,7 +98,7 @@ public:
 	}
 
 	/**
-	 * ŒÂ•Ê‚Ì“WŠJ—pƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	 * å€‹åˆ¥ã®å±•é–‹ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	 */
 	HRESULT read(void *pv, ULONG cb, ULONG *pcbRead) {
 		if (uf) {
@@ -135,7 +135,7 @@ public:
 	}
 
 	/**
-	 * ŒÂ•Ê‚Ì“WŠJ—pƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	 * å€‹åˆ¥ã®å±•é–‹ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	 */
 	void close() {
 		if (uf) {
@@ -171,7 +171,7 @@ public:
 protected:
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~UnzipBase() {
 		done();
@@ -185,12 +185,12 @@ protected:
 		}
 	}
 
-	// ƒƒbƒN
+	// ãƒ­ãƒƒã‚¯
 	void lock() {
 		::EnterCriticalSection(&cs);
 	}
 
-	// ƒƒbƒN‰ğœ
+	// ãƒ­ãƒƒã‚¯è§£é™¤
 	void unlock() {
 		::LeaveCriticalSection(&cs);
 	}
@@ -211,24 +211,24 @@ protected:
 	
 private:
 	int refCount;
-	// zipƒtƒ@ƒCƒ‹î•ñ
+	// zipãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
 	unzFile uf;
 	bool utf8;
 	CRITICAL_SECTION cs;
 
-	// ƒfƒBƒŒƒNƒgƒŠ•Êƒtƒ@ƒCƒ‹–¼ƒGƒ“ƒgƒŠî•ñ
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåˆ¥ãƒ•ã‚¡ã‚¤ãƒ«åã‚¨ãƒ³ãƒˆãƒªæƒ…å ±
 	typedef std::vector<ttstr> FileNameList;
 	std::map<ttstr,FileNameList> dirEntryTable;
 };
 
 /**
- * ZIP“WŠJƒXƒgƒŠ[ƒ€ƒNƒ‰ƒX
+ * ZIPå±•é–‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¯ãƒ©ã‚¹
  */
 class UnzipStream : public IStream {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	UnzipStream(UnzipBase *unzip) : refCount(1), unzip(unzip) {
 		unzip->AddRef();
@@ -273,7 +273,7 @@ public:
 
 	// IStream
 	HRESULT STDMETHODCALLTYPE Seek(LARGE_INTEGER dlibMove,	DWORD dwOrigin, ULARGE_INTEGER *plibNewPosition) {
-		// æ“ª‚É‚¾‚¯–ß‚¹‚é
+		// å…ˆé ­ã«ã ã‘æˆ»ã›ã‚‹
 		ZPOS64_T cur;
 		switch (dwOrigin) {
 		case STREAM_SEEK_CUR:
@@ -368,7 +368,7 @@ public:
 	
 protected:
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~UnzipStream() {
 		close();
@@ -388,23 +388,23 @@ private:
 };
 
 /**
- * ZIPƒXƒgƒŒ[ƒW
+ * ZIPã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
  */
 class ZipStorage : public iTVPStorageMedia
 {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	ZipStorage() : refCount(1) {
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~ZipStorage() {
-		// ‘Sî•ñ‚ğ”jŠü
+		// å…¨æƒ…å ±ã‚’ç ´æ£„
 		std::map<ttstr, UnzipBase*>::iterator it = unzipTable.begin();
 		while (it != unzipTable.end()) {
 			it->second->Release();
@@ -458,7 +458,7 @@ public:
 	// name does not contain in-archive storage name but
 	// is normalized.
 	virtual tTJSBinaryStream * TJS_INTF_METHOD Open(const ttstr & name, tjs_uint32 flags) {
-		if (flags == TJS_BS_READ) { // “Ç‚İ‚İ‚Ì‚İ
+		if (flags == TJS_BS_READ) { // èª­ã¿è¾¼ã¿ã®ã¿
 			ttstr fname;
 			UnzipBase *unzip = getUnzip(name, fname);
 			if (unzip) {
@@ -496,11 +496,11 @@ public:
 public:
 
 	/**
-	 * zipƒtƒ@ƒCƒ‹‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Æ‚µ‚Ä mount ‚µ‚Ü‚·
-	 * zip://ƒhƒƒCƒ“–¼/ƒtƒ@ƒCƒ‹–¼ ‚ÅƒAƒNƒZƒX‰Â”\‚É‚È‚è‚Ü‚·B“Ç‚İ‚İê—p‚É‚È‚è‚Ü‚·B
-	 * @param name ƒhƒƒCƒ“–¼
-	 * @param zipfile ƒ}ƒEƒ“ƒg‚·‚éZIPƒtƒ@ƒCƒ‹–¼
-	 * @return ƒ}ƒEƒ“ƒg‚É¬Œ÷‚µ‚½‚ç true
+	 * zipãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ mount ã—ã¾ã™
+	 * zip://ãƒ‰ãƒ¡ã‚¤ãƒ³å/ãƒ•ã‚¡ã‚¤ãƒ«å ã§ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ã«ãªã‚Šã¾ã™ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨ã«ãªã‚Šã¾ã™ã€‚
+	 * @param name ãƒ‰ãƒ¡ã‚¤ãƒ³å
+	 * @param zipfile ãƒã‚¦ãƒ³ãƒˆã™ã‚‹ZIPãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒã‚¦ãƒ³ãƒˆã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool mount(const ttstr &name, const ttstr &zipfile) {
 		unmount(name);
@@ -517,9 +517,9 @@ public:
 	}
 
 	/**
-	 * zipƒtƒ@ƒCƒ‹‚ğ unmount ‚µ‚Ü‚·
-	 * @param name ƒhƒƒCƒ“–¼
-	 * @return ƒAƒ“ƒ}ƒEƒ“ƒg‚É¬Œ÷‚µ‚½‚ç true
+	 * zipãƒ•ã‚¡ã‚¤ãƒ«ã‚’ unmount ã—ã¾ã™
+	 * @param name ãƒ‰ãƒ¡ã‚¤ãƒ³å
+	 * @return ã‚¢ãƒ³ãƒã‚¦ãƒ³ãƒˆã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool unmount(const ttstr &name) {
 		std::map<ttstr, UnzipBase*>::iterator it = unzipTable.find(name);
@@ -534,10 +534,10 @@ public:
 protected:
 
 	/*
-	 * ƒhƒƒCƒ“‚É‡’v‚µ‚½ Unzip î•ñ‚ğæ“¾
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @param fname ƒtƒ@ƒCƒ‹–¼‚ğ•Ô‚·
-	 * @return Unzipî•ñ
+	 * ãƒ‰ãƒ¡ã‚¤ãƒ³ã«åˆè‡´ã—ãŸ Unzip æƒ…å ±ã‚’å–å¾—
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fname ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã™
+	 * @return Unzipæƒ…å ±
 	 */
 	UnzipBase *getUnzip(const ttstr &name, ttstr &fname) {
 		ttstr dname;
@@ -557,13 +557,13 @@ protected:
 	}
 	
 private:
-	tjs_uint refCount; //< ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg
-	std::map<ttstr, UnzipBase*> unzipTable; //< zipî•ñ
+	tjs_uint refCount; //< ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆ
+	std::map<ttstr, UnzipBase*> unzipTable; //< zipæƒ…å ±
 };
 
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class StoragesZip {
 
@@ -585,11 +585,11 @@ public:
 	}
 
 	/**
-	 * zipƒtƒ@ƒCƒ‹‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Æ‚µ‚Ä mount ‚µ‚Ü‚·
-	 * zip://ƒhƒƒCƒ“–¼/ƒtƒ@ƒCƒ‹–¼ ‚ÅƒAƒNƒZƒX‰Â”\‚É‚È‚è‚Ü‚·B“Ç‚İ‚İê—p‚É‚È‚è‚Ü‚·B
-	 * @param name ƒhƒƒCƒ“–¼
-	 * @param zipfile ƒ}ƒEƒ“ƒg‚·‚éZIPƒtƒ@ƒCƒ‹–¼
-	 * @return ƒ}ƒEƒ“ƒg‚É¬Œ÷‚µ‚½‚ç true
+	 * zipãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ mount ã—ã¾ã™
+	 * zip://ãƒ‰ãƒ¡ã‚¤ãƒ³å/ãƒ•ã‚¡ã‚¤ãƒ«å ã§ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ã«ãªã‚Šã¾ã™ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨ã«ãªã‚Šã¾ã™ã€‚
+	 * @param name ãƒ‰ãƒ¡ã‚¤ãƒ³å
+	 * @param zipfile ãƒã‚¦ãƒ³ãƒˆã™ã‚‹ZIPãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒã‚¦ãƒ³ãƒˆã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool mountZip(const tjs_char *name, const tjs_char *zipfile) {
 		if (zip) {
@@ -599,9 +599,9 @@ public:
 	}
 
 	/**
-	 * zipƒtƒ@ƒCƒ‹‚ğ unmount ‚µ‚Ü‚·
-	 * @param name ƒhƒƒCƒ“–¼
-	 * @return ƒAƒ“ƒ}ƒEƒ“ƒg‚É¬Œ÷‚µ‚½‚ç true
+	 * zipãƒ•ã‚¡ã‚¤ãƒ«ã‚’ unmount ã—ã¾ã™
+	 * @param name ãƒ‰ãƒ¡ã‚¤ãƒ³å
+	 * @return ã‚¢ãƒ³ãƒã‚¦ãƒ³ãƒˆã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool unmountZip(const tjs_char *name) {
 		if (zip) {

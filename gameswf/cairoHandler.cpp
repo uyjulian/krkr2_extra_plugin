@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SWF ƒ€[ƒr[•`‰æ—pƒnƒ“ƒhƒ‰
+// SWF ãƒ ãƒ¼ãƒ“ãƒ¼æç”»ç”¨ãƒãƒ³ãƒ‰ãƒ©
 // ---------------------------------------------------------------
 
 #include "cairo.h"
@@ -16,7 +16,7 @@ extern void error_log(const char *format, ...);
 
 using namespace gameswf;
 
-// •`‰æƒ^[ƒQƒbƒg
+// æç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 cairo_t *ctarget;
 
 struct bitmap_info_cairo : public gameswf::bitmap_info
@@ -102,7 +102,7 @@ struct render_handler_cairo : public gameswf::render_handler
 		m_display_height = fabsf(y1 - y0);
 
 		if (ctarget) {
-			// ƒrƒ…[ƒ|[ƒg•â³
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè£œæ­£
 			double sx = (double)viewport_width / m_display_width;
 			double sy = (double)viewport_height / m_display_height;
 			double scale = sx < sy ? sx : sy;
@@ -110,7 +110,7 @@ struct render_handler_cairo : public gameswf::render_handler
 			cairo_matrix_translate(&viewport, viewport_x0 - x0 * sx, viewport_y0 - y0 * sy);
 			cairo_set_matrix(ctarget, &viewport);
 
-			// ”wŒi“h‚è‚Â‚Ô‚µ
+			// èƒŒæ™¯å¡—ã‚Šã¤ã¶ã—
 //			cairo_set_source_rgba(ctarget,
 //								  bc.m_r/255.0,
 //								  bc.m_g/255.0,
@@ -275,7 +275,7 @@ struct render_handler_cairo : public gameswf::render_handler
 };
 
 /**
- * ƒƒOˆ—ŒÄ‚Ño‚µ
+ * ãƒ­ã‚°å‡¦ç†å‘¼ã³å‡ºã—
  */
 static void
 log_callback(bool error, const char* message)
@@ -294,8 +294,8 @@ static tu_file*	file_opener(const char* url)
 
 static void	fs_callback(gameswf::movie_interface* movie, const char* command, const char* args)
 {
-	// FS ƒRƒ}ƒ“ƒh—p
-	// ÅI“I‚É TJS ŒÄ‚Ño‚µ‚É’uŠ·‚·‚é‚×‚µ
+	// FS ã‚³ãƒãƒ³ãƒ‰ç”¨
+	// æœ€çµ‚çš„ã« TJS å‘¼ã³å‡ºã—ã«ç½®æ›ã™ã‚‹ã¹ã—
 	message_log("fs_callback: '");
 	message_log(command);
 	message_log("' '");
@@ -305,16 +305,16 @@ static void	fs_callback(gameswf::movie_interface* movie, const char* command, co
 
 static void	test_progress_callback(unsigned int loaded_tags, unsigned int total_tags)
 {
-	// ƒvƒƒOƒŒƒXƒo[•\¦—p
-	// ÅI“I‚É TJS ‚ÌŒÅ—Lƒƒ\ƒbƒhŒÄ‚Ño‚µ‚ğ“ü‚ê‚é
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼è¡¨ç¤ºç”¨
+	// æœ€çµ‚çš„ã« TJS ã®å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚’å…¥ã‚Œã‚‹
 }
 
-// ƒŒƒ“ƒ_ƒ‰
+// ãƒ¬ãƒ³ãƒ€ãƒ©
 static gameswf::render_handler *render = NULL;
 
 
 /**
- * gamswf ‚Ì‰Šú‰»
+ * gamswf ã®åˆæœŸåŒ–
  */
 void
 initSWFMovie()
@@ -327,7 +327,7 @@ initSWFMovie()
 }
 
 /**
- * gameswf ‚Ì”jŠü
+ * gameswf ã®ç ´æ£„
  */
 void
 destroySWFMovie()

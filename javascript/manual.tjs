@@ -1,48 +1,48 @@
 /**
- * @description Scripts ƒNƒ‰ƒX‚Ö‚Ì Javascript ‹@”\Šg’£
+ * @description Scripts ã‚¯ãƒ©ã‚¹ã¸ã® Javascript æ©Ÿèƒ½æ‹¡å¼µ
  */
 class Scripts {
 
 	/**
-	 * Javascript ƒXƒNƒŠƒvƒg‚ÌÀsB
-	 * @param text ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½•¶š—ñ
-	 * @return ƒXƒNƒŠƒvƒg‚ÌÀsŒ‹‰Ê
+	 * Javascript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œã€‚
+	 * @param text ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæœ
 	 */
 	function execJS(text);
 
 	/**
-	 * Javascript ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌÀsB
-	 * @param filename ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½ƒtƒ@ƒCƒ‹
-	 * @return ƒXƒNƒŠƒvƒg‚ÌÀsŒ‹‰Ê
+	 * Javascript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å®Ÿè¡Œã€‚
+	 * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæœ
 	 */
 	function execStorageJS(filename);
 
 	/**
-	 * ƒfƒoƒbƒK‚Ì—LŒø‰»
-	 * @param port ƒ|[ƒg”Ô†
-	 * @param wait ‘¦Às‘Ò‚¿‚·‚é‚©‚Ç‚¤‚©
+	 * ãƒ‡ãƒãƒƒã‚¬ã®æœ‰åŠ¹åŒ–
+	 * @param port ãƒãƒ¼ãƒˆç•ªå·
+	 * @param wait å³å®Ÿè¡Œå¾…ã¡ã™ã‚‹ã‹ã©ã†ã‹
 	 */
 	function enableDebugJS(port=5858, wait=false);
 
 	/**
-	 * ƒfƒoƒbƒKˆ—‹ì“®
-	 * @description javascriptÀsˆÈŠO‚É‚àƒfƒoƒbƒK‚©‚ç‚Ìˆ—‚ğó‚¯•t‚¯‚éê‡‚Í
-	 * ƒ^ƒCƒ}‚à‚µ‚­‚Í continuous ƒnƒ“ƒhƒ‰‚©‚çƒƒ\ƒbƒh‚ğ’èŠú“I‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	 * ãƒ‡ãƒãƒƒã‚¬å‡¦ç†é§†å‹•
+	 * @description javascriptå®Ÿè¡Œæ™‚ä»¥å¤–ã«ã‚‚ãƒ‡ãƒãƒƒã‚¬ã‹ã‚‰ã®å‡¦ç†ã‚’å—ã‘ä»˜ã‘ã‚‹å ´åˆã¯
+	 * ã‚¿ã‚¤ãƒã‚‚ã—ãã¯ continuous ãƒãƒ³ãƒ‰ãƒ©ã‹ã‚‰ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®šæœŸçš„ã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	 */
 	function processDebugJS();
 };
 
 /**
- * @description Javascript ‘¤‚Å createTJSClass ‚µ‚Ä¶¬‚³‚ê‚½ƒCƒ“ƒXƒ^ƒ“ƒX’†‚Å‚Í
- * ˆÈ‰º‚Ì“Áê‚Èƒƒ\ƒbƒh‚ª—˜—p‰Â”\‚Å‚·BƒCƒxƒ“ƒg‚Ì“`”d‚È‚Ç‚ÅŠˆ—p‰Â”\‚Å‚·B
+ * @description Javascript å´ã§ createTJSClass ã—ã¦ç”Ÿæˆã•ã‚ŒãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä¸­ã§ã¯
+ * ä»¥ä¸‹ã®ç‰¹æ®Šãªãƒ¡ã‚½ãƒƒãƒ‰ãŒåˆ©ç”¨å¯èƒ½ã§ã™ã€‚ã‚¤ãƒ™ãƒ³ãƒˆã®ä¼æ’­ãªã©ã§æ´»ç”¨å¯èƒ½ã§ã™ã€‚
  */
 class TJSObject {
 
 	/**
-	 * Javascript ƒCƒ“ƒXƒ^ƒ“ƒXƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ
-	 * @param name ƒƒ\ƒbƒh–¼
-	 * @param ... ˆø”
-	 * @return ƒXƒNƒŠƒvƒg‚ÌÀsŒ‹‰Ê
+	 * Javascript ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—
+	 * @param name ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param ... å¼•æ•°
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæœ
 	 */
 	function callJS(name, ...);
 };

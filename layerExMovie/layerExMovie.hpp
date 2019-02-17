@@ -16,7 +16,7 @@
 #define FILEBASE
 
 /*
- * Movie •`‰æ—pƒŒƒCƒ„
+ * Movie æç”»ç”¨ãƒ¬ã‚¤ãƒ¤
  */
 struct layerExMovie : public layerExBase, public tTVPContinuousEventCallbackIntf
 {
@@ -61,7 +61,7 @@ public:
 	
 public:
 
-	// ƒ€[ƒr[‚Ìƒ[ƒh
+	// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ­ãƒ¼ãƒ‰
 	void openMovie(const tjs_char* filename, bool alpha);
 
 	void startMovie(bool loop);
@@ -73,9 +73,9 @@ public:
 	bool isPlayingMovie();
 	
 	/**
-	 * Continuous ƒR[ƒ‹ƒoƒbƒN
-	 * ‹g—¢‹g—¢‚ª‰É‚È‚Æ‚«‚Éí‚ÉŒÄ‚Î‚ê‚é
-	 * “h‚è’¼‚µˆ—
+	 * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * å‰é‡Œå‰é‡ŒãŒæš‡ãªã¨ãã«å¸¸ã«å‘¼ã°ã‚Œã‚‹
+	 * å¡—ã‚Šç›´ã—å‡¦ç†
 	 */
 	virtual void TJS_INTF_METHOD OnContinuousCallback(tjs_uint64 tick);
 };

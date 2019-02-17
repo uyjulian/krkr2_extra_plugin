@@ -17,12 +17,12 @@ private:
 
 #define BUFSIZE (1024*16)
 
-// ƒf[ƒ^’†‚©‚ç METAƒ^ƒO‚Å Content-Type ‚ğæ“¾‚·‚é
-// ¦³‹K•\Œ»‚ğ‘z’è‚µ‚Ä‚é‚Ì‚É’ˆÓ
+// ãƒ‡ãƒ¼ã‚¿ä¸­ã‹ã‚‰ METAã‚¿ã‚°ã§ Content-Type ã‚’å–å¾—ã™ã‚‹
+// â€»æ­£è¦è¡¨ç¾ã‚’æƒ³å®šã—ã¦ã‚‹ã®ã«æ³¨æ„
 extern bool matchContentType(tstring &text, tstring &result);
 
 /**
- * ƒGƒ‰[ƒƒbƒZ[ƒW‚ğŠi”[‚·‚é
+ * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ ¼ç´ã™ã‚‹
  */
 static void
 storeErrorMessage(DWORD error, tstring &errorMessage)
@@ -31,7 +31,7 @@ storeErrorMessage(DWORD error, tstring &errorMessage)
 	if (FormatMessage(FORMAT_MESSAGE_FROM_HMODULE,
 					  GetModuleHandle(_T("wininet.dll")),
 					  error,
-					  MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Šù’è‚ÌŒ¾Œê
+					  MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // æ—¢å®šã®è¨€èª
 					  msg,
 					  sizeof msg,
 					  NULL
@@ -39,7 +39,7 @@ storeErrorMessage(DWORD error, tstring &errorMessage)
 		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM,
 					  NULL,
 					  error,
-					  MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Šù’è‚ÌŒ¾Œê
+					  MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // æ—¢å®šã®è¨€èª
 					  msg,
 					  sizeof msg,
 					  NULL
@@ -51,16 +51,16 @@ storeErrorMessage(DWORD error, tstring &errorMessage)
 }
 
 /**
- * Content-Type ‚ğƒp[ƒX‚µ‚Ä ContentType ‚Æ encoding w’è‚ğæ“¾
- * @param buf ƒoƒbƒtƒ@
- * @param length ƒoƒbƒtƒ@ƒTƒCƒY
- * @param contentType æ“¾‚µ‚½ Content-Type ‚ğŠi”[
- * @param encoding æ“¾‚µ‚½ƒGƒ“ƒR[ƒhw’è‚ğŠi”[
+ * Content-Type ã‚’ãƒ‘ãƒ¼ã‚¹ã—ã¦ ContentType ã¨ encoding æŒ‡å®šã‚’å–å¾—
+ * @param buf ãƒãƒƒãƒ•ã‚¡
+ * @param length ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ * @param contentType å–å¾—ã—ãŸ Content-Type ã‚’æ ¼ç´
+ * @param encoding å–å¾—ã—ãŸã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æŒ‡å®šã‚’æ ¼ç´
  */
 static void
 parseContentType(const TCHAR *buf, size_t length, tstring &contentType, tstring &encoding)
 {
-	// “ª‚ÌƒXƒy[ƒX‚ğ“Ç‚İ”ò‚Î‚·
+	// é ­ã®ã‚¹ãƒšãƒ¼ã‚¹ã‚’èª­ã¿é£›ã°ã™
 	while (_istspace(*buf)) {
 		buf++;
 		length--;
@@ -94,7 +94,7 @@ parseContentType(const TCHAR *buf, size_t length, tstring &contentType, tstring 
 	}
 }
 
-// ƒnƒ“ƒhƒ‹‚ğƒNƒŠƒA
+// ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚¯ãƒªã‚¢
 void
 HttpConnection::closeHandle()
 {
@@ -119,7 +119,7 @@ HttpConnection::addHeader(const TCHAR *name, const TCHAR *value)
 }
 
 /**
- * ƒRƒlƒNƒVƒ‡ƒ“Ú‘±ŠJn
+ * ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ¥ç¶šé–‹å§‹
  */
 bool
 HttpConnection::open(const TCHAR *method,
@@ -177,7 +177,7 @@ HttpConnection::open(const TCHAR *method,
 	
 	bool errorProxyFirst = true;
 retry:
-	// Internet‚ÉÚ‘±‚·‚é
+	// Internetã«æ¥ç¶šã™ã‚‹
 	if ((hInet = InternetOpen(agentName.c_str(),
 			errorProxyFirst ? INTERNET_OPEN_TYPE_PRECONFIG : INTERNET_OPEN_TYPE_PRECONFIG_WITH_NO_AUTOPROXY, 
 			NULL, NULL, 0)) == NULL) {
@@ -185,10 +185,10 @@ retry:
 		return false;
 	}
 
-	// HTTPƒT[ƒo[‚ÉÚ‘±
+	// HTTPã‚µãƒ¼ãƒãƒ¼ã«æ¥ç¶š
 	if ((hConn = InternetConnect(hInet, 
 								 host.c_str(),
-								 port,									// ƒ|[ƒg
+								 port,									// ãƒãƒ¼ãƒˆ
 								 user.size() ? user.c_str() : NULL,		// username
 								 passwd.size() ? passwd.c_str() : NULL,	// password
 								 INTERNET_SERVICE_HTTP,
@@ -205,12 +205,12 @@ retry:
 		return false;
 	}
 
-	// ƒT[ƒo[ã‚Å—~‚µ‚¢URL‚ğw’è‚·‚é
+	// ã‚µãƒ¼ãƒãƒ¼ä¸Šã§æ¬²ã—ã„URLã‚’æŒ‡å®šã™ã‚‹
 	if ((hReq = HttpOpenRequest(hConn,
 								method,
 								path.c_str(),
-								NULL, // ƒfƒtƒHƒ‹ƒg‚ÌHTTPƒo[ƒWƒ‡ƒ“
-								NULL, // —š—ğ‚ğ’Ç‰Á‚µ‚È‚¢
+								NULL, // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®HTTPãƒãƒ¼ã‚¸ãƒ§ãƒ³
+								NULL, // å±¥æ­´ã‚’è¿½åŠ ã—ãªã„
 								NULL, // AcceptType
 								INTERNET_FLAG_NO_CACHE_WRITE | (secure ? INTERNET_FLAG_SECURE : 0), NULL)) == NULL) {
 
@@ -219,7 +219,7 @@ retry:
 		return false;
 	}
 
-	// ”FØƒwƒbƒ_’Ç‰Á
+	// èªè¨¼ãƒ˜ãƒƒãƒ€è¿½åŠ 
 	if (user.size() > 0 && passwd.size() > 0) {
 		addBasicAuthHeader(user, passwd);
 	}
@@ -228,7 +228,7 @@ retry:
 }
 
 /**
- * ƒŠƒNƒGƒXƒg‘—M
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡
  */
 int
 HttpConnection::request(RequestCallback requestCallback, RetryCallback retryCallback, void *context)
@@ -239,7 +239,7 @@ HttpConnection::request(RequestCallback requestCallback, RetryCallback retryCall
 		return ERROR_INET;
 	}
 	
-	// HTTP ƒwƒbƒ_‚ª‚ ‚éê‡‚Í‚»‚ê‚ğ’Ç‰Á‚·‚é
+	// HTTP ãƒ˜ãƒƒãƒ€ãŒã‚ã‚‹å ´åˆã¯ãã‚Œã‚’è¿½åŠ ã™ã‚‹
 	if (header.size()) {
 		vector<tstring>::iterator it = header.begin();
 		while (it != header.end()) {
@@ -250,7 +250,7 @@ HttpConnection::request(RequestCallback requestCallback, RetryCallback retryCall
 		}
 	}
 
-	// Ø–¾‘Œn‚ğ–³‹‚·‚éê‡‚Ìİ’è‚ğs‚¤
+	// è¨¼æ˜æ›¸ç³»ã‚’ç„¡è¦–ã™ã‚‹å ´åˆã®è¨­å®šã‚’è¡Œã†
 	if (secure && !checkCert) {
 		DWORD dwError = 0;
 		DWORD dwFlags;
@@ -283,12 +283,12 @@ HttpConnection::request(RequestCallback requestCallback, RetryCallback retryCall
 	BufferIn.dwStructSize = sizeof( INTERNET_BUFFERS );
 	BufferIn.dwBufferTotal = requestContentLength;
 
-	// ƒŠƒNƒGƒXƒg‘—MŠJn
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡é–‹å§‹
 again:
 	if (!HttpSendRequestEx(hReq, &BufferIn, NULL, 0, 0)) {
 		DWORD dwError = GetLastError();
 		
-		// Ø–¾‘ŠÖ˜AƒGƒ‰[‚Ì•œ‹Aˆ—
+		// è¨¼æ˜æ›¸é–¢é€£ã‚¨ãƒ©ãƒ¼ã®å¾©å¸°å‡¦ç†
 		if (dwError == ERROR_INTERNET_INVALID_CA ||
 			dwError == ERROR_INTERNET_SEC_CERT_DATE_INVALID ||
 			dwError == ERROR_INTERNET_SEC_CERT_CN_INVALID ||
@@ -301,7 +301,7 @@ again:
 								  FLAGS_ERROR_UI_FLAGS_CHANGE_OPTIONS,
 								  NULL) == ERROR_SUCCESS) {
 				if (dwError == ERROR_INTERNET_SEC_CERT_REV_FAILED){
-					// ‚È‚º‚©‚±‚ÌƒGƒ‰[‚Í³‚µ‚­ƒIƒvƒVƒ‡ƒ“‚ª•ÏX‚³‚ê‚È‚¢‚Ì‚Åè“®‚Å•ÏX
+					// ãªãœã‹ã“ã®ã‚¨ãƒ©ãƒ¼ã¯æ­£ã—ãã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒå¤‰æ›´ã•ã‚Œãªã„ã®ã§æ‰‹å‹•ã§å¤‰æ›´
 					DWORD dwFlags;
 					DWORD dwBuffLen = sizeof(dwFlags);
 					if (InternetQueryOption(hReq, INTERNET_OPTION_SECURITY_FLAGS, (LPVOID)&dwFlags, &dwBuffLen)) {
@@ -317,7 +317,7 @@ again:
 		return ERROR_INET;
 	}
 
-	// ƒtƒ@ƒCƒ‹‘‚«o‚µ
+	// ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
 	if (requestCallback) {
 		DWORD len;
 		do {
@@ -345,7 +345,7 @@ again:
 		} while (len > 0);
 	}
 
-	// ƒŠƒNƒGƒXƒgŠ®—¹
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆå®Œäº†
 	if (!HttpEndRequest(hReq, NULL, 0, NULL)) {
 		DWORD dwError = GetLastError();
 		if (dwError == ERROR_INTERNET_FORCE_RETRY) {
@@ -363,7 +363,7 @@ again:
 }
 
 /**
- * ƒŒƒXƒ|ƒ“ƒXóM
+ * ãƒ¬ã‚¹ãƒãƒ³ã‚¹å—ä¿¡
  */
 void
 HttpConnection::queryInfo()
@@ -402,7 +402,7 @@ HttpConnection::queryInfo()
 		free(buf);
 	}
 	
-	// ‘Sƒwƒbƒ_‚ğ‰ğÍ‚µ‚Äæ“¾
+	// å…¨ãƒ˜ãƒƒãƒ€ã‚’è§£æã—ã¦å–å¾—
 	responseHeaders.clear();
 	length = 0;
 	if (!HttpQueryInfo(hReq, HTTP_QUERY_RAW_HEADERS, NULL, &length, NULL) &&
@@ -437,7 +437,7 @@ HttpConnection::queryInfo()
 
 
 /**
- * ƒŒƒXƒ|ƒ“ƒXóM
+ * ãƒ¬ã‚¹ãƒãƒ³ã‚¹å—ä¿¡
  */
 int 
 HttpConnection::response(ResponseCallback callback, void *context)
@@ -448,10 +448,10 @@ HttpConnection::response(ResponseCallback callback, void *context)
 		return ERROR_INET;
 	}
 	
-	// HTTP ‚ª OK ‚ğ•Ô‚µ‚½ê‡‚Ì‚İƒtƒ@ƒCƒ‹ƒZ[ƒu‚ğ enable ‚É‚·‚é
+	// HTTP ãŒ OK ã‚’è¿”ã—ãŸå ´åˆã®ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚»ãƒ¼ãƒ–ã‚’ enable ã«ã™ã‚‹
 	if (statusCode == HTTP_STATUS_OK && callback) {
 		
-		// HTML‚ğƒp[ƒX‚µ‚Ä Content-Type ‚©‚çƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğæ“¾‚·‚é•K—v‚ª‚ ‚é
+		// HTMLã‚’ãƒ‘ãƒ¼ã‚¹ã—ã¦ Content-Type ã‹ã‚‰ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’å–å¾—ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 		bool needParseHtml = _tcsicmp(contentType.c_str(), _T("text/html")) == 0 && encoding.empty();
 
 		DWORD size = 0;
@@ -460,7 +460,7 @@ HttpConnection::response(ResponseCallback callback, void *context)
 		while (InternetReadFile(hReq, (void*)work, sizeof work, &len) && len > 0) {
 			size += len;
 			if (needParseHtml) {
-				// æ“¾‚µ‚½ƒtƒ@ƒCƒ‹’†‚©‚ç METAƒ^ƒO‚ğQÆ‚µ‚Ä Content-Type ‚ğÄæ“¾
+				// å–å¾—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã‹ã‚‰ METAã‚¿ã‚°ã‚’å‚ç…§ã—ã¦ Content-Type ã‚’å†å–å¾—
 				tstring ctype;
 #ifdef _UNICODE
 				TCHAR *buf = new TCHAR[len];

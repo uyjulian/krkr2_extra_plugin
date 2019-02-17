@@ -1,40 +1,40 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class WaveSoundBuffer {
 
 	/**
-	 * ƒTƒ“ƒvƒ‹’l‚Ìæ“¾i‹Œ•û®j
-	 * @description Œ»İ‚ÌÄ¶ˆÊ’u‚©‚çw’è”‚ÌƒTƒ“ƒvƒ‹‚ğæ“¾‚µ‚Ä‚»‚Ì•½‹Ï’l‚ğ•Ô‚µ‚Ü‚·B
-	 * ’l‚ª•‰‚ÌƒTƒ“ƒvƒ‹’l‚Í–³‹‚³‚ê‚Ü‚·B
-	 * @param n æ“¾‚·‚éƒTƒ“ƒvƒ‹‚Ì”BÈ—ª‚·‚é‚Æ 100
-	 * @return •½‹Ï’l
-	 * ¦ —\‚ßuseVisBuffer=true‚É‚µ‚Ä‚¨‚­‚±‚Æ
+	 * ã‚µãƒ³ãƒ—ãƒ«å€¤ã®å–å¾—ï¼ˆæ—§æ–¹å¼ï¼‰
+	 * @description ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‹ã‚‰æŒ‡å®šæ•°ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’å–å¾—ã—ã¦ãã®å¹³å‡å€¤ã‚’è¿”ã—ã¾ã™ã€‚
+	 * å€¤ãŒè² ã®ã‚µãƒ³ãƒ—ãƒ«å€¤ã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
+	 * @param n å–å¾—ã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®æ•°ã€‚çœç•¥ã™ã‚‹ã¨ 100
+	 * @return å¹³å‡å€¤
+	 * â€» äºˆã‚useVisBuffer=trueã«ã—ã¦ãŠãã“ã¨
 	 */
 	function getSample(n);
 
 
 	/**
-	 * ƒTƒ“ƒvƒ‹’l‚Ìæ“¾iV•û®j
-	 * @description getVisBuffer(buf, sampleCount, 1, sampleAhead)‚ÅƒTƒ“ƒvƒ‹‚ğæ“¾‚µC
-	 * (value/32768)^2‚ÌÅ‘å’l‚ğæ“¾‚µ‚Ü‚·B(0`1‚ÌÀ”‚Å•Ô‚è‚Ü‚·)
-	 * ¦‚±‚ÌƒvƒƒpƒeƒB‚ğ“Ç‚İo‚·‚ÆˆÃ–Ù‚ÅuseVisBuffer=true‚Éİ’è‚³‚ê‚Ü‚·
+	 * ã‚µãƒ³ãƒ—ãƒ«å€¤ã®å–å¾—ï¼ˆæ–°æ–¹å¼ï¼‰
+	 * @description getVisBuffer(buf, sampleCount, 1, sampleAhead)ã§ã‚µãƒ³ãƒ—ãƒ«ã‚’å–å¾—ã—ï¼Œ
+	 * (value/32768)^2ã®æœ€å¤§å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚(0ã€œ1ã®å®Ÿæ•°ã§è¿”ã‚Šã¾ã™)
+	 * â€»ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’èª­ã¿å‡ºã™ã¨æš—é»™ã§useVisBuffer=trueã«è¨­å®šã•ã‚Œã¾ã™
 	 */
 	property sampleValue { getter; }
 
 	/**
-	 * V•û®‚Ìƒoƒbƒtƒ@æ“¾—pƒpƒ‰ƒ[ƒ^ƒvƒƒpƒeƒBisampleValue‚ğQÆj
-	 * @description ƒfƒtƒHƒ‹ƒg‚ÍsetDefaultCounts/setDefaultAheads‚ÅŒˆ’è‚³‚ê‚Ü‚·
-	 * ¦‚±‚ÌƒvƒƒpƒeƒB‚ğ“Ç‚İ‘‚«‚·‚éˆÃ–Ù‚ÅuseVisBuffer=true‚Éİ’è‚³‚ê‚Ü‚·
+	 * æ–°æ–¹å¼ã®ãƒãƒƒãƒ•ã‚¡å–å¾—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ˆsampleValueã‚’å‚ç…§ï¼‰
+	 * @description ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯setDefaultCounts/setDefaultAheadsã§æ±ºå®šã•ã‚Œã¾ã™
+	 * â€»ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’èª­ã¿æ›¸ãã™ã‚‹æš—é»™ã§useVisBuffer=trueã«è¨­å®šã•ã‚Œã¾ã™
 	 */
 	property sampleCount { getter; setter; }
 	property sampleAhead { getter; setter; }
 
 	/**
-	 * V•û®‚ÌƒfƒtƒHƒ‹ƒg‚Ìƒpƒ‰ƒ[ƒ^İ’è—pŠÖ”
-	 * @description ˆÈ~‚Å¶¬‚³‚ê‚éWaveSoundBuffer‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚É‚Â‚¢‚Ä
-	 * sampleCount/sampleAhead‚ÌƒfƒtƒHƒ‹ƒg’l‚ğİ’è‚Å‚«‚Ü‚·
-	 * ¦–¢w’è‚Ìê‡‚Ì‰Šú’l‚Í count=100, aheads=0 ‚Å‚·
+	 * æ–°æ–¹å¼ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šç”¨é–¢æ•°
+	 * @description ä»¥é™ã§ç”Ÿæˆã•ã‚Œã‚‹WaveSoundBufferã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ã¤ã„ã¦
+	 * sampleCount/sampleAheadã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’è¨­å®šã§ãã¾ã™
+	 * â€»æœªæŒ‡å®šã®å ´åˆã®åˆæœŸå€¤ã¯ count=100, aheads=0 ã§ã™
 	 * static
 	 */
 	setDefaultCounts(count);

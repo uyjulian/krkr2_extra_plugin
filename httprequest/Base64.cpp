@@ -3,13 +3,13 @@
 #include "Base64.h"
 
 /*
- * Basic ”FØ‚Å•K—v‚ÈBase64 ‚ÌƒGƒ“ƒR[ƒhˆ—‚ğÀ‘•‚µ‚Ä‚¢‚Ü‚·B
- * ƒfƒR[ƒh‚ÍŒ»ó•K—v‚È‚¢‚Ì‚ÅÀ‘•‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * Basic èªè¨¼ã§å¿…è¦ãªBase64 ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å‡¦ç†ã‚’å®Ÿè£…ã—ã¦ã„ã¾ã™ã€‚
+ * ãƒ‡ã‚³ãƒ¼ãƒ‰ã¯ç¾çŠ¶å¿…è¦ãªã„ã®ã§å®Ÿè£…ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 
 using namespace std;
 
-// Base64 •ÏŠ·ƒR[ƒhƒe[ƒuƒ‹
+// Base64 å¤‰æ›ã‚³ãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
 static TCHAR *code = _T("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 
 #ifdef BASE64_TEST
@@ -34,7 +34,7 @@ base64encode(const TCHAR *input, int len) {
 	vector<TCHAR> buf;
 	const TCHAR *p = input;
 
-	// 3•¶š‚¸‚Â•ÏŠ·
+	// 3æ–‡å­—ãšã¤å¤‰æ›
 	if (len >= 3) {
 		for (int i = 0; i <= len - 3; i += 3) {
 			encode_block(buf, p);
@@ -42,8 +42,8 @@ base64encode(const TCHAR *input, int len) {
 		}
 	}
 
-	// 3•¶š‚É–‚½‚È‚¢ÅŒã‚Ì—]•ª‚ğ•ÏŠ·
-	// ˆê’U3•¶š‚É‚µ‚Ä•ÏŠ·‚µ‚½ŒãA—]Œv‚È•”•ª‚ğI’['='‚Åã‘‚«‚·‚é
+	// 3æ–‡å­—ã«æº€ãŸãªã„æœ€å¾Œã®ä½™åˆ†ã‚’å¤‰æ›
+	// ä¸€æ—¦3æ–‡å­—ã«ã—ã¦å¤‰æ›ã—ãŸå¾Œã€ä½™è¨ˆãªéƒ¨åˆ†ã‚’çµ‚ç«¯'='ã§ä¸Šæ›¸ãã™ã‚‹
 	int odd = len % 3;
 	if (odd != 0) {
 		TCHAR last[3] = {0x0, 0x0, 0x0};
@@ -52,7 +52,7 @@ base64encode(const TCHAR *input, int len) {
 		}
 		encode_block(buf, last);
 		
-		// I’[‚ğ’Ç‰Á
+		// çµ‚ç«¯ã‚’è¿½åŠ 
 		for (int i = (2 - odd); i >= 0; i--) {
 			buf[buf.size() - i - 1] = '=';
 		}

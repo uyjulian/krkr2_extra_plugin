@@ -50,17 +50,17 @@ static int convBlendMode(psd_blend_mode mode)
 class PSD {
 
 protected:
-	psd_context *context; //< ˆ——pƒRƒ“ƒeƒLƒXƒg
-	psd_status status;    //< ÅŒã‚Ìˆ—‚ÌƒXƒe[ƒ^ƒX
+	psd_context *context; //< å‡¦ç†ç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	psd_status status;    //< æœ€å¾Œã®å‡¦ç†ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	PSD() : context(NULL) {};
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~PSD() {
 		if (context) {
@@ -69,9 +69,9 @@ public:
 	};
 
 	/**
-	 * PSD‰æ‘œ‚Ìƒ[ƒh
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @return ƒ[ƒh‚É¬Œ÷‚µ‚½‚ç true
+	 * PSDç”»åƒã®ãƒ­ãƒ¼ãƒ‰
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool load(const char *filename) {
 		status = psd_image_load(&context, (char*)filename);
@@ -90,8 +90,8 @@ public:
 protected:
 
 	/**
-	 * ƒŒƒCƒ„”Ô†‚ª“KØ‚©‚Ç‚¤‚©”»’è
-	 * @param no ƒŒƒCƒ„”Ô†
+	 * ãƒ¬ã‚¤ãƒ¤ç•ªå·ãŒé©åˆ‡ã‹ã©ã†ã‹åˆ¤å®š
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
 	 */
 	void checkLayerNo(int no) {
 		if (!context) {
@@ -103,9 +103,9 @@ protected:
 	}
 
 	/**
-	 * –¼‘O‚Ìæ“¾
-	 * @param name –¼‘O•¶š—ñiƒ†ƒjƒR[ƒh)
-	 * @len ’·‚³
+	 * åå‰ã®å–å¾—
+	 * @param name åå‰æ–‡å­—åˆ—ï¼ˆãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ‰)
+	 * @len é•·ã•
 	 */
 	ttstr layname(psd_layer_record *lay) {
 		ttstr ret;
@@ -122,9 +122,9 @@ protected:
 	
 public:
 	/**
-	 * ƒŒƒCƒ„í•Ê‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„í•Ê
+	 * ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥
 	 */
 	int getLayerType(int no) {
 		checkLayerNo(no);
@@ -133,9 +133,9 @@ public:
 	}
 
 	/**
-	 * ƒŒƒCƒ„–¼Ì‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„í•Ê
+	 * ãƒ¬ã‚¤ãƒ¤åç§°ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥
 	 */
 	ttstr getLayerName(int no) {
 		checkLayerNo(no);
@@ -144,9 +144,9 @@ public:
 	}
 	
 	/**
-	 * ƒŒƒCƒ„î•ñ‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„î•ñ‚ªŠi”[‚³‚ê‚½«‘
+	 * ãƒ¬ã‚¤ãƒ¤æƒ…å ±ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸè¾æ›¸
 	 */
 	tTJSVariant getLayerInfo(int no) {
 		checkLayerNo(no);
@@ -177,7 +177,7 @@ public:
 			// ...struct: layer_blending_ranges
 			// ...struct: vector_mask
 			// ...array:  layer_info_type/data (layer_info_count)
-			SETPROP(dict, lay, adjustment_valid); // ’²®ƒŒƒCƒ„[‚©‚Ç‚¤‚©H
+			SETPROP(dict, lay, adjustment_valid); // èª¿æ•´ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ï¼Ÿ
 			SETPROP(dict, lay, fill_opacity);
 			SETPROP(dict, lay, layer_name_id);
 			SETPROP(dict, lay, layer_id);
@@ -189,15 +189,15 @@ public:
 			SETPROP(dict, lay, composite);
 			SETPROP(dict, lay, position_respectively);
 			SETPROP(dict, lay, sheet_color);
-			SETPROP(dict, lay, reference_point_x); // “h‚è‚Â‚Ô‚µƒŒƒCƒ„iƒpƒ^[ƒ“j‚ÌƒIƒtƒZƒbƒg
-			SETPROP(dict, lay, reference_point_y); // “h‚è‚Â‚Ô‚µƒŒƒCƒ„iƒpƒ^[ƒ“j‚ÌƒIƒtƒZƒbƒg
+			SETPROP(dict, lay, reference_point_x); // å¡—ã‚Šã¤ã¶ã—ãƒ¬ã‚¤ãƒ¤ï¼ˆãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+			SETPROP(dict, lay, reference_point_y); // å¡—ã‚Šã¤ã¶ã—ãƒ¬ã‚¤ãƒ¤ï¼ˆãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 			SETPROP(dict, lay, transparency_shapes_layer);
 			SETPROP(dict, lay, layer_mask_hides_effects);
 			SETPROP(dict, lay, vector_mask_hides_effects);
 			SETPROP(dict, lay, divider_type);
 			SETPROP(dict, lay, divider_blend_mode);
 
-			// group layer ‚ÍƒXƒNƒŠƒvƒg‘¤‚Å‚Í layer_id QÆ‚Åˆø‚­‚æ‚¤‚É‚·‚é
+			// group layer ã¯ã‚¹ã‚¯ãƒªãƒ—ãƒˆå´ã§ã¯ layer_id å‚ç…§ã§å¼•ãã‚ˆã†ã«ã™ã‚‹
 			if (lay->group_layer != NULL)
 				dict.SetValue(L"group_layer_id", lay->group_layer->layer_id);
 
@@ -207,9 +207,9 @@ public:
 	}
 	
 	/**
-	 * ƒŒƒCƒ„ƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @param layer “Ç‚İo‚µæƒŒƒCƒ„
-	 * @param no ƒŒƒCƒ„”Ô†
+	 * ãƒ¬ã‚¤ãƒ¤ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @param layer èª­ã¿å‡ºã—å…ˆãƒ¬ã‚¤ãƒ¤
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
 	 */
 	void getLayerData(tTJSVariant layer, int no) {
 		if (!layer.AsObjectNoAddRef()->IsInstanceOf(0, 0, 0, L"Layer", NULL)) {
@@ -226,7 +226,7 @@ public:
 		int height = lay->height;
 
 		if (width <= 0 || height <= 0) {
-			// ƒTƒCƒY‚O‚ÌƒŒƒCƒ„‚Íƒ[ƒh‚Å‚«‚È‚¢
+			// ã‚µã‚¤ã‚ºï¼ã®ãƒ¬ã‚¤ãƒ¤ã¯ãƒ­ãƒ¼ãƒ‰ã§ããªã„
 			return;
 		}
 
@@ -244,7 +244,7 @@ public:
 		obj.SetValue(L"imageHeight", height);
 		obj.SetValue(L"name", layname(lay));
 
-		// ‰æ‘œƒf[ƒ^‚ÌƒRƒs[
+		// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 		psd_argb_color *src = lay->image_data;
 		int srclen = width * 4;
 		unsigned char *buffer = (unsigned char*)obj.GetValue(L"mainImageBufferForWrite", ncbTypedefs::Tag<tjs_int>());
@@ -257,9 +257,9 @@ public:
 	}
 
 	/**
-	 * •¶šƒŠƒ\[ƒX‚Ìæ“¾
-	 * @param id •¶š—ñID
-	 * @return •¶š—ñƒŠƒ\[ƒX
+	 * æ–‡å­—ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
+	 * @param id æ–‡å­—åˆ—ID
+	 * @return æ–‡å­—åˆ—ãƒªã‚½ãƒ¼ã‚¹
 	 */
 	ttstr getStringResource(int id) {
 		ttstr ret;
@@ -278,9 +278,9 @@ public:
 	}
 
 	/**
-	 * ƒXƒ‰ƒCƒXƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @return ƒXƒ‰ƒCƒXî•ñ«‘ %[ top, left, bottom, right, slices:[ %[ id, group_id, left, top, bottom, right ], ... ] ]
-	 *         ƒXƒ‰ƒCƒXî•ñ‚ª‚È‚¢ê‡‚Í void ‚ğ•Ô‚·
+	 * ã‚¹ãƒ©ã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @return ã‚¹ãƒ©ã‚¤ã‚¹æƒ…å ±è¾æ›¸ %[ top, left, bottom, right, slices:[ %[ id, group_id, left, top, bottom, right ], ... ] ]
+	 *         ã‚¹ãƒ©ã‚¤ã‚¹æƒ…å ±ãŒãªã„å ´åˆã¯ void ã‚’è¿”ã™
 	 */
 	tTJSVariant getSlices() {
 		if (!context) TVPThrowExceptionMessage(L"no data");
@@ -332,9 +332,9 @@ public:
 	}
 
 	/**
-	 * ƒKƒCƒhƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @return ƒKƒCƒhî•ñ«‘ %[ vertical:[ x1, x2, ... ], horizontal:[ y1, y2, ... ] ]
-	 *         ƒKƒCƒhî•ñ‚ª‚È‚¢ê‡‚Í void ‚ğ•Ô‚·
+	 * ã‚¬ã‚¤ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @return ã‚¬ã‚¤ãƒ‰æƒ…å ±è¾æ›¸ %[ vertical:[ x1, x2, ... ], horizontal:[ y1, y2, ... ] ]
+	 *         ã‚¬ã‚¤ãƒ‰æƒ…å ±ãŒãªã„å ´åˆã¯ void ã‚’è¿”ã™
 	 */
 	tTJSVariant getGuides() {
 		if (!context) TVPThrowExceptionMessage(L"no data");
@@ -362,23 +362,23 @@ public:
 	}
 
 	/**
-	 * ‡¬Œ‹‰Ê‚Ìæ“¾Bæ“¾—Ìˆæ‚Í‰æ‘œ‘S‘ÌƒTƒCƒY“à‚É‚¨‚³‚Ü‚Á‚Ä‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * @param layer Ši”[æƒŒƒCƒ„(width,heightƒTƒCƒY‚É’²®‚³‚ê‚é)
-	 * @param left ‡¬Œ‹‰Êæ“¾—Ìˆæ‚Ì¶ãÀ•W
-	 * @param top ‡¬Œ‹‰Êæ“¾—Ìˆæ‚Ì¶ãÀ•W
-	 * @param width æ“¾ƒTƒCƒY‰¡•
-	 * @param height æ“¾ƒTƒCƒYc•
-	 * @return æ“¾‚É¬Œ÷‚µ‚½‚ç true
+	 * åˆæˆçµæœã®å–å¾—ã€‚å–å¾—é ˜åŸŸã¯ç”»åƒå…¨ä½“ã‚µã‚¤ã‚ºå†…ã«ãŠã•ã¾ã£ã¦ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * @param layer æ ¼ç´å…ˆãƒ¬ã‚¤ãƒ¤(width,heightã‚µã‚¤ã‚ºã«èª¿æ•´ã•ã‚Œã‚‹)
+	 * @param left åˆæˆçµæœå–å¾—é ˜åŸŸã®å·¦ä¸Šåº§æ¨™
+	 * @param top åˆæˆçµæœå–å¾—é ˜åŸŸã®å·¦ä¸Šåº§æ¨™
+	 * @param width å–å¾—ã‚µã‚¤ã‚ºæ¨ªå¹…
+	 * @param height å–å¾—ã‚µã‚¤ã‚ºç¸¦å¹…
+	 * @return å–å¾—ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool getBlend(tTJSVariant layer, int left, int top, int width, int height) {
 		if (!layer.AsObjectNoAddRef()->IsInstanceOf(0, 0, 0, L"Layer", NULL)) {
 			TVPThrowExceptionMessage(L"not layer");
 		}
 
-		// ‡¬Œ‹‰Ê‚ğ¶¬
+		// åˆæˆçµæœã‚’ç”Ÿæˆ
 		if (psd_image_blend(context, left, top, width, height) == psd_status_done) {
 
-			// Ši”[æ‚ğ’²®
+			// æ ¼ç´å…ˆã‚’èª¿æ•´
 			ncbPropAccessor obj(layer);
 			obj.SetValue(L"width",  width);
 			obj.SetValue(L"height", height);
@@ -387,7 +387,7 @@ public:
 			obj.SetValue(L"imageWidth",  width);
 			obj.SetValue(L"imageHeight", height);
 			
-			// ‡¬Œ‹‰Ê‰æ‘œƒf[ƒ^‚ÌƒRƒs[
+			// åˆæˆçµæœç”»åƒãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 			psd_argb_color *src = context->blending_image_data + top * context->width + left;
 			int len = width * 4;
 			unsigned char *buffer = (unsigned char*)obj.GetValue(L"mainImageBufferForWrite", ncbTypedefs::Tag<tjs_int>());
@@ -398,7 +398,7 @@ public:
 				buffer += pitch;
 			}
 
-			// ‡¬Œ‹‰Êî•ñ‚Ì”jŠü
+			// åˆæˆçµæœæƒ…å ±ã®ç ´æ£„
 			psd_image_blend_free(context);
 
 			return true;

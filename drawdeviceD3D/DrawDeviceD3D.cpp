@@ -3,7 +3,7 @@
 #include "LayerManagerInfo.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 DrawDeviceD3D::DrawDeviceD3D(int width, int height)
 	: width(width), height(height), destWidth(0), destHeight(0), defaultVisible(true),
@@ -13,7 +13,7 @@ DrawDeviceD3D::DrawDeviceD3D(int width, int height)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 DrawDeviceD3D::~DrawDeviceD3D()
 {
@@ -21,14 +21,14 @@ DrawDeviceD3D::~DrawDeviceD3D()
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚Ì‰ğœ
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è§£é™¤
  */
 void
 DrawDeviceD3D::attach(HWND hWnd)
 {
 	this->hWnd = hWnd;
 	try {
-		// Direct3D ƒfƒoƒCƒXAƒeƒNƒXƒ`ƒƒ‚È‚Ç‚ğì¬‚·‚é
+		// Direct3D ãƒ‡ãƒã‚¤ã‚¹ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã©ã‚’ä½œæˆã™ã‚‹
 		HRESULT hr;
 		// get DirectDraw7/Direct3D7 interface
 		if ((DirectDraw7 = TVPGetDirectDraw7ObjectNoAddRef())) {
@@ -68,7 +68,7 @@ DrawDeviceD3D::attach(HWND hWnd)
 
 
 /**
- * ƒEƒCƒ“ƒhƒE‚Ì‰ğœ
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è§£é™¤
  */
 void
 DrawDeviceD3D::detach()
@@ -79,7 +79,7 @@ DrawDeviceD3D::detach()
 			info->free();
 		}
 	}
-	// ‰ğ•úˆ—
+	// è§£æ”¾å‡¦ç†
 	if (Direct3DDevice7) Direct3DDevice7->Release(), Direct3DDevice7 = NULL;
 	if (Surface) Surface->Release(), Surface = NULL;
 	if (Direct3D7) Direct3D7->Release(), Direct3D7 = NULL;
@@ -89,30 +89,30 @@ DrawDeviceD3D::detach()
 }
 
 /**
- * Device¨ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+ * Deviceâ†’ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 DrawDeviceD3D::transformToManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	tjs_int pl_w, pl_h;
 	manager->GetPrimaryLayerSize(pl_w, pl_h);
 	x = destWidth  ? (x * pl_w / destWidth) : 0;
 	y = destHeight ? (y * pl_h / destHeight) : 0;
 }
 
-/** ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+/** ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 DrawDeviceD3D::transformFromManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	tjs_int pl_w, pl_h;
 	manager->GetPrimaryLayerSize(pl_w, pl_h);
 	x = pl_w ? (x * destWidth  / pl_w) : 0;
@@ -120,10 +120,10 @@ DrawDeviceD3D::transformFromManager(iTVPLayerManager * manager, tjs_int &x, tjs_
 }
 
 /**
- * Device¨•W€‰æ–Ê‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+ * Deviceâ†’æ¨™æº–ç”»é¢ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 DrawDeviceD3D::transformTo(tjs_int &x, tjs_int &y)
@@ -132,22 +132,22 @@ DrawDeviceD3D::transformTo(tjs_int &x, tjs_int &y)
 	y = destHeight ? (y * height / destHeight) : 0;
 }
 
-/** •W€‰æ–Ê¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+/** æ¨™æº–ç”»é¢â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 DrawDeviceD3D::transformFrom(tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	x = width ? (x * destWidth  / width) : 0;
 	y = height ? (y * destHeight / height) : 0;
 }
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ì“o˜^
- * @param manager ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç™»éŒ²
+ * @param manager ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::AddLayerManager(iTVPLayerManager * manager)
@@ -159,8 +159,8 @@ DrawDeviceD3D::AddLayerManager(iTVPLayerManager * manager)
 }
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìíœ
- * @param manager ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
+ * @param manager ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::RemoveLayerManager(iTVPLayerManager * manager)
@@ -174,8 +174,8 @@ DrawDeviceD3D::RemoveLayerManager(iTVPLayerManager * manager)
 }
 
 /***
- * ƒEƒCƒ“ƒhƒE‚Ìw’è
- * @param wnd ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æŒ‡å®š
+ * @param wnd ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::SetTargetWindow(HWND wnd, bool is_main)
@@ -183,8 +183,8 @@ DrawDeviceD3D::SetTargetWindow(HWND wnd, bool is_main)
 	detach();
 	if (wnd != NULL) {
 		attach(wnd);
-		Window->NotifySrcResize(); // ‚±‚ê‚ğŒÄ‚Ô‚±‚Æ‚Å GetSrcSize(), SetDestRectangle() ‚ÌŒÄ‚Ñ•Ô‚µ‚ª—ˆ‚é
-		// ƒ}ƒl[ƒWƒƒ‚É‘Î‚·‚éƒeƒNƒXƒ`ƒƒ‚ÌŠ„‚è“–‚Ä
+		Window->NotifySrcResize(); // ã“ã‚Œã‚’å‘¼ã¶ã“ã¨ã§ GetSrcSize(), SetDestRectangle() ã®å‘¼ã³è¿”ã—ãŒæ¥ã‚‹
+		// ãƒãƒãƒ¼ã‚¸ãƒ£ã«å¯¾ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‰²ã‚Šå½“ã¦
 		if (Surface) {
 			for (std::vector<iTVPLayerManager *>::iterator i = Managers.begin(); i != Managers.end(); i++) {
 				iTVPLayerManager *manager = *i;
@@ -282,13 +282,13 @@ DrawDeviceD3D::NotifyLayerImageChange(iTVPLayerManager * manager)
 }
 
 // -------------------------------------------------------------------------------------
-// “ü—ÍƒCƒxƒ“ƒgˆ——p
+// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ç”¨
 // -------------------------------------------------------------------------------------
 
 void TJS_INTF_METHOD
 DrawDeviceD3D::OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags)
 {
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -299,7 +299,7 @@ DrawDeviceD3D::OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 
 void TJS_INTF_METHOD
 DrawDeviceD3D::OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags)
 {
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -310,7 +310,7 @@ DrawDeviceD3D::OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 fl
 void TJS_INTF_METHOD
 DrawDeviceD3D::OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags)
 {
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -321,7 +321,7 @@ DrawDeviceD3D::OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags)
 void TJS_INTF_METHOD
 DrawDeviceD3D::OnMouseWheel(tjs_uint32 shift, tjs_int delta, tjs_int x, tjs_int y)
 {
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -353,7 +353,7 @@ DrawDeviceD3D::RequestInvalidation(const tTVPRect & rect)
 			tjs_int l = rect.left, t = rect.top, r = rect.right, b = rect.bottom;
 			transformToManager(manager, l, t);
 			transformToManager(manager, r, b);
-			r ++; // Œë·‚Ì‹zû(–{“–‚Í‚à‚¤‚¿‚å‚Á‚ÆŒµ–§‚É‚â‚ç‚È‚¢‚Æ‚È‚ç‚È‚¢‚ª‚»‚ê‚ª–â‘è‚É‚È‚é‚±‚Æ‚Í‚È‚¢)
+			r ++; // èª¤å·®ã®å¸å(æœ¬å½“ã¯ã‚‚ã†ã¡ã‚‡ã£ã¨å³å¯†ã«ã‚„ã‚‰ãªã„ã¨ãªã‚‰ãªã„ãŒãã‚ŒãŒå•é¡Œã«ãªã‚‹ã“ã¨ã¯ãªã„)
 			b ++;
 			manager->RequestInvalidation(tTVPRect(l, t, r, b));
 		}
@@ -362,7 +362,7 @@ DrawDeviceD3D::RequestInvalidation(const tTVPRect & rect)
 
 
 // -------------------------------------------------------------------------------------
-// Ä•`‰æˆ——p
+// å†æç”»å‡¦ç†ç”¨
 // -------------------------------------------------------------------------------------
 
 void
@@ -371,9 +371,9 @@ DrawDeviceD3D::Show()
 	// Blt to the primary surface
 	if (!Surface) return;
 
-	// ‰æ–ÊÁ‹
+	// ç”»é¢æ¶ˆå»
 	Direct3DDevice7->Clear(0, NULL, D3DCLEAR_TARGET, 0xff000000, 0.0, 0);
-	// ŒÂ•ÊƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ì•`‰æ
+	// å€‹åˆ¥ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®æç”»
 	for (std::vector<iTVPLayerManager *>::iterator i = Managers.begin(); i != Managers.end(); i++) {
 		LayerManagerInfo *info = (LayerManagerInfo*)(*i)->GetDrawDeviceData();
 		if (info) {
@@ -422,11 +422,11 @@ DrawDeviceD3D::Show()
 }
 
 // -------------------------------------------------------------------------------------
-// LayerManager‚©‚ç‚Ì‰æ‘œ‚¤‚¯‚í‚½‚µ
+// LayerManagerã‹ã‚‰ã®ç”»åƒã†ã‘ã‚ãŸã—
 // -------------------------------------------------------------------------------------
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—ŠJn
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†é–‹å§‹
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::StartBitmapCompletion(iTVPLayerManager * manager)
@@ -438,7 +438,7 @@ DrawDeviceD3D::StartBitmapCompletion(iTVPLayerManager * manager)
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::NotifyBitmapCompleted(iTVPLayerManager * manager,
@@ -452,7 +452,7 @@ DrawDeviceD3D::NotifyBitmapCompleted(iTVPLayerManager * manager,
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—I—¹
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†çµ‚äº†
  */
 void TJS_INTF_METHOD
 DrawDeviceD3D::EndBitmapCompletion(iTVPLayerManager * manager)
@@ -464,9 +464,9 @@ DrawDeviceD3D::EndBitmapCompletion(iTVPLayerManager * manager)
 }
 
 /**
- * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
- * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
- * @param visible •\¦ó‘Ô
+ * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+ * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+ * @param visible è¡¨ç¤ºçŠ¶æ…‹
  */
 void
 DrawDeviceD3D::setVisible(int id, bool visible)
@@ -481,9 +481,9 @@ DrawDeviceD3D::setVisible(int id, bool visible)
 }
 
 /**
- * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
- * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
- * @return visible •\¦ó‘Ô
+ * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+ * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+ * @return visible è¡¨ç¤ºçŠ¶æ…‹
  */
 bool
 DrawDeviceD3D::getVisible(int id)

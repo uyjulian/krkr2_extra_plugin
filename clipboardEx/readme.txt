@@ -1,20 +1,20 @@
 Title: clipboardEx plugin
-Author: ‚ä‚ñ
+Author: ã‚†ã‚“
 
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚ÌƒNƒŠƒbƒvƒ{[ƒh‹@”\‚ðŠg’£‚µ‚ÄAˆÈ‰º‚Ì‹@”\’Ç‰Á‚ð‚·‚éƒvƒ‰ƒOƒCƒ“‚Å‚·B
-EƒNƒŠƒbƒvƒ{[ƒh‚ð‰î‚µ‚ÄBITMAP‰æ‘œ‚ð‚â‚è‚Æ‚èo—ˆ‚é‚æ‚¤‚É‚·‚é
-EƒNƒŠƒbƒvƒ{[ƒh‚ð‰î‚µ‚ÄTJSŽ®‚ð‚â‚è‚Æ‚èo—ˆ‚é‚æ‚¤‚É‚·‚é
-EƒEƒBƒ“ƒhƒE‚ÉAƒNƒŠƒbƒvƒ{[ƒh‚ÌXV‚ðŒŸ’m‚·‚é‹@”\‚ð’Ç‰Á‚·‚é
+å‰é‡Œå‰é‡Œã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰æ©Ÿèƒ½ã‚’æ‹¡å¼µã—ã¦ã€ä»¥ä¸‹ã®æ©Ÿèƒ½è¿½åŠ ã‚’ã™ã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+ãƒ»ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ä»‹ã—ã¦BITMAPç”»åƒã‚’ã‚„ã‚Šã¨ã‚Šå‡ºæ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹
+ãƒ»ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ä»‹ã—ã¦TJSå¼ã‚’ã‚„ã‚Šã¨ã‚Šå‡ºæ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹
+ãƒ»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®æ›´æ–°ã‚’æ¤œçŸ¥ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã™ã‚‹
 
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
  
-œƒ‰ƒCƒZƒ“ƒX 
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ 
  
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B 
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚ 

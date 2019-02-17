@@ -2,22 +2,22 @@
 #define _serv_hpp_
 
 /*
- *  Poco::Net ƒ‰ƒbƒp[iinclude‚ª¬İ‚·‚é‚Æ‚¿‚å‚Á‚Æ¢‚Á‚½‚±‚Æ‚É‚È‚é‚Ì‚Å•ª—£‚·‚éj
+ *  Poco::Net ãƒ©ãƒƒãƒ‘ãƒ¼ï¼ˆincludeãŒæ··åœ¨ã™ã‚‹ã¨ã¡ã‚‡ã£ã¨å›°ã£ãŸã“ã¨ã«ãªã‚‹ã®ã§åˆ†é›¢ã™ã‚‹ï¼‰
  */
 
 #include <string>
 
-// ƒŒƒXƒ|ƒ“ƒXˆ——p
+// ãƒ¬ã‚¹ãƒãƒ³ã‚¹å‡¦ç†ç”¨
 struct PwRequestResponse
 {
 	typedef std::string String;
 	typedef unsigned long Size;
 	typedef void (*NameValueCallback)(const String&, const String&, void *param);
 
-	// ƒXƒŒƒbƒh‘Î‰—p
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å¯¾å¿œç”¨
 	virtual void done() = 0;
 
-	// Šeíƒf[ƒ^‚ğæ“¾
+	// å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	virtual int  getHeader  (NameValueCallback, void *param) const = 0;
 	virtual int  getFormData(NameValueCallback, void *param) const = 0;
 	virtual const String& getMethod() const = 0;
@@ -26,20 +26,20 @@ struct PwRequestResponse
 	virtual const String& getHost()   const = 0;
 	virtual const String& getClient() const = 0;
 
-	// •ÏŠ·ƒ†[ƒeƒBƒŠƒeƒB
+	// å¤‰æ›ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
 	virtual const String getCharset(char const *mediatype) = 0;
 	virtual const String getReason(char const *status) = 0;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚ğ•Ô‚·
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’è¿”ã™
 	virtual void setStatus(char const *status) = 0;
 	virtual void setContentType(char const *type) = 0;
 	virtual void setRedirect(char const *type) = 0;
-	// ˆÈ‰º‚ÍÅŒã‚É‚Ç‚¿‚ç‚©‚P‰ñ‚Ì‚İ‚µ‚©ŒÄ‚×‚È‚¢iContent-length‚ğ‘—M‚µ‚Ä‚µ‚Ü‚¤‚½‚ß•ªŠ„‘—M‚Í•s‰Âj
+	// ä»¥ä¸‹ã¯æœ€å¾Œã«ã©ã¡ã‚‰ã‹ï¼‘å›ã®ã¿ã—ã‹å‘¼ã¹ãªã„ï¼ˆContent-lengthã‚’é€ä¿¡ã—ã¦ã—ã¾ã†ãŸã‚åˆ†å‰²é€ä¿¡ã¯ä¸å¯ï¼‰
 	virtual void sendBuffer(void const*, Size length) = 0;
 	virtual void sendFile(char const *path) = 0;
 };
 
-// ƒT[ƒo—p
+// ã‚µãƒ¼ãƒç”¨
 struct PwHTTPServer
 {
 	typedef void (*RequestCallback)(PwRequestResponse *rr, void *param);

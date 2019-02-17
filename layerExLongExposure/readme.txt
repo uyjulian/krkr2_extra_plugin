@@ -1,30 +1,30 @@
 Title: layerExLongExposure plugin
 Author: miahmie
 
-������͂ȂɁH
+●これはなに？
 
-���C���摜�̒����ԘI���u���v�摜�𐶐����邽�߂̃v���O�C���ł��B
+レイヤ画像の長時間露光「風」画像を生成するためのプラグインです。
 
-����ʂ��甒��ʂւ̓����̂��鉉�o��A���ŃL���v�`������
-���̃v���O�C�����g�p���邱�ƂŁC�g�����W�V�������[���摜��
-���̂Ɏg����c��������܂���B
-
-
-���g����
-
-manual.tjs���Q��
+黒画面から白画面への動きのある演出を連続でキャプチャして
+このプラグインを使用することで，トランジションルール画像を
+作るのに使える…かもしれません。
 
 
-���Z�p���
+●使い方
 
-�Einit���ɂ��̎��̃��C���T�C�Y���̑��a�o�b�t�@�𐶐����܂�
-�iRGBA���Ƃɂ��ꂼ��32bit = 1Pixel��16byte)
-
-�Esnap����x�Ɍ��݂̃��C���摜���o�b�t�@�ɉ��Z���Ă����܂�
-
-�Ecopy����min/max�ő����肵��0-255�Ɋۂ߂ĉ摜�𐶐����܂�
+manual.tjsを参照
 
 
-�����C�Z���X
+●技術情報
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+・init時にその時のレイヤサイズ分の総和バッファを生成します
+（RGBAごとにそれぞれ32bit = 1Pixelで16byte)
+
+・snapする度に現在のレイヤ画像をバッファに加算していきます
+
+・copy時にmin/maxで足きりして0-255に丸めて画像を生成します
+
+
+●ライセンス
+
+このプラグインのライセンスは吉里吉里本体に準拠してください。

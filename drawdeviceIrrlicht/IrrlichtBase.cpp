@@ -12,7 +12,7 @@ using namespace io;
 using namespace gui;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtBase::IrrlichtBase(iTJSDispatch2 *objthis)
 	: objthis(objthis), device(NULL), attached(false),
@@ -21,7 +21,7 @@ IrrlichtBase::IrrlichtBase(iTJSDispatch2 *objthis)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtBase::~IrrlichtBase()
 {
@@ -30,7 +30,7 @@ IrrlichtBase::~IrrlichtBase()
 }
 
 /**
- * ƒhƒ‰ƒCƒo‚Ìî•ñ•\¦
+ * ãƒ‰ãƒ©ã‚¤ãƒã®æƒ…å ±è¡¨ç¤º
  */
 void
 IrrlichtBase::showDriverInfo()
@@ -38,24 +38,24 @@ IrrlichtBase::showDriverInfo()
 	IVideoDriver *driver = device->getVideoDriver();
 	if (driver) {
 		dimension2d<s32> size = driver->getScreenSize();
-		message_log("ƒfƒoƒCƒX¶¬Œã‚ÌƒXƒNƒŠ[ƒ“ƒTƒCƒY:%d, %d", size.Width, size.Height);
+		message_log("ãƒ‡ãƒã‚¤ã‚¹ç”Ÿæˆå¾Œã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º:%d, %d", size.Width, size.Height);
 		size = driver->getCurrentRenderTargetSize();
-		message_log("ƒfƒoƒCƒX¶¬Œã‚ÌRenderTarget‚Ì:%d, %d", size.Width, size.Height);
+		message_log("ãƒ‡ãƒã‚¤ã‚¹ç”Ÿæˆå¾Œã®RenderTargetã®:%d, %d", size.Width, size.Height);
 	}
 }
 
 /**
- * TJSƒCƒxƒ“ƒgŒÄ‚Ño‚µB©ŒÈƒIƒuƒWƒFƒNƒg‚ÌŠY“–ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·B
- * @param eventName ƒCƒxƒ“ƒg–¼
+ * TJSã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ã€‚è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è©²å½“ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã€‚
+ * @param eventName ã‚¤ãƒ™ãƒ³ãƒˆå
  */
 void
 IrrlichtBase::sendTJSEvent(const tjs_char *eventName)
 {
 	tTJSVariant method;
-	if (TJS_SUCCEEDED(objthis->PropGet(0, eventName, NULL, &method, objthis))) { // ƒCƒxƒ“ƒgƒƒ\ƒbƒh‚ğæ“¾
+	if (TJS_SUCCEEDED(objthis->PropGet(0, eventName, NULL, &method, objthis))) { // ã‚¤ãƒ™ãƒ³ãƒˆãƒ¡ã‚½ãƒƒãƒ‰ã‚’å–å¾—
 		if (method.Type() == tvtObject) {
 			iTJSDispatch2 *m = method.AsObjectNoAddRef();
-			if (TJS_SUCCEEDED(m->IsInstanceOf(0, NULL, NULL, L"Function", m))) { // ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚©‚Ç‚¤‚©
+			if (TJS_SUCCEEDED(m->IsInstanceOf(0, NULL, NULL, L"Function", m))) { // ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹
 				tTJSVariant self(objthis, objthis);
 				tTJSVariant *params[] = {&self};
 				m->FuncCall(0, NULL, NULL, NULL, 1, params, method.AsObjectThisNoAddRef());
@@ -65,16 +65,16 @@ IrrlichtBase::sendTJSEvent(const tjs_char *eventName)
 }
 
 /**
- * ƒfƒoƒCƒX‚ÌŠ„‚è“–‚Ä
- * @param hwnd eƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
- * @param width ƒoƒbƒNƒoƒbƒtƒ@ƒTƒCƒY‰¡•
- * @param height ƒoƒbƒNƒoƒbƒtƒ@ƒTƒCƒYc•
+ * ãƒ‡ãƒã‚¤ã‚¹ã®å‰²ã‚Šå½“ã¦
+ * @param hwnd è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+ * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºæ¨ªå¹…
+ * @param height ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºç¸¦å¹…
  */
 void
 IrrlichtBase::attach(HWND hwnd, int width, int height)
 {
 	if (!attached && hwnd) {
-		// ƒfƒoƒCƒX¶¬
+		// ãƒ‡ãƒã‚¤ã‚¹ç”Ÿæˆ
 		SIrrlichtCreationParameters params;
 		params.WindowId     = reinterpret_cast<void*>(hwnd);
 		params.DriverType    = EDT_DIRECT3D9;
@@ -86,8 +86,8 @@ IrrlichtBase::attach(HWND hwnd, int width, int height)
 			params.WindowSize = core::dimension2d<s32>(width, height);
 		}
 		if ((device = irr::createDeviceEx(params))) {
-			TVPAddLog(L"IrrlichtƒfƒoƒCƒX‰Šú‰»");
-			// ƒeƒNƒXƒ`ƒƒ‚Ìƒ¿‡¬‚É‚àí‚ÉZƒeƒXƒg‚ğs‚¤‚æ‚¤‚ÉB
+			TVPAddLog(L"Irrlichtãƒ‡ãƒã‚¤ã‚¹åˆæœŸåŒ–");
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®Î±åˆæˆæ™‚ã«ã‚‚å¸¸ã«Zãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‚ˆã†ã«ã€‚
 			// device->getSceneManager()->getParameters()->setAttribute(scene::ALLOW_ZWRITE_ON_TRANSPARENT, true);
 			showDriverInfo();
 			onAttach();
@@ -95,14 +95,14 @@ IrrlichtBase::attach(HWND hwnd, int width, int height)
 				sendTJSEvent(L"onAttach");
 			}
 		} else {
-			TVPThrowExceptionMessage(L"Irrlicht ƒfƒoƒCƒX‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½");
+			TVPThrowExceptionMessage(L"Irrlicht ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ");
 		}
 		attached = true;
 	}
 }
 
 /**
- * ƒfƒoƒCƒX‚Ì”jŠü
+ * ãƒ‡ãƒã‚¤ã‚¹ã®ç ´æ£„
  */
 void
 IrrlichtBase::detach()
@@ -119,28 +119,28 @@ IrrlichtBase::detach()
 }
 
 /**
- * Irrlicht•`‰æˆ—
- * @param destRect •`‰ææ—Ìˆæ
- * @param srcRect •`‰æŒ³—Ìˆæ
- * @param destDC •`‰ææDC
- * @return •`‰æ‚³‚ê‚½
+ * Irrlichtæç”»å‡¦ç†
+ * @param destRect æç”»å…ˆé ˜åŸŸ
+ * @param srcRect æç”»å…ƒé ˜åŸŸ
+ * @param destDC æç”»å…ˆDC
+ * @return æç”»ã•ã‚ŒãŸ
  */
 bool
 IrrlichtBase::show(irr::core::rect<irr::s32> *destRect, irr::core::rect<irr::s32> *srcRect, HDC destDC)
 {
 	if (device) {
-		// ŠÔ‚ği‚ß‚é XXX tick ‚ğŠO•”‚©‚ç—^‚¦‚ç‚ê‚È‚¢‚©H
+		// æ™‚é–“ã‚’é€²ã‚ã‚‹ XXX tick ã‚’å¤–éƒ¨ã‹ã‚‰ä¸ãˆã‚‰ã‚Œãªã„ã‹ï¼Ÿ
 		device->getTimer()->tick();
 		
 		IVideoDriver *driver = device->getVideoDriver();
-		// •`‰æŠJn
+		// æç”»é–‹å§‹
 		if (driver && driver->beginScene(true, true, irr::video::SColor(0,0,0,0))) {
 			
 			if ((eventMask & EMASK_BEFORE_SCENE)) {
 				sendTJSEvent(L"onBeforeScene");
 			}
 			
-			/// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‚Ì•`‰æ
+			/// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã®æç”»
 			ISceneManager *smgr = device->getSceneManager();
 			if (smgr) {
 				smgr->drawAll();
@@ -150,14 +150,14 @@ IrrlichtBase::show(irr::core::rect<irr::s32> *destRect, irr::core::rect<irr::s32
 				sendTJSEvent(L"onAfterScene");
 			}
 			
-			// ŒÅ—Lˆ—
+			// å›ºæœ‰å‡¦ç†
 			update(driver);
 
 			if ((eventMask & EMASK_BEFORE_GUI)) {
 				sendTJSEvent(L"onBeforeGUI");
 			}
 			
-			// GUI‚Ì•`‰æ
+			// GUIã®æç”»
 			IGUIEnvironment *gui = device->getGUIEnvironment();
 			if (gui) {
 				gui->drawAll();
@@ -167,7 +167,7 @@ IrrlichtBase::show(irr::core::rect<irr::s32> *destRect, irr::core::rect<irr::s32
 				sendTJSEvent(L"onAfterGUI");
 			}
 			
-			// •`‰æŠ®—¹
+			// æç”»å®Œäº†
 			driver->endScene(0, srcRect, destRect, destDC);
 			return true;
 		}
@@ -176,7 +176,7 @@ IrrlichtBase::show(irr::core::rect<irr::s32> *destRect, irr::core::rect<irr::s32
 };
 
 /**
- * Irrlicht ‚Ö‚ÌƒCƒxƒ“ƒg‘—M
+ * Irrlicht ã¸ã®ã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
  */
 bool
 IrrlichtBase::postEvent(SEvent &ev)
@@ -191,11 +191,11 @@ IrrlichtBase::postEvent(SEvent &ev)
 }
 
 /**
- * ƒCƒxƒ“ƒgó—
- * HWND ‚ğw’è‚µ‚Ä¶¬‚µ‚Ä‚¢‚éŠÖŒW‚Å Irrlicht ©g‚ÍƒEƒCƒ“ƒhƒE‚©‚ç
- * ƒCƒxƒ“ƒg‚ğæ“¾‚·‚é‚±‚Æ‚Í‚È‚¢B‚Ì‚Å GUI Environment ‚©‚ç‚ÌƒCƒxƒ“ƒg
- * ‚¾‚¯‚ª‚±‚±‚É‚­‚é‚±‚Æ‚É‚È‚éB©•ª‚Ì“K“–‚Èƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‚æ‚¤‚É—vC³ XXX
- * @return ˆ—‚µ‚½‚ç true
+ * ã‚¤ãƒ™ãƒ³ãƒˆå—ç†
+ * HWND ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã—ã¦ã„ã‚‹é–¢ä¿‚ã§ Irrlicht è‡ªèº«ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‹ã‚‰
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹ã“ã¨ã¯ãªã„ã€‚ã®ã§ GUI Environment ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+ * ã ã‘ãŒã“ã“ã«ãã‚‹ã“ã¨ã«ãªã‚‹ã€‚è‡ªåˆ†ã®é©å½“ãªãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã‚ˆã†ã«è¦ä¿®æ­£ XXX
+ * @return å‡¦ç†ã—ãŸã‚‰ true
  */
 bool
 IrrlichtBase::OnEvent(const irr::SEvent &event)
@@ -203,14 +203,14 @@ IrrlichtBase::OnEvent(const irr::SEvent &event)
 	bool ret = false;
 	if ((eventMask & EMASK_EVENT)) {
 		tTJSVariant method;
-		if (TJS_SUCCEEDED(objthis->PropGet(0, L"onEvent", NULL, &method, objthis))) { // ƒCƒxƒ“ƒgƒƒ\ƒbƒh‚ğæ“¾
+		if (TJS_SUCCEEDED(objthis->PropGet(0, L"onEvent", NULL, &method, objthis))) { // ã‚¤ãƒ™ãƒ³ãƒˆãƒ¡ã‚½ãƒƒãƒ‰ã‚’å–å¾—
 			if (method.Type() == tvtObject) {
 				iTJSDispatch2 *m = method.AsObjectNoAddRef();
-				if (TJS_SUCCEEDED(m->IsInstanceOf(0, NULL, NULL, L"Function", m))) { // ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚©‚Ç‚¤‚©
+				if (TJS_SUCCEEDED(m->IsInstanceOf(0, NULL, NULL, L"Function", m))) { // ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹
 					tTJSVariant self(objthis, objthis);
 					tTJSVariant ev;
 
-					// SEvent ‚ğ•ÏŠ·
+					// SEvent ã‚’å¤‰æ›
 					typedef ncbInstanceAdaptor<SEvent> AdaptorT;
 					iTJSDispatch2 *adpobj = AdaptorT::CreateAdaptor(new SEvent(event));
 					if (adpobj) {

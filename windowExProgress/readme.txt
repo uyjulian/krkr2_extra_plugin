@@ -1,15 +1,15 @@
 Title: widowExProgress plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-Window ƒNƒ‰ƒX‚É‹g—¢‹g—¢‚ªŽÀsƒuƒƒbƒN‚µ‚½ó‘Ô‚Å‚à
-•\Ž¦‰Â”\‚ÈƒvƒƒOƒŒƒX•\Ž¦‚Ì‹@”\‚ð’Ç‰Á‚·‚éƒvƒ‰ƒOƒCƒ“‚Å‚·B
+Window ã‚¯ãƒ©ã‚¹ã«å‰é‡Œå‰é‡ŒãŒå®Ÿè¡Œãƒ–ãƒ­ãƒƒã‚¯ã—ãŸçŠ¶æ…‹ã§ã‚‚
+è¡¨ç¤ºå¯èƒ½ãªãƒ—ãƒ­ã‚°ãƒ¬ã‚¹è¡¨ç¤ºã®æ©Ÿèƒ½ã‚’è¿½åŠ ã™ã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

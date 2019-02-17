@@ -15,8 +15,8 @@ static void log(const tjs_char *format, ...)
 static const GUID IID_iTJSDispatch2 = 
 { 0x125df12c, 0x67f5, 0x4d9e, { 0xbf, 0xd3, 0x6c, 0x59, 0xb0, 0x34, 0x89, 0x52 } };
 
-// ƒIƒuƒWƒFƒNƒg–¼‚Ì‘Î‰‚ğ‚Æ‚é‚½‚ß‚Ìƒ}ƒbƒsƒ“ƒOî•ñ
-// ‚Æ‚è‚ ‚¦‚¸‚±‚ÌƒNƒ‰ƒX‚É•Â‚¶‚é‚Á‚Ä‚±‚Æ‚Å static •Û‚Å‘Î‰
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåã®å¯¾å¿œã‚’ã¨ã‚‹ãŸã‚ã®ãƒãƒƒãƒ”ãƒ³ã‚°æƒ…å ±
+// ã¨ã‚Šã‚ãˆãšã“ã®ã‚¯ãƒ©ã‚¹ã«é–‰ã˜ã‚‹ã£ã¦ã“ã¨ã§ static ä¿æŒã§å¯¾å¿œ
 
 #pragma warning(disable: 4786)
 #include <map>
@@ -25,9 +25,9 @@ static map<ttstr,int> methodMap;
 static map<int,ttstr> methodIdMap;
 
 /**
- * –¼‘O‚©‚çˆêˆÓ‚Ì”’l‚ğ‚¦‚é
- * @param name –¼‘O
- * @return ƒAƒgƒ€’l
+ * åå‰ã‹ã‚‰ä¸€æ„ã®æ•°å€¤ã‚’ãˆã‚‹
+ * @param name åå‰
+ * @return ã‚¢ãƒˆãƒ å€¤
  */
 static int
 getAtom(const tjs_char *name)
@@ -44,9 +44,9 @@ getAtom(const tjs_char *name)
 }
 
 /**
- * ƒAƒgƒ€’l‚©‚ç–¼‘O‚ğ“¾‚é
- * @param atom ƒAƒgƒ€’l
- * @return –¼‘O
+ * ã‚¢ãƒˆãƒ å€¤ã‹ã‚‰åå‰ã‚’å¾—ã‚‹
+ * @param atom ã‚¢ãƒˆãƒ å€¤
+ * @return åå‰
  */
 static const tjs_char *
 getName(int atom)
@@ -59,9 +59,9 @@ getName(int atom)
 }
 
 /**
- * VARIANT ‚ğ tTJSVariant ‚ÉŠi”[‚·‚é
- * @param result •ÏŠ·æ
- * @param variant •ÏŠ·Œ³
+ * VARIANT ã‚’ tTJSVariant ã«æ ¼ç´ã™ã‚‹
+ * @param result å¤‰æ›å…ˆ
+ * @param variant å¤‰æ›å…ƒ
  */
 void
 IDispatchWrapper::storeVariant(tTJSVariant &result, VARIANT &variant)
@@ -102,7 +102,7 @@ IDispatchWrapper::storeVariant(tTJSVariant &result, VARIANT &variant)
 			if (SUCCEEDED(SafeArrayAccessData(psa, (LPVOID*)&p))) {
 				// p;
 				//psa->rgsabound->cElements;
-				// XXX variant ‚É‚Ç‚¤“ü‚ê‚æ‚¤H
+				// XXX variant ã«ã©ã†å…¥ã‚Œã‚ˆã†ï¼Ÿ
 				SafeArrayUnaccessData(psa);
 			}
 		}
@@ -189,9 +189,9 @@ IDispatchWrapper::storeVariant(tTJSVariant &result, VARIANT &variant)
 }
 
 /**
- * tTJSVariant ‚ğ VARIANT ‚ÉŠi”[‚·‚é
- * @param result Ši”[æ
- * @param variant Ši”[Œ³
+ * tTJSVariant ã‚’ VARIANT ã«æ ¼ç´ã™ã‚‹
+ * @param result æ ¼ç´å…ˆ
+ * @param variant æ ¼ç´å…ƒ
  */
 void
 IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
@@ -202,7 +202,7 @@ IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
 		//log(L"void");
 		break;
 	case tvtObject:
-		// ƒIƒuƒWƒFƒNƒg
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		//log(L"object");
 		{
 			switch (variant.Type()) {
@@ -218,13 +218,13 @@ IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
 		break;
 	case tvtString:
 		//log(L"string");
-		// •¶š—ñ
+		// æ–‡å­—åˆ—
 		V_VT(&result) = VT_BSTR;
 		V_BSTR(&result) = SysAllocString(variant.GetString());
 		break;
 	case tvtOctet:
 		//log(L"octet");
-		// ƒIƒNƒeƒbƒg—ñ
+		// ã‚ªã‚¯ãƒ†ãƒƒãƒˆåˆ—
 		{
 			tTJSVariantOctet *octet = variant.AsOctetNoAddRef();
 			if (octet) {
@@ -233,7 +233,7 @@ IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
 				sabound.lLbound = 0;
 				sabound.cElements = octet->GetLength();
 				if ((psa = SafeArrayCreate(VT_UI1, 1, &sabound))) {
-					// ƒf[ƒ^‚ğƒRƒs[‚·‚é
+					// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 					unsigned char *p;
 					if (SUCCEEDED(SafeArrayAccessData(psa, (LPVOID*)&p))) {
 						memcpy(p, octet->GetData(), octet->GetLength());
@@ -244,14 +244,14 @@ IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
 						SafeArrayDestroy(psa);
 					}
 				} else {
-					// ƒƒ‚ƒŠ•s‘«—áŠO
+					// ãƒ¡ãƒ¢ãƒªä¸è¶³ä¾‹å¤–
 				}
 			}
 		}
 		break;
 	case tvtInteger:
-		// COM ‚Í 64bit ‚ğƒTƒ|[ƒg‚µ‚Ä‚¢‚È‚¢!!
-		// ‚Æ‚¢‚¤‚±‚Æ‚Å COM ‚É“n‚·ˆø”‚Å®”’l‚Í 32bit ‚ğ’´‚¦‚È‚¢‚æ‚¤‚É’ˆÓ‚·‚é‚±‚Æi—Üj
+		// COM ã¯ 64bit ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ãªã„!!
+		// ã¨ã„ã†ã“ã¨ã§ COM ã«æ¸¡ã™å¼•æ•°ã§æ•´æ•°å€¤ã¯ 32bit ã‚’è¶…ãˆãªã„ã‚ˆã†ã«æ³¨æ„ã™ã‚‹ã“ã¨ï¼ˆæ¶™ï¼‰
 		//log(L"integer");
 		V_VT(&result) = VT_I4;
 		V_I4(&result) = (int)(variant);
@@ -265,7 +265,7 @@ IDispatchWrapper::storeVariant(VARIANT &result, tTJSVariant &variant)
 }
 
 //----------------------------------------------------------------------------
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 
 IDispatchWrapper::IDispatchWrapper(iTJSDispatch2 *obj) 
@@ -287,14 +287,14 @@ IDispatchWrapper::Construct(iTJSDispatch2 *obj, VARIANT *pvarResult, int argc, V
 
 	int ret = S_OK;
 	
-	// ˆø”•ÏŠ·
+	// å¼•æ•°å¤‰æ›
 	tTJSVariant **args = new tTJSVariant*[argc];
 	for (int i=0;i<argc;i++) {
 		args[i] = new tTJSVariant();
 		storeVariant(*args[i], argv[argc - i - 1]);
 	}
 	
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—
 	iTJSDispatch2 *instance = NULL;
 	try {
 		if (TJS_SUCCEEDED(err = Try_iTJSDispatch2_CreateNew(obj, 0, NULL, NULL, &instance, argc, args, obj))) {
@@ -314,7 +314,7 @@ IDispatchWrapper::Construct(iTJSDispatch2 *obj, VARIANT *pvarResult, int argc, V
 		ret = DISP_E_EXCEPTION;
 	}
 	
-	// ˆø””jŠü
+	// å¼•æ•°ç ´æ£„
 	for (int i=0;i<argc;i++) {
 		delete args[i];
 	}
@@ -328,7 +328,7 @@ IDispatchWrapper::InvokeEx(iTJSDispatch2 *obj, const tjs_char *memberName, WORD 
 {
 	if (!pdispparams) return E_POINTER;
 	
-	// ˆø”ƒpƒ‰ƒ[ƒ^İ’è
+	// å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	int      argc = pdispparams->cArgs;
 	VARIANT *argv = pdispparams->rgvarg;
 
@@ -338,22 +338,22 @@ IDispatchWrapper::InvokeEx(iTJSDispatch2 *obj, const tjs_char *memberName, WORD 
 
 	if ((wFlags & DISPATCH_CONSTRUCT)) {
 
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		ret = Construct(obj, pvarResult, argc, argv, err);
 		
 	} else if ((wFlags & DISPATCH_METHOD)) {
 
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		//log(L"FuncCall %ls", memberName);
 		
-		// ˆø”•ÏŠ·
+		// å¼•æ•°å¤‰æ›
 		tTJSVariant **args = new tTJSVariant*[argc];
 		for (int i=0;i<argc;i++) {
 			args[i] = new tTJSVariant();
 			storeVariant(*args[i], argv[argc - i - 1]);
 		}
 		
-		// ƒIƒuƒWƒFƒNƒgÀs—p‚ÌƒXƒNƒŠƒvƒgƒNƒ‰ƒX‚ğ¶¬
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®Ÿè¡Œç”¨ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆ
 		tTJSVariant result;
 		try {
 			if (TJS_SUCCEEDED(err = Try_iTJSDispatch2_FuncCall(obj, 0, memberName, (tjs_uint32*)&id, &result, argc, args, obj))) {
@@ -368,7 +368,7 @@ IDispatchWrapper::InvokeEx(iTJSDispatch2 *obj, const tjs_char *memberName, WORD 
 			ret = DISP_E_EXCEPTION;
 		}
 		
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		for (int i=0;i<argc;i++) {
 			delete args[i];
 		}
@@ -440,7 +440,7 @@ IDispatchWrapper::InvokeEx(iTJSDispatch2 *obj, const tjs_char *memberName, WORD 
 }
 
 //----------------------------------------------------------------------------
-// IUnknown À‘•
+// IUnknown å®Ÿè£…
 
 HRESULT STDMETHODCALLTYPE
 IDispatchWrapper::QueryInterface(REFIID riid, void __RPC_FAR *__RPC_FAR *ppvObject) {
@@ -481,7 +481,7 @@ IDispatchWrapper::Release()
 }
 
 //-------------------------------------------------------------------
-// IDispatch À‘•
+// IDispatch å®Ÿè£…
 
 HRESULT
 IDispatchWrapper::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgdispid)
@@ -548,7 +548,7 @@ IDispatchWrapper::DeleteMemberByDispID(
 				ret = S_OK;
 			}
 		} catch(...)  {
-			log(L"DeleteMember ‚Å—áŠO");
+			log(L"DeleteMember ã§ä¾‹å¤–");
 		}
 	}
 	return ret;
@@ -570,7 +570,7 @@ IDispatchWrapper::GetMemberName(
 	}
 }
 
-class GetEnumCaller : public tTJSDispatch /** EnumMembers —p */
+class GetEnumCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	vector<DISPID> *methodEnums;
@@ -613,7 +613,7 @@ IDispatchWrapper::GetNextDispID(
 		try {
 			Try_iTJSDispatch2_EnumMembers(obj, TJS_ENUM_NO_VALUE, &closure, obj);
 		} catch (...) {
-			log(L"EnumMembers ‚Å—áŠO");
+			log(L"EnumMembers ã§ä¾‹å¤–");
 		}
 		caller->Release();
 	}
@@ -628,13 +628,13 @@ IDispatchWrapper::GetNextDispID(
 // -------------------------------------------------------------------------------------------
 
 /**
- * Àsˆ—–{‘Ì
+ * å®Ÿè¡Œå‡¦ç†æœ¬ä½“
  * @param dispatch IDispatch
- * @param wFlags Àsí•Ê
- * @param membername ƒƒ“ƒo–¼
- * @param result Œ‹‰ÊŠi”[æ
- * @param numparams ƒpƒ‰ƒ[ƒ^”
- * @param param ƒpƒ‰ƒ[ƒ^
+ * @param wFlags å®Ÿè¡Œç¨®åˆ¥
+ * @param membername ãƒ¡ãƒ³ãƒå
+ * @param result çµæœæ ¼ç´å…ˆ
+ * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
+ * @param param ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 tjs_error
 iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
@@ -657,7 +657,7 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 			return TJS_E_NOTIMPL;
 		}
 	} else {
-		// DISPID ‚Ìæ“¾
+		// DISPID ã®å–å¾—
 		BSTR wcmdname = SysAllocString(membername);
 		hr = dispatch->GetIDsOfNames(IID_NULL, &wcmdname, 1, lcid, &dispId);
 		SysFreeString(wcmdname);
@@ -666,7 +666,7 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 		}
 	}
 	
-	// ŒÄ‚Ño‚µ—pƒpƒ‰ƒ[ƒ^•ÏŠ·
+	// å‘¼ã³å‡ºã—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›
 	DISPPARAMS dispParams;
 	memset(&dispParams, 0, sizeof(DISPPARAMS));
 	dispParams.cArgs = numparams;
@@ -676,26 +676,26 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 		IDispatchWrapper::storeVariant(dispParams.rgvarg[numparams - i - 1], *param[i]);
 	}
 	
-	// PROPERTYPUT —p“Áêˆ—
+	// PROPERTYPUT ç”¨ç‰¹æ®Šå‡¦ç†
 	DISPID dispIDParam = DISPID_PROPERTYPUT;
 	if (wFlags & DISPATCH_PROPERTYPUT) {
 		dispParams.cNamedArgs = 1;
 		dispParams.rgdispidNamedArgs = &dispIDParam;
 	}
 	
-	// ŒÄ‚Ño‚µˆ—
+	// å‘¼ã³å‡ºã—å‡¦ç†
 	VARIANT invokeResult;
 	VariantInit(&invokeResult);
 	EXCEPINFO excepInfo;
 	hr = dispatch->Invoke(dispId, IID_NULL, LOCALE_SYSTEM_DEFAULT, wFlags, &dispParams, &invokeResult, &excepInfo, NULL);
 	
-	// Œã•Ğ•t‚¯
+	// å¾Œç‰‡ä»˜ã‘
 	for (int i=0; i<numparams; i++) {
 		VariantClear(&dispParams.rgvarg[i]);
 	}
 	free(dispParams.rgvarg);
 	
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	tjs_error ret;
 	if (SUCCEEDED(hr)) {
 		if (result) {
@@ -704,7 +704,7 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 		VariantClear(&invokeResult);
 		ret = TJS_S_OK;
 	} else {
-		// XXX —áŠO‚Ç‚¤‚µ‚æ‚¤
+		// XXX ä¾‹å¤–ã©ã†ã—ã‚ˆã†
 		switch (hr) {
 		case DISP_E_MEMBERNOTFOUND:
 			ret = TJS_E_MEMBERNOTFOUND;

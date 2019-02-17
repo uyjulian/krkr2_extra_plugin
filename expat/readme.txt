@@ -1,25 +1,25 @@
 Title: expat plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
- expat ‚ðŽg‚Á‚Ä XML ‚ðˆ—‚·‚éƒp[ƒTƒvƒ‰ƒOƒCƒ“‚Å‚·
+ expat ã‚’ä½¿ã£ã¦ XML ã‚’å‡¦ç†ã™ã‚‹ãƒ‘ãƒ¼ã‚µãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™
 
-œƒRƒ“ƒpƒCƒ‹•û–@
+â—ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ–¹æ³•
 
- Expat ‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¨‚«‚Ü‚·
+ Expat ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãŠãã¾ã™
  
    http://expat.sourceforge.net/
 
    expat_win32bin_2_0_0.exe
 
- ƒCƒ“ƒXƒg[ƒ‹æ‚ð EXPAT_HOME ‚É’è‹`‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆã‚’ EXPAT_HOME ã«å®šç¾©ã—ã¦ãŠã„ã¦ãã ã•ã„
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-  manual.tjs ‚Æ XML.tjs ‚ðŽQÆ
+  manual.tjs ã¨ XML.tjs ã‚’å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
 Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd
                                and Clark Cooper
@@ -44,4 +44,4 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“Ž©‘Ì‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è‡ªä½“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

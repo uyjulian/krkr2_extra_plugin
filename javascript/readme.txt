@@ -1,96 +1,96 @@
 Title: Javascript Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-V8 JavaScript Engine (http://code.google.com/p/v8/) �̋g���g���o�C���h�ł��B
+V8 JavaScript Engine (http://code.google.com/p/v8/) の吉里吉里バインドです。
 
-Google �{�Ƃ̃R�[�h�͌݊����ɖ�肪����̂ŁANode.js (http://nodejs.org/) ��
-�\�[�X (https://github.com/joyent/node) �ɂ��� V8 ���g���č\�z���Ă���܂�
+Google 本家のコードは互換性に問題があるので、Node.js (http://nodejs.org/) の
+ソース (https://github.com/joyent/node) にある V8 を使って構築してあります
 
-���R���p�C�����@
+●コンパイル方法
 
-(1) c:\node �� node.js ���擾���āAVisual Studio �Ńr���h
+(1) c:\node に node.js を取得して、Visual Studio でビルド
 
-c:\node\build �ȉ��ɐ�������� v8 ���C�u�����݂̂��g���܂��̂ŁA
-�S�̂��\�z����K�v�͂���܂���B
+c:\node\build 以下に生成される v8 ライブラリのみを使いますので、
+全体を構築する必要はありません。
 
  > vcbuild clean
 
-�ŁA�v���W�F�N�g�t�@�C���͂�����̂ŁAnode.sln ���J���� v8 �̕����������Ηǂ��ł�
+で、プロジェクトファイルはつくられるので、node.sln を開いて v8 の部分だけ作れば良いです
 
-(2) javascript.sln ���J���ăR���p�C��
+(2) javascript.sln を開いてコンパイル
 
-c:\node ���Q�Ƃ��ăv���O�C������������܂�
+c:\node を参照してプラグインが生成されます
 
-���V�X�e���T�v
+●システム概要
 
-����̏ڍׂ� manual.tjs / manual.js ���Q�Ƃ��Ă��������B
+操作の詳細は manual.tjs / manual.js を参照してください。
 
-�����O���
+◇名前空間
 
-�EJavascript �̃O���[�o����Ԃ͋g���g���S�̂ɑ΂��ĂP�������݂��܂��B
-�@
-�@Javascript �p�̃X�N���v�g�̎��s�͂��̃O���[�o����ԏ�ł����Ȃ��A
-�@��`���ꂽ�t�@���N�V������N���X�����̃O���[�o����Ԃɓo�^����Ă����܂��B
+・Javascript のグローバル空間は吉里吉里全体に対して１つだけ存在します。
+　
+　Javascript 用のスクリプトの実行はこのグローバル空間上でおこなわれ、
+　定義されたファンクションやクラスもこのグローバル空間に登録されていきます。
 
-�ETJS2 �̃O���[�o����Ԃ� Javascript ������ "krkr" �ŎQ�Ƃł��܂��B
+・TJS2 のグローバル空間を Javascript 側から "krkr" で参照できます。
 
-�EJavascript �̃O���[�o����Ԃ� TJS2 ������ "jsglobal" �ŎQ�Ƃł��܂��B
+・Javascript のグローバル空間を TJS2 側から "jsglobal" で参照できます。
 
-�E�����A�����A������Ȃǂ̃v���~�e�B�u�l�͒l�n���ɂȂ�܂��B
-�ETJS2 �� void �� javascript �� undefined �ƑΉ����܂�
-�ETJS2 �� null �� javascript �� null �ƑΉ����܂�
-�E�I�u�W�F�N�g�͑��݂ɌĂяo���\�ł�
+・整数、実数、文字列などのプリミティブ値は値渡しになります。
+・TJS2 の void は javascript の undefined と対応します
+・TJS2 の null は javascript の null と対応します
+・オブジェクトは相互に呼び出し可能です
 
-��Scripts �g��
+◇Scripts 拡張
 
-Javascript �̎��s�p���\�b�h�� Scripts �N���X�Ɋg������܂��B
-����ɂ��O���� Javascript �t�@�C����ǂݍ���Ŏ��s�\�ɂȂ�܂�
+Javascript の実行用メソッドが Scripts クラスに拡張されます。
+これにより外部の Javascript ファイルを読み込んで実行可能になります
 
-���g���g���N���X�� javascript�v���g�^�C�v�N���X��
+◇吉里吉里クラスの javascriptプロトタイプクラス化
 
-�g���g���̃N���X�� javascript �̃v���g�^�C�v�N���X�Ƃ���
-�p���\�ȏ�Ԃň������Ƃ��ł��܂��B
+吉里吉里のクラスを javascript のプロトタイプクラスとして
+継承可能な状態で扱うことができます。
 
-�EcreateTJSClass()�ŁATJS�̃N���X������I�ɕێ����� 
-�@Javascript�N���X�����֐����쐬���邱�Ƃ��ł��܂��B
+・createTJSClass()で、TJSのクラスを内部的に保持する 
+　Javascriptクラス生成関数を作成することができます。
 
-  tjsOverride() ��TJS�C���X�^���X�ɑ΂��Ē��� javascript ���\�b�h��
-  �o�^�ł��܂�
+  tjsOverride() でTJSインスタンスに対して直接 javascript メソッドを
+  登録できます
 
-  TJS�C���X�^���X���� callJS() �Ƃ��� javascript �C���X�^���X��
-�@���\�b�h�𖾎��I�ɌĂяo�����߂��g������܂��B
+  TJSインスタンス側に callJS() として javascript インスタンスの
+　メソッドを明示的に呼び出す命令が拡張されます。
 
-  TJS�C���X�^���X���ł� missing �@�\���ݒ肳��A���݂��Ȃ������o��
-�@�Q�Ƃ��ꂽ�ꍇ�� javascript �C���X�^���X�̓��������o���Q�Ƃ���܂��B
-  TJS�C���X�^���X��������̃C�x���g�Ăяo���ɂ����ꂪ�K�p����邽�߁A
-�@TJS�C���X�^���X���ɒ�`���Ȃ���Ύ����I�� javascript �C���X�^���X��
-�@���ꂪ�Ăяo����܂�
+  TJSインスタンス側では missing 機能が設定され、存在しないメンバが
+　参照された場合は javascript インスタンスの同名メンバが参照されます。
+  TJSインスタンス内部からのイベント呼び出しにもこれが適用されるため、
+　TJSインスタンス中に定義がなければ自動的に javascript インスタンスの
+　それが呼び出されます
 
-  ��squirrel �����Ƃ͈قȂ肱�̋@�\�Ŏ擾�����g���g���N���X��
-  �g���g�����Ő������ꂽ�C���X�^���X���Ԃ����ꍇ�̃��b�s���O������
-�@�s���܂���̂ł����ӂ�������
+  ※squirrel 実装とは異なりこの機能で取得した吉里吉里クラスの
+  吉里吉里側で生成されたインスタンスが返される場合のラッピング処理は
+　行われませんのでご注意ください
 
-���f�o�b�K�@�\
+◇デバッガ機能
 
-  enableDebugJS() �Ńf�o�b�K��L���ɂ���ƁA
-�@�O������� TCP/IP�ڑ��Ń����[�g�f�o�b�O�\�ɂȂ�܂��B
-�@�������[�g�f�o�b�K�Ƃ��� V8 �t���� d8.exe ���g���܂��B
+  enableDebugJS() でデバッガを有効にすると、
+　外部からの TCP/IP接続でリモートデバッグ可能になります。
+　※リモートデバッガとして V8 付属の d8.exe が使えます。
 
- d8 �̋N�����@
+ d8 の起動方法
   > d8.exe --remote_debugger --debugger_port=5858
 
-�@�f�o�b�K�ɂ���� Javascript �̎��s�����f���Ă���Ԃ͋g���g���S�̂�
-�@��~��ԂɂȂ�A��ʂ̍X�V��C�x���g�����Ȃǂ���~����̂Œ��ӂ��K�v�ł��B
+　デバッガによって Javascript の実行が中断している間は吉里吉里全体が
+　停止状態になり、画面の更新やイベント処理なども停止するので注意が必要です。
 
-�@�t�� Javascript ���s��ԂłȂ��Ԃ́A���̂܂܂ł̓f�o�b�K�ɑ΂���
-�@�������A��܂���BTJS ���ŁAprocessDebugJS() �����I�ɌĂяo����
-�@�ʐM������������K�v������̂Œ��ӂ��Ă��������B
+　逆に Javascript 実行状態でない間は、そのままではデバッガに対する
+　応答が帰りません。TJS 側で、processDebugJS() を定期的に呼び出して
+　通信を処理させる必要があるので注意してください。
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C�����̂̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグイン自体のライセンスは吉里吉里本体に準拠してください。
 
 Node's license follows:
 

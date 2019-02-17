@@ -2,10 +2,10 @@
 
 struct LayerUtils
 {
-	// ‚PƒsƒNƒZƒ‹‚ÌŒ^
+	// ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ã®å‹
 	typedef unsigned long PixelT;
 
-	// ƒoƒbƒtƒ@QÆ—p‚ÌŒ^
+	// ãƒãƒƒãƒ•ã‚¡å‚ç…§ç”¨ã®å‹
 	typedef unsigned char UnitT;
 	typedef UnitT const *BufRefT;
 	typedef UnitT       *WrtRefT;
@@ -13,10 +13,10 @@ struct LayerUtils
 
 	static bool IsValidLayer(iTJSDispatch2 *lay)
 	{
-		// ƒŒƒCƒ„ƒCƒ“ƒXƒ^ƒ“ƒXˆÈŠO‚Å‚ÍƒGƒ‰[
+		// ãƒ¬ã‚¤ãƒ¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä»¥å¤–ã§ã¯ã‚¨ãƒ©ãƒ¼
 		if (!lay || TJS_FAILED(lay->IsInstanceOf(0, 0, 0, TJS_W("Layer"), lay))) return false;
 
-		// ƒŒƒCƒ„ƒCƒ[ƒW‚Íİ‚é‚©H
+		// ãƒ¬ã‚¤ãƒ¤ã‚¤ãƒ¡ãƒ¼ã‚¸ã¯åœ¨ã‚‹ã‹ï¼Ÿ
 		tTJSVariant val;
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("hasImage"), 0, &val, lay)) || (val.AsInteger() == 0)) return false;
 
@@ -24,13 +24,13 @@ struct LayerUtils
 	}
 
 	/**
-	 * ƒŒƒCƒ„‚ÌƒTƒCƒY‚Æƒoƒbƒtƒ@‚ğæ“¾‚·‚é
+	 * ãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã¨ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã™ã‚‹
 	 */
 	static bool GetLayerSize(iTJSDispatch2 *lay, long &w, long &h, long &pitch)
 	{
 		if (!IsValidLayer(lay)) return false;
 
-		// ƒŒƒCƒ„ƒTƒCƒY‚ğæ“¾
+		// ãƒ¬ã‚¤ãƒ¤ã‚µã‚¤ã‚ºã‚’å–å¾—
 		tTJSVariant val;
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("imageWidth"), 0, &val, lay))) return false;
 		w = (long)val.AsInteger();
@@ -39,33 +39,33 @@ struct LayerUtils
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("imageHeight"), 0, &val, lay))) return false;
 		h = (long)val.AsInteger();
 
-		// ƒsƒbƒ`æ“¾
+		// ãƒ”ãƒƒãƒå–å¾—
 		val.Clear();
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBufferPitch"), 0, &val, lay))) return false;
 		pitch = (long)val.AsInteger();
 
-		// ³í‚È’l‚©‚Ç‚¤‚©
+		// æ­£å¸¸ãªå€¤ã‹ã©ã†ã‹
 		return (w > 0 && h > 0 && pitch != 0);
 	}
 
-	// “Ç‚İ‚İ—p
+	// èª­ã¿è¾¼ã¿ç”¨
 	static bool GetLayerBufferAndSize(iTJSDispatch2 *lay, long &w, long &h, BufRefT &ptr, long &pitch)
 	{
 		if (!GetLayerSize(lay, w, h, pitch)) return false;
 
-		// ƒoƒbƒtƒ@æ“¾
+		// ãƒãƒƒãƒ•ã‚¡å–å¾—
 		tTJSVariant val;
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBuffer"), 0, &val, lay))) return false;
 		ptr = reinterpret_cast<BufRefT>(val.AsInteger());
 		return  (ptr != 0);
 	}
 
-	// ‘‚«‚İ—p
+	// æ›¸ãè¾¼ã¿ç”¨
 	static bool GetLayerBufferAndSize(iTJSDispatch2 *lay, long &w, long &h, WrtRefT &ptr, long &pitch)
 	{
 		if (!GetLayerSize(lay, w, h, pitch)) return false;
 
-		// ƒoƒbƒtƒ@æ“¾
+		// ãƒãƒƒãƒ•ã‚¡å–å¾—
 		tTJSVariant val;
 		if (TJS_FAILED(lay->PropGet(0, TJS_W("mainImageBufferForWrite"), 0, &val, lay))) return false;
 		ptr = reinterpret_cast<WrtRefT>(val.AsInteger());
@@ -110,7 +110,7 @@ struct ShrinkCopy : public LayerUtils
 		if (sw <= 0|| sh <= 0 || dw <= 0 || dh <= 0 ||
 			sw < (long)dw || sh < (long)dh) return false;
 
-		// ƒTƒCƒYæ“¾
+		// ã‚µã‚¤ã‚ºå–å¾—
 		if (!GetLayerBufferAndSize(src, siw, sih, ps, spch) ||
 			!GetLayerBufferAndSize(dst, diw, dih, pd, dpch)) return false;
 
@@ -126,7 +126,7 @@ struct ShrinkCopy : public LayerUtils
 		real dcut;
 		long scut;
 
-		// srcƒNƒŠƒbƒsƒ“ƒO
+		// srcã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		if (sx  + sw <= 0 || sy  + sh <= 0 ||
 			sx >= siw     || sy >= sih) return false;
 
@@ -145,7 +145,7 @@ struct ShrinkCopy : public LayerUtils
 		if ((scut = sx + sw - siw) > 0) (sw -= scut), (dw -= zx * (real)(scut));
 		if ((scut = sy + sh - sih) > 0) (sh -= scut), (dh -= zy * (real)(scut));
 
-		// dst‚Ì®”ˆÊ’u
+		// dstã®æ•´æ•°ä½ç½®
 		dtx = RtoL(dx);
 		dty = RtoL(dy);
 		dtw = RtoL(dx + dw) - dtx;
@@ -153,18 +153,18 @@ struct ShrinkCopy : public LayerUtils
 		if ((dx + dw) > (real)(dtx + dtw)) dtw++;
 		if ((dy + dh) > (real)(dty + dth)) dth++;
 
-		// dstƒNƒŠƒbƒsƒ“ƒO
+		// dstã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		if (dtx  + dtw <= 0 || dty  + dth <= 0 ||
 			dtx >= diw      || dty >= dih) return false;
 
-		// dstƒNƒŠƒbƒsƒ“ƒO”ÍˆÍ
+		// dstã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ç¯„å›²
 		dsx = (dtx < 0) ? -dtx : 0;
 		dsy = (dty < 0) ? -dty : 0;
 		dex = (dtx+dtw > diw) ? (diw-dtx) : dtw;
 		dey = (dty+dth > dih) ? (dih-dty) : dth;
 
 #if 0
-		// ƒfƒoƒbƒO—p
+		// ãƒ‡ãƒãƒƒã‚°ç”¨
 		tjs_char tmp[64];
 		TVPAddLog(ttstr(TJS_W("shrinkInfo: dtx="))
 				  + ttstr(TJS_int_to_str(dtx, tmp)).c_str() + TJS_W(", dty=") +
@@ -189,7 +189,7 @@ struct ShrinkCopy : public LayerUtils
 		void *buf = allocAvgBuffer(horz, vert, dex-dsx, dey-dsy);
 		if (!horz || !vert) return;
 
-		// c‰¡•Ê‚É•½‹Ï‰»ƒe[ƒuƒ‹ì¬
+		// ç¸¦æ¨ªåˆ¥ã«å¹³å‡åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 		AvgT hu = makeAvgTable(horz, true);
 		AvgT vu = makeAvgTable(vert, false);
 		AvgT unit = hu * vu;
@@ -206,15 +206,15 @@ struct ShrinkCopy : public LayerUtils
 				const int h = vi->step;
 				const int ox = w << 2;
 				const int oy = h * spch;
-				addPoint(sum, r- 4-spch,       hi->ta * vi->ta,  hi->tc * vi->tc); // ¶ã
-				addHorz (sum, r   -spch, w,    hu     * vi->ta,  hu     * vi->tc); //   ã
-				addPoint(sum, r+ox-spch,       hi->ba * vi->ta,  hi->bc * vi->tc); // ‰Eã
-				addVert (sum, r- 4,         h, hi->ta * vu,      hi->tc * vu    ); // ¶
-				addRect (sum, r,         w, h, unit                             ); // ’†‰›
-				addVert (sum, r+ox,         h, hi->ba * vu,      hi->bc * vu    ); // ‰E
-				addPoint(sum, r- 4+oy,         hi->ta * vi->ba,  hi->tc * vi->bc); // ¶‰º
-				addHorz (sum, r   +oy,   w,    hu     * vi->ba,  hu     * vi->bc); //   ‰º
-				addPoint(sum, r+ox+oy,         hi->ba * vi->ba,  hi->bc * vi->bc); // ‰E‰º
+				addPoint(sum, r- 4-spch,       hi->ta * vi->ta,  hi->tc * vi->tc); // å·¦ä¸Š
+				addHorz (sum, r   -spch, w,    hu     * vi->ta,  hu     * vi->tc); //   ä¸Š
+				addPoint(sum, r+ox-spch,       hi->ba * vi->ta,  hi->bc * vi->tc); // å³ä¸Š
+				addVert (sum, r- 4,         h, hi->ta * vu,      hi->tc * vu    ); // å·¦
+				addRect (sum, r,         w, h, unit                             ); // ä¸­å¤®
+				addVert (sum, r+ox,         h, hi->ba * vu,      hi->bc * vu    ); // å³
+				addPoint(sum, r- 4+oy,         hi->ta * vi->ba,  hi->tc * vi->bc); // å·¦ä¸‹
+				addHorz (sum, r   +oy,   w,    hu     * vi->ba,  hu     * vi->bc); //   ä¸‹
+				addPoint(sum, r+ox+oy,         hi->ba * vi->ba,  hi->bc * vi->bc); // å³ä¸‹
 				AvgT div = hi->total * vi->total;
 				p[0] = (uchar)(sum.r / div);
 				p[1] = (uchar)(sum.g / div);
@@ -250,14 +250,14 @@ struct ShrinkCopy : public LayerUtils
 			work.stop  = sy;
 			work.ofmul = spch;
 		}
-		work.unit = 256; // 1dot‚Ì‰ğ‘œ“x
+		work.unit = 256; // 1dotã®è§£åƒåº¦
 		if (work.ratio <= 1.0/16) {
-			// 1/16ˆÈ‰º‚ÅŒ…‚ ‚Ó‚ê‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚Åunit‚ğ¬‚³‚­‚·‚é
+			// 1/16ä»¥ä¸‹ã§æ¡ã‚ãµã‚Œã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§unitã‚’å°ã•ãã™ã‚‹
 			work.unit /= (int)((2.0/16.0)/work.ratio);
 			if (work.unit <= 0) work.unit = 1;
 		}
 		if (pos == end) {
-			// k¬•‚ª‚Pƒhƒbƒg‚Ìê‡
+			// ç¸®å°å¹…ãŒï¼‘ãƒ‰ãƒƒãƒˆã®å ´åˆ
 			setAvgInfoEdge(work, tbl,   pos);
 		} else {
 			setAvgInfoEdge(work, tbl++, pos++);
@@ -267,7 +267,7 @@ struct ShrinkCopy : public LayerUtils
 		}
 		return work.unit;
 	}
-	// AvgInfoİ’è(’[ˆÈŠO:ta==tc,ba==bc)
+	// AvgInfoè¨­å®š(ç«¯ä»¥å¤–:ta==tc,ba==bc)
 	inline void setAvgInfo(MakeAvgWorkT const &wk, AvgInfoT *tbl, long pos) {
 		AvgT const unit = wk.unit;
 		real r1, r2;
@@ -280,7 +280,7 @@ struct ShrinkCopy : public LayerUtils
 			(tbl->ba = tbl->bc = (       RtoL((r2 - (real)t2) * unit))) +
 			(tbl->step = t2-t1-1) * unit);
 	}
-	// AvgInfoİ’è(’[—áŠO:ta!=tc,ba!=bc)
+	// AvgInfoè¨­å®š(ç«¯ä¾‹å¤–:ta!=tc,ba!=bc)
 	inline void setAvgInfoEdge(MakeAvgWorkT const &wk, AvgInfoT *tbl, long pos) {
 		AvgT const unit = wk.unit;
 		real r1, r2, f1, f2;
@@ -446,7 +446,7 @@ struct LimitedShrink : public LayerUtils
 		case 2:
 		case 3:
 		case 4:
-			/* ê—pˆ—‚ğ‘‚­ */
+			/* å°‚ç”¨å‡¦ç†ã‚’æ›¸ã */
 		default:
 			for (PixelT sr, sg, sb; len > 0; len--, r+=step) {
 				sr = sg = sb = 0;

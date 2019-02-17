@@ -1,56 +1,56 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 
 class SimpleHTTPServer {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param port    g—p‚·‚éƒ|[ƒg”Ô†i0‚Å©“®Š„‚è“–‚Äj
-	 * @param timeout onRequestƒR[ƒ‹ƒoƒbƒN‚Ìƒ^ƒCƒ€ƒAƒEƒgŠÔ(sec)
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param port    ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ãƒˆç•ªå·ï¼ˆ0ã§è‡ªå‹•å‰²ã‚Šå½“ã¦ï¼‰
+	 * @param timeout onRequestã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(sec)
 	 */
 	function SimpleHTTPServer(port = 0, timeout = 10, codepage);
 
 	property port { getter; }
 	property timeout { getter; }
-	// ƒZƒbƒVƒ‡ƒ“–ˆ‚ÌƒR[ƒhƒy[ƒW•ÏX‚ª‚Å‚«‚È‚¢‚Ì‚Å“r’†•ÏX‚Í„§‚³‚ê‚È‚¢
+	// ã‚»ãƒƒã‚·ãƒ§ãƒ³æ¯ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸å¤‰æ›´ãŒã§ããªã„ã®ã§é€”ä¸­å¤‰æ›´ã¯æ¨å¥¨ã•ã‚Œãªã„
 	property codepage { getter; setter; }
 
 	/**
-	 * ƒT[ƒrƒXŠJn
-	 * @return ƒ|[ƒg”Ô†
+	 * ã‚µãƒ¼ãƒ“ã‚¹é–‹å§‹
+	 * @return ãƒãƒ¼ãƒˆç•ªå·
 	 */
 	function start();
 
 	/**
-	 * ƒT[ƒrƒX’â~
+	 * ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢
 	 */
 	function start();
 
 	/**
-	 * ƒŠƒNƒGƒXƒgˆ—iƒCƒxƒ“ƒgj
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†ï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰
 	 * @param request = %[
-	 *     method:  ƒƒ\ƒbƒh‚Ìí—ŞiGET/POST/...j
-	 *     path:    ƒŠƒNƒGƒXƒgƒpƒX
-	 *     request: ¶ƒŠƒNƒGƒXƒgi%xx–¢ƒfƒR[ƒhC?ˆÈ~‚àŠÜ‚Şj
-	 *     header:  %[ ƒŠƒNƒGƒXƒgƒwƒbƒ_iƒuƒ‰ƒEƒU‚Ìî•ñ“™j ]
-	 *     form:    %[ ƒtƒH[ƒ€ƒf[ƒ^ ]
+	 *     method:  ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¨®é¡ï¼ˆGET/POST/...ï¼‰
+	 *     path:    ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ã‚¹
+	 *     request: ç”Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼ˆ%xxæœªãƒ‡ã‚³ãƒ¼ãƒ‰ï¼Œ?ä»¥é™ã‚‚å«ã‚€ï¼‰
+	 *     header:  %[ ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ï¼ˆãƒ–ãƒ©ã‚¦ã‚¶ã®æƒ…å ±ç­‰ï¼‰ ]
+	 *     form:    %[ ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ ]
 	 *         ];
 	 * @return response = %[
-	 *     status:ƒXƒe[ƒ^ƒXƒR[ƒhiÈ—ª‰Â”\CƒGƒ‰[‚ª–³‚¯‚ê‚Î©“®‚Å200j
-	 *     content_type: Content-Type–¼
-	 *     error_type:ƒGƒ‰[‚Ìí—Şitext/file/binary‚ª–³‚¢ê‡‚É—LŒøj
-	 *     error_desc:ƒGƒ‰[‚Ìà–¾itext/file/binary‚ª–³‚¢ê‡‚É—LŒøj
-	 *     redirect: ƒŠƒ_ƒCƒŒƒNƒg‚·‚éê‡‚ÌURIiÈ—ª‰Â”\j
+	 *     status:ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ï¼ˆçœç•¥å¯èƒ½ï¼Œã‚¨ãƒ©ãƒ¼ãŒç„¡ã‘ã‚Œã°è‡ªå‹•ã§200ï¼‰
+	 *     content_type: Content-Typeå
+	 *     error_type:ã‚¨ãƒ©ãƒ¼ã®ç¨®é¡ï¼ˆtext/file/binaryãŒç„¡ã„å ´åˆã«æœ‰åŠ¹ï¼‰
+	 *     error_desc:ã‚¨ãƒ©ãƒ¼ã®èª¬æ˜ï¼ˆtext/file/binaryãŒç„¡ã„å ´åˆã«æœ‰åŠ¹ï¼‰
+	 *     redirect: ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã™ã‚‹å ´åˆã®URIï¼ˆçœç•¥å¯èƒ½ï¼‰
 	 *
-	 *   ˆÈ‰º‚Í”r‘¼i‚Ç‚ê‚©‚Ğ‚Æ‚ÂCã‚©‚ç—Dæj
-	 *     text:•Ô‚·ƒeƒLƒXƒgicodepage‚Å©“®ƒGƒ“ƒR[ƒh‚³‚ê‚éj
-	 *     file:•Ô‚·ƒtƒ@ƒCƒ‹
-	 *     binary:•Ô‚·ƒoƒCƒiƒŠiArray‚Ü‚½‚ÍOctetj
+	 *   ä»¥ä¸‹ã¯æ’ä»–ï¼ˆã©ã‚Œã‹ã²ã¨ã¤ï¼Œä¸Šã‹ã‚‰å„ªå…ˆï¼‰
+	 *     text:è¿”ã™ãƒ†ã‚­ã‚¹ãƒˆï¼ˆcodepageã§è‡ªå‹•ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚Œã‚‹ï¼‰
+	 *     file:è¿”ã™ãƒ•ã‚¡ã‚¤ãƒ«
+	 *     binary:è¿”ã™ãƒã‚¤ãƒŠãƒªï¼ˆArrayã¾ãŸã¯Octetï¼‰
 	 *         ];
 	 */
 	function onRequest();
 
-	// ƒR[ƒhƒy[ƒWistatic valuej
+	// ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ï¼ˆstatic valueï¼‰
 	const cpACP  = CP_ACP;
 	const cpOEM  = CP_OEMCP;
 	const cpUTF8 = CP_UTF8;

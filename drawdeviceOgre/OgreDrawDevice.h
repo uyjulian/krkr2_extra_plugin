@@ -8,22 +8,22 @@ using namespace std;
 #include "BasicDrawDevice.h"
 
 /**
- * Ogre �x�[�X�� DrawDevice
+ * Ogre ベースの DrawDevice
  */
 class tTVPOgreDrawDevice : public tTVPDrawDevice
 {
 	typedef tTVPDrawDevice inherited;
 
-	/// OGRE �֌W���
+	/// OGRE 関係情報
 	OgreInfo *ogreInfo;
 	string windowName;
 	RenderWindow* _renderWindow;
 	SceneManager* _sceneManager;
 	
 public:
-	tTVPOgreDrawDevice(OgreInfo *info); //!< �R���X�g���N�^
+	tTVPOgreDrawDevice(OgreInfo *info); //!< コンストラクタ
 private:
-	virtual ~tTVPOgreDrawDevice(); //!< �f�X�g���N�^
+	virtual ~tTVPOgreDrawDevice(); //!< デストラクタ
 
 	void attach(HWND hwnd);
 	void detach();
@@ -38,10 +38,10 @@ private:
 	
 public:
 
-	//---- �`��ʒu�E�T�C�Y�֘A
+	//---- 描画位置・サイズ関連
 	virtual void TJS_INTF_METHOD SetTargetWindow(HWND wnd);
 
-	//---- LayerManager ����̉摜�󂯓n���֘A
+	//---- LayerManager からの画像受け渡し関連
 	virtual void TJS_INTF_METHOD StartBitmapCompletion(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD NotifyBitmapCompleted(iTVPLayerManager * manager,
 		tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
@@ -50,7 +50,7 @@ public:
 
 	//---------------------------------------------------------------------------
 
-	// �e�X�g�p����
+	// テスト用処理
 	void init();
 };
 

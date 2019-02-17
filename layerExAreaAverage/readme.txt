@@ -1,14 +1,14 @@
 Title : layerExAreaAverage plugin
 Auther: kiyobee
 
-������͂ȂɁH
+●これはなに？
 
-Layer �N���X�ɁA�ʐϕ��ϖ@�ɂ��k�����߂�ǉ�����v���O�C���ł��B
+Layer クラスに、面積平均法による縮小命令を追加するプラグインです。
 
-���g����
+●使い方
 
-manual.tjs ���Q�Ƃ̂��ƁB
+manual.tjs を参照のこと。
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

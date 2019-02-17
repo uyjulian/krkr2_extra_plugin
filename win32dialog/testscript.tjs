@@ -55,16 +55,16 @@ class MyDialog extends WIN32DialogEX {
 	cy:100,
 	//menu:"",
 	//windowClass:"",
-	title:"ƒeƒXƒgƒ_ƒCƒAƒƒOiƒeƒ“ƒvƒŒ[ƒg”Åj",
+	title:"ãƒ†ã‚¹ãƒˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°ï¼ˆãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆç‰ˆï¼‰",
 	pointSize: 12,
 	weight: FW_NORMAL,
 	italic: false,
-	typeFace:"‚l‚r ‚oƒSƒVƒbƒN",
+	typeFace:"ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯",
 	items :
 		[
-			GroupBox("ƒOƒ‹[ƒv",,  0, 0, 100, 100),
+			GroupBox("ã‚°ãƒ«ãƒ¼ãƒ—",,  0, 0, 100, 100),
 			Control("text", ID_COMCTL, TRACKBAR, WS_VISIBLE, 10, 8, 80, 10),
-			PushButton("ƒ{ƒ^ƒ“‚P", ID_BTN, 10, 20, 80, 10),
+			PushButton("ãƒœã‚¿ãƒ³ï¼‘", ID_BTN, 10, 20, 80, 10),
 			EditText(              ID_EDT, 10, 30, 80, 10),
 			ListBox(               ID_LST, 10, 40, 80, 40),
 			ComboBox(              ID_CMB, 10, 80, 80, 80, CBS_DROPDOWNLIST|WS_VSCROLL|WS_TABSTOP),
@@ -74,26 +74,26 @@ class MyDialog extends WIN32DialogEX {
 		]
 	];
 
-	// ‰Šú‰»ƒpƒ‰ƒ[ƒ^«‘
-	// id : %[ params ]i’Pw’èj ‚Ü‚½‚Í id:[ %[ params1 ], ... %[ paramsN ] ]i‡˜w’èj ‚ÌŒ`®
+	// åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¾æ›¸
+	// id : %[ params ]ï¼ˆå˜æŒ‡å®šï¼‰ ã¾ãŸã¯ id:[ %[ params1 ], ... %[ paramsN ] ]ï¼ˆé †åºæŒ‡å®šï¼‰ ã®å½¢å¼
 	var initParams = %[
 
-		ID_CMB => [ // list -> select ‚Ì‡‚Éİ’è‚·‚é‚Ì‚Å”z—ñ‚Å‡˜‚ğ‹K’è‚µ‚Ä“n‚·
+		ID_CMB => [ // list -> select ã®é †ã«è¨­å®šã™ã‚‹ã®ã§é…åˆ—ã§é †åºã‚’è¦å®šã—ã¦æ¸¡ã™
 			%[  setComboBoxTexts: [
-				"‚»‚Ì‚¢‚¿",
-				"‚»‚Ì‚É",
-				"‚»‚Ì‚³‚ñ",
-				"‚»‚Ì‚æ‚ñ" ]
+				"ãã®ã„ã¡",
+				"ãã®ã«",
+				"ãã®ã•ã‚“",
+				"ãã®ã‚ˆã‚“" ]
 				],
 			%[  selectComboBox: 0 ],
 			],
 
 		ID_LST =>
 		%[  setListBoxTexts: [
-			"‚»‚Ì‚¢‚¿",
-			"‚»‚Ì‚É",
-			"‚»‚Ì‚³‚ñ",
-			"‚»‚Ì‚æ‚ñ" ],
+			"ãã®ã„ã¡",
+			"ãã®ã«",
+			"ãã®ã•ã‚“",
+			"ãã®ã‚ˆã‚“" ],
 			],
 		];
 	
@@ -101,14 +101,14 @@ class MyDialog extends WIN32DialogEX {
 		super.WIN32DialogEX();
 
 		if (isRes) {
-			// ƒŠƒ\[ƒX“Ç‚İ‚İ
+			// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 			loadResource("testres.dll", "TEST_DIALOG");
-			// ‰Šú‰»ƒpƒ‰ƒ[ƒ^‚ğİ’èiitemMap‹­§İ’èj
+			// åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆitemMapå¼·åˆ¶è¨­å®šï¼‰
 			setInitParams(initParams, true);
 		} else {
-			// ƒeƒ“ƒvƒŒ[ƒg¶¬
+			// ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆç”Ÿæˆ
 			store(template);
-			// ‰Šú‰»ƒpƒ‰ƒ[ƒ^‚ğİ’è
+			// åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
 			setInitParams(initParams);
 		}
 		icon = isRes ? null : new global.WIN32Dialog.Bitmap(global.bitmapLayer);
@@ -120,7 +120,7 @@ class MyDialog extends WIN32DialogEX {
 		setItemBitmap(ID_BITMAP, global.bitmapLayer);
 	}
 
-	// ƒfƒoƒO—p
+	// ãƒ‡ãƒã‚°ç”¨
 	function onCommand(msg, wp, lp) {
 		dm("onCommand", *);
 		return super.onCommand(...);
@@ -143,7 +143,7 @@ class        TabTestDialog extends MyDialog {
 		with (template.items) {
 			.clear();
 			.add(Control("Hoge", ID_TABS, TABCONTROL, TCS_TABS, 0, 0, 100, 100, 0));
-			//.add(PushButton("ƒ{ƒ^ƒ“‚P", ID_BTN, 10, 20, 80, 10));
+			//.add(PushButton("ãƒœã‚¿ãƒ³ï¼‘", ID_BTN, 10, 20, 80, 10));
 		}
 		super.MyDialog(...);
 	}
@@ -187,13 +187,13 @@ function testModeless(win, flg) {
 	modelessDialogs[dlg] = dlg;
 	dlg.modeless = true;
 	dlg.open(win);
-	dlg.show(WIN32Dialog.SW_SHOW); // style ‚É WS_VISIBLE ‚ª‚È‚¢ê‡‚Í©“®‚Å•\¦‚³‚ê‚È‚¢
+	dlg.show(WIN32Dialog.SW_SHOW); // style ã« WS_VISIBLE ãŒãªã„å ´åˆã¯è‡ªå‹•ã§è¡¨ç¤ºã•ã‚Œãªã„
 }
 
 //Debug.controller.visible=true;
 Debug.console.visible=true;
 
-// ƒRƒ‚ƒ“ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+// ã‚³ãƒ¢ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
 WIN32Dialog.initCommonControls();
 
 var palette = [];
@@ -215,7 +215,7 @@ with (win) {
 	add(createMenuItem(win, "ModeLess::LoadRes",  function{ testModeless(win, 1); }));
 	add(createMenuItem(win, "-"));
 	add(createMenuItem(win, "MessageBoxTest",     function{
-		with (WIN32Dialog) dm(.messageBox(global.win, "ƒeƒLƒXƒg", "ƒLƒƒƒvƒVƒ‡ƒ“", .MB_OKCANCEL|.MB_ICONEXCLAMATION|.MB_OWNER_CENTER) == .IDOK);
+		with (WIN32Dialog) dm(.messageBox(global.win, "ãƒ†ã‚­ã‚¹ãƒˆ", "ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³", .MB_OKCANCEL|.MB_ICONEXCLAMATION|.MB_OWNER_CENTER) == .IDOK);
 	}));
 	add(createMenuItem(win, "ChooseColorTest",    function{
 		with (WIN32Dialog) dm(.chooseColor(global.win, %[

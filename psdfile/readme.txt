@@ -1,62 +1,62 @@
 Title: psd plugin
-Author: �킽�Ȃׂ����A��[��
+Author: わたなべごう、ゆーき
 
-������͂ȂɁH
+●これはなに？
 
-PSD�𑀍삷��N���X�ł�
+PSDを操作するクラスです
 
-���r���h�ɂ���
+●ビルドについて
 
-�{�v���O�C���ł́A�r���h��boost C++ ���C�u������K�v�Ƃ��܂��B
-�ȉ����擾���ă��C�u�������r���h���AVisualStudio��
-�C���N���[�h�ƃ��C�u�����̃p�X��ݒ肵�Ă����Ă��������B
+本プラグインでは、ビルドにboost C++ ライブラリを必要とします。
+以下より取得してライブラリをビルドし、VisualStudioに
+インクルードとライブラリのパスを設定しておいてください。
 
 http://www.boost.org/
 
-�Ȃ��Aiostreams::mapped_file_source���g�p���Ă��邽�߁A�w�b�_�����ł͂Ȃ�
-�r���h������Ԃ�boost���K�v�ł��B
+なお、iostreams::mapped_file_sourceを使用しているため、ヘッダだけではなく
+ビルドした状態のboostが必要です。
 
-�܂��r���h����ۂ́A�Ȃ�ׂ�VS2012�ȍ~���g�p���邱�Ƃ��������߂��܂��B
+またビルドする際は、なるべくVS2012以降を使用することをおすすめします。
 
-WindowsXP�ł����삷��悤�ɂ��邽�߂ɂ́A�ȉ���URL���Q�l�� VS2012��Update�𓱓����ĉ������B
+WindowsXPでも動作するようにするためには、以下のURLを参考に VS2012のUpdateを導入して下さい。
 http://blogs.msdn.com/b/jpvsblog/archive/2013/04/17/visual-studio-2012-windows-xp-visual-c.aspx
 
-���g����
+●使い方
 
-�ڍׂ� manual.tjs �Q��
+詳細は manual.tjs 参照
 
-�E�摜�`���ɂ���
-���݁A�}���`�`�����l���ADuoTone�ALab�ȊO�̌`���̓ǂݍ��݂ɑΉ����Ă��܂����A
-�ꕔ�̌`���ɂ��Ă͊ȈՓI�Ȃ��̂Ȃ̂Œ��ӂ��Ă��������B
+・画像形式について
+現在、マルチチャンネル、DuoTone、Lab以外の形式の読み込みに対応していますが、
+一部の形式については簡易的なものなので注意してください。
 
-  �v���t�@�C���ɑΉ����Ă��Ȃ����߁A�ȉ��̃t�@�C���ɂ��ẮA
-  Photoshop�ł̉�ʕ\���Ƃ͐F���قȂ�܂��B
+  プロファイルに対応していないため、以下のファイルについては、
+  Photoshopでの画面表示とは色が異なります。
 
-	CMYK(16/32bpp)�ARGB(32bpp)
+	CMYK(16/32bpp)、RGB(32bpp)
 
-  �ȉ��̃��[�h�ł̓��C�������݂��Ȃ����߁A�摜�f�[�^�̎擾�ɂ�
-  getBlend() ���g�p���Ă�������
+  以下のモードではレイヤが存在しないため、画像データの取得には
+  getBlend() を使用してください
 
-	2�l�r�b�g�}�b�v�A�C���f�b�N�X�J���[
+	2値ビットマップ、インデックスカラー
 
-�E�}�X�N�ɂ���
-���C���}�X�N�����݂���ꍇ�́A�摜�ǂݍ��ݎ��ɃA���t�@�`���l����
-�}�X�N�����J�荞��ł��܂��B
-���̂Ƃ���v���O�C������̓}�X�N�摜��Ɨ����Ď��o�����@�͂���܂���B
-�܂��N���b�s���O�}�X�N�ɂ͑Ή����Ă��܂���B
+・マスクについて
+レイヤマスクが存在する場合は、画像読み込み時にアルファチャネルに
+マスク情報を繰り込んでいます。
+今のところプラグインからはマスク画像を独立して取り出す方法はありません。
+またクリッピングマスクには対応していません。
 
-�EPSD���C���t�@�C���V�X�e��
+・PSDレイヤファイルシステム
 
-�ȉ��̃p�X����PSD�t�@�C���̃��C���摜�𒼐ڃt�@�C���Ƃ��ă��[�h�ł��܂�
+以下のパス名でPSDファイルのレイヤ画像を直接ファイルとしてロードできます
 
-psd://PSD�t�@�C����/root/�t�H���_��/.../���C����.bmp
-psd://PSD�t�@�C����/id/���C��ID.bmp
+psd://PSDファイル名/root/フォルダ名/.../レイヤ名.bmp
+psd://PSDファイル名/id/レイヤID.bmp
 
-�EPSD�t�@�C�����̓x�[�X���݂̂ŏ������Ő��K������܂�
-�E�t�H���_���A���C�����͑S�ď������Ő��K������Ċ܂܂��"/" �� "_" �ɒu������܂�
-�E���O���d������ꍇ�͌�ɂ�����̂��D��ɂȂ�܂�
+・PSDファイル名はベース名のみで小文字で正規化されます
+・フォルダ名、レイヤ名は全て小文字で正規化されて含まれる"/" は "_" に置換されます
+・名前が重複する場合は後にあるものが優先になります
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
-(zlib����������)
+このプラグインのライセンスは吉里吉里本体に準拠してください。
+(zlib部分を除く)

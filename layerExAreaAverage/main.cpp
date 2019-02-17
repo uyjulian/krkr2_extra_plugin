@@ -6,9 +6,9 @@ typedef tjs_int	fixdot;
 #define	INT2FIXDOT(a)	(fixdot)((a) << DOTBASE)
 #define	REAL2FIXDOT(a)	(fixdot)((a) * INT2FIXDOT(1))
 #define	FIXDOT2INT(a)	((a) >> DOTBASE)
-//	«Œ‹‰Ê‚Ífixdot
+//	â†“çµæœã¯fixdot
 #define	MULFIXDOT(a, b)	(((a) * (b)) >> DOTBASE)
-//	«Œ‹‰Ê‚Íint
+//	â†“çµæœã¯int
 #define	DIVFIXDOT(a, b)	((a) / (b))
 #define	ROUNDFIXDOT(a)	FIXDOT2INT((a) + REAL2FIXDOT(0.5))
 
@@ -21,9 +21,9 @@ struct layerExAreaAverage
 	{
 		if(numparams < 9) return TJS_E_BADPARAMCOUNT;
 
-		tjs_uint64	tick = TVPGetTickCount();	//	ŠJn
+		tjs_uint64	tick = TVPGetTickCount();	//	é–‹å§‹æ™‚åˆ»
 
-		//	“]‘—æƒŒƒCƒ„[‚Ìî•ñ‚ğæ“¾
+		//	è»¢é€å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æƒ…å ±ã‚’å–å¾—
 		tjs_int	dImageWidth, dImageHeight, dPitch;
 		tjs_uint8 * dBuffer;
 		tTJSVariant	val;
@@ -36,14 +36,14 @@ struct layerExAreaAverage
 		objthis->PropGet(0, L"mainImageBufferForWrite", NULL, &val, objthis);
 		dBuffer = (tjs_uint8*)(tjs_int)val;
 
-		//	“]‘—æ‚ÌˆÊ’uAƒTƒCƒY‚ğæ“¾
+		//	è»¢é€å…ˆã®ä½ç½®ã€ã‚µã‚¤ã‚ºã‚’å–å¾—
 		tjs_int dLeft, dTop, dWidth, dHeight;
 		dLeft	= param[0]->AsInteger();
 		dTop	= param[1]->AsInteger();
 		dWidth	= param[2]->AsInteger();
 		dHeight	= param[3]->AsInteger();
 
-		//	“]‘—Œ³ƒŒƒCƒ„[‚Ìî•ñ‚ğæ“¾
+		//	è»¢é€å…ƒãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æƒ…å ±ã‚’å–å¾—
 		tjs_int sImageWidth, sImageHeight, sPitch;
 		tjs_uint8 * sBuffer;
 		iTJSDispatch2* srcobj	= param[4]->AsObjectNoAddRef();
@@ -56,21 +56,21 @@ struct layerExAreaAverage
 		srcobj->PropGet(0, L"mainImageBuffer", NULL, &val, srcobj);
 		sBuffer = (tjs_uint8*)(tjs_int)val;
 
-		//	“]‘—Œ³‚ÌˆÊ’uAƒTƒCƒY‚ğæ“¾
+		//	è»¢é€å…ƒã®ä½ç½®ã€ã‚µã‚¤ã‚ºã‚’å–å¾—
 		tjs_int sLeft, sTop, sWidth, sHeight;
 		sLeft	= param[5]->AsInteger();
 		sTop	= param[6]->AsInteger();
 		sWidth	= param[7]->AsInteger();
 		sHeight	= param[8]->AsInteger();
 
-		//	Šg‘åˆ—‚Ís‚È‚¦‚Ü‚¹‚ñ
+		//	æ‹¡å¤§å‡¦ç†ã¯è¡Œãªãˆã¾ã›ã‚“
 		if(dWidth > sWidth || dHeight > sHeight)
 		{
-			TVPThrowExceptionMessage(L"stretchCopyAA ‚ÍŠg‘åˆ—‚ğs‚È‚¦‚Ü‚¹‚ñB");
+			TVPThrowExceptionMessage(L"stretchCopyAA ã¯æ‹¡å¤§å‡¦ç†ã‚’è¡Œãªãˆã¾ã›ã‚“ã€‚");
 			return TJS_E_FAIL;
 		}
 
-		//	ƒNƒŠƒbƒsƒ“ƒO
+		//	ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		if(dLeft + dWidth > dImageWidth)
 		{
 			tjs_int	dw	= dImageWidth - dLeft;
@@ -107,13 +107,13 @@ struct layerExAreaAverage
 			outpixel	+= dLeft;
 			for(tjs_int x=0; x<dWidth; x++)
 			{
-				//	k¬Œã‰æ‘œ‚Ì(x, y)À•W‚É‘Î‰‚·‚é—Ìˆæ
+				//	ç¸®å°å¾Œç”»åƒã®(x, y)åº§æ¨™ã«å¯¾å¿œã™ã‚‹é ˜åŸŸ
 				fixdot		x1	= sl + x * rw;	//	int * fixdot = fixdot
 				fixdot		y1	= st + y * rh;
 				fixdot		x2	= x1 + rw;
 				fixdot		y2	= y1 + rh;
 
-				//	®”—Ìˆæ‚ÉŠ„‚è“–‚Ä
+				//	æ•´æ•°é ˜åŸŸã«å‰²ã‚Šå½“ã¦
 				tjs_int		sx	= FIXDOT2INT(x1);
 				tjs_int		sy	= FIXDOT2INT(y1);
 				tjs_int		ex	= FIXDOT2INT(x2 + INT2FIXDOT(1) - 1);
@@ -131,22 +131,22 @@ struct layerExAreaAverage
 
 					fixdot		e1	= INT2FIXDOT(ay);
 					fixdot		e2	= INT2FIXDOT(ay + 1);
-					if(e1 < y1)	e1	= y1;	//	ã’[
-					if(e2 > y2)	e2	= y2;	//	‰º’[
+					if(e1 < y1)	e1	= y1;	//	ä¸Šç«¯
+					if(e2 > y2)	e2	= y2;	//	ä¸‹ç«¯
 					fixdot		ah	= e2 - e1;
 					for(tjs_int ax=sx; ax<ex; ax++)
 					{
 						e1	= INT2FIXDOT(ax);
 						e2	= INT2FIXDOT(ax + 1);
-						if(e1 < x1)	e1	= x1;	//	¶’[
-						if(e2 > x2)	e2	= x2;	//	‰E’[
+						if(e1 < x1)	e1	= x1;	//	å·¦ç«¯
+						if(e2 > x2)	e2	= x2;	//	å³ç«¯
 						fixdot		aw	= e2 - e1;
 						fixdot		area	= MULFIXDOT(aw, ah);
 						totalarea_a	+= area;
 						tjs_uint32	alpha = (*inpixel >> 24) & 0xFF;
 						a	+= alpha * area;
                         if (alpha > 0) {
-                          area	= (area * alpha) >> 8;	// ƒ¿’l‚ª’á‚¢ƒsƒNƒZƒ‹‚ÍAF‚Ö‚Ì‰e‹¿‚ğ¬‚³‚­‚·‚é
+                          area	= (area * alpha) >> 8;	// Î±å€¤ãŒä½ã„ãƒ”ã‚¯ã‚»ãƒ«ã¯ã€è‰²ã¸ã®å½±éŸ¿ã‚’å°ã•ãã™ã‚‹
                           r	+= ((*inpixel >> 16) & 0xFF) * area;
                           g	+= ((*inpixel >>  8) & 0xFF) * area;
                           b	+= ((*inpixel      ) & 0xFF) * area;
@@ -163,7 +163,7 @@ struct layerExAreaAverage
 
 				if(totalarea_a == 0) continue;
 
-				//	•½‹Ï’l‚ğŒvZ‚µAİ’è
+				//	å¹³å‡å€¤ã‚’è¨ˆç®—ã—ã€è¨­å®š
 				a	= DIVFIXDOT(a, totalarea_a);
                 if (totalarea_rgb == 0) {
                   totalarea_rgb = totalarea_trgb;
@@ -187,7 +187,7 @@ struct layerExAreaAverage
 			}
 		}
 
-		//	—Ìˆæ‚ğXV‚³‚¹‚é
+		//	é ˜åŸŸã‚’æ›´æ–°ã•ã›ã‚‹
 		{
 			tTJSVariant val[4];
 			tTJSVariant *pval[4] = { val, val +1, val +2, val +3 };

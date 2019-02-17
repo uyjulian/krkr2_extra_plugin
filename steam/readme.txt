@@ -1,41 +1,41 @@
-Title: Steam —pƒvƒ‰ƒOƒCƒ“
-Author: ‡Ž‘‰ïŽÐƒƒ€ƒ\ƒtƒg “nç²„
+Title: Steam ç”¨ãƒ—ãƒ©ã‚°ã‚¤ãƒ³
+Author: åˆè³‡ä¼šç¤¾ãƒ¯ãƒ ã‚½ãƒ•ãƒˆ æ¸¡é‚Šå‰›
 
-œ‚±‚ê‚Í‰½H
+â—ã“ã‚Œã¯ä½•ï¼Ÿ
 
-Steam ‘Î‰ž—p‚Ìƒvƒ‰ƒOƒCƒ“‚Å‚·
+Steam å¯¾å¿œç”¨ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™
 
-œƒtƒ@ƒCƒ‹‚ÆƒRƒ“ƒpƒCƒ‹‚É‚Â‚¢‚Ä
+â—ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«ã¤ã„ã¦
 
-Ž–‘O‚ÉŠÂ‹«•Ï” STEAMWORKS_SDK ‚É steamwork sdk ‚ÌƒpƒX‚ðÝ’è‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·
+äº‹å‰ã«ç’°å¢ƒå¤‰æ•° STEAMWORKS_SDK ã« steamwork sdk ã®ãƒ‘ã‚¹ã‚’è¨­å®šã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™
 
-readme.txt			‚±‚Ìƒtƒ@ƒCƒ‹
-manual.tjs			ƒvƒ‰ƒOƒCƒ“’Ç‰Áƒƒ\ƒbƒh—Þ‚Ìà–¾
+readme.txt			ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«
+manual.tjs			ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è¿½åŠ ãƒ¡ã‚½ãƒƒãƒ‰é¡žã®èª¬æ˜Ž
 
-premake4.lua			ƒvƒƒWƒFƒNƒg¶¬—p’è‹`ƒtƒ@ƒCƒ‹
+premake4.lua			ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆç”¨å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
 
 
-ƒRƒ“ƒpƒCƒ‹‚É‚Ípremake4‚ª•K—v‚Å‚·B( http://industriousone.com/premake )
-premake4.exe‚ÉƒpƒX‚ð’Ê‚µ‚½ƒRƒ}ƒ“ƒhƒ‰ƒCƒ““™‚©‚ç
+ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«ã¯premake4ãŒå¿…è¦ã§ã™ã€‚( http://industriousone.com/premake )
+premake4.exeã«ãƒ‘ã‚¹ã‚’é€šã—ãŸã‚³ãƒžãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ç­‰ã‹ã‚‰
 
-VS2012‚Ìê‡F
+VS2012ã®å ´åˆï¼š
 premake4 vs2012
 
-‚Æ‚·‚é‚ÆCvs2012 ƒtƒHƒ‹ƒ_‚ÉƒvƒƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚ª¶¬‚³‚ê‚é‚Ì‚Å
-‚»‚ê‚ðƒRƒ“ƒpƒCƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
+ã¨ã™ã‚‹ã¨ï¼Œvs2012 ãƒ•ã‚©ãƒ«ãƒ€ã«ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãŒç”Ÿæˆã•ã‚Œã‚‹ã®ã§
+ãã‚Œã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ãã ã•ã„ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-¦Steam ‚ÌƒI[ƒoƒŒƒC‚ÌXV•`‰æ‚ð“KØ‚És‚í‚¹‚é‚½‚ß‚É‚Í D3D ‚Å
-–ˆƒtƒŒ[ƒ€•`‰æ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-‚»‚¤‚¢‚¤Œ`‚Ì drawDevice ‚ð•Ê“rì¬‚·‚é‚©A‚ ‚é‚¢‚Í•W€‚Ì drawDevice ‚Å‚àAD3D ŒÅ’è‚É
-‚µ‚½ã‚Å continuous handler ‚Ì—Þ‚¢‚Å primary layer ‚ð update() ‚·‚ê‚Î
-“¯—l‚ÌŒø‰Ê‚ª“¾‚ç‚ê‚é‚ÆŽv‚í‚ê‚Ü‚·‚ª–¢ƒeƒXƒg‚Å‚·
+â€»Steam ã®ã‚ªãƒ¼ãƒãƒ¬ã‚¤ã®æ›´æ–°æç”»ã‚’é©åˆ‡ã«è¡Œã‚ã›ã‚‹ãŸã‚ã«ã¯ D3D ã§
+æ¯Žãƒ•ãƒ¬ãƒ¼ãƒ æç”»ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ãã†ã„ã†å½¢ã® drawDevice ã‚’åˆ¥é€”ä½œæˆã™ã‚‹ã‹ã€ã‚ã‚‹ã„ã¯æ¨™æº–ã® drawDevice ã§ã‚‚ã€D3D å›ºå®šã«
+ã—ãŸä¸Šã§ continuous handler ã®é¡žã„ã§ primary layer ã‚’ update() ã™ã‚Œã°
+åŒæ§˜ã®åŠ¹æžœãŒå¾—ã‚‰ã‚Œã‚‹ã¨æ€ã‚ã‚Œã¾ã™ãŒæœªãƒ†ã‚¹ãƒˆã§ã™
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
-“®ì‚É•K—v‚È Steam —p‚Ìƒ‰ƒ“ƒ^ƒCƒ€DLL‚É‚Â‚¢‚Ä‚Í Steam ‚Ì‹K–ñ‚É]‚Á‚Äˆµ‚Á‚Ä‰º‚³‚¢
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚
+å‹•ä½œã«å¿…è¦ãª Steam ç”¨ã®ãƒ©ãƒ³ã‚¿ã‚¤ãƒ DLLã«ã¤ã„ã¦ã¯ Steam ã®è¦ç´„ã«å¾“ã£ã¦æ‰±ã£ã¦ä¸‹ã•ã„
 

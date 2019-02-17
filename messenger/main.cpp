@@ -4,19 +4,19 @@
 #include <map>
 using namespace std;
 
-// ‹g—¢‹g—¢‚ÌƒEƒCƒ“ƒhƒEƒNƒ‰ƒX
+// å‰é‡Œå‰é‡Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹
 #define KRWINDOWCLASS _T("TTVPWindowForm")
 #define KZWINDOWCLASS _T("TVPMainWindow")
 #define KEYSIZE 256
 
 // -------------------------------------------------------------------
-// ƒAƒgƒ€ˆ—
+// ã‚¢ãƒˆãƒ å‡¦ç†
 // -------------------------------------------------------------------
 
-// Šm•Û‚µ‚½ƒAƒgƒ€î•ñ
+// ç¢ºä¿ã—ãŸã‚¢ãƒˆãƒ æƒ…å ±
 static map<ttstr,ATOM> *atoms = NULL;
 
-// –¼‘O‚©‚çƒVƒXƒeƒ€ƒOƒ[ƒoƒ‹ƒAƒgƒ€æ“¾
+// åå‰ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒˆãƒ å–å¾—
 static ATOM getAtom(const TCHAR *str)
 {
 	ttstr name(str);
@@ -29,7 +29,7 @@ static ATOM getAtom(const TCHAR *str)
 	return atom;
 }
 
-// ƒAƒgƒ€‚©‚ç–¼‘O‚ğæ“¾‚·‚é
+// ã‚¢ãƒˆãƒ ã‹ã‚‰åå‰ã‚’å–å¾—ã™ã‚‹
 static void getKey(tTJSVariant &key, ATOM atom)
 {
 	TCHAR buf[KEYSIZE+1];
@@ -41,39 +41,39 @@ static void getKey(tTJSVariant &key, ATOM atom)
 }
 
 // -------------------------------------------------------------------
-// ˆ—–{‘Ì
+// å‡¦ç†æœ¬ä½“
 // -------------------------------------------------------------------
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—pƒNƒ‰ƒX
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨ã‚¯ãƒ©ã‚¹
  */
 class WindowMsg {
 
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
-	bool messageEnable;     //< ƒƒbƒZ[ƒWˆ—‚ª—LŒø‚©‚Ç‚¤‚©
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
+	bool messageEnable;     //< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 
 	// --------------------------------------------------------
 
 	typedef bool (__stdcall *NativeReceiver)(iTJSDispatch2 *obj, void *userdata, tTVPWindowMessage *Message);
 	
-	// ƒ†[ƒU’è‹`ƒŒƒV[ƒoî•ñ
+	// ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ¬ã‚·ãƒ¼ãƒæƒ…å ±
 	struct ReceiverInfo {
 		tTJSVariant userData;
 		tTJSVariant receiver;
-		// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		ReceiverInfo() {};
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		ReceiverInfo(tTJSVariant &receiver, tTJSVariant &userData) : receiver(receiver), userData(userData) {}
-		// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		ReceiverInfo(const ReceiverInfo &orig) {
 			userData = orig.userData;
 			receiver = orig.receiver;
 		}
-		// ƒfƒXƒgƒ‰ƒNƒ^
+		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		~ReceiverInfo(){}
 
-		// Às
+		// å®Ÿè¡Œ
 		bool exec(iTJSDispatch2 *obj, tTVPWindowMessage *message) {
 			switch (receiver.Type()) {
 			case tvtObject:
@@ -109,7 +109,7 @@ protected:
 	
 	map<unsigned int, ReceiverInfo> receiverMap;
 
-	// ƒ†[ƒU‹K’èƒŒƒV[ƒo‚Ìíœ
+	// ãƒ¦ãƒ¼ã‚¶è¦å®šãƒ¬ã‚·ãƒ¼ãƒã®å‰Šé™¤
 	void removeUserReceiver(unsigned int Msg) {
 		map<unsigned int, ReceiverInfo>::const_iterator n = receiverMap.find(Msg);
 		if (n != receiverMap.end()) {
@@ -117,7 +117,7 @@ protected:
 		}
 	}
 	
-	// ƒ†[ƒU‹K’èƒŒƒV[ƒo‚Ì“o˜^
+	// ãƒ¦ãƒ¼ã‚¶è¦å®šãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²
 	void addUserReceiver(unsigned int Msg, tTJSVariant &receiver, tTJSVariant &userdata) {
 		removeUserReceiver(Msg);
 		receiverMap[Msg] = ReceiverInfo(receiver, userdata);
@@ -125,10 +125,10 @@ protected:
 
 	// --------------------------------------------------------
 
-	ttstr storeKey;         //< HWND •Û‘¶w’èƒL[
+	ttstr storeKey;         //< HWND ä¿å­˜æŒ‡å®šã‚­ãƒ¼
 	
 	/**
-	 * Àsƒtƒ@ƒCƒ‹‚ª‚ ‚éêŠ‚É HWND î•ñ‚ğ•Û‘¶‚·‚é
+	 * å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹å ´æ‰€ã« HWND æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 	 */
 	void storeHWND(HWND hwnd) {
 		if (storeKey != "") {
@@ -149,26 +149,26 @@ protected:
 	}
 	
 	/**
-	 * ƒƒbƒZ[ƒWóMŠÖ”–{‘Ì
-	 * @param userdata ƒ†[ƒUƒf[ƒ^(‚±‚Ìê‡ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒgî•ñ)
-	 * @param Message ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWî•ñ
+	 * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡é–¢æ•°æœ¬ä½“
+	 * @param userdata ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿(ã“ã®å ´åˆãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±)
+	 * @param Message ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æƒ…å ±
 	 */
 	static bool __stdcall MyReceiver(void *userdata, tTVPWindowMessage *Message) {
 
-		iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ‚ÌƒIƒuƒWƒFƒNƒg
-		// ‹g—¢‹g—¢‚Ì“à•”ˆ—‚ÌŠÖŒW‚ÅƒCƒxƒ“ƒgˆ—’†‚Í“o˜^”jŠüŒã‚Å‚àŒÄ‚Î‚ê‚é‚±‚Æ‚ª‚ ‚é‚Ì‚Å
-		// Window ‚Ì–{‘ÌƒIƒuƒWƒFƒNƒg‚©‚çƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ğæ‚è’¼‚·
+		iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		// å‰é‡Œå‰é‡Œã®å†…éƒ¨å‡¦ç†ã®é–¢ä¿‚ã§ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ä¸­ã¯ç™»éŒ²ç ´æ£„å¾Œã§ã‚‚å‘¼ã°ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ã®ã§
+		// Window ã®æœ¬ä½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–ã‚Šç›´ã™
 		WindowMsg *self = ncbInstanceAdaptor<WindowMsg>::GetNativeInstance(obj);
 		if (self == NULL) {
 			return false;
 		}
 		switch (Message->Msg) {
-		case TVP_WM_DETACH: // ƒEƒCƒ“ƒhƒE‚ªØ‚è—£‚³‚ê‚½
+		case TVP_WM_DETACH: // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒåˆ‡ã‚Šé›¢ã•ã‚ŒãŸ
 			break; 
-		case TVP_WM_ATTACH: // ƒEƒCƒ“ƒhƒE‚ªİ’è‚³‚ê‚½
+		case TVP_WM_ATTACH: // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒè¨­å®šã•ã‚ŒãŸ
 			self->storeHWND((HWND)Message->LParam);
 			break;
-		case WM_COPYDATA: // ŠO•”‚©‚ç‚Ì’ÊM
+		case WM_COPYDATA: // å¤–éƒ¨ã‹ã‚‰ã®é€šä¿¡
 			{
 				COPYDATASTRUCT *copyData = (COPYDATASTRUCT*)Message->LParam;
 				tTJSVariant key;
@@ -199,10 +199,10 @@ protected:
 	}
 	
 	/**
-	 * ƒŒƒV[ƒo‚Ì“o˜^
+	 * ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²
 	 */
 	void registReceiver(bool enable) {
-		// ƒŒƒV[ƒoXV
+		// ãƒ¬ã‚·ãƒ¼ãƒæ›´æ–°
 		tTJSVariant mode    = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)MyReceiver;
 		tTJSVariant userdata = (tTVInteger)(tjs_int)objthis;
@@ -211,19 +211,19 @@ protected:
 	}
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	WindowMsg(iTJSDispatch2 *objthis) : objthis(objthis), messageEnable(false) {}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~WindowMsg() {
 		receiverMap.clear();
-		// ƒŒƒV[ƒo‚ğ‰ğ•ú
+		// ãƒ¬ã‚·ãƒ¼ãƒã‚’è§£æ”¾
 		registReceiver(false);
 	}
 
 	/**
-	 * ƒƒbƒZ[ƒWóM‚ª—LŒø‚©‚Ç‚¤‚©‚ğİ’è
-	 * @param enable true ‚È‚ç—LŒø
+	 * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’è¨­å®š
+	 * @param enable true ãªã‚‰æœ‰åŠ¹
 	 */
 	void setMessageEnable(bool enable) {
 		if (messageEnable != enable) {
@@ -236,16 +236,16 @@ public:
 	}
 	
 	/**
-	 * @return ƒƒbƒZ[ƒWóM‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾
+	 * @return ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—
 	 */
 	bool getMessageEnable() {
 		return messageEnable;
 	}
 
 	/**
-	 * storeKey ‚ğw’è
-	 * ‚±‚Ì’l‚ğw’è‚·‚é‚ÆAHWND ‚Ì’l‚ª Àsƒtƒ@ƒCƒ‹–¼.key–¼ ‚Æ‚µ‚Ä•Û‘¶‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·
-	 * @param keyName HWND•Û‘¶—pƒL[
+	 * storeKey ã‚’æŒ‡å®š
+	 * ã“ã®å€¤ã‚’æŒ‡å®šã™ã‚‹ã¨ã€HWND ã®å€¤ãŒ å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«å.keyå ã¨ã—ã¦ä¿å­˜ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™
+	 * @param keyName HWNDä¿å­˜ç”¨ã‚­ãƒ¼
 	 */
 	void setStoreKey(const tjs_char *keyName) {
 		if (storeKey != keyName) {
@@ -257,15 +257,15 @@ public:
 	}
 
 	/**
-	 * @return storeKey ‚ğæ“¾
+	 * @return storeKey ã‚’å–å¾—
 	 */
 	const tjs_char *getStoreKey() {
 		return storeKey.c_str();
 	}
 
 	/**
-	 * ŠO•”ƒvƒ‰ƒOƒCƒ“‚©‚ç‚ÌƒƒbƒZ[ƒWˆ—ƒƒWƒbƒN‚Ì“o˜^
-	 * @param mode “o˜^ƒ‚[ƒh
+	 * å¤–éƒ¨ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ãƒ­ã‚¸ãƒƒã‚¯ã®ç™»éŒ²
+	 * @param mode ç™»éŒ²ãƒ¢ãƒ¼ãƒ‰
 	 * @param msg
 	 * @param func
 	 */
@@ -293,7 +293,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ‘—MƒƒbƒZ[ƒWî•ñ
+	// é€ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æƒ…å ±
 	struct UserMsgInfo {
 		HWND hWnd;
 		unsigned int msg;
@@ -303,9 +303,9 @@ public:
 	};
 
 	/**
-	 * ŒÂ•Ê‘‹‚Ö‚ÌƒƒbƒZ[ƒW‘—Mˆ—
-	 * @param hWnd ‘—MæƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰
-	 * @param parent ‘—Mî•ñ
+	 * å€‹åˆ¥çª“ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å‡¦ç†
+	 * @param hWnd é€ä¿¡å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©
+	 * @param parent é€ä¿¡æƒ…å ±
 	 */
 	static BOOL CALLBACK enumWindowsProcUser(HWND hWnd, LPARAM parent) {
 		UserMsgInfo *info = (UserMsgInfo*)parent;
@@ -319,11 +319,11 @@ public:
 	}
 	
 	/**
-	 * ƒ†[ƒU’è‹`ƒƒbƒZ[ƒW‘—Mˆ—
-	 * ‹N“®‚µ‚Ä‚¢‚é‹g—¢‹g—¢‚·‚×‚Ä‚ÉƒƒbƒZ[ƒW‚ğ‘—M‚µ‚Ü‚·
-	 * @param msg ƒƒbƒZ[ƒWID
-	 * @param wparam WPARAM’l
-	 * @param lparam LPARAM’l
+	 * ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å‡¦ç†
+	 * èµ·å‹•ã—ã¦ã„ã‚‹å‰é‡Œå‰é‡Œã™ã¹ã¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã—ã¾ã™
+	 * @param msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	 * @param wparam WPARAMå€¤
+	 * @param lparam LPARAMå€¤
 	 */
 	void sendUserMessage(unsigned int msg, tjs_int wparam, tjs_int lparam) {
 		tTJSVariant val;
@@ -334,7 +334,7 @@ public:
 	
 	// --------------------------------------------------------
 	
-	// ‘—MƒƒbƒZ[ƒWî•ñ
+	// é€ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æƒ…å ±
 	struct MsgInfo {
 		HWND hWnd;
 		COPYDATASTRUCT copyData;
@@ -346,9 +346,9 @@ public:
 	};
 
 	/**
-	 * ŒÂ•Ê‘‹‚Ö‚ÌƒƒbƒZ[ƒW‘—Mˆ—
-	 * @param hWnd ‘—MæƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰
-	 * @param parent ‘—Mî•ñ
+	 * å€‹åˆ¥çª“ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å‡¦ç†
+	 * @param hWnd é€ä¿¡å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©
+	 * @param parent é€ä¿¡æƒ…å ±
 	 */
 	static BOOL CALLBACK enumWindowsProc(HWND hWnd, LPARAM parent) {
 		MsgInfo *info = (MsgInfo*)parent;
@@ -362,10 +362,10 @@ public:
 	}
 
 	/**
-	 * ƒƒbƒZ[ƒW‘—Mˆ—
-	 * ‹N“®‚µ‚Ä‚¢‚é‹g—¢‹g—¢‚·‚×‚Ä‚ÉƒƒbƒZ[ƒW‚ğ‘—M‚µ‚Ü‚·
-	 * @param key ¯•ÊƒL[
-	 * @param msg ƒƒbƒZ[ƒW
+	 * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å‡¦ç†
+	 * èµ·å‹•ã—ã¦ã„ã‚‹å‰é‡Œå‰é‡Œã™ã¹ã¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã—ã¾ã™
+	 * @param key è­˜åˆ¥ã‚­ãƒ¼
+	 * @param msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	 */
 	void sendMessage(const TCHAR *key, const tjs_char *msg) {
 		tTJSVariant val;
@@ -376,20 +376,20 @@ public:
 
 };
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowMsg)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
 };
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(WindowMsg, Window) {
 	Property(L"messageEnable", &WindowMsg::getMessageEnable, &WindowMsg::setMessageEnable);
 	Property(L"storeHWND", &WindowMsg::getStoreKey, &WindowMsg::setStoreKey);
@@ -399,7 +399,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(WindowMsg, Window) {
 }
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 void PreRegistCallback()
 {
@@ -407,7 +407,7 @@ void PreRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 void PostUnregistCallback()
 {

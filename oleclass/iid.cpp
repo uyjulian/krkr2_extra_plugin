@@ -1,8 +1,8 @@
 /**
- * ƒfƒtƒHƒ‹ƒg‚Ì IID ‚ğ’T‚·
- * @param pitf –¼‘O
- * @param piid æ“¾‚µ‚½IID‚ÌŠi”[æ
- * @param ppTypeInfo ŠÖ˜A‚·‚é•ûî•ñ
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã® IID ã‚’æ¢ã™
+ * @param pitf åå‰
+ * @param piid å–å¾—ã—ãŸIIDã®æ ¼ç´å…ˆ
+ * @param ppTypeInfo é–¢é€£ã™ã‚‹æ–¹æƒ…å ±
  */
 
 HRESULT findDefaultIID(IDispatch *pDispatch, IID *piid, ITypeInfo **ppTypeInfo)
@@ -72,10 +72,10 @@ HRESULT findDefaultIID(IDispatch *pDispatch, IID *piid, ITypeInfo **ppTypeInfo)
 }
 
 /**
- * IID ‚ğ’T‚·
- * @param pitf –¼‘O
- * @param piid æ“¾‚µ‚½IID‚ÌŠi”[æ
- * @param ppTypeInfo ŠÖ˜A‚·‚é•ûî•ñ
+ * IID ã‚’æ¢ã™
+ * @param pitf åå‰
+ * @param piid å–å¾—ã—ãŸIIDã®æ ¼ç´å…ˆ
+ * @param ppTypeInfo é–¢é€£ã™ã‚‹æ–¹æƒ…å ±
  */
 HRESULT findIID(IDispatch *pDispatch, const tjs_char *pitf, IID *piid, ITypeInfo **ppTypeInfo)
 {

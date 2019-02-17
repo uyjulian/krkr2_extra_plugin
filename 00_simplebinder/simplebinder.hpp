@@ -691,11 +691,11 @@ public:
 		return *this;
 	}
 	/**
-	 * ƒvƒƒpƒeƒB‚ğ“o˜^
-	 * @param key “o˜^ƒvƒƒpƒeƒB–¼
-	 * @param get “o˜^‘ÎÛ‚ÌgetterŒ^‚ÌŠÖ”
-	 * @param set “o˜^‘ÎÛ‚ÌsetterŒ^‚ÌŠÖ”
-	 * ¦setter/getter‚Ç‚¿‚ç‚©‚ª–³‚¢ê‡‚Í 0 ‚ğw’è‚µ‚Ü‚·
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç™»éŒ²
+	 * @param key ç™»éŒ²ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+	 * @param get ç™»éŒ²å¯¾è±¡ã®getterå‹ã®é–¢æ•°
+	 * @param set ç™»éŒ²å¯¾è±¡ã®setterå‹ã®é–¢æ•°
+	 * â€»setter/getterã©ã¡ã‚‰ã‹ãŒç„¡ã„å ´åˆã¯ 0 ã‚’æŒ‡å®šã—ã¾ã™
 	 */
 	template <typename GET, typename SET>
 	BindUtil& Property(const ttstr &key, const GET &get, const SET &set) {
@@ -704,10 +704,10 @@ public:
 		return *this;
 	}
 	/**
-	 * ’è”‚ğ“o˜^
-	 * @param key “o˜^’è”–¼
-	 * @param value “o˜^‘ÎÛ‚Ì’l(tTJSVariant‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É“n‚¹‚éŒ^)
-	 * ¦value‚ğ•Ô‚·getter‚Ì‚İ‚ÌƒvƒƒpƒeƒB‚ğ“o˜^‚µ‚Ü‚·
+	 * å®šæ•°ã‚’ç™»éŒ²
+	 * @param key ç™»éŒ²å®šæ•°å
+	 * @param value ç™»éŒ²å¯¾è±¡ã®å€¤(tTJSVariantã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«æ¸¡ã›ã‚‹å‹)
+	 * â€»valueã‚’è¿”ã™getterã®ã¿ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç™»éŒ²ã—ã¾ã™
 	 */
 	template <typename T>
 	BindUtil& Constant(const ttstr &key, const T &value) {
@@ -716,10 +716,10 @@ public:
 		return *this;
 	}
 	/**
-	 * tTJSVariant‚ğ“o˜^
-	 * @param key “o˜^–¼
-	 * @param value “o˜^‘ÎÛ‚Ì’l(tTJSVariant‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É“n‚¹‚éŒ^)
-	 * @param flag PropSet‚É“n‚·ƒtƒ‰ƒO’l
+	 * tTJSVariantã‚’ç™»éŒ²
+	 * @param key ç™»éŒ²å
+	 * @param value ç™»éŒ²å¯¾è±¡ã®å€¤(tTJSVariantã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«æ¸¡ã›ã‚‹å‹)
+	 * @param flag PropSetã«æ¸¡ã™ãƒ•ãƒ©ã‚°å€¤
 	 */
 	template <typename T>
 	BindUtil& Variant(const ttstr &key, const T &value, tjs_uint32 flag = StoreUtil::DEFAULT_FLAG) {
@@ -734,9 +734,9 @@ public:
 		return *this;
 	}
 	/**
-	 * ƒNƒ‰ƒX‚ğ‚ğ“o˜^
-	 * @param key “o˜^ƒNƒ‰ƒX–¼
-	 * @param ctor “o˜^‘ÎÛ‚ÌfactoryŒ^‚ÌŠÖ”
+	 * ã‚¯ãƒ©ã‚¹ã‚’ã‚’ç™»éŒ²
+	 * @param key ç™»éŒ²ã‚¯ãƒ©ã‚¹å
+	 * @param ctor ç™»éŒ²å¯¾è±¡ã®factoryå‹ã®é–¢æ•°
 	 */
 	template <typename CTOR>
 	BindUtil& Class(const ttstr &key, const CTOR& ctor) {
@@ -750,10 +750,10 @@ public:
 		return *this;
 	}
 	/**
-	 * ƒNƒ‰ƒX‚ğ‚ğ“o˜^
-	 * @param key “o˜^ƒNƒ‰ƒX–¼
-	 * @param ctor “o˜^‘ÎÛ‚ÌfactoryŒ^‚ÌŠÖ”
-	 * @param dtor “o˜^‘ÎÛ‚ÌƒfƒXƒgƒ‰ƒNƒ^
+	 * ã‚¯ãƒ©ã‚¹ã‚’ã‚’ç™»éŒ²
+	 * @param key ç™»éŒ²ã‚¯ãƒ©ã‚¹å
+	 * @param ctor ç™»éŒ²å¯¾è±¡ã®factoryå‹ã®é–¢æ•°
+	 * @param dtor ç™»éŒ²å¯¾è±¡ã®ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	template <typename CTOR, typename DTOR>
 	BindUtil& Class(const ttstr &key, const CTOR& ctor, const DTOR &dtor) {
@@ -768,8 +768,8 @@ public:
 	}
 
 	/**
-	 * ˆÈ~‚ÌFunction/Property“o˜^ƒRƒ“ƒeƒLƒXƒg‚ğ•ÏX
-	 * @param context ƒRƒ“ƒeƒLƒXƒg
+	 * ä»¥é™ã®Function/Propertyç™»éŒ²ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´
+	 * @param context ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 	 */
 	BindUtil& SetContext(iTJSDispatch2 *context = NULL) {
 		_context = context;
@@ -777,18 +777,18 @@ public:
 	}
 
 	/**
-	 * ƒGƒ‰[ƒ`ƒFƒbƒN
-	 * ¡‚Ü‚Å‚Ì“o˜^^‰ğœ“®ì‚ÅƒGƒ‰[‚ª‚È‚©‚Á‚½‚©‚Ç‚¤‚©Šm”F
-	 * @return valid ƒGƒ‰[‚ª–³‚¢ê‡‚Ítrue
+	 * ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
+	 * ä»Šã¾ã§ã®ç™»éŒ²ï¼è§£é™¤å‹•ä½œã§ã‚¨ãƒ©ãƒ¼ãŒãªã‹ã£ãŸã‹ã©ã†ã‹ç¢ºèª
+	 * @return valid ã‚¨ãƒ©ãƒ¼ãŒç„¡ã„å ´åˆã¯true
 	 */
 	bool IsValid() const { return !_error; }
 
 
 	/**
-	 * iTJSDispatch2‚©‚ç”CˆÓ‚ÌƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ì•ÏŠ·
-	 * @param obj •ÏŠ·‘ÎÛƒIƒuƒWƒFƒNƒg
-	 * @param instance •ÏŠ·‚µ‚½‚¢ƒNƒ‰ƒX‚ÌŒ^ƒ|ƒCƒ“ƒ^iƒ^ƒO—pƒ_ƒ~[j
-	 * @return ƒ|ƒCƒ“ƒ^
+	 * iTJSDispatch2ã‹ã‚‰ä»»æ„ã®ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å¤‰æ›
+	 * @param obj å¤‰æ›å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param instance å¤‰æ›ã—ãŸã„ã‚¯ãƒ©ã‚¹ã®å‹ãƒã‚¤ãƒ³ã‚¿ï¼ˆã‚¿ã‚°ç”¨ãƒ€ãƒŸãƒ¼ï¼‰
+	 * @return ãƒã‚¤ãƒ³ã‚¿
 	 */
 	template <class C>
 	static C* GetInstance(iTJSDispatch2 *obj, C *instance) {
@@ -796,10 +796,10 @@ public:
 	}
 
 	/**
-	 * ”CˆÓŠK‘w‚É‚ ‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
-	 * @param base Šî“_ŠK‘wi"."‚Å‹æØ‚Á‚ÄŠK‘ww’è‰Â”\j
-	 * @param store Šî“_ƒIƒuƒWƒFƒNƒgiÈ—ªorNULL‚Ìê‡‚Íglobalj
-	 * @return ƒIƒuƒWƒFƒNƒg‚ª‚ ‚ê‚ÎiTJSDispatch2ƒ|ƒCƒ“ƒ^C‚È‚¯‚ê‚ÎNULL
+	 * ä»»æ„éšå±¤ã«ã‚ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
+	 * @param base åŸºç‚¹éšå±¤ï¼ˆ"."ã§åŒºåˆ‡ã£ã¦éšå±¤æŒ‡å®šå¯èƒ½ï¼‰
+	 * @param store åŸºç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆçœç•¥æ™‚orNULLã®å ´åˆã¯globalï¼‰
+	 * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚Œã°iTJSDispatch2ãƒã‚¤ãƒ³ã‚¿ï¼Œãªã‘ã‚Œã°NULL
 	 */
 	static inline iTJSDispatch2* GetObject(const ttstr &base, iTJSDispatch2 *root = 0) {
 		return StoreUtil::GetObject(base, root);

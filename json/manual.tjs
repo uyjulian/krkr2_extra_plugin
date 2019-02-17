@@ -1,37 +1,37 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class Scripts {
 
     /**
-     * JSON ‚Ì•¶š—ñ‚ğ‰ğÍ‚µ‚Ä Array ‚Ü‚½‚Í Dictionary ‚ğ•Ô‚·
-     * @param jsonText JSON ‚ªŠi”[‚³‚ê‚½ƒeƒLƒXƒg
-     * @return Array ‚Ü‚½‚Í Dictionary
+     * JSON ã®æ–‡å­—åˆ—ã‚’è§£æã—ã¦ Array ã¾ãŸã¯ Dictionary ã‚’è¿”ã™
+     * @param jsonText JSON ãŒæ ¼ç´ã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ
+     * @return Array ã¾ãŸã¯ Dictionary
      */
     function evalJSON(jsonText);
 
     /**
-     * JSON ‚Ìƒtƒ@ƒCƒ‹‚ğ‰ğÍ‚µ‚Ä Array ‚Ü‚½‚Í Dictionary ‚ğ•Ô‚·
-     * @param jsonFile JSON ‚ªŠi”[‚³‚ê‚½ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼
-     * @param utf8 “ü—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»İ‚ÌƒR[ƒhƒy[ƒW
-     * @return Array ‚Ü‚½‚Í Dictionary
+     * JSON ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è§£æã—ã¦ Array ã¾ãŸã¯ Dictionary ã‚’è¿”ã™
+     * @param jsonFile JSON ãŒæ ¼ç´ã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+     * @param utf8 å…¥åŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+     * @return Array ã¾ãŸã¯ Dictionary
      */
     function evalJSONStorage(jsonFile, utf8=false);
 
     /**
-	 * ƒf[ƒ^‚ğ JSON Œ`®‚Å•Û‘¶‚·‚é
-	 * @param jsonFile Ši”[æƒtƒ@ƒCƒ‹
-	 * @param obj •Û‘¶‘ÎÛƒIƒuƒWƒFƒNƒg
-	 * @param utf8 o—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»İ‚ÌƒR[ƒhƒy[ƒW
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ JSON å½¢å¼ã§ä¿å­˜ã™ã‚‹
+	 * @param jsonFile æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param obj ä¿å­˜å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param utf8 å‡ºåŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
 	 */
 	function saveJSON(jsonFile, obj, utf8=false, newline=0);
 
     /**
-     * ƒf[ƒ^‚ğ JSON Œ`®‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é
-     * @param ƒIƒuƒWƒFƒNƒg
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-     * @return JSON Œ`®‚ÌƒeƒLƒXƒg
+     * ãƒ‡ãƒ¼ã‚¿ã‚’ JSON å½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
+     * @param ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+     * @return JSON å½¢å¼ã®ãƒ†ã‚­ã‚¹ãƒˆ
      */
     function toJSONString(obj, newline=0);
     

@@ -13,7 +13,7 @@ struct Stdio
 		return state;
 	}
 
-	// ƒRƒ“ƒ\[ƒ‹‚ÆÚ‘±
+	// ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã¨æ¥ç¶š
 	static tjs_error TJS_INTF_METHOD attach(tTJSVariant *result,
 											tjs_int numparams,
 											tTJSVariant **param,
@@ -21,7 +21,7 @@ struct Stdio
 		int state = numparams > 0 ? *param[0] : 0;
 		bool ret = true;
 		if (state == 0) {
-			//VS2012ˆÈ~‚Å‚±‚Ì‹Lq‚Å³‚µ‚­”»’è‚Å‚«‚È‚¢Bƒ‰ƒ“ƒ^ƒCƒ€‚ÌƒoƒO‚Æv‚í‚ê‚é
+			//VS2012ä»¥é™ã§ã“ã®è¨˜è¿°ã§æ­£ã—ãåˆ¤å®šã§ããªã„ã€‚ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ã®ãƒã‚°ã¨æ€ã‚ã‚Œã‚‹
 			//if (_fileno(stdin)  == -2) state |= 0x01;
 			//if (_fileno(stdout) == -2) state |= 0x02;
 			//if (_fileno(stderr) == -2) state |= 0x04;
@@ -29,7 +29,7 @@ struct Stdio
 			if (GetStdHandle(STD_OUTPUT_HANDLE) == 0) state |= 0x02;
 			if (GetStdHandle(STD_ERROR_HANDLE) == 0) state |= 0x04;
 		}
-		// Ú‘±æ‚ª–³‚¢ê‡‚ÍƒRƒ“ƒ\[ƒ‹‚ğŠJ‚¢‚Ä‚»‚±‚ÉÚ‘±‚·‚é
+		// æ¥ç¶šå…ˆãŒç„¡ã„å ´åˆã¯ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‹ã„ã¦ãã“ã«æ¥ç¶šã™ã‚‹
 		if (state != 0) {
 			typedef BOOL (WINAPI* AttachConsoleFunc)(DWORD dwProcessId);
 			HINSTANCE hDLL = LoadLibrary(L"kernel32.dll");
@@ -49,7 +49,7 @@ struct Stdio
 		return TJS_S_OK;
 	}
 
-	// ƒRƒ“ƒ\[ƒ‹‚ÌŠ„‚è“–‚Ä
+	// ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã®å‰²ã‚Šå½“ã¦
 	static tjs_error TJS_INTF_METHOD alloc(tTJSVariant *result,
 										   tjs_int numparams,
 										   tTJSVariant **param,
@@ -61,7 +61,7 @@ struct Stdio
 			if (_fileno(stdout) == -2) state |= 0x02;
 			if (_fileno(stderr) == -2) state |= 0x04;
 		}
-		// Ú‘±æ‚ª–³‚¢ê‡‚ÍƒRƒ“ƒ\[ƒ‹‚ğŠJ‚¢‚Ä‚»‚±‚ÉÚ‘±‚·‚é
+		// æ¥ç¶šå…ˆãŒç„¡ã„å ´åˆã¯ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‹ã„ã¦ãã“ã«æ¥ç¶šã™ã‚‹
 		if (state != 0) {
 			if (::AllocConsole()) {
 				if ((state & 0x01)) freopen("CON", "r", stdin); 
@@ -88,7 +88,7 @@ struct Stdio
 		return TJS_S_OK;
 	}
 	
-	// •W€“ü—Í‚©‚çƒeƒLƒXƒg‚ğ“Ç‚İ‚Ş
+	// æ¨™æº–å…¥åŠ›ã‹ã‚‰ãƒ†ã‚­ã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚€
 	static tjs_error TJS_INTF_METHOD in(tTJSVariant *result,
 										tjs_int numparams,
 										tTJSVariant **param,
@@ -120,7 +120,7 @@ struct Stdio
 		return TJS_S_OK;
 	}
 
-	// ƒeƒLƒXƒgo—Í‰º¿‚¯ŠÖ”
+	// ãƒ†ã‚­ã‚¹ãƒˆå‡ºåŠ›ä¸‹è«‹ã‘é–¢æ•°
 	static tjs_error TJS_INTF_METHOD _out(tjs_int numparams,
 										  tTJSVariant **param,
 										  std::ostream &os) {
@@ -158,7 +158,7 @@ struct Stdio
 		return TJS_S_OK;
 	}
 
-	// •W€o—Í‚ÉƒeƒLƒXƒg‚ğo—Í
+	// æ¨™æº–å‡ºåŠ›ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’å‡ºåŠ›
 	static tjs_error TJS_INTF_METHOD out(tTJSVariant *result,
 										 tjs_int numparams,
 										 tTJSVariant **param,
@@ -166,7 +166,7 @@ struct Stdio
 		return _out(numparams, param, std::cout);
 	}
 	
-	// •W€ƒGƒ‰[o—Í‚ÉƒeƒLƒXƒg‚ğo—Í
+	// æ¨™æº–ã‚¨ãƒ©ãƒ¼å‡ºåŠ›ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’å‡ºåŠ›
 	static tjs_error TJS_INTF_METHOD err(tTJSVariant *result,
 										 tjs_int numparams,
 										 tTJSVariant **param,
@@ -174,7 +174,7 @@ struct Stdio
 		return _out(numparams, param, std::cerr);
 	}
 
-	// •W€o—Í‚ğƒtƒ‰ƒbƒVƒ…
+	// æ¨™æº–å‡ºåŠ›ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 	static tjs_error TJS_INTF_METHOD flush(tTJSVariant *result,
 										   tjs_int numparams,
 										   tTJSVariant **param,

@@ -1,17 +1,17 @@
-TITLE: SimpleBinder�T�v
+TITLE: SimpleBinder概要
 AUTHOR: miahmie
 
-��SimpleBinder�̐���
+●SimpleBinderの説明
 
-�g���g���̃v���O�C�����r�I�ȒP�ɏ�����悤�ɂ���w���p�ł��B
-�����悤�Ȃ��̂�ncbind������܂����C������ȈՂɂ����o�[�W�����ɂȂ��Ă��܂��B
+吉里吉里のプラグインを比較的簡単に書けるようにするヘルパです。
+似たようなものにncbindがありますが，それを簡易にしたバージョンになっています。
 
-�ڍׂ� simplebinder.txt ���Q�Ƃ��Ă��������B
+詳細は simplebinder.txt を参照してください。
 
 
-���T���v��
+●サンプル
 
-../resourceRW �̃v���O�C�����T���v���ɂȂ��Ă��܂��̂�
-��������Q�Ƃ��Ă��������B
+../resourceRW のプラグインがサンプルになっていますので
+そちらを参照してください。
 
 

@@ -1,17 +1,17 @@
 Title: tasktray Plugin
-Author: ‚ä‚ñ‚ä‚ñ’T’ã
+Author: ã‚†ã‚“ã‚†ã‚“æŽ¢åµ
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚Å“®‚¢‚Ä‚¢‚éƒvƒƒOƒ‰ƒ€‚Éƒ^ƒXƒNƒgƒŒƒC‚ÉƒAƒCƒRƒ“‚ð•\Ž¦‚µ‚Ä
-ƒAƒCƒRƒ“‚Æ‘ŠŒÝì—p‚·‚é‹@”\‚ð’ñ‹Ÿ‚µ‚Ü‚·B
-
-
-œŽg—p•û–@
-
-manual.tjs ŽQÆ
+å‰é‡Œå‰é‡Œã§å‹•ã„ã¦ã„ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã«ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã—ã¦
+ã‚¢ã‚¤ã‚³ãƒ³ã¨ç›¸äº’ä½œç”¨ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›ã—ã¾ã™ã€‚
 
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ä½¿ç”¨æ–¹æ³•
 
-ƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+manual.tjs å‚ç…§
+
+
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
+
+ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

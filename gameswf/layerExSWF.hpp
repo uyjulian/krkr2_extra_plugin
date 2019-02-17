@@ -5,7 +5,7 @@
 #include "SWFMovie.hpp"
 
 /*
- * SWF •`‰æ—pƒŒƒCƒ„
+ * SWF æç”»ç”¨ãƒ¬ã‚¤ãƒ¤
  */
 struct layerExSWF : public layerExCairo
 {
@@ -14,7 +14,7 @@ public:
 	~layerExSWF();
 
 	/**
-	 * SWF •`‰æ
+	 * SWF æç”»
 	 */
 	void drawSWF(SWFMovie *swf);
 };

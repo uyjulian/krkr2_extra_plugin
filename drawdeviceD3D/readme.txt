@@ -1,14 +1,14 @@
-������͂ȂɁH
+●これはなに？
 
-Direct3D �x�[�X�œ��삷��g���g�� drawdevice �v���O�C���ł��B
-������ primaryLayer ���������ĕ\���ł��܂��B
+Direct3D ベースで動作する吉里吉里 drawdevice プラグインです。
+複数の primaryLayer を合成して表示できます。
 
-���ꂼ��� primaryLayer �͎w�肳�ꂽ�̈��
-�X�P�[�����O�\������邽�߁A�ʂɉ𑜓x��ύX�ł��܂��B
+それぞれの primaryLayer は指定された領域に
+スケーリング表示されるため、個別に解像度を変更できます。
 
-���g����
+●使い方
 
-1. Window �� drawDevice �ɑ΂��Ďw��\�ł�
+1. Window の drawDevice に対して指定可能です
 
 -------------------------------------------
 Plugins.link("drawdeviceD3D.dll");
@@ -20,25 +20,25 @@ class MyWindow extends Window {
   function MyWindow() {
     super.Window();
     setInnerSize(WIDTH, HEIGHT);
-    // drawdevice �������ւ�
+    // drawdevice を差し替え
     drawDevice = new DrawDeviceD3D(WIDTH,HEIGHT);
-     // �v���C�}�����C������
+     // プライマリレイヤ生成
     base = new Layer(this,null);
     base.setSize(WIDTH,HEIGHT);
     base2 = new Layer(this,null);
-    base2.setSize(WIDTH/2,HEIGHT/2); // �𑜓x����
+    base2.setSize(WIDTH/2,HEIGHT/2); // 解像度半分
     add(base);
   }
 };
 -------------------------------------------
 
-�@�\�ɂ��Ă� manual.tjs ���Q�Ƃ��Ă�������
+機能については manual.tjs を参照してください
 
-���߂�
+●めも
 
-�Ƃ肠�����W���� PassThroughDrawDevice �̃R�[�h�����ɍ�Ƃ����̂�
-Direct3D7 �x�[�X�B�C���������� D3D9 �ŏ��������H
+とりあえず標準の PassThroughDrawDevice のコードを元に作業したので
+Direct3D7 ベース。気が向いたら D3D9 で書き直し？
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

@@ -21,7 +21,7 @@ struct System
 		if(numparams < 2)
 			return TJS_E_BADPARAMCOUNT;
 
-		// ƒ‹[ƒgƒL[‚ğŠm’è
+		// ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼ã‚’ç¢ºå®š
 		ttstr		key	= param[0]->AsStringNoAddRef();
 		tjs_int		len = key.length();
 		ttstr		hkey= "";
@@ -53,7 +53,7 @@ struct System
 		else if(hkey[5] == 'D')
 			hKey	= HKEY_DYN_DATA;
 
-		//	ƒL[–¼A’l–¼‚ğæ‚èo‚·
+		//	ã‚­ãƒ¼åã€å€¤åã‚’å–ã‚Šå‡ºã™
 		tjs_int	j;
 		for(j=len-1; j>=0; j--)
 		{
@@ -112,7 +112,7 @@ struct System
 			if (!tmp) return TJS_E_FAIL;
 			ZeroMemory(tmp, len);
 			DWORD res = ::GetEnvironmentVariableW(name.c_str(), tmp, len);
-			//		if (res != len-1) TVPAddImportantLog(TJS_W("ŠÂ‹«•Ï”’·‚ªˆê’v‚µ‚Ü‚¹‚ñ"));
+			//		if (res != len-1) TVPAddImportantLog(TJS_W("ç’°å¢ƒå¤‰æ•°é•·ãŒä¸€è‡´ã—ã¾ã›ã‚“"));
 			*r = ttstr(tmp);
 			delete[] tmp;
 		}
@@ -134,7 +134,7 @@ struct System
 				if (!tmp) return TJS_E_FAIL;
 				ZeroMemory(tmp, len);
 				::GetEnvironmentVariableW(name.c_str(), tmp, len);
-				//		if (res != len-1) TVPAddImportantLog(TJS_W("ŠÂ‹«•Ï”’·‚ªˆê’v‚µ‚Ü‚¹‚ñ"));
+				//		if (res != len-1) TVPAddImportantLog(TJS_W("ç’°å¢ƒå¤‰æ•°é•·ãŒä¸€è‡´ã—ã¾ã›ã‚“"));
 				*r = ttstr(tmp);
 				delete[] tmp;
 			}
@@ -156,14 +156,14 @@ struct System
 			if (!tmp) return TJS_E_FAIL;
 			ZeroMemory(tmp, len);
 			DWORD res = ::ExpandEnvironmentStrings(src.c_str(), tmp, len);
-			//		if (res != len) TVPAddImportantLog(TJS_W("“WŠJ’·‚ªˆê’v‚µ‚Ü‚¹‚ñ"));
+			//		if (res != len) TVPAddImportantLog(TJS_W("å±•é–‹é•·ãŒä¸€è‡´ã—ã¾ã›ã‚“"));
 			*r = ttstr(tmp);
 			delete[] tmp;
 		}
 		return TJS_S_OK;
 	}
 
-	// urlencodeˆ—
+	// urlencodeå‡¦ç†
 	static tjs_error TJS_INTF_METHOD urlencode(tTJSVariant *result,
 											   tjs_int numparams,
 											   tTJSVariant **param,
@@ -217,7 +217,7 @@ struct System
 	}
 
 	
-	// urldecodeˆ—
+	// urldecodeå‡¦ç†
 	static tjs_error TJS_INTF_METHOD urldecode(tTJSVariant *result,
 											   tjs_int numparams,
 											   tTJSVariant **param,
@@ -274,7 +274,7 @@ struct System
 		return TJS_S_OK;
 	}
 
-	// ‚Í‚¢‚¢‚¢‚¦‚ÌŠm”F
+	// ã¯ã„ã„ã„ãˆã®ç¢ºèª
 	static tjs_error TJS_INTF_METHOD confirm(tTJSVariant *result,
 											 tjs_int numparams,
 											 tTJSVariant **param,
@@ -302,7 +302,7 @@ struct System
 		return TJS_S_OK;
 	}
 
-	// Mutex‚ªÁ‚¦‚é‚Ì‚ğ‘Ò‚Â
+	// MutexãŒæ¶ˆãˆã‚‹ã®ã‚’å¾…ã¤
 	static tjs_error TJS_INTF_METHOD waitForAppLock(tTJSVariant *result,
 													tjs_int numparams,
 													tTJSVariant **param,

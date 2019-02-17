@@ -2,8 +2,8 @@
 
 class Base64
 {
-	//	inbuf ‚Ì“à—e‚ğ base64 ƒGƒ“ƒR[ƒh‚µ‚ÄAoutbuf ‚É•¶š—ñ‚Æ‚µ‚Äo—Í
-	//	outbuf ‚ÌƒTƒCƒY‚ÍAinsize / 4 * 3 + 1 •K—v
+	//	inbuf ã®å†…å®¹ã‚’ base64 ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ã¦ã€outbuf ã«æ–‡å­—åˆ—ã¨ã—ã¦å‡ºåŠ›
+	//	outbuf ã®ã‚µã‚¤ã‚ºã¯ã€insize / 4 * 3 + 1 å¿…è¦
 	static void encodeBase64(tjs_uint8* inbuf, tjs_int insize, char* outbuf)
 	{
 		char	*base64str	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -39,7 +39,7 @@ class Base64
 	}
 
 public:
-	//	w’è‚Ìƒtƒ@ƒCƒ‹‚ğbase64ƒGƒ“ƒR[ƒh‚·‚é
+	//	æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 	static tjs_error TJS_INTF_METHOD encode(
 		tTJSVariant	*result,
 		tjs_int numparams,
@@ -56,7 +56,7 @@ public:
 
 		ttstr fn = TVPGetPlacedPath(*param[0]);
 		if(fn.length() > 0)
-		{//	ƒA[ƒJƒCƒu“à
+		{//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…
 			IStream *in = TVPCreateIStream(fn, TJS_BS_READ);
 			if(in)
 			{
@@ -78,8 +78,8 @@ public:
 		return TJS_S_OK;
 	}
 
-	//	w’è‚Ì“à—e‚ğbase64‚ÅƒR[ƒh‚µ‚ÄAw’è‚Ìƒtƒ@ƒCƒ‹‚Öo—Í‚·‚é
-	//	‚Â‚¢‚Å‚Émd5‚ğŒvZ‚·‚é
+	//	æŒ‡å®šã®å†…å®¹ã‚’base64ã§ã‚³ãƒ¼ãƒ‰ã—ã¦ã€æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸å‡ºåŠ›ã™ã‚‹
+	//	ã¤ã„ã§ã«md5ã‚’è¨ˆç®—ã™ã‚‹
 	static tjs_error TJS_INTF_METHOD decode(
 		tTJSVariant	*result,
 		tjs_int numparams,

@@ -3,13 +3,13 @@
 
 ////////////////////////////////////////////////////////////////
 
-// ƒŒƒ“ƒ_ƒŠƒ“ƒOÏ‚ÝƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚Ì•Û‘¶/î•ñ“Ç‚ÝŽæ‚èˆ—
+// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°æ¸ˆã¿ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜/æƒ…å ±èª­ã¿å–ã‚Šå‡¦ç†
 
 ////////////////////////////////////////////////////////////////
 
 
 //--------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‘€ìƒNƒ‰ƒX(‹¤’Ê)
+// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã‚¯ãƒ©ã‚¹(å…±é€š)
 
 struct PFontFile
 {
@@ -89,7 +89,7 @@ const char*               PFontFile::headerText   = "TVP pre-rendered font\x1a\x
 const PFontFile::SizeType PFontFile::headerLength = 24;
 
 //--------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‘€ìƒNƒ‰ƒX(‘‚«ž‚Ý)
+// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã‚¯ãƒ©ã‚¹(æ›¸ãè¾¼ã¿)
 
 struct PFontSaver : public PFontFile
 {
@@ -107,7 +107,7 @@ struct PFontSaver : public PFontFile
 		write(&indexpos,   4);
 	}
 
-	// ƒtƒHƒ“ƒgƒCƒ[ƒWi65’iŠKj‚Ìƒ‰ƒ“ƒŒƒ“ƒOƒXˆ³k•Û‘¶
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ï¼ˆ65æ®µéšŽï¼‰ã®ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹åœ§ç¸®ä¿å­˜
 	void writeCompress65(unsigned char *buf, int size) {
 		if (!size) return;
 
@@ -152,7 +152,7 @@ private:
 
 
 //--------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‘€ìƒNƒ‰ƒX(“Ç‚ÝŽæ‚è)
+// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã‚¯ãƒ©ã‚¹(èª­ã¿å–ã‚Š)
 
 struct PFontLoader : public PFontFile
 {
@@ -185,7 +185,7 @@ struct PFontLoader : public PFontFile
 };
 
 //--------------------------------------------------------------
-// ƒOƒŠƒtî•ñ•ÛŽ•ƒCƒ[ƒW•ÏŠ·ƒNƒ‰ƒX
+// ã‚°ãƒªãƒ•æƒ…å ±ä¿æŒï¼†ã‚¤ãƒ¡ãƒ¼ã‚¸å¤‰æ›ã‚¯ãƒ©ã‚¹
 
 class PFontImage
 {
@@ -273,7 +273,7 @@ public:
 		if (sw > w) sw = w;
 		if (sh > h) sh = h;
 
-		// ’x‚¢‚¯‚Ç“®‚¯‚Î‚æ‚¢
+		// é…ã„ã‘ã©å‹•ã‘ã°ã‚ˆã„
 		for (int y = 0; y < sh; y++) {
 			unsigned char *line = buf + (y * w);
 			for (int x = 0; x < sw; x++) {
@@ -324,7 +324,7 @@ public:
 };
 
 //--------------------------------------------------------------
-// •Û‘¶ˆ—
+// ä¿å­˜å‡¦ç†
 
 static void savePreRenderedFont(tjs_char const *storage, tTJSVariant characters, tTJSVariant callback)
 {
@@ -333,14 +333,14 @@ static void savePreRenderedFont(tjs_char const *storage, tTJSVariant characters,
 	ncbPropAccessor charray(characters);
 	tTJSVariantClosure closure = callback.AsObjectClosureNoAddRef();
 
-	// ƒ\[ƒg‚·‚é
+	// ã‚½ãƒ¼ãƒˆã™ã‚‹
 	charray.FuncCall(0, TJS_W("sort"), 0, NULL);
 
-	// ƒLƒƒƒ‰ŒÂ”
+	// ã‚­ãƒ£ãƒ©å€‹æ•°
 	tjs_uint32 count = charray.GetArrayCount();
 	if (!count) saver.error(TJS_W("empty characters"));
 
-	// •¶Žšî•ñ‚ðƒLƒƒƒ‰ŒÂ”•ª—pˆÓ
+	// æ–‡å­—æƒ…å ±ã‚’ã‚­ãƒ£ãƒ©å€‹æ•°åˆ†ç”¨æ„
 	PFontImage *images = new PFontImage[count];
 
 	typedef PFontFile::SizeType SizeType;
@@ -369,7 +369,7 @@ static void savePreRenderedFont(tjs_char const *storage, tTJSVariant characters,
 NCB_ATTACH_FUNCTION(savePreRenderedFont, System, savePreRenderedFont);
 
 //--------------------------------------------------------------
-// “Ç‚Ýž‚Ýˆ—
+// èª­ã¿è¾¼ã¿å‡¦ç†
 
 static void loadPreRenderedFont(tjs_char const *storage, tTJSVariant characters, tTJSVariant callback)
 {
@@ -389,7 +389,7 @@ static void loadPreRenderedFont(tjs_char const *storage, tTJSVariant characters,
 	loader.readHeader(count, chindexpos, indexpos);
 	if (!count) loader.error(TJS_W("empty characters"));
 
-	// •¶Žšî•ñ‚ðƒLƒƒƒ‰ŒÂ”•ª—pˆÓ
+	// æ–‡å­—æƒ…å ±ã‚’ã‚­ãƒ£ãƒ©å€‹æ•°åˆ†ç”¨æ„
 	PFontImage *images = new PFontImage[count];
 
 	try {
@@ -423,7 +423,7 @@ NCB_ATTACH_FUNCTION(loadPreRenderedFont, System, loadPreRenderedFont);
 
 ////////////////////////////////////////////////////////////////
 
-// ƒOƒŠƒtî•ñŽæ“¾••`‰æ—pŠg’£
+// ã‚°ãƒªãƒ•æƒ…å ±å–å¾—ï¼†æç”»ç”¨æ‹¡å¼µ
 
 ////////////////////////////////////////////////////////////////
 

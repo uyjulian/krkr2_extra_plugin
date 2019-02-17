@@ -1,14 +1,14 @@
 #include "OgreInfo.h"
 
 /**
- * �R���X�g���N�^
+ * コンストラクタ
  */
 OgreInfo::OgreInfo()
 {
-	// Ogre ���[�g�N���X
+	// Ogre ルートクラス
 	root = new Ogre::Root();
 	
-	// �R���t�B�O������
+	// コンフィグ初期化
 	ConfigFile cf;
 	cf.load("resources.cfg");
 	// Go through all sections & settings in the file
@@ -29,7 +29,7 @@ OgreInfo::OgreInfo()
 }
 
 /**
- * �f�X�g���N�^
+ * デストラクタ
  */
 OgreInfo::~OgreInfo()
 {
@@ -38,7 +38,7 @@ OgreInfo::~OgreInfo()
 }
 
 /**
- * Ogre Config �Ăяo��
+ * Ogre Config 呼び出し
  */
 bool
 OgreInfo::config()
@@ -51,7 +51,7 @@ OgreInfo::config()
 }
 
 /**
- * Ogre �Ăяo�������J�n
+ * Ogre 呼び出し処理開始
  */
 void
 OgreInfo::start()
@@ -61,7 +61,7 @@ OgreInfo::start()
 }
 
 /**
- * Ogre �Ăяo��������~
+ * Ogre 呼び出し処理停止
  */
 void
 OgreInfo::stop()
@@ -70,8 +70,8 @@ OgreInfo::stop()
 }
 
 /**
- * Continuous �R�[���o�b�N
- * �g���g�����ɂȂƂ��ɏ�ɌĂ΂��
+ * Continuous コールバック
+ * 吉里吉里が暇なときに常に呼ばれる
  */
 void TJS_INTF_METHOD
 OgreInfo::OnContinuousCallback(tjs_uint64 tick)

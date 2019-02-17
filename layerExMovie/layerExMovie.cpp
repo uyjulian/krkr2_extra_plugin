@@ -31,7 +31,7 @@ void ParseVideoType( CMediaType &mt, const wchar_t *type )
 #endif
 
 /**
- * ÉRÉìÉXÉgÉâÉNÉ^
+ * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
  */
 layerExMovie::layerExMovie(DispatchT obj) : _pType(obj, TJS_W("type")), layerExBase(obj)
 {
@@ -64,7 +64,7 @@ layerExMovie::layerExMovie(DispatchT obj) : _pType(obj, TJS_W("type")), layerExB
 }
 
 /**
- * ÉfÉXÉgÉâÉNÉ^
+ * „Éá„Çπ„Éà„É©„ÇØ„Çø
  */
 layerExMovie::~layerExMovie()
 {
@@ -119,9 +119,9 @@ layerExMovie::clearMovie()
 }
 
 /**
- * ÉÄÅ[ÉrÅ[ÉtÉ@ÉCÉãÇäJÇ¢ÇƒèÄîıÇ∑ÇÈ
- * @param filename ÉtÉ@ÉCÉãñº
- * @param alpha ÉAÉãÉtÉ@éwíËÅiîºï™ÇÃÉTÉCÉYÇ≈ÉøèàóùÇ∑ÇÈÅj
+ * „É†„Éº„Éì„Éº„Éï„Ç°„Ç§„É´„ÇíÈñã„ÅÑ„Å¶Ê∫ñÂÇô„Åô„Çã
+ * @param filename „Éï„Ç°„Ç§„É´Âêç
+ * @param alpha „Ç¢„É´„Éï„Ç°ÊåáÂÆöÔºàÂçäÂàÜ„ÅÆ„Çµ„Ç§„Ç∫„ÅßŒ±Âá¶ÁêÜ„Åô„ÇãÔºâ
  */
 void
 layerExMovie::openMovie(const tjs_char* filename, bool alpha)
@@ -138,10 +138,10 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 	ParseVideoType(mt, ext.c_str()); // may throw an exception
 #endif
 
-	// ÉtÉ@ÉCÉãÇÉeÉìÉ|ÉâÉäÇ…ÉRÉsÅ[ÇµÇƒëŒâû
+	// „Éï„Ç°„Ç§„É´„Çí„ÉÜ„É≥„Éù„É©„É™„Å´„Ç≥„Éî„Éº„Åó„Å¶ÂØæÂøú
 	if ((in = TVPCreateIStream(filename, GENERIC_READ)) == NULL) {
 		ttstr error = filename;
-		error += ":ÉtÉ@ÉCÉãÇ™äJÇØÇ‹ÇπÇÒ";
+		error += ":„Éï„Ç°„Ç§„É´„ÅåÈñã„Åë„Åæ„Åõ„Çì";
 		TVPAddLog(error);
 		return;
 	}
@@ -150,13 +150,13 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 	HANDLE hFile;
 	if ((hFile = CreateFileW(tempFile.c_str(), GENERIC_WRITE, 0, NULL,
 							CREATE_ALWAYS, FILE_ATTRIBUTE_TEMPORARY, NULL)) == INVALID_HANDLE_VALUE) {
-		TVPAddLog("ÉeÉìÉ|ÉâÉäÉtÉ@ÉCÉãÇ™äJÇØÇ‹ÇπÇÒ");
+		TVPAddLog("„ÉÜ„É≥„Éù„É©„É™„Éï„Ç°„Ç§„É´„ÅåÈñã„Åë„Åæ„Åõ„Çì");
 		tempFile = "";
 		in->Release();
 		in = NULL;
 		return;
 	}
-	// ÉtÉ@ÉCÉãÇÉRÉsÅ[
+	// „Éï„Ç°„Ç§„É´„Çí„Ç≥„Éî„Éº
 	BYTE buffer[1024*16];
 	DWORD size;
 	while (in->Read(buffer, sizeof buffer, &size) == S_OK && size > 0) {			
@@ -202,16 +202,16 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 			DWORD flag;
 			pAMStream->GetInformation(&flag, NULL);
 			if ((flag & MMSSF_ASYNCHRONOUS)) {
-				TVPAddLog("ASYNCçXêVÉTÉ|Å[Ég");
+				TVPAddLog("ASYNCÊõ¥Êñ∞„Çµ„Éù„Éº„Éà");
 				supportAsync = true;
 			} else {
 				supportAsync = false;
 			}
 			if ((flag & MMSSF_HASCLOCK)) {
-				TVPAddLog("CLOCK Ç†ÇË");
+				TVPAddLog("CLOCK „ÅÇ„Çä");
 			}
 			if ((flag & MMSSF_SUPPORTSEEK)) {
-				TVPAddLog("SEEKÇÉTÉ|Å[Ég");
+				TVPAddLog("SEEK„Çí„Çµ„Éù„Éº„Éà");
 				supportSeek = true;
 			} else {
 				supportSeek = false;
@@ -220,7 +220,7 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 			if (SUCCEEDED(pAMStream->GetMediaStream(MSPID_PrimaryVideo, &pPrimaryVidStream))) {
 				if (SUCCEEDED(pPrimaryVidStream->QueryInterface(IID_IDirectDrawMediaStream,(void**)&pDDStream))) {
 
-					// ÉtÉHÅ[É}ÉbÉgÇÃéwíË ARGB32
+					// „Éï„Ç©„Éº„Éû„ÉÉ„Éà„ÅÆÊåáÂÆö ARGB32
 					DDSURFACEDESC desc;
 					ZeroMemory(&desc, sizeof DDSURFACEDESC);
 					desc.dwSize = sizeof(DDSURFACEDESC);
@@ -243,12 +243,12 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 								if (alpha) {
 									movieWidth /= 2;
 								}
-								// âÊëúÉTÉCÉYÇÉÄÅ[ÉrÅ[ÇÃÉTÉCÉYÇ…Ç†ÇÌÇπÇÈ
+								// ÁîªÂÉè„Çµ„Ç§„Ç∫„Çí„É†„Éº„Éì„Éº„ÅÆ„Çµ„Ç§„Ç∫„Å´„ÅÇ„Çè„Åõ„Çã
 								_pWidth.SetValue(movieWidth);
 								_pHeight.SetValue(movieHeight);
 								_pType.SetValue(alpha ? ltAlpha : ltOpaque);
 							} else {
-								// ÉTÅ[ÉtÉFÅ[ÉXéÊìæé∏îs
+								// „Çµ„Éº„Éï„Çß„Éº„ÇπÂèñÂæóÂ§±Êïó
 								pSample->Release();
 								pSample = NULL;
 								pDDStream->Release();
@@ -260,7 +260,7 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 							}
 						}
 					} else {
-						// ÉTÉìÉvÉãçÏêªé∏îs
+						// „Çµ„É≥„Éó„É´‰ΩúË£ΩÂ§±Êïó
 						pDDStream->Release();
 						pDDStream = NULL;
 						pPrimaryVidStream->Release();
@@ -269,14 +269,14 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 						pAMStream = NULL;
 					}
 				} else {
-					// DirectDraw ÉXÉgÉäÅ[ÉÄéÊìæé∏îs
+					// DirectDraw „Çπ„Éà„É™„Éº„É†ÂèñÂæóÂ§±Êïó
 					pPrimaryVidStream->Release();
 					pPrimaryVidStream = NULL;
 					pAMStream->Release();
 					pAMStream = NULL;
 				}
 			} else {
-				// ÉrÉfÉIÉXÉgÉäÅ[ÉÄéÊìæé∏îs
+				// „Éì„Éá„Ç™„Çπ„Éà„É™„Éº„É†ÂèñÂæóÂ§±Êïó
 				pAMStream->Release();
 				pAMStream = NULL;
 			}
@@ -288,13 +288,13 @@ layerExMovie::openMovie(const tjs_char* filename, bool alpha)
 }
 
 /**
- * ÉÄÅ[ÉrÅ[ÇÃäJén
+ * „É†„Éº„Éì„Éº„ÅÆÈñãÂßã
  */
 void
 layerExMovie::startMovie(bool loop)
 {
 	if (pSample) {
-		// çƒê∂äJén
+		// ÂÜçÁîüÈñãÂßã
 		this->loop = loop;
 		pAMStream->SetState(STREAMSTATE_RUN);
 		start();
@@ -308,7 +308,7 @@ layerExMovie::startMovie(bool loop)
 }
 
 /**
- * ÉÄÅ[ÉrÅ[ÇÃí‚é~
+ * „É†„Éº„Éì„Éº„ÅÆÂÅúÊ≠¢
  */
 void
 layerExMovie::stopMovie()
@@ -338,7 +338,7 @@ layerExMovie::start()
 }
 
 /**
- * Irrlicht åƒÇ—èoÇµèàóùí‚é~
+ * Irrlicht Âëº„Å≥Âá∫„ÅóÂá¶ÁêÜÂÅúÊ≠¢
  */
 void
 layerExMovie::stop()
@@ -351,7 +351,7 @@ void TJS_INTF_METHOD
 layerExMovie::OnContinuousCallback(tjs_uint64 tick)
 {
 	if (pSample) {
-		// çXêV
+		// Êõ¥Êñ∞
 		HRESULT hr;
 		if (supportAsync) {
 			hr = pSample->CompletionStatus(0,0);
@@ -359,8 +359,8 @@ layerExMovie::OnContinuousCallback(tjs_uint64 tick)
 			hr = pSample->Update(0, NULL, NULL, 0);
 		}
 		if (hr == S_OK) {
-			// çXêVäÆóπ
-			// ÉTÅ[ÉtÉFÅ[ÉXÇ©ÇÁÉåÉCÉÑÇ…âÊñ ÉRÉsÅ[
+			// Êõ¥Êñ∞ÂÆå‰∫Ü
+			// „Çµ„Éº„Éï„Çß„Éº„Çπ„Åã„Çâ„É¨„Ç§„É§„Å´ÁîªÈù¢„Ç≥„Éî„Éº
 			reset();
 			if (_buffer != NULL) {
 				DDSURFACEDESC  ddsd; 
@@ -396,7 +396,7 @@ layerExMovie::OnContinuousCallback(tjs_uint64 tick)
 				pSample->Update(SSUPDATE_ASYNC, NULL, NULL, 0);
 			}
 		} else if (hr == MS_S_ENDOFSTREAM) {
-			// çXêVèIóπ
+			// Êõ¥Êñ∞ÁµÇ‰∫Ü
 			if (loop) {
 				if (supportSeek) {
 					pAMStream->Seek(0);
@@ -411,7 +411,7 @@ layerExMovie::OnContinuousCallback(tjs_uint64 tick)
 				stopMovie();
 			}
 		} else if (hr == MS_S_PENDING) {
-			//TVPAddLog("çXêVë“Çø");
+			//TVPAddLog("Êõ¥Êñ∞ÂæÖ„Å°");
 		} else {
 			stopMovie();
 		}

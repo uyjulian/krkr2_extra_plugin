@@ -1,56 +1,56 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class Layer {
 
 	/**
-	 * AVI ƒtƒ@ƒCƒ‹‚ğ€”õ‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param fps FPSw’è
+	 * AVI ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æº–å‚™ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fps FPSæŒ‡å®š
 	 */
 	function openAVI(filename, fps);
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ğŠJ‚¢‚Ä ˆ³kİ’è‚ğs‚È‚Á‚Ä‚©‚çAAVIƒtƒ@ƒCƒ‹‚ğ€”õ‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param fps FPSw’è
-         * @return ˆ³kİ’èƒ_ƒCƒAƒƒO‚ÅƒLƒƒƒ“ƒZƒ‹‚ğ‰Ÿ‚µ‚Ä”²‚¯‚½ê‡‚Ífalse
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã„ã¦ åœ§ç¸®è¨­å®šã‚’è¡Œãªã£ã¦ã‹ã‚‰ã€AVIãƒ•ã‚¡ã‚¤ãƒ«ã‚’æº–å‚™ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fps FPSæŒ‡å®š
+         * @return åœ§ç¸®è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’æŠ¼ã—ã¦æŠœã‘ãŸå ´åˆã¯false
 	 */
 	function openAVI(filename, fps);
 
 	/**
-	 * AVIƒtƒ@ƒCƒ‹‚É1ƒtƒŒ[ƒ€‹L˜^‚·‚é
-	 * @param frame ƒtƒŒ[ƒ€”Ô†
+	 * AVIãƒ•ã‚¡ã‚¤ãƒ«ã«1ãƒ•ãƒ¬ãƒ¼ãƒ è¨˜éŒ²ã™ã‚‹
+	 * @param frame ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
 	 */
 	function recordAVI(frame);
 	
 	/**
-	 * AVI ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	 * AVI ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	 */
 	function closeAVI();
 
 	/**
-	 * WAV˜^‰¹€”õ
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @param channel ƒ`ƒƒƒ“ƒlƒ‹
-	 * @param rate ƒŒ[ƒg
-	 * @param bits ƒrƒbƒg”
-	 * @param interval æ“¾ƒ^ƒCƒ~ƒ“ƒO
+	 * WAVéŒ²éŸ³æº–å‚™
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param channel ãƒãƒ£ãƒ³ãƒãƒ«
+	 * @param rate ãƒ¬ãƒ¼ãƒˆ
+	 * @param bits ãƒ“ãƒƒãƒˆæ•°
+	 * @param interval å–å¾—ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 	 */
 	function openWAV(filename, channel, rate, bits, interval);
 
 	/**
-	 * WAV˜^‰¹ŠJn
+	 * WAVéŒ²éŸ³é–‹å§‹
 	 */
 	function startWAV();
 
 	/**
-	 * WAV˜^‰¹’â~
+	 * WAVéŒ²éŸ³åœæ­¢
 	 */
 	function stopWAV();
 
 	/**
-	 * WAV˜^‰¹I—¹
+	 * WAVéŒ²éŸ³çµ‚äº†
 	 */
 	function closeWAV() {
 };

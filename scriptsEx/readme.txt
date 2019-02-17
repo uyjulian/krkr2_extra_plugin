@@ -1,25 +1,25 @@
 Title: ScriptsEx Plugin
-Author: �킽�Ȃׂ���/�����T��
+Author: わたなべごう/ゆんゆん探偵
 
-������͂ȂɁH
+●これはなに？
 
-iTJSDispatch2 �̋@�\������邽�߂̗����v���O�C���ł�
+iTJSDispatch2 の機能をさわるための裏口プラグインです
 
-���g�p���@
+●使用方法
 
-manual.tjs �Q��
+manual.tjs 参照
 
 
-��Scripts.propSet/Get�ɂ���
+●Scripts.propSet/Getについて
 
-iTJSDispatch2��PropSet/Get�𐶂ŌĂԊ֐��ƂȂ�܂��B
-�t���O�w��ɒ��ӂ��Ă��������B(propSet����pfMemberEnsure�̎w��Y��Ȃ�)
+iTJSDispatch2のPropSet/Getを生で呼ぶ関数となります。
+フラグ指定に注意してください。(propSet時のpfMemberEnsureの指定忘れなど)
 
-�g�p��F
+使用例：
 Plugins.link("ScriptsEx.dll");
 with (Scripts) {
 	.propSet(Dictionary, /*member*/"testMember", /*value*/1,
-		.pfStaticMember|.pfMemberEnsure); // static�w��
+		.pfStaticMember|.pfMemberEnsure); // static指定
 }
 var test = new Dictionary();
 Debug.message(typeof test.testMember); // -> "undefined"
@@ -27,6 +27,6 @@ Debug.message(typeof Dictionary.testMember); // -> "Integer"
 
 
 
-�����C�Z���X
+●ライセンス
 
-���C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+ライセンスは吉里吉里本体に準拠してください。

@@ -1,59 +1,59 @@
-Title: FlashPlayer �v���O�C��
-Author: �킽�Ȃׂ���
+Title: FlashPlayer プラグイン
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-�g���g�����璼�� Flash ���쓮����@�\�g���ł��B
-���C���ɑ΂��� Flash �̕`����e�������o���\�ł��B
-���삷��ɂ́AIE�p�� ActiveX �� Flash ���C���X�g�[��
-����Ă���K�v������܂��B
+吉里吉里から直接 Flash を駆動する機能拡張です。
+レイヤに対して Flash の描画内容を書き出し可能です。
+動作するには、IE用の ActiveX 版 Flash がインストール
+されている必要があります。
 
-�쐬�ɂ� Flash8 �� OCX ���g���Ă���܂����A
-����m�F�� Flash10 �ł����s���Ă��܂���B
+作成には Flash8 の OCX を使ってありますが、
+動作確認は Flash10 でしか行っていません。
 
-���g�p���@
+●使用方法
 
-�ڍׂ�manual.tjs ���Q�Ƃ��Ă��������B
+詳細はmanual.tjs を参照してください。
 
-�����ӎ���
+●注意事項
 
-Flash �̃t�@�C���Q�Ƃ͓Ǝ��̂��̂Ȃ̂ŁA
-loadMovie() �Ńt�@�C����n���ꍇ�́A���[�J���X�g���[�W��
-Storages.getLocalName() �� OS�̃t�@�C�����ɂ������̂�n���K�v������܂��B
-�܂�ʏ�͋g���g���̃A�[�J�C�u���ɓ���t�@�C�����i�[���邱�Ƃ͂ł��܂���B
+Flash のファイル参照は独自のものなので、
+loadMovie() でファイルを渡す場合は、ローカルストレージを
+Storages.getLocalName() で OSのファイル名にしたものを渡す必要があります。
+つまり通常は吉里吉里のアーカイブ中に動画ファイルを格納することはできません。
 
-�������A�������p�̓���� initMovie() �Ŏw�肷��ꍇ�Ɍ���A
-�A�[�J�C�u�����܂ޔC�ӂ̋g���g���̃X�g���[�W���w��\�ł��B
+ただし、初期化用の動画を initMovie() で指定する場合に限り、
+アーカイブ中を含む任意の吉里吉里のストレージを指定可能です。
 
-�����m�̖��
+●既知の問題
 
-FlashPlayer ���ʏ�e�L�X�g�`�掞�Ƀ���K�؂ɏ������Ȃ��炵���A
-ltAlpha �ȃ��C���ɑ΂��ĕ`�悷��ƃe�L�X�g�����������Ă��܂��܂��B
-���ߍ��݃t�H���g���g�����AltOpaque �ȃ��C�����g���Ă��������B
+FlashPlayer が通常テキスト描画時にαを適切に処理しないらしく、
+ltAlpha なレイヤに対して描画するとテキスト部分が消えてしまいます。
+埋め込みフォントを使うか、ltOpaque なレイヤを使ってください。
 
-ExternalInterface�ɑΉ����Ă��܂����AFlashPlayer����
-��O�𑗂荞�ޕ��@����Ŏ�������Ă܂���B
+ExternalInterfaceに対応していますが、FlashPlayer側に
+例外を送り込む方法が謎で実装されてません。
 
-�L�[�R�[�h�n�̐������Ƃ�Ă܂���
+キーコード系の整合がとれてません
 
-initMoie()/clearMovie() �ł̃��[�h���Ă�̃��[�r�̉�������ւ���
-�ł���͂������ۂɂ��ꎩ�͓̂��삵�Ă���̂ł����A
-FlashPlayer�̃o�O�Ȃ̂��A���[�h���Ɋm�ۂ��������������
-����Ȃ��悤�ł��B�d�l�i�K�x�[�W�R���N�g�҂��j�̉\����
-����܂����A����悭�킩��Ȃ��̂ŁA�p�ɂɍ����ւ���ꍇ�́A
-FlashPlayer �I�u�W�F�N�g���Ɣj�����č�蒼�����ق���
-����ł��B
-
-
+initMoie()/clearMovie() でのロードしてるのムービの解放差し替えが
+できるはず＆実際にそれ自体は動作しているのですが、
+FlashPlayerのバグなのか、ロード時に確保したメモリが解放
+されないようです。仕様（ガベージコレクト待ち）の可能性も
+ありますが、現状よくわからないので、頻繁に差し替える場合は、
+FlashPlayer オブジェクトごと破棄して作り直したほうが
+無難です。
 
 
-�����C�Z���X
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
 
-���ӎ�
+●ライセンス
 
-���̃v���O�����쐬�ɂ������Ă͈ȉ��̋L������у\�[�X�R�[�h���Q�l�ɂ��Ă���܂��B
+このプラグインのライセンスは吉里吉里本体に準拠してください。
+
+●謝辞
+
+このプログラム作成にあたっては以下の記事およびソースコードを参考にしてあります。
 http://www.codeproject.com/KB/COM/flashcontrol.aspx
 
 /******************************************************************

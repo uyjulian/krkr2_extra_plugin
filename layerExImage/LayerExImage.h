@@ -4,59 +4,59 @@
 #include "../layerExDraw/LayerExBase.hpp"
 
 /**
- * ƒŒƒCƒ„Šg’£ ƒCƒ[ƒW‘€ì—pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µ ã‚¤ãƒ¡ãƒ¼ã‚¸æ“ä½œç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 class layerExImage : public layerExBase
 {
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	layerExImage(DispatchT obj) : layerExBase(obj) {}
 
 	virtual void reset();
 	
 	/**
-	 * ƒ‹ƒbƒNƒAƒbƒvƒe[ƒuƒ‹”½‰f
+	 * ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«åæ˜ 
 	 * @param pLut lookup table
 	 */
 	void lut(BYTE* pLut);
 	
 	/**
-	 * –¾“x‚ÆƒRƒ“ƒgƒ‰ƒXƒg
-	 * @param brightness –¾“x -255 ` 255, •‰”‚Ìê‡‚ÍˆÃ‚­‚È‚é
-	 * @param contrast ƒRƒ“ƒgƒ‰ƒXƒg -100 `100, 0 ‚Ìê‡•Ï‰»‚µ‚È‚¢
+	 * æ˜åº¦ã¨ã‚³ãƒ³ãƒˆãƒ©ã‚¹ãƒˆ
+	 * @param brightness æ˜åº¦ -255 ã€œ 255, è² æ•°ã®å ´åˆã¯æš—ããªã‚‹
+	 * @param contrast ã‚³ãƒ³ãƒˆãƒ©ã‚¹ãƒˆ -100 ã€œ100, 0 ã®å ´åˆå¤‰åŒ–ã—ãªã„
 	 */
 	void light(int brightness, int contrast);
 
 	/**
-	 * F‘Š‚ÆÊ“x‚ğ“K‰
-	 * @param hue F‘Š
-	 * @param sat Ê“x
-	 * @param blend ƒuƒŒƒ“ƒh 0 (Œø‰Ê‚È‚µ) ` 1 (full effect)
+	 * è‰²ç›¸ã¨å½©åº¦ã‚’é©å¿œ
+	 * @param hue è‰²ç›¸
+	 * @param sat å½©åº¦
+	 * @param blend ãƒ–ãƒ¬ãƒ³ãƒ‰ 0 (åŠ¹æœãªã—) ã€œ 1 (full effect)
 	 */
 	void colorize(int hue, int sat, double blend);
 
 	/**
-	 * F‘Š‚ÆÊ“x‚Æ‹P“x’²®
-	 * @param hue F‘Š -180`180 (“x)
-	 * @param saturation Ê“x -100`100 (%)
-	 * @param luminance ‹P“x -100`100 (%)
+	 * è‰²ç›¸ã¨å½©åº¦ã¨è¼åº¦èª¿æ•´
+	 * @param hue è‰²ç›¸ -180ã€œ180 (åº¦)
+	 * @param saturation å½©åº¦ -100ã€œ100 (%)
+	 * @param luminance è¼åº¦ -100ã€œ100 (%)
 	 */
 	void modulate(int hue, int saturation, int luminance);
 	
 	/**
-	 * ƒmƒCƒY’Ç‰Á
-	 * @param level ƒmƒCƒYƒŒƒxƒ‹ 0 (no noise) ` 255 (lot of noise).
+	 * ãƒã‚¤ã‚ºè¿½åŠ 
+	 * @param level ãƒã‚¤ã‚ºãƒ¬ãƒ™ãƒ« 0 (no noise) ã€œ 255 (lot of noise).
 	 */
 	void noise(int level);
 
 	/**
-	 * ƒmƒCƒY¶¬iŒ³‚Ì‰æ‘œ‚ğ–³‹‚µ‚ÄƒOƒŒ[ƒXƒP[ƒ‹‚ÌƒzƒƒCƒgƒmƒCƒY‚ğ•`‰æ^ƒ¿î•ñ‚ÍˆÛj
+	 * ãƒã‚¤ã‚ºç”Ÿæˆï¼ˆå…ƒã®ç”»åƒã‚’ç„¡è¦–ã—ã¦ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ã®ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’æç”»ï¼Î±æƒ…å ±ã¯ç¶­æŒï¼‰
 	 */
 	void generateWhiteNoise();
 
 	/**
-	 * ƒKƒEƒX‚Ú‚©‚µ
-	 * @param radius ‚Ú‚©‚µ“x‡‚¢
+	 * ã‚¬ã‚¦ã‚¹ã¼ã‹ã—
+	 * @param radius ã¼ã‹ã—åº¦åˆã„
 	 */
 	void gaussianBlur(float radius);
 };

@@ -7,61 +7,61 @@ extern void registerWindowClass();
 extern void unregisterWindowClass();
 
 /**
- * Irrlicht •`‰æ‚ª‰Â”\‚ÈƒEƒCƒ“ƒhƒE
+ * Irrlicht æç”»ãŒå¯èƒ½ãªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  */
 class IrrlichtWindow :	public IrrlichtBase
 {
 public:
-	// ƒEƒCƒ“ƒhƒEƒvƒƒV[ƒWƒƒ
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 protected:
-	HWND parent; //< e‘‹(TScrollBox)‚Ìƒnƒ“ƒhƒ‹
-	HWND hwnd;   //< Œ»İ‚Ìƒnƒ“ƒhƒ‹
-	iTJSDispatch2 *window; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	HWND parent; //< è¦ªçª“(TScrollBox)ã®ãƒãƒ³ãƒ‰ãƒ«
+	HWND hwnd;   //< ç¾åœ¨ã®ãƒãƒ³ãƒ‰ãƒ«
+	iTJSDispatch2 *window; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 
-	// ƒCƒxƒ“ƒgˆ—
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 	static bool __stdcall messageHandler(void *userdata, tTVPWindowMessage *Message);
 
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(tTVPWindowMessageReceiver receiver, bool enable);
 
 	/**
-	 * ƒEƒCƒ“ƒhƒE‚ğ¶¬
-	 * @param krkr ‹g—¢‹g—¢‚ÌƒEƒCƒ“ƒhƒE
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
+	 * @param krkr å‰é‡Œå‰é‡Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	 */
 	void createWindow(HWND krkr);
 
 	/**
-	 * ƒEƒCƒ“ƒhƒE‚ğ”jŠü
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
 	 */
 	void destroyWindow();
 
 	/**
-	 * ‹g—¢‹g—¢‘‹‚ÉƒƒbƒZ[ƒW‚ğ‘—•t
-	 * @param message ƒƒbƒZ[ƒW
+	 * å‰é‡Œå‰é‡Œçª“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä»˜
+	 * @param message ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	 * @param wParam WPARAM
 	 * @param lParam LPARAM
-	 * @param convPosition lParam ‚Ìƒ}ƒEƒXÀ•W’l‚ğe‚Ì‚à‚Ì‚É•ÏŠ·‚·‚é
+	 * @param convPosition lParam ã®ãƒã‚¦ã‚¹åº§æ¨™å€¤ã‚’è¦ªã®ã‚‚ã®ã«å¤‰æ›ã™ã‚‹
 	 */
 	void sendMessage(UINT message, WPARAM wParam, LPARAM lParam, bool convPosition=false);
 	
 public:
-	bool transparentEvent; //< ƒCƒxƒ“ƒg“§‰ß
+	bool transparentEvent; //< ã‚¤ãƒ™ãƒ³ãƒˆé€é
 	
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	IrrlichtWindow(iTJSDispatch2 *objthis, iTJSDispatch2 *win, int left, int top, int width, int height);
 		
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~IrrlichtWindow();
 
 	// -----------------------------------------------------------------------
-	// ¶¬ƒtƒ@ƒNƒgƒŠ
+	// ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	// -----------------------------------------------------------------------
 
 	static tjs_error Factory(IrrlichtWindow **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
@@ -71,12 +71,12 @@ public:
 	// -----------------------------------------------------------------------
 public:
 	/**
-	 * Continuous ƒR[ƒ‹ƒoƒbƒN
+	 * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	 */
 	virtual void TJS_INTF_METHOD OnContinuousCallback(tjs_uint64 tick);
 	
 	// -----------------------------------------------------------------------
-	// ‹¤’Êƒƒ\ƒbƒhŒÄ‚Ño‚µ—p
+	// å…±é€šãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ç”¨
 	// -----------------------------------------------------------------------
 
 public:
@@ -109,7 +109,7 @@ public:
 	}
 
 	// -----------------------------------------------------------------------
-	// ŒÅ—Lƒƒ\ƒbƒh
+	// å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰
 	// -----------------------------------------------------------------------
 	
 protected:
@@ -138,12 +138,12 @@ public:
 	int getHeight();
 	
 	/**
-	 * ‘‹êŠw’è
+	 * çª“å ´æ‰€æŒ‡å®š
 	 */	
 	void setPos(int l, int t);
 
 	/**
-	 * ‘‹ƒTƒCƒYw’è
+	 * çª“ã‚µã‚¤ã‚ºæŒ‡å®š
 	 */	
 	void setSize(int w, int h);
 };

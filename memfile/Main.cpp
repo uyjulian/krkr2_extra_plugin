@@ -7,7 +7,7 @@
 #define BASENAME L"mem"
 
 /**
- * ƒtƒ@ƒCƒ‹î•ñ•Û—pƒNƒ‰ƒX
+ * ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ä¿æŒç”¨ã‚¯ãƒ©ã‚¹
  */
 class FileInfo {
 
@@ -15,10 +15,10 @@ public:
 	typedef std::map<ttstr,FileInfo*> Directory;
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param pParent eƒfƒBƒŒƒNƒgƒŠ
-	 * @param name –¼‘O
-	 * @param directory ƒfƒBƒŒƒNƒgƒŠ‚È‚ç true
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param pParent è¦ªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	 * @param name åå‰
+	 * @param directory ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰ true
 	 */
 	FileInfo(FileInfo *pParent, const ttstr &name, bool directory=false) : pParent(pParent), name(name), hBuffer(0), pDirectory(0) {
 		if (directory) {
@@ -27,7 +27,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~FileInfo() {
 		if (pDirectory) {
@@ -45,19 +45,19 @@ public:
 	}
 
 	// -----------------------------------------------------
-	// ƒtƒ@ƒCƒ‹î•ñQÆ
+	// ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±å‚ç…§
 	// -----------------------------------------------------
 
 	/**
-	 * @return ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹
 	 */
 	bool isDirectory() const {
 		return pDirectory != NULL;
 	}
 	
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ğƒf[ƒ^‚Æ‚µ‚Ä•Ô‚·
-	 * @return octetƒf[ƒ^
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦è¿”ã™
+	 * @return octetãƒ‡ãƒ¼ã‚¿
 	 */
 	tTJSVariant getData() const {
 		tTJSVariant ret;
@@ -72,15 +72,15 @@ public:
 	}
 
 	/**
-	 * @return ƒtƒ@ƒCƒ‹ƒTƒCƒY
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
 	 */
 	DWORD getSize() const {
 		return hBuffer ? GlobalSize(hBuffer) : 0;
 	}
 	
 	/**
-	 * ƒtƒ@ƒCƒ‹î•ñ‚ğ•Ô‚·
-	 * @return ƒtƒ@ƒCƒ‹î•ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’è¿”ã™
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ± %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	tTJSVariant getInfo() const {
 		iTJSDispatch2 *dict = TJSCreateDictionaryObject();
@@ -99,19 +99,19 @@ public:
 	}
 
 	// -----------------------------------------------------
-	// ƒfƒBƒŒƒNƒgƒŠî•ñ
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±
 	// -----------------------------------------------------
 
 	/**
-	 * @return ƒfƒBƒŒƒNƒgƒŠƒGƒ“ƒgƒŠ‚Ì”
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚¨ãƒ³ãƒˆãƒªã®æ•°
 	 */
 	int getDirectoryCount() const {
 		return pDirectory ? pDirectory->size() : 0;
 	}
 	
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠî•ñæ“¾
-	 * @param lister Ši”[æ
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±å–å¾—
+	 * @param lister æ ¼ç´å…ˆ
 	 */
 	void getDirectory(iTVPStorageLister * lister) const {
 		if (pDirectory) {
@@ -126,8 +126,8 @@ public:
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠî•ñæ“¾
-	 * @param array Ši”[æ
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±å–å¾—
+	 * @param array æ ¼ç´å…ˆ
 	 */
 	void getDirectory(iTJSDispatch2 *array) const {
 		if (pDirectory) {
@@ -141,13 +141,13 @@ public:
 	}
 
 	// -----------------------------------------------------
-	// ƒtƒ@ƒCƒ‹ŒŸõ
+	// ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢
 	// -----------------------------------------------------
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ü‚½‚Íƒtƒ@ƒCƒ‹‚ğ’T‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ŒŸõ‚³‚ê‚½ƒtƒ@ƒCƒ‹î•ñ
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æ¤œç´¢ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
 	 */
 	const FileInfo *find(const ttstr &name) const {
 		if (pDirectory) {
@@ -180,9 +180,9 @@ public:
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ğ’T‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ŒŸõ‚³‚ê‚½ƒtƒ@ƒCƒ‹î•ñ
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æ¤œç´¢ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
 	 */
 	const FileInfo *findFile(const ttstr &name) const {
 		if (name.GetLastChar() != '/') {
@@ -195,9 +195,9 @@ public:
 	}
 	
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠ‚ğ’T‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ŒŸõ‚³‚ê‚½ƒtƒ@ƒCƒ‹î•ñ
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¢ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æ¤œç´¢ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
 	 */
 	const FileInfo *findDirectory(const ttstr &name) const {
 		const FileInfo *file = find(name);
@@ -205,14 +205,14 @@ public:
 	}
 
 	// -----------------------------------------------------
-	// ƒfƒBƒŒƒNƒgƒŠ‘€ì
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œ
 	// -----------------------------------------------------
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	 * @param name ‘Š‘ÎƒpƒX‚Å‚Ìƒtƒ@ƒCƒ‹–¼
-	 * @param flags ƒI[ƒvƒ“ƒtƒ‰ƒO
-	 * @return ŠJ‚¢‚½ƒXƒgƒŠ[ƒ€
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+	 * @param name ç›¸å¯¾ãƒ‘ã‚¹ã§ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param flags ã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°
+	 * @return é–‹ã„ãŸã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	 */
 	tTJSBinaryStream *open(const ttstr &name, tjs_uint32 flags) {
 		if (pDirectory && name != "" && name.GetLastChar() != '/') {
@@ -236,8 +236,8 @@ public:
 	}
 	
 	/**
-	 * w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ğì¬
-	 * @return ì¬‚µ‚½ƒGƒ“ƒgƒŠ
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆ
+	 * @return ä½œæˆã—ãŸã‚¨ãƒ³ãƒˆãƒª
 	 */
 	const FileInfo *mkdir(const ttstr &name) {
 		if (pDirectory && name != "") {
@@ -261,9 +261,9 @@ public:
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return íœ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return å‰Šé™¤ã—ãŸã‚‰ true
 	 */
 	bool remove(const ttstr &name) {
 		const FileInfo *file = findFile(name);
@@ -278,9 +278,9 @@ public:
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
-	 * @param name ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return íœ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+	 * @param name ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å‰Šé™¤ã—ãŸã‚‰ true
 	 */
 	bool rmdir(const ttstr &name) {
 		const FileInfo *dir = findDirectory(name);
@@ -297,11 +297,11 @@ public:
 protected:
 
 	// -----------------------------------------------------
-	// ƒtƒ@ƒCƒ‹—pˆ—
+	// ãƒ•ã‚¡ã‚¤ãƒ«ç”¨å‡¦ç†
 	// -----------------------------------------------------
 	
 	/**
-	 * @return ƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€‚ğ•Ô‚·
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’è¿”ã™
 	 */
 	IStream *getStream() {
 		if (!pDirectory) {
@@ -318,14 +318,14 @@ protected:
 	}
 
 	// -----------------------------------------------------
-	// ƒfƒBƒŒƒNƒgƒŠ—pˆ—
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç”¨å‡¦ç†
 	// -----------------------------------------------------
 	
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	 * @param name ƒtƒ@ƒCƒ‹–¼
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
 	 * @param flags 
-	 * @return ƒXƒgƒŠ[ƒ€
+	 * @return ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	 */
 	tTJSBinaryStream *_open(const ttstr &name, tjs_uint32 flags) {
 		if (pDirectory) {
@@ -357,9 +357,9 @@ protected:
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠƒGƒ“ƒgƒŠ‚Ìì¬
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ¬Œ÷‚µ‚½‚ç‚»‚ÌƒGƒ“ƒgƒŠ
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚¨ãƒ³ãƒˆãƒªã®ä½œæˆ
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æˆåŠŸã—ãŸã‚‰ãã®ã‚¨ãƒ³ãƒˆãƒª
 	 */
 	FileInfo *_mkdir(const ttstr &name) {
 		FileInfo *info = NULL;
@@ -374,8 +374,8 @@ protected:
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹î•ñ‚Ìíœ
-	 * @param name –¼‘O
+	 * ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã®å‰Šé™¤
+	 * @param name åå‰
 	 */
 	const FileInfo *_remove(const ttstr &name) {
 		FileInfo *info = NULL;
@@ -488,53 +488,53 @@ public:
 public:
 
 	/**
-	 * w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ğì¬
-	 * @return ì¬‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆ
+	 * @return ä½œæˆã—ãŸã‚‰ true
 	 */
 	bool mkdir(const ttstr &name) {
 		return root.mkdir(name) != NULL;
 	}
 	
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	bool isExistFile(const ttstr &name) {
 		return root.findFile(name) != NULL;
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	bool isExistDirectory(const ttstr &name) {
 		return root.findDirectory(name) != NULL;
 	}
 	
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return íœ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return å‰Šé™¤ã—ãŸã‚‰ true
 	 */
 	bool remove(const ttstr &name) {
 		return root.remove(name);
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
-	 * @param name ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return íœ‚µ‚½‚ç true
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+	 * @param name ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å‰Šé™¤ã—ãŸã‚‰ true
 	 */
 	bool rmdir(const ttstr &name) {
 		return root.rmdir(name);
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğ octet ‚Å•Ô‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ƒtƒ@ƒCƒ‹î•ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ octet ã§è¿”ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ± %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	tTJSVariant getInfo(const ttstr &name) {
 		const FileInfo *file = root.findFile(name);
@@ -545,9 +545,9 @@ public:
 	}
 	
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğ octet ‚Å•Ô‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ƒf[ƒ^
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ octet ã§è¿”ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒ‡ãƒ¼ã‚¿
 	 */
 	tTJSVariant getData(const ttstr &name) {
 		const FileInfo *file = root.findFile(name);
@@ -558,9 +558,9 @@ public:
 	}
 
 	/**
-	 * w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹–¼ˆê——‚ğæ“¾
-	 * @param name ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ƒtƒ@ƒCƒ‹î•ñ‚Ì”z—ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«åä¸€è¦§ã‚’å–å¾—
+	 * @param name ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã®é…åˆ— %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	tTJSVariant getDirectory(const ttstr &name) {
 		const FileInfo *dir = root.findDirectory(name);
@@ -583,7 +583,7 @@ private:
 
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class StoragesMemFile {
 
@@ -605,63 +605,63 @@ public:
 	}
 
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	static bool isExistMemoryFile(ttstr filename) {
 		return mem && mem->isExistFile(filename);
 	}
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠ‚Ì‘¶İŠm”F
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å­˜åœ¨ç¢ºèª
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	static bool isExistMemoryDirectory(ttstr filename) {
 		return mem && mem->isExistDirectory(filename);
 	}
 	
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹‚ªíœ‚³‚ê‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãŒå‰Šé™¤ã•ã‚ŒãŸã‚‰ true
 	 */
 	static bool deleteMemoryFile(ttstr filename) {
 		return mem && mem->remove(filename);
 	}
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒfƒBƒŒƒNƒgƒŠ‚ªíœ‚³‚ê‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå‰Šé™¤ã•ã‚ŒãŸã‚‰ true
 	 */
 	static bool deleteMemoryDirectory(ttstr dirname) {
 		return mem && mem->rmdir(dirname);
 	}
 
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹î•ñ‚ğæ“¾‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹î•ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ± %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	static tTJSVariant getMemoryFileInfo(ttstr filename) {
 		return mem ? mem->getInfo(filename) : NULL;
 	}
 	
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹î•ñ‚ğæ“¾‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚½‚ç“à—e‚ğ octet ‚Å•Ô‚·B‚È‚¯‚ê‚Î void
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãŸã‚‰å†…å®¹ã‚’ octet ã§è¿”ã™ã€‚ãªã‘ã‚Œã° void
 	 */
 	static tTJSVariant getMemoryFileData(ttstr filename) {
 		return mem ? mem->getData(filename) : NULL;
 	}
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠî•ñ‚ğæ“¾‚·‚é
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹î•ñ‚Ì”z—ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã®é…åˆ— %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	static tTJSVariant getMemoryDirectory(ttstr dirname) {
 		return mem ? mem->getDirectory(dirname) : NULL;
@@ -684,7 +684,7 @@ NCB_ATTACH_CLASS(StoragesMemFile, Storages) {
 };
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PreRegistCallback()
 {
@@ -693,7 +693,7 @@ static void PreRegistCallback()
 
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {

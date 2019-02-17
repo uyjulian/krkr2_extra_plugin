@@ -1,192 +1,192 @@
 class BinaryStream
 {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	function BinaryStream(storage, mode) { if (storage != "") open(storage, mode); }
 	function finalize() { if (isvalid this) close(), setFilter(); }
 
 	/**
-	 * ƒXƒgƒŒ[ƒW‚ğŠJ‚­
-	 * @param storage ‘ÎÛƒXƒgƒŒ[ƒW
-	 * @param mode    ƒ‚[ƒhw’è(bsRead, bsWrite, bsAppend, bsUpdate)
+	 * ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’é–‹ã
+	 * @param storage å¯¾è±¡ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
+	 * @param mode    ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(bsRead, bsWrite, bsAppend, bsUpdate)
 	 */
 	function open(storage, mode);
 
 	/**
-	 * ƒI[ƒvƒ“’†‚ÌƒXƒgƒŒ[ƒW‚ğ•Â‚¶‚é
+	 * ã‚ªãƒ¼ãƒ—ãƒ³ä¸­ã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’é–‰ã˜ã‚‹
 	 */
 	function close();
 
 	/**
-	 * w’èƒoƒCƒg“Ç‚İ‚Ş
-	 * @param size “Ç‚İ‚ŞƒTƒCƒYiƒoƒCƒgj
-	 * @return     “Ç‚İ‚ñ‚¾ƒf[ƒ^ioctetŒ`®j I’[‚È‚Ç‚Å“Ç‚ß‚È‚©‚Á‚½ê‡‚Ívoidilength=0‚Ìoctet‚Å‚Í‚È‚¢‚Ì‚Å’ˆÓj
+	 * æŒ‡å®šãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚€
+	 * @param size èª­ã¿è¾¼ã‚€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
+	 * @return     èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ï¼ˆoctetå½¢å¼ï¼‰ çµ‚ç«¯ãªã©ã§èª­ã‚ãªã‹ã£ãŸå ´åˆã¯voidï¼ˆlength=0ã®octetã§ã¯ãªã„ã®ã§æ³¨æ„ï¼‰
 	 */
 	function read(size);
 	/**
-	 * ƒf[ƒ^‚ğ‘‚«‚Ş
-	 * @param data ‘‚«‚Şƒf[ƒ^ioctetŒ`®‚Ü‚½‚Í•¶š—ñj
-	 * @return     ‘‚«‚ñ‚¾ƒoƒCƒg”
-	 * @description data‚ª•¶š—ñ‚Ìê‡‚Í wchar ‚Å‘‚«‚Ü‚ê‚Ü‚·iƒR[ƒh•ÏŠ·‚ÍƒTƒ|[ƒg‚³‚ê‚Ü‚¹‚ñj
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
+	 * @param data æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ï¼ˆoctetå½¢å¼ã¾ãŸã¯æ–‡å­—åˆ—ï¼‰
+	 * @return     æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
+	 * @description dataãŒæ–‡å­—åˆ—ã®å ´åˆã¯ wchar ã§æ›¸ãè¾¼ã¾ã‚Œã¾ã™ï¼ˆã‚³ãƒ¼ãƒ‰å¤‰æ›ã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¾ã›ã‚“ï¼‰
 	 */
 	function write(data);
 
 	/**
-	 * {1,2,4,8}ƒoƒCƒg‚ğ”’l‚Æ‚µ‚Ä“Ç‚İ‚Ş
-	 * @return     “Ç‚İ‚ñ‚¾”’l / I’[‚È‚Ç‚Å“Ç‚ß‚È‚©‚Á‚½ê‡‚Ívoid
-	 * @description ¦”’l‚Í8byteˆÈŠO‚Íunsigned“Ç‚İ‚İ‚É‚È‚è‚Ü‚·i•„†Šg’£‚³‚ê‚Ü‚¹‚ñj
-	 * ¦void‚ğ•Ô‚·‚Ì‚Í1byte‚à“Ç‚ß‚È‚©‚Á‚½ê‡‚Ì‚İ‚Æ‚È‚è‚Ü‚·
-	 *   1byteˆÈãw’èbyte–¢–‚µ‚©“Ç‚ß‚È‚©‚Á‚½ê‡‚Í‘«‚è‚È‚¢•”•ª‚ğ0‚Å–„‚ß‚½’l‚ª•Ô‚³‚ê‚é‚Ì‚Å’ˆÓ
+	 * {1,2,4,8}ãƒã‚¤ãƒˆã‚’æ•°å€¤ã¨ã—ã¦èª­ã¿è¾¼ã‚€
+	 * @return     èª­ã¿è¾¼ã‚“ã æ•°å€¤ / çµ‚ç«¯ãªã©ã§èª­ã‚ãªã‹ã£ãŸå ´åˆã¯void
+	 * @description â€»æ•°å€¤ã¯8byteä»¥å¤–ã¯unsignedèª­ã¿è¾¼ã¿ã«ãªã‚Šã¾ã™ï¼ˆç¬¦å·æ‹¡å¼µã•ã‚Œã¾ã›ã‚“ï¼‰
+	 * â€»voidã‚’è¿”ã™ã®ã¯1byteã‚‚èª­ã‚ãªã‹ã£ãŸå ´åˆã®ã¿ã¨ãªã‚Šã¾ã™
+	 *   1byteä»¥ä¸ŠæŒ‡å®šbyteæœªæº€ã—ã‹èª­ã‚ãªã‹ã£ãŸå ´åˆã¯è¶³ã‚Šãªã„éƒ¨åˆ†ã‚’0ã§åŸ‹ã‚ãŸå€¤ãŒè¿”ã•ã‚Œã‚‹ã®ã§æ³¨æ„
 	 */
-	function readI8();			// 1byte “Ç‚İ‚İ
+	function readI8();			// 1byte èª­ã¿è¾¼ã¿
 
-	// 2byte “Ç‚İ‚İ (Little Endian)
+	// 2byte èª­ã¿è¾¼ã¿ (Little Endian)
 	function readI16LE();
-	// 4byte “Ç‚İ‚İ (Little Endian)
+	// 4byte èª­ã¿è¾¼ã¿ (Little Endian)
 	function readI32LE();
-	// 8byte “Ç‚İ‚İ (Little Endian)
+	// 8byte èª­ã¿è¾¼ã¿ (Little Endian)
 	function readI64LE();
 
-	// 2byte “Ç‚İ‚İ (Big Endian)
+	// 2byte èª­ã¿è¾¼ã¿ (Big Endian)
 	function readI16BE();
-	// 4byte “Ç‚İ‚İ (Big Endian)
+	// 4byte èª­ã¿è¾¼ã¿ (Big Endian)
 	function readI32BE();
-	// 8byte “Ç‚İ‚İ (Big Endian)
+	// 8byte èª­ã¿è¾¼ã¿ (Big Endian)
 	function readI64BE();
 
 
 	/**
-	 * {1,2,4,8}ƒoƒCƒg‚Å”’l‚ğ‘‚«‚Ş
-	 * @param num ‘‚«‚Ş”’l
-	 * @return    ‘‚«‚ñ‚¾ƒoƒCƒg”
+	 * {1,2,4,8}ãƒã‚¤ãƒˆã§æ•°å€¤ã‚’æ›¸ãè¾¼ã‚€
+	 * @param num æ›¸ãè¾¼ã‚€æ•°å€¤
+	 * @return    æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 	 */
-	function writeI8(num);			//< 1byte ‘‚«‚İ
+	function writeI8(num);			//< 1byte æ›¸ãè¾¼ã¿
 
-	// 2byte ‘‚«‚İ (Little Endian)
+	// 2byte æ›¸ãè¾¼ã¿ (Little Endian)
 	function writeI16LE(num);
-	// 4byte ‘‚«‚İ (Little Endian)
+	// 4byte æ›¸ãè¾¼ã¿ (Little Endian)
 	function writeI32LE(num);
-	// 8byte ‘‚«‚İ (Little Endian)
+	// 8byte æ›¸ãè¾¼ã¿ (Little Endian)
 	function writeI64LE(num);
 
-	// 2byte ‘‚«‚İ (Big Endian)
+	// 2byte æ›¸ãè¾¼ã¿ (Big Endian)
 	function writeI16BE(num);
-	// 4byte ‘‚«‚İ (Big Endian)
+	// 4byte æ›¸ãè¾¼ã¿ (Big Endian)
 	function writeI32BE(num);
-	// 8byte ‘‚«‚İ (Big Endian)
+	// 8byte æ›¸ãè¾¼ã¿ (Big Endian)
 	function writeI64BE(num);
 
 	/**
-	 * •Ê‚ÌƒXƒgƒŒ[ƒW‚©‚çƒf[ƒ^‚ğƒRƒs[
-	 * @param storage ƒRƒs[Œ³‚ÌƒXƒgƒŒ[ƒWiŒ»İŠJ‚¢‚Ä‚¢‚éƒXƒgƒŒ[ƒW‚Æ“¯‚¶ê‡‚Í—áŠOj
-	 * @param elm     “®ìw’è—p‚Ì«‘iin/outj“à—e‚Í‰º‹LFiÈ—ª‚Í’PƒƒRƒs[C[out]‚È‚µj
-	 *        offset  :[in] ƒRƒs[Œ³ƒXƒgƒŒ[ƒW‚Ì“Ç‚İ‚İŠJnƒIƒtƒZƒbƒgiÈ—ªæ“ªj
-	 *        length  :[in] ƒRƒs[Œ³ƒXƒgƒŒ[ƒW‚ÌÅ‘å“Ç‚İ‚İƒTƒCƒYiÈ—ªƒtƒ@ƒCƒ‹ƒTƒCƒYj
+	 * åˆ¥ã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
+	 * @param storage ã‚³ãƒ”ãƒ¼å…ƒã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ï¼ˆç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã¨åŒã˜å ´åˆã¯ä¾‹å¤–ï¼‰
+	 * @param elm     å‹•ä½œæŒ‡å®šç”¨ã®è¾æ›¸ï¼ˆin/outï¼‰å†…å®¹ã¯ä¸‹è¨˜ï¼šï¼ˆçœç•¥æ™‚ã¯å˜ç´”ã‚³ãƒ”ãƒ¼ï¼Œ[out]ãªã—ï¼‰
+	 *        offset  :[in] ã‚³ãƒ”ãƒ¼å…ƒã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆçœç•¥æ™‚å…ˆé ­ï¼‰
+	 *        length  :[in] ã‚³ãƒ”ãƒ¼å…ƒã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®æœ€å¤§èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚ºï¼ˆçœç•¥æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºï¼‰
 	 *
-	 *        filter  :[in] ƒtƒBƒ‹ƒ^ˆ—‚ğs‚¤ŠÖ”–¼iÈ—ª‚ÍƒtƒBƒ‹ƒ^ˆ—‚È‚µj
-	 *        fparam  :[in] ƒtƒBƒ‹ƒ^‚É“n‚·ƒpƒ‰ƒ[ƒ^’l(int)
+	 *        filter  :[in] ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã‚’è¡Œã†é–¢æ•°åï¼ˆçœç•¥æ™‚ã¯ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ãªã—ï¼‰
+	 *        fparam  :[in] ãƒ•ã‚£ãƒ«ã‚¿ã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤(int)
 	 *
-	 *        nocopy  :[in] true‚ğw’è‚·‚é‚Æo—Í‚ğ‘‚«‚Ü‚È‚¢iÈ—ª‚ÍfalseChash‚Ì‚İæ“¾‚µ‚½‚¢ê‡‚È‚Ç‚Éw’èj
-	 *        md5     :[in] true‚ğw’è‚·‚é‚Æo—Í‚ÌMD5ƒ_ƒCƒWƒFƒXƒg‚ğ•Ô‚·
+	 *        nocopy  :[in] trueã‚’æŒ‡å®šã™ã‚‹ã¨å‡ºåŠ›ã‚’æ›¸ãè¾¼ã¾ãªã„ï¼ˆçœç•¥æ™‚ã¯falseï¼Œhashã®ã¿å–å¾—ã—ãŸã„å ´åˆãªã©ã«æŒ‡å®šï¼‰
+	 *        md5     :[in] trueã‚’æŒ‡å®šã™ã‚‹ã¨å‡ºåŠ›ã®MD5ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆã‚’è¿”ã™
 	 *
-	 *        hash    :[out]“Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚ÌƒnƒbƒVƒ…’liAdler32j
-	 *        read    :[out]“Ç‚İ‚ñ‚¾ƒoƒCƒg”
-	 *        digest  :[out]‘‚«‚ñ‚¾ƒf[ƒ^‚ÌMD5ƒ_ƒCƒWƒFƒXƒgioctetj ¦md5‚ªtrue‚Ìê‡‚É‚Ì‚İ—LŒø
-	 * @return              ‘‚«‚ñ‚¾ƒoƒCƒg”
-	 * @description ‘ÎÛƒXƒgƒŒ[ƒW‚Ìoffset‚©‚çlength•ª‚Ì“à—e‚ªCŒ»İ‚ÌƒXƒgƒŠ[ƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“‚©‚ç‘‚«‚Ü‚ê‚Ü‚·
-	 * ƒtƒBƒ‹ƒ^‚ÌÚ×‚Í setFilter() ‚Ìà–¾‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢
+	 *        hash    :[out]èª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒƒã‚·ãƒ¥å€¤ï¼ˆAdler32ï¼‰
+	 *        read    :[out]èª­ã¿è¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
+	 *        digest  :[out]æ›¸ãè¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã®MD5ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆï¼ˆoctetï¼‰ â€»md5ãŒtrueã®å ´åˆã«ã®ã¿æœ‰åŠ¹
+	 * @return              æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
+	 * @description å¯¾è±¡ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®offsetã‹ã‚‰lengthåˆ†ã®å†…å®¹ãŒï¼Œç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‹ã‚‰æ›¸ãè¾¼ã¾ã‚Œã¾ã™
+	 * ãƒ•ã‚£ãƒ«ã‚¿ã®è©³ç´°ã¯ setFilter() ã®èª¬æ˜ã‚’å‚ç…§ã—ã¦ãã ã•ã„
 	 */
 	function copy(storage, elm = void);
 
 	/**
-	 * •Ê‚ÌƒXƒgƒŒ[ƒW‚©‚çƒf[ƒ^‚ğˆ³k‚µ‚Â‚ÂƒRƒs[
-	 * @param storage ƒRƒs[Œ³‚ÌƒXƒgƒŒ[ƒWiŒ»İŠJ‚¢‚Ä‚¢‚éƒXƒgƒŒ[ƒW‚Æ“¯‚¶ê‡‚Í—áŠOj
-	 * @param elm     “®ìw’è—p‚Ì«‘iin/outj“à—e‚Í copy() ‚Æ“¯‚¶‚à‚Ì‚É‰Á‚¦‚Ä‰º‹LF
-	 *        comp_lv :[in] zlib‚É‚æ‚éˆ³kƒŒƒxƒ‹i1`9jÈ—ªC‚Ü‚½‚Íelm‚»‚Ì‚à‚Ì‚Ìw’è‚ª‚È‚¢ê‡‚Í 9
-	 * @return              ‘‚«‚ñ‚¾ƒoƒCƒg”
-	 * @description ‘ÎÛƒXƒgƒŒ[ƒW‚ğ zlib/deflate ‚Åˆ³k‚µ‚Â‚ÂCŒ»İ‚ÌƒXƒgƒŠ[ƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“‚©‚ç‘‚«‚İ‚Ü‚·
-	 * ƒtƒBƒ‹ƒ^ŠÖ”‚Íˆ³k‘O‚ÌƒoƒCƒiƒŠ‚É‘Î‚µ‚Ä“K—p‚³‚ê‚Ü‚·
+	 * åˆ¥ã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸®ã—ã¤ã¤ã‚³ãƒ”ãƒ¼
+	 * @param storage ã‚³ãƒ”ãƒ¼å…ƒã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ï¼ˆç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã¨åŒã˜å ´åˆã¯ä¾‹å¤–ï¼‰
+	 * @param elm     å‹•ä½œæŒ‡å®šç”¨ã®è¾æ›¸ï¼ˆin/outï¼‰å†…å®¹ã¯ copy() ã¨åŒã˜ã‚‚ã®ã«åŠ ãˆã¦ä¸‹è¨˜ï¼š
+	 *        comp_lv :[in] zlibã«ã‚ˆã‚‹åœ§ç¸®ãƒ¬ãƒ™ãƒ«ï¼ˆ1ã€œ9ï¼‰çœç•¥æ™‚ï¼Œã¾ãŸã¯elmãã®ã‚‚ã®ã®æŒ‡å®šãŒãªã„å ´åˆã¯ 9
+	 * @return              æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
+	 * @description å¯¾è±¡ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’ zlib/deflate ã§åœ§ç¸®ã—ã¤ã¤ï¼Œç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‹ã‚‰æ›¸ãè¾¼ã¿ã¾ã™
+	 * ãƒ•ã‚£ãƒ«ã‚¿é–¢æ•°ã¯åœ§ç¸®å‰ã®ãƒã‚¤ãƒŠãƒªã«å¯¾ã—ã¦é©ç”¨ã•ã‚Œã¾ã™
 	 */
 	function compress(storage, elm = void);
 
 	/**
-	 * •Ê‚ÌƒXƒgƒŒ[ƒW‚©‚çƒf[ƒ^‚ğ“WŠJ‚µ‚Â‚ÂƒRƒs[
-	 * @param storage ƒRƒs[Œ³‚ÌƒXƒgƒŒ[ƒWiŒ»İŠJ‚¢‚Ä‚¢‚éƒXƒgƒŒ[ƒW‚Æ“¯‚¶ê‡‚Í—áŠOj
-	 * @param elm     “®ìw’è—p‚Ì«‘iin/outj“à—e‚Í copy() ‚Æ“¯‚¶
-	 * @return        ‘‚«‚ñ‚¾ƒoƒCƒg”
-	 * @description ‘ÎÛƒXƒgƒŒ[ƒW‚ğ zlib/inflate ‚Å“WŠJ‚µ‚Â‚ÂCŒ»İ‚ÌƒXƒgƒŠ[ƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“‚©‚ç‘‚«‚İ‚Ü‚·
-	 * “WŠJ‚É¸”s‚·‚é‚Æ—áŠO‚ª”­¶‚µ‚Ü‚·
-	 * ƒtƒBƒ‹ƒ^ŠÖ”‚Í“WŠJŒã‚ÌƒoƒCƒiƒŠ‚É‘Î‚µ‚Ä“K—p‚³‚ê‚Ü‚·
-	 * hash[out] ‚Í“WŠJŒã^ƒtƒBƒ‹ƒ^Œã‚ÌƒoƒCƒiƒŠ‚É‘Î‚µ‚ÄŒvZ‚³‚ê‚Ü‚·
+	 * åˆ¥ã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã—ã¤ã¤ã‚³ãƒ”ãƒ¼
+	 * @param storage ã‚³ãƒ”ãƒ¼å…ƒã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ï¼ˆç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã¨åŒã˜å ´åˆã¯ä¾‹å¤–ï¼‰
+	 * @param elm     å‹•ä½œæŒ‡å®šç”¨ã®è¾æ›¸ï¼ˆin/outï¼‰å†…å®¹ã¯ copy() ã¨åŒã˜
+	 * @return        æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
+	 * @description å¯¾è±¡ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’ zlib/inflate ã§å±•é–‹ã—ã¤ã¤ï¼Œç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‹ã‚‰æ›¸ãè¾¼ã¿ã¾ã™
+	 * å±•é–‹ã«å¤±æ•—ã™ã‚‹ã¨ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã™
+	 * ãƒ•ã‚£ãƒ«ã‚¿é–¢æ•°ã¯å±•é–‹å¾Œã®ãƒã‚¤ãƒŠãƒªã«å¯¾ã—ã¦é©ç”¨ã•ã‚Œã¾ã™
+	 * hash[out] ã¯å±•é–‹å¾Œï¼ãƒ•ã‚£ãƒ«ã‚¿å¾Œã®ãƒã‚¤ãƒŠãƒªã«å¯¾ã—ã¦è¨ˆç®—ã•ã‚Œã¾ã™
 	 */
 	function decompress(storage, elm = void);
 
 	/**
-	 * ƒvƒƒOƒŒƒXƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚é
-	 * @param callback ƒR[ƒ‹ƒoƒbƒNŠÖ” function(storage, read_size) { return true_if_cancel; }
-	 *                 void‚Ìê‡‚Í‰ğœ
-	 * @description copy/compress/decompress ‚Ìˆ—’†‚©‚çƒR[ƒ‹ƒoƒbƒN‚·‚éŠÖ”‚ğİ’è‚µ‚Ü‚·B
-	 * ƒR[ƒ‹ƒoƒbƒN‚ÍiŒ»İ‚ÌÀ‘•‚Å‚Íj 1MiB “Ç‚Ş–ˆ‚¨‚æ‚ÑÅŒã‚Ü‚Å“Ç‚ñ‚¾‚ÉŒÄ‚Ñ•Ô‚³‚ê‚Ü‚·B
-	 * ƒR[ƒ‹ƒoƒbƒN‚©‚ç true ‚ğ•Ô‚·‚Æˆ—‚ªƒLƒƒƒ“ƒZƒ‹‚Å‚«‚Ü‚·B
-	 * ¦ƒR[ƒ‹ƒoƒbƒN‚ÌŠÔŠu‚Í•ÏX‚³‚ê‚éê‡‚ª‚ ‚è‚Ü‚·
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹
+	 * @param callback ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° function(storage, read_size) { return true_if_cancel; }
+	 *                 voidã®å ´åˆã¯è§£é™¤
+	 * @description copy/compress/decompress ã®å‡¦ç†ä¸­ã‹ã‚‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã™ã‚‹é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
+	 * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ï¼ˆç¾åœ¨ã®å®Ÿè£…ã§ã¯ï¼‰ 1MiB èª­ã‚€æ¯æ™‚ãŠã‚ˆã³æœ€å¾Œã¾ã§èª­ã‚“ã æ™‚ã«å‘¼ã³è¿”ã•ã‚Œã¾ã™ã€‚
+	 * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‹ã‚‰ true ã‚’è¿”ã™ã¨å‡¦ç†ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ãã¾ã™ã€‚
+	 * â€»ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®é–“éš”ã¯å¤‰æ›´ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚Šã¾ã™
 	 *
-	 * TJS“I‚É‚Íˆ—‚ªŒÅ‚Ü‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Íd—l‚Å‚·‚ªC•Ê“r windowExProgress ƒvƒ‰ƒOƒCƒ“‚È‚Ç‚ğ
-	 * g—p‚·‚é‚±‚Æ‚ÅCƒ†[ƒU[‚©‚ç‚ÌƒLƒƒƒ“ƒZƒ‹‚ğó‚¯•t‚¯‚ç‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
+	 * TJSçš„ã«ã¯å‡¦ç†ãŒå›ºã¾ã£ã¦ã—ã¾ã†ã®ã¯ä»•æ§˜ã§ã™ãŒï¼Œåˆ¥é€” windowExProgress ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãªã©ã‚’
+	 * ä½¿ç”¨ã™ã‚‹ã“ã¨ã§ï¼Œãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’å—ã‘ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
 	 */
 	function setProgressCallback(callback);
 
 	/**
-	 * ƒtƒBƒ‹ƒ^DLL‚ğİ’è‚·‚é
-	 * @param dll ‘ÎÛ‚ÌDLLƒtƒ@ƒCƒ‹ivoid‚Ìê‡‚Íİ’è‰ğœj
-	 *  @description copy/compress/decompress‚Ìƒf[ƒ^‚É‘Î‚µ‚ÄŠO•”DLL‚ğg—p‚µ‚½ƒtƒBƒ‹ƒ^‚ğİ’è‚µ‚Ü‚·
-	 * elm.filter ‚ÉŠÖ”–¼‚ğw’è‚½ê‡‚ÉC‚±‚ÌDLL’†‚Ì‰º‹L‚ÌŒ`®‚ÅƒGƒNƒXƒ|[ƒg‚³‚ê‚½ŠÖ”‚ğƒtƒBƒ‹ƒ^‚Æ‚µ‚Äg—p‚µ‚Ü‚·
+	 * ãƒ•ã‚£ãƒ«ã‚¿DLLã‚’è¨­å®šã™ã‚‹
+	 * @param dll å¯¾è±¡ã®DLLãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆvoidã®å ´åˆã¯è¨­å®šè§£é™¤ï¼‰
+	 *  @description copy/compress/decompressã®ãƒ‡ãƒ¼ã‚¿ã«å¯¾ã—ã¦å¤–éƒ¨DLLã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚£ãƒ«ã‚¿ã‚’è¨­å®šã—ã¾ã™
+	 * elm.filter ã«é–¢æ•°åã‚’æŒ‡å®šãŸå ´åˆã«ï¼Œã“ã®DLLä¸­ã®ä¸‹è¨˜ã®å½¢å¼ã§ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã•ã‚ŒãŸé–¢æ•°ã‚’ãƒ•ã‚£ãƒ«ã‚¿ã¨ã—ã¦ä½¿ç”¨ã—ã¾ã™
 	 * void (__stdcall *FilterProc)(uint32 hash, uint64 offset, void *buffer, uint32 length);
 	 */
 	function setFilter(dll);
 
 	
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğ•ÏX‚·‚é
-	 * @param pos    ˆÊ’u
-	 * @param whence Šî€ˆÊ’u(bsSeekSet, bsSeekCur, bsSeekEnd)
-	 * @return       ˆÚ“®Œã‚ÌˆÊ’u
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
+	 * @param pos    ä½ç½®
+	 * @param whence åŸºæº–ä½ç½®(bsSeekSet, bsSeekCur, bsSeekEnd)
+	 * @return       ç§»å‹•å¾Œã®ä½ç½®
 	 */
 	function seek(pos, whence);
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚ÌŒ»İ‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾‚·‚é
-	 * @return ˆÊ’u
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
+	 * @return ä½ç½®
 	 */
 	function tell();
 
 	/**
-	 * Œ»İŠJ‚¢‚Ä‚¢‚éƒXƒgƒŒ[ƒW
-	 * @description ŠJ‚¢‚Ä‚¢‚È‚¢ê‡‚Ívoid
+	 * ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
+	 * @description é–‹ã„ã¦ã„ãªã„å ´åˆã¯void
 	 */
 	property storage { getter; }
 
 	/**
-	 * Œ»İ‚Ìƒ‚[ƒh
-	 * @description ŠJ‚¢‚Ä‚¢‚È‚¢ê‡‚Í-1
+	 * ç¾åœ¨ã®ãƒ¢ãƒ¼ãƒ‰
+	 * @description é–‹ã„ã¦ã„ãªã„å ´åˆã¯-1
 	 */
 	property mode    { getter; }
 	
-	// ’è”
-	// “Ç‚İ‚İ
+	// å®šæ•°
+	// èª­ã¿è¾¼ã¿
 	const bsRead   = 0;
-	// ‘‚«‚İ
+	// æ›¸ãè¾¼ã¿
 	const bsWrite  = 1;
-	// ’Ç‹L
+	// è¿½è¨˜
 	const bsAppend = 2;
-	// XV
+	// æ›´æ–°
 	const bsUpdate = 3;
 
-	// æ“ª‚©‚ç
+	// å…ˆé ­ã‹ã‚‰
 	const bsSeekSet = 0;
-	// Œ»İˆÊ’u‚©‚ç
+	// ç¾åœ¨ä½ç½®ã‹ã‚‰
 	const bsSeekCur = 1;
-	// ––”ö‚©‚ç
+	// æœ«å°¾ã‹ã‚‰
 	const bsSeekEnd = 2;
 }
 

@@ -1,9 +1,9 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class GdiPlus {
 
-	// Status ’è‹`
+	// Status å®šç¾©
 	const Ok = 0,
     const GenericError = 1,
     const InvalidParameter = 2,
@@ -27,7 +27,7 @@ class GdiPlus {
     const PropertyNotSupported = 20,
     const ProfileNotFound = 21
 	
-	// FontStyle ’è‹`
+	// FontStyle å®šç¾©
 	const FontStyleRegular = 0;
 	const FontStyleBold = 1;
 	const FontStyleItalic = 2;
@@ -35,26 +35,26 @@ class GdiPlus {
 	const FontStyleUnderline = 4;
 	const FontStyleStrikeout = 8;
 
-	// BrushType’è‹`
+	// BrushTypeå®šç¾©
 	const BrushTypeSolidColor = 0;
     const BrushTypeHatchFill = 1;
     const BrushTypeTextureFill = 2;
     const BrushTypePathGradient = 3;
     const BrushTypeLinearGradient = 4;
 
-	// DashCap’è‹`
+	// DashCapå®šç¾©
 	const DashCapFlat = 0;
     const DashCapRound = 2;
     const DashCapTriangle = 3;
 
-	// DashStyle’è‹`
+	// DashStyleå®šç¾©
 	const DashStyleSolid = 0;
     const DashStyleDash = 1;
     const DashStyleDot = 2;
     const DashStyleDashDot = 3;
     const DashStyleDashDotDot = 4;
 
-	// HatchStyle’è‹`
+	// HatchStyleå®šç¾©
 	const HatchStyleHorizontal = 0;
     const HatchStyleVertical = 1;
     const HatchStyleForwardDiagonal = 2;
@@ -113,13 +113,13 @@ class GdiPlus {
     const HatchStyleMin = HatchStyleHorizontal;
     const HatchStyleMax = HatchStyleTotal - 1;
 
-	// LinearGradientMode ’è‹`
+	// LinearGradientMode å®šç¾©
 	const LinearGradientModeHorizontal = 0;
     const LinearGradientModeVertical = 1;
     const LinearGradientModeForwardDiagonal = 2;
     const LinearGradientModeBackwardDiagonal = 3;
 	
-	// LineCap ’è‹`
+	// LineCap å®šç¾©
     const LineCapFlat = 0;
     const LineCapSquare = 1;
     const LineCapRound = 2;
@@ -130,33 +130,33 @@ class GdiPlus {
     const LineCapDiamondAnchor = 0x13;
     const LineCapArrowAnchor = 0x14;
 
-	// LineJoin ’è‹`
+	// LineJoin å®šç¾©
 	const LineJoinMiter = 0;
     const LineJoinBevel = 1;
     const LineJoinRound = 2;
     const LineJoinMiterClipped = 3;
 
-	// PenAligntment ’è‹`
+	// PenAligntment å®šç¾©
 	const PenAlignmentCenter = 0;
     const PenAlignmentInset = 1;
 
-	// WrapMode ’è‹`
+	// WrapMode å®šç¾©
 	const WrapModeTile = 0;
     const WrapModeTileFlipX = 1;
     const WrapModeTileFlipY = 2;
     const WrapModeTileFlipXY = 3;
     const WrapModeClamp = 4;
 
-	// MatrixOrder ’è‹`
+	// MatrixOrder å®šç¾©
 	const MatrixOrderPrepend = 0;
 	const MatrixOrderAppend = 1;
 
-	// ImageType ’è‹`
+	// ImageType å®šç¾©
 	const ImageTypeUnknown = 0;
 	const ImageTypeBitmap = 1;
     const ImageTypeMetafile = 2;
 
-	// RotateFlip ’è‹`
+	// RotateFlip å®šç¾©
     const RotateNoneFlipNone = 0;
     const Rotate90FlipNone = 1;
     const Rotate180FlipNone = 2;
@@ -174,7 +174,7 @@ class GdiPlus {
     const Rotate180FlipXY = RotateNoneFlipNone;
     const Rotate270FlipXY = Rotate90FlipNone;
 
-	// SmoothingMode w’è
+	// SmoothingMode æŒ‡å®š
 	const SmoothingModeInvalid = -1;
 	const SmoothingModeDefault = 0;
 	const SmoothingModeHighSpeed = 1;
@@ -182,7 +182,7 @@ class GdiPlus {
 	const SmoothingModeNone = 0;
 	const SmoothingModeAntiAlias = 1;
 
-	// TextRenderingHint w’è
+	// TextRenderingHint æŒ‡å®š
 	const TextRenderingHintSystemDefault = 0;
 	const TextRenderingHintSingleBitPerPixelGridFit = 1;
     const TextRenderingHintSingleBitPerPixel = 2;
@@ -191,161 +191,161 @@ class GdiPlus {
     const TextRenderingHintClearTypeGridFit = 5;
 	
 	/**
-	 * ƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì’Ç‰Á(static)
-	 * @param fontFileName ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹–¼
-	 * @throws Exception ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚¢
-	 * @description ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŒÅ—L‚ÌƒtƒHƒ“ƒg‚ğ’Ç‰Á‚µ‚Ü‚·B
-	 * ‹g—¢‹g—¢ƒA[ƒJƒCƒu’†‚É‚ ‚éƒtƒHƒ“ƒg‚à“o˜^‚Å‚«‚Ü‚·B
+	 * ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®è¿½åŠ (static)
+	 * @param fontFileName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @throws Exception ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã„
+	 * @description ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å›ºæœ‰ã®ãƒ•ã‚©ãƒ³ãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	 * å‰é‡Œå‰é‡Œã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã«ã‚ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã‚‚ç™»éŒ²ã§ãã¾ã™ã€‚
 	 */
 	function addPrivateFont(fontFileName);
 
 	/**
-	 * ƒtƒHƒ“ƒgˆê——‚Ìæ“¾
-	 * @param privateOnly true ‚È‚çƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì‚İæ“¾
+	 * ãƒ•ã‚©ãƒ³ãƒˆä¸€è¦§ã®å–å¾—
+	 * @param privateOnly true ãªã‚‰ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®ã¿å–å¾—
 	 */
 	function getFontList(privateOnly);
 	
 	/**
-	 * ƒtƒHƒ“ƒgî•ñ
+	 * ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±
 	 */
 	class Font {
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param familyName ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[
-		 * @param emSize ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-		 * @param style ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param familyName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼
+		 * @param emSize ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+		 * @param style ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 		 */
 		function Font(familyName, emSize, style);
 		
-		// ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[
+		// ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼
 		property familyName;
-		// ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
+		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
 		property emSize;
-		// ƒtƒHƒ“ƒg‚ÌƒXƒ^ƒCƒ‹
+		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚¹ã‚¿ã‚¤ãƒ«
 		property style;
-		// GDI+ ‚ÌƒtƒHƒ“ƒg•`‰æ‹@\‚ğg‚í‚¸‚ÉA©‘O‚ÅƒpƒX‚ğæ“¾‚µ‚Ä‚ÌƒtƒHƒ“ƒg•`‰æ‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚éB
+		// GDI+ ã®ãƒ•ã‚©ãƒ³ãƒˆæç”»æ©Ÿæ§‹ã‚’ä½¿ã‚ãšã«ã€è‡ªå‰ã§ãƒ‘ã‚¹ã‚’å–å¾—ã—ã¦ã®ãƒ•ã‚©ãƒ³ãƒˆæç”»ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€‚
         property forceSelfPathDraw;
 
-		// ascent (“Ç‚İo‚µê—p)
+		// ascent (èª­ã¿å‡ºã—å°‚ç”¨)
 		property ascent;
-		// descent (“Ç‚İo‚µê—p)
+		// descent (èª­ã¿å‡ºã—å°‚ç”¨)
 		property descent;
-		// sŠÔ‚Ì’·‚³ (“Ç‚İo‚µê—p)B
+		// è¡Œé–“ã®é•·ã• (èª­ã¿å‡ºã—å°‚ç”¨)ã€‚
 		property lineSpacing;
-		// ascent‘¤‚ÌinternalLeading(“Ç‚İo‚µê—p)
+		// ascentå´ã®internalLeading(èª­ã¿å‡ºã—å°‚ç”¨)
         property ascentLeading;
-        // descent‘¤‚ÌinternalLeading(“Ç‚İo‚µê—p)
+        // descentå´ã®internalLeading(èª­ã¿å‡ºã—å°‚ç”¨)
         property descentLeading;
-        // ascent + descent ‚Í lineSpacing ‚É“™‚µ‚¢B
-        // lineSpacing - ( ascentLeading + descentLeading ) ‚Í emSize ‚É“™‚µ‚¢B
+        // ascent + descent ã¯ lineSpacing ã«ç­‰ã—ã„ã€‚
+        // lineSpacing - ( ascentLeading + descentLeading ) ã¯ emSize ã«ç­‰ã—ã„ã€‚
 	};
 
 	/**
-	 * •`‰æŠOŠÏî•ñ
-	 * @description Illustrator ‚ÌƒAƒsƒAƒ‰ƒ“ƒX‚ğƒCƒ[ƒW‚µ‚Ä‚­‚¾‚³‚¢B
-	 * •`‰æ‚É‘Î‚µ‚ÄA•¡”‚Ìƒuƒ‰ƒVi“h‚èj‚Æƒyƒ“iüj‚ğw’è‚Å‚«‚Ü‚·B
-	 * æ‚É’Ç‰Á‚µ‚½•û‚ª‰º‚É“ü‚è‚Ü‚·
+	 * æç”»å¤–è¦³æƒ…å ±
+	 * @description Illustrator ã®ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ã‚’ã‚¤ãƒ¡ãƒ¼ã‚¸ã—ã¦ãã ã•ã„ã€‚
+	 * æç”»ã«å¯¾ã—ã¦ã€è¤‡æ•°ã®ãƒ–ãƒ©ã‚·ï¼ˆå¡—ã‚Šï¼‰ã¨ãƒšãƒ³ï¼ˆç·šï¼‰ã‚’æŒ‡å®šã§ãã¾ã™ã€‚
+	 * å…ˆã«è¿½åŠ ã—ãŸæ–¹ãŒä¸‹ã«å…¥ã‚Šã¾ã™
 	 */
 	class Appearance {
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		 */
 		function Appearance();
 
 		/**
-		 * î•ñ‚ÌƒNƒŠƒA
+		 * æƒ…å ±ã®ã‚¯ãƒªã‚¢
 		 */
 		function clear();
 	
 		/**
-		 * ƒuƒ‰ƒV‚Ì’Ç‰Á
-		 * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
-		 * @param ox •\¦ƒIƒtƒZƒbƒgX
-		 * @param oy •\¦ƒIƒtƒZƒbƒgY
-		 * @throws Exception ƒuƒ‰ƒV¶¬‚É¸”s
+		 * ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
+		 * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+		 * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+		 * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+		 * @throws Exception ãƒ–ãƒ©ã‚·ç”Ÿæˆã«å¤±æ•—
 		 * @description
-		 * ƒuƒ‰ƒVî•ñ’è‹`
-		 * Šî–{  “_w’è‚Í [x,y] ‚Ì”z—ñ‚Ü‚½‚Í %[x:x, y:y] ‚Ì«‘
-		 *       ‹éŒ`w’è‚Í [x,y,width,height] ‚Ì”z—ñ‚Ü‚½‚Í %[x:x, y:y, width:w, height:h] ‚Ì«‘
-		 *       Fw’è‚Í ARGB 32bit®”’l
-		 *       ƒpƒ‰ƒ[ƒ^‚É‚Â‚¢‚Ä‚Í GDI+ ‚ÌƒhƒLƒ…ƒƒ“ƒg‚ğŒ©‚ÄŒ¤‹†‚µ‚Ä‚­‚¾‚³‚¢
+		 * ãƒ–ãƒ©ã‚·æƒ…å ±å®šç¾©
+		 * åŸºæœ¬  ç‚¹æŒ‡å®šã¯ [x,y] ã®é…åˆ—ã¾ãŸã¯ %[x:x, y:y] ã®è¾æ›¸
+		 *       çŸ©å½¢æŒ‡å®šã¯ [x,y,width,height] ã®é…åˆ—ã¾ãŸã¯ %[x:x, y:y, width:w, height:h] ã®è¾æ›¸
+		 *       è‰²æŒ‡å®šã¯ ARGB 32bitæ•´æ•°å€¤
+		 *       ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¤ã„ã¦ã¯ GDI+ ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’è¦‹ã¦ç ”ç©¶ã—ã¦ãã ã•ã„
 		 *
-		 * type: ƒuƒ‰ƒVí•Ê BrushType ‚Åw’è
+		 * type: ãƒ–ãƒ©ã‚·ç¨®åˆ¥ BrushType ã§æŒ‡å®š
 		 *
-		 *  BrushTypeSolidColor ‚Ìê‡ ¦’¼ÚARGB‚ÅFw’è‚µ‚½ê‡‚Æ“¯‚¶‚Å‚·
-		 *    color: Fw’è(–¢w’è‚Í”’)
+		 *  BrushTypeSolidColor ã®å ´åˆ â€»ç›´æ¥ARGBã§è‰²æŒ‡å®šã—ãŸå ´åˆã¨åŒã˜ã§ã™
+		 *    color: è‰²æŒ‡å®š(æœªæŒ‡å®šæ™‚ã¯ç™½)
 		 *   
-		 *  BrushTypeHatchFill ‚Ìê‡
-		 *    hatchStyle: ƒnƒbƒ`‚Ìí—Ş(–¢w’è‚Í HatchStyleHorizontal)
-		 *    foreColor: ‘OŒiF(–¢w’è‚Í”’)
-		 *    backColor: ”wŒiF(–¢w’è‚Í•)
+		 *  BrushTypeHatchFill ã®å ´åˆ
+		 *    hatchStyle: ãƒãƒƒãƒã®ç¨®é¡(æœªæŒ‡å®šæ™‚ã¯ HatchStyleHorizontal)
+		 *    foreColor: å‰æ™¯è‰²(æœªæŒ‡å®šæ™‚ã¯ç™½)
+		 *    backColor: èƒŒæ™¯è‰²(æœªæŒ‡å®šæ™‚ã¯é»’)
 		 *
-		 *  BrushTypeTextureFill ‚Ìê‡
-		 *   image: ‰æ‘œw’è
-		 *   wrapMode: ŒJ‚è•Ô‚µƒpƒ^[ƒ“w’è(–¢w’è‚Í WrapModeTile)
-		 *   dstRect: ƒeƒNƒXƒ`ƒƒ—Ìˆæ‹éŒ`w’è(–¢w’è‚Í‰æ‘œ‘S•”)
+		 *  BrushTypeTextureFill ã®å ´åˆ
+		 *   image: ç”»åƒæŒ‡å®š
+		 *   wrapMode: ç¹°ã‚Šè¿”ã—ãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®š(æœªæŒ‡å®šæ™‚ã¯ WrapModeTile)
+		 *   dstRect: ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸçŸ©å½¢æŒ‡å®š(æœªæŒ‡å®šæ™‚ã¯ç”»åƒå…¨éƒ¨)
 		 *
-		 *  BrushTypePathGradient ‚Ìê‡
-		 *   points: “_w’è‚Ì”z—ñ
-		 *   centerColor: ’†SF
-		 *   centerPoint: ’†S“_
-		 *   focusScale: focus scalesw’è [xScale,yScale] ‚Ü‚½‚Í %[xScale:, yScale:]
-		 *   surroundColors: üˆÍFw’èBF‚Ì”z—ñ
-		 *   ---- ˆÈ‰º‚Í BrushTypeLinearGradient‚Å‚à‹¤’Ê
-		 *   blend: ƒuƒŒƒ“ƒhƒtƒ@ƒNƒ^[w’èB”’l”z—ñ‚Å [blendFactors, blendPositions] ‚Ü‚½‚Í«‘
-		 *   blendBellShape: ƒuƒŒƒ“ƒhŒ`ów’è(bellŒ`ó) [focus, scale]
-		 *   blendTriangularShape: ƒuƒŒƒ“ƒhŒ`ów’è(OŠpŒ`ó) [focus, scale]
-		 *   gammaCorrection: ƒKƒ“ƒ}•â³‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚© true/false
-		 *   interpolationColors: [presetColors(F”z—ñ), blendPositions(”’l”z—ñ)]
+		 *  BrushTypePathGradient ã®å ´åˆ
+		 *   points: ç‚¹æŒ‡å®šã®é…åˆ—
+		 *   centerColor: ä¸­å¿ƒè‰²
+		 *   centerPoint: ä¸­å¿ƒç‚¹
+		 *   focusScale: focus scalesæŒ‡å®š [xScale,yScale] ã¾ãŸã¯ %[xScale:, yScale:]
+		 *   surroundColors: å‘¨å›²è‰²æŒ‡å®šã€‚è‰²ã®é…åˆ—
+		 *   ---- ä»¥ä¸‹ã¯ BrushTypeLinearGradientã§ã‚‚å…±é€š
+		 *   blend: ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼æŒ‡å®šã€‚æ•°å€¤é…åˆ—ã§ [blendFactors, blendPositions] ã¾ãŸã¯è¾æ›¸
+		 *   blendBellShape: ãƒ–ãƒ¬ãƒ³ãƒ‰å½¢çŠ¶æŒ‡å®š(bellå½¢çŠ¶) [focus, scale]
+		 *   blendTriangularShape: ãƒ–ãƒ¬ãƒ³ãƒ‰å½¢çŠ¶æŒ‡å®š(ä¸‰è§’å½¢çŠ¶) [focus, scale]
+		 *   gammaCorrection: ã‚¬ãƒ³ãƒè£œæ­£ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ true/false
+		 *   interpolationColors: [presetColors(è‰²é…åˆ—), blendPositions(æ•°å€¤é…åˆ—)]
 		 *
-		 *  BrushTypeLinearGradient ‚Ìê‡
-		 *   ‹¤’Ê
-		 *     color1: ŠJnFw’è
-		 *     color2: I—¹Fw’è
-		 *     wrapMode: ŒJ‚è•Ô‚µƒpƒ^[ƒ“w’è(–¢w’è‚Í WrapModeTile)
-		 *   ƒ|ƒCƒ“ƒgw’è
-		 *     point1: ŠJn“_
-		 *     point2: I—¹“_
-		 *     ¦Šp“x‚Í©“®‚ÅŒˆ‚Ü‚é–Í—l
-		 *   ‹éŒ`w’è
-		 *    rect: ƒ|ƒCƒ“ƒgw’èB¶ã‚ªŠJnA‰E‰º‚ªI—¹
-		 *    angle: Šp“xw’è (rectw’è‚Ìê‡‚¾‚¯—LŒø)
-		 *    isAngleScalable (Šp“xw’è‚ªƒXƒP[ƒ‰ƒuƒ‹‚©‚Ç‚¤‚©)
-		 *    mode: ƒ‚[ƒhw’è(È—ª‚Í LinearGradientModeHorizontal) angle w’è‚ª–³‚¢ê‡‚É—LŒø
+		 *  BrushTypeLinearGradient ã®å ´åˆ
+		 *   å…±é€š
+		 *     color1: é–‹å§‹è‰²æŒ‡å®š
+		 *     color2: çµ‚äº†è‰²æŒ‡å®š
+		 *     wrapMode: ç¹°ã‚Šè¿”ã—ãƒ‘ã‚¿ãƒ¼ãƒ³æŒ‡å®š(æœªæŒ‡å®šæ™‚ã¯ WrapModeTile)
+		 *   ãƒã‚¤ãƒ³ãƒˆæŒ‡å®š
+		 *     point1: é–‹å§‹ç‚¹
+		 *     point2: çµ‚äº†ç‚¹
+		 *     â€»è§’åº¦ã¯è‡ªå‹•ã§æ±ºã¾ã‚‹æ¨¡æ§˜
+		 *   çŸ©å½¢æŒ‡å®š
+		 *    rect: ãƒã‚¤ãƒ³ãƒˆæŒ‡å®šã€‚å·¦ä¸ŠãŒé–‹å§‹ã€å³ä¸‹ãŒçµ‚äº†
+		 *    angle: è§’åº¦æŒ‡å®š (rectæŒ‡å®šã®å ´åˆã ã‘æœ‰åŠ¹)
+		 *    isAngleScalable (è§’åº¦æŒ‡å®šãŒã‚¹ã‚±ãƒ¼ãƒ©ãƒ–ãƒ«ã‹ã©ã†ã‹)
+		 *    mode: ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(çœç•¥æ™‚ã¯ LinearGradientModeHorizontal) angle æŒ‡å®šãŒç„¡ã„å ´åˆã«æœ‰åŠ¹
 		 */
 		function addBrush(colorOrBrush, ox, oy);
 		
 		/**
-		 * ƒyƒ“‚Ì’Ç‰Á
-		 * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
-		 * @param widthOrOption ƒyƒ“•‚Ü‚½‚Íƒyƒ“î•ñi«‘j
-		 * @param ox •\¦ƒIƒtƒZƒbƒgX
-		 * @param oy •\¦ƒIƒtƒZƒbƒgY
-		 * @throws Exception ƒuƒ‰ƒV¶¬‚É¸”s
+		 * ãƒšãƒ³ã®è¿½åŠ 
+		 * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+		 * @param widthOrOption ãƒšãƒ³å¹…ã¾ãŸã¯ãƒšãƒ³æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+		 * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+		 * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+		 * @throws Exception ãƒ–ãƒ©ã‚·ç”Ÿæˆã«å¤±æ•—
 		 * @description
-		 * ƒyƒ“î•ñ’è‹`: widthOrOption ‚ª«‘‚Ìê‡‚ÍÚ×î•ñ’è‹`‚É‚È‚è‚Ü‚·
-		 * ƒpƒ‰ƒ[ƒ^‚É‚Â‚¢‚Ä‚Í GDI+ ‚ÌƒhƒLƒ…ƒƒ“ƒg‚ğŒ©‚ÄŒ¤‹†‚µ‚Ä‚­‚¾‚³‚¢
+		 * ãƒšãƒ³æƒ…å ±å®šç¾©: widthOrOption ãŒè¾æ›¸ã®å ´åˆã¯è©³ç´°æƒ…å ±å®šç¾©ã«ãªã‚Šã¾ã™
+		 * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¤ã„ã¦ã¯ GDI+ ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’è¦‹ã¦ç ”ç©¶ã—ã¦ãã ã•ã„
 		 *
-		 *  width: ƒyƒ“•w’è
-		 *  alignment: ƒAƒ‰ƒCƒ“ƒƒ“ƒgFÈ—ª‚Í PenAlignmentCenter
-		 *  compoundArray: compound array w’èB”’l”z—ñ
-		 *  dashCap: ƒ_ƒbƒVƒ…‚Ì cap style ‚Ìw’èBÈ—ª‚Í DashCapFlat
-		 *  dashOffset: ƒ_ƒbƒVƒ…‚ÌƒIƒtƒZƒbƒgw’èBÈ—ª‚Í0
-		 *  dashStyle: ƒ_ƒbƒVƒ…ƒXƒ^ƒCƒ‹B”z—ñ‚É‚·‚é‚Æƒ†[ƒU’è‹`(”’l”z—ñ)BƒfƒtƒHƒ‹ƒg‚Í DasyStyleSolid
-		 *  startCap: ŠJnˆÊ’u‚Ì cap style ‚Ìw’èBÈ—ª‚Í LineCapFlatC«‘‚ÍAdjustableArrowCap
-		 *  endCap: I—¹ˆÊ’u‚Ì cap style ‚Ìw’èBÈ—ª‚Í LineCapFlatC«‘‚ÍAdjustableArrowCap
-		 *  lineJoin: Œ‹‡Œ`ów’èB È—ª‚Í LineJoinMiter
-		 *  miterLimit: miter limit w’èi”’l)
+		 *  width: ãƒšãƒ³å¹…æŒ‡å®š
+		 *  alignment: ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆï¼šçœç•¥æ™‚ã¯ PenAlignmentCenter
+		 *  compoundArray: compound array æŒ‡å®šã€‚æ•°å€¤é…åˆ—
+		 *  dashCap: ãƒ€ãƒƒã‚·ãƒ¥ã® cap style ã®æŒ‡å®šã€‚çœç•¥æ™‚ã¯ DashCapFlat
+		 *  dashOffset: ãƒ€ãƒƒã‚·ãƒ¥ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šã€‚çœç•¥æ™‚ã¯0
+		 *  dashStyle: ãƒ€ãƒƒã‚·ãƒ¥ã‚¹ã‚¿ã‚¤ãƒ«ã€‚é…åˆ—ã«ã™ã‚‹ã¨ãƒ¦ãƒ¼ã‚¶å®šç¾©(æ•°å€¤é…åˆ—)ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ DasyStyleSolid
+		 *  startCap: é–‹å§‹ä½ç½®ã® cap style ã®æŒ‡å®šã€‚çœç•¥æ™‚ã¯ LineCapFlatï¼Œè¾æ›¸æ™‚ã¯AdjustableArrowCap
+		 *  endCap: çµ‚äº†ä½ç½®ã® cap style ã®æŒ‡å®šã€‚çœç•¥æ™‚ã¯ LineCapFlatï¼Œè¾æ›¸æ™‚ã¯AdjustableArrowCap
+		 *  lineJoin: çµåˆå½¢çŠ¶æŒ‡å®šã€‚ çœç•¥æ™‚ã¯ LineJoinMiter
+		 *  miterLimit: miter limit æŒ‡å®šï¼ˆæ•°å€¤)
 		 *
-		 * AdjustableArrowCapFLineCapArrowAnchor‚Å‚Í•s–‚È‚ ‚È‚½‚É
-		 *  width(–îˆó•), height(–îˆó‚‚³), filled(true‚È‚çOŠpŒ`Cfalse‚È‚çO–”) ‚ªw’è‚ª‰Â”\
+		 * AdjustableArrowCapï¼šLineCapArrowAnchorã§ã¯ä¸æº€ãªã‚ãªãŸã«
+		 *  width(çŸ¢å°å¹…), height(çŸ¢å°é«˜ã•), filled(trueãªã‚‰ä¸‰è§’å½¢ï¼Œfalseãªã‚‰ä¸‰åˆ) ãŒæŒ‡å®šãŒå¯èƒ½
 		 */
 		function addPen(colorOrBrush, widthOrOption, ox, oy);
 	};
 
 	/*
-	 * ˆÊ’uî•ñ‚ğæ‚èˆµ‚¤ƒNƒ‰ƒX
+	 * ä½ç½®æƒ…å ±ã‚’å–ã‚Šæ‰±ã†ã‚¯ãƒ©ã‚¹
 	 */
 	class PointF {
 		function PointF(x, y);
@@ -355,7 +355,7 @@ class GdiPlus {
 	}
 
 	/**
-	 * ‹éŒ`î•ñ‚ğæ‚èˆµ‚¤ƒNƒ‰ƒX
+	 * çŸ©å½¢æƒ…å ±ã‚’å–ã‚Šæ‰±ã†ã‚¯ãƒ©ã‚¹
 	 */
 	class RectF {
 		function RectF(x, y, w, h);
@@ -380,31 +380,31 @@ class GdiPlus {
 	}
 
 	/**
-	 * ƒ}ƒgƒŠƒbƒNƒXî•ñ‚ğæ‚èˆµ‚¤ƒNƒ‰ƒX
+	 * ãƒãƒˆãƒªãƒƒã‚¯ã‚¹æƒ…å ±ã‚’å–ã‚Šæ‰±ã†ã‚¯ãƒ©ã‚¹
 	 */
 	class Matrix {
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @description ³‹Kƒ}ƒgƒŠƒbƒNƒX‚ğ¶¬‚·‚é
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @description æ­£è¦ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
 		 */
 		function Matrix();
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param rectF ‹éŒ`(RectFƒNƒ‰ƒX) ƒ}ƒgƒŠƒbƒNƒX‚Ì‰ñ“]•”
-		 * @param pointF ƒ|ƒCƒ“ƒg(PointFƒNƒ‰ƒX) ƒ}ƒgƒŠƒbƒNƒX‚ÌˆÚ“®•”
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param rectF çŸ©å½¢(RectFã‚¯ãƒ©ã‚¹) ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã®å›è»¢éƒ¨
+		 * @param pointF ãƒã‚¤ãƒ³ãƒˆ(PointFã‚¯ãƒ©ã‚¹) ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã®ç§»å‹•éƒ¨
 		 */
 		function Matrix(rectF, pointF);
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param m11 ‘æ1s1—ñ
-		 * @param m12 ‘æ1s2—ñ
-		 * @param m21 ‘æ2s1—ñ
-		 * @param m22 ‘æ2s2—ñ
-		 * @param dx  ‘æ3s1—ñ
-		 * @param dy  ‘æ3s2—ñ
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param m11 ç¬¬1è¡Œ1åˆ—
+		 * @param m12 ç¬¬1è¡Œ2åˆ—
+		 * @param m21 ç¬¬2è¡Œ1åˆ—
+		 * @param m22 ç¬¬2è¡Œ2åˆ—
+		 * @param dx  ç¬¬3è¡Œ1åˆ—
+		 * @param dy  ç¬¬3è¡Œ2åˆ—
 		 */
 		function Matrix(m11, m12, m21, m22, dx, dy);
 		
@@ -426,53 +426,53 @@ class GdiPlus {
 	}
 	
 	/**
-	 * @description ‰æ‘œî•ñ‚ğæ‚èˆµ‚¤ƒNƒ‰ƒX
-	 * ¦ƒxƒNƒgƒ‹‰æ‘œƒf[ƒ^‚Ì—Ìˆæ‚ÍÀ•W‚ª•‰‚Ì—Ìˆæ‚É‚ ‚éê‡‚à‚ ‚è‚Ü‚·
+	 * @description ç”»åƒæƒ…å ±ã‚’å–ã‚Šæ‰±ã†ã‚¯ãƒ©ã‚¹
+	 * â€»ãƒ™ã‚¯ãƒˆãƒ«ç”»åƒãƒ‡ãƒ¼ã‚¿ã®é ˜åŸŸã¯åº§æ¨™ãŒè² ã®é ˜åŸŸã«ã‚ã‚‹å ´åˆã‚‚ã‚ã‚Šã¾ã™
 	 */
 	class Image {
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param filename ƒtƒ@ƒCƒ‹–¼Bw’è‚³‚ê‚½ê‡‚Í©“®“I‚Éƒ[ƒh‚µ‚Ü‚·
-		 * @throws Exception ‰æ‘œƒ[ƒh‚É¸”s
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«åã€‚æŒ‡å®šã•ã‚ŒãŸå ´åˆã¯è‡ªå‹•çš„ã«ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
+		 * @throws Exception ç”»åƒãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—
 		 */
 		function Image(filename=void);
 		
 		/**
-		 * ‰æ‘œ‚ğƒ[ƒh‚·‚é
-		 * @param filename ‰æ‘œƒtƒ@ƒCƒ‹–¼
-		 * @throws Exception ‰æ‘œƒ[ƒh‚É¸”s
+		 * ç”»åƒã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+		 * @param filename ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«å
+		 * @throws Exception ç”»åƒãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—
 		 */
 		function load(filename);
 
 		/**
-		 * @return ‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ì•¡»(Image)
+		 * @return ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¤‡è£½(Image)
 		 */
 		function Clone();
 
 		/**
-		 * Boundsî•ñ‚Ìæ“¾
-		 * @return Boundsî•ñ(RectF) ’PˆÊ pixel
+		 * Boundsæƒ…å ±ã®å–å¾—
+		 * @return Boundsæƒ…å ±(RectF) å˜ä½ pixel
 		 */
 		function GetBounds();
 
 		/**
-		 * @return …•½•ûŒü‰ğ‘œ“x(dpi)
+		 * @return æ°´å¹³æ–¹å‘è§£åƒåº¦(dpi)
 		 */
 		function GetHorizontalResolution();
 
 		/**
-		 * @return ‚’¼•ûŒü‰ğ‘œ“x(dpi)
+		 * @return å‚ç›´æ–¹å‘è§£åƒåº¦(dpi)
 		 */
 		function GetVerticalResolution();
 
 		/**
-		 * @return ‰¡• (pixel’lF®”)
+		 * @return æ¨ªå¹… (pixelå€¤ï¼šæ•´æ•°)
 		 */
 		function GetWidth();
 
 		/**
-		 * @return c• (pixel’l:®”)
+		 * @return ç¸¦å¹… (pixelå€¤:æ•´æ•°)
 		 */
 		function GetHeight();
 
@@ -486,44 +486,44 @@ class GdiPlus {
 	class Path {
 
 		/**
-		 * ƒpƒXî•ñƒNƒ‰ƒX
+		 * ãƒ‘ã‚¹æƒ…å ±ã‚¯ãƒ©ã‚¹
 		 */
 		function Path();
 
 		/**
-		 * Œ»İ‚Ì}Œ`‚ğ•Â‚¶‚¸‚ÉŸ‚Ì}Œ`‚ğŠJn‚µ‚Ü‚·
+		 * ç¾åœ¨ã®å›³å½¢ã‚’é–‰ã˜ãšã«æ¬¡ã®å›³å½¢ã‚’é–‹å§‹ã—ã¾ã™
 		 */
 		function startFigure();
 
 		/**
-		 * Œ»İ‚Ì}Œ`‚ğ•Â‚¶‚Ü‚·
+		 * ç¾åœ¨ã®å›³å½¢ã‚’é–‰ã˜ã¾ã™
 		 */
 		function closeFigure();
 		
 		/**
-		 * ‰~ŒÊ‚Ì•`‰æ
-		 * @param x ¶ãÀ•W
-		 * @param y ¶ãÀ•W
-		 * @param width ‰¡•
-		 * @param height c•
-		 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-		 * @param sweepAngle •`‰æŠp“x
+		 * å††å¼§ã®æç”»
+		 * @param x å·¦ä¸Šåº§æ¨™
+		 * @param y å·¦ä¸Šåº§æ¨™
+		 * @param width æ¨ªå¹…
+		 * @param height ç¸¦å¹…
+		 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+		 * @param sweepAngle æç”»è§’åº¦
 		 */
 		function drawArc(x, y, width, height, startAngle, sweepAngle);
 
 		/**
-		 * ‰~‚Ì•`‰æ
-		 * @param x ¶ãÀ•W
-		 * @param y ¶ãÀ•W
-		 * @param width ‰¡•
-		 * @param height c•
-		 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-		 * @param sweepAngle •`‰æŠp“x
+		 * å††éŒã®æç”»
+		 * @param x å·¦ä¸Šåº§æ¨™
+		 * @param y å·¦ä¸Šåº§æ¨™
+		 * @param width æ¨ªå¹…
+		 * @param height ç¸¦å¹…
+		 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+		 * @param sweepAngle æç”»è§’åº¦
 		 */
 		function drawPie(x, y, width, height, startAngle, sweepAngle);
 
 		/**
-		 * ƒxƒWƒF‹Èü‚Ì•`‰æ
+		 * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
 		 * @param x1
 		 * @param y1
 		 * @param x2
@@ -536,48 +536,48 @@ class GdiPlus {
 		function drawBezier(x1, y1, x2, y2, x3, y3, x4, y4);
 
 		/**
-		 * ˜A‘±ƒxƒWƒF‹Èü‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * é€£ç¶šãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 */
 		function drawBeziers(points);
 
 		/**
-		 * Closed cardinal spline ‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * Closed cardinal spline ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 */
 		function drawClosedCurve(points);
 
 		/**
-		 * Closed cardinal spline ‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-		 * @param tension ƒeƒ“ƒVƒ‡ƒ“
+		 * Closed cardinal spline ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+		 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
 		 */
 		function drawClosedCurve2(points, tension);
 
 		/**
-		 * cardinal spline ‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * cardinal spline ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 */
 		function drawCurve(points);
 
 		/**
-		 * cardinal spline ‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-		 * @param tension ƒeƒ“ƒVƒ‡ƒ“
+		 * cardinal spline ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+		 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
 		 */
 		function drawCurve2(points, tension);
 
 		/**
-		 * cardinal spline ‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * cardinal spline ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 * @param offset
 		 * @param numberOfSegments
-		 * @param tension ƒeƒ“ƒVƒ‡ƒ“
+		 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
 		 */
 		function drawCurve3(points, offset, numberOfSegments, tension);
 
 		/**
-		 * ‘È‰~‚Ì•`‰æ
+		 * æ¥•å††ã®æç”»
 		 * @param x
 		 * @param y
 		 * @param width
@@ -586,28 +586,28 @@ class GdiPlus {
 		function drawEllipse(x, y, width, height);
 
 		/**
-		 * ü•ª‚Ì•`‰æ
-		 * @param x1 n“_XÀ•W
-		 * @param y1 n“_YÀ•W
-		 * @param x2 I“_XÀ•W
-		 * @param y2 I“_YÀ•W
+		 * ç·šåˆ†ã®æç”»
+		 * @param x1 å§‹ç‚¹Xåº§æ¨™
+		 * @param y1 å§‹ç‚¹Yåº§æ¨™
+		 * @param x2 çµ‚ç‚¹Xåº§æ¨™
+		 * @param y2 çµ‚ç‚¹Yåº§æ¨™
 		 */
 		function drawLine(x1, y1, x2, y2);
 
 		/**
-		 * ˜A‘±ü•ª‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * é€£ç¶šç·šåˆ†ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 */
 		function drawLines(points);
 
 		/**
-		 * ‘½ŠpŒ`‚Ì•`‰æ
-		 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+		 * å¤šè§’å½¢ã®æç”»
+		 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 		 */
 		function drawPolygon(points);
 			
 		/**
-		 * ‹éŒ`‚Ì•`‰æ
+		 * çŸ©å½¢ã®æç”»
 		 * @param x
 		 * @param y
 		 * @param width
@@ -616,41 +616,41 @@ class GdiPlus {
 		function drawRectangle(x, y, width, height);
 		
 		/**
-		 * •¡”‹éŒ`‚Ì•`‰æ
-		 * @param rects ‹éŒ`‚Ì”z—ñ [ [x1, y1, width1, height1], [x2, y2, width2, height2] .... ]
+		 * è¤‡æ•°çŸ©å½¢ã®æç”»
+		 * @param rects çŸ©å½¢ã®é…åˆ— [ [x1, y1, width1, height1], [x2, y2, width2, height2] .... ]
 		 */
 		function drawRectangles(rects);
 
 		/**
-		 * ƒpƒX‚Ì•`‰æ
-		 * @param path •Ê‚ÌƒpƒXƒIƒuƒWƒFƒNƒg
-		 * @param connect Ú‘±‚ğ‚Â‚È‚°‚é‚©‚Ç‚¤‚©
+		 * ãƒ‘ã‚¹ã®æç”»
+		 * @param path åˆ¥ã®ãƒ‘ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		 * @param connect æ¥ç¶šã‚’ã¤ãªã’ã‚‹ã‹ã©ã†ã‹
 		 */
 		function drawPath(path, connect);
 	}
 }
 
 /**
- * ƒŒƒCƒ„‚ÉƒxƒNƒ^•`‰æƒƒ\ƒbƒh‚ªŠg’£‚³‚ê‚Ü‚·
- * E•`‰æˆ—‚ÍƒŒƒCƒ„‚Éİ’è‚³‚ê‚½ƒNƒŠƒbƒsƒ“ƒO—Ìˆæ‚ÅƒNƒŠƒbƒv‚³‚ê‚Ü‚·B
+ * ãƒ¬ã‚¤ãƒ¤ã«ãƒ™ã‚¯ã‚¿æç”»ãƒ¡ã‚½ãƒƒãƒ‰ãŒæ‹¡å¼µã•ã‚Œã¾ã™
+ * ãƒ»æç”»å‡¦ç†ã¯ãƒ¬ã‚¤ãƒ¤ã«è¨­å®šã•ã‚ŒãŸã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°é ˜åŸŸã§ã‚¯ãƒªãƒƒãƒ—ã•ã‚Œã¾ã™ã€‚
  */
 class Layer {
 
 	/**
-	 * •`‰æ‚É‚»‚Ì—Ìˆæ‚É‘Î‚·‚é update() ŒÄ‚Ño‚µ‚ğs‚¤‚©‚Ç‚¤‚©
+	 * æç”»æ™‚ã«ãã®é ˜åŸŸã«å¯¾ã™ã‚‹ update() å‘¼ã³å‡ºã—ã‚’è¡Œã†ã‹ã©ã†ã‹
 	 */
 	property updateWhenDraw;
 
-	// •`‰æ‚ÌƒAƒ“ƒ`ƒGƒCƒŠƒAƒXw’è(SmoothingMode)
-	// @description ƒfƒtƒHƒ‹ƒg SmoothingModeAntiAlias
+	// æç”»ã®ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æŒ‡å®š(SmoothingMode)
+	// @description ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ SmoothingModeAntiAlias
 	property smoothingMode;
 
-	// ƒeƒLƒXƒg•`‰æ‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOw’è(TextRenderingHint)
-	// @description ƒfƒtƒHƒ‹ƒg TextRenderingHintAntiAlias
+	// ãƒ†ã‚­ã‚¹ãƒˆæç”»ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°æŒ‡å®š(TextRenderingHint)
+	// @description ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ TextRenderingHintAntiAlias
 	property textRenderingHint;
 
 	/**
-	 * •`‰æ‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ğw’è
+	 * æç”»æ™‚ã®ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚’æŒ‡å®š
 	 */
 	function setTransform(matrix);
 	function resetTransform();
@@ -659,55 +659,55 @@ class Layer {
 	function translateTransform(dx, dy);
 
 	/**
-	 * ‰ğ‘œ“xw’è
-	 * @param resx ‰¡•ûŒü‰ğ‘œ“x %w’è
-	 * @param resy c•ûŒü‰ğ‘œ“x %w’è
+	 * è§£åƒåº¦æŒ‡å®š
+	 * @param resx æ¨ªæ–¹å‘è§£åƒåº¦ %æŒ‡å®š
+	 * @param resy ç¸¦æ–¹å‘è§£åƒåº¦ %æŒ‡å®š
 	 */
 	function setResolution(resx, resy);
 	
 	/**
-	 * ‰æ–Ê‚ÌÁ‹
-	 * @param argb Á‹F
+	 * ç”»é¢ã®æ¶ˆå»
+	 * @param argb æ¶ˆå»è‰²
 	 */
 	function clear(argb);
 
 	/**
-	 * ƒpƒX‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
-	 * @param path ƒpƒX GdiPlus.Path ‚ğw’è‚µ‚Ü‚·
-	 * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * ãƒ‘ã‚¹ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
+	 * @param path ãƒ‘ã‚¹ GdiPlus.Path ã‚’æŒ‡å®šã—ã¾ã™
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	function drawPath(app, path);
 	
 	/**
-	 * ‰~ŒÊ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
-	 * @param x ¶ãÀ•W
-	 * @param y ¶ãÀ•W
-	 * @param width ‰¡•
-	 * @param height c•
-	 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-	 * @param sweepAngle •`‰æŠp“x
-	 * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * å††å¼§ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
+	 * @param x å·¦ä¸Šåº§æ¨™
+	 * @param y å·¦ä¸Šåº§æ¨™
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
+	 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+	 * @param sweepAngle æç”»è§’åº¦
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	function drawArc(app, x, y, width, height, startAngle, sweepAngle);
 
 	/**
-	 * ‰~‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
-	 * @param x ¶ãÀ•W
-	 * @param y ¶ãÀ•W
-	 * @param width ‰¡•
-	 * @param height c•
-	 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-	 * @param sweepAngle •`‰æŠp“x
-	 * @return XVˆæî•ñ(RectF)
+	 * å††éŒã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
+	 * @param x å·¦ä¸Šåº§æ¨™
+	 * @param y å·¦ä¸Šåº§æ¨™
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
+	 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+	 * @param sweepAngle æç”»è§’åº¦
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawPie(app, x, y, width, height, startAngle, sweepAngle);
 	
 	/**
-	 * ƒxƒWƒF‹Èü‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
+	 * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
 	 * @param x1
 	 * @param y1
 	 * @param x2
@@ -716,129 +716,129 @@ class Layer {
 	 * @param y3
 	 * @param x4
 	 * @param y4
-	 * @return XVˆæî•ñ(RectF)
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawBezier(app, x1, y1, x2, y2, x3, y3, x4, y4);
 
 	/**
-	 * ˜A‘±ƒxƒWƒF‹Èü‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * é€£ç¶šãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawBeziers(app, points);
 
 	/**
-	 * Closed cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * Closed cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawClosedCurve(app, points);
 
 	/**
-	 * Closed cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @param tension ƒeƒ“ƒVƒ‡ƒ“
-	 * @return XVˆæî•ñ(RectF)
+	 * Closed cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawClosedCurve2(app, points, tension);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawCurve(app, points);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @param tension ƒeƒ“ƒVƒ‡ƒ“
-	 * @return XVˆæî•ñ(RectF)
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawCurve2(app, points, tension);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
 	 * @param offset
 	 * @param numberOfSegments
-	 * @param tension ƒeƒ“ƒVƒ‡ƒ“
-	 * @return XVˆæî•ñ(RectF)
+	 * @param tension ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawCurve3(app, points, offset, numberOfSegments, tension);
 	
 	/**
-	 * ‘È‰~‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
+	 * æ¥•å††ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
-	 * @return XVˆæî•ñ(RectF)
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawEllipse(app, x, y, width, height);
 
 	/**
-	 * ü•ª‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
-	 * @param x1 n“_XÀ•W
-	 * @param y1 n“_YÀ•W
-	 * @param x2 I“_XÀ•W
-	 * @param y2 I“_YÀ•W
-	 * @return XVˆæî•ñ(RectF)
+	 * ç·šåˆ†ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
+	 * @param x1 å§‹ç‚¹Xåº§æ¨™
+	 * @param y1 å§‹ç‚¹Yåº§æ¨™
+	 * @param x2 çµ‚ç‚¹Xåº§æ¨™
+	 * @param y2 çµ‚ç‚¹Yåº§æ¨™
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawLine(app, x1, y1, x2, y2);
 
 	/**
-	 * ˜A‘±ü•ª‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * é€£ç¶šç·šåˆ†ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawLines(app, points)
 
 	/**
-	 * ‘½ŠpŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ [ [x1, y1], [x2, y2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * å¤šè§’å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ— [ [x1, y1], [x2, y2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawPolygon(app, points)
 		
 	/**
-	 * ‹éŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
+	 * çŸ©å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
-	 * @return XVˆæî•ñ(RectF)
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawRectangle(app, x, y, width, height);
 
 	/**
-	 * •¡”‹éŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param rects ‹éŒ`‚Ì”z—ñ [ [x1, y1, width1, height1], [x2, y2, width2, height2] .... ]
-	 * @return XVˆæî•ñ(RectF)
+	 * è¤‡æ•°çŸ©å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param rects çŸ©å½¢ã®é…åˆ— [ [x1, y1, width1, height1], [x2, y2, width2, height2] .... ]
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawRectangles(app, rects);
 	
 
 	/**
-	 * •¶š—ñ‚ÌƒpƒXƒx[ƒX‚Å‚Ì•`‰æ
-	 * @param font ƒtƒHƒ“ƒg GdiPlus.Font ‚ÅƒtƒHƒ“ƒg‚ğw’è‚µ‚Ü‚·
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·
-	 * @param x •`‰æˆÊ’uX
-	 * @param y •`‰æˆÊ’uY
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XVˆæî•ñ(RectF)
+	 * æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ãƒ™ãƒ¼ã‚¹ã§ã®æç”»
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ GdiPlus.Font ã§ãƒ•ã‚©ãƒ³ãƒˆã‚’æŒ‡å®šã—ã¾ã™
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™
+	 * @param x æç”»ä½ç½®X
+	 * @param y æç”»ä½ç½®Y
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawPathString(font, app, x, y, text);
 
@@ -846,96 +846,96 @@ class Layer {
 	// -------------------------------------------------------------
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æB•`‰æ‚ÌƒNƒIƒŠƒeƒB‚Í textRenderingHint ‚É]‚¢‚Ü‚·B
-	 * @param font ƒtƒHƒ“ƒg GdiPlus.Font ‚ÅƒtƒHƒ“ƒg‚ğw’è‚µ‚Ü‚·
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX GdiPlus.Appearance ‚Å•`‰æƒXƒ^ƒCƒ‹‚ğw’è‚µ‚Ü‚·B¦ƒuƒ‰ƒV‚µ‚©QÆ‚³‚ê‚Ü‚¹‚ñ
-	 * @param x •`‰æˆÊ’uX
-	 * @param y •`‰æˆÊ’uY
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XVˆæî•ñ(RectF)
+	 * æ–‡å­—åˆ—ã®æç”»ã€‚æç”»ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã¯ textRenderingHint ã«å¾“ã„ã¾ã™ã€‚
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ GdiPlus.Font ã§ãƒ•ã‚©ãƒ³ãƒˆã‚’æŒ‡å®šã—ã¾ã™
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ GdiPlus.Appearance ã§æç”»ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¾ã™ã€‚â€»ãƒ–ãƒ©ã‚·ã—ã‹å‚ç…§ã•ã‚Œã¾ã›ã‚“
+	 * @param x æç”»ä½ç½®X
+	 * @param y æç”»ä½ç½®Y
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawString(font, app, x, y, text);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æ—Ìˆæî•ñ‚Ìæ“¾B•`‰æ‚ÌƒNƒIƒŠƒeƒB‚Í textRenderingHint ‚É]‚¢‚Ü‚·
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return •`‰æ—Ìˆæî•ñ(RectF)
+	 * æ–‡å­—åˆ—ã®æç”»é ˜åŸŸæƒ…å ±ã®å–å¾—ã€‚æç”»ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã¯ textRenderingHint ã«å¾“ã„ã¾ã™
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æç”»é ˜åŸŸæƒ…å ±(RectF)
 	 */
 	function measureString(font, text);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æ—Ìˆæî•ñ‚Ìæ“¾BmeasureString()‚Åæ“¾‚µ‚½—Ìˆæ‚É‘Î‚µ‚ÄAƒ}[ƒWƒ“‚ğœ‚¢‚ÄÀÛ‚É•¶š—ñ‚ª‘¶İ‚·‚é—Ìˆæ‚Ì‹éŒ`‚ğ•Ô‚µ‚Ü‚·B
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return •`‰æ—Ìˆæî•ñ(RectF)
+	 * æ–‡å­—åˆ—ã®æç”»é ˜åŸŸæƒ…å ±ã®å–å¾—ã€‚measureString()ã§å–å¾—ã—ãŸé ˜åŸŸã«å¯¾ã—ã¦ã€ãƒãƒ¼ã‚¸ãƒ³ã‚’é™¤ã„ã¦å®Ÿéš›ã«æ–‡å­—åˆ—ãŒå­˜åœ¨ã™ã‚‹é ˜åŸŸã®çŸ©å½¢ã‚’è¿”ã—ã¾ã™ã€‚
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æç”»é ˜åŸŸæƒ…å ±(RectF)
 	 */
 	function measureStringInternal(font, text);
 
 	// -------------------------------------------------------------
 
 	/**
-	 * ‰æ‘œ‚Ì•`‰æBƒRƒs[æ‚ÍŒ³‰æ‘œ‚Ì Bounds ‚ğ”z—¶‚µ‚½ˆÊ’uAƒTƒCƒY‚Í Pixel w’è‚É‚È‚è‚Ü‚·B
-	 * @param x ƒRƒs[æŒ´“_X
-	 * @param y ƒRƒs[æŒ´“_Y
-	 * @param image ƒRƒs[Œ³‰æ‘œ(Image/Layer/ƒtƒ@ƒCƒ‹–¼)
-	 * @return XVˆæî•ñ(RectF)
+	 * ç”»åƒã®æç”»ã€‚ã‚³ãƒ”ãƒ¼å…ˆã¯å…ƒç”»åƒã® Bounds ã‚’é…æ…®ã—ãŸä½ç½®ã€ã‚µã‚¤ã‚ºã¯ Pixel æŒ‡å®šã«ãªã‚Šã¾ã™ã€‚
+	 * @param x ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹X
+	 * @param y ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹Y
+	 * @param image ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ(Image/Layer/ãƒ•ã‚¡ã‚¤ãƒ«å)
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawImage(dleft, dtop, src);
 
 	/**
-	 * ‰æ‘œ‚Ì‹éŒ`ƒRƒs[
-	 * @param dleft ƒRƒs[æ¶’[
-	 * @param dtop  ƒRƒs[æã’[
-	 * @param src ƒRƒs[Œ³‰æ‘œ(Image/Layer/ƒtƒ@ƒCƒ‹–¼)
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @return XVˆæî•ñ(RectF)
+	 * ç”»åƒã®çŸ©å½¢ã‚³ãƒ”ãƒ¼
+	 * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+	 * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ(Image/Layer/ãƒ•ã‚¡ã‚¤ãƒ«å)
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawImageRect(dleft, dtop, src, sleft, stop, swidth, sheight);
 
 	/**
-	 * ‰æ‘œ‚ÌŠg‘åk¬ƒRƒs[
-	 * @param dleft ƒRƒs[æ¶’[
-	 * @param dtop  ƒRƒs[æã’[
-	 * @param dwidth ƒRƒs[æ‚Ì‰¡•
-	 * @param dheight  ƒRƒs[æ‚Ìc•
-	 * @param src ƒRƒs[Œ³‰æ‘œ(Image/Layer/ƒtƒ@ƒCƒ‹–¼)
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @return XVˆæî•ñ(RectF)
+	 * ç”»åƒã®æ‹¡å¤§ç¸®å°ã‚³ãƒ”ãƒ¼
+	 * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+	 * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+	 * @param dwidth ã‚³ãƒ”ãƒ¼å…ˆã®æ¨ªå¹…
+	 * @param dheight  ã‚³ãƒ”ãƒ¼å…ˆã®ç¸¦å¹…
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ(Image/Layer/ãƒ•ã‚¡ã‚¤ãƒ«å)
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawImageStretch(dleft, dtop, dwidth, dheight, src, sleft, stop, swidth, sheight);
 
 	/**
-	 * ‰æ‘œ‚ÌƒAƒtƒBƒ“•ÏŠ·ƒRƒs[
-	 * @param src ƒRƒs[Œ³‰æ‘œ(Image/Layer/ƒtƒ@ƒCƒ‹–¼)
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @param affine ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚Ìí—Ş(true:•ÏŠ·s—ñ, false:À•Ww’è), 
-	 * @return XVˆæî•ñ(RectF)
+	 * ç”»åƒã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚³ãƒ”ãƒ¼
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ(Image/Layer/ãƒ•ã‚¡ã‚¤ãƒ«å)
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @param affine ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç¨®é¡(true:å¤‰æ›è¡Œåˆ—, false:åº§æ¨™æŒ‡å®š), 
+	 * @return æ›´æ–°åŸŸæƒ…å ±(RectF)
 	 */
 	function drawImageAffine(src, sleft, stop, swidth, sheight, affine, A, B, C, D, E, F);
 
 	// ------------------------------------------------
-	// ƒƒ^ƒtƒ@ƒCƒ‹‘€ì
+	// ãƒ¡ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
 	// ------------------------------------------------
 
 	/**
-	 * ‚±‚Ìƒvƒ‰ƒOƒCƒ“‚É‚æ‚é•`‰æ“à—e‚ğ‹L˜^‚·‚é‚©‚Ç‚¤‚©
-	 * @description record = true ‚Ìó‘Ô‚Ìê‡AviewTransform ‚ğw’è‚·‚é‚Æ
-	 * •`‰æ“à—e‚»‚Ì‚Ü‚Ü‚ÅÄ•`‰æ‚³‚ê‚Ü‚·B
+	 * ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã«ã‚ˆã‚‹æç”»å†…å®¹ã‚’è¨˜éŒ²ã™ã‚‹ã‹ã©ã†ã‹
+	 * @description record = true ã®çŠ¶æ…‹ã®å ´åˆã€viewTransform ã‚’æŒ‡å®šã™ã‚‹ã¨
+	 * æç”»å†…å®¹ãã®ã¾ã¾ã§å†æç”»ã•ã‚Œã¾ã™ã€‚
 	 */
 	property record;
 
 	/**
-	 * ‹L˜^“à—e‚Ì•\¦‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ğw’è
+	 * è¨˜éŒ²å†…å®¹ã®è¡¨ç¤ºæ™‚ã®ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚’æŒ‡å®š
 	 */
 	function setViewTransform(matrix);
 	function resetViewTransform();
@@ -944,61 +944,61 @@ class Layer {
 	function translateViewTransform(dx, dy);
 	
 	/**
-	 * ‹L˜^“à—e‚ğÄ•`‰æ‚µ‚Ü‚·
+	 * è¨˜éŒ²å†…å®¹ã‚’å†æç”»ã—ã¾ã™
 	 */
 	void redrawRecord();
 
 	/**
-	 * ‹L˜^“à—e‚Ì•Û‘¶
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã®ä¿å­˜
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function saveRecord(filename);
 
 	/**
-	 * ‹L˜^“à—e‚Ì“Ç‚İ‚İ
-	 * @param filename “Ç‚İ‚İƒtƒ@ƒCƒ‹–¼
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã®èª­ã¿è¾¼ã¿
+	 * @param filename èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function loadRecord(filename);
 
 	/**
-	 * ‹L˜^“à—e‚ğ Image ‚Æ‚µ‚Ä•Ô‚·
-	 * return Image ƒIƒuƒWƒFƒNƒg
+	 * è¨˜éŒ²å†…å®¹ã‚’ Image ã¨ã—ã¦è¿”ã™
+	 * return Image ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	function getRecordImage();
 
 	/**
-	 * ‰æ‘œ‚Ì•Û‘¶
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param mime •Û‘¶‚·‚é‰æ‘œŒ`® image/jpeg, image/png, image/gif ‚È‚Ç
-	 * @param param ƒGƒ“ƒR[ƒhƒpƒ‰ƒ[ƒ^(«‘)
-	 * compression, scanmethod, version, render, transform, quality(0`100), depth(1,4,8,24,32)
+	 * ç”»åƒã®ä¿å­˜
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param mime ä¿å­˜ã™ã‚‹ç”»åƒå½¢å¼ image/jpeg, image/png, image/gif ãªã©
+	 * @param param ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(è¾æ›¸)
+	 * compression, scanmethod, version, render, transform, quality(0ã€œ100), depth(1,4,8,24,32)
 	 */
 	function saveImage(filename, mime, param=void);
 
-	// ƒGƒ“ƒR[ƒhƒpƒ‰ƒ[ƒ^w’è—p’è”
+	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®šç”¨å®šæ•°
 
-	// compression—p
+	// compressionç”¨
 	const EncoderValueCompressionLZW;
 	const EncoderValueCompressionCCITT3;
     const EncoderValueCompressionCCITT4;
     const EncoderValueCompressionRle;
     const EncoderValueCompressionNone;
 
-	// scanmethod—p
+	// scanmethodç”¨
 	const EncoderValueScanMethodInterlaced;
     const EncoderValueScanMethodNonInterlaced;
 
-	// version—p
+	// versionç”¨
 	const EncoderValueVersionGif87;
     const EncoderValueVersionGif89;
 
-	// render—p
+	// renderç”¨
 	const EncoderValueRenderProgressive;
     const EncoderValueRenderNonProgressive;
 
-	// transform—p
+	// transformç”¨
 	const EncoderValueTransformRotate90;
     const EncoderValueTransformRotate180;
     const EncoderValueTransformRotate270;
@@ -1008,9 +1008,9 @@ class Layer {
 	// -------------------------------------------------------------
 
 	/**
-	 * w’è‚µ‚½F‚Ì—Ìˆæ‚ªŠÜ‚Ü‚ê‚éƒŠ[ƒWƒ‡ƒ“‚ğ•Ô‚·
-	 * @param color Fw’è
-	 * @return ‹éŒ`‚Ì”z—ñ
+	 * æŒ‡å®šã—ãŸè‰²ã®é ˜åŸŸãŒå«ã¾ã‚Œã‚‹ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
+	 * @param color è‰²æŒ‡å®š
+	 * @return çŸ©å½¢ã®é…åˆ—
 	 */
 	function getColorRegionRects(color);
 };

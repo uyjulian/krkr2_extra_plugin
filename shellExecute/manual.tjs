@@ -1,55 +1,55 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
- * @description ŠO•”ƒAƒvƒŠ‚ğ‹@“®‚µ‚Ä‚»‚ÌI—¹‚ğ‘Ò‚Â‹@\‚ğ’ñ‹Ÿ‚µ‚Ü‚·B
- * ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒW‚Æ‚µ‚Ä WM_APP + 1 ‚ğ—˜—p‚µ‚Ä‚¢‚Ü‚·
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
+ * @description å¤–éƒ¨ã‚¢ãƒ—ãƒªã‚’æ©Ÿå‹•ã—ã¦ãã®çµ‚äº†ã‚’å¾…ã¤æ©Ÿæ§‹ã‚’æä¾›ã—ã¾ã™ã€‚
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨ã—ã¦ WM_APP + 1 ã‚’åˆ©ç”¨ã—ã¦ã„ã¾ã™
  */
 class Window {
 
 	/**
-	 * ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Å‚ÌŠO•”ƒvƒƒOƒ‰ƒ€‚ÌÀs
-	 * @param target ƒvƒƒOƒ‰ƒ€
-	 * @param param ˆø”
-	 * @return ƒvƒƒZƒXƒnƒ“ƒhƒ‹i¸”s‚µ‚½ê‡‚Í-1)BterminateProcess ‚É“n‚·‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-	 * @description ˆ—‚ª‚¨‚í‚Á‚½‚ç onShellExecuted ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ü‚·B
+	 * ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§ã®å¤–éƒ¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å®Ÿè¡Œ
+	 * @param target ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+	 * @param param å¼•æ•°
+	 * @return ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«ï¼ˆå¤±æ•—ã—ãŸå ´åˆã¯-1)ã€‚terminateProcess ã«æ¸¡ã™ã“ã¨ãŒã§ãã¾ã™ã€‚
+	 * @description å‡¦ç†ãŒãŠã‚ã£ãŸã‚‰ onShellExecuted ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¾ã™ã€‚
 	 */
 	function shellExecute(target, param);
 
 	/**
-	 * Às’†‚ÌŠO•”ƒvƒƒOƒ‰ƒ€‚Ì‹­§I—¹
-	 * @param process ƒvƒƒZƒXƒnƒ“ƒhƒ‹
-	 * @param endCode I—¹ƒR[ƒh
+	 * å®Ÿè¡Œä¸­ã®å¤–éƒ¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å¼·åˆ¶çµ‚äº†
+	 * @param process ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	 * @param endCode çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	function terminateProcess(process, endCode);
 	
 	/**
-	 * ƒCƒxƒ“ƒg:ƒVƒFƒ‹ÀsI—¹
-	 * @param process ƒvƒƒZƒXƒnƒ“ƒhƒ‹
-	 * @param endCode I—¹ƒR[ƒh
+	 * ã‚¤ãƒ™ãƒ³ãƒˆ:ã‚·ã‚§ãƒ«å®Ÿè¡Œçµ‚äº†
+	 * @param process ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	 * @param endCode çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	function onShellExecuted(process, endCode);
 
 	/**
-	 * ƒRƒ“ƒ\[ƒ‹o—Íæ“¾‚Â‚«ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒvƒƒOƒ‰ƒ€‚ÌÀs
-	 * @param target ƒvƒƒOƒ‰ƒ€
-	 * @param param ˆø”
-	 * @return ƒvƒƒZƒXƒnƒ“ƒhƒ‹i¸”s‚µ‚½ê‡‚Í-1)BterminateProcess ‚É“n‚·‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-	 * @description ƒRƒ“ƒ\[ƒ‹‚Ìs’PˆÊo—Í‚Å onCommandLineOutput ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ü‚·B
-	 * ˆ—‚ª‚¨‚í‚Á‚½‚ç onShellExecuted ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ü‚·B
+	 * ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›å–å¾—ã¤ãã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å®Ÿè¡Œ
+	 * @param target ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+	 * @param param å¼•æ•°
+	 * @return ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«ï¼ˆå¤±æ•—ã—ãŸå ´åˆã¯-1)ã€‚terminateProcess ã«æ¸¡ã™ã“ã¨ãŒã§ãã¾ã™ã€‚
+	 * @description ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã®è¡Œå˜ä½å‡ºåŠ›ã§ onCommandLineOutput ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¾ã™ã€‚
+	 * å‡¦ç†ãŒãŠã‚ã£ãŸã‚‰ onShellExecuted ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¾ã™ã€‚
 	 */
 	function commandExecute(target, param);
 
 	/**
-	 * Ctrl+CƒCƒxƒ“ƒg‚Ì‘—M(experimental:‚·‚×‚Ä‚ÌŠÂ‹«‚Å“®ì‚·‚é‚Æ‚ÍŒÀ‚è‚Ü‚¹‚ñ)
-	 * @param process ƒvƒƒZƒXƒnƒ“ƒhƒ‹icommandExecute‚µ‚½ƒvƒƒZƒX‚Ì‚İj
-	 * @param isBreak Ctrl+C‚Å‚Í‚È‚­Ctrl+Break‚ğ‘—‚é
-	 * @return ¬Œ÷‚µ‚½‚çtrue
+	 * Ctrl+Cã‚¤ãƒ™ãƒ³ãƒˆã®é€ä¿¡(experimental:ã™ã¹ã¦ã®ç’°å¢ƒã§å‹•ä½œã™ã‚‹ã¨ã¯é™ã‚Šã¾ã›ã‚“)
+	 * @param process ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«ï¼ˆcommandExecuteã—ãŸãƒ—ãƒ­ã‚»ã‚¹ã®ã¿ï¼‰
+	 * @param isBreak Ctrl+Cã§ã¯ãªãCtrl+Breakã‚’é€ã‚‹
+	 * @return æˆåŠŸã—ãŸã‚‰true
 	 */
 	function commandSendSignal(process, isBreak);
 
 	/**
-	 * ƒCƒxƒ“ƒg:ƒRƒ“ƒ\[ƒ‹o—Í
-	 * @param process ƒvƒƒZƒXƒnƒ“ƒhƒ‹
-	 * @param text    o—ÍƒeƒLƒXƒgi‚Ps’PˆÊj
+	 * ã‚¤ãƒ™ãƒ³ãƒˆ:ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›
+	 * @param process ãƒ—ãƒ­ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	 * @param text    å‡ºåŠ›ãƒ†ã‚­ã‚¹ãƒˆï¼ˆï¼‘è¡Œå˜ä½ï¼‰
 	 */
 	function onCommandLineOutput(process, text);
 };
@@ -57,17 +57,17 @@ class Window {
 
 class System {
 	/**
-	 * ƒRƒ“ƒ\[ƒ‹o—Íæ“¾‚Â‚«ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒvƒƒOƒ‰ƒ€‚ÌÀs
-	 * @param target ƒvƒƒOƒ‰ƒ€
-	 * @param param ˆø”
-	 * @param timeout ƒ^ƒCƒ€ƒAƒEƒgŠÔ(ms)
+	 * ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›å–å¾—ã¤ãã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å®Ÿè¡Œ
+	 * @param target ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+	 * @param param å¼•æ•°
+	 * @param timeout ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ms)
 	 * @return %[
-	 *   status:   ok/error/timeout‚Ì‚¢‚¸‚ê‚©‚Ì•¶š—ñ, 
-	 *   stdout:   ƒRƒ“ƒ\[ƒ‹o—Í•¶š—ñ”z—ñ(‰üs‚Å•ª—£)
-	 *   exitcode: I—¹ƒR[ƒh(status=="ok"‚Ì‚İ),
-	 *   message:  ƒGƒ‰[ƒƒbƒZ[ƒW(status!="ok"‚Ì‚İ)
+	 *   status:   ok/error/timeoutã®ã„ãšã‚Œã‹ã®æ–‡å­—åˆ—, 
+	 *   stdout:   ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›æ–‡å­—åˆ—é…åˆ—(æ”¹è¡Œã§åˆ†é›¢)
+	 *   exitcode: çµ‚äº†ã‚³ãƒ¼ãƒ‰(status=="ok"æ™‚ã®ã¿),
+	 *   message:  ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(status!="ok"æ™‚ã®ã¿)
 	 *   ];
-	 * @description ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhˆ—‚Í‚ ‚è‚Ü‚¹‚ñBÀs‘ÎÛ‚ÌƒvƒƒOƒ‰ƒ€‚ªI—¹‚·‚é‚Ü‚Å‹g—¢‹g—¢‚ª’â~‚µ‚Ü‚·B
+	 * @description ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰å‡¦ç†ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚å®Ÿè¡Œå¯¾è±¡ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒçµ‚äº†ã™ã‚‹ã¾ã§å‰é‡Œå‰é‡ŒãŒåœæ­¢ã—ã¾ã™ã€‚
 	 */
 	function commandExecute(target, param, timeout = 0);
 };

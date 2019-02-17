@@ -1,24 +1,24 @@
 Title: htmlhelp plugin
-Author: ‚ä‚ñ
+Author: ã‚†ã‚“
 
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢“à‚©‚çHTMLƒwƒ‹ƒv‚ð•\Ž¦‚·‚é‚½‚ß‚Ìƒvƒ‰ƒOƒCƒ“‚Å‚·B
-1‚Â‚Ì‹g—¢‹g—¢‚É‘Î‚µ‚Ä’Pˆê‚Ìƒwƒ‹ƒvƒEƒBƒ“ƒhƒE‚ªŠJ‚«A
-‹g—¢‹g—¢‚ªI—¹‚·‚é‚Ì‚Æ“¯Žž‚Éƒwƒ‹ƒvƒEƒBƒ“ƒhƒE‚àŽ©“®“I‚É•Â‚¶‚Ü‚·B
-
-
-œŽg‚¢•û
-
-manual.tjs ŽQÆ
+å‰é‡Œå‰é‡Œå†…ã‹ã‚‰HTMLãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+1ã¤ã®å‰é‡Œå‰é‡Œã«å¯¾ã—ã¦å˜ä¸€ã®ãƒ˜ãƒ«ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‹ãã€
+å‰é‡Œå‰é‡ŒãŒçµ‚äº†ã™ã‚‹ã®ã¨åŒæ™‚ã«ãƒ˜ãƒ«ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚‚è‡ªå‹•çš„ã«é–‰ã˜ã¾ã™ã€‚
 
 
-œƒrƒ‹ƒhã‚Ì’ˆÓ
+â—ä½¿ã„æ–¹
 
-Cƒhƒ‰ƒCƒu‚ÉHTML Help Workshop‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+manual.tjs å‚ç…§
 
 
-œƒ‰ƒCƒZƒ“ƒX 
+â—ãƒ“ãƒ«ãƒ‰ä¸Šã®æ³¨æ„
+
+Cãƒ‰ãƒ©ã‚¤ãƒ–ã«HTML Help WorkshopãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+
+
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ 
  
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B 
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚ 

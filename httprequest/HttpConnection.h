@@ -14,49 +14,49 @@ using namespace std;
 typedef basic_string<TCHAR> tstring;
 
 /**
- * HTTPÚ‘±‚ğÀŒ»‚·‚éƒNƒ‰ƒX
+ * HTTPæ¥ç¶šã‚’å®Ÿç¾ã™ã‚‹ã‚¯ãƒ©ã‚¹
  */
 class HttpConnection
 {
 
 public:
-	// ƒGƒ‰[ó‘Ô
+	// ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
 	enum Error {
-		ERROR_NONE,  // ƒGƒ‰[‚È‚µ
-		ERROR_INET,  // ƒlƒbƒgƒ[ƒNƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[
-		ERROR_CANCEL // ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+		ERROR_NONE,  // ã‚¨ãƒ©ãƒ¼ãªã—
+		ERROR_INET,  // ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼
+		ERROR_CANCEL // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 	};
 
 	/**
-	 * ƒŠƒNƒGƒXƒg—pƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @param context ƒRƒ“ƒeƒLƒXƒg
-	 * @param buffer ‘‚«‚İæƒf[ƒ^ƒoƒbƒtƒ@
-	 * @param size ‘‚«‚İæƒf[ƒ^ƒoƒbƒtƒ@‚ÌƒTƒCƒYBÀÛ‚É‘‚«‚ñ‚¾ƒTƒCƒY‚ğŠi”[‚µ‚Ä•Ô‚·
-	 * @return ’†’f‚·‚éê‡‚Í true ‚ğ•Ô‚·
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @param context ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @param buffer æ›¸ãè¾¼ã¿å…ˆãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+	 * @param size æ›¸ãè¾¼ã¿å…ˆãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µã‚¤ã‚ºã‚’æ ¼ç´ã—ã¦è¿”ã™
+	 * @return ä¸­æ–­ã™ã‚‹å ´åˆã¯ true ã‚’è¿”ã™
 	 */
 	typedef bool (*RequestCallback)(void *context, void *buffer, DWORD &size);
 
 
 	/**
-	 * ƒŠƒgƒ‰ƒC—pƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @param context ƒRƒ“ƒeƒLƒXƒg
-	 * @return ’†’f‚·‚éê‡‚Í true ‚ğ•Ô‚·
+	 * ãƒªãƒˆãƒ©ã‚¤ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @param context ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return ä¸­æ–­ã™ã‚‹å ´åˆã¯ true ã‚’è¿”ã™
 	 */
 	typedef void (*RetryCallback)(void *context);
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX—pƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @param context ƒRƒ“ƒeƒLƒXƒg
-	 * @param buffer “Ç‚İ‚İŒ³ƒf[ƒ^ƒoƒbƒtƒ@BÅŒã‚Í NULL
-	 * @param size ƒf[ƒ^ƒoƒbƒtƒ@‚ÌƒTƒCƒYBÅŒã‚Í0
-	 * @return ’†’f‚·‚éê‡‚Í true ‚ğ•Ô‚·
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @param context ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @param buffer èª­ã¿è¾¼ã¿å…ƒãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€‚æœ€å¾Œã¯ NULL
+	 * @param size ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚æœ€å¾Œã¯0
+	 * @return ä¸­æ–­ã™ã‚‹å ´åˆã¯ true ã‚’è¿”ã™
 	 */
 	typedef bool (*ResponseCallback)(void *context, const void *buffer, DWORD size);
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param agentName ƒG[ƒWƒFƒ“ƒg–¼
-	 * @param checkCert ”FØŠm”F‚·‚é‚©‚Ç‚¤‚©
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param agentName ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå
+	 * @param checkCert èªè¨¼ç¢ºèªã™ã‚‹ã‹ã©ã†ã‹
 	 */
 	HttpConnection(tstring agentName, bool checkCert=false) : agentName(agentName), checkCert(checkCert), contentLength(0), secure(false){
 		::InitializeCriticalSection(&cs);
@@ -65,13 +65,13 @@ public:
 		hReq  = NULL;
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~HttpConnection(void) {
 		clearParam();
 		::DeleteCriticalSection(&cs);
 	}
 
-	// ‘—Mƒwƒbƒ_‚ğƒNƒŠƒA
+	// é€ä¿¡ãƒ˜ãƒƒãƒ€ã‚’ã‚¯ãƒªã‚¢
 	void clearHeader() {
 		header.clear();
 		requestContentLength = 0;
@@ -79,10 +79,10 @@ public:
 		requestEncoding.erase();
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğƒNƒŠƒA
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚¯ãƒªã‚¢
 	void closeHandle();
 
-	// ‘—Mƒpƒ‰ƒ[ƒ^‚ğƒNƒŠƒA(–¼‘O‚ğ•Ï‚¦‚½‚¾‚¯‚ÅAÀ‘Ì‚Í‘—Mƒf[ƒ^ƒNƒŠƒA)
+	// é€ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢(åå‰ã‚’å¤‰ãˆãŸã ã‘ã§ã€å®Ÿä½“ã¯é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢)
 	void clearParam() {
 		closeHandle();
 		clearHeader();
@@ -90,10 +90,10 @@ public:
 
 	// ----------------------------------------------------------------------------------------
 	
-	// HTTP ƒwƒbƒ_‚ğ’Ç‰Á‚·‚é
+	// HTTP ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ ã™ã‚‹
 	void addHeader(const TCHAR *name, const TCHAR *value);
 
-	// ”FØƒwƒbƒ_‚ğƒZƒbƒg‚·‚é(addHeader ‚Ìƒ†[ƒeƒBƒŠƒeƒB)
+	// èªè¨¼ãƒ˜ãƒƒãƒ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(addHeader ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£)
 	void addBasicAuthHeader(const tstring &user, const tstring &passwd) {
 		tstring sendStr = user + _T(":") + passwd;
 		tstring value = _T("Basic") + base64encode(sendStr.c_str(), sendStr.length());
@@ -103,12 +103,12 @@ public:
 	// ----------------------------------------------------------------------------------------------------
 	
 	/**
-	 * ƒŠƒNƒGƒXƒgŠJn
-	 * @param method ƒAƒNƒZƒXƒƒ\ƒbƒh
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆé–‹å§‹
+	 * @param method ã‚¢ã‚¯ã‚»ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
 	 * @param url URL
-	 * @param user ƒAƒNƒZƒXƒ†[ƒU
-	 * @param passwd ƒAƒNƒZƒXƒpƒXƒ[ƒh
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * @param user ã‚¢ã‚¯ã‚»ã‚¹ãƒ¦ãƒ¼ã‚¶
+	 * @param passwd ã‚¢ã‚¯ã‚»ã‚¹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool open(const TCHAR *method,
 			  const TCHAR *url,
@@ -116,71 +116,71 @@ public:
 			  const TCHAR *passwd = NULL);
 
 	/**
-	 * ƒŠƒNƒGƒXƒg‘—M
-	 * @param callback ‘—M—pƒR[ƒ‹ƒoƒbƒN
-	 * @param context ƒR[ƒ‹ƒoƒbƒN—pƒRƒ“ƒeƒLƒXƒg
-	 * @return ƒGƒ‰[
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡
+	 * @param callback é€ä¿¡ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param context ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return ã‚¨ãƒ©ãƒ¼
 	 */
 	int request(RequestCallback requestCallback=NULL, RetryCallback retryCalblack = NULL, void *context=NULL);
 
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒXæ“¾‘Oî•ñûW
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—å‰æƒ…å ±åé›†
 	 */
 	void queryInfo();
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒXóM
-	 * @param callback •Û‘¶—pƒR[ƒ‹ƒoƒbƒN
-	 * @param context ƒR[ƒ‹ƒoƒbƒN—pƒRƒ“ƒeƒLƒXƒg
-	 * @return ƒGƒ‰[
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹å—ä¿¡
+	 * @param callback ä¿å­˜ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param context ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return ã‚¨ãƒ©ãƒ¼
 	 */
 	int response(ResponseCallback callback=NULL, void *context=NULL);
 	
 	// ----------------------------------------------------------------------------------------------------
 	
-	// ƒGƒ‰[ƒƒbƒZ[ƒW‚Ìæ“¾
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–å¾—
 	const TCHAR *getErrorMessage() const {
 		return errorMessage.c_str();
 	}
 	
-	// ÅŒã‚ÌƒŠƒNƒGƒXƒg‚ª¬Œ÷‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+	// æœ€å¾Œã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
 	bool isValid() const {
 		return hReq != NULL;
 	}
 
-	// HTTPƒXƒe[ƒ^ƒXƒR[ƒh‚ğæ“¾
+	// HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	int getStatusCode() const {
 		return statusCode;
 	}
 
-	// HTTPƒXƒe[ƒ^ƒXƒeƒLƒXƒg‚ğæ“¾
+	// HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	const TCHAR *getStatusText() const {
 		return statusText.c_str();
 	}
 	
-	// æ“¾‚³‚ê‚½ƒRƒ“ƒeƒ“ƒc‚Ì’·‚³
+	// å–å¾—ã•ã‚ŒãŸã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®é•·ã•
 	DWORD getContentLength() const {
 		return contentLength;
 	}
 
-	// ƒRƒ“ƒeƒ“ƒc‚Ì MIME-TYPE
+	// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã® MIME-TYPE
 	const TCHAR *getContentType() const {
 		return contentType.c_str();
 	}
 
-	// ƒRƒ“ƒeƒ“ƒc‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOî•ñ
+	// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æƒ…å ±
 	const TCHAR *getEncoding() const {
 		return encoding.c_str();
 	}
 
-	// ƒRƒ“ƒeƒ“ƒc‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOî•ñ
+	// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æƒ…å ±
 	const TCHAR *getRequestEncoding() const {
 		return requestEncoding.c_str();
 	}
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ìƒwƒbƒ_î•ñ‚ğæ“¾
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’å–å¾—
 	 */
 	const TCHAR *getResponseHeader(const TCHAR *name) {
 		map<tstring,tstring>::const_iterator it = responseHeaders.find(tstring(name));
@@ -190,12 +190,12 @@ public:
 		return NULL;
 	}
 
-	// ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‘Sæ“¾—p:‰Šú‰»
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€å…¨å–å¾—ç”¨:åˆæœŸåŒ–
 	void initRH() {
 		rhit = responseHeaders.begin();
 	}
 
-	// ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‘Sæ“¾—p:æ“¾
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€å…¨å–å¾—ç”¨:å–å¾—
 	bool getNextRH(tstring &name, tstring &value) {
 		if (rhit != responseHeaders.end()) {
 			name  = rhit->first;
@@ -212,34 +212,34 @@ public:
 private:
 	CRITICAL_SECTION cs;
 
-	// Šî‘bî•ñ
-	tstring agentName; ///< ƒ†[ƒUƒG[ƒWƒFƒ“ƒg–¼
-	bool checkCert;	   ///< Ø–¾‘Šm”Fƒ_ƒCƒAƒƒO‚ğo‚·‚©
-	bool secure;       ///< https ’ÊM‚©‚Ç‚¤‚©
+	// åŸºç¤æƒ…å ±
+	tstring agentName; ///< ãƒ¦ãƒ¼ã‚¶ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå
+	bool checkCert;	   ///< è¨¼æ˜æ›¸ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’å‡ºã™ã‹
+	bool secure;       ///< https é€šä¿¡ã‹ã©ã†ã‹
 
-	HINTERNET hInet; ///< ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±
-	HINTERNET hConn; ///< ƒRƒlƒNƒVƒ‡ƒ“
-	HINTERNET hReq;  ///< HTTPƒŠƒNƒGƒXƒg
+	HINTERNET hInet; ///< ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶š
+	HINTERNET hConn; ///< ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³
+	HINTERNET hReq;  ///< HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	
-	// ‘—M—pƒf[ƒ^
-	vector<tstring> header;	///< HTTP ƒwƒbƒ_
-	DWORD requestContentLength; ///< ƒŠƒNƒGƒXƒg‚Ì Content-Length:
-	tstring requestContentType; ///< ƒŠƒNƒGƒXƒg‚Ì Content-Type:
-	tstring requestEncoding;    ///< ƒŠƒNƒGƒXƒg‚ÌƒGƒ“ƒR[ƒhw’è
+	// é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
+	vector<tstring> header;	///< HTTP ãƒ˜ãƒƒãƒ€
+	DWORD requestContentLength; ///< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã® Content-Length:
+	tstring requestContentType; ///< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã® Content-Type:
+	tstring requestEncoding;    ///< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æŒ‡å®š
 
-	// óM—pƒf[ƒ^
+	// å—ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
 	bool validContentLength;
 	DWORD contentLength;     ///< Content-Length:
-	tstring contentType;     ///< Content-Type: ‚Ìtype•”
-	tstring encoding;        ///< Content-TYpe: ‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO•”
+	tstring contentType;     ///< Content-Type: ã®typeéƒ¨
+	tstring encoding;        ///< Content-TYpe: ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°éƒ¨
 
 	DWORD statusCode;        ///< HTTP status code
 	tstring statusText;      ///< HTTP status text
-	map<tstring,tstring> responseHeaders; ///< ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_
-	map<tstring,tstring>::const_iterator rhit; //< ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_QÆ—pƒCƒeƒŒ[ƒ^
+	map<tstring,tstring> responseHeaders; ///< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€
+	map<tstring,tstring>::const_iterator rhit; //< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€å‚ç…§ç”¨ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 
-	// ƒGƒ‰[ƒR[ƒh
-	tstring errorMessage; ///< ƒGƒ‰[ƒƒbƒZ[ƒW
+	// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	tstring errorMessage; ///< ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 };
 
 #endif

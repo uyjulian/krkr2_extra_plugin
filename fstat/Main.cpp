@@ -7,10 +7,10 @@ using namespace std;
 #include <ole2.h>
 #include <shellapi.h> // SHGetFileInfo
 
-// Date ƒNƒ‰ƒXƒƒ“ƒo
-static iTJSDispatch2 *dateClass   = NULL;  // Date ‚ÌƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
-static iTJSDispatch2 *dateSetTime = NULL;  // Date.setTime ƒƒ\ƒbƒh
-static iTJSDispatch2 *dateGetTime = NULL;  // Date.getTime ƒƒ\ƒbƒh
+// Date ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒ
+static iTJSDispatch2 *dateClass   = NULL;  // Date ã®ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+static iTJSDispatch2 *dateSetTime = NULL;  // Date.setTime ãƒ¡ã‚½ãƒƒãƒ‰
+static iTJSDispatch2 *dateGetTime = NULL;  // Date.getTime ãƒ¡ã‚½ãƒƒãƒ‰
 
 static const tjs_nchar * StoragesFstatPreScript	= TJS_N("\
 global.FILE_ATTRIBUTE_READONLY = 0x00000001,\
@@ -25,12 +25,12 @@ NCB_TYPECONV_CAST_INTEGER(tjs_uint64);
 
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class StoragesFstat {
 	/**
-	 * Win32API‚Ì GetLastError‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•Ô‚·
-	 * @param message ƒƒbƒZ[ƒWŠi”[æ
+	 * Win32APIã® GetLastErrorã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+	 * @param message ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ ¼ç´å…ˆ
 	 */
 	static void getLastError(ttstr &message) {
 		LPVOID lpMessageBuffer;
@@ -43,20 +43,20 @@ class StoragesFstat {
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ğ Date ƒNƒ‰ƒX‚É‚µ‚Ä•Û‘¶
-	 * @param store Ši”[æ
-	 * @param filetime ƒtƒ@ƒCƒ‹
+	 * ãƒ•ã‚¡ã‚¤ãƒ«æ™‚åˆ»ã‚’ Date ã‚¯ãƒ©ã‚¹ã«ã—ã¦ä¿å­˜
+	 * @param store æ ¼ç´å…ˆ
+	 * @param filetime ãƒ•ã‚¡ã‚¤ãƒ«æ™‚åˆ»
 	 */
 	static void storeDate(tTJSVariant &store, FILETIME const &filetime, iTJSDispatch2 *objthis)
 	{
-		// ƒtƒ@ƒCƒ‹¶¬
+		// ãƒ•ã‚¡ã‚¤ãƒ«ç”Ÿæˆæ™‚
 		tjs_uint64 ft = filetime.dwHighDateTime;
 		ft *= 0x100000000;
 		ft |= filetime.dwLowDateTime;
 		if (ft > 0) {
 			iTJSDispatch2 *obj;
 			if (TJS_SUCCEEDED(dateClass->CreateNew(0, NULL, NULL, &obj, 0, NULL, objthis))) {
-				// UNIX TIME ‚É•ÏŠ·
+				// UNIX TIME ã«å¤‰æ›
 				tjs_int64 unixtime = (ft - 0x19DB1DED53E8000 ) / 10000;
 				tTJSVariant time(unixtime);
 				tTJSVariant *param[] = { &time };
@@ -67,10 +67,10 @@ class StoragesFstat {
 		}
 	}
 	/**
-	 * Date ƒNƒ‰ƒX‚Ì‚ğƒtƒ@ƒCƒ‹‚É•ÏŠ·
-	 * @param restore  QÆæiDateƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒXj
-	 * @param filetime ƒtƒ@ƒCƒ‹Œ‹‰ÊŠi”[æ
-	 * @return æ“¾‚Å‚«‚½‚©‚Ç‚¤‚©
+	 * Date ã‚¯ãƒ©ã‚¹ã®æ™‚åˆ»ã‚’ãƒ•ã‚¡ã‚¤ãƒ«æ™‚åˆ»ã«å¤‰æ›
+	 * @param restore  å‚ç…§å…ˆï¼ˆDateã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼‰
+	 * @param filetime ãƒ•ã‚¡ã‚¤ãƒ«æ™‚åˆ»çµæœæ ¼ç´å…ˆ
+	 * @return å–å¾—ã§ããŸã‹ã©ã†ã‹
 	 */
 	static bool restoreDate(tTJSVariant &restore, FILETIME &filetime)
 	{
@@ -88,8 +88,8 @@ class StoragesFstat {
 	}
 
 	/**
-	 * ƒpƒX‚ğƒ[ƒJƒ‹‰»‚·‚é•––”ö‚Ì\‚ğíœ
-	 * @param path ƒpƒX–¼
+	 * ãƒ‘ã‚¹ã‚’ãƒ­ãƒ¼ã‚«ãƒ«åŒ–ã™ã‚‹ï¼†æœ«å°¾ã®\ã‚’å‰Šé™¤
+	 * @param path ãƒ‘ã‚¹å
 	 */
 	static void getLocalName(ttstr &path) {
 		TVPGetLocalName(path);
@@ -104,10 +104,10 @@ class StoragesFstat {
 		}
 	}
 	/**
-	 * ƒ[ƒJƒ‹ƒpƒX‚Ì—L–³”»’è
-	 * @param in  path  ƒpƒX–¼
-	 * @param out local ƒ[ƒJƒ‹ƒpƒX
-	 * @return ƒ[ƒJƒ‹ƒpƒX‚ª‚ ‚éê‡‚Ítrue
+	 * ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‘ã‚¹ã®æœ‰ç„¡åˆ¤å®š
+	 * @param in  path  ãƒ‘ã‚¹å
+	 * @param out local ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‘ã‚¹
+	 * @return ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‘ã‚¹ãŒã‚ã‚‹å ´åˆã¯true
 	 */
 	static bool getLocallyAccessibleName(const ttstr &path, ttstr *local = NULL) {
 		bool r = false;
@@ -122,11 +122,11 @@ class StoragesFstat {
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğæ“¾
-	 * @param filename ƒtƒ@ƒCƒ‹–¼iƒ[ƒJƒ‹–¼‚Å‚ ‚é‚±‚Æj
-	 * @param iswrite “Ç‚İ‘‚«‘I‘ğ
-	 * @param out out_isdir ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©
-	 * @return ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«åï¼ˆãƒ­ãƒ¼ã‚«ãƒ«åã§ã‚ã‚‹ã“ã¨ï¼‰
+	 * @param iswrite èª­ã¿æ›¸ãé¸æŠ
+	 * @param out out_isdir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 	 */
 	static HANDLE _getFileHandle(ttstr const &filename, bool iswrite, bool *out_isdir = 0) {
 		DWORD attr = GetFileAttributes(filename.c_str());
@@ -143,13 +143,13 @@ class StoragesFstat {
 		return hFile;
 	}
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğæ“¾‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼iƒ[ƒJƒ‹–¼‚Å‚ ‚é‚±‚Æj
-	 * @param ctime ì¬
-	 * @param atime ƒAƒNƒZƒX
-	 * @param mtime •ÏX
-	 * @param size  ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	 * @return 0:¸”s 1:ƒtƒ@ƒCƒ‹ 2:ƒtƒHƒ‹ƒ_
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«åï¼ˆãƒ­ãƒ¼ã‚«ãƒ«åã§ã‚ã‚‹ã“ã¨ï¼‰
+	 * @param ctime ä½œæˆæ™‚åˆ»
+	 * @param atime ã‚¢ã‚¯ã‚»ã‚¹æ™‚åˆ»
+	 * @param mtime å¤‰æ›´æ™‚åˆ»
+	 * @param size  ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	 * @return 0:å¤±æ•— 1:ãƒ•ã‚¡ã‚¤ãƒ« 2:ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	static int getFileTime(ttstr const &filename, tTJSVariant &ctime, tTJSVariant &atime, tTJSVariant &mtime, tTJSVariant *size = 0)
 	{
@@ -172,12 +172,12 @@ class StoragesFstat {
 		return isdir ? 2 : 1;
 	}
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğİ’è‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼iƒ[ƒJƒ‹–¼‚Å‚ ‚é‚±‚Æj
-	 * @param ctime ì¬
-	 * @param mtime •ÏX
-	 * @param atime ƒAƒNƒZƒX
-	 * @return 0:¸”s 1:ƒtƒ@ƒCƒ‹ 2:ƒtƒHƒ‹ƒ_
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’è¨­å®šã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«åï¼ˆãƒ­ãƒ¼ã‚«ãƒ«åã§ã‚ã‚‹ã“ã¨ï¼‰
+	 * @param ctime ä½œæˆæ™‚åˆ»
+	 * @param mtime å¤‰æ›´æ™‚åˆ»
+	 * @param atime ã‚¢ã‚¯ã‚»ã‚¹æ™‚åˆ»
+	 * @return 0:å¤±æ•— 1:ãƒ•ã‚¡ã‚¤ãƒ« 2:ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	static int setFileTime(ttstr const &filename, tTJSVariant &ctime, tTJSVariant &atime, tTJSVariant &mtime)
 	{
@@ -200,7 +200,7 @@ class StoragesFstat {
 		return (r == 0) ? 0 : isdir ? 2 : 1;
 	}
 	static tjs_error _getTime(tTJSVariant *result, tTJSVariant const *param, bool chksize) {
-		// Àƒtƒ@ƒCƒ‹‚Åƒ`ƒFƒbƒN
+		// å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ã§ãƒã‚§ãƒƒã‚¯
 		ttstr filename = TVPNormalizeStorageName(param->AsStringNoAddRef());
 		getLocalName(filename);
 		tTJSVariant size, ctime, atime, mtime;
@@ -231,10 +231,10 @@ public:
 	}
 	
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @return ƒTƒCƒYE«‘
-	 * ¦ƒA[ƒJƒCƒu“àƒtƒ@ƒCƒ‹‚ÍƒTƒCƒY‚Ì‚İ•Ô‚·
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ã‚µã‚¤ã‚ºãƒ»æ™‚åˆ»è¾æ›¸
+	 * â€»ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚µã‚¤ã‚ºã®ã¿è¿”ã™
 	 */
 	static tjs_error TJS_INTF_METHOD fstat(tTJSVariant *result,
 										   tjs_int numparams,
@@ -244,7 +244,7 @@ public:
 
 		ttstr filename = TVPGetPlacedPath(*param[0]);
 		if (filename.length() > 0 && !getLocallyAccessibleName(filename)) {
-			// ƒA[ƒJƒCƒu“àƒtƒ@ƒCƒ‹
+			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ•ã‚¡ã‚¤ãƒ«
 			IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
 			if (in) {
 				STATSTG stat;
@@ -265,10 +265,10 @@ public:
 		return _getTime(result, param[0], true);
 	}
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒvî•ñ‚ğæ“¾‚·‚éiƒA[ƒJƒCƒu“à•s‰Âj
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param dict     «‘
-	 * @return ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—æƒ…å ±ã‚’å–å¾—ã™ã‚‹ï¼ˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ä¸å¯ï¼‰
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param dict     æ™‚åˆ»è¾æ›¸
+	 * @return æˆåŠŸã—ãŸã‹ã©ã†ã‹
 	 */
 	static tjs_error TJS_INTF_METHOD getTime(tTJSVariant *result,
 											 tjs_int numparams,
@@ -278,10 +278,10 @@ public:
 		return _getTime(result, param[0], false);
 	}
 	/**
-	 * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒvî•ñ‚ğİ’è‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param dict     «‘
-	 * @return ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+	 * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—æƒ…å ±ã‚’è¨­å®šã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param dict     æ™‚åˆ»è¾æ›¸
+	 * @return æˆåŠŸã—ãŸã‹ã©ã†ã‹
 	 */
 	static tjs_error TJS_INTF_METHOD setTime(tTJSVariant *result,
 											 tjs_int numparams,
@@ -305,9 +305,9 @@ public:
 	}
 
 	/**
-	 * XV“úæ“¾Eİ’èiDate‚ğŒo—R‚µ‚È‚¢‚‘¬”Åj
-	 * @param target ‘ÎÛ
-	 * @param time ŠÔi64bit FILETIME”j
+	 * æ›´æ–°æ—¥æ™‚å–å¾—ãƒ»è¨­å®šï¼ˆDateã‚’çµŒç”±ã—ãªã„é«˜é€Ÿç‰ˆï¼‰
+	 * @param target å¯¾è±¡
+	 * @param time æ™‚é–“ï¼ˆ64bit FILETIMEæ•°ï¼‰
 	 */
 	static tjs_uint64 getLastModifiedFileTime(ttstr target) {
 		ttstr filename = TVPNormalizeStorageName(target);
@@ -337,9 +337,9 @@ public:
 	}
 
 	/**
-	 * ‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW‹óŠÔ’†‚Ìƒtƒ@ƒCƒ‹‚ğ’Šo‚·‚é
-	 * @param src •Û‘¶Œ³ƒtƒ@ƒCƒ‹
-	 * @param dest •Û‘¶æƒtƒ@ƒCƒ‹
+	 * å‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç©ºé–“ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŠ½å‡ºã™ã‚‹
+	 * @param src ä¿å­˜å…ƒãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param dest ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«
 	 */
 	static void exportFile(ttstr filename, ttstr storename) {
 		IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
@@ -363,10 +363,10 @@ public:
 	}
 
 	/**
-	 * ‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW‹óŠÔ’†‚Ìw’èƒtƒ@ƒCƒ‹‚ğíœ‚·‚éB
-	 * @param file íœ‘ÎÛƒtƒ@ƒCƒ‹
-	 * @return ÀÛ‚Éíœ‚³‚ê‚½‚ç true
-	 * Àƒtƒ@ƒCƒ‹‚ª‚ ‚éê‡‚Ì‚İíœ‚³‚ê‚Ü‚·
+	 * å‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç©ºé–“ä¸­ã®æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã€‚
+	 * @param file å‰Šé™¤å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @return å®Ÿéš›ã«å‰Šé™¤ã•ã‚ŒãŸã‚‰ true
+	 * å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹å ´åˆã®ã¿å‰Šé™¤ã•ã‚Œã¾ã™
 	 */
 	static bool deleteFile(const tjs_char *file) {
 		BOOL r = false;
@@ -378,7 +378,7 @@ public:
 				getLastError(mes);
 				TVPAddLog(ttstr(TJS_W("deleteFile : ")) + filename + TJS_W(" : ") + mes);
 			} else {
-				// íœ‚É¬Œ÷‚µ‚½ê‡‚ÍƒXƒgƒŒ[ƒWƒLƒƒƒbƒVƒ…‚ğƒNƒŠƒA
+				// å‰Šé™¤ã«æˆåŠŸã—ãŸå ´åˆã¯ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ã‚¯ãƒªã‚¢
 				TVPClearStorageCaches();
 			}
 		}
@@ -386,11 +386,11 @@ public:
 	}
 
 	/**
-	 * ‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW‹óŠÔ’†‚Ìw’èƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é(Ø‚èÌ‚Ä‚é)
-	 * @param file ƒtƒ@ƒCƒ‹
-	 * @param size w’èƒTƒCƒY
-	 * @return ƒTƒCƒY•ÏX‚Å‚«‚½‚ç true
-	 * Àƒtƒ@ƒCƒ‹‚ª‚ ‚éê‡‚Ì‚İˆ—‚³‚ê‚Ü‚·
+	 * å‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç©ºé–“ä¸­ã®æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹(åˆ‡ã‚Šæ¨ã¦ã‚‹)
+	 * @param file ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param size æŒ‡å®šã‚µã‚¤ã‚º
+	 * @return ã‚µã‚¤ã‚ºå¤‰æ›´ã§ããŸã‚‰ true
+	 * å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†ã•ã‚Œã¾ã™
 	 */
 	static bool truncateFile(const tjs_char *file, tjs_int size) {
 		BOOL r = false;
@@ -415,11 +415,11 @@ public:
 	}
 	
 	/**
-	 * w’èƒtƒ@ƒCƒ‹‚ğˆÚ“®‚·‚éB
-	 * @param fromFile ˆÚ“®‘ÎÛƒtƒ@ƒCƒ‹
-	 * @param toFile ˆÚ“®æƒpƒX
-	 * @return ÀÛ‚ÉˆÚ“®‚³‚ê‚½‚ç true
-	 * ˆÚ“®‘ÎÛƒtƒ@ƒCƒ‹‚ªÀİ‚µAˆÚ“®æƒpƒX‚Éƒtƒ@ƒCƒ‹‚ª–³‚¢ê‡‚Ì‚İˆÚ“®‚³‚ê‚Ü‚·
+	 * æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç§»å‹•ã™ã‚‹ã€‚
+	 * @param fromFile ç§»å‹•å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param toFile ç§»å‹•å…ˆãƒ‘ã‚¹
+	 * @return å®Ÿéš›ã«ç§»å‹•ã•ã‚ŒãŸã‚‰ true
+	 * ç§»å‹•å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ãŒå®Ÿåœ¨ã—ã€ç§»å‹•å…ˆãƒ‘ã‚¹ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒç„¡ã„å ´åˆã®ã¿ç§»å‹•ã•ã‚Œã¾ã™
 	 */
 	static bool moveFile(const tjs_char *from, const tjs_char *to) {
 		BOOL r = false;
@@ -440,20 +440,20 @@ public:
 	}
 
 	/**
-	 * w’èƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹ˆê——‚ğæ“¾‚·‚é
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ƒtƒ@ƒCƒ‹–¼ˆê——‚ªŠi”[‚³‚ê‚½”z—ñ
+	 * æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã‚’å–å¾—ã™ã‚‹
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«åä¸€è¦§ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
 	 */
 	static tTJSVariant dirlist(tjs_char const *dir) {
 		return _dirlist(dir, &setDirListFile);
 	}
 
 	/**
-	 * w’èƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹ˆê——‚ÆÚ×î•ñ‚ğæ“¾‚·‚é
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ƒtƒ@ƒCƒ‹î•ñˆê——‚ªŠi”[‚³‚ê‚½”z—ñ
-	 *         [ %[ name:ƒtƒ@ƒCƒ‹–¼, size, attrib, mtime, atime, ctime ], ... ]
-	 * dirlist‚Æˆá‚¢name‚É‚¨‚¢‚ÄƒtƒHƒ‹ƒ_‚Ìê‡‚Ì––”ö"/"’Ç‰Á‚ª‚È‚¢‚Ì‚Å’ˆÓ(attrib‚Å”»’è‚Ì‚±‚Æ)
+	 * æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã¨è©³ç´°æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ä¸€è¦§ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
+	 *         [ %[ name:ãƒ•ã‚¡ã‚¤ãƒ«å, size, attrib, mtime, atime, ctime ], ... ]
+	 * dirlistã¨é•ã„nameã«ãŠã„ã¦ãƒ•ã‚©ãƒ«ãƒ€ã®å ´åˆã®æœ«å°¾"/"è¿½åŠ ãŒãªã„ã®ã§æ³¨æ„(attribã§åˆ¤å®šã®ã“ã¨)
 	 */
 	static tTJSVariant dirlistEx(tjs_char const *dir) {
 		return _dirlist(dir, &setDirListInfo);
@@ -463,14 +463,14 @@ public:
 private:
 	static tTJSVariant _dirlist(ttstr dir, DirListCallback cb)
 	{
-		// OSƒlƒCƒeƒBƒu‚È•\Œ»‚É•ÏŠ·
+		// OSãƒã‚¤ãƒ†ã‚£ãƒ–ãªè¡¨ç¾ã«å¤‰æ›
 		dir = TVPNormalizeStorageName(dir);
 		if (dir.GetLastChar() != TJS_W('/')) {
 			TVPThrowExceptionMessage(TJS_W("'/' must be specified at the end of given directory name."));
 		}
 		TVPGetLocalName(dir);
 
-		// Array ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ğì¬
+		// Array ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 		iTJSDispatch2 * array = TJSCreateArrayObject();
 		tTJSVariant result;
 
@@ -483,7 +483,7 @@ private:
 				do {
 					ttstr file = data.cFileName;
 					if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-						// ƒfƒBƒŒƒNƒgƒŠ‚Ìê‡‚ÍÅŒã‚É / ‚ğ‚Â‚¯‚é
+						// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å ´åˆã¯æœ€å¾Œã« / ã‚’ã¤ã‘ã‚‹
 						file += "/";
 					}
 					if ((*cb)(array, count, file, &data)) count++;
@@ -502,13 +502,13 @@ private:
 		return result;
 	}
 	static bool setDirListFile(iTJSDispatch2 *array, tjs_int count, ttstr const &file, WIN32_FIND_DATA const *data) {
-		// [dirlist] ”z—ñ‚É’Ç‰Á‚·‚é
+		// [dirlist] é…åˆ—ã«è¿½åŠ ã™ã‚‹
 		tTJSVariant val(file);
 		array->PropSetByNum(0, count, &val, array);
 		return true;
 	}
 	static bool setDirListInfo(iTJSDispatch2 *array, tjs_int count, ttstr const &file, WIN32_FIND_DATA const *data) {
-		// [dirlistEx] ”z—ñ‚É’Ç‰Á‚·‚é
+		// [dirlistEx] é…åˆ—ã«è¿½åŠ ã™ã‚‹
 		iTJSDispatch2 *dict = TJSCreateDictionaryObject();
 		if (dict != NULL) try {
 			{
@@ -546,10 +546,10 @@ private:
 public:
 
 	/**
-	 * w’èƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ÀÛ‚Éíœ‚³‚ê‚½‚ç true
-	 * ’†‚Éƒtƒ@ƒCƒ‹‚ª–³‚¢ê‡‚Ì‚İíœ‚³‚ê‚Ü‚·
+	 * æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å®Ÿéš›ã«å‰Šé™¤ã•ã‚ŒãŸã‚‰ true
+	 * ä¸­ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒç„¡ã„å ´åˆã®ã¿å‰Šé™¤ã•ã‚Œã¾ã™
 	 */
 	static bool removeDirectory(ttstr dir) {
 
@@ -557,7 +557,7 @@ public:
 			TVPThrowExceptionMessage(TJS_W("'/' must be specified at the end of given directory name."));
 		}
 
-		// OSƒlƒCƒeƒBƒu‚È•\Œ»‚É•ÏŠ·
+		// OSãƒã‚¤ãƒ†ã‚£ãƒ–ãªè¡¨ç¾ã«å¤‰æ›
 		dir = TVPNormalizeStorageName(dir);
 		TVPGetLocalName(dir);
 
@@ -571,9 +571,9 @@ public:
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠ‚Ìì¬
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ÀÛ‚Éì¬‚Å‚«‚½‚ç true
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½œæˆ
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å®Ÿéš›ã«ä½œæˆã§ããŸã‚‰ true
 	 */
 	static bool createDirectory(ttstr dir)
 	{
@@ -593,9 +593,9 @@ public:
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠ‚Ìì¬
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ÀÛ‚Éì¬‚Å‚«‚½‚ç true
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½œæˆ
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å®Ÿéš›ã«ä½œæˆã§ããŸã‚‰ true
 	 */
 	static bool createDirectoryNoNormalize(ttstr dir)
 	{
@@ -614,9 +614,9 @@ public:
 	}
 
 	/**
-	 * ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Ì•ÏX
-	 * @param dir ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ÀÛ‚Éì¬‚Å‚«‚½‚ç true
+	 * ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å¤‰æ›´
+	 * @param dir ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å®Ÿéš›ã«ä½œæˆã§ããŸã‚‰ true
 	 */
 	static bool changeDirectory(ttstr dir)
 	{
@@ -636,10 +636,10 @@ public:
 	}
 	
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğİ’è‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @param attr İ’è‚·‚é‘®«
-	 * @return ÀÛ‚É•ÏX‚Å‚«‚½‚ç true
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ã‚’è¨­å®šã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«/ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @param attr è¨­å®šã™ã‚‹å±æ€§
+	 * @return å®Ÿéš›ã«å¤‰æ›´ã§ããŸã‚‰ true
 	 */
 	static bool setFileAttributes(ttstr filename, DWORD attr)
 	{
@@ -655,10 +655,10 @@ public:
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğ‰ğœ‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @param attr ‰ğœ‚·‚é‘®«
-	 * @return ÀÛ‚É•ÏX‚Å‚«‚½‚ç true
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ã‚’è§£é™¤ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«/ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @param attr è§£é™¤ã™ã‚‹å±æ€§
+	 * @return å®Ÿéš›ã«å¤‰æ›´ã§ããŸã‚‰ true
 	 */
 	static bool resetFileAttributes(ttstr filename, DWORD attr)
 	{
@@ -674,9 +674,9 @@ public:
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğæ“¾‚·‚é
-	 * @param filename ƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return æ“¾‚µ‚½‘®«
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ã‚’å–å¾—ã™ã‚‹
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«/ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return å–å¾—ã—ãŸå±æ€§
 	 */
 	static DWORD getFileAttributes(ttstr filename)
 	{
@@ -687,11 +687,11 @@ public:
 	}
 
 	/**
-	 * ƒtƒHƒ‹ƒ_‘I‘ğƒ_ƒCƒAƒƒO‚ğŠJ‚­
-	 * @param window ƒEƒBƒ“ƒhƒE
-	 * @param caption ƒLƒƒƒvƒVƒ‡ƒ“
-	 * @param initialDir ‰ŠúƒfƒBƒŒƒNƒgƒŠ
-	 * @param rootDir ƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ
+	 * ãƒ•ã‚©ãƒ«ãƒ€é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
+	 * @param window ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	 * @param caption ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³
+	 * @param initialDir åˆæœŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	 * @param rootDir ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error TJS_INTF_METHOD selectDirectory(
 		tTJSVariant	*result,
@@ -787,9 +787,9 @@ public:
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠ‚Ì‘¶İƒ`ƒFƒbƒN
-	 * @param directory ƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚ê‚Î true/‘¶İ‚µ‚È‚¯‚ê‚Î -1/ƒfƒBƒŒƒNƒgƒŠ‚Å‚È‚¯‚ê‚Î false
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
+	 * @param directory ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã™ã‚Œã° true/å­˜åœ¨ã—ãªã‘ã‚Œã° -1/ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ãªã‘ã‚Œã° false
 	 */
 	static int isExistentDirectory(ttstr dir)
 	{
@@ -802,27 +802,27 @@ public:
 		DWORD	attr = GetFileAttributes(dir.c_str());
 #if 0
 		if(attr == 0xFFFFFFFF)
-			return -1;	//	‘¶İ‚µ‚È‚¢
+			return -1;	//	å­˜åœ¨ã—ãªã„
 		else if((attr & FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY)
-			return true;	//	‘¶İ‚·‚é
+			return true;	//	å­˜åœ¨ã™ã‚‹
 		else
-			return false;	//	ƒfƒBƒŒƒNƒgƒŠ‚Å‚Í‚È‚¢
+			return false;	//	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã¯ãªã„
 #else
 		if(attr == 0xFFFFFFFF)
-			return false;	//	‘¶İ‚µ‚È‚¢
+			return false;	//	å­˜åœ¨ã—ãªã„
 		else if((attr & FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY)
-			return true;	//	‘¶İ‚·‚é
+			return true;	//	å­˜åœ¨ã™ã‚‹
 		else
-			return false;	//	ƒfƒBƒŒƒNƒgƒŠ‚Å‚Í‚È‚¢
+			return false;	//	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã¯ãªã„
 #endif
 	}
 
 	/**
-	 * ‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW‹óŠÔ’†‚Ìw’èƒtƒ@ƒCƒ‹‚ğƒRƒs[‚·‚é
-	 * @param from ƒRƒs[Œ³ƒtƒ@ƒCƒ‹
-	 * @param to ƒRƒs[æƒtƒ@ƒCƒ‹
-	 * @param failIfExist ƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚Æ‚«‚É¸”s‚·‚é‚È‚ç tureAã‘‚«‚·‚é‚È‚ç false
-	 * @return ÀÛ‚ÉˆÚ“®‚Å‚«‚½‚ç true
+	 * å‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç©ºé–“ä¸­ã®æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+	 * @param from ã‚³ãƒ”ãƒ¼å…ƒãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param to ã‚³ãƒ”ãƒ¼å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param failIfExist ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã¨ãã«å¤±æ•—ã™ã‚‹ãªã‚‰ tureã€ä¸Šæ›¸ãã™ã‚‹ãªã‚‰ false
+	 * @return å®Ÿéš›ã«ç§»å‹•ã§ããŸã‚‰ true
 	 */
 	static bool copyFile(const tjs_char *from, const tjs_char *to, bool failIfExist)
 	{
@@ -845,11 +845,11 @@ private:
 public:
 
 	/**
-	 * ƒpƒX‚Ì³‹K‰»‚ğs‚í‚¸‹g—¢‹g—¢‚ÌƒXƒgƒŒ[ƒW‹óŠÔ’†‚Ìw’èƒtƒ@ƒCƒ‹‚ğƒRƒs[‚·‚é
-	 * @param from ƒRƒs[Œ³ƒtƒ@ƒCƒ‹
-	 * @param to ƒRƒs[æƒtƒ@ƒCƒ‹
-	 * @param failIfExist ƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚Æ‚«‚É¸”s‚·‚é‚È‚ç tureAã‘‚«‚·‚é‚È‚ç false
-	 * @return ÀÛ‚ÉˆÚ“®‚Å‚«‚½‚ç true
+	 * ãƒ‘ã‚¹ã®æ­£è¦åŒ–ã‚’è¡Œã‚ãšå‰é‡Œå‰é‡Œã®ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç©ºé–“ä¸­ã®æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+	 * @param from ã‚³ãƒ”ãƒ¼å…ƒãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param to ã‚³ãƒ”ãƒ¼å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param failIfExist ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã¨ãã«å¤±æ•—ã™ã‚‹ãªã‚‰ tureã€ä¸Šæ›¸ãã™ã‚‹ãªã‚‰ false
+	 * @return å®Ÿéš›ã«ç§»å‹•ã§ããŸã‚‰ true
 	 */
 	static bool copyFileNoNormalize(const tjs_char *from, const tjs_char *to, bool failIfExist)
 	{
@@ -857,7 +857,7 @@ public:
 		ttstr toFile(to);
 		if(toFile.length())
 		{
-			// ¦w’èŸ‘æ‚Å—áŠO‚ğ”­¶‚³‚¹‚é‚½‚ßTVPGetLocallyAccessibleName‚Íg‚í‚È‚¢
+			// â€»æŒ‡å®šæ¬¡ç¬¬ã§ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ãŸã‚TVPGetLocallyAccessibleNameã¯ä½¿ã‚ãªã„
 			TVPGetLocalName(toFile);
 			return _copyFile(fromFile, toFile, failIfExist);
 		}
@@ -865,10 +865,10 @@ public:
 	}
 
 	/**
-	 * ƒpƒX‚Ì³‹K‰»‚ğs‚È‚í‚¸AautoPath‚©‚ç‚ÌŒŸõ‚às‚È‚í‚¸‚É
-	 * ƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F‚ğs‚¤
-	 * @param fileame ƒtƒ@ƒCƒ‹ƒpƒX
-	 * @return ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚½‚çtrue
+	 * ãƒ‘ã‚¹ã®æ­£è¦åŒ–ã‚’è¡Œãªã‚ãšã€autoPathã‹ã‚‰ã®æ¤œç´¢ã‚‚è¡Œãªã‚ãšã«
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèªã‚’è¡Œã†
+	 * @param fileame ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãŸã‚‰true
 	 */
 	static bool isExistentStorageNoSearchNoNormalize(ttstr filename) 
 	{
@@ -876,8 +876,8 @@ public:
 	}
 
 	/**
-	 * •\¦–¼æ“¾
-	 * @param fileame ƒtƒ@ƒCƒ‹ƒpƒX
+	 * è¡¨ç¤ºåå–å¾—
+	 * @param fileame ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 	 */
 	static ttstr getDisplayName(ttstr filename)
 	{
@@ -895,7 +895,7 @@ public:
 	}
 
 private:
-	//	w’è‚ÌƒpƒX‚©‚çITEMIDLIST‚ğæ“¾
+	//	æŒ‡å®šã®ãƒ‘ã‚¹ã‹ã‚‰ITEMIDLISTã‚’å–å¾—
 	static ITEMIDLIST*	Path2ITEMIDLIST(const tjs_char* path)
 	{
 		IShellFolder* isf;
@@ -909,7 +909,7 @@ private:
 		return NULL;
 	}
 
-	//	ITEMIDLIST‚ğ‰ğ•ú
+	//	ITEMIDLISTã‚’è§£æ”¾
 	static void	FreeITEMIDLIST(ITEMIDLIST* pidl)
 	{
 		IMalloc*	im;
@@ -919,13 +919,13 @@ private:
 			im->Free((void*)pidl);
 	}
 
-	//	SHBrowserForFolder‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	//	SHBrowserForFolderã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	static int	CALLBACK SelectDirectoryCallBack(HWND hwnd, UINT msg, LPARAM lparam, LPARAM lpdata)
 	{
-		//	‰Šú‰»
+		//	åˆæœŸåŒ–æ™‚
 		if(msg == BFFM_INITIALIZED)
 		{
-			//	‰ŠúƒtƒHƒ‹ƒ_‚ğw’è
+			//	åˆæœŸãƒ•ã‚©ãƒ«ãƒ€ã‚’æŒ‡å®š
 			ITEMIDLIST*	pidl;
 			pidl	= Path2ITEMIDLIST((tjs_char*)lpdata);
 			if(pidl != NULL)
@@ -934,7 +934,7 @@ private:
 				FreeITEMIDLIST(pidl);
 			}
 
-			//	Å‘O–Ê‚ÖˆÚ“®
+			//	æœ€å‰é¢ã¸ç§»å‹•
 			SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
 		}
 		return 0;
@@ -942,9 +942,9 @@ private:
 
 public:
 	/**
-	 * MD5ƒnƒbƒVƒ…’l‚Ìæ“¾
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼
-	 * @return ƒnƒbƒVƒ…’li32•¶š‚Ì16i”ƒnƒbƒVƒ…•¶š—ñi¬•¶šjj
+	 * MD5ãƒãƒƒã‚·ãƒ¥å€¤ã®å–å¾—
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒãƒƒã‚·ãƒ¥å€¤ï¼ˆ32æ–‡å­—ã®16é€²æ•°ãƒãƒƒã‚·ãƒ¥æ–‡å­—åˆ—ï¼ˆå°æ–‡å­—ï¼‰ï¼‰
 	 */
 	static tjs_error TJS_INTF_METHOD getMD5HashString(tTJSVariant *result,
 													  tjs_int numparams,
@@ -959,7 +959,7 @@ public:
 		TVP_md5_state_t st;
 		TVP_md5_init(&st);
 
-		tjs_uint8 buffer[1024]; // > 16 digestƒoƒbƒtƒ@Œ“‚Ë‚é
+		tjs_uint8 buffer[1024]; // > 16 digestãƒãƒƒãƒ•ã‚¡å…¼ã­ã‚‹
 		DWORD size = 0;
 		while (in->Read(buffer, sizeof buffer, &size) == S_OK && size > 0) {
 			TVP_md5_append(&st, buffer, (int)size);
@@ -979,10 +979,10 @@ public:
 	}
 
 	/**
-	 * ƒpƒX‚ÌŒŸõ
-	 * @param filename   ŒŸõ‘ÎÛƒtƒ@ƒCƒ‹–¼
-	 * @param searchpath ŒŸõ‘ÎÛƒpƒXiƒ[ƒJƒ‹•\‹L(c:\`“™)‚Å";"‹æØ‚èCÈ—ª‚ÍƒVƒXƒeƒ€‚ÌƒfƒtƒHƒ‹ƒgŒŸõƒpƒXj
-	 * @return Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚ÍvoidCŒ©‚Â‚©‚Á‚½ê‡‚Íƒtƒ@ƒCƒ‹‚Ìƒtƒ‹ƒpƒX(file://./`)
+	 * ãƒ‘ã‚¹ã®æ¤œç´¢
+	 * @param filename   æ¤œç´¢å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param searchpath æ¤œç´¢å¯¾è±¡ãƒ‘ã‚¹ï¼ˆãƒ­ãƒ¼ã‚«ãƒ«è¡¨è¨˜(c:\ã€œç­‰)ã§";"åŒºåˆ‡ã‚Šï¼Œçœç•¥æ™‚ã¯ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ¤œç´¢ãƒ‘ã‚¹ï¼‰
+	 * @return è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯voidï¼Œè¦‹ã¤ã‹ã£ãŸå ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹(file://./ã€œ)
 	 */
 	static tjs_error TJS_INTF_METHOD searchPath(tTJSVariant *result,
 												tjs_int numparams,
@@ -1006,7 +1006,7 @@ public:
 	}
 
 	/*----------------------------------------------------------------------
-	 * ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
+	 * ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
      ----------------------------------------------------------------------*/
 	static ttstr getCurrentPath() {
 		TCHAR crDir[MAX_PATH + 1];
@@ -1056,7 +1056,7 @@ NCB_ATTACH_CLASS(StoragesFstat, Storages) {
 	Method(TJS_W("getTemporaryName"), &TVPGetTemporaryName);
 };
 
-// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹ˆ——pƒNƒ‰ƒX
+// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹
 class TemporaryFiles
 {
 public:
@@ -1104,7 +1104,7 @@ NCB_REGISTER_CLASS(TemporaryFiles) {
 }
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 static void PostRegistCallback()
 {
@@ -1124,7 +1124,7 @@ static void PostRegistCallback()
 #define RELEASE(name) name->Release();name= NULL
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 static void PreUnregistCallback()
 {

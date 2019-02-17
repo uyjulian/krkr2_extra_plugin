@@ -11,36 +11,36 @@ using namespace std;
 #include "layerExBase.hpp"
 
 /**
- * GDIPlus ŒÅ—Lˆ——p
+ * GDIPlus å›ºæœ‰å‡¦ç†ç”¨
  */
 struct GdiPlus {
 	/**
-	 * ƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì’Ç‰Á
-	 * @param fontFileName ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹–¼
+	 * ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®è¿½åŠ 
+	 * @param fontFileName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
 	 */
 	static void addPrivateFont(const tjs_char *fontFileName);
 
 	/**
-	 * ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[–¼‚ğæ“¾
-	 * @param privateOnly true ‚È‚çƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì‚İæ“¾
+	 * ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼åã‚’å–å¾—
+	 * @param privateOnly true ãªã‚‰ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®ã¿å–å¾—
 	 */
 	static tTJSVariant getFontList(bool privateOnly);
 };
 
 /**
- * ƒtƒHƒ“ƒgî•ñ
+ * ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±
  */
 class FontInfo {
 	friend class LayerExDraw;
 	friend class Path;
 
 protected:
-	FontFamily *fontFamily; //< ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[
+	FontFamily *fontFamily; //< ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼
 	ttstr familyName;
-	REAL emSize; //< ƒtƒHƒ“ƒgƒTƒCƒY 
-	INT style; //< ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
-        bool gdiPlusUnsupportedFont; //< GDI+–¢ƒTƒ|[ƒgƒtƒHƒ“ƒg
-        bool forceSelfPathDraw; // ©‘OƒpƒX•`‰æ‹­§
+	REAL emSize; //< ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 
+	INT style; //< ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+        bool gdiPlusUnsupportedFont; //< GDI+æœªã‚µãƒãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆ
+        bool forceSelfPathDraw; // è‡ªå‰ãƒ‘ã‚¹æç”»å¼·åˆ¶
         mutable bool propertyModified;
         mutable REAL ascent;
         mutable REAL descent;
@@ -49,7 +49,7 @@ protected:
         mutable REAL descentLeading;
 
 	/**
-	 * ƒtƒHƒ“ƒgî•ñ‚ÌƒNƒŠƒA
+	 * ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±ã®ã‚¯ãƒªã‚¢
 	 */
 	void clear();
 
@@ -60,16 +60,16 @@ public:
 
 	FontInfo();
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param familyName ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[
-	 * @param emSize ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-	 * @param style ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param familyName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼
+	 * @param emSize ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+	 * @param style ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 	 */
 	FontInfo(const tjs_char *familyName, REAL emSize, INT style);
 	FontInfo(const FontInfo &orig);
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~FontInfo();
 
@@ -92,17 +92,17 @@ public:
 };
 
 /**
- * •`‰æŠOŠÏî•ñ
+ * æç”»å¤–è¦³æƒ…å ±
  */
 class Appearance {
 	friend class LayerExDraw;
 public:
-	// •`‰æî•ñ
+	// æç”»æƒ…å ±
 	struct DrawInfo{
-		int type;   // 0:ƒuƒ‰ƒV 1:ƒyƒ“
-		void *info; // î•ñƒIƒuƒWƒFƒNƒg
-		REAL ox; //< •\¦ƒIƒtƒZƒbƒg
-		REAL oy; //< •\¦ƒIƒtƒZƒbƒg
+		int type;   // 0:ãƒ–ãƒ©ã‚· 1:ãƒšãƒ³
+		void *info; // æƒ…å ±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		REAL ox; //< è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+		REAL oy; //< è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		DrawInfo() : ox(0), oy(0), type(0), info(NULL) {}
 		DrawInfo(REAL ox, REAL oy, Pen *pen) : ox(ox), oy(oy), type(0), info(pen) {}
 		DrawInfo(REAL ox, REAL oy, Brush *brush) : ox(ox), oy(oy), type(1), info(brush) {}
@@ -143,30 +143,30 @@ public:
 	virtual ~Appearance();
 
 	/**
-	 * î•ñ‚ÌƒNƒŠƒA
+	 * æƒ…å ±ã®ã‚¯ãƒªã‚¢
 	 */
 	void clear();
 	
 	/**
-	 * ƒuƒ‰ƒV‚Ì’Ç‰Á
-	 * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
-	 * @param ox •\¦ƒIƒtƒZƒbƒgX
-	 * @param oy •\¦ƒIƒtƒZƒbƒgY
+	 * ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
+	 * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+	 * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	 * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
 	 */
 	void addBrush(tTJSVariant colorOrBrush, REAL ox=0, REAL oy=0);
 	
 	/**
-	 * ƒyƒ“‚Ì’Ç‰Á
-	 * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
-	 * @param widthOrOption ƒyƒ“•‚Ü‚½‚Íƒyƒ“î•ñi«‘j
-	 * @param ox •\¦ƒIƒtƒZƒbƒgX
-	 * @param oy •\¦ƒIƒtƒZƒbƒgY
+	 * ãƒšãƒ³ã®è¿½åŠ 
+	 * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+	 * @param widthOrOption ãƒšãƒ³å¹…ã¾ãŸã¯ãƒšãƒ³æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+	 * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	 * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
 	 */
 	void addPen(tTJSVariant colorOrBrush, tTJSVariant widthOrOption, REAL ox=0, REAL oy=0);
 
 protected:
 	/**
-	 * LineCap‚Ìæ“¾
+	 * LineCapã®å–å¾—
 	 */
 	bool getLineCap(tTJSVariant &in, LineCap &cap, CustomLineCap* &custom, REAL pw);
 	vector<CustomLineCap*>customLineCaps;
@@ -174,7 +174,7 @@ protected:
 
 
 /**
- * •`‰æŠOŠÏî•ñ
+ * æç”»å¤–è¦³æƒ…å ±
  */
 class Path {
 	friend class LayerExDraw;
@@ -204,31 +204,31 @@ protected:
 };
 
 /*
- * ƒAƒEƒgƒ‰ƒCƒ“ƒx[ƒX‚ÌƒeƒLƒXƒg•`‰æƒƒ\ƒbƒh‚Ì’Ç‰Á
+ * ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ãƒ™ãƒ¼ã‚¹ã®ãƒ†ã‚­ã‚¹ãƒˆæç”»ãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ 
  */
 class LayerExDraw : public layerExBase
 {
 protected:
-	// î•ñ•Û—p
+	// æƒ…å ±ä¿æŒç”¨
 	GeometryT width, height;
 	BufferT   buffer;
 	PitchT    pitch;
 	GeometryT clipLeft, clipTop, clipWidth, clipHeight;
 	
-	/// ƒŒƒCƒ„‚ğQÆ‚·‚éƒrƒbƒgƒ}ƒbƒv
+	/// ãƒ¬ã‚¤ãƒ¤ã‚’å‚ç…§ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 	Bitmap *bitmap;
-	/// ƒŒƒCƒ„‚É‘Î‚µ‚Ä•`‰æ‚·‚éƒRƒ“ƒeƒLƒXƒg
+	/// ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æç”»ã™ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 	Graphics *graphics;
 
-	// Transform w’è
+	// Transform æŒ‡å®š
 	Matrix transform;
 	Matrix viewTransform;
 	Matrix calcTransform;
 
 protected:
-	// •`‰æƒXƒ€[ƒWƒ“ƒOw’è
+	// æç”»ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°æŒ‡å®š
 	SmoothingMode smoothingMode;
-	// drawString ‚ÌƒAƒ“ƒ`ƒGƒCƒŠƒAƒXw’è
+	// drawString ã®ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æŒ‡å®š
 	TextRenderingHint textRenderingHint;
 
 public:
@@ -247,7 +247,7 @@ public:
 	}
 
 protected:
-	/// •`‰æ“à—e‹L˜^—pƒƒ^ƒtƒ@ƒCƒ‹
+	/// æç”»å†…å®¹è¨˜éŒ²ç”¨ãƒ¡ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
 	HDC metaHDC;
 	HGLOBAL metaBuffer;
 	IStream *metaStream;
@@ -283,7 +283,7 @@ public:
 	virtual void reset();
 
 	// ------------------------------------------------------------------
-	// •`‰æƒpƒ‰ƒ[ƒ^w’è
+	// æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®š
 	// ------------------------------------------------------------------
 
 protected:
@@ -292,7 +292,7 @@ protected:
 	
 public:
 	/**
-	 * •\¦ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚Ìw’è
+	 * è¡¨ç¤ºãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã®æŒ‡å®š
 	 */
 	void setViewTransform(const Matrix *transform);
 	void resetViewTransform();
@@ -301,8 +301,8 @@ public:
 	void translateViewTransform(REAL dx, REAL dy);
 	
 	/**
-	 * ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚Ìw’è
-	 * @param matrix ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€ƒ}ƒgƒŠƒbƒNƒX
+	 * ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã®æŒ‡å®š
+	 * @param matrix ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
 	 */
 	void setTransform(const Matrix *transform);
 	void resetTransform();
@@ -311,106 +311,106 @@ public:
 	void translateTransform(REAL dx, REAL dy);
 
 	// ------------------------------------------------------------------
-	// •`‰æƒƒ\ƒbƒhŒQ
+	// æç”»ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤
 	// ------------------------------------------------------------------
 
 protected:
 
 	/**
-	 * ƒpƒX‚ÌXV—Ìˆæî•ñ‚ğæ“¾
-	 * @param app •\¦•\Œ»
-	 * @param path •`‰æ‚·‚éƒpƒX
-	 * @return XV—Ìˆæî•ñ
+	 * ãƒ‘ã‚¹ã®æ›´æ–°é ˜åŸŸæƒ…å ±ã‚’å–å¾—
+	 * @param app è¡¨ç¤ºè¡¨ç¾
+	 * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF getPathExtents(const Appearance *app, const GraphicsPath *path);
 
 	/**
-	 * ƒpƒX‚Ì•`‰æ—p‰º¿‚¯ˆ—
-	 * @param graphics •`‰ææ
-	 * @param pen •`‰æ—pƒyƒ“
-	 * @param matrix •`‰æˆÊ’u’²®—pmatrix
-	 * @param path •`‰æ“à—e
+	 * ãƒ‘ã‚¹ã®æç”»ç”¨ä¸‹è«‹ã‘å‡¦ç†
+	 * @param graphics æç”»å…ˆ
+	 * @param pen æç”»ç”¨ãƒšãƒ³
+	 * @param matrix æç”»ä½ç½®èª¿æ•´ç”¨matrix
+	 * @param path æç”»å†…å®¹
 	 */
 	void draw(Graphics *graphics, const Pen *pen, const Matrix *matrix, const GraphicsPath *path);
 
 	/**
-	 * “h‚è‚Ì•`‰æ—p‰º¿‚¯ˆ—
-	 * @param graphics •`‰ææ
-	 * @param brush •`‰æ—pƒuƒ‰ƒV
-	 * @param matrix •`‰æˆÊ’u’²®—pmatrix
-	 * @param path •`‰æ“à—e
+	 * å¡—ã‚Šã®æç”»ç”¨ä¸‹è«‹ã‘å‡¦ç†
+	 * @param graphics æç”»å…ˆ
+	 * @param brush æç”»ç”¨ãƒ–ãƒ©ã‚·
+	 * @param matrix æç”»ä½ç½®èª¿æ•´ç”¨matrix
+	 * @param path æç”»å†…å®¹
 	 */
 	void fill(Graphics *graphics, const Brush *brush, const Matrix *matrix, const GraphicsPath *path);
 	
 	/**
-	 * ƒpƒX‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param path •`‰æ‚·‚éƒpƒX
-	 * @return XV—Ìˆæî•ñ
+	 * ãƒ‘ã‚¹ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF _drawPath(const Appearance *app, const GraphicsPath *path);
 
         /**
-         * ƒOƒŠƒtƒAƒEƒgƒ‰ƒCƒ“‚Ìæ“¾
-         * @param font ƒtƒHƒ“ƒg
-         * @param offset ƒIƒtƒZƒbƒg
-         * @param path ƒOƒŠƒt‚ğ‘‚«o‚·ƒpƒX
-         * @param glyph •`‰æ‚·‚éƒOƒŠƒt
+         * ã‚°ãƒªãƒ•ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ã®å–å¾—
+         * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+         * @param offset ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+         * @param path ã‚°ãƒªãƒ•ã‚’æ›¸ãå‡ºã™ãƒ‘ã‚¹
+         * @param glyph æç”»ã™ã‚‹ã‚°ãƒªãƒ•
          */
         void getGlyphOutline(const FontInfo *font, PointF &offset, GraphicsPath *path, UINT glyph);
 
         /*
-         * ƒeƒLƒXƒgƒAƒEƒgƒ‰ƒCƒ“‚Ìæ“¾
-         * @param font ƒtƒHƒ“ƒg
-         * @param offset ƒIƒtƒZƒbƒg
-         * @param path ƒOƒŠƒt‚ğ‘‚«o‚·ƒpƒX
-         * @param text •`‰æ‚·‚éƒeƒLƒXƒg
+         * ãƒ†ã‚­ã‚¹ãƒˆã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ã®å–å¾—
+         * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+         * @param offset ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+         * @param path ã‚°ãƒªãƒ•ã‚’æ›¸ãå‡ºã™ãƒ‘ã‚¹
+         * @param text æç”»ã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
          */
          void getTextOutline(const FontInfo *font, PointF &offset, GraphicsPath *path, ttstr text);
 
 public:
 	/**
-	 * ‰æ–Ê‚ÌÁ‹
-	 * @param argb Á‹F
+	 * ç”»é¢ã®æ¶ˆå»
+	 * @param argb æ¶ˆå»è‰²
 	 */
 	void clear(ARGB argb);
 
 	/**
-	 * ƒpƒX‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param path ƒpƒX
+	 * ãƒ‘ã‚¹ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param path ãƒ‘ã‚¹
 	 */
 	RectF drawPath(const Appearance *app, const Path *path);
 	
 	/**
-	 * ‰~ŒÊ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x ¶ãÀ•W
-	 * @param y ¶ãÀ•W
-	 * @param width ‰¡•
-	 * @param height c•
-	 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-	 * @param sweepAngle •`‰æŠp“x
-	 * @return XV—Ìˆæî•ñ
+	 * å††å¼§ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x å·¦ä¸Šåº§æ¨™
+	 * @param y å·¦ä¸Šåº§æ¨™
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
+	 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+	 * @param sweepAngle æç”»è§’åº¦
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawArc(const Appearance *app, REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle);
 
 	/**
-	 * ‰~‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x ¶ãÀ•W
-	 * @param y ¶ãÀ•W
-	 * @param width ‰¡•
-	 * @param height c•
-	 * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
-	 * @param sweepAngle •`‰æŠp“x
-	 * @return XV—Ìˆæî•ñ
+	 * å††éŒã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x å·¦ä¸Šåº§æ¨™
+	 * @param y å·¦ä¸Šåº§æ¨™
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
+	 * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+	 * @param sweepAngle æç”»è§’åº¦
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawPie(const Appearance *app, REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle);
 	
 	/**
-	 * ƒxƒWƒF‹Èü‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+	 * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
 	 * @param x1
 	 * @param y1
 	 * @param x2
@@ -419,305 +419,305 @@ public:
 	 * @param y3
 	 * @param x4
 	 * @param y4
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawBezier(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y2, REAL x3, REAL y3, REAL x4, REAL y4);
 
 	/**
-	 * ˜A‘±ƒxƒWƒF‹Èü‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * é€£ç¶šãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawBeziers(const Appearance *app, tTJSVariant points);
 
 	/**
-	 * Closed cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * Closed cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawClosedCurve(const Appearance *app, tTJSVariant points);
 
 	/**
-	 * Closed cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
+	 * Closed cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
 	 * @pram tension tension
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawClosedCurve2(const Appearance *app, tTJSVariant points, REAL tension);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawCurve(const Appearance *app, tTJSVariant points);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
 	 * @parma tension tension
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawCurve2(const Appearance *app, tTJSVariant points, REAL tension);
 
 	/**
-	 * cardinal spline ‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
+	 * cardinal spline ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
 	 * @param offset
 	 * @param numberOfSegment
 	 * @param tension tension
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawCurve3(const Appearance *app, tTJSVariant points, int offset, int numberOfSegments, REAL tension);
 	
 	/**
-	 * ‘È‰~‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+	 * æ¥•å††ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawEllipse(const Appearance *app, REAL x, REAL y, REAL width, REAL height);
 
 	/**
-	 * ü•ª‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x1 n“_XÀ•W
-	 * @param y1 n“_YÀ•W
-	 * @param x2 I“_XÀ•W
-	 * @param y2 I“_YÀ•W
-	 * @return XV—Ìˆæî•ñ
+	 * ç·šåˆ†ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x1 å§‹ç‚¹Xåº§æ¨™
+	 * @param y1 å§‹ç‚¹Yåº§æ¨™
+	 * @param x2 çµ‚ç‚¹Xåº§æ¨™
+	 * @param y2 çµ‚ç‚¹Yåº§æ¨™
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawLine(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y2);
 
 	/**
-	 * ˜A‘±ü•ª‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * é€£ç¶šç·šåˆ†ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawLines(const Appearance *app, tTJSVariant points);
 
 	/**
-	 * ‘½ŠpŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param points “_‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * å¤šè§’å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param points ç‚¹ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawPolygon(const Appearance *app, tTJSVariant points);
 	
 	/**
-	 * ‹éŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+	 * çŸ©å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
-	 * @return XV—Ìˆæî•ñ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawRectangle(const Appearance *app, REAL x, REAL y, REAL width, REAL height);
 
 	/**
-	 * •¡”‹éŒ`‚Ì•`‰æ
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param rects ‹éŒ`î•ñ‚Ì”z—ñ
-	 * @return XV—Ìˆæî•ñ
+	 * è¤‡æ•°çŸ©å½¢ã®æç”»
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param rects çŸ©å½¢æƒ…å ±ã®é…åˆ—
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawRectangles(const Appearance *app, tTJSVariant rects);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æ
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x •`‰æˆÊ’uX
-	 * @param y •`‰æˆÊ’uY
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XV—Ìˆæî•ñ
+	 * æ–‡å­—åˆ—ã®æç”»
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x æç”»ä½ç½®X
+	 * @param y æç”»ä½ç½®Y
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawPathString(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æ(OpenType‚ÌPostScriptƒtƒHƒ“ƒg‘Î‰)
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x •`‰æˆÊ’uX
-	 * @param y •`‰æˆÊ’uY
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XV—Ìˆæî•ñ
+	 * æ–‡å­—åˆ—ã®æç”»(OpenTypeã®PostScriptãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x æç”»ä½ç½®X
+	 * @param y æç”»ä½ç½®Y
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawPathString2(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text);
 
 	// -------------------------------------------------------------------------------
 	
 	/**
-	 * •¶š—ñ‚Ì•`‰æ
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param app ƒAƒsƒAƒ‰ƒ“ƒX
-	 * @param x •`‰æˆÊ’uX
-	 * @param y •`‰æˆÊ’uY
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XV—Ìˆæî•ñ
+	 * æ–‡å­—åˆ—ã®æç”»
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+	 * @param x æç”»ä½ç½®X
+	 * @param y æç”»ä½ç½®Y
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawString(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æXV—Ìˆæî•ñ‚Ìæ“¾
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * æ–‡å­—åˆ—ã®æç”»æ›´æ–°é ˜åŸŸæƒ…å ±ã®å–å¾—
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	RectF measureString(const FontInfo *font, const tjs_char *text);
 
 	/**
-	 * •¶š—ñ‚É‚Ò‚Á‚½‚è‚ÆÚ‚Á‚·‚é‹éŒ`‚Ìæ“¾
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return —Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * æ–‡å­—åˆ—ã«ã´ã£ãŸã‚Šã¨æ¥ã£ã™ã‚‹çŸ©å½¢ã®å–å¾—
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	RectF measureStringInternal(const FontInfo *font, const tjs_char *text);
 
 	/**
-	 * •¶š—ñ‚Ì•`‰æXV—Ìˆæî•ñ‚Ìæ“¾(OpenType‚ÌPostScriptƒtƒHƒ“ƒg‘Î‰)
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * æ–‡å­—åˆ—ã®æç”»æ›´æ–°é ˜åŸŸæƒ…å ±ã®å–å¾—(OpenTypeã®PostScriptãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	RectF measureString2(const FontInfo *font, const tjs_char *text);
 
 	/**
-	 * •¶š—ñ‚É‚Ò‚Á‚½‚è‚ÆÚ‚Á‚·‚é‹éŒ`‚Ìæ“¾(OpenType‚ÌPostScriptƒtƒHƒ“ƒg‘Î‰)
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @return —Ìˆæî•ñ‚Ì«‘ left, top, width, height
+	 * æ–‡å­—åˆ—ã«ã´ã£ãŸã‚Šã¨æ¥ã£ã™ã‚‹çŸ©å½¢ã®å–å¾—(OpenTypeã®PostScriptãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @return é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
 	 */
 	RectF measureStringInternal2(const FontInfo *font, const tjs_char *text);
 
 	// -----------------------------------------------------------------------------
 	
 	/**
-	 * ‰æ‘œ‚Ì•`‰æBƒRƒs[æ‚ÍŒ³‰æ‘œ‚Ì Bounds ‚ğ”z—¶‚µ‚½ˆÊ’uAƒTƒCƒY‚Í Pixel w’è‚É‚È‚è‚Ü‚·B
-	 * @param x ƒRƒs[æŒ´“_X
-	 * @param y ƒRƒs[æŒ´“_Y
-	 * @param image ƒRƒs[Œ³‰æ‘œ
-	 * @return XV—Ìˆæî•ñ
+	 * ç”»åƒã®æç”»ã€‚ã‚³ãƒ”ãƒ¼å…ˆã¯å…ƒç”»åƒã® Bounds ã‚’é…æ…®ã—ãŸä½ç½®ã€ã‚µã‚¤ã‚ºã¯ Pixel æŒ‡å®šã«ãªã‚Šã¾ã™ã€‚
+	 * @param x ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹X
+	 * @param y ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹Y
+	 * @param image ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawImage(REAL x, REAL y, Image *src);
 
 	/**
-	 * ‰æ‘œ‚Ì‹éŒ`ƒRƒs[
-	 * @param dleft ƒRƒs[æ¶’[
-	 * @param dtop  ƒRƒs[æã’[
-	 * @param src ƒRƒs[Œ³‰æ‘œ
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @return XV—Ìˆæî•ñ
+	 * ç”»åƒã®çŸ©å½¢ã‚³ãƒ”ãƒ¼
+	 * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+	 * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawImageRect(REAL dleft, REAL dtop, Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight);
 
 	/**
-	 * ‰æ‘œ‚ÌŠg‘åk¬ƒRƒs[
-	 * @param dleft ƒRƒs[æ¶’[
-	 * @param dtop  ƒRƒs[æã’[
-	 * @param dwidth ƒRƒs[æ‚Ì‰¡•
-	 * @param dheight  ƒRƒs[æ‚Ìc•
-	 * @param src ƒRƒs[Œ³‰æ‘œ
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @return XV—Ìˆæî•ñ
+	 * ç”»åƒã®æ‹¡å¤§ç¸®å°ã‚³ãƒ”ãƒ¼
+	 * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+	 * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+	 * @param dwidth ã‚³ãƒ”ãƒ¼å…ˆã®æ¨ªå¹…
+	 * @param dheight  ã‚³ãƒ”ãƒ¼å…ˆã®ç¸¦å¹…
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawImageStretch(REAL dleft, REAL dtop, REAL dwidth, REAL dheight, Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight);
 
 	/**
-	 * ‰æ‘œ‚ÌƒAƒtƒBƒ“•ÏŠ·ƒRƒs[
-	 * @param src ƒRƒs[Œ³‰æ‘œ
-	 * @param sleft Œ³‹éŒ`‚Ì¶’[
-	 * @param stop  Œ³‹éŒ`‚Ìã’[
-	 * @param swidth Œ³‹éŒ`‚Ì‰¡•
-	 * @param sheight  Œ³‹éŒ`‚Ìc•
-	 * @param affine ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚Ìí—Ş(true:•ÏŠ·s—ñ, false:À•Ww’è), 
-	 * @return XV—Ìˆæî•ñ
+	 * ç”»åƒã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚³ãƒ”ãƒ¼
+	 * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+	 * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+	 * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+	 * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+	 * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+	 * @param affine ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç¨®é¡(true:å¤‰æ›è¡Œåˆ—, false:åº§æ¨™æŒ‡å®š), 
+	 * @return æ›´æ–°é ˜åŸŸæƒ…å ±
 	 */
 	RectF drawImageAffine(Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight, bool affine, REAL A, REAL B, REAL C, REAL D, REAL E, REAL F);
 
 	// ------------------------------------------------
-	// ƒƒ^ƒtƒ@ƒCƒ‹‘€ì
+	// ãƒ¡ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
 	// ------------------------------------------------
 
 protected:
 
 	/**
-	 * ‹L˜^î•ñ‚Ì¶¬
+	 * è¨˜éŒ²æƒ…å ±ã®ç”Ÿæˆ
 	 */
 	void createRecord();
 
 	/**
-	 * ‹L˜^î•ñ‚Ì¶¬
+	 * è¨˜éŒ²æƒ…å ±ã®ç”Ÿæˆ
 	 */
 	void recreateRecord();
 	
 	/**
-	 * ‹L˜^î•ñ‚Ì”jŠü
+	 * è¨˜éŒ²æƒ…å ±ã®ç ´æ£„
 	 */
 	void destroyRecord();
 
 	/**
-	 * Ä•`‰æ—p
+	 * å†æç”»ç”¨
 	 */
 	bool redraw(Image *image);
 	
 public:
 	/**
-	 * @param record •`‰æ“à—e‚ğ‹L˜^‚·‚é‚©‚Ç‚¤‚©
+	 * @param record æç”»å†…å®¹ã‚’è¨˜éŒ²ã™ã‚‹ã‹ã©ã†ã‹
 	 */
 	void setRecord(bool record);
 
 	/**
-	 * @return record •`‰æ“à—e‚ğ‹L˜^‚·‚é‚©‚Ç‚¤‚©
+	 * @return record æç”»å†…å®¹ã‚’è¨˜éŒ²ã™ã‚‹ã‹ã©ã†ã‹
 	 */
 	bool getRecord() {
 		return metafile != NULL;
 	}
 
 	/**
-	 * ‹L˜^“à—e‚ğ Image ‚Æ‚µ‚Äæ“¾
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã‚’ Image ã¨ã—ã¦å–å¾—
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	Image *getRecordImage();
 	
 	/**
-	 * ‹L˜^“à—e‚ÌÄ•`‰æ
-	 * @return Ä•`‰æ‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã®å†æç”»
+	 * @return å†æç”»ã—ãŸã‚‰ true
 	 */
 	bool redrawRecord();
 
 	/**
-	 * ‹L˜^“à—e‚Ì•Û‘¶
-	 * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã®ä¿å­˜
+	 * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool saveRecord(const tjs_char *filename);
 
 	/**
-	 * ‹L˜^“à—e‚Ì“Ç‚İ‚İ
-	 * @param filename “Ç‚İ‚İƒtƒ@ƒCƒ‹–¼
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * è¨˜éŒ²å†…å®¹ã®èª­ã¿è¾¼ã¿
+	 * @param filename èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	bool loadRecord(const tjs_char *filename);
 
 	/**
-	 * ‰æ‘œ‚Ì•Û‘¶
+	 * ç”»åƒã®ä¿å­˜
 	 */
 	static tjs_error TJS_INTF_METHOD saveImage(tTJSVariant *result,
 											   tjs_int numparams,
@@ -725,7 +725,7 @@ public:
 											   iTJSDispatch2 *objthis);
 
 	// ------------------------------------------------
-	// ƒŠ[ƒWƒ‡ƒ“æ“¾
+	// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—
 	// ------------------------------------------------
 	
 	tTJSVariant getColorRegionRects(ARGB color);

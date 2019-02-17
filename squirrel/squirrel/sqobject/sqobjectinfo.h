@@ -19,7 +19,7 @@
 	static void  operator delete[](void* p) { sq_free(p, 0); }
 #endif
 
-// ƒƒOo—Í—p
+// ãƒ­ã‚°å‡ºåŠ›ç”¨
 #define SQPRINT(v,msg) {\
 	SQPRINTFUNCTION print = sq_getprintfunc(v);\
 	if (print) {\
@@ -29,18 +29,18 @@
 
 namespace sqobject {
 
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 HSQUIRRELVM init();
-/// I—¹
+/// çµ‚äº†
 extern void done();
-/// î•ñ•Û—pƒOƒ[ƒoƒ‹VM‚Ìæ“¾
+/// æƒ…å ±ä¿æŒç”¨ã‚°ãƒ­ãƒ¼ãƒãƒ«VMã®å–å¾—
 extern HSQUIRRELVM getGlobalVM();
 
 class ObjectInfo;
 
 typedef std::basic_string<SQChar> sqstring;
 
-// ’l‚Ì push
+// å€¤ã® push
 void pushValue(HSQUIRRELVM v, bool value);
 void pushValue(HSQUIRRELVM v, SQInteger value);
 void pushValue(HSQUIRRELVM v, SQFloat value);
@@ -52,7 +52,7 @@ void pushValue(HSQUIRRELVM v, SQFUNCTION func);
 void pushValue(HSQUIRRELVM v, HSQOBJECT obj);
 
 
-// ’l‚Ìæ“¾
+// å€¤ã®å–å¾—
 SQRESULT getValue(HSQUIRRELVM v, bool *value, int idx=-1);
 SQRESULT getValue(HSQUIRRELVM v, SQInteger *value, int idx=-1);
 SQRESULT getValue(HSQUIRRELVM v, SQFloat *value, int idx=-1);
@@ -62,7 +62,7 @@ SQRESULT getValue(HSQUIRRELVM v, sqstring *value, int idx=-1);
 SQRESULT getValue(HSQUIRRELVM v, ObjectInfo *value, int idx=-1);
 
 
-// ’l‚Ì‹­§‰Šú‰»
+// å€¤ã®å¼·åˆ¶åˆæœŸåŒ–
 void clearValue(bool *value);
 void clearValue(SQInteger *value);
 void clearValue(SQFloat *value);
@@ -72,7 +72,7 @@ void clearValue(ObjectInfo *value);
 void clearValue(sqstring *value);
 
 
-// ’l‚Ìæ“¾FŠî–{ getValue ‚ÌƒRƒsƒyB•¶š—ñ‚ÍˆÀ‘S‚Å‚È‚¢ê‡‚ª‚ ‚é‚Ì‚Å”rœ‚·‚é•K—v‚ ‚è
+// å€¤ã®å–å¾—ï¼šåŸºæœ¬ getValue ã®ã‚³ãƒ”ãƒšã€‚æ–‡å­—åˆ—ã¯å®‰å…¨ã§ãªã„å ´åˆãŒã‚ã‚‹ã®ã§æ’é™¤ã™ã‚‹å¿…è¦ã‚ã‚Š
 SQRESULT getResultValue(HSQUIRRELVM v, bool *value);
 SQRESULT getResultValue(HSQUIRRELVM v, SQInteger *value);
 SQRESULT getResultValue(HSQUIRRELVM v, SQFloat *value);
@@ -85,64 +85,64 @@ SQRESULT getResultValue(HSQUIRRELVM v, sqstring *value);
 // ---------------------------------------------------------
 
 /**
- * squirrel ƒIƒuƒWƒFƒNƒg•Û—pƒNƒ‰ƒX
- * ãQÆ‚à•Û‰Â”\
+ * squirrel ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¿æŒç”¨ã‚¯ãƒ©ã‚¹
+ * å¼±å‚ç…§ã‚‚ä¿æŒå¯èƒ½
  */
 class ObjectInfo {
 public:
 #ifdef SQOBJHEAP
 	SQHEAPDEFINE;
 #endif
-	// roottable ‚Ìæ“¾
+	// roottable ã®å–å¾—
 	static ObjectInfo getRoot();
-	// ”z—ñ‚Ìì¬
+	// é…åˆ—ã®ä½œæˆ
 	static ObjectInfo createArray(SQInteger size=0);
-	// «‘‚Ìì¬
+	// è¾æ›¸ã®ä½œæˆ
 	static ObjectInfo createTable();
 
-	// “à—eÁ‹
+	// å†…å®¹æ¶ˆå»
 	void clear();
 
-	// ƒXƒ^ƒbƒN‚©‚çæ“¾
+	// ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å–å¾—
 	void getStack(HSQUIRRELVM v, SQInteger idx);
 
-    // ƒXƒ^ƒbƒN‚©‚çãQÆ‚Æ‚µ‚Äæ“¾
+    // ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å¼±å‚ç…§ã¨ã—ã¦å–å¾—
 	void getStackWeak(HSQUIRRELVM v, SQInteger idx);
 
-	// ƒIƒuƒWƒFƒNƒg‚ğãQÆ‚Æ‚µ‚Äæ“¾
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¼±å‚ç…§ã¨ã—ã¦å–å¾—
 	void getWeak(const ObjectInfo &src);
 	
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	ObjectInfo();
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	ObjectInfo(HSQOBJECT obj);
 	
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	ObjectInfo(HSQUIRRELVM v, SQInteger idx);
 
-	// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	ObjectInfo(const ObjectInfo &orig);
 
-	// ‘ã“ü
+	// ä»£å…¥
 	ObjectInfo & operator=(const ObjectInfo &orig);
 
-	// ”CˆÓŒ^‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ä»»æ„å‹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	template<typename T>
 	ObjectInfo(T value) {
 		sq_resetobject(&obj);
 		setValue(value);
 	}
 
-	// ”CˆÓŒ^‚Ì‘ã“ü
+	// ä»»æ„å‹ã®ä»£å…¥
 	template<typename T>
 	ObjectInfo & operator=(T value) {
 		setValue(value);
 		return *this;
 	}
 
-	// ”CˆÓŒ^‚Ö‚ÌƒLƒƒƒXƒg
-	// æ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚ÍƒNƒŠƒA’l‚É‚È‚é
+	// ä»»æ„å‹ã¸ã®ã‚­ãƒ£ã‚¹ãƒˆ
+	// å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯ã‚¯ãƒªã‚¢å€¤ã«ãªã‚‹
 	template<typename T>
 	operator T() const
 	{
@@ -156,7 +156,7 @@ public:
 		return value;
 	}
 	
-	// ’l‚Ìİ’è
+	// å€¤ã®è¨­å®š
 	template<typename T>
 	void setValue(T value) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -165,33 +165,33 @@ public:
 		sq_pop(gv, 1);
 	}
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~ObjectInfo();
 
-	// ãQÆ‚©H
+	// å¼±å‚ç…§ã‹ï¼Ÿ
 	bool isWeak() {
 		return sq_isweakref(obj);
 	}
 	
-	// null ‚©H
+	// null ã‹ï¼Ÿ
 	bool isNull() const {
 		return type() == OT_NULL;
 	}
 	
-	// “¯‚¶ƒXƒŒƒbƒh‚©H
+	// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ï¼Ÿ
 	bool isSameThread(const HSQUIRRELVM v) const;
 
-	// ƒXƒŒƒbƒh‚ğæ“¾
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å–å¾—
 	operator HSQUIRRELVM() const;
 	
-	// ƒIƒuƒWƒFƒNƒg‚ğPUSH
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’PUSH
 	void push(HSQUIRRELVM v) const;
 
-	/// •¡»‚ğ“o˜^(¸”s‚µ‚½‚çNULL)
+	/// è¤‡è£½ã‚’ç™»éŒ²(å¤±æ•—ã—ãŸã‚‰NULL)
 	void pushClone(HSQUIRRELVM v) const;
 	
 	// ---------------------------------------------------
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	// ---------------------------------------------------
 
 	template<typename T>
@@ -255,44 +255,44 @@ public:
 	}
 
 	// ---------------------------------------------------
-	// delegate ˆ——p
+	// delegate å‡¦ç†ç”¨
 	// ---------------------------------------------------
 
-	// delegate ‚Æ‚µ‚Ä‹@”\‚·‚é‚©‚Ç‚¤‚©
+	// delegate ã¨ã—ã¦æ©Ÿèƒ½ã™ã‚‹ã‹ã©ã†ã‹
 	bool isDelegate() const;
 
-	// bindenv ‚³‚¹‚é‚©‚Ç‚¤‚©
+	// bindenv ã•ã›ã‚‹ã‹ã©ã†ã‹
 	bool isBindDelegate() const;
 
 	// ---------------------------------------------------
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	// ---------------------------------------------------
 
 	const SQChar *getString();
 	
 	// ---------------------------------------------------
-	// ”z—ñE«‘ˆ——p
+	// é…åˆ—ãƒ»è¾æ›¸å‡¦ç†ç”¨
 	// ---------------------------------------------------
 
-	/// ”z—ñ‚Æ‚µ‚Ä‰Šú‰»
+	/// é…åˆ—ã¨ã—ã¦åˆæœŸåŒ–
 	void initArray(SQInteger size=0);
 	
-	/// @return ”z—ñ‚È‚ç true
+	/// @return é…åˆ—ãªã‚‰ true
 	bool isArray() const { return type() == OT_ARRAY; }
 
-	/// ”z—ñ‚Æ‚µ‚Ä‰Šú‰»
+	/// é…åˆ—ã¨ã—ã¦åˆæœŸåŒ–
 	void initTable();
 
-	/// @return ”z—ñ‚È‚ç true
+	/// @return é…åˆ—ãªã‚‰ true
 	bool isTable() const { return type() == OT_TABLE; }
 	
-	/// ”z—ñ‚É’l‚ğ’Ç‰Á
+	/// é…åˆ—ã«å€¤ã‚’è¿½åŠ 
 	SQRESULT append(HSQUIRRELVM v, SQInteger idx);
 
-	/// ”z—ñ‚É”z—ñ‚ğ’Ç‰Á
+	/// é…åˆ—ã«é…åˆ—ã‚’è¿½åŠ 
 	SQRESULT appendArray(ObjectInfo &array);
 	
-	/// ”z—ñ‚É’l‚ğ’Ç‰Á
+	/// é…åˆ—ã«å€¤ã‚’è¿½åŠ 
 	template<typename T>
 	SQRESULT append(T value) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -303,7 +303,7 @@ public:
 		return ret;
 	}
 
-	/// ”z—ñ‚É’l‚ğ‘}“ü
+	/// é…åˆ—ã«å€¤ã‚’æŒ¿å…¥
 	template<typename T>
 	SQRESULT insert(SQInteger index, T value) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -314,7 +314,7 @@ public:
 		return ret;
 	}
 
-	/// ”z—ñ‚©‚çw’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Ì’l‚ğíœ
+	/// é…åˆ—ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å€¤ã‚’å‰Šé™¤
 	SQRESULT remove(SQInteger index) {
 		HSQUIRRELVM gv = getGlobalVM();
 		push(gv);
@@ -323,7 +323,7 @@ public:
 		return ret;
 	}
 
-	/// ”z—ñ‚©‚çw’è‚³‚ê‚½’l‚ğíœ
+	/// é…åˆ—ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸå€¤ã‚’å‰Šé™¤
 	template<typename T>
 	SQRESULT removeValue(T value, bool all=false) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -334,7 +334,7 @@ public:
 		return ret;
 	}
 	
-	/// ”z—ñ/«‘‚É’l‚ğŠi”[
+	/// é…åˆ—/è¾æ›¸ã«å€¤ã‚’æ ¼ç´
 	template<typename K, typename T>
 	SQRESULT set(K key, T value) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -346,7 +346,7 @@ public:
 		return ret;
 	}
 
-	/// «‘‚É’l‚ğV‹KŠi”[
+	/// è¾æ›¸ã«å€¤ã‚’æ–°è¦æ ¼ç´
 	template<typename K, typename T>
 	SQRESULT create(K key, T value) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -358,7 +358,7 @@ public:
 		return ret;
 	}
 
-	/// «‘‚©‚ç’l‚ğíœ
+	/// è¾æ›¸ã‹ã‚‰å€¤ã‚’å‰Šé™¤
 	template<typename K>
 	SQRESULT deleteslot(K key) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -369,7 +369,7 @@ public:
 		return ret;
 	}
 
-	/// @return ”z—ñ/«‘‚Ì’†‚É key ‚ª‘¶İ‚·‚é‚È‚ç true ‚ğ•Ô‚·
+	/// @return é…åˆ—/è¾æ›¸ã®ä¸­ã« key ãŒå­˜åœ¨ã™ã‚‹ãªã‚‰ true ã‚’è¿”ã™
 	template<typename T>
 	bool has(T key) const {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -384,7 +384,7 @@ public:
 		}
 	}
 	
-	/// ”z—ñ/«‘‚Ì’l‚ğæ“¾B‘¶İ‚µ‚È‚¢ê‡‚Í null ‚ğ•Ô‚·
+	/// é…åˆ—/è¾æ›¸ã®å€¤ã‚’å–å¾—ã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯ null ã‚’è¿”ã™
 	template<typename K>
 	ObjectInfo get(K key) const {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -395,24 +395,24 @@ public:
 	}
 
 	/**
-	 * ”z—ñQÆ—p
+	 * é…åˆ—å‚ç…§ç”¨
 	 */
 	class ObjectInfoReference {
 
 	public:
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		ObjectInfoReference(HSQOBJECT obj, int key) : obj(obj), intKey(key), type(0) {};
 		ObjectInfoReference(HSQOBJECT obj, const SQChar *key) : obj(obj), strKey(key), type(1) {};
 		ObjectInfoReference(HSQOBJECT obj, sqstring &key) : obj(obj), strKey(key.c_str()), type(1) {};
 		
-		// ”CˆÓŒ^‚Ì‘ã“ü
-		// İ’è‚Å‚«‚È‚©‚Á‚½ê‡‚Å«‘‚Ìê‡‚Íì¬‚µ‚Ä‚µ‚Ü‚¤
+		// ä»»æ„å‹ã®ä»£å…¥
+		// è¨­å®šã§ããªã‹ã£ãŸå ´åˆã§è¾æ›¸ã®å ´åˆã¯ä½œæˆã—ã¦ã—ã¾ã†
 		template<typename T>
 		const T &operator=(const T &value) {
 			ObjectInfo o(obj);
 			if (o.type() == OT_ARRAY) {
 				if (type == 0) {
-					// ƒTƒCƒY‚ª“Í‚¢‚Ä‚È‚¢‚Ì‚Å null ‚Å‚¤‚ß‚é
+					// ã‚µã‚¤ã‚ºãŒå±Šã„ã¦ãªã„ã®ã§ null ã§ã†ã‚ã‚‹
 					if (o.len() <= intKey) {
 						HSQUIRRELVM gv = getGlobalVM();
 						o.push(gv);
@@ -444,8 +444,8 @@ public:
 			return value;
 		}
 		
-		// ”CˆÓŒ^‚Ö‚ÌƒLƒƒƒXƒg
-		// •ÏŠ·‚Å‚«‚È‚©‚Á‚½ê‡‚Í‰Šú’l(0)‚Å‚ÌƒNƒŠƒA‚É‚È‚é
+		// ä»»æ„å‹ã¸ã®ã‚­ãƒ£ã‚¹ãƒˆ
+		// å¤‰æ›ã§ããªã‹ã£ãŸå ´åˆã¯åˆæœŸå€¤(0)ã§ã®ã‚¯ãƒªã‚¢ã«ãªã‚‹
 		template<typename T>
 		operator T() const {
 			ObjectInfo o(obj);
@@ -473,7 +473,7 @@ public:
 			return ret;
 		}
 		
-		// ƒf[ƒ^æ“¾—p
+		// ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨
 		void pushData(HSQUIRRELVM v) const {
 			ObjectInfo o(obj);
 			if (type == 0) {
@@ -490,8 +490,8 @@ public:
 		int type;
 	};
 	
-	// ’l‚Ìİ’è
-	// QÆî•ñ‚ğ‘ã“ü‚³‚¹‚éê‡—p
+	// å€¤ã®è¨­å®š
+	// å‚ç…§æƒ…å ±ã‚’ä»£å…¥ã•ã›ã‚‹å ´åˆç”¨
 	void setValue(ObjectInfoReference &ref) {
 		HSQUIRRELVM gv = getGlobalVM();
 		ref.pushData(gv);
@@ -500,21 +500,21 @@ public:
 	}
 	
 	/**
-	 * ”z—ñ/«‘QÆ—pƒŠƒtƒ@ƒŒƒ“ƒX‚ğæ“¾
-	 * «‘ƒAƒNƒZƒX‚µ‚½ê‡‚Í
-	 * E‘ã“ü¸”s‚µ‚½‚ç©“®‚Åì¬
-	 * Eæ“¾¸”s‚µ‚½‚ç‰Šú’l(0)‚ğ•Ô‚·
-	 * ”z—ñƒAƒNƒZƒX‚µ‚½ê‡‚Í
-	 * EƒTƒCƒY‚ª¬‚³‚©‚Á‚½‚ç©“®“I‚É‚»‚ÌƒTƒCƒY‚Ü‚Å‘‚â‚·(null‚ğ‚¤‚ß‚é)
-	 * Eæ“¾¸”s‚µ‚½‚ç‰Šú’l(0)‚ğ•Ô‚·
-	 * ‚Æ‚¢‚¤ˆ—‚ª©“®“I‚És‚í‚ê‚Ü‚·
+	 * é…åˆ—/è¾æ›¸å‚ç…§ç”¨ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚’å–å¾—
+	 * è¾æ›¸ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸå ´åˆã¯
+	 * ãƒ»ä»£å…¥å¤±æ•—ã—ãŸã‚‰è‡ªå‹•ã§ä½œæˆ
+	 * ãƒ»å–å¾—å¤±æ•—ã—ãŸã‚‰åˆæœŸå€¤(0)ã‚’è¿”ã™
+	 * é…åˆ—ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸå ´åˆã¯
+	 * ãƒ»ã‚µã‚¤ã‚ºãŒå°ã•ã‹ã£ãŸã‚‰è‡ªå‹•çš„ã«ãã®ã‚µã‚¤ã‚ºã¾ã§å¢—ã‚„ã™(nullã‚’ã†ã‚ã‚‹)
+	 * ãƒ»å–å¾—å¤±æ•—ã—ãŸã‚‰åˆæœŸå€¤(0)ã‚’è¿”ã™
+	 * ã¨ã„ã†å‡¦ç†ãŒè‡ªå‹•çš„ã«è¡Œã‚ã‚Œã¾ã™
 	 */
 	template<typename K>
 	ObjectInfoReference operator[](K key) const {
 		return ObjectInfoReference(obj, key);
 	}
 
-	/// ”z—ñ/«‘‚Ì’l‚ğæ“¾‚·‚é
+	/// é…åˆ—/è¾æ›¸ã®å€¤ã‚’å–å¾—ã™ã‚‹
 	template<typename K, typename T>
 	SQRESULT get(K key, T *value) const {
 		SQRESULT ret;
@@ -529,7 +529,7 @@ public:
 		return ret;
 	}
 	
-	/// ”z—ñ/«‘‚Ì’l‚ğpushBŒ©‚Â‚©‚ç‚È‚¯‚ê‚Înull‚ğpush
+	/// é…åˆ—/è¾æ›¸ã®å€¤ã‚’pushã€‚è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°nullã‚’push
 	template<typename T>
 	void pushData(HSQUIRRELVM v, T key) const {
 		push(v);
@@ -540,7 +540,7 @@ public:
 		sq_remove(v,-2);
 	}
 	
-	/// ”z—ñE«‘‚Ì’†g‚ğƒNƒŠƒA
+	/// é…åˆ—ãƒ»è¾æ›¸ã®ä¸­èº«ã‚’ã‚¯ãƒªã‚¢
 	void clearData() {
 		HSQUIRRELVM gv = getGlobalVM();
 		push(gv);
@@ -548,7 +548,7 @@ public:
 		sq_pop(gv,1);
 	}
 
-	/// @return ƒIƒuƒWƒFƒNƒg‚ÌŒ^
+	/// @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹
 	SQObjectType type() const {
 		SQObjectType type;
 		if (sq_isweakref(obj)) {
@@ -563,24 +563,24 @@ public:
 		return type;
 	}
 	
-	/// @return ”z—ñ‚Ì’·‚³/«‘‚ÌƒTƒCƒY/•¶š—ñ‚Ì’·‚³
+	/// @return é…åˆ—ã®é•·ã•/è¾æ›¸ã®ã‚µã‚¤ã‚º/æ–‡å­—åˆ—ã®é•·ã•
 	SQInteger len() const;
 
 	/**
-	 * ”z—ñ‚Ì“à—e‚ğ‘S•”PUSH
+	 * é…åˆ—ã®å†…å®¹ã‚’å…¨éƒ¨PUSH
 	 * @param v squirrelVM
-	 * @return push ‚µ‚½”
+	 * @return push ã—ãŸæ•°
 	 */
 	SQInteger pushArray(HSQUIRRELVM v) const;
 
 	// ---------------------------------------------------
-	// ŠÖ”ˆ——p
+	// é–¢æ•°å‡¦ç†ç”¨
 	// ---------------------------------------------------
 
-	/// @return ”z—ñ‚È‚ç true
+	/// @return é…åˆ—ãªã‚‰ true
 	bool isClosure() const { SQObjectType t = type(); return t == OT_CLOSURE || t == OT_NATIVECLOSURE; }
 
-	// ŒÄ‚Ño‚µˆ—
+	// å‘¼ã³å‡ºã—å‡¦ç†
 	SQRESULT call(ObjectInfo *self=NULL);
 
 	template<typename T1> SQRESULT call(T1 p1, ObjectInfo *self=NULL) {
@@ -665,8 +665,8 @@ public:
 	}
 
 	/**
-	 * ©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”–³‚µ)
-	 * @param methodName ƒƒ\ƒbƒh–¼
+	 * è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°ç„¡ã—)
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
 	 */
 	SQRESULT callMethod(const SQChar *methodName) {
 		if (!isNull()) {
@@ -679,9 +679,9 @@ public:
 	}
 
 	/**
-	 * ©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”1‚Â)
-	 * @param methodName ƒƒ\ƒbƒh–¼
-	 * @param p1 ˆø”
+	 * è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°1ã¤)
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param p1 å¼•æ•°
 	 */
 	template<typename T1> SQRESULT callMethod(const SQChar *methodName, T1 p1) {
 		if (!isNull()) {
@@ -694,10 +694,10 @@ public:
 	}
 	
 	/**
-	 * ©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”2‚Â)
-	 * @param methodName ƒƒ\ƒbƒh–¼
-	 * @param p1 ˆø”
-	 * @param p2 ˆø”2
+	 * è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°2ã¤)
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param p1 å¼•æ•°
+	 * @param p2 å¼•æ•°2
 	 */
 	template<typename T1, typename T2> SQRESULT callMethod(const SQChar *methodName, T1 p1, T2 p2) {
 		if (!isNull()) {
@@ -710,9 +710,9 @@ public:
 	}
 	
 	/**
-	 * •Ô’l—L‚è©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”–³‚µ)
-	 * @param r ‹A‚è’lƒ|ƒCƒ“ƒ^
-	 * @param methodName ƒƒ\ƒbƒh–¼
+	 * è¿”å€¤æœ‰ã‚Šè‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°ç„¡ã—)
+	 * @param r å¸°ã‚Šå€¤ãƒã‚¤ãƒ³ã‚¿
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
 	 */
 	template<typename R> SQRESULT callMethodResult(R* r, const SQChar *methodName) {
 		if (!isNull()) {
@@ -725,10 +725,10 @@ public:
 	}
 
 	/**
-	 * •Ô’l‚ ‚è©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”1‚Â)
-	 * @param r ‹A‚è’lƒ|ƒCƒ“ƒ^
-	 * @param methodName ƒƒ\ƒbƒh–¼
-	 * @param p1 ˆø”
+	 * è¿”å€¤ã‚ã‚Šè‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°1ã¤)
+	 * @param r å¸°ã‚Šå€¤ãƒã‚¤ãƒ³ã‚¿
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param p1 å¼•æ•°
 	 */
 	template<typename R, typename T1> SQRESULT callMethodResult(R* r, const SQChar *methodName, T1 p1) {
 		if (!isNull()) {
@@ -741,11 +741,11 @@ public:
 	}
 	
 	/**
-	 * •Ô’l—L‚è©ŒÈƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒhŒÄ‚Ño‚µiˆø”2‚Â)
-	 * @param r ‹A‚è’lƒ|ƒCƒ“ƒ^
-	 * @param methodName ƒƒ\ƒbƒh–¼
-	 * @param p1 ˆø”
-	 * @param p2 ˆø”2
+	 * è¿”å€¤æœ‰ã‚Šè‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ï¼ˆå¼•æ•°2ã¤)
+	 * @param r å¸°ã‚Šå€¤ãƒã‚¤ãƒ³ã‚¿
+	 * @param methodName ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param p1 å¼•æ•°
+	 * @param p2 å¼•æ•°2
 	 */
 	template<typename R, typename T1, typename T2> SQRESULT callMethodResult(R* r, const SQChar *methodName, T1 p1, T2 p2) {
 		if (!isNull()) {
@@ -758,29 +758,29 @@ public:
 	}
 
 	// ---------------------------------------------------
-	// ƒNƒ‰ƒXˆ——p
+	// ã‚¯ãƒ©ã‚¹å‡¦ç†ç”¨
 	// ---------------------------------------------------
 
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚©
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹
 	bool isClass() const;
 
 
 	// ---------------------------------------------------
-	// ƒCƒeƒŒ[ƒ^ˆ—
+	// ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿å‡¦ç†
 	// ---------------------------------------------------
 
 	/**
-	 * ƒCƒeƒŒ[ƒ^ŒÄ‚Ño‚µŠÖ”
-	 * @param key ƒL[
-	 * @param value ’l
-	 * @param userData ƒ†[ƒUƒf[ƒ^
+	 * ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿å‘¼ã³å‡ºã—é–¢æ•°
+	 * @param key ã‚­ãƒ¼
+	 * @param value å€¤
+	 * @param userData ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
 	 */
 	typedef void (*foreachFunc)(const ObjectInfo &key, const ObjectInfo &value, void *userData);
 
 	/**
-	 * ŠÖ””ÅƒCƒeƒŒ[ƒ^ˆ—ˆ—
-	 * @param func ŒÄ‚Ño‚µŠÖ”
-	 * @param userData ƒ†[ƒUƒf[ƒ^
+	 * é–¢æ•°ç‰ˆã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿å‡¦ç†å‡¦ç†
+	 * @param func å‘¼ã³å‡ºã—é–¢æ•°
+	 * @param userData ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
 	 */
 	void foreach(foreachFunc func, void *userData=NULL) {
 		HSQUIRRELVM gv = getGlobalVM();
@@ -794,8 +794,8 @@ public:
 	}
 
 	/**
-	 * ŠÖ”ƒIƒuƒWƒFƒNƒg”ÅƒCƒeƒŒ[ƒ^ˆ—BˆÈ‰º‚ğÀ‘•‚µ‚½ŠÖ”ƒIƒuƒWƒFƒNƒg‚ğ“n‚·
-	 * anytype ‚Í ObjectInfo ‚©‚çƒLƒƒƒXƒg‰Â”\‚ÈŒ^‚È‚ç‚È‚ñ‚Å‚àOK
+	 * é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç‰ˆã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿å‡¦ç†ã€‚ä»¥ä¸‹ã‚’å®Ÿè£…ã—ãŸé–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¸¡ã™
+	 * anytype ã¯ ObjectInfo ã‹ã‚‰ã‚­ãƒ£ã‚¹ãƒˆå¯èƒ½ãªå‹ãªã‚‰ãªã‚“ã§ã‚‚OK
 	 * struct Func {
 	 *  void operator()(anytype key, anytype value) {
 	 * }
@@ -813,27 +813,27 @@ public:
 	}
 
 	// ---------------------------------------------------
-	// •¶š—ñˆ—‘¼
+	// æ–‡å­—åˆ—å‡¦ç†ä»–
 	// ---------------------------------------------------
 	
 	/**
-	 * •¶š—ñ•\‹L‚ğ•Ô‚·
-	 * tostring() ‘Š“–‚Ìˆ—B
+	 * æ–‡å­—åˆ—è¡¨è¨˜ã‚’è¿”ã™
+	 * tostring() ç›¸å½“ã®å‡¦ç†ã€‚
 	 */
 	sqstring toString() const;
 
 private:
-	HSQOBJECT obj; // ƒIƒuƒWƒFƒNƒgQÆî•ñ
+	HSQOBJECT obj; // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‚ç…§æƒ…å ±
 };
 
 // --------------------------------------------------------------------------------------
-// printfˆ—
+// printfå‡¦ç†
 // --------------------------------------------------------------------------------------
 
 /**
- * printf‘Š“–‚Ìˆ—
- * @param format ‘®•¶š—ñ
- * @return •\¦•¶š”
+ * printfç›¸å½“ã®å‡¦ç†
+ * @param format æ›¸å¼æ–‡å­—åˆ—
+ * @return è¡¨ç¤ºæ–‡å­—æ•°
  */
 inline SQInteger printf(const SQChar *format)
 {

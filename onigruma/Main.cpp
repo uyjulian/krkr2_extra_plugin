@@ -25,7 +25,7 @@ public:
 		return true;
 	}
 
-	// Array.split ƒI[ƒo[ƒ‰ƒCƒh
+	// Array.split ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	static tjs_error _Split(iTJSDispatch2 *objthis, tTJSVariant *r, tjs_int n, tTJSVariant **p) {
 		return self ? self->Split(r, n, p, objthis) : TJS_E_FAIL;
 	}

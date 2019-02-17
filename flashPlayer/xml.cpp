@@ -13,7 +13,7 @@ typedef rapidxml::xml_node<tjs_char> xml_node;
 typedef rapidxml::xml_attribute<tjs_char> xml_attribute;
 typedef rapidxml::xml_document<tjs_char> xml_document;
 
-// ƒRƒs[ƒ‰ƒCƒg•\‹L
+// ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆè¡¨è¨˜
 static const char *copyright =
 "\n------ RapidXML Copyright START ------\n"
 "Copyright (c) 2006, 2007 Marcin Kalicinski\n"
@@ -38,7 +38,7 @@ static const char *copyright =
 "------ RapidXML Copyright END ------";
 
 /**
- * copyright•\¦—p
+ * copyrightè¡¨ç¤ºç”¨
  */
 void showXMLCopyright()
 {
@@ -48,9 +48,9 @@ void showXMLCopyright()
 static xml_node *createNodeFromVariant(tTJSVariant &var, xml_document &doc);
 
 /**
- * «‘‚Ì“à—e•\¦—p‚ÌŒÄ‚Ño‚µƒƒWƒbƒN
+ * è¾æ›¸ã®å†…å®¹è¡¨ç¤ºç”¨ã®å‘¼ã³å‡ºã—ãƒ­ã‚¸ãƒƒã‚¯
  */
-class DictMemberDispCaller : public tTJSDispatch /** EnumMembers —p */
+class DictMemberDispCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	xml_document &doc;
@@ -83,10 +83,10 @@ public:
 };
 
 /**
- * tTJSVariant ‚ğ XMLƒm[ƒh‚É•ÏŠ·
- * @param var •ÏŠ·Œ³‚Ì’l
- * @param doc XMLƒhƒLƒ…ƒƒ“ƒg
- * @return ì¬‚µ‚½ƒm[ƒh
+ * tTJSVariant ã‚’ XMLãƒãƒ¼ãƒ‰ã«å¤‰æ›
+ * @param var å¤‰æ›å…ƒã®å€¤
+ * @param doc XMLãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ * @return ä½œæˆã—ãŸãƒãƒ¼ãƒ‰
  */
 static xml_node *
 createNodeFromVariant(tTJSVariant &var, xml_document &doc)
@@ -99,7 +99,7 @@ createNodeFromVariant(tTJSVariant &var, xml_document &doc)
 				// NULL
 				return doc.allocate_node(rapidxml::node_element, L"null");
 			} else if (obj->IsInstanceOf(TJS_IGNOREPROP,NULL,NULL,L"Array",obj) == TJS_S_TRUE) {
-				// ”z—ñ
+				// é…åˆ—
 				xml_node *node = doc.allocate_node(rapidxml::node_element, L"array");
 				tjs_int count = 0;
 				{
@@ -119,7 +119,7 @@ createNodeFromVariant(tTJSVariant &var, xml_document &doc)
 				}
 				return node;
 			} else {
-				// «‘
+				// è¾æ›¸
 				xml_node *node = doc.allocate_node(rapidxml::node_element, L"object");
 				DictMemberDispCaller *caller = new DictMemberDispCaller(doc, node);
 				tTJSVariantClosure closure(caller);
@@ -142,9 +142,9 @@ createNodeFromVariant(tTJSVariant &var, xml_document &doc)
 }
 
 /**
- * XML‚Ìƒm[ƒh‚©‚ç tTJSVariant‚ğæ“¾‚·‚é
- * @param var Œ‹‰ÊŠi”[æ
- * @param node ƒm[ƒh
+ * XMLã®ãƒãƒ¼ãƒ‰ã‹ã‚‰ tTJSVariantã‚’å–å¾—ã™ã‚‹
+ * @param var çµæœæ ¼ç´å…ˆ
+ * @param node ãƒãƒ¼ãƒ‰
  */
 static void
 getVariantFromNode(tTJSVariant &var, xml_node *node)
@@ -203,9 +203,9 @@ getVariantFromNode(tTJSVariant &var, xml_node *node)
 }
 
 /**
- * Œ‹‰ÊXML‚©‚ç tTJSVariant‚ğæ“¾
- * @param var Œ‹‰ÊŠi”[æ
- * @param xml Œ‹‰ÊXML
+ * çµæœXMLã‹ã‚‰ tTJSVariantã‚’å–å¾—
+ * @param var çµæœæ ¼ç´å…ˆ
+ * @param xml çµæœXML
  */
 bool
 getVariantFromXML(tTJSVariant &var, tjs_char *xml)
@@ -223,11 +223,11 @@ getVariantFromXML(tTJSVariant &var, tjs_char *xml)
 }
 
 /**
- * Às—p‚ÌXML‚ğ¶¬‚·‚é
- * @param XML•¶š—ñŠi”[æ
- * @param numparams ƒpƒ‰ƒ[ƒ^”(1‚ÂˆÈã•K—v)
- * @param params ƒpƒ‰ƒ[ƒ^
- * @return ¬Œ÷‚È‚ç true
+ * å®Ÿè¡Œç”¨ã®XMLã‚’ç”Ÿæˆã™ã‚‹
+ * @param XMLæ–‡å­—åˆ—æ ¼ç´å…ˆ
+ * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°(1ã¤ä»¥ä¸Šå¿…è¦)
+ * @param params ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @return æˆåŠŸãªã‚‰ true
  */
 bool
 createInvokeXML(std::wstring &xml, tjs_int numparams, tTJSVariant **params)
@@ -254,11 +254,11 @@ createInvokeXML(std::wstring &xml, tjs_int numparams, tTJSVariant **params)
 }
 
 /**
- * Às—p‚ÌXML‚ğ‚Â‚©‚Á‚Äƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
- * @parma result Œ‹‰ÊŠi”[—pB¬Œ÷‚ÍXMLA¸”s‚ÍƒGƒ‰[ƒƒbƒZ[ƒW
- * @param target ŒÄ‚Ño‚µæƒIƒuƒWƒFƒNƒg
- * @param xml Às—pXML
- * @return ÀsŒ‹‰Ê
+ * å®Ÿè¡Œç”¨ã®XMLã‚’ã¤ã‹ã£ã¦ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
+ * @parma result çµæœæ ¼ç´ç”¨ã€‚æˆåŠŸæ™‚ã¯XMLã€å¤±æ•—æ™‚ã¯ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @param target å‘¼ã³å‡ºã—å…ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param xml å®Ÿè¡Œç”¨XML
+ * @return å®Ÿè¡Œçµæœ
  */
 bool
 invokeXML(std::wstring &result, iTJSDispatch2 *target, tjs_char *xml)

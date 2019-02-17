@@ -7,25 +7,25 @@
 #define OPTION_KEYSORT (1<<2)
 #define OPTION_HIDDEN  (1<<3)
 
-// TJS”ñŒöŠJƒIƒvƒVƒ‡ƒ“
-#define OPTION_NOPREFIX      (1<<10) // int/real ƒvƒŒƒtƒBƒbƒNƒX‚ğ‚Â‚¯‚È‚¢i”ñ(const)w’èŒÀ’èj
-#define OPTION_NOARRAYINDENT (1<<11) // Array‚ÍƒCƒ“ƒfƒ“ƒgw’è‚ğ–³‹
+// TJSéå…¬é–‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+#define OPTION_NOPREFIX      (1<<10) // int/real ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚’ã¤ã‘ãªã„ï¼ˆé(const)æŒ‡å®šæ™‚é™å®šï¼‰
+#define OPTION_NOARRAYINDENT (1<<11) // Arrayã¯ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæŒ‡å®šã‚’ç„¡è¦–
 
 #define TJS_CONST TJS_W("(const)")
 
 static void getVariantString(const tTJSVariant &var, IWriter *writer, tjs_uint32 option=0);
 
-// Array ƒNƒ‰ƒXƒƒ“ƒo
+// Array ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒ
 static iTJSDispatch2 *ArrayClass       = NULL;   // Array
 static iTJSDispatch2 *ArrayCountProp   = NULL;   // Array.count
 static iTJSDispatch2 *ArrayAddFunc     = NULL;   // Array.add
 static iTJSDispatch2 *ArraySortFunc    = NULL;   // Array.sort
 
-// Array ƒƒ“ƒoƒIƒuƒWƒFƒNƒgæ“¾
+// Array ãƒ¡ãƒ³ãƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
 static iTJSDispatch2* getArrayChildObject(const tjs_char *name)
 {
 	if (!ArrayClass) {
-		// TJSCreateArrayObject‚ÅArrayƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ªæ‚ê‚é‚Ì‚Å‚»‚ê‚ğ—˜—p‚·‚é
+		// TJSCreateArrayObjectã§Arrayã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå–ã‚Œã‚‹ã®ã§ãã‚Œã‚’åˆ©ç”¨ã™ã‚‹
 		iTJSDispatch2 *dummy = TJSCreateArrayObject(&ArrayClass);
 		dummy->Release();
 		if (!ArrayClass) TVPThrowExceptionMessage(L"can't get Array object");
@@ -38,7 +38,7 @@ static iTJSDispatch2* getArrayChildObject(const tjs_char *name)
 	return val.AsObject();
 }
 
-// Array.countæ“¾
+// Array.countå–å¾—
 static tjs_int getArrayCount(iTJSDispatch2 *array) {
 	tjs_int count = 0;
 	tTJSVariant result;
@@ -52,7 +52,7 @@ static tjs_int getArrayCount(iTJSDispatch2 *array) {
 	return count;
 }
 
-// Array.func ŒÄ‚Ño‚µ
+// Array.func å‘¼ã³å‡ºã—
 static inline tjs_error invokeArrayFunc(iTJSDispatch2 *array, iTJSDispatch2* &func, tjs_char *const method,
 								 tTJSVariant *result, tjs_int numparams, tTJSVariant **param)
 {
@@ -64,9 +64,9 @@ static inline tjs_error invokeArrayFunc(iTJSDispatch2 *array, iTJSDispatch2* &fu
 }
 
 /**
- * «‘‚Ì“à—e•\¦—p‚ÌŒÄ‚Ño‚µƒƒWƒbƒN
+ * è¾æ›¸ã®å†…å®¹è¡¨ç¤ºç”¨ã®å‘¼ã³å‡ºã—ãƒ­ã‚¸ãƒƒã‚¯
  */
-class DictMemberDispCaller : public tTJSDispatch /** EnumMembers —p */
+class DictMemberDispCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	IWriter *writer;
@@ -110,7 +110,7 @@ public:
 	void write(const tTJSVariant &key, const tTJSVariant &value) {
 		if (first) {
 			first = false;
-			if (option & OPTION_INDENT) writer->addIndent(); // ƒCƒ“ƒfƒ“ƒgˆ—‚Í—v‘f‚ª‚P‚ÂˆÈã‚ ‚é‚Ì‚İ“K—p
+			if (option & OPTION_INDENT) writer->addIndent(); // ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆå‡¦ç†ã¯è¦ç´ ãŒï¼‘ã¤ä»¥ä¸Šã‚ã‚‹æ™‚ã®ã¿é©ç”¨
 		} else {
 			writer->write((tjs_char)',');
 			writer->newline();
@@ -126,7 +126,7 @@ public:
 
 	void cleanup(iTJSDispatch2 *dict) {
 		if (keys) {
-			// ƒ\[ƒgˆ—‚Ì‚½‚ß‚Ì2ƒpƒX–Ú
+			// ã‚½ãƒ¼ãƒˆå‡¦ç†ã®ãŸã‚ã®2ãƒ‘ã‚¹ç›®
 			invokeArrayFunc(keys, ArraySortFunc, TJS_W("sort"), NULL, 0, NULL); // keys.sort()
 			tjs_int count = getArrayCount(keys);
 			for (tjs_int i=0; i<count; i++) {
@@ -138,7 +138,7 @@ public:
 				}
 			}
 		}
-		if (!first && (option & OPTION_INDENT)) writer->delIndent(); // ƒCƒ“ƒfƒ“ƒg•Â‚¶”»’è
+		if (!first && (option & OPTION_INDENT)) writer->delIndent(); // ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆé–‰ã˜åˆ¤å®š
 	}
 };
 
@@ -149,7 +149,7 @@ static void getDictString(iTJSDispatch2 *dict, IWriter *writer, tjs_uint32 optio
 	writer->write(L"%[");
 	DictMemberDispCaller *caller = new DictMemberDispCaller(writer, option);
 	tTJSVariantClosure closure(caller);
-	tjs_uint32 novalue = (option & OPTION_KEYSORT) ? TJS_ENUM_NO_VALUE : 0; // ƒ\[ƒgˆ—‚ª“ü‚éê‡‚Ívalue•s—v
+	tjs_uint32 novalue = (option & OPTION_KEYSORT) ? TJS_ENUM_NO_VALUE : 0; // ã‚½ãƒ¼ãƒˆå‡¦ç†ãŒå…¥ã‚‹å ´åˆã¯valueä¸è¦
 	dict->EnumMembers(TJS_IGNOREPROP | novalue, &closure, dict);
 	caller->cleanup(dict);
 	caller->Release();
@@ -162,7 +162,7 @@ static void getArrayString(iTJSDispatch2 *array, IWriter *writer, tjs_uint32 opt
 
 	writer->write((tjs_char)'[');
 	tjs_int count = getArrayCount(array);
-	bool indent = (count > 0) && (option & OPTION_INDENT) && !(option & OPTION_NOARRAYINDENT); // ƒCƒ“ƒfƒ“ƒgˆ—ƒtƒ‰ƒO
+	bool indent = (count > 0) && (option & OPTION_INDENT) && !(option & OPTION_NOARRAYINDENT); // ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆå‡¦ç†ãƒ•ãƒ©ã‚°
 	if (indent) writer->addIndent();
 	for (tjs_int i=0; i<count; i++) {
 		if (i != 0) {
@@ -196,7 +196,7 @@ getVariantString(const tTJSVariant &var, IWriter *writer, tjs_uint32 option)
 	}
 	else
 	{
-		if (!(option & (OPTION_CONST|OPTION_NOPREFIX))) { // (const)‚ÍƒGƒ‰[‚É‚È‚é‚Ì‚Å‚Â‚¯‚È‚¢
+		if (!(option & (OPTION_CONST|OPTION_NOPREFIX))) { // (const)æ™‚ã¯ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§ã¤ã‘ãªã„
 			if      (type == tvtInteger) writer->write(L"int ");
 			else if (type == tvtReal)    writer->write(L"real ");
 		}
@@ -207,7 +207,7 @@ getVariantString(const tTJSVariant &var, IWriter *writer, tjs_uint32 option)
 //---------------------------------------------------------------------------
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class ArrayAdd {
 
@@ -215,11 +215,11 @@ public:
 	ArrayAdd(){;}
 
 	/**
-	 * save Œ`®‚Å‚Ì«‘‚Ü‚½‚Í”z—ñ‚Ì•Û‘¶
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param utf true ‚È‚ç UTF-8 ‚Åo—Í
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @return ÀsŒ‹‰Ê
+	 * save å½¢å¼ã§ã®è¾æ›¸ã¾ãŸã¯é…åˆ—ã®ä¿å­˜
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param utf true ãªã‚‰ UTF-8 ã§å‡ºåŠ›
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD save2(tTJSVariant *result,
 										   tjs_int numparams,
@@ -243,12 +243,12 @@ public:
 	}
 
 	/**
-	 * saveStruct Œ`®‚Å‚ÌƒIƒuƒWƒFƒNƒg‚Ì•Û‘¶
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param utf true ‚È‚ç UTF-8 ‚Åo—Í
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“bitmask 1:ƒCƒ“ƒfƒ“ƒg‰üs‚Â‚«, 2:(const)‚ ‚è, 4:«‘ƒL[ƒ\[ƒg
-	 * @return ÀsŒ‹‰Ê
+	 * saveStruct å½¢å¼ã§ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¿å­˜
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param utf true ãªã‚‰ UTF-8 ã§å‡ºåŠ›
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitmask 1:ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ”¹è¡Œã¤ã, 2:(const)ã‚ã‚Š, 4:è¾æ›¸ã‚­ãƒ¼ã‚½ãƒ¼ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD saveStruct2(tTJSVariant *result,
 												 tjs_int numparams,
@@ -265,10 +265,10 @@ public:
 	}
 	
 	/**
-	 * saveStruct Œ`®‚Å•¶š—ñ‰»
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“bitmask 1:ƒCƒ“ƒfƒ“ƒg‰üs‚Â‚«, 2:(const)‚ ‚è, 4:«‘ƒL[ƒ\[ƒg
-	 * @return ÀsŒ‹‰Ê
+	 * saveStruct å½¢å¼ã§æ–‡å­—åˆ—åŒ–
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitmask 1:ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ”¹è¡Œã¤ã, 2:(const)ã‚ã‚Š, 4:è¾æ›¸ã‚­ãƒ¼ã‚½ãƒ¼ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD toStructString(tTJSVariant *result,
 													tjs_int numparams,
@@ -291,7 +291,7 @@ NCB_ATTACH_CLASS(ArrayAdd, Array) {
 };
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class DictAdd {
 
@@ -299,12 +299,12 @@ public:
 	DictAdd(){;}
 
 	/**
-	 * saveStruct Œ`®‚Å‚ÌƒIƒuƒWƒFƒNƒg‚Ì•Û‘¶
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param utf true ‚È‚ç UTF-8 ‚Åo—Í
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“bitmask 1:ƒCƒ“ƒfƒ“ƒg‰üs‚Â‚«, 2:(const)‚ ‚è, 4:«‘ƒL[ƒ\[ƒg
-	 * @return ÀsŒ‹‰Ê
+	 * saveStruct å½¢å¼ã§ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¿å­˜
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param utf true ãªã‚‰ UTF-8 ã§å‡ºåŠ›
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitmask 1:ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ”¹è¡Œã¤ã, 2:(const)ã‚ã‚Š, 4:è¾æ›¸ã‚­ãƒ¼ã‚½ãƒ¼ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD saveStruct2(tTJSVariant *result,
 												 tjs_int numparams,
@@ -321,10 +321,10 @@ public:
 	}
 	
 	/**
-	 * saveStruct Œ`®‚Å•¶š—ñ‰»
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“bitmask 1:ƒCƒ“ƒfƒ“ƒg‰üs‚Â‚«, 2:(const)‚ ‚è, 4:«‘ƒL[ƒ\[ƒg
-	 * @return ÀsŒ‹‰Ê
+	 * saveStruct å½¢å¼ã§æ–‡å­—åˆ—åŒ–
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitmask 1:ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ”¹è¡Œã¤ã, 2:(const)ã‚ã‚Š, 4:è¾æ›¸ã‚­ãƒ¼ã‚½ãƒ¼ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD toStructString(tTJSVariant *result,
 													tjs_int numparams,
@@ -346,7 +346,7 @@ NCB_ATTACH_CLASS(DictAdd, Dictionary) {
 };
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class ScriptsAdd {
 	
@@ -354,11 +354,11 @@ public:
 	ScriptsAdd(){;}
 
 	/**
-	 * saveStruct Œ`®‚Å•¶š—ñ‰»
-	 * @param target •¶š—ñ‰»‚·‚é‘ÎÛ
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“bitmask 1:ƒCƒ“ƒfƒ“ƒg‰üs‚Â‚«, 2:(const)‚ ‚è, 4:«‘ƒL[ƒ\[ƒg
-	 * @return ÀsŒ‹‰Ê
+	 * saveStruct å½¢å¼ã§æ–‡å­—åˆ—åŒ–
+	 * @param target æ–‡å­—åˆ—åŒ–ã™ã‚‹å¯¾è±¡
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitmask 1:ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ”¹è¡Œã¤ã, 2:(const)ã‚ã‚Š, 4:è¾æ›¸ã‚­ãƒ¼ã‚½ãƒ¼ãƒˆ
+	 * @return å®Ÿè¡Œçµæœ
 	 */
 	static tjs_error TJS_INTF_METHOD toStructString(tTJSVariant *result,
 													tjs_int numparams,
@@ -381,11 +381,11 @@ NCB_ATTACH_CLASS(ScriptsAdd, Scripts) {
 
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 static void PostRegistCallback()
 {
-	// ssoƒIƒvƒVƒ‡ƒ“’l“o˜^
+	// ssoã‚ªãƒ—ã‚·ãƒ§ãƒ³å€¤ç™»éŒ²
 	iTJSDispatch2 *global = TVPGetScriptDispatch();
 	if (global) {
 		global->PropSet(TJS_MEMBERENSURE|TJS_IGNOREPROP, TJS_W("ssoIndent"), NULL, &tTJSVariant(OPTION_INDENT),  global);
@@ -397,11 +397,11 @@ static void PostRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 static void PreUnregistCallback()
 {
-	// ssoƒIƒvƒVƒ‡ƒ“’l“o˜^
+	// ssoã‚ªãƒ—ã‚·ãƒ§ãƒ³å€¤ç™»éŒ²
 	iTJSDispatch2 *global = TVPGetScriptDispatch();
 	if (global) {
 		global->DeleteMember(0, TJS_W("ssoIndent"), NULL, global);
@@ -411,7 +411,7 @@ static void PreUnregistCallback()
 		global->Release();
 	}
 
-	// Arrayƒƒ“ƒoQÆŠJ•ú
+	// Arrayãƒ¡ãƒ³ãƒå‚ç…§é–‹æ”¾
 	if (ArraySortFunc)  ArraySortFunc  -> Release();
 	if (ArrayAddFunc)   ArrayAddFunc   -> Release();
 	if (ArrayCountProp) ArrayCountProp -> Release();

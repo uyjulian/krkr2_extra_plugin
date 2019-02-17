@@ -1,46 +1,46 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class Array {
 	/**
-	 * ƒf[ƒ^‚ğ save ‚É€‚¶‚éŒ`®‚Å•Û‘¶‚·‚é
-	 * @param filename Ši”[æƒtƒ@ƒCƒ‹
-	 * @param utf8 o—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»İ‚ÌƒR[ƒhƒy[ƒW
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ save ã«æº–ã˜ã‚‹å½¢å¼ã§ä¿å­˜ã™ã‚‹
+	 * @param filename æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param utf8 å‡ºåŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
 	 */
 	function save2(filename, utf8=false, newline=0);
 	
 	/**
-	 * ƒf[ƒ^‚ğ saveStruct ‚É€‚¶‚éŒ`®‚Å•Û‘¶‚·‚é
-	 * @param filename Ši”[æƒtƒ@ƒCƒ‹
-	 * @param utf8 o—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»İ‚ÌƒR[ƒhƒy[ƒW
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“ sso* ‚Ì‘g‚İ‡‚í‚¹iŒãqj‚à‚µ‚­‚Í’¼Ú”’lw’è
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ saveStruct ã«æº–ã˜ã‚‹å½¢å¼ã§ä¿å­˜ã™ã‚‹
+	 * @param filename æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param utf8 å‡ºåŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ sso* ã®çµ„ã¿åˆã‚ã›ï¼ˆå¾Œè¿°ï¼‰ã‚‚ã—ãã¯ç›´æ¥æ•°å€¤æŒ‡å®š
 	 */
 	function saveStruct2(filename, utf8=false, newline=0, option=0);
 
 	/**
-	 * @param ‰üsƒR[ƒh newline 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“ sso* ‚Ì‘g‚İ‡‚í‚¹iŒãqj‚à‚µ‚­‚Í’¼Ú”’lw’è
-	 * @return saveStruct ‚É€‚¶‚½Œ`‚Ì•¶š—ñ‚ğ•Ô‚·
+	 * @param æ”¹è¡Œã‚³ãƒ¼ãƒ‰ newline 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ sso* ã®çµ„ã¿åˆã‚ã›ï¼ˆå¾Œè¿°ï¼‰ã‚‚ã—ãã¯ç›´æ¥æ•°å€¤æŒ‡å®š
+	 * @return saveStruct ã«æº–ã˜ãŸå½¢ã®æ–‡å­—åˆ—ã‚’è¿”ã™
 	 */
 	function toStructString(newline=1, option=0);
 };
 
 class Dictionary {
 	/**
-	 * ƒf[ƒ^‚ğ saveStruct ‚É€‚¶‚éŒ`®‚Å•Û‘¶‚·‚é
-	 * @param filename Ši”[æƒtƒ@ƒCƒ‹
-	 * @param utf8 o—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»İ‚ÌƒR[ƒhƒy[ƒW
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“ sso* ‚Ì‘g‚İ‡‚í‚¹iŒãqj‚à‚µ‚­‚Í’¼Ú”’lw’è
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ saveStruct ã«æº–ã˜ã‚‹å½¢å¼ã§ä¿å­˜ã™ã‚‹
+	 * @param filename æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param utf8 å‡ºåŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ sso* ã®çµ„ã¿åˆã‚ã›ï¼ˆå¾Œè¿°ï¼‰ã‚‚ã—ãã¯ç›´æ¥æ•°å€¤æŒ‡å®š
 	 */
 	function saveStruct2(filename, utf8=false, newline=0, option=0);
 
 	/**
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“ sso* ‚Ì‘g‚İ‡‚í‚¹iŒãqj‚à‚µ‚­‚Í’¼Ú”’lw’è
-	 * @return saveStruct ‚É€‚¶‚½Œ`‚Ì•¶š—ñ‚ğ•Ô‚·
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ sso* ã®çµ„ã¿åˆã‚ã›ï¼ˆå¾Œè¿°ï¼‰ã‚‚ã—ãã¯ç›´æ¥æ•°å€¤æŒ‡å®š
+	 * @return saveStruct ã«æº–ã˜ãŸå½¢ã®æ–‡å­—åˆ—ã‚’è¿”ã™
 	 */
 	function toStructString(newline=1, option=0);
 }
@@ -48,32 +48,32 @@ class Dictionary {
 
 class Scripts {
 	/**
-	 * @param target •¶š—ñ‰»‚·‚é‘ÎÛi«‘E”z—ñˆÈŠO‚Ì int/real/string/octet/null/void ‚à‰Â”\j
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @param option ®Œ`ƒIƒvƒVƒ‡ƒ“ sso* ‚Ì‘g‚İ‡‚í‚¹iŒãqj‚à‚µ‚­‚Í’¼Ú”’lw’è
-	 * @return saveStruct ‚É€‚¶‚½Œ`‚Ì•¶š—ñ‚ğ•Ô‚·
-	 * @description option‚ÌƒfƒtƒHƒ‹ƒg’l‚ªArray/Dictionary‚Æˆá‚¤‚Ì‚Å’ˆÓiƒfƒoƒbƒO—p“r‚ğ‘z’èj
+	 * @param target æ–‡å­—åˆ—åŒ–ã™ã‚‹å¯¾è±¡ï¼ˆè¾æ›¸ãƒ»é…åˆ—ä»¥å¤–ã® int/real/string/octet/null/void ã‚‚å¯èƒ½ï¼‰
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @param option æ•´å½¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ sso* ã®çµ„ã¿åˆã‚ã›ï¼ˆå¾Œè¿°ï¼‰ã‚‚ã—ãã¯ç›´æ¥æ•°å€¤æŒ‡å®š
+	 * @return saveStruct ã«æº–ã˜ãŸå½¢ã®æ–‡å­—åˆ—ã‚’è¿”ã™
+	 * @description optionã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ãŒArray/Dictionaryã¨é•ã†ã®ã§æ³¨æ„ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨é€”ã‚’æƒ³å®šï¼‰
 	 */
 	function toStructString(target, newline=1, option=ssoIndent|ssoSort);
 }
 
 
 /**
- * @description ŠK‘wƒCƒ“ƒfƒ“ƒg®Œ`w’è
+ * @description éšå±¤ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ•´å½¢æŒ‡å®š
  */
 const ssoIndent = (1<<0);
 
 /**
- * @description (const)‚Â‚««‘E”z—ñw’è
+ * @description (const)ã¤ãè¾æ›¸ãƒ»é…åˆ—æŒ‡å®š
  */
 const ssoConst  = (1<<1);
 
 /**
- * @description «‘ƒƒ“ƒo‚ğ–¼‘O‡ƒ\[ƒgw’èiƒ\[ƒg‚Ì‚½‚ß‚QƒpƒXˆ—‚É‚È‚è‚Ü‚·j
+ * @description è¾æ›¸ãƒ¡ãƒ³ãƒã‚’åå‰é †ã‚½ãƒ¼ãƒˆæŒ‡å®šï¼ˆã‚½ãƒ¼ãƒˆã®ãŸã‚ï¼’ãƒ‘ã‚¹å‡¦ç†ã«ãªã‚Šã¾ã™ï¼‰
  */
 const ssoSort   = (1<<2);
 
 /**
- * @description Hiddenƒƒ“ƒo[‚à‹­§“I‚Éæ“¾‚·‚éw’è
+ * @description Hiddenãƒ¡ãƒ³ãƒãƒ¼ã‚‚å¼·åˆ¶çš„ã«å–å¾—ã™ã‚‹æŒ‡å®š
  */
 const ssoHidden = (1<<3);

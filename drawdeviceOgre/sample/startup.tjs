@@ -15,14 +15,14 @@ class MyWindow extends Window
 		super.Window();
 		drawDevice = new OgreDrawDevice();
 		
-		// ÉxÅ[ÉXÉåÉCÉÑ
+		// „Éô„Éº„Çπ„É¨„Ç§„É§
 		base = new Layer(this, null);
 		base.visible = true;
 		base.setSize(WIDTH,HEIGHT);
 		base.fillRect(0,0,WIDTH,HEIGHT,0);
 		setInnerSize(base.width, base.height);
 
-		// ï\é¶ÉåÉCÉÑ
+		// Ë°®Á§∫„É¨„Ç§„É§
 		layer = new ActionLayer(this, base);
 		layer.loadImages("test.png");
 		layer.setSizeToImageSize();
@@ -38,7 +38,7 @@ class MyWindow extends Window
 	
 	function onKeyDown(key, shift)
 	{
-		Debug.message("ÉLÅ[Ç™Ç®Ç≥ÇÍÇΩ:" + key);
+		Debug.message("„Ç≠„Éº„Åå„Åä„Åï„Çå„Åü:" + key);
 		if(key == VK_TAB) {
 			close();
 		}
@@ -46,6 +46,6 @@ class MyWindow extends Window
 
 };
 
-// ëã
+// Á™ì
 var win = new MyWindow();
 win.visible=true;

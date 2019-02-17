@@ -2,53 +2,53 @@
 #define LAYERMANAGERINFO_H
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ—p•tî•ñ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ç”¨ä»˜éšæƒ…å ±
  */
 class LayerManagerInfo {
 
 protected:
-	// ¯•Ê—pID
+	// è­˜åˆ¥ç”¨ID
 	int id;
 
-	// Œ³ƒŒƒCƒ„ƒTƒCƒY
+	// å…ƒãƒ¬ã‚¤ãƒ¤ã‚µã‚¤ã‚º
 	irr::core::rect<irr::s32> srcRect;
 	
-	// ƒRƒs[ˆ——pˆê•Ï”
+	// ã‚³ãƒ”ãƒ¼å‡¦ç†ç”¨ä¸€æ™‚å¤‰æ•°
 	unsigned char *destBuffer;
 	int destWidth;
 	int destHeight;
 	int destPitch;
 
-	// ƒeƒNƒXƒ`ƒƒŠ„‚è“–‚Ä‚Ég‚Á‚½ƒhƒ‰ƒCƒo
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰²ã‚Šå½“ã¦ã«ä½¿ã£ãŸãƒ‰ãƒ©ã‚¤ãƒ
 	irr::video::IVideoDriver *driver;
-	// Š„‚è“–‚ÄƒeƒNƒXƒ`ƒƒ
+	// å‰²ã‚Šå½“ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	irr::video::ITexture *texture;
 	
 public:
-	// •\¦‘ÎÛ‚©‚Ç‚¤‚©
+	// è¡¨ç¤ºå¯¾è±¡ã‹ã©ã†ã‹
 	bool visible;
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param id ƒŒƒCƒ„ID
-	 * @param visible ‰Šú•\¦ó‘Ô
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param id ãƒ¬ã‚¤ãƒ¤ID
+	 * @param visible åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
 	 */
 	LayerManagerInfo(int id, bool visible);
 	virtual ~LayerManagerInfo();
 	
-	// ƒeƒNƒXƒ`ƒƒŠ„‚è“–‚Äˆ—
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰²ã‚Šå½“ã¦å‡¦ç†
 	void alloc(iTVPLayerManager *manager, irr::video::IVideoDriver *driver);
-	// ƒeƒNƒXƒ`ƒƒ‰ğ•ú
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
 	void free();
 	
-	// ƒeƒNƒXƒ`ƒƒ•`‰æ‘€ì—p
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£æç”»æ“ä½œç”¨
 	void lock();
 	void copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
 			  const tTVPRect &cliprect, tTVPLayerType type, tjs_int opacity);
 	void unlock();
 
-	// •`‰æ
+	// æç”»
 	void draw(irr::video::IVideoDriver *driver, irr::core::rect<irr::s32> destRect);
 };
 

@@ -2,9 +2,9 @@
 #include <string.h>
 
 /**
- * ƒƒ‚ƒŠã‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚Ìƒ[ƒhˆ—‚à‚ë‚à‚ë‚ÌÀ‘•
- * sqstd_loadfile ‚©‚ç‹@”\ƒRƒs[B
- * ƒoƒCƒiƒŠ/UTF/UCS ”»’èˆ—‚Â‚«
+ * ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã‚‚ã‚ã‚‚ã‚ã®å®Ÿè£…
+ * sqstd_loadfile ã‹ã‚‰æ©Ÿèƒ½ã‚³ãƒ”ãƒ¼ã€‚
+ * ãƒã‚¤ãƒŠãƒª/UTF/UCS åˆ¤å®šå‡¦ç†ã¤ã
  */
 
 class MemFile
@@ -13,8 +13,8 @@ public:
 	MemFile(const char *dataBuffer, int dataSize) : dataBuffer(dataBuffer), dataSize(dataSize), cur(0) {}
 	~MemFile() {};
 
-	// “Ç‚İ‚İ
-	// @return “Ç‚İ‚ñ‚¾ƒf[ƒ^”
+	// èª­ã¿è¾¼ã¿
+	// @return èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿æ•°
 	int read(void *buffer, int size, int cnt) {
 		if (cur >= dataSize) {
 			return 0;
@@ -29,7 +29,7 @@ public:
 		return cnt;
 	}
 
-	// ƒV[ƒNˆ—
+	// ã‚·ãƒ¼ã‚¯å‡¦ç†
 	void seek(int offset) {
 		cur = offset;
 	}
@@ -44,7 +44,7 @@ private:
 	int cur;
 };
 
-// ’Êí‚ÌASCII
+// é€šå¸¸ã®ASCII
 static SQInteger _io_file_lexfeed_ASCII(SQUserPointer file)
 {
 	MemFile *fp = (MemFile*)file;
@@ -55,7 +55,7 @@ static SQInteger _io_file_lexfeed_ASCII(SQUserPointer file)
 	return 0;
 }
 
-// UTF-8 ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+// UTF-8 ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 static SQInteger _io_file_lexfeed_UTF8(SQUserPointer file)
 {
 	MemFile *fp = (MemFile*)file;
@@ -95,7 +95,7 @@ static SQInteger _io_file_lexfeed_UTF8(SQUserPointer file)
 	return c;
 }
 
-// UCS2 little endian ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+// UCS2 little endian ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 static SQInteger _io_file_lexfeed_UCS2_LE(SQUserPointer file)
 {
 	MemFile *fp = (MemFile*)file;
@@ -106,7 +106,7 @@ static SQInteger _io_file_lexfeed_UCS2_LE(SQUserPointer file)
 	return 0;
 }
 
-// UCS2 big endian ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+// UCS2 big endian ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 static SQInteger _io_file_lexfeed_UCS2_BE(SQUserPointer file)
 {
 	MemFile *fp = (MemFile*)file;
@@ -119,7 +119,7 @@ static SQInteger _io_file_lexfeed_UCS2_BE(SQUserPointer file)
 	return 0;
 }
 
-// ƒoƒCƒiƒŠ“Ç‚İ‚İ—p
+// ãƒã‚¤ãƒŠãƒªèª­ã¿è¾¼ã¿ç”¨
 static SQInteger file_read(SQUserPointer file,SQUserPointer buf,SQInteger size)
 {
 	MemFile *fp = (MemFile*)file;
@@ -129,12 +129,12 @@ static SQInteger file_read(SQUserPointer file,SQUserPointer buf,SQInteger size)
 }
 
 /**
- * ƒƒ‚ƒŠã‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚Ì“Ç‚İ‚İˆ—
+ * ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®èª­ã¿è¾¼ã¿å‡¦ç†
  * @param v squirrelVM
- * @param dataBuffer ƒƒ‚ƒŠƒoƒbƒtƒ@
- * @param dataSize ƒƒ‚ƒŠƒoƒbƒtƒ@ƒTƒCƒY
- * @param filename ƒtƒ@ƒCƒ‹–¼
- * @param printError ƒGƒ‰[‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©
+ * @param dataBuffer ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ•ã‚¡
+ * @param dataSize ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param printError ã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
  */
 SQRESULT sqstd_loadmemory(HSQUIRRELVM v, const char *dataBuffer, int dataSize, const SQChar *filename, SQBool printerror)
 {

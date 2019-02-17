@@ -1,42 +1,42 @@
 Title: msgreceiver plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-¦obsoluted plugin
-  “¯“™ˆÈã‚Ì‹@”\‚ð‚à‚Â messenger plugin ‚ª‘¶Ý‚µ‚Ü‚·
-  ‚»‚¿‚ç‚Ì—˜—p‚ðŒŸ“¢‚µ‚Ä‚­‚¾‚³‚¢
+â€»obsoluted plugin
+  åŒç­‰ä»¥ä¸Šã®æ©Ÿèƒ½ã‚’ã‚‚ã¤ messenger plugin ãŒå­˜åœ¨ã—ã¾ã™
+  ãã¡ã‚‰ã®åˆ©ç”¨ã‚’æ¤œè¨Žã—ã¦ãã ã•ã„
 
-‹g—¢‹g—¢‚ÉŠO•”§Œä‚ÌŒû‚ð’Ç‰Á‚µ‚Ü‚·
+å‰é‡Œå‰é‡Œã«å¤–éƒ¨åˆ¶å¾¡ã®å£ã‚’è¿½åŠ ã—ã¾ã™
 
-Win32 API ‚Ì SendMessage ‚ðŽg‚Á‚Ä WM_COPYDATA ‚Å
-ƒeƒLƒXƒg‚ð‘—‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+Win32 API ã® SendMessage ã‚’ä½¿ã£ã¦ WM_COPYDATA ã§
+ãƒ†ã‚­ã‚¹ãƒˆã‚’é€ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-@(1) ƒvƒ‰ƒOƒCƒ“‚ðƒ[ƒh
+ã€€(1) ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  (2) ƒƒbƒZ[ƒWƒŒƒV[ƒo‚ð“o˜^
+  (2) ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã‚’ç™»éŒ²
 
-@@wmrStart(win);
+ã€€ã€€wmrStart(win);
 
-@@Žw’è‚µ‚½ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWˆ—‚ÉŠ„‚èž‚Ý‚µ‚ÄA
-    WM_COPYDATA ‚ª‘—‚ç‚ê‚½ê‡‚ÉAwin.onCopyData(msg) {} ‚ª
-@@ŒÄ‚Ño‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
-@@
-@@§Œä—p‚Ìƒnƒ“ƒhƒ‹î•ñ‚ÍAŽÀsƒtƒ@ƒCƒ‹–¼.hwnd ‚Æ‚¢‚¤ƒtƒ@ƒCƒ‹‚ª
-@@¶¬‚³‚ê‚Ä‚»‚ê‚ªŽžXV‚³‚ê‚é‚Ì‚ÅA‘—M‚·‚éƒvƒƒOƒ‰ƒ€‚Í
-@@‚±‚Ìƒtƒ@ƒCƒ‹‚ðŽQÆ‚µ‚Ä SendMessage —p‚Ìƒnƒ“ƒhƒ‹‚ðŽæ“¾‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€ã€€æŒ‡å®šã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã«å‰²ã‚Šè¾¼ã¿ã—ã¦ã€
+    WM_COPYDATA ãŒé€ã‚‰ã‚ŒãŸå ´åˆã«ã€win.onCopyData(msg) {} ãŒ
+ã€€ã€€å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
+ã€€ã€€
+ã€€ã€€åˆ¶å¾¡ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±ã¯ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«å.hwnd ã¨ã„ã†ãƒ•ã‚¡ã‚¤ãƒ«ãŒ
+ã€€ã€€ç”Ÿæˆã•ã‚Œã¦ãã‚ŒãŒéšæ™‚æ›´æ–°ã•ã‚Œã‚‹ã®ã§ã€é€ä¿¡ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯
+ã€€ã€€ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‚ç…§ã—ã¦ SendMessage ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦ãã ã•ã„ã€‚
 
-  (3) ƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì‰ðœ 
+  (3) ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®è§£é™¤ 
 
     wmrStop(win)
 
-    ‚ÅŽóMˆ—‚ªI—¹‚µ‚Ü‚·B
+    ã§å—ä¿¡å‡¦ç†ãŒçµ‚äº†ã—ã¾ã™ã€‚
 
-@’ˆÓ“_F•¡”‚Ì‘‹‚ðˆµ‚¤‚±‚Æ‚Í”z—¶‚³‚ê‚Ä‚Ü‚¹‚ñ
+ã€€æ³¨æ„ç‚¹ï¼šè¤‡æ•°ã®çª“ã‚’æ‰±ã†ã“ã¨ã¯é…æ…®ã•ã‚Œã¦ã¾ã›ã‚“
 
-œƒTƒ“ƒvƒ‹‚Ì§Œä—áiruby ‚©‚ç§Œäj
+â—ã‚µãƒ³ãƒ—ãƒ«ã®åˆ¶å¾¡ä¾‹ï¼ˆruby ã‹ã‚‰åˆ¶å¾¡ï¼‰
 
 --------------------------------------------------------------------
 exename = "krkr"
@@ -68,6 +68,6 @@ cd.lpData = msg
 CopyData::sendMessage(hwnd, CopyData::WM_COPYDATA, 0, cd.to_ptr.to_i)
 --------------------------------------------------------------------
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

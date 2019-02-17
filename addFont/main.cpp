@@ -15,7 +15,7 @@
 #include <vector>
 using namespace std;
 
-// “o˜^Ï‚İƒtƒHƒ“ƒgˆê——
+// ç™»éŒ²æ¸ˆã¿ãƒ•ã‚©ãƒ³ãƒˆä¸€è¦§
 static vector<ttstr>  fontlist;
 static vector<ttstr>  tempfontlist;
 static vector<HANDLE> memfontlist;
@@ -23,10 +23,10 @@ static vector<HANDLE> memfontlist;
 struct FontEx
 {
 	/**
-	 * ƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì’Ç‰Á
-	 * @param fontFileName ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹–¼
-	 * @param extract ƒA[ƒJƒCƒu‚©‚çƒeƒ“ƒ|ƒ‰ƒŠ“WŠJ‚·‚é
-	 * @return void:ƒtƒ@ƒCƒ‹‚ğŠJ‚­‚Ì‚É¸”s 0:ƒtƒHƒ“ƒg“o˜^‚É¸”s ”’l:“o˜^‚µ‚½ƒtƒHƒ“ƒg‚Ì”
+	 * ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®è¿½åŠ 
+	 * @param fontFileName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param extract ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰ãƒ†ãƒ³ãƒãƒ©ãƒªå±•é–‹ã™ã‚‹
+	 * @return void:ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã®ã«å¤±æ•— 0:ãƒ•ã‚©ãƒ³ãƒˆç™»éŒ²ã«å¤±æ•— æ•°å€¤:ç™»éŒ²ã—ãŸãƒ•ã‚©ãƒ³ãƒˆã®æ•°
 	 */
 	static tjs_error TJS_INTF_METHOD addFont(tTJSVariant *result,
 											 tjs_int numparams,
@@ -36,10 +36,10 @@ struct FontEx
 
 		ttstr filename = TVPGetPlacedPath(*param[0]);
 		if (filename.length()) {
-			// ¦TVPGetLocallyAccessibleName‚Írev.5221ˆÈ~‚Ìtp_stub‚ª•K—v
+			// â€»TVPGetLocallyAccessibleNameã¯rev.5221ä»¥é™ã®tp_stubãŒå¿…è¦
 			ttstr localname(TVPGetLocallyAccessibleName(filename));
 			if (localname.length()) {
-				// Àƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚½ê‡
+				// å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãŸå ´åˆ
 				int ret;
 				if ((ret =  AddFontResourceEx(localname.c_str(), FR_PRIVATE, NULL)) > 0) {
 					fontlist.push_back(localname);
@@ -50,10 +50,10 @@ struct FontEx
 				return TJS_S_OK;
 			} else {
 				if (numparams > 1 && (int)*param[1]) {
-					// ƒƒ‚ƒŠ‚Éƒ[ƒh‚µ‚Ä“WŠJ
+					// ãƒ¡ãƒ¢ãƒªã«ãƒ­ãƒ¼ãƒ‰ã—ã¦å±•é–‹
 					IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
 					if (in) {
-						// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹ì¬
+						// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 						ttstr tempFile = TVPGetTemporaryName();
 						HANDLE hFile;
 						if ((hFile = CreateFile(tempFile.c_str(), GENERIC_WRITE, 0, NULL,
@@ -61,7 +61,7 @@ struct FontEx
 							in->Release();
 							return TJS_S_OK;
 						}
-						// ƒtƒ@ƒCƒ‹‚ğƒRƒs[
+						// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 						BYTE buffer[1024*16];
 						DWORD size;
 						while (in->Read(buffer, sizeof buffer, &size) == S_OK && size > 0) {			
@@ -81,13 +81,13 @@ struct FontEx
 						return TJS_S_OK;
 					}
 				} else {
-					// ƒƒ‚ƒŠ‚Éƒ[ƒh‚µ‚Ä“WŠJ
+					// ãƒ¡ãƒ¢ãƒªã«ãƒ­ãƒ¼ãƒ‰ã—ã¦å±•é–‹
 					IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
 					if (in) {
 						STATSTG stat;
 						in->Stat(&stat, STATFLAG_NONAME);
 						DWORD ret = 0;
-						// ƒTƒCƒY‚ ‚Ó‚ê–³‹ XXX
+						// ã‚µã‚¤ã‚ºã‚ãµã‚Œç„¡è¦– XXX
 						ULONG size = (ULONG)(stat.cbSize.QuadPart);
 						char *data = new char[size];
 						if (in->Read(data, size, &size) == S_OK) {
@@ -109,15 +109,15 @@ struct FontEx
 	}
 };
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS(FontEx, System) {
 	RawCallback("addFont", &FontEx::addFont, TJS_STATICMEMBER);
 }
 
-// ----------------------------------- ‹N“®EŠJ•úˆ—
+// ----------------------------------- èµ·å‹•ãƒ»é–‹æ”¾å‡¦ç†
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 void PostUnregistCallback()
 {

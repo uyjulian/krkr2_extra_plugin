@@ -151,10 +151,10 @@ struct PwRequestHandler : public HTTPRequestHandler
 	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response) {
 		PwRequestResponseImpl *rr = new PwRequestResponseImpl(request, response);
 		cb.invoke(rr);
-		// Š®—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// å®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤
 		if (rr->wait(timeout)) {
-			// ƒ^ƒCƒ€ƒAƒEƒg‚µ‚½
-			(void)0; // ‚Æ‚è‚ ‚¦‚¸‰½‚à‚µ‚È‚¢
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ãŸ
+			(void)0; // ã¨ã‚Šã‚ãˆãšä½•ã‚‚ã—ãªã„
 		}
 	}
 private:

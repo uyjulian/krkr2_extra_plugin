@@ -4,14 +4,14 @@
 #include "ncbind.hpp"
 
 ////////////////////////////////////////
-/// mes(...)‚Å”CˆÓ‚ÌŒ^‚ÅƒƒO‚ğo—Í‚Å‚«‚é‚æ‚¤‚É‚·‚éƒeƒ“ƒvƒŒ
+/// mes(...)ã§ä»»æ„ã®å‹ã§ãƒ­ã‚°ã‚’å‡ºåŠ›ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ†ãƒ³ãƒ—ãƒ¬
 
-// Œ^•ÏŠ·—pFunctor
+// å‹å¤‰æ›ç”¨Functor
 template <typename T> struct ttstrWrap { T operator()(T t) { return t; } };
 #define TTSTRCAST(type, cast) template <> struct ttstrWrap<type> { cast operator()(type t) { return t; } }
 #define TTSTRCAST_INT(type)  TTSTRCAST(type, tjs_int)
 
-// ®”‚Í‚İ‚ñ‚È tjs_int ‚ÅƒLƒƒƒXƒg‚·‚é
+// æ•´æ•°ã¯ã¿ã‚“ãª tjs_int ã§ã‚­ãƒ£ã‚¹ãƒˆã™ã‚‹
 TTSTRCAST_INT(  signed char);
 TTSTRCAST_INT(  signed short);
 TTSTRCAST_INT(  signed int);
@@ -21,7 +21,7 @@ TTSTRCAST_INT(unsigned short);
 TTSTRCAST_INT(unsigned int);
 TTSTRCAST_INT(unsigned long);
 
-// À”‚Í sprintf ‚Å•¶š—ñ‚É
+// å®Ÿæ•°ã¯ sprintf ã§æ–‡å­—åˆ—ã«
 struct ttstrFormat {
 	ttstrFormat(tjs_nchar const *fmt) : _format(fmt) {}
 	template <typename T>
@@ -40,7 +40,7 @@ private:
 template <> struct ttstrWrap<float>  : public ttstrFormat { ttstrWrap() : ttstrFormat("%f" ) {} };
 template <> struct ttstrWrap<double> : public ttstrFormat { ttstrWrap() : ttstrFormat("%lf") {} };
 
-// ŒŸØ—p
+// æ¤œè¨¼ç”¨
 void setlog(ttstr const &log) {
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	if (global) {
@@ -50,7 +50,7 @@ void setlog(ttstr const &log) {
 	}
 }
 
-// ”CˆÓŒÂ”‚Ìˆø”‚É‘Î‰‚·‚é‚½‚ß‚É‘S“WŠJ
+// ä»»æ„å€‹æ•°ã®å¼•æ•°ã«å¯¾å¿œã™ã‚‹ãŸã‚ã«å…¨å±•é–‹
 #undef  FOREACH_START
 #define FOREACH_START 1
 #undef  FOREACH_END
@@ -70,7 +70,7 @@ void setlog(ttstr const &log) {
 
 
 ////////////////////////////////////////
-// ƒŒƒWƒXƒgŒã‚ÉƒXƒNƒŠƒvƒg‚ğÀs‚µ‚Äƒ`ƒFƒbƒN‚·‚é
+// ãƒ¬ã‚¸ã‚¹ãƒˆå¾Œã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å®Ÿè¡Œã—ã¦ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 struct checker {
 	typedef void (*CallbackT)();
@@ -365,7 +365,7 @@ CHECK(FunctionTest,
 
 
 ////////////////////////////////////////
-// Šù‘¶‚ÌƒNƒ‰ƒX‚É’Ç‰Á‚·‚éƒNƒ‰ƒX‚ÌƒeƒXƒg
+// æ—¢å­˜ã®ã‚¯ãƒ©ã‚¹ã«è¿½åŠ ã™ã‚‹ã‚¯ãƒ©ã‚¹ã®ãƒ†ã‚¹ãƒˆ
 
 struct PadAttachTest1 {
 	PadAttachTest1()  { TVPAddLog(TJS_W("PadAttachTest1::Constructor")); }
@@ -384,46 +384,46 @@ private:
 };
 
 //--------------------------------------
-// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é•”•ª‚ğ“Æ©‚É‘‚«‹L‚µ‚½‚¢ê‡‚ÌƒTƒ“ƒvƒ‹
+// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹éƒ¨åˆ†ã‚’ç‹¬è‡ªã«æ›¸ãè¨˜ã—ãŸã„å ´åˆã®ã‚µãƒ³ãƒ—ãƒ«
 
 NCB_GET_INSTANCE_HOOK(PadAttachTest2)
 {
-	// ƒXƒR[ƒv“à‚Å‚Í‚ ‚ç‚©‚¶‚ß typedef PadAttachTest2 ClassT; ‚Æ’è‹`‚³‚ê‚Ä‚¢‚é
+	// ã‚¹ã‚³ãƒ¼ãƒ—å†…ã§ã¯ã‚ã‚‰ã‹ã˜ã‚ typedef PadAttachTest2 ClassT; ã¨å®šç¾©ã•ã‚Œã¦ã„ã‚‹
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^i‚ ‚Ü‚èg‚¤ˆÓ–¡–³‚µj
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆã‚ã¾ã‚Šä½¿ã†æ„å‘³ç„¡ã—ï¼‰
 	NCB_GET_INSTANCE_HOOK_CLASS () {
 		//NCB_LOG_W("GetInstanceHook::Constructor");
 	}
 
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
 		//NCB_LOG_W("GetInstanceHook::Getter");
 
-		// ƒ|ƒCƒ“ƒ^æ“¾
-		ClassT* obj = GetNativeInstance(objthis); //< ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXæ“¾‘g‚İ‚İŠÖ”
+		// ãƒã‚¤ãƒ³ã‚¿å–å¾—
+		ClassT* obj = GetNativeInstance(objthis); //< ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—çµ„ã¿è¾¼ã¿é–¢æ•°
 		if (!obj) {
-			// ‚È‚¢ê‡‚Í¶¬‚·‚é
+			// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
 			obj = new ClassT();
 
-			// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚éi–Y‚ê‚é‚Æ–ˆ‰ñ new ‚³‚ê‚Ü‚·‚æ[j
-			SetNativeInstance(objthis, obj); //< ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXİ’è‘g‚İ‚İŠÖ”
+			// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ï¼ˆå¿˜ã‚Œã‚‹ã¨æ¯å› new ã•ã‚Œã¾ã™ã‚ˆãƒ¼ï¼‰
+			SetNativeInstance(objthis, obj); //< ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹è¨­å®šçµ„ã¿è¾¼ã¿é–¢æ•°
 		}
 
-		// ƒCƒ“ƒXƒ^ƒ“ƒX‘¤‚Éobjthis‚ğ‚½‚¹‚Ä‚Ù‚°‚Ù‚°‚µ‚½‚¢ê‡‚Í‚±‚ñ‚ÈŠ´‚¶‚Å
+		// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å´ã«objthisã‚’æŒãŸã›ã¦ã»ã’ã»ã’ã—ãŸã„å ´åˆã¯ã“ã‚“ãªæ„Ÿã˜ã§
 		if (obj) obj->SetObjthis(objthis);
 
-		// ƒfƒXƒgƒ‰ƒNƒ^‚Åg—p‚µ‚½‚¢ê‡‚Íƒvƒ‰ƒCƒx[ƒg•Ï”‚É•Û‘¶
+		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ä½¿ç”¨ã—ãŸã„å ´åˆã¯ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆå¤‰æ•°ã«ä¿å­˜
 		_objthis = objthis;
 		_obj = obj; 
 
 		return obj;
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^iÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚éj
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆå®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã«å‘¼ã°ã‚Œã‚‹ï¼‰
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
 		//NCB_LOG_W("GetInstanceHook::Destructor");
 
-		// Hookedƒƒ\ƒbƒh‚ğŒÄ‚Ô
+		// Hookedãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã¶
 		if (_obj) _obj->Hooked();
 	}
 
@@ -431,21 +431,21 @@ private:
 	iTJSDispatch2 *_objthis;
 	ClassT        *_obj;
 
-}; // À‘Ì‚Í class ’è‹`‚È‚Ì‚Å ; ‚ğ–Y‚ê‚È‚¢‚Å‚Ë
+}; // å®Ÿä½“ã¯ class å®šç¾©ãªã®ã§ ; ã‚’å¿˜ã‚Œãªã„ã§ã­
 
 
-/// ’ÊíƒAƒ^ƒbƒ`iƒCƒ“ƒXƒ^ƒ“ƒX‚Íƒƒ\ƒbƒh‚ª‰‚ß‚ÄŒÄ‚Î‚ê‚é‚Énew‚³‚ê‚éj
+/// é€šå¸¸ã‚¢ã‚¿ãƒƒãƒï¼ˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¯ãƒ¡ã‚½ãƒƒãƒ‰ãŒåˆã‚ã¦å‘¼ã°ã‚Œã‚‹æ™‚ã«newã•ã‚Œã‚‹ï¼‰
 NCB_ATTACH_CLASS(PadAttachTest1, Pad) {
 	Method("Test1", &Class::Test1); //NCB_METHOD(Test1);
 }
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`i‚ ‚ç‚©‚¶‚ß NCB_GET_INSTANCE_HOOK ‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚±‚ÆF‚È‚¢ê‡‚ÍƒRƒ“ƒpƒCƒ‹ƒGƒ‰[j
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒï¼ˆã‚ã‚‰ã‹ã˜ã‚ NCB_GET_INSTANCE_HOOK ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã“ã¨ï¼šãªã„å ´åˆã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ï¼‰
 NCB_ATTACH_CLASS_WITH_HOOK(PadAttachTest2, Pad) {
 	Method("Test2", &Class::Test2); //NCB_METHOD(Test2);
 }
 
 //--------------------------------------
-// attach function ƒeƒXƒg
+// attach function ãƒ†ã‚¹ãƒˆ
 static void AttachFunctionTest1(int d) {
 	mes("AttachFunctionTest1(", d, ")");
 }
@@ -475,7 +475,7 @@ CHECK(PadAttachTest,
 
 
 ////////////////////////////////////////
-// Proxy / Bridge ƒeƒXƒg
+// Proxy / Bridge ãƒ†ã‚¹ãƒˆ
 
 #include <string>
 struct ProxyTest {

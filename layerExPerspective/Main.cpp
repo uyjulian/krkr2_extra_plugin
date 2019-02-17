@@ -18,7 +18,7 @@ static const char *copyright =
 "----- AntiGrainGeometry Copyright END -----\n";
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -57,19 +57,19 @@ agg::scanline_u8 g_scanline;
 #include "LayerExBase.h"
 
 /**
- * “§‹•ÏŠ·ƒRƒs[
+ * é€è¦–å¤‰æ›ã‚³ãƒ”ãƒ¼
  * @param src
  * @param sleft
  * @param stop
  * @param swidth
  * @param sheight
- * @param x1 ¶ã‹÷
+ * @param x1 å·¦ä¸Šéš…
  * @param y1
- * @param x2 ‰Eã‹÷
+ * @param x2 å³ä¸Šéš…
  * @param y2
- * @param x3 ¶‰º‹÷
+ * @param x3 å·¦ä¸‹éš…
  * @param y3
- * @param x4 ‰E‰º‹÷
+ * @param x4 å³ä¸‹éš…
  * @param y4
  */
 class tPerspectiveCopy : public tTJSDispatch
@@ -97,34 +97,34 @@ public:
 		double g_y2 = g_y1 + param[4]->AsReal();
 
 		double quad[8];
-        quad[0] = param[5]->AsReal(); // ¶ã
+        quad[0] = param[5]->AsReal(); // å·¦ä¸Š
         quad[1] = param[6]->AsReal();
-        quad[2] = param[7]->AsReal(); // ‰Eã
+        quad[2] = param[7]->AsReal(); // å³ä¸Š
         quad[3] = param[8]->AsReal();
-		quad[4] = param[11]->AsReal(); // ‰E‰º
+		quad[4] = param[11]->AsReal(); // å³ä¸‹
         quad[5] = param[12]->AsReal(); 
-        quad[6] = param[9]->AsReal(); // ¶‰º
+        quad[6] = param[9]->AsReal(); // å·¦ä¸‹
         quad[7] = param[10]->AsReal();
 
 
 		{
-			/// ƒ\[ƒX‚Ì€”õ
+			/// ã‚½ãƒ¼ã‚¹ã®æº–å‚™
 			unsigned char *buffer = src->_buffer;
-			// AGG —p‚Éæ“ªˆÊ’u‚É•â³
+			// AGG ç”¨ã«å…ˆé ­ä½ç½®ã«è£œæ­£
 			if (src->_pitch < 0) {
 				buffer += int(src->_height - 1) * src->_pitch;
 			}
 			agg::rendering_buffer rbuf_src(buffer, src->_width, src->_height, src->_pitch);
 
-			/// ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒoƒbƒtƒ@
+			/// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒãƒƒãƒ•ã‚¡
 			buffer = dest->_buffer;
-			// AGG —p‚Éæ“ªˆÊ’u‚É•â³
+			// AGG ç”¨ã«å…ˆé ­ä½ç½®ã«è£œæ­£
 			if (dest->_pitch < 0) {
 				buffer += int(dest->_height - 1) * dest->_pitch;
 			}
 			agg::rendering_buffer rbuf(buffer, dest->_width, dest->_height, dest->_pitch);
 
-			// ƒŒƒ“ƒ_ƒ‰‚Ì€”õ
+			// ãƒ¬ãƒ³ãƒ€ãƒ©ã®æº–å‚™
 			pixfmt_pre  pixf_pre(rbuf);
 			renderer_base_pre rb_pre(pixf_pre);
 			
@@ -135,7 +135,7 @@ public:
 			g_rasterizer.line_to_d(quad[4], quad[5]);
 			g_rasterizer.line_to_d(quad[6], quad[7]);
 			
-			// •ÏŒ`ƒRƒs[
+			// å¤‰å½¢ã‚³ãƒ”ãƒ¼
 			agg::trans_perspective tr(quad, g_x1, g_y1, g_x2, g_y2);
 			if(tr.is_valid()) {
 				typedef agg::span_interpolator_linear<agg::trans_perspective> interpolator_type;
@@ -184,11 +184,11 @@ addMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName, tTJSDispatch *met
 	tTJSVariant var = tTJSVariant(method);
 	method->Release();
 	dispatch->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		methodName, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&var, // “o˜^‚·‚é’l
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		methodName, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&var, // ç™»éŒ²ã™ã‚‹å€¤
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -196,10 +196,10 @@ static void
 delMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName)
 {
 	dispatch->DeleteMember(
-		0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-		methodName, // ƒƒ“ƒo–¼
-		NULL, // ƒqƒ“ƒg
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+		methodName, // ãƒ¡ãƒ³ãƒå
+		NULL, // ãƒ’ãƒ³ãƒˆ
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -207,67 +207,67 @@ delMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName)
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
 	TVPAddImportantLog(ttstr(copyright));
 	
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒgƒ`ƒFƒbƒN
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚§ãƒƒã‚¯
 	if ((NI_LayerExBase::classId = TJSFindNativeClassID(L"LayerExBase")) <= 0) {
 		NI_LayerExBase::classId = TJSRegisterNativeClass(L"LayerExBase");
 	}
 	
 	{
-		// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+		// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 		iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-		// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		tTJSVariant varScripts;
 		TVPExecuteExpression(TJS_W("Layer"), &varScripts);
 		iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
 		if (dispatch) {
-			// ƒvƒƒpƒeƒB‰Šú‰»
+			// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åˆæœŸåŒ–
 			NI_LayerExBase::init(dispatch);
 
-			// ê—pƒƒ\ƒbƒh‚Ì’Ç‰Á
+			// å°‚ç”¨ãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ 
 			addMethod(dispatch, L"perspectiveCopy", new tPerspectiveCopy());
 		}
 
 		global->Release();
 	}
 			
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall _export V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// ƒvƒƒpƒeƒBŠJ•ú
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 	NI_LayerExBase::unInit();
 	
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if (global) {
 
-		// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		tTJSVariant varScripts;
 		TVPExecuteExpression(TJS_W("Layer"), &varScripts);
 		iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
@@ -275,13 +275,13 @@ extern "C" HRESULT _stdcall _export V2Unlink()
 			delMethod(dispatch, L"perspectiveCopy");
 		}
 
-		// TJS ©‘Ì‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚Æ‚«‚È‚Ç‚Í
-		// global ‚Í NULL ‚É‚È‚è“¾‚é‚Ì‚Å global ‚ª NULL ‚Å‚È‚¢
-		// ‚±‚Æ‚ğƒ`ƒFƒbƒN‚·‚é
+		// TJS è‡ªä½“ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã¨ããªã©ã¯
+		// global ã¯ NULL ã«ãªã‚Šå¾—ã‚‹ã®ã§ global ãŒ NULL ã§ãªã„
+		// ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		global->Release();
 	}
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

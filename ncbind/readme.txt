@@ -1,321 +1,321 @@
-Title: �g���g���v���O�C�������l�C�e�B�u�N���X�o�C���_
+Title: 吉里吉里プラグイン向けネイティブクラスバインダ
 Author: miahmie
 
 
-������͉����H
+●これは何か？
 
-������ C++ ���C�u������ TJS �ň������߂̃v���O�C����
-�ȒP�ɍ�邱�Ƃ��ł���悤�ɂ��邽�߂� C++ �e���v���[�g�ł��B
+既存の C++ ライブラリを TJS で扱うためのプラグインを
+簡単に作ることができるようにするための C++ テンプレートです。
 
-�]���̃v���O�C���\�[�X�ł͈����̎󂯓n�������̃��b�p��
-tp_stub.h �̃}�N�����g����ŏ����Ȃ���΂Ȃ�Ȃ������̂ł����C
-�e���v���[�g�ɂ�肱����قƂ�ǃR���p�C���ɔC���邱�Ƃ��ł��܂��B
+従来のプラグインソースでは引数の受け渡し部分のラッパを
+tp_stub.h のマクロを使いつつ手で書かなければならなかったのですが，
+テンプレートによりこれをほとんどコンパイラに任せることができます。
 
-gcc 3.4 �n��� VC++2005 Express �œ���m�F���Ă��܂��B
-�e���v���[�g�����̊֌W�� VC++6 �ł̓R���p�C�����疳�����Ǝv���܂��B
-VC++2003 �⑼�̃R���p�C���͖��m�F�Ȃ̂łǂ��Ȃ邩�킩��܂���B
+gcc 3.4 系列と VC++2005 Express で動作確認しています。
+テンプレート実装の関係で VC++6 ではコンパイルすら無理だと思います。
+VC++2003 や他のコンパイラは未確認なのでどうなるかわかりません。
 
 
-���ȒP�Ȑ���
+●簡単な説明
 
-�}�N���œo�^�������N���X�̒�`���L�q���邾���ł��B
+マクロで登録したいクラスの定義を記述するだけです。
 
 #include "ncbind.hpp"
-#include "�������C�u�����̃w�b�_��"
+#include "既存ライブラリのヘッダ等"
 
-NCB_REGISTER_CLASS(�o�^����N���X��) {
-  Constructor<�R���X�g���N�^�̈����̌^, ...>(0);
-  Method("�o�^���郁�\�b�h��1", &Class::�o�^���郁�\�b�h1);
-  Method("�o�^���郁�\�b�h��2", &Class::�o�^���郁�\�b�h2);
+NCB_REGISTER_CLASS(登録するクラス名) {
+  Constructor<コンストラクタの引数の型, ...>(0);
+  Method("登録するメソッド名1", &Class::登録するメソッド1);
+  Method("登録するメソッド名2", &Class::登録するメソッド2);
      :
-  Method("�o�^���郁�\�b�h��n", &Class::�o�^���郁�\�b�hn);
+  Method("登録するメソッド名n", &Class::登録するメソッドn);
 }
 
-�ڂ����� testbind.cpp �̃\�[�X������Ȃǂ��Ă��������B
+詳しくは testbind.cpp のソースを見るなどしてください。
 
 
-���t�@�C���\��
+●ファイル構成
 
-  ncbind.hpp		���C���e���v���[�g
-  ncbind.cpp		V2Link/V2Unlink ��`
-  ncbind.def		gcc�p�G�N�X�|�[�g�t�@�C��
-			VC++�ł� /EXPORT:V2Link /EXPORT:V2Unlink ���Ă�������
-  ncb_invoke.hpp	�C�ӂ̃��\�b�h���ĂԂ��߂̃e���v���[�g
-  ncb_foreach.h		�}�N����C�ӌ��W�J���邽�߂�include�}�N��
+  ncbind.hpp		メインテンプレート
+  ncbind.cpp		V2Link/V2Unlink 定義
+  ncbind.def		gcc用エクスポートファイル
+			VC++では /EXPORT:V2Link /EXPORT:V2Unlink してください
+  ncb_invoke.hpp	任意のメソッドを呼ぶためのテンプレート
+  ncb_foreach.h		マクロを任意個数展開するためのincludeマクロ
 
-  testbind.*		�e�X�g�p�̃v���W�F�N�g
-
-
-���ڍ�
+  testbind.*		テスト用のプロジェクト
 
 
-�@��NCB_REGISTER_CLASS(Class) { ... }
-�@��NCB_REGISTER_CLASS_DIFFER(Name, Class) { ... }
-
-Class �� TJS�O���[�o�����(Name or Class)�ɓo�^���܂��B
-NCB_REGISTER_CLASS �ł� Class ���CNCB_REGISTER_CLASS_DIFFER�ł� Name ��
-�O���[�o����ԏ�ł̖��O�ƂȂ�܂��B�����N���X�̑��d�o�^�̓G���[�ɂȂ�܂��B
+●詳細
 
 
-�� �ȑO�̃o�[�W������ NCB_{ CONSTRUCTOR, METHOD*, PROPERTY* } �}�N����
-�@�g�p�ł��܂����CBridge�p�̃}�N���͗p�ӂ���Ă��܂���B
+　▼NCB_REGISTER_CLASS(Class) { ... }
+　▼NCB_REGISTER_CLASS_DIFFER(Name, Class) { ... }
 
-----------------------------------------------------------------
-�@�@��Constructor();
-�@�@��Constructor<arg1, arg2, ...>(0);
+Class を TJSグローバル空間(Name or Class)に登録します。
+NCB_REGISTER_CLASS では Class が，NCB_REGISTER_CLASS_DIFFERでは Name が
+グローバル空間上での名前となります。同じクラスの多重登録はエラーになります。
 
-�����̌^�̃��X�g (arg1, arg2, ...) ��n���ăR���X�g���N�^��o�^���܂��B
-����� (0) �� Constructor �̃I�[�o�[���[�h�p�̃V�O�l�`���Ƃ��ĕK�v�ł��B
-�f�t�H���g�R���X�g���N�^�i�����Ȃ��j��o�^����ꍇ�͂��̌���ł͂���܂���B
 
-�^�̈�v�����R���X�g���N�^�� TJS ���� new ����Ƃ��ɌĂ΂�܂��B
-�o�^���Ȃ��ꍇ�͂��̃N���X�� new ����ƃG���[�ɂȂ�܂��B�i���܂��������j
-�܂��C�I�[�o�[���[�h���ꂽ�����R���X�g���N�^�̓o�^�͂ł��܂���B
-�ŏ��ɓo�^���ꂽ���̂��L���ƂȂ�܂��B�i���s���Ɍx�����b�Z�[�W���o�܂��j
-
+※ 以前のバージョンの NCB_{ CONSTRUCTOR, METHOD*, PROPERTY* } マクロも
+　使用できますが，Bridge用のマクロは用意されていません。
 
 ----------------------------------------------------------------
-�@�@��Factory(Class* (*)(iTJSDispatch2*[, arg1, arg2, ...]));
-�@�@��Factory(tjs_error (TJS_INTF_METHOD *)(Class**, tjs_int, 
+　　▽Constructor();
+　　▽Constructor<arg1, arg2, ...>(0);
+
+引数の型のリスト (arg1, arg2, ...) を渡してコンストラクタを登録します。
+直後の (0) は Constructor のオーバーロード用のシグネチャとして必要です。
+デフォルトコンストラクタ（引数なし）を登録する場合はその限りではありません。
+
+型の一致したコンストラクタが TJS から new するときに呼ばれます。
+登録しない場合はそのクラスを new するとエラーになります。（※まだ未実装）
+また，オーバーロードされた複数コンストラクタの登録はできません。
+最初に登録されたものが有効となります。（実行時に警告メッセージが出ます）
+
+
+----------------------------------------------------------------
+　　▽Factory(Class* (*)(iTJSDispatch2*[, arg1, arg2, ...]));
+　　▽Factory(tjs_error (TJS_INTF_METHOD *)(Class**, tjs_int, 
                                             tTJSVariant**, iTJSDispatch2*));
 
-�C���X�^���X�𐶐�����֐����w�肵�ăR���X�g���N�^��o�^���܂��B
-�P�Ԗڂ̈�����objthis���n��Proxy�̂悤�Ȋ֐����g�p������@�ƁC�����̌���
-tTJSVariant�̔z���n��RawCallback�̂悤�Ȋ֐����g�p������@������܂��B
+インスタンスを生成する関数を指定してコンストラクタを登録します。
+１番目の引数にobjthisが渡るProxyのような関数を使用する方法と，引数の個数と
+tTJSVariantの配列を渡すRawCallbackのような関数を使用する方法があります。
 
-�O�҂͕Ԃ�l�Ƃ��Đ��������C���X�^���X�̃|�C���^��Ԃ��܂��B
-�iNULL��Ԃ��ƃG���[�Ƃ��Ĉ����܂��j
+前者は返り値として生成したインスタンスのポインタを返します。
+（NULLを返すとエラーとして扱われます）
 
-��҂͈�Ԗڂ̈����ɃC���X�^���X�̃|�C���^�����������TJS_S_OK��Ԃ��܂��B
-�iNULL���������񂾂�CTJS_S_OK�ȊO��Ԃ��ƃG���[�Ƃ��Ĉ����܂��j
-
-
-----------------------------------------------------------------
-�@�@��Method(Name, &Class::Method);
-
-�N���X���\�b�h Method ��o�^���܂��BClass �� NCB_REGISTER_CLASS �ɂ�
-�n���ꂽ�N���X�� typedef ����Ă��܂��B
-Name �� TJS_W() �o�R�̃��C�h�����ł��C���L�q�̃i���[������ł����܂��܂���B
-�i�i���[�̏ꍇ�͓o�^���Ɏ����I�ɕϊ���������܂��j
-
-�I�[�o�[���[�h���œ������O�̃��\�b�h����������ꍇ��
-���\�b�h�^�̎�������Ɏ��s����̂� static_cast �܂��� method_cast ��
-�g�p���Ă��������B
-
-�@�@static_cast<ReturnType (Class::*)(arg1, ... argN) [const]>(&Class::Method)
-�@�@method_cast<ReturnType, Type, arg1, ... argN>(&Class::Method)
-
-ReturnType �� ���\�b�h�̕Ԃ�l�̌^�ł��B
-Type �̓N���X���\�b�h�̃^�C�v�ŁC
-	Class	���ʂ̃N���X���\�b�h
-	Const	const �ȃN���X���\�b�h�iReturnType Method(arg...) const;�j
-	Static	static �ȃN���X���\�b�h
-�� 3�̂����ǂꂩ���L�q���܂��B
-arg1, ... argN �͈����̌^���w�肵�܂��B
-
+後者は一番目の引数にインスタンスのポインタを書き込んでTJS_S_OKを返します。
+（NULLを書き込んだり，TJS_S_OK以外を返すとエラーとして扱われます）
 
 
 ----------------------------------------------------------------
-�@�@��Method(Name, &Method, Proxy);
+　　▽Method(Name, &Class::Method);
 
-�N���X�O��static�֐����N���X���\�b�h�Ƃ��ĐU���킹��悤�o�^���܂��B
-���̊֐��̈�Ԗڂ̈����͕K�����̃N���X�̃C���X�^���X�|�C���^�^�ɂ��܂��B
-����� this �����̒l���n��CTJS����n�����c��̈����͂��̌�ɕ��ׂ܂��B
+クラスメソッド Method を登録します。Class は NCB_REGISTER_CLASS にて
+渡されたクラスが typedef されています。
+Name は TJS_W() 経由のワイド文字でも，直記述のナロー文字列でもかまいません。
+（ナローの場合は登録時に自動的に変換がかかります）
 
-�����̃��C�u������o�^����Ƃ��ɁC���C�u�����Ɏ��������
-���炩�̓���ȏ�������ꂽ���Ȃǂ̏ꍇ�ŗL���ł��B
+オーバーロード等で同じ名前のメソッドが複数ある場合は
+メソッド型の自動判定に失敗するので static_cast または method_cast を
+使用してください。
+
+　　static_cast<ReturnType (Class::*)(arg1, ... argN) [const]>(&Class::Method)
+　　method_cast<ReturnType, Type, arg1, ... argN>(&Class::Method)
+
+ReturnType は メソッドの返り値の型です。
+Type はクラスメソッドのタイプで，
+	Class	普通のクラスメソッド
+	Const	const なクラスメソッド（ReturnType Method(arg...) const;）
+	Static	static なクラスメソッド
+の 3つのうちどれかを記述します。
+arg1, ... argN は引数の型を指定します。
+
 
 
 ----------------------------------------------------------------
-�@�@��Method(Name, &Method, Bridge<BridgeFunctor>());
+　　▽Method(Name, &Method, Proxy);
 
-�u���b�W�t�@���N�^���w�肵�āC���̃N���X������ʂ̃N���X�C���X�^���X��
-�������Ϗ����郁�\�b�h��o�^���܂��B
-�t�@���N�^�͈ȉ��̂悤�Ȍ`���ł��B
+クラス外のstatic関数をクラスメソッドとして振舞わせるよう登録します。
+その関数の一番目の引数は必ずそのクラスのインスタンスポインタ型にします。
+これに this 相当の値が渡り，TJSから渡される残りの引数はその後に並べます。
+
+既存のライブラリを登録するときに，ライブラリに手を加えず
+何らかの特殊な処理を入れたいなどの場合で有効です。
+
+
+----------------------------------------------------------------
+　　▽Method(Name, &Method, Bridge<BridgeFunctor>());
+
+ブリッジファンクタを指定して，そのクラス内から別のクラスインスタンスに
+処理を委譲するメソッドを登録します。
+ファンクタは以下のような形式です。
 
 struct BridgeFunctor { 
   BridgeClass* operator()(Class* p) const {
     return p->BridgeInstance;
   }
 };
-	Class          : �o�^���̃N���X
-	BridgeClass    : �������Ϗ�����N���X
-	BridgeInstance : Class���ɕێ�����Ă��� BridgeClass �̃C���X�^���X
+	Class          : 登録中のクラス
+	BridgeClass    : 処理を委譲するクラス
+	BridgeInstance : Class内に保持されている BridgeClass のインスタンス
 
-Method�͈Ϗ���̃N���X�̃��\�b�h���L�q���܂��B
-&Class::Method �ł͂Ȃ��C&BridgeClass::Method �Ƃ����\�L�ɂȂ�܂��B
-
-
-----------------------------------------------------------------
-�@�@��Method(Name, &Method, ProxyBridge<BridgeFunctor>());
-�@�@��Method(Name, &Method, BridgeProxy<BridgeFunctor>());
-
-Proxy���̃u���b�W�o�^�ł��B
+Methodは委譲先のクラスのメソッドを記述します。
+&Class::Method ではなく，&BridgeClass::Method という表記になります。
 
 
 ----------------------------------------------------------------
-�@�@��Property(Property, GetterMethod, SetterMethod);
+　　▽Method(Name, &Method, ProxyBridge<BridgeFunctor>());
+　　▽Method(Name, &Method, BridgeProxy<BridgeFunctor>());
 
-Property �Ƃ������O�Ńv���p�e�B��o�^���܂��B
-GetterMethod, SetterMethod �͂��ꂼ��
-�v���p�e�B�擾�C�v���p�e�B�ݒ胁�\�b�h�ł��B
-SetterMethod �܂��� GetterMethod �� 0 ��n���ƁC
-���ꂼ�� �͓ǂݍ��ݐ�p�C�������ݐ�p�v���p�e�B�ɂȂ�܂��B
-
-Setter/Getter�̃��\�b�h�^�̃`�F�b�N���Â��̂�
-�w�肷�郁�\�b�h�ɂ͒��ӂ��Ă��������B
-
-----------------------------------------------------------------
-�@�@��Property(Property, GetterMethod, SetterMethod, Proxy);
-�@�@��Property(Property, GetterMethod, SetterMethod, Bridge<Functor>());
-�@�@��Property(Property, GetterMethod, SetterMethod, ProxyBridge<Functor>());
-�@�@��Property(Property, GetterMethod, SetterMethod, BridgeProxy<Functor>());
-
-Proxy/Bridge���̃v���p�e�B��o�^���܂��B
-�ڍׂ� Method ���ڂ��Q�Ƃ��Ă��������B
-
+Proxyつきのブリッジ登録です。
 
 
 ----------------------------------------------------------------
-�@�@��RawCallback(Name, &Callback, Flag);
+　　▽Property(Property, GetterMethod, SetterMethod);
 
-�R�[���o�b�N���w�肵�� Name �Ƃ������O�Ń��\�b�h��o�^���܂��B
-Callback �� tTJSNativeClassMethodCallback �^�� static �֐��|�C���^���C
-�܂��́CtTJSNativeClassMethodCallback �̈����� iTJSDispatch2 *objthis ��
-���̃N���X�̃C���X�^���X�̃|�C���^�ɂ������̂��g���܂��B
-�i���̏ꍇ�C���ۂ̃l�C�e�B�u�C���X�^���X�ւ̃|�C���^�������Ƃ��ēn��܂��j
+Property という名前でプロパティを登録します。
+GetterMethod, SetterMethod はそれぞれ
+プロパティ取得，プロパティ設定メソッドです。
+SetterMethod または GetterMethod に 0 を渡すと，
+それぞれ は読み込み専用，書き込み専用プロパティになります。
 
-Flag �́C
-	0		 (�ʏ�N���X���\�b�h��)
-	TJS_STATICMEMBER (static���\�b�h��) 
-�̂ǂ��炩���w��ł��܂��B
+Setter/Getterのメソッド型のチェックが甘いので
+指定するメソッドには注意してください。
 
 ----------------------------------------------------------------
-�@�@��RawCallback(Name, &GetterCallback, &SetterCallback, Flag);
+　　▽Property(Property, GetterMethod, SetterMethod, Proxy);
+　　▽Property(Property, GetterMethod, SetterMethod, Bridge<Functor>());
+　　▽Property(Property, GetterMethod, SetterMethod, ProxyBridge<Functor>());
+　　▽Property(Property, GetterMethod, SetterMethod, BridgeProxy<Functor>());
 
-�R�[���o�b�N�w��̃v���p�e�B�o�^�ł��B
+Proxy/Bridgeつきのプロパティを登録します。
+詳細は Method 項目を参照してください。
 
 
 
 ----------------------------------------------------------------
+　　▽RawCallback(Name, &Callback, Flag);
 
-�}�N�������̑����F
+コールバックを指定して Name という名前でメソッドを登録します。
+Callback は tTJSNativeClassMethodCallback 型の static 関数ポインタか，
+または，tTJSNativeClassMethodCallback の引数の iTJSDispatch2 *objthis を
+このクラスのインスタンスのポインタにしたものが使えます。
+（この場合，実際のネイティブインスタンスへのポインタが引数として渡ります）
 
+Flag は，
+	0		 (通常クラスメソッド時)
+	TJS_STATICMEMBER (staticメソッド時) 
+のどちらかが指定できます。
 
-�@��NCB_ATTACH_CLASS(          Class, TJS2Class) { ... }
-�@��NCB_ATTACH_CLASS_WITH_HOOK(Class, TJS2Class) { ... }
+----------------------------------------------------------------
+　　▽RawCallback(Name, &GetterCallback, &SetterCallback, Flag);
 
-�g���g���Q�̊����̃N���X TJS2Class �� Class ��t�����܂��B
-{ ... } �X�R�[�v���� NCB_REGISTER_CLASS �Ɠ����悤�ɒ�`���܂��B
-�������C�R���X�g���N�^��` NCB_CONSTRUCTOR �͎g���܂���B
-
-NCB_ATTACH_CLASS �œo�^�����ꍇ�CClass �̃C���X�^���X��
-�o�^���ꂽ Class �̃��\�b�h�����߂ČĂ΂ꂽ�Ƃ���
-�����Ȃ��̃R���X�g���N�^�� new ����C���\�b�h���Ă΂�܂��B
-
-NCB_ATTACH_CLASS_WITH_HOOK �œo�^����ꍇ�́C���炩���ߌ�q��
-NCB_GET_INSTANCE_HOOK ����`�ς݂łȂ���΂Ȃ�܂���B
-Class �C���X�^���X�̐����̓t�b�N�p�N���X�Ɉ�C����܂��B
-
-
-�@��NCB_GET_INSTANCE_HOOK(Class) { ... };
-�@�@��NCB_GET_INSTANCE_HOOK_CLASS
-�@�@��NCB_INSTANCE_GETTER(ObjThis)
-
-TJS ����l�C�e�B�u�N���X Class �̃��\�b�h���Ăяo������
-�C���X�^���X���擾����֐����t�b�N�i�Ƃ������Ē�`�j���܂��B
-�ڂ����� testbind.cpp �\�[�X���Q�Ƃ��Ă��������B
-
-NCB_ATTACH_CLASS �����łȂ��CNCB_REGISTER_CLASS ��
-�o�^�����N���X�ɂ��K�p����܂��B
-
-�܂��C���ׂẴN���X���\�b�h�ɓK�p����邽�߁C
-�w��̌ʃ��\�b�h�Ƀt�b�N���铙�͂ł��܂���B
-�@�˗v�]������Ύ������܂�
-
-
-�@��NCB_REGISTER_SUBCLASS(Class)
-�@�@��SubClass(Name, TypeWrap<Class>());
-
-�T�u�N���X�̒�`�Ɠo�^�ł��B�N���X����static�Ƃ��ăT�u�N���X���u����܂��B
-������g�����ƂŖ��O��Ԃ��������ɊK�w�\�����Ƃ邱�Ƃ��ł��܂��B
-���������R�[�h�ɂ��s������邩������܂���
-
-
-�@��NCB_REGISTER_FUNCTION(Name, Function);
-
-TJS �O���[�o����Ԃ� Name �Ƃ������O�� Function �Ƃ����֐���o�^���܂��B
-Function �� tTJSNativeClassMethodCallback �^�̏ꍇ��
-���̂܂� RawCallback �`���̃O���[�o���֐��Ƃ��ē��삵�܂��B
-
-
-�@��NCB_ATTACH_FUNCTION(Name, TJS2Class, Function);
-
-�g���g���Q�̊����̃N���X TJS2Class �� Name �Ƃ������O��
-Function ��t�����܂��BFunction �� tTJSNativeClassMethodCallback �^�̏ꍇ��
-���̂܂܃��\�b�h�� RawCallback �Ɠ����悤�ɓ��삵�܂��B
-
-���̃}�N���ł́C�� static �Ȋ֐������t���ł��܂���Bstatic �ȃ��\�b�h�Ƃ���
-�o�^�������ꍇ�́C�_�~�[�� static ���\�b�h�������݂��Ȃ��N���X�����C
-NCB_ATTACH_CLASS �œo�^���Ă��������B�istatic ���\�b�h�̌Ăяo���ł����
-�l�C�e�B�u�C���X�^���X�͐�������܂���j
+コールバック指定のプロパティ登録です。
 
 
 
-�@��NCB_REGISTER_INSTANCE(...); // ������
+----------------------------------------------------------------
 
-�@�@�� �Q�Ƃ�Ԃ� function / property �ő�p�ł��܂�
-
-
-�@��NCB_TYPECONV_CAST(Type, CastType);
-
-�����̌^�� Type �̏ꍇ�C�L���X�g CastType ���w�肵��
-tTJSVariant �Ƒ��ݕϊ�����悤�ɓo�^���܂��B
-
-�@��NCB_SET_CONVERTOR(Type, Convertor);
-
-�����̌^ Type ��ϊ�����N���X��o�^���܂��B
-�ڂ����� ncbind.hpp �̃R�����g�����Q�Ƃ��Ă��������B
+マクロ説明の続き：
 
 
+　▼NCB_ATTACH_CLASS(          Class, TJS2Class) { ... }
+　▼NCB_ATTACH_CLASS_WITH_HOOK(Class, TJS2Class) { ... }
 
-�@��NCB_PRE_REGIST_CALLBACK(Callback);
-�@��NCB_POST_REGIST_CALLBACK(Callback);
-�@��NCB_PRE_UNREGIST_CALLBACK(Callback);
-�@��NCB_POST_UNREGIST_CALLBACK(Callback);
+吉里吉里２の既存のクラス TJS2Class に Class を付加します。
+{ ... } スコープ内は NCB_REGISTER_CLASS と同じように定義します。
+ただし，コンストラクタ定義 NCB_CONSTRUCTOR は使えません。
 
-�N���X��o�^�E�J������O��ɌĂ΂��R�[���o�b�N void Callback() ��
-�o�^���܂��B�Ă΂�鏇�Ԃ͈ȉ��̂Ƃ���ł��B
+NCB_ATTACH_CLASS で登録した場合，Class のインスタンスは
+登録された Class のメソッドが初めて呼ばれたときに
+引数なしのコンストラクタで new され，メソッドが呼ばれます。
 
-V2Link���F
+NCB_ATTACH_CLASS_WITH_HOOK で登録する場合は，あらかじめ後述の
+NCB_GET_INSTANCE_HOOK が定義済みでなければなりません。
+Class インスタンスの生成はフック用クラスに一任されます。
+
+
+　▼NCB_GET_INSTANCE_HOOK(Class) { ... };
+　　▼NCB_GET_INSTANCE_HOOK_CLASS
+　　▼NCB_INSTANCE_GETTER(ObjThis)
+
+TJS からネイティブクラス Class のメソッドを呼び出す時の
+インスタンスを取得する関数をフック（というか再定義）します。
+詳しくは testbind.cpp ソースを参照してください。
+
+NCB_ATTACH_CLASS だけでなく，NCB_REGISTER_CLASS で
+登録したクラスにも適用されます。
+
+また，すべてのクラスメソッドに適用されるため，
+指定の個別メソッドにフックする等はできません。
+　⇒要望があれば実装します
+
+
+　▼NCB_REGISTER_SUBCLASS(Class)
+　　▽SubClass(Name, TypeWrap<Class>());
+
+サブクラスの定義と登録です。クラス中にstaticとしてサブクラスが置かれます。
+これを使うことで名前空間を汚さずに階層構造をとることができます。
+※実験中コードにつき不具合があるかもしれません
+
+
+　▼NCB_REGISTER_FUNCTION(Name, Function);
+
+TJS グローバル空間に Name という名前で Function という関数を登録します。
+Function が tTJSNativeClassMethodCallback 型の場合は
+そのまま RawCallback 形式のグローバル関数として動作します。
+
+
+　▼NCB_ATTACH_FUNCTION(Name, TJS2Class, Function);
+
+吉里吉里２の既存のクラス TJS2Class に Name という名前で
+Function を付加します。Function が tTJSNativeClassMethodCallback 型の場合は
+そのままメソッドの RawCallback と同じように動作します。
+
+このマクロでは，非 static な関数しか付加できません。static なメソッドとして
+登録したい場合は，ダミーの static メソッドしか存在しないクラスを作り，
+NCB_ATTACH_CLASS で登録してください。（static メソッドの呼び出しであれば
+ネイティブインスタンスは生成されません）
+
+
+
+　▼NCB_REGISTER_INSTANCE(...); // 未実装
+
+　　⇒ 参照を返す function / property で代用できます
+
+
+　▼NCB_TYPECONV_CAST(Type, CastType);
+
+引数の型が Type の場合，キャスト CastType を指定して
+tTJSVariant と相互変換するように登録します。
+
+　▼NCB_SET_CONVERTOR(Type, Convertor);
+
+引数の型 Type を変換するクラスを登録します。
+詳しくは ncbind.hpp のコメント等を参照してください。
+
+
+
+　▼NCB_PRE_REGIST_CALLBACK(Callback);
+　▼NCB_POST_REGIST_CALLBACK(Callback);
+　▼NCB_PRE_UNREGIST_CALLBACK(Callback);
+　▼NCB_POST_UNREGIST_CALLBACK(Callback);
+
+クラスを登録・開放する前後に呼ばれるコールバック void Callback() を
+登録します。呼ばれる順番は以下のとおりです。
+
+V2Link時：
 	PRE_REGIST_CALLBACK
-	�N���X�o�^
+	クラス登録
 	POST_REGIST_CALLBACK
-V2Unlink���F
+V2Unlink時：
 	PRE_UNREGIST_CALLBACK
-	�N���X�J��
+	クラス開放
 	POST_UNREGIST_CALLBACK
 
-������ނ̃R�[���o�b�N�������o�^���ꂽ�ꍇ�̏��Ԃ̕ۏ؂͂���܂���B
+同じ種類のコールバックが複数登録された場合の順番の保証はありません。
 
 
 
-������
+●制限
 
-�E�p���֌W�̓T�|�[�g���Ă��Ȃ�
-�@�ˌp���֌W�ɂ���N���X���m��o�^�����ꍇ�C�ʂ̃N���X�����ɂȂ�
-	�Einstanceof �Ŕh���N���X�C���X�^���X�̃`�F�b�N���ł��Ȃ�
-	�E�����ɔh���N���X�C���X�^���X��n�����ꍇ��
-	�@�C���X�^���X�|�C���^���擾�ł����ɃG���[�ƂȂ�
+・継承関係はサポートしていない
+　⇒継承関係にあるクラス同士を登録した場合，別のクラス扱いになる
+	・instanceof で派生クラスインスタンスのチェックができない
+	・引数に派生クラスインスタンスを渡した場合は
+	　インスタンスポインタが取得できずにエラーとなる
 
-�E�����̏ȗ��ɂ��f�t�H���g�l���T�|�[�g���Ă��Ȃ�
-�@��TJS����n�������̌��̓��\�b�h�̈����̌��ȏ�ł��邱��
-�@�@�]���ɓn���ꂽ�����͖�������C����Ȃ��ꍇ�� TJS_E_BADPARAMCOUNT ���Ԃ�
-�@�ˉϒ��������T�|�[�g����ꍇ�� RawCallback �Ŏ��͎������邱��
+・引数の省略によるデフォルト値をサポートしていない
+　⇒TJSから渡す引数の個数はメソッドの引数の個数以上であること
+　　余分に渡された引数は無視され，足りない場合は TJS_E_BADPARAMCOUNT が返る
+　⇒可変長引数をサポートする場合は RawCallback で自力実装すること
 
-�Enamespace ���ł̃N���X�o�^�͍l�����Ă��Ȃ��̂� namespace �O�ōs������
-�@��namespace ���̃N���X��o�^����ꍇ�� typedef ����Ȃǂ�
-�@�@�K�� namespace �̊O�ōs�� (:: ���܂ނƃG���[�ɂȂ�)
+・namespace 内でのクラス登録は考えられていないので namespace 外で行うこと
+　⇒namespace 内のクラスを登録する場合は typedef するなどで
+　　必ず namespace の外で行う (:: を含むとエラーになる)
 
   ex.
 	typedef ::Foo::Bar::TargetClass TargetClass;
@@ -323,42 +323,42 @@ V2Unlink���F
 	NCB_REGISTER_CLASS(TargetClass) { ... }
 
 
-�E�R���X�g���N�^�͂P�����L�q�ł��Ȃ�
-�@�˃C���X�^���X�𐶐����� static �ȃ��\�b�h�������Ȃǂ��ĉ�������
+・コンストラクタは１つしか記述できない
+　⇒インスタンスを生成する static なメソッドを書くなどして解決する
 
-�E�o�^�����N���X�̃C���X�^���X�����\�b�h�̕Ԃ�l�ŕԂ����ɂ͒��ӂ��K�v
-�@�˃C���X�^���X�̑��d delete ��C���� delete ����Ă��閳����
-�@�@�C���X�^���X���g�p�����\��������
+・登録したクラスのインスタンスをメソッドの返り値で返す時には注意が必要
+　⇒インスタンスの多重 delete や，既に delete されている無効な
+　　インスタンスが使用される可能性がある
 
-�R�s�[�ŕԂ��@�F�R�s�[�R���X�g���N�^�ŐV���ȃC���X�^���X����������TJS���֕Ԃ�
-�Q�ƂŕԂ��@�@�F���̂܂�TJS���֕Ԃ���Cinvalidate ���� delete ����Ȃ�
-�|�C���^�ŕԂ��F���̂܂�TJS���֓n����Cinvalidate ���� delete �����
-const �̎Q��/�|�C���^�͋����I�� const ���������
-
-
-�E�Q�ƂŒl�����������ĕԂ��悤�ȃ��\�b�h�ɂ͑Ή��ł��Ȃ�
-�@�˓K����RawCallback�֐��������Ȃǂ��đΏ����邱��
-
-�ETJSCreateNativeClassMethod ���g�킸�Ƀ��\�b�h�Ăяo����Ǝ�����
-�@���Ă��邽�߁C�����ɂ킽��\�[�X�݊����ۂĂ�Ƃ����ۏ؂��Ȃ�
-�@�ˋg���g���Q���̂��������e�t�F�[�Y������ʂɂ����c��ˁH
+コピーで返す　：コピーコンストラクタで新たなインスタンスが生成されTJS側へ返る
+参照で返す　　：そのままTJS側へ返され，invalidate 時に delete されない
+ポインタで返す：そのままTJS側へ渡され，invalidate 時に delete される
+const の参照/ポインタは強制的に const 解除される
 
 
-���Ƃ茾
+・参照で値を書き換えて返すようなメソッドには対応できない
+　⇒適当なRawCallback関数を書くなどして対処すること
 
-�E�e���v���[�g�� Modern C++ Design ���Ђ�ǂ񂾂��炢�ŁCBoost�Ƃ����
-�@ncb_invoke�̑O�g�o�[�W������TypeList�Ŏ��������������������
-�@�����܂ł���悤�ȕ��ł͂Ȃ��ƌ�����̂ō���͗͋ƂŎ���
-
-�EtTJSVariantType tTJSVariant::Type() �͉��� const ���\�b�h�łȂ��̂�
-�@const_cast�g���n���ɂȂ��Ĕs�k�C��
-	�ˏC������܂������C�]���݊��d���̂��ߌ��ǎg���Ȃ��i�܁j
+・TJSCreateNativeClassMethod を使わずにメソッド呼び出しを独自実装
+　しているため，将来にわたりソース互換が保てるという保証がない
+　⇒吉里吉里２自体もうメンテフェーズだから別にいい…よね？
 
 
+●独り言
 
-��TODO����
+・テンプレートは Modern C++ Design 書籍を読んだくらいで，Boostとかｼﾗﾈ
+　ncb_invokeの前身バージョンでTypeListで実装したやつもあったけど
+　そこまでするような物ではないと悟ったので今回は力業で実現
 
-�Encibind.hpp �Â��R�����g�̐���
-�ENCB_SET_CONVERTOR �e�X�g
-�EAttach���Ɋ����̃��\�b�h���������ꍇ�̏���
-�E�I�[�o�[���[�h�ƈ����̏ȗ����T�|�[�g���邩�H
+・tTJSVariantType tTJSVariant::Type() は何故 const メソッドでないのか
+　const_cast使うハメになって敗北気分
+	⇒修正されましたが，従来互換重視のため結局使えない（涙）
+
+
+
+●TODOメモ
+
+・ncibind.hpp 古いコメントの整理
+・NCB_SET_CONVERTOR テスト
+・Attach時に既存のメソッドがあった場合の処理
+・オーバーロードと引数の省略をサポートするか？

@@ -1,15 +1,15 @@
 Title: layerExAVI plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Layer �N���X�� AVI �`���ł̕ۑ��p���\�b�h��ǉ�����v���O�C���ł��B
-�Ƃ肠���� AVI 2.0 �Ή��ł��ĂȂ��̂ł���܂��ꂵ���Ȃ��Ǝv���܂��B
+Layer クラスに AVI 形式での保存用メソッドを追加するプラグインです。
+とりあえず AVI 2.0 対応できてないのであんまうれしくないと思います。
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

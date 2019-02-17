@@ -1,45 +1,45 @@
-TITLE: SimpleBinder‰ğà
+TITLE: SimpleBinderè§£èª¬
 AUTHOR: miahmie
 
-œ‚±‚ê‚Í‰½‚©
+â—ã“ã‚Œã¯ä½•ã‹
 
-‹g—¢‹g—¢‚Ìƒvƒ‰ƒOƒCƒ“‚ğ”äŠr“IŠÈ’P‚É‘‚¯‚é‚æ‚¤‚É‚·‚éƒwƒ‹ƒp‚Å‚·B
-—‚½‚æ‚¤‚È‚à‚Ì‚Éncbind‚ª‚ ‚è‚Ü‚·‚ªC‚»‚ê‚ğŠÈˆÕ‚É‚µ‚½ƒo[ƒWƒ‡ƒ“‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’æ¯”è¼ƒçš„ç°¡å˜ã«æ›¸ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ˜ãƒ«ãƒ‘ã§ã™ã€‚
+ä¼¼ãŸã‚ˆã†ãªã‚‚ã®ã«ncbindãŒã‚ã‚Šã¾ã™ãŒï¼Œãã‚Œã‚’ç°¡æ˜“ã«ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ãªã£ã¦ã„ã¾ã™ã€‚
 
-ncbind‚Æ‚Ì”äŠrF
-E©“®Œ^•ÏŠ·‚ª‚È‚¢
-EŠÖ”‚Ì‰Â•Ï’·ˆø”‚É‘Î‰
-E“o˜^‚Ì‚½‚ß‚Ì‹Lq•û–@‚ªƒVƒ“ƒvƒ‹
+ncbindã¨ã®æ¯”è¼ƒï¼š
+ãƒ»è‡ªå‹•å‹å¤‰æ›ãŒãªã„
+ãƒ»é–¢æ•°ã®å¯å¤‰é•·å¼•æ•°ã«å¯¾å¿œ
+ãƒ»ç™»éŒ²ã®ãŸã‚ã®è¨˜è¿°æ–¹æ³•ãŒã‚·ãƒ³ãƒ—ãƒ«
 
-‚È‚ºncbind‚ğg‚í‚È‚¢‚©F
-E‚à‚Á‚ÆèŒy‚Éƒvƒ‰ƒOƒCƒ“‚ğ‘‚«‚½‚¢
-E‰Â•Ï’·ˆø”‚ğèŒy‚Éˆµ‚¦‚éincbind‚Ìê‡RawCallback‚Å‚µ‚©ˆµ‚¦‚È‚¢j
-Encbind‚ÌƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚ª•¡G‚·‚¬‚Ä’Ç‚¤‚Ì‚ª–Ê“|
-Encbind‚ğ‘‚¢‚½‚Ì‚ªŒÃ‚·‚¬‚Ä¡Œ©‚é‚ÆiˆÈ‰º—ª
-
-
-ˆÈ‰ºC‹g—¢‹g—¢‚Ìƒvƒ‰ƒOƒCƒ“‚ÌŠî–{“I‚È’m¯‚ª‚ ‚é‚±‚Æ‚ğ‘O’ñ‚Æ‚µ‚Äà–¾‚µ‚Ü‚·B
+ãªãœncbindã‚’ä½¿ã‚ãªã„ã‹ï¼š
+ãƒ»ã‚‚ã£ã¨æ‰‹è»½ã«ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’æ›¸ããŸã„
+ãƒ»å¯å¤‰é•·å¼•æ•°ã‚’æ‰‹è»½ã«æ‰±ãˆã‚‹ï¼ˆncbindã®å ´åˆRawCallbackã§ã—ã‹æ‰±ãˆãªã„ï¼‰
+ãƒ»ncbindã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ãŒè¤‡é›‘ã™ãã¦è¿½ã†ã®ãŒé¢å€’
+ãƒ»ncbindã‚’æ›¸ã„ãŸã®ãŒå¤ã™ãã¦ä»Šè¦‹ã‚‹ã¨ï¼ˆä»¥ä¸‹ç•¥
 
 
-œg‚¢•û
+ä»¥ä¸‹ï¼Œå‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®åŸºæœ¬çš„ãªçŸ¥è­˜ãŒã‚ã‚‹ã“ã¨ã‚’å‰æã¨ã—ã¦èª¬æ˜ã—ã¾ã™ã€‚
+
+
+â—ä½¿ã„æ–¹
 
 #include <windows.h>
 #include "tp_stub.h"
 #include "simplebinder.hpp"
 
-‚È‚Ç‚Æ‚µ‚Ä—\‚ßtp_stub“™‚ğƒCƒ“ƒNƒ‹[ƒh‚Ìã‚Å
-simplebinder.hpp‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ü‚·B
+ãªã©ã¨ã—ã¦äºˆã‚tp_stubç­‰ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã®ä¸Šã§
+simplebinder.hppã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
 
 
-œ‹Lq•û–@
+â—è¨˜è¿°æ–¹æ³•
 
-g‚¤‚Ì‚Í SimpleBinder::BindUtil ‚Ì‚Pí—Ş‚Ì‚İ‚Å‚·B
-g‚¤‘O‚É—\‚ß
+ä½¿ã†ã®ã¯ SimpleBinder::BindUtil ã®ï¼‘ç¨®é¡ã®ã¿ã§ã™ã€‚
+ä½¿ã†å‰ã«äºˆã‚
 
 using SimpleBinder::BindUtil;
 
-‚È‚Ç‚Æ‚µ‚Ä‚¨‚­‚Æ—Ç‚¢‚Å‚µ‚å‚¤B
-ƒvƒ‰ƒOƒCƒ““o˜^^‰ğœiV2Link/V2Unlinkj‚ÌŠ‚ÅC
+ãªã©ã¨ã—ã¦ãŠãã¨è‰¯ã„ã§ã—ã‚‡ã†ã€‚
+ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ç™»éŒ²ï¼è§£é™¤ï¼ˆV2Link/V2Unlinkï¼‰ã®æ‰€ã§ï¼Œ
 
 BindUtil(link)
  .Function(name, method)
@@ -47,33 +47,33 @@ BindUtil(link)
  .Constant(name, value)
  .Variant(name, value);
 
-‚Ì‚æ‚¤‚É”ìŒq‚¬‚Å‹L“ü‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-link‚Ítrue‚È‚ç“o˜^Cfalse‚È‚ç‰ğœiÁ‚·j‚Ì“®ì‚É‚È‚è‚Ü‚·B
-‚»‚Ì‘¼‚ÌÚ×à–¾‚ÍŒãq‚µ‚Ü‚·B
+ã®ã‚ˆã†ã«æ•°ç ç¹‹ãã§è¨˜å…¥ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+linkã¯trueãªã‚‰ç™»éŒ²ï¼Œfalseãªã‚‰è§£é™¤ï¼ˆæ¶ˆã™ï¼‰ã®å‹•ä½œã«ãªã‚Šã¾ã™ã€‚
+ãã®ä»–ã®è©³ç´°èª¬æ˜ã¯å¾Œè¿°ã—ã¾ã™ã€‚
 
 
-Šù‘¶‚ÌƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚Éƒƒ“ƒo‚ğ¶‚â‚µ‚½‚¢ê‡‚ÍC
+æ—¢å­˜ã®ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ¡ãƒ³ãƒã‚’ç”Ÿã‚„ã—ãŸã„å ´åˆã¯ï¼Œ
 
 BindUtil(basename, link)
 
-‚Ì‚æ‚¤‚ÉC“o˜^Šî“_‚Æ‚È‚éˆÊ’ui—áFbasename=TJS_W("System")“™j‚ğw’è‚·‚é‚Æ
-‚»‚±‚É‘Î‚µ‚Ä“o˜^^‰ğœ‚ğs‚¢‚Ü‚·B
+ã®ã‚ˆã†ã«ï¼Œç™»éŒ²åŸºç‚¹ã¨ãªã‚‹ä½ç½®ï¼ˆä¾‹ï¼šbasename=TJS_W("System")ç­‰ï¼‰ã‚’æŒ‡å®šã™ã‚‹ã¨
+ãã“ã«å¯¾ã—ã¦ç™»éŒ²ï¼è§£é™¤ã‚’è¡Œã„ã¾ã™ã€‚
 
 BindUtil(TJS_W("Hoge.Fuga.Foo.Bar"), link)
 
-‚Ì‚æ‚¤‚ÉC[‚¢ŠK‘w‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä‚à‘€ì‰Â”\‚Å‚·B
-i‚½‚¾‚µC‚»‚ÌŠK‘w‚ªŠù‚É‘¶İ‚µ‚Ä‚¢‚é‚±‚Æ‚ª‘O’ñ‚Å‚·j
+ã®ã‚ˆã†ã«ï¼Œæ·±ã„éšå±¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ã‚‚æ“ä½œå¯èƒ½ã§ã™ã€‚
+ï¼ˆãŸã ã—ï¼Œãã®éšå±¤ãŒæ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã“ã¨ãŒå‰æã§ã™ï¼‰
 
 
-iTJSDispatch2*‚ÌƒfƒBƒXƒpƒbƒ`‚É‘Î‚µ‚Ä‚à‘€ì‰Â”\‚Å‚·B
+iTJSDispatch2*ã®ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã«å¯¾ã—ã¦ã‚‚æ“ä½œå¯èƒ½ã§ã™ã€‚
 
 BindUtil(object, link)
 
-‚Ì‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+ã®ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
 
 
-ƒlƒCƒeƒBƒuƒNƒ‰ƒX‚à“o˜^‰Â”\‚Å‚·‚ªC•¡”‚ÌƒNƒ‰ƒX‚ğ“o˜^‚·‚éê‡‚Í
-”ìŒq‚¬‚ğØ‚Á‚Ä‚©‚çÄ“x•Ê‚ÌƒNƒ‰ƒX‚ğ“o˜^‚·‚éŒ`‚É‚µ‚Ü‚·B
+ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¯ãƒ©ã‚¹ã‚‚ç™»éŒ²å¯èƒ½ã§ã™ãŒï¼Œè¤‡æ•°ã®ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²ã™ã‚‹å ´åˆã¯
+æ•°ç ç¹‹ãã‚’åˆ‡ã£ã¦ã‹ã‚‰å†åº¦åˆ¥ã®ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²ã™ã‚‹å½¢ã«ã—ã¾ã™ã€‚
 
 BindUtil(link)
  .Class(classnameA, factory)
@@ -83,80 +83,80 @@ BindUtil(link)
  .Class(classnameB, factory)
  .Function(name, method);
 
-‚±‚ê‚Í.Class‚ğg‚Á‚½ê‡‚É‚»‚êˆÈ~‚Ì“o˜^‘ÎÛ‚ªƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚É‚È‚é‚½‚ß‚Å‚·B
+ã“ã‚Œã¯.Classã‚’ä½¿ã£ãŸå ´åˆã«ãã‚Œä»¥é™ã®ç™»éŒ²å¯¾è±¡ãŒã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãªã‚‹ãŸã‚ã§ã™ã€‚
 
 
-œ“o˜^‚Å‚«‚éŠÖ”
+â—ç™»éŒ²ã§ãã‚‹é–¢æ•°
 
-BindUtil‚Å‚Í‰º‹L‚ÌŒ`®‚ÌŠÖ”‚Ì‚İ“o˜^‰Â”\‚Å‚·Bi‚¢‚¸‚ê‚àN=8‚Ü‚Å‘Î‰j
+BindUtilã§ã¯ä¸‹è¨˜ã®å½¢å¼ã®é–¢æ•°ã®ã¿ç™»éŒ²å¯èƒ½ã§ã™ã€‚ï¼ˆã„ãšã‚Œã‚‚N=8ã¾ã§å¯¾å¿œï¼‰
 
-Emethod(result, args*)Œ^
+ãƒ»method(result, args*)å‹
 
 tjs_error (*)(tTJSVariant *result);
 tjs_error (*)(tTJSVariant *result, tTJSVariant *arg1);
 tjs_error (*)(tTJSVariant *result, tTJSVariant *arg1, tTJSVariant *arg2);
 tjs_error (*)(tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN);
 
-Emethod(result, args*, optnum, optargs)Œ^
+ãƒ»method(result, args*, optnum, optargs)å‹
 
 tjs_error (*)(tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
-¦ã‚Æ“¯—l‚Éarg1`argN‚ÌŒÂ”‚Í‰Â•Ï‚Å‚·
+â€»ä¸Šã¨åŒæ§˜ã«arg1ã€œargNã®å€‹æ•°ã¯å¯å¤‰ã§ã™
 
-Emethod(objthis, result, args*)Œ^
+ãƒ»method(objthis, result, args*)å‹
 
 tjs_error (*)(iTJSDispatch2 *objthis, tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN);
 
-Emethod(objthis, result, args*, optnum, optargs)Œ^
+ãƒ»method(objthis, result, args*, optnum, optargs)å‹
 
 tjs_error (*)(iTJSDispatch2 *objthis, tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
 
 
-Einstance->method(...)Œ^i¦ƒNƒ‰ƒX“o˜^‚Ì‚İj
+ãƒ»instance->method(...)å‹ï¼ˆâ€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿ï¼‰
 
 tjs_error (Class::*)(tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN);
 tjs_error (Class::*)(tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
 
-Emethod(instance, ...)Œ^i¦ƒNƒ‰ƒX“o˜^‚Ì‚İj
+ãƒ»method(instance, ...)å‹ï¼ˆâ€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿ï¼‰
 
 tjs_error (*)(Class *instance, tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN);
 tjs_error (*)(Class *instance, tTJSVariant *result, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
 
 
-TJS‚©‚çŒÄ‚Î‚ê‚éÛCarg1`argN‚ÌŒÂ”‚É–‚½‚È‚¢ê‡‚Í
-‘ÎÛŠÖ”‚ªŒÄ‚Î‚ê‚é‘O‚ÉTJS_E_BADPARAMCOUNT‚ª•Ô‚è‚Ü‚·B
-‰Â•Ï’·ˆø”Œü‚¯‚Ìoptnum‚Íarg1`argN‚ÌŒÂ”‚ğ·‚µˆø‚¢‚½”’l‚ª“n‚³‚ê‚Ü‚·B
-optargs‚Ì—LŒøŒÂ”‚Æ‚µ‚Äˆµ‚¤‚±‚Æ‚ªo—ˆ‚Ü‚·Bi’Ç‰Áˆø”‚ª‚È‚¯‚ê‚Îoptnum=0j
+TJSã‹ã‚‰å‘¼ã°ã‚Œã‚‹éš›ï¼Œarg1ã€œargNã®å€‹æ•°ã«æº€ãŸãªã„å ´åˆã¯
+å¯¾è±¡é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹å‰ã«TJS_E_BADPARAMCOUNTãŒè¿”ã‚Šã¾ã™ã€‚
+å¯å¤‰é•·å¼•æ•°å‘ã‘ã®optnumã¯arg1ã€œargNã®å€‹æ•°ã‚’å·®ã—å¼•ã„ãŸæ•°å€¤ãŒæ¸¡ã•ã‚Œã¾ã™ã€‚
+optargsã®æœ‰åŠ¹å€‹æ•°ã¨ã—ã¦æ‰±ã†ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚ï¼ˆè¿½åŠ å¼•æ•°ãŒãªã‘ã‚Œã°optnum=0ï¼‰
 
 
-œ“o˜^‚Å‚«‚éƒvƒƒpƒeƒB
+â—ç™»éŒ²ã§ãã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
-ƒvƒƒpƒeƒB‚Ìsetter,getterŒü‚¯ŠÖ”‚Í‰º‹L‚ÌŒ`®‚Å“o˜^‰Â”\‚Å‚·B
+ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®setter,getterå‘ã‘é–¢æ•°ã¯ä¸‹è¨˜ã®å½¢å¼ã§ç™»éŒ²å¯èƒ½ã§ã™ã€‚
 
-EgetterŒ^
+ãƒ»getterå‹
 
 tjs_error (*)(tTJSVariant *result);
 tjs_error (*)(iTJSDispatch2 *objthis, tTJSVariant *result);
 
-tjs_error (Class::*)(tTJSVariant *result) const; //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
-tjs_error (Class::*)(tTJSVariant *result); //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
-tjs_error (*)(const Class *instance, tTJSVariant *result); //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
-tjs_error (*)(Class *instance, tTJSVariant *result); //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
+tjs_error (Class::*)(tTJSVariant *result) const; //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
+tjs_error (Class::*)(tTJSVariant *result); //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
+tjs_error (*)(const Class *instance, tTJSVariant *result); //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
+tjs_error (*)(Class *instance, tTJSVariant *result); //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
 
 
-EsetterŒ^
+ãƒ»setterå‹
 
 tjs_error (*)(const tTJSVariant *value);
 tjs_error (*)(iTJSDispatch2 *objthis, const tTJSVariant *value);
 
-tjs_error (Class::*)(const tTJSVariant *value); //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
-tjs_error (*)(Class *instance, const tTJSVariant *value); //¦ƒNƒ‰ƒX“o˜^‚Ì‚İ
+tjs_error (Class::*)(const tTJSVariant *value); //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
+tjs_error (*)(Class *instance, const tTJSVariant *value); //â€»ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®ã¿
 
 
-œ“o˜^‚Å‚«‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^
+â—ç™»éŒ²ã§ãã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-ƒNƒ‰ƒX‚ğ“o˜^‚·‚éÛ‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^^ƒfƒXƒgƒ‰ƒNƒ^‚Í‰º‹L‚ÌŒ`®‚Å“o˜^‰Â”\‚Å‚·B
+ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²ã™ã‚‹éš›ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯ä¸‹è¨˜ã®å½¢å¼ã§ç™»éŒ²å¯èƒ½ã§ã™ã€‚
 
-EfactoryŒ^
+ãƒ»factoryå‹
 
 tjs_error (*)(Class* &instance, tTJSVariant *arg1, ... tTJSVariant *argN);
 tjs_error (*)(Class* &instance, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
@@ -164,21 +164,21 @@ tjs_error (*)(Class* &instance, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_in
 tjs_error (*)(iTJSDispatch2 *objthis, Class* &instance, tTJSVariant *arg1, ... tTJSVariant *argN);
 tjs_error (*)(iTJSDispatch2 *objthis, Class* &instance, tTJSVariant *arg1, ... tTJSVariant *argN, tjs_int optnum, tTJSVariant **optargs);
 
-EterminatorŒ^
+ãƒ»terminatorå‹
 
 void (*)(Class *instance);
 
 
-œv2link.cpp‚É‚Â‚¢‚Ä
+â—v2link.cppã«ã¤ã„ã¦
 
-BindUtil‚Ív2link.cpp‚ÆƒZƒbƒg‚Åg‚¤‚±‚Æ‚ğ‘O’ñ‚Æ‚µ‚ÄİŒv‚³‚ê‚Ä‚¢‚Ü‚·B
-v2link.cpp ‚ÍÅ’áŒÀ‚ÌV2Link/V2Unlink‚ğ’è‹`‚µ‚½ƒ\[ƒX‚Å
+BindUtilã¯v2link.cppã¨ã‚»ãƒƒãƒˆã§ä½¿ã†ã“ã¨ã‚’å‰æã¨ã—ã¦è¨­è¨ˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+v2link.cpp ã¯æœ€ä½é™ã®V2Link/V2Unlinkã‚’å®šç¾©ã—ãŸã‚½ãƒ¼ã‚¹ã§
 
 extern bool onV2Link();
 extern bool onV2Unlink();
 
-‚ğŠO•”‚É’u‚­‚±‚Æ‚ÅCTJS‚Ö‚Ì”CˆÓ‚Ì“o˜^‰ğœ‘€ì‚ğs‚¢‚Ü‚·B
-‰º‹L‚Ì‚æ‚¤‚É’è‹`‚·‚é‚±‚Æ‚ÅC“o˜^E‰ğœ‚ğ‚PŠÖ”‚Ås‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+ã‚’å¤–éƒ¨ã«ç½®ãã“ã¨ã§ï¼ŒTJSã¸ã®ä»»æ„ã®ç™»éŒ²è§£é™¤æ“ä½œã‚’è¡Œã„ã¾ã™ã€‚
+ä¸‹è¨˜ã®ã‚ˆã†ã«å®šç¾©ã™ã‚‹ã“ã¨ã§ï¼Œç™»éŒ²ãƒ»è§£é™¤ã‚’ï¼‘é–¢æ•°ã§è¡Œã†ã“ã¨ãŒã§ãã¾ã™ã€‚
 
 bool Entry(bool link) {
   return 
@@ -193,130 +193,130 @@ bool onV2Link()   { return Entry(true);  }
 bool onV2Unlink() { return Entry(false); }
 
 
-œncbind‚Æ‚Ì‹¤—L‚É‚Â‚¢‚Ä
+â—ncbindã¨ã®å…±æœ‰ã«ã¤ã„ã¦
 
-’P‘Ì‚ÌFunction/Property/Constant/Variant‚ÉŠÖ‚µ‚Ä‚Í
-ncbind‚Æ¬‚º‚Äg‚¤‚±‚Æ‚ªo—ˆ‚Ü‚·B
-{PRE/POST}_*_CALLBACK ‚Ìƒ}ƒNƒ‚Å“o˜^‚µ‚½ŠÖ”“à‚Å
-BindUtil‚Ì“o˜^^‰ğœ‘€ì‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
-‚È‚¨Cncbind‚ğg‚¤‚Æ‚«‚ÍC‘Oq‚Ì v2link.cpp ‚Íg—p‚Å‚«‚Ü‚¹‚ñB
-incbind.cpp‚ÉV2Link/V2Unlink‚ª‘¶İ‚·‚é‚½‚ßj
+å˜ä½“ã®Function/Property/Constant/Variantã«é–¢ã—ã¦ã¯
+ncbindã¨æ··ãœã¦ä½¿ã†ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
+{PRE/POST}_*_CALLBACK ã®ãƒã‚¯ãƒ­ã§ç™»éŒ²ã—ãŸé–¢æ•°å†…ã§
+BindUtilã®ç™»éŒ²ï¼è§£é™¤æ“ä½œã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+ãªãŠï¼Œncbindã‚’ä½¿ã†ã¨ãã¯ï¼Œå‰è¿°ã® v2link.cpp ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚
+ï¼ˆncbind.cppã«V2Link/V2UnlinkãŒå­˜åœ¨ã™ã‚‹ãŸã‚ï¼‰
 
-ƒNƒ‰ƒX‚Ì“o˜^‚ÉŠÖ‚µ‚Ä‚ÍCƒlƒCƒeƒBƒuƒNƒ‰ƒX“o˜^‚ÌIDŠÇ—‚Ì‹@\‚ªˆá‚¤‚½‚ßC
-¬‚º‚Äg‚¤‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
+ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²ã«é–¢ã—ã¦ã¯ï¼Œãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¯ãƒ©ã‚¹ç™»éŒ²æ™‚ã®IDç®¡ç†ã®æ©Ÿæ§‹ãŒé•ã†ãŸã‚ï¼Œ
+æ··ãœã¦ä½¿ã†ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚
 
-Encbind‚Å“o˜^‚µ‚½ƒNƒ‰ƒXA‚ÉCBindUtil‚ÅŠÖ”‚ğ’Ç‰Á‚·‚é
-EBindUtil‚Å“o˜^‚µ‚½ƒNƒ‰ƒXB‚ÉCncbind‚ÅŠÖ”‚ğ’Ç‰Á‚·‚é
+ãƒ»ncbindã§ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹Aã«ï¼ŒBindUtilã§é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹
+ãƒ»BindUtilã§ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹Bã«ï¼Œncbindã§é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹
 
-‚Æ‚¢‚Á‚½‚æ‚¤‚È‚±‚Æ‚ÍŠî–{“I‚É‚Ío—ˆ‚Ü‚¹‚ñB
-©‘O‚ÅiTJSDispatch2*‚ÆƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚Ì•ÏŠ·‚ğs‚¤‚È‚Ç‚·‚ê‚Î
-‚Å‚«‚È‚­‚Í‚ ‚è‚Ü‚¹‚ñ‚ªC¬—‚ÌŒ³‚É‚È‚è‚Ü‚·‚Ì‚Å‚¨Š©‚ß‚µ‚Ü‚¹‚ñB
+ã¨ã„ã£ãŸã‚ˆã†ãªã“ã¨ã¯åŸºæœ¬çš„ã«ã¯å‡ºæ¥ã¾ã›ã‚“ã€‚
+è‡ªå‰ã§iTJSDispatch2*ã¨ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã®å¤‰æ›ã‚’è¡Œã†ãªã©ã™ã‚Œã°
+ã§ããªãã¯ã‚ã‚Šã¾ã›ã‚“ãŒï¼Œæ··ä¹±ã®å…ƒã«ãªã‚Šã¾ã™ã®ã§ãŠå‹§ã‚ã—ã¾ã›ã‚“ã€‚
 
-Š®‘S‚É“Æ—§‚µ‚½ƒNƒ‰ƒX“¯m‚Å‚ ‚ê‚ÎC¬‚º‚Ä‰^—p‚·‚é‚±‚Æ‚Í‰Â”\‚Å‚·B
+å®Œå…¨ã«ç‹¬ç«‹ã—ãŸã‚¯ãƒ©ã‚¹åŒå£«ã§ã‚ã‚Œã°ï¼Œæ··ãœã¦é‹ç”¨ã™ã‚‹ã“ã¨ã¯å¯èƒ½ã§ã™ã€‚
 
-Encbind‚Å“o˜^‚·‚éƒNƒ‰ƒXA‚ÆCBindUtil‚Å“o˜^‚·‚éƒNƒ‰ƒXB
+ãƒ»ncbindã§ç™»éŒ²ã™ã‚‹ã‚¯ãƒ©ã‚¹Aã¨ï¼ŒBindUtilã§ç™»éŒ²ã™ã‚‹ã‚¯ãƒ©ã‚¹B
 
-‚½‚¾‚µ‚±‚Ìê‡CƒNƒ‰ƒXB‚ÉŠÖ‚µ‚Äncbind‚Å‚Ìˆø”‚Ì©“®•ÏŠ·‚Í‚Å‚«‚È‚­‚È‚è‚Ü‚·B
+ãŸã ã—ã“ã®å ´åˆï¼Œã‚¯ãƒ©ã‚¹Bã«é–¢ã—ã¦ncbindã§ã®å¼•æ•°ã®è‡ªå‹•å¤‰æ›ã¯ã§ããªããªã‚Šã¾ã™ã€‚
 
 
 
-œƒŠƒtƒ@ƒŒƒ“ƒX
+â—ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹
 
-¦•ª‚©‚è‚â‚·‚­‚·‚é‚½‚ßCˆê•”template<`>‚É‚Â‚¢‚Ä‚Í‹Lq‚ğÈ—ª‚µ‚Ä‚¢‚Ü‚·B
+â€»åˆ†ã‹ã‚Šã‚„ã™ãã™ã‚‹ãŸã‚ï¼Œä¸€éƒ¨template<ã€œ>ã«ã¤ã„ã¦ã¯è¨˜è¿°ã‚’çœç•¥ã—ã¦ã„ã¾ã™ã€‚
 
 class BindUtil {
 public:
   /**
-   * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-   * @param link ƒŠƒ“ƒN^‰ğœw’è
-   * @param base Šî“_ŠK‘wi"."‚Å‹æØ‚Á‚ÄŠK‘ww’è‰Â”\j
-   * @param store Šî“_ƒIƒuƒWƒFƒNƒgiw’è‚ª‚È‚¢ê‡‚Íglobalj
+   * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+   * @param link ãƒªãƒ³ã‚¯ï¼è§£é™¤æŒ‡å®š
+   * @param base åŸºç‚¹éšå±¤ï¼ˆ"."ã§åŒºåˆ‡ã£ã¦éšå±¤æŒ‡å®šå¯èƒ½ï¼‰
+   * @param store åŸºç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆæŒ‡å®šãŒãªã„å ´åˆã¯globalï¼‰
    */
-  BindUtil(bool link); //< globalŠî“_
-  BindUtil(const ttstr &base, bool link); //< w’èŠK‘wŠî“_
-  BindUtil(iTJSDispatch2 *store, bool link); //< w’èobjectŠî“_
-  BindUtil(const ttstr &base, iTJSDispatch2 *store, bool link); //< ‘g‚İ‡‚í‚¹
+  BindUtil(bool link); //< globalåŸºç‚¹
+  BindUtil(const ttstr &base, bool link); //< æŒ‡å®šéšå±¤åŸºç‚¹
+  BindUtil(iTJSDispatch2 *store, bool link); //< æŒ‡å®šobjectåŸºç‚¹
+  BindUtil(const ttstr &base, iTJSDispatch2 *store, bool link); //< çµ„ã¿åˆã‚ã›
 
   /**
-   * ŠÖ”‚ğ“o˜^
-   * @param name “o˜^ŠÖ”–¼
-   * @param method “o˜^‘ÎÛ‚ÌmethodŒ^‚ÌŠÖ”
+   * é–¢æ•°ã‚’ç™»éŒ²
+   * @param name ç™»éŒ²é–¢æ•°å
+   * @param method ç™»éŒ²å¯¾è±¡ã®methodå‹ã®é–¢æ•°
    */
   BindUtil& Function(const ttstr &name, const Method &method);
 
   /**
-   * ƒvƒƒpƒeƒB‚ğ“o˜^
-   * @param name “o˜^ƒvƒƒpƒeƒB–¼
-   * @param get “o˜^‘ÎÛ‚ÌgetterŒ^‚ÌŠÖ”
-   * @param set “o˜^‘ÎÛ‚ÌsetterŒ^‚ÌŠÖ”
-   * ¦setter/getter‚Ç‚¿‚ç‚©‚ª–³‚¢ê‡‚Í 0 ‚ğw’è‚µ‚Ü‚·
+   * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç™»éŒ²
+   * @param name ç™»éŒ²ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+   * @param get ç™»éŒ²å¯¾è±¡ã®getterå‹ã®é–¢æ•°
+   * @param set ç™»éŒ²å¯¾è±¡ã®setterå‹ã®é–¢æ•°
+   * â€»setter/getterã©ã¡ã‚‰ã‹ãŒç„¡ã„å ´åˆã¯ 0 ã‚’æŒ‡å®šã—ã¾ã™
    */
   BindUtil& Property(const ttstr &name, const Getter &get, const Setter &set);
   BindUtil& Property(const ttstr &name, const Getter &get, int noset);
   BindUtil& Property(const ttstr &name, int noget, const Setter &set);
 
   /**
-   * ’è”‚ğ“o˜^
-   * @param name “o˜^’è”–¼
-   * @param value “o˜^‘ÎÛ‚Ì’l(tTJSVariant‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É“n‚¹‚éŒ^)
-   * ¦value‚ğ•Ô‚·getter‚Ì‚İ‚ÌƒvƒƒpƒeƒB‚ğ“o˜^‚µ‚Ü‚·
+   * å®šæ•°ã‚’ç™»éŒ²
+   * @param name ç™»éŒ²å®šæ•°å
+   * @param value ç™»éŒ²å¯¾è±¡ã®å€¤(tTJSVariantã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«æ¸¡ã›ã‚‹å‹)
+   * â€»valueã‚’è¿”ã™getterã®ã¿ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç™»éŒ²ã—ã¾ã™
    */
   BindUtil& Constant(const ttstr &name, const Value &value);
 
   /**
-   * tTJSVariant‚ğ“o˜^
-   * @param name “o˜^’è”–¼
-   * @param value “o˜^‘ÎÛ‚Ì’l(tTJSVariant‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É“n‚¹‚éŒ^)
-   * @param flag PropSet‚É“n‚·ƒtƒ‰ƒO’l
+   * tTJSVariantã‚’ç™»éŒ²
+   * @param name ç™»éŒ²å®šæ•°å
+   * @param value ç™»éŒ²å¯¾è±¡ã®å€¤(tTJSVariantã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«æ¸¡ã›ã‚‹å‹)
+   * @param flag PropSetã«æ¸¡ã™ãƒ•ãƒ©ã‚°å€¤
    */
   BindUtil& Variant(const ttstr &name, const Value &value, tjs_uint32 flag=TJS_MEMBERENSURE|TJS_IGNOREPROP);
 
   /**
-   * ƒNƒ‰ƒX‚ğ‚ğ“o˜^
-   * @param name “o˜^ƒNƒ‰ƒX–¼
-   * @param ctor “o˜^‘ÎÛ‚ÌfactoryŒ^‚ÌŠÖ”
-   * @param dtor “o˜^‘ÎÛ‚ÌterminatorŒ^‚ÌŠÖ”
-   * ¦dtor‚ªw’è‚³‚ê‚È‚¢ê‡‚Í delete instance ‚³‚ê‚Ü‚·
+   * ã‚¯ãƒ©ã‚¹ã‚’ã‚’ç™»éŒ²
+   * @param name ç™»éŒ²ã‚¯ãƒ©ã‚¹å
+   * @param ctor ç™»éŒ²å¯¾è±¡ã®factoryå‹ã®é–¢æ•°
+   * @param dtor ç™»éŒ²å¯¾è±¡ã®terminatorå‹ã®é–¢æ•°
+   * â€»dtorãŒæŒ‡å®šã•ã‚Œãªã„å ´åˆã¯ delete instance ã•ã‚Œã¾ã™
    */
   BindUtil& Class(const ttstr &name, const Factory& ctor);
   BindUtil& Class(const ttstr &name, const Factory& ctor, const Terminator& dtor);
 
   /**
-   * ˆÈ~‚ÌFunction/Property“o˜^‚ÌŠÖ”‚ÌƒRƒ“ƒeƒLƒXƒg‚ğ•ÏX
-   * @param context ƒRƒ“ƒeƒLƒXƒg
-   * ¦Šù‘¶‚ÌSingleton‚ÈƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ÉŠÖ”‚âƒvƒƒpƒeƒB‚ğ·‚µ‚Şê‡‚É
-   *   ƒRƒ“ƒeƒLƒXƒg‚©‚çthis‚ğæ“¾‚·‚é‚È‚Ç“Áê‚È–Ú“I‚Åg—p‚µ‚Ü‚·
+   * ä»¥é™ã®Function/Propertyç™»éŒ²ã®é–¢æ•°ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´
+   * @param context ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+   * â€»æ—¢å­˜ã®Singletonãªã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«é–¢æ•°ã‚„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å·®ã—è¾¼ã‚€å ´åˆã«
+   *   ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‹ã‚‰thisã‚’å–å¾—ã™ã‚‹ãªã©ç‰¹æ®Šãªç›®çš„ã§ä½¿ç”¨ã—ã¾ã™
    */
   BindUtil& SetContext(iTJSDispatch2 *context = 0);
 
   /**
-   * ƒGƒ‰[ƒ`ƒFƒbƒN
-   * ¡‚Ü‚Å‚Ì“o˜^^‰ğœ“®ì‚ÅƒGƒ‰[‚ª‚È‚©‚Á‚½‚©‚Ç‚¤‚©Šm”F
-   * @return valid ƒGƒ‰[‚ª–³‚¢ê‡‚Ítrue
+   * ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
+   * ä»Šã¾ã§ã®ç™»éŒ²ï¼è§£é™¤å‹•ä½œã§ã‚¨ãƒ©ãƒ¼ãŒãªã‹ã£ãŸã‹ã©ã†ã‹ç¢ºèª
+   * @return valid ã‚¨ãƒ©ãƒ¼ãŒç„¡ã„å ´åˆã¯true
    */
   bool IsValid() const;
 
   /**
-   * iTJSDispatch2‚©‚ç”CˆÓ‚ÌƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ì•ÏŠ·
-   * @param obj •ÏŠ·‘ÎÛƒIƒuƒWƒFƒNƒg
-   * @param instance •ÏŠ·‚µ‚½‚¢ƒNƒ‰ƒX‚ÌŒ^ƒ|ƒCƒ“ƒ^iNULL‚Å\‚¢‚Ü‚¹‚ñj
-   * @return ƒ|ƒCƒ“ƒ^
+   * iTJSDispatch2ã‹ã‚‰ä»»æ„ã®ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å¤‰æ›
+   * @param obj å¤‰æ›å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+   * @param instance å¤‰æ›ã—ãŸã„ã‚¯ãƒ©ã‚¹ã®å‹ãƒã‚¤ãƒ³ã‚¿ï¼ˆNULLã§æ§‹ã„ã¾ã›ã‚“ï¼‰
+   * @return ãƒã‚¤ãƒ³ã‚¿
    */
   template <class Class>
   static Class* GetInstance(iTJSDispatch2 *obj, Class *instance);
 
   /**
-   * ”CˆÓŠK‘w‚É‚ ‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
-   * @param base Šî“_ŠK‘wi"."‚Å‹æØ‚Á‚ÄŠK‘ww’è‰Â”\j
-   * @param store Šî“_ƒIƒuƒWƒFƒNƒgiÈ—ªorNULL‚Ìê‡‚Íglobalj
-   * @return ƒIƒuƒWƒFƒNƒg‚ª‚ ‚ê‚ÎiTJSDispatch2ƒ|ƒCƒ“ƒ^C‚È‚¯‚ê‚ÎNULL
+   * ä»»æ„éšå±¤ã«ã‚ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
+   * @param base åŸºç‚¹éšå±¤ï¼ˆ"."ã§åŒºåˆ‡ã£ã¦éšå±¤æŒ‡å®šå¯èƒ½ï¼‰
+   * @param store åŸºç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆçœç•¥æ™‚orNULLã®å ´åˆã¯globalï¼‰
+   * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚Œã°iTJSDispatch2ãƒã‚¤ãƒ³ã‚¿ï¼Œãªã‘ã‚Œã°NULL
    */
   static iTJSDispatch2* GetObject(const ttstr &base, iTJSDispatch2 *root = 0);
 };
 
 
-œƒ‰ƒCƒZƒ“ƒX‚É‚Â‚¢‚Ä
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«ã¤ã„ã¦
 
-simplebinder.hpp, v2link.cpp‚Æ‚à
-‹g—¢‹g—¢‚Q^‹g—¢‹g—¢‚y‚Ìƒ‰ƒCƒZƒ“ƒX€‹’‚Åˆµ‚Á‚Ä‚­‚¾‚³‚¢B
+simplebinder.hpp, v2link.cppã¨ã‚‚
+å‰é‡Œå‰é‡Œï¼’ï¼å‰é‡Œå‰é‡Œï¼ºã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹æº–æ‹ ã§æ‰±ã£ã¦ãã ã•ã„ã€‚
 

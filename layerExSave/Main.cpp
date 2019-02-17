@@ -25,13 +25,13 @@ iTJSDispatch2 *getLayerAssignImages(void)
 #include "savepng.hpp"
 
 //---------------------------------------------------------------------------
-// ƒEƒCƒ“ƒhƒEŠg’£
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ‹¡å¼µ
 //---------------------------------------------------------------------------
 
 class WindowSaveImage;
 
 /**
- * ƒZ[ƒuˆ—ƒXƒŒƒbƒh—pî•ñ
+ * ã‚»ãƒ¼ãƒ–å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨æƒ…å ±
  */
 class SaveInfo {
 
@@ -39,37 +39,37 @@ class SaveInfo {
 	
 protected:
 
-	// ‰Šú‰»•Ï”
-	WindowSaveImage *notify; //< î•ñ’Ê’mæ
-	tTJSVariant layer; //< ƒŒƒCƒ„
-	tTJSVariant filename; //< ƒtƒ@ƒCƒ‹–¼
-	tTJSVariant info;  //< •Û‘¶—pƒ^ƒOî•ñ
-	bool canceled;        //< ƒLƒƒƒ“ƒZƒ‹w¦
-	tTJSVariant handler;  //< ƒnƒ“ƒhƒ‰’l
-	tTJSVariant progressPercent; //< is“x‡‚¢
+	// åˆæœŸåŒ–å¤‰æ•°
+	WindowSaveImage *notify; //< æƒ…å ±é€šçŸ¥å…ˆ
+	tTJSVariant layer; //< ãƒ¬ã‚¤ãƒ¤
+	tTJSVariant filename; //< ãƒ•ã‚¡ã‚¤ãƒ«å
+	tTJSVariant info;  //< ä¿å­˜ç”¨ã‚¿ã‚°æƒ…å ±
+	bool canceled;        //< ã‚­ãƒ£ãƒ³ã‚»ãƒ«æŒ‡ç¤º
+	tTJSVariant handler;  //< ãƒãƒ³ãƒ‰ãƒ©å€¤
+	tTJSVariant progressPercent; //< é€²è¡Œåº¦åˆã„
 	
 protected:
 	/**
-	 * Œ»İ‚Ìó‘Ô‚Ì’Ê’m
-	 * @param percent ƒp[ƒZƒ“ƒg
+	 * ç¾åœ¨ã®çŠ¶æ…‹ã®é€šçŸ¥
+	 * @param percent ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
 	 */
 	bool progress(int percent);
 
 	/**
-	 * ŒÄ‚Ño‚µ—p
+	 * å‘¼ã³å‡ºã—ç”¨
 	 */
 	static bool progressFunc(int percent, void *userData) {
 		SaveInfo *self = (SaveInfo*)userData;
 		return self->progress(percent);
 	}
 	
-	// Œo‰ßƒCƒxƒ“ƒg‘—M
+	// çµŒéã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
 	void eventProgress(iTJSDispatch2 *objthis) {
 		tTJSVariant *vars[] = {&handler, &progressPercent, &layer, &filename};
 		objthis->FuncCall(0, L"onSaveLayerImageProgress", NULL, NULL, 4, vars, objthis);
 	}
 
-	// I—¹ƒCƒxƒ“ƒg‘—M
+	// çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
 	void eventDone(iTJSDispatch2 *objthis) {
 		tTJSVariant result = canceled ? 1 : 0;
 		tTJSVariant *vars[] = {&handler, &result, &layer, &filename};
@@ -77,27 +77,27 @@ protected:
 	}
 	
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	SaveInfo(int handler, WindowSaveImage *notify, tTJSVariant layer, const tjs_char *filename, tTJSVariant info)
 		: handler(handler), notify(notify), layer(layer), filename(filename), info(info), canceled(false) {}
 	
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~SaveInfo() {}
 
-	// ƒnƒ“ƒhƒ‰æ“¾
+	// ãƒãƒ³ãƒ‰ãƒ©å–å¾—
 	int getHandler() {
 		return (int)handler;
 	}
 	
- 	// ˆ—ŠJn
+ 	// å‡¦ç†é–‹å§‹
 	void start();
 
-	// ˆ—ƒLƒƒƒ“ƒZƒ‹
+	// å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	void cancel() {
 		canceled = true;
 	}
 
-	// ‹­§I—¹
+	// å¼·åˆ¶çµ‚äº†
 	void stop() {
 		canceled = true;
 		notify = NULL;
@@ -105,21 +105,21 @@ public:
 };
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ÉƒŒƒCƒ„ƒZ[ƒu‹@”\‚ğŠg’£
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ¬ã‚¤ãƒ¤ã‚»ãƒ¼ãƒ–æ©Ÿèƒ½ã‚’æ‹¡å¼µ
  */
 class WindowSaveImage {
 
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 
-	vector<SaveInfo*> saveinfos; //< ƒZ[ƒu’†î•ñ•Û—p
+	vector<SaveInfo*> saveinfos; //< ã‚»ãƒ¼ãƒ–ä¸­æƒ…å ±ä¿æŒç”¨
 
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static void checkThread(void *data) {
 		((SaveInfo*)data)->start();
 	}
 
-	// Œo‰ß’Ê’m
+	// çµŒéé€šçŸ¥
 	void eventProgress(SaveInfo *sender) {
 		int handler = sender->getHandler();
 		if (saveinfos[handler] == sender) {
@@ -127,7 +127,7 @@ protected:
 		}
 	}
 
-	// I—¹’Ê’m
+	// çµ‚äº†é€šçŸ¥
 	void eventDone(SaveInfo *sender) {
 		int handler = sender->getHandler();
 		if (saveinfos[handler] == sender) {
@@ -138,7 +138,7 @@ protected:
 	}
 
 	/*
-	 * ƒEƒCƒ“ƒhƒEƒCƒxƒ“ƒgˆ—ƒŒƒV[ƒo
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ãƒ¬ã‚·ãƒ¼ãƒ
 	 */
 	static bool __stdcall receiver(void *userdata, tTVPWindowMessage *Message) {
 		if (Message->Msg == WM_SAVE_TLG_PROGRESS) {
@@ -159,7 +159,7 @@ protected:
 		return false;
 	}
 
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(tTVPWindowMessageReceiver receiver, bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -173,14 +173,14 @@ protected:
 public:
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	WindowSaveImage(iTJSDispatch2 *objthis) : objthis(objthis) {
 		setReceiver(receiver, true);
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~WindowSaveImage() {
 		setReceiver(receiver, false);
@@ -194,13 +194,13 @@ public:
 	}
 
 	/**
-	 * ƒƒbƒZ[ƒW‘—M
-	 * @param msg ƒƒbƒZ[ƒW
+	 * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
+	 * @param msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	 * @param wparam WPARAM
 	 * @param lparam LPARAM
 	 */
 	void postMessage(UINT msg, WPARAM wparam=NULL, LPARAM lparam=NULL) {
-		// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾‚µ‚Ä’Ê’m
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦é€šçŸ¥
 		tTJSVariant val;
 		objthis->PropGet(0, TJS_W("HWND"), NULL, &val, objthis);
 		HWND hwnd = reinterpret_cast<HWND>((tjs_int)(val));
@@ -208,10 +208,10 @@ public:
 	}
 
 	/**
-	 * ƒŒƒCƒ„ƒZ[ƒuŠJn
-	 * @param layer ƒŒƒCƒ„
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @param info ƒ^ƒOî•ñ
+	 * ãƒ¬ã‚¤ãƒ¤ã‚»ãƒ¼ãƒ–é–‹å§‹
+	 * @param layer ãƒ¬ã‚¤ãƒ¤
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param info ã‚¿ã‚°æƒ…å ±
 	 */
 	int startSaveLayerImage(tTJSVariant layer, const tjs_char *filename, tTJSVariant info) {
 		int handler = saveinfos.size();
@@ -225,10 +225,10 @@ public:
 			saveinfos.resize(handler + 1);
 		}
 
-		// •Û‘¶—p‚ÉƒŒƒCƒ„‚ğ•¡»‚·‚é
+		// ä¿å­˜ç”¨ã«ãƒ¬ã‚¤ãƒ¤ã‚’è¤‡è£½ã™ã‚‹
 		tTJSVariant newLayer;
 		{
-			// V‚µ‚¢ƒŒƒCƒ„‚ğ¶¬
+			// æ–°ã—ã„ãƒ¬ã‚¤ãƒ¤ã‚’ç”Ÿæˆ
 			tTJSVariant window(objthis, objthis);
 			tTJSVariant primaryLayer;
 			objthis->PropGet(0, L"primaryLayer", NULL, &primaryLayer, objthis);
@@ -236,22 +236,22 @@ public:
 			iTJSDispatch2 *obj;
 			if (TJS_SUCCEEDED(getLayerClass()->CreateNew(0, NULL, NULL, &obj, 2, vars, objthis))) {
 
-				// –¼‘O‚Ã‚¯
+				// åå‰ã¥ã‘
 				tTJSVariant name = "saveLayer:";
 				name +=filename;
 				obj->PropSet(0, L"name", NULL, &name, obj);
 
-				// Œ³ƒŒƒCƒ„‚Ì‰æ‘œ‚ğ•¡»
+				// å…ƒãƒ¬ã‚¤ãƒ¤ã®ç”»åƒã‚’è¤‡è£½
 				tTJSVariant *param[] = {&layer};
 				if (TJS_SUCCEEDED(getLayerAssignImages()->FuncCall(0, NULL, NULL, NULL, 1, param, obj))) {
 					newLayer = tTJSVariant(obj, obj);
 					obj->Release();
 				} else {
 					obj->Release();
-					TVPThrowExceptionMessage(L"•Û‘¶ˆ——pƒŒƒCƒ„‚Ö‚Ì‰æ‘œ‚Ì•¡»‚É¸”s‚µ‚Ü‚µ‚½");
+					TVPThrowExceptionMessage(L"ä¿å­˜å‡¦ç†ç”¨ãƒ¬ã‚¤ãƒ¤ã¸ã®ç”»åƒã®è¤‡è£½ã«å¤±æ•—ã—ã¾ã—ãŸ");
 				}
 			} else {
-				TVPThrowExceptionMessage(L"•Û‘¶ˆ——pƒŒƒCƒ„‚Ì¶¬‚É¸”s‚µ‚Ü‚µ‚½");
+				TVPThrowExceptionMessage(L"ä¿å­˜å‡¦ç†ç”¨ãƒ¬ã‚¤ãƒ¤ã®ç”Ÿæˆã«å¤±æ•—ã—ã¾ã—ãŸ");
 			}
 		}
 		SaveInfo *saveInfo = new SaveInfo(handler, this, newLayer, filename, info);
@@ -261,7 +261,7 @@ public:
 	}
 	
 	/**
-	 * ƒŒƒCƒ„ƒZ[ƒu‚ÌƒLƒƒƒ“ƒZƒ‹
+	 * ãƒ¬ã‚¤ãƒ¤ã‚»ãƒ¼ãƒ–ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	 */
 	void cancelSaveLayerImage(int handler) {
 		if (handler < (int)saveinfos.size() && saveinfos[handler] != NULL) {
@@ -270,7 +270,7 @@ public:
 	}
 
 	/**
-	 * ƒŒƒCƒ„ƒZ[ƒu‚Ì’†~
+	 * ãƒ¬ã‚¤ãƒ¤ã‚»ãƒ¼ãƒ–ã®ä¸­æ­¢
 	 */
 	void stopSaveLayerImage(int handler) {
 		if (handler < (int)saveinfos.size() && saveinfos[handler] != NULL) {
@@ -282,8 +282,8 @@ public:
 
 
 /**
- * Œ»İ‚Ìó‘Ô‚Ì’Ê’m
- * @param percent ƒp[ƒZƒ“ƒg
+ * ç¾åœ¨ã®çŠ¶æ…‹ã®é€šçŸ¥
+ * @param percent ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
  */
 bool
 SaveInfo::progress(int percent)
@@ -299,7 +299,7 @@ SaveInfo::progress(int percent)
 }
 
 /*
- * •Û‘¶ˆ—ŠJn
+ * ä¿å­˜å‡¦ç†é–‹å§‹
  */
 void
 SaveInfo::start()
@@ -309,13 +309,13 @@ SaveInfo::start()
 	const tjs_char *fn  = filename.GetString();
 	ttstr ext(TVPExtractStorageExt(ttstr(fn)));
 	ext.ToLowerCase();
-	// ‰æ‘œ‚ğƒZ[ƒuiŠg’£q•Êj
+	// ç”»åƒã‚’ã‚»ãƒ¼ãƒ–ï¼ˆæ‹¡å¼µå­åˆ¥ï¼‰
 	if (ext == TJS_W(".png")) {
 		CompressAndSave<CompressPNG >::saveLayerImage(lay, fn, nfo, progressFunc, (void*)this);
 	} else {
 		CompressAndSave<CompressTLG5>::saveLayerImage(lay, fn, nfo, progressFunc, (void*)this);
 	}
-	// Š®—¹’Ê’m
+	// å®Œäº†é€šçŸ¥
 	if (notify) {
 		notify->postMessage(WM_SAVE_TLG_DONE, (WPARAM)this);
 		Sleep(0);
@@ -326,14 +326,14 @@ SaveInfo::start()
 
 //---------------------------------------------------------------------------
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowSaveImage)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}

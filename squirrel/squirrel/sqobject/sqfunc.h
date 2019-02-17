@@ -8,10 +8,10 @@ extern SQRESULT ERROR_CREATE(HSQUIRRELVM v);
 extern SQRESULT ERROR_BADINSTANCE(HSQUIRRELVM v);
 extern SQRESULT ERROR_BADMETHOD(HSQUIRRELVM v);
 
-// Šî’êƒNƒ‰ƒXƒ_ƒ~[—p
+// åŸºåº•ã‚¯ãƒ©ã‚¹ãƒ€ãƒŸãƒ¼ç”¨
 struct BaseClass {};
 
-// ƒNƒ‰ƒXŒ^î•ñ•Û—p
+// ã‚¯ãƒ©ã‚¹å‹æƒ…å ±ä¿æŒç”¨
 template <typename T>
 struct SQClassType {
 public:
@@ -36,7 +36,7 @@ public:
 		return NULL;
 	}
 
-	// XXX sqobject::Object ‘O’ñƒR[ƒh’ˆÓ
+	// XXX sqobject::Object å‰æã‚³ãƒ¼ãƒ‰æ³¨æ„
 	
 	static void pushInstance(HSQUIRRELVM v, T *value) {
 		sq_pushobject(v, ClassObject());
@@ -71,9 +71,9 @@ public:
 
 
 /**
- * ƒNƒ‰ƒX“o˜^—pƒeƒ“ƒvƒŒ[ƒg
- * @param T “o˜^‘ÎÛŒ^
- * @param P e‚ÌŒ^
+ * ã‚¯ãƒ©ã‚¹ç™»éŒ²ç”¨ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+ * @param T ç™»éŒ²å¯¾è±¡å‹
+ * @param P è¦ªã®å‹
  */
 template <typename T, typename P>
 class SQTemplate {
@@ -84,9 +84,9 @@ private:
 public:
 
 	/**
-	 * ƒNƒ‰ƒX‚ğ’è‹`‚·‚é
+	 * ã‚¯ãƒ©ã‚¹ã‚’å®šç¾©ã™ã‚‹
 	 * @param v squirrelVM
-	 * @param typeName “o˜^Œ^–¼
+	 * @param typeName ç™»éŒ²å‹å
 	 */
 	SQTemplate(HSQUIRRELVM v, const SQChar *typeName=NULL) : v(v) {
 		
@@ -98,16 +98,16 @@ public:
 			sq_pushstring(v, typeName, -1); // typeName
 		}
 		if (!sq_isnull(parentObj)) {
-			// eƒNƒ‰ƒX‚ªw’è‚³‚ê‚Ä‚éê‡‚ÍŒp³ˆ—
+			// è¦ªã‚¯ãƒ©ã‚¹ãŒæŒ‡å®šã•ã‚Œã¦ã‚‹å ´åˆã¯ç¶™æ‰¿å‡¦ç†
 			sq_pushobject(v, parentObj);
 			sq_newclass(v, true);
 		} else {
-			// Œp³‚È‚µ‚ÅƒNƒ‰ƒX¶¬
+			// ç¶™æ‰¿ãªã—ã§ã‚¯ãƒ©ã‚¹ç”Ÿæˆ
 			sq_newclass(v, false);
 		}
-		// ƒ^ƒO‚ğ“o˜^
+		// ã‚¿ã‚°ã‚’ç™»éŒ²
 		sq_settypetag(v, -1, (SQUserPointer)&classObj);
-		// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒgæ“¾
+		// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
 		sq_getstackobj(v, -1, &classObj);
 		sq_addref(v, &classObj); // must addref before the pop!
 
@@ -118,12 +118,12 @@ public:
 			sq_pop(v, 1); // classobject
 		}
 		
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^‚ğ“o˜^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ç™»éŒ²
 		Register(destructor, _SC("destructor"));
 	}
 	
 	/*
-	 * ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ÌƒŠƒŠ[ƒTB
+	 * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªãƒªãƒ¼ã‚µã€‚
 	 */
 	static SQRESULT release(SQUserPointer up, SQInteger size) {
 		if (up) {
@@ -138,8 +138,8 @@ public:
 	}
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Éˆø”‚Æ‚µ‚Ä HSQUIRRELVM ‚ğ“n‚·B
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«å¼•æ•°ã¨ã—ã¦ HSQUIRRELVM ã‚’æ¸¡ã™ã€‚
 	 */
 	static SQRESULT constructor(HSQUIRRELVM v) {
 		T *self = (T*)sq_malloc(sizeof *self);
@@ -159,8 +159,8 @@ public:
 	}
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Éˆø”‚Æ‚µ‚Ä HSQUIRRELVM ‚ğ“n‚·B
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«å¼•æ•°ã¨ã—ã¦ HSQUIRRELVM ã‚’æ¸¡ã™ã€‚
 	 */
 	static SQRESULT vconstructor(HSQUIRRELVM v) {
 		T *self = (T*)sq_malloc(sizeof *self);
@@ -180,18 +180,18 @@ public:
 	}
 	
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
-	 * ‚È‚É‚à‚µ‚È‚¢BObject ‚ª‰ğ•ú‚ÉŒÄ‚Ño‚·‚Ì‚ÅƒGƒ‰[‚ª‚Å‚È‚¢‚æ‚¤‚É‘Îô
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * ãªã«ã‚‚ã—ãªã„ã€‚Object ãŒè§£æ”¾æ™‚ã«å‘¼ã³å‡ºã™ã®ã§ã‚¨ãƒ©ãƒ¼ãŒã§ãªã„ã‚ˆã†ã«å¯¾ç­–
 	 */
 	static SQRESULT destructor(HSQUIRRELVM v) {
 		return SQ_OK;
 	}
 	
 	// -------------------------------------------------
-	// ƒXƒ^ƒeƒBƒbƒNŠÖ”‚Ì“o˜^
+	// ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯é–¢æ•°ã®ç™»éŒ²
 	// -------------------------------------------------
 
-	// SQFUNCTION “o˜^
+	// SQFUNCTION ç™»éŒ²
 	void Register(SQFUNCTION func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -201,15 +201,15 @@ public:
 	}
 
 	// -------------------------------------------------
-	// ƒƒ“ƒoŠÖ”‚Ì“o˜^—p
+	// ãƒ¡ãƒ³ãƒé–¢æ•°ã®ç™»éŒ²ç”¨
 	// -------------------------------------------------
 
-	// ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—
 	static T *getInstance(HSQUIRRELVM v, int idx=1) {
 		return SQClassType<T>::getInstance(v, idx);
 	}
 	
-	// ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾
+	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	template <typename Func>
 	static void getFunc(HSQUIRRELVM v, Func **func) {
 		SQUserPointer x = NULL;
@@ -219,10 +219,10 @@ public:
 
 	// -------------------------------------------------
 
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef void (T::*VoidFunc)();
 
-	// VoidFunc ŒÄ‚Ño‚µ
+	// VoidFunc å‘¼ã³å‡ºã—
 	static SQRESULT VoidFuncCaller(HSQUIRRELVM v) {
 		int n = sq_gettop(v);
 		T *instance = getInstance(v);
@@ -239,7 +239,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// VoidFunc “o˜^
+	// VoidFunc ç™»éŒ²
 	void Register(VoidFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -252,11 +252,11 @@ public:
 
 	// -------------------------------------------------
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*IntArgFunc)(int);
 	typedef void (T::*UIntArgFunc)(unsigned int);
 
-	// IntArgFunc ŒÄ‚Ño‚µ
+	// IntArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT IntArgFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -273,7 +273,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// IntArgFunc “o˜^
+	// IntArgFunc ç™»éŒ²
 	void Register(IntArgFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -284,7 +284,7 @@ public:
 		sq_pop(v,1);
 	}
 
-	// IntArgFunc “o˜^
+	// IntArgFunc ç™»éŒ²
 	void Register(UIntArgFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -297,10 +297,10 @@ public:
 
 	// -------------------------------------------------
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*RealArgFunc)(SQFloat);
 
-	// IntArgFunc ŒÄ‚Ño‚µ
+	// IntArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT RealArgFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -317,7 +317,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// IntArgFunc “o˜^
+	// IntArgFunc ç™»éŒ²
 	void Register(RealArgFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -330,10 +330,10 @@ public:
 
 	// -------------------------------------------------
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*RealArg2Func)(SQFloat, SQFloat);
 
-	// IntArgFunc ŒÄ‚Ño‚µ
+	// IntArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT RealArg2FuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -351,7 +351,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// IntArgFunc “o˜^
+	// IntArgFunc ç™»éŒ²
 	void Register(RealArg2Func func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -364,10 +364,10 @@ public:
 	
 	// -------------------------------------------------
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*BoolArgFunc)(bool);
 
-	// BoolArgFunc ŒÄ‚Ño‚µ
+	// BoolArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT BoolArgFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -384,7 +384,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// BoolArgFunc “o˜^
+	// BoolArgFunc ç™»éŒ²
 	void Register(BoolArgFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -395,10 +395,10 @@ public:
 		sq_pop(v, 1);
 	}
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*BoolArg2Func)(bool,bool);
 
-	// BoolArgFunc ŒÄ‚Ño‚µ
+	// BoolArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT BoolArg2FuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -416,7 +416,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// BoolArgFunc “o˜^
+	// BoolArgFunc ç™»éŒ²
 	void Register(BoolArg2Func func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -430,10 +430,10 @@ public:
 	
 	// -------------------------------------------------
 
-	// ‹A‚è’l void ‚Åˆø”int‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ void ã§å¼•æ•°intã®é–¢æ•°
 	typedef void (T::*StrArgFunc)(const SQChar *);
 
-	// StrArgFunc ŒÄ‚Ño‚µ
+	// StrArgFunc å‘¼ã³å‡ºã—
 	static SQRESULT StrArgFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -450,7 +450,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// StrArgFunc “o˜^
+	// StrArgFunc ç™»éŒ²
 	void Register(StrArgFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -463,11 +463,11 @@ public:
 	
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef int (T::*IntFunc)();
 	typedef unsigned int (T::*UIntFunc)();
 
-	// IntFunc ŒÄ‚Ño‚µ
+	// IntFunc å‘¼ã³å‡ºã—
 	static SQRESULT IntFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -482,7 +482,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// IntFunc “o˜^
+	// IntFunc ç™»éŒ²
 	void Register(IntFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -493,7 +493,7 @@ public:
 		sq_pop(v, 1);
 	}
 
-	// IntFunc “o˜^
+	// IntFunc ç™»éŒ²
 	void Register(UIntFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -506,10 +506,10 @@ public:
 	
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef SQFloat (T::*RealFunc)();
 
-	// RealFunc ŒÄ‚Ño‚µ
+	// RealFunc å‘¼ã³å‡ºã—
 	static SQRESULT RealFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -524,7 +524,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// RealFunc “o˜^
+	// RealFunc ç™»éŒ²
 	void Register(RealFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -537,10 +537,10 @@ public:
 
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef SQFloat (T::*RealFuncConst)() const;
 
-	// RealFunc “o˜^
+	// RealFunc ç™»éŒ²
 	void Register(RealFuncConst func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -553,11 +553,11 @@ public:
 	
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef int (T::*IntFuncConst)() const;
 	typedef unsigned int (T::*UIntFuncConst)() const;
 
-	// IntFunc “o˜^
+	// IntFunc ç™»éŒ²
 	void Register(IntFuncConst func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -568,7 +568,7 @@ public:
 		sq_pop(v, 1);
 	}
 
-	// IntFunc “o˜^
+	// IntFunc ç™»éŒ²
 	void Register(UIntFuncConst func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -581,10 +581,10 @@ public:
 	
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef bool (T::*BoolFunc)();
 
-	// IntFunc ŒÄ‚Ño‚µ
+	// IntFunc å‘¼ã³å‡ºã—
 	static SQRESULT BoolFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -599,7 +599,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// BoolFunc “o˜^
+	// BoolFunc ç™»éŒ²
 	void Register(BoolFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -612,10 +612,10 @@ public:
 
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef bool (T::*BoolFuncConst)() const;
 
-	// IntFunc ŒÄ‚Ño‚µ
+	// IntFunc å‘¼ã³å‡ºã—
 	static SQRESULT BoolFuncConstCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -630,7 +630,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// BoolFuncConst “o˜^
+	// BoolFuncConst ç™»éŒ²
 	void Register(BoolFuncConst func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -643,10 +643,10 @@ public:
 	
 	// -------------------------------------------------
 	
-	// ‹A‚è’l int ‚Åˆø”–³‚µ‚ÌŠÖ”
+	// å¸°ã‚Šå€¤ int ã§å¼•æ•°ç„¡ã—ã®é–¢æ•°
 	typedef const SQChar *(T::*StrFunc)();
 
-	// IntFunc ŒÄ‚Ño‚µ
+	// IntFunc å‘¼ã³å‡ºã—
 	static SQRESULT StrFuncCaller(HSQUIRRELVM v) {
 		T *instance = getInstance(v);
 		if (instance) {
@@ -661,7 +661,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// BoolFunc “o˜^
+	// BoolFunc ç™»éŒ²
 	void Register(StrFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -674,10 +674,10 @@ public:
 	
 	// -------------------------------------------------
 
-	// SQFUNCTION ƒXƒ^ƒCƒ‹‚ÌŠÖ”
+	// SQFUNCTION ã‚¹ã‚¿ã‚¤ãƒ«ã®é–¢æ•°
 	typedef SQRESULT (T::*VFunc)(HSQUIRRELVM v);
 
-	// VFunc ŒÄ‚Ño‚µ
+	// VFunc å‘¼ã³å‡ºã—
 	static SQRESULT VFuncCaller(HSQUIRRELVM v) {
 		SQInteger n = sq_gettop(v);
 		T *instance = getInstance(v);
@@ -693,7 +693,7 @@ public:
 		return ERROR_BADINSTANCE(v);
 	}
 
-	// VFunc “o˜^
+	// VFunc ç™»éŒ²
 	void RegisterV(VFunc func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -704,7 +704,7 @@ public:
 		sq_pop(v, 1);
 	}
 
-	// VFunc “o˜^
+	// VFunc ç™»éŒ²
 	void RegisterVStatic(SQFUNCTION func, const SQChar *name) {
 		sq_pushobject(v, SQClassType<T>::ClassObject());
 		sq_pushstring(v, name, -1);
@@ -715,7 +715,7 @@ public:
 };
 
 // ------------------------------------------------------------------
-// ƒNƒ‰ƒX“o˜^—pƒ}ƒNƒ
+// ã‚¯ãƒ©ã‚¹ç™»éŒ²ç”¨ãƒã‚¯ãƒ­
 // ------------------------------------------------------------------
 
 #define SQCLASS(Class,Parent,Name) SQTemplate<Class,Parent> cls(getGlobalVM(),Name);

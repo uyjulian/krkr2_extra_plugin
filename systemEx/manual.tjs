@@ -1,77 +1,77 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 class System
 {
 	/**
-	 * ƒŒƒWƒXƒgƒŠ‚Éƒf[ƒ^‚ğ‘‚«‚İ‚Ü‚·
-	 * @param key ‘‚«‚İæ‚ÌƒL[(readRegValue ‚Æ“¯—l‚É HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\hoeg\installdir ‚Æw’è‚·‚é)
-	 * @param value ‘‚«‚Ş’l(•¶š—ñ–”‚Í®”’l)
+	 * ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿ã¾ã™
+	 * @param key æ›¸ãè¾¼ã¿å…ˆã®ã‚­ãƒ¼(readRegValue ã¨åŒæ§˜ã« HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\hoeg\installdir ã¨æŒ‡å®šã™ã‚‹)
+	 * @param value æ›¸ãè¾¼ã‚€å€¤(æ–‡å­—åˆ—åˆã¯æ•´æ•°å€¤)
 	 */
 	function writeRegValue(key, value);
 
-	// ƒŒƒWƒXƒgƒŠ‚Ì“Ç‚İ‚İ‚ÍA‘g‚İ‚İ‚Ì System.readRegValue ‚ğg—p‚Ì‚±‚Æ
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã®èª­ã¿è¾¼ã¿ã¯ã€çµ„ã¿è¾¼ã¿ã® System.readRegValue ã‚’ä½¿ç”¨ã®ã“ã¨
 
 	/**
-	 * ŠÂ‹«•Ï”‚ğæ“¾
-	 * @param name ŠÂ‹«•Ï”–¼
-	 * @return ŠÂ‹«•Ï”’li–¢’è‹`‚Ìê‡‚Ívoidj
+	 * ç’°å¢ƒå¤‰æ•°ã‚’å–å¾—
+	 * @param name ç’°å¢ƒå¤‰æ•°å
+	 * @return ç’°å¢ƒå¤‰æ•°å€¤ï¼ˆæœªå®šç¾©ã®å ´åˆã¯voidï¼‰
 	 */
 	function readEnvValue(name);
 
 	/**
-	 * ŠÂ‹«•Ï”‚ğİ’è
-	 * @param name ŠÂ‹«•Ï”–¼
-	 * @param value İ’è‚·‚é’l
-	 * @return Œ³‚ÌŠÂ‹«•Ï”’li–¢’è‹`‚Ìê‡‚Ívoidj
+	 * ç’°å¢ƒå¤‰æ•°ã‚’è¨­å®š
+	 * @param name ç’°å¢ƒå¤‰æ•°å
+	 * @param value è¨­å®šã™ã‚‹å€¤
+	 * @return å…ƒã®ç’°å¢ƒå¤‰æ•°å€¤ï¼ˆæœªå®šç¾©ã®å ´åˆã¯voidï¼‰
 	 */
 	function writeEnvValue(name, value);
 	
 	/**
-	 * •¶š—ñ“à‚Ìu%`%v‚ğŠÂ‹«•Ï”‚Å“WŠJ
-	 * @param text “WŠJ‚·‚é•¶š—ñ
-	 * @return “WŠJŒã•¶š—ñ
+	 * æ–‡å­—åˆ—å†…ã®ã€Œ%ã€œ%ã€ã‚’ç’°å¢ƒå¤‰æ•°ã§å±•é–‹
+	 * @param text å±•é–‹ã™ã‚‹æ–‡å­—åˆ—
+	 * @return å±•é–‹å¾Œæ–‡å­—åˆ—
 	 */
 	function expandEnvString(text);
 	
 	/**
-	 * URLEncodeˆ—‚ğs‚¤
-	 * @param str Œ³•¶š—ñ
-	 * @param utf8 UTF8‚Åo—Í‚·‚éê‡‚Ítrue
-	 * @return URLEncode‚³‚ê‚½•¶š—ñ
+	 * URLEncodeå‡¦ç†ã‚’è¡Œã†
+	 * @param str å…ƒæ–‡å­—åˆ—
+	 * @param utf8 UTF8ã§å‡ºåŠ›ã™ã‚‹å ´åˆã¯true
+	 * @return URLEncodeã•ã‚ŒãŸæ–‡å­—åˆ—
 	 */
 	function urlencode(str, utf8=true);
 
 	/**
-	 * URLDecodeˆ—‚ğs‚¤
-	 * @param str Œ³•¶š—ñ
-	 * @param utf8 UTF8‚Æ‚µ‚Äˆ—‚·‚éê‡‚Ítrue
-	 * @return URLDecode‚³‚ê‚½•¶š—ñ
+	 * URLDecodeå‡¦ç†ã‚’è¡Œã†
+	 * @param str å…ƒæ–‡å­—åˆ—
+	 * @param utf8 UTF8ã¨ã—ã¦å‡¦ç†ã™ã‚‹å ´åˆã¯true
+	 * @return URLDecodeã•ã‚ŒãŸæ–‡å­—åˆ—
 	 */
 	function urldecode(str, utf8=true);
 
 	/**
-	 * Ctrl+F12‚Å•\¦‚³‚ê‚éŠÂ‹«î•ñƒeƒLƒXƒg‚ğæ“¾‚·‚é
-	 * @return ƒeƒLƒXƒg(TVPGetAboutString)
+	 * Ctrl+F12ã§è¡¨ç¤ºã•ã‚Œã‚‹ç’°å¢ƒæƒ…å ±ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
+	 * @return ãƒ†ã‚­ã‚¹ãƒˆ(TVPGetAboutString)
 	 */
 	function getAboutString();
 
 	/**
-	 * Šm”F—pƒƒbƒZ[ƒW‘‹‚ğ•\¦‚µ‚Ü‚·BƒEƒCƒ“ƒhƒE‚Íƒ‚[ƒ_ƒ‹‚Å•\¦‚³‚ê‚Ü‚·B
-	 * @param text •\¦‚·‚éƒƒbƒZ[ƒW
-	 * @param caption ƒEƒCƒ“ƒhƒE‚ÌƒLƒƒƒvƒVƒ‡ƒ“•¶š—ñ
-	 * @param window w’è‚ª‚ ‚Á‚½ê‡‚Í‚»‚ÌƒEƒCƒ“ƒhƒE‚ğe‚Æ‚µ‚Ä•\¦‚µ‚Ü‚·
-	 * @return YES‚ª‚¨‚³‚ê‚½‚ç true
+	 * ç¢ºèªç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çª“ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¯ãƒ¢ãƒ¼ãƒ€ãƒ«ã§è¡¨ç¤ºã•ã‚Œã¾ã™ã€‚
+	 * @param text è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	 * @param caption ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—åˆ—
+	 * @param window æŒ‡å®šãŒã‚ã£ãŸå ´åˆã¯ãã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¦ªã¨ã—ã¦è¡¨ç¤ºã—ã¾ã™
+	 * @return YESãŒãŠã•ã‚ŒãŸã‚‰ true
 	 */
 	function confirm(text, caption="", window=void);
 
 	/**
-	 * ‘¼ƒvƒƒZƒX‚ÌSystem.createAppLock‚Åì¬‚³‚ê‚½Mutex‚ªƒŠƒŠ[ƒX‚³‚ê‚é‚Ì‚ğ‘Ò‚¿Š—LŒ ‚ğæ“¾‚·‚é
-	 * @param key AppLock‚ÌƒL[•¶š—ñ
-	 * @param timeout ƒ^ƒCƒ€ƒAƒEƒg‘Ò‚¿ŠÔ(ms)
-	 * @return true:³íI—¹(AppLock‚Í‘¶İ‚µ‚È‚¢‚à‚µ‚­‚Íƒ^ƒCƒ€ƒAƒEƒgŠÔ“à‚ÉÁ‚¦‚½),  false:ƒ^ƒCƒ€ƒAƒEƒg‚µ‚½, (void:ƒGƒ‰[)
+	 * ä»–ãƒ—ãƒ­ã‚»ã‚¹ã®System.createAppLockã§ä½œæˆã•ã‚ŒãŸMutexãŒãƒªãƒªãƒ¼ã‚¹ã•ã‚Œã‚‹ã®ã‚’å¾…ã¡æ‰€æœ‰æ¨©ã‚’å–å¾—ã™ã‚‹
+	 * @param key AppLockã®ã‚­ãƒ¼æ–‡å­—åˆ—
+	 * @param timeout ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå¾…ã¡æ™‚é–“(ms)
+	 * @return true:æ­£å¸¸çµ‚äº†(AppLockã¯å­˜åœ¨ã—ãªã„ã‚‚ã—ãã¯ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“å†…ã«æ¶ˆãˆãŸ),  false:ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ãŸ, (void:ã‚¨ãƒ©ãƒ¼)
 	 *
-	 * ¦‚±‚ÌŠÖ”‚ÌŒã‚ÉÄ“x“¯‚¶ƒL[‚ÅcreateAppLock‚ğŒÄ‚Ô•K—v‚Í‚ ‚è‚Ü‚¹‚ñi‚·‚Å‚ÉŠ—LŒ ‚ª‚ ‚é‚½‚ß¸”s‚·‚éj
+	 * â€»ã“ã®é–¢æ•°ã®å¾Œã«å†åº¦åŒã˜ã‚­ãƒ¼ã§createAppLockã‚’å‘¼ã¶å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ï¼ˆã™ã§ã«æ‰€æœ‰æ¨©ãŒã‚ã‚‹ãŸã‚å¤±æ•—ã™ã‚‹ï¼‰
 	 */
 	function waitForAppLock(key, timeout=0);
 };

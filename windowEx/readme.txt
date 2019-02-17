@@ -1,27 +1,27 @@
-Title: windowEx �v���O�C��
+Title: windowEx プラグイン
 Author: miahmie
 
-������͉����H
+●これは何か？
 
-Window���g������v���O�C���ł��B�ȉ����g������܂��B
+Windowを拡張するプラグインです。以下が拡張されます。
 
-�E�T�C�Y�ύX���i�h���b�O���j�̃C�x���g�z�M
-�@�˃A�X�y�N�g��Œ�̃T�C�Y�ύX�ȂǂɎg���܂�
+・サイズ変更中（ドラッグ中）のイベント配信
+　⇒アスペクト比固定のサイズ変更などに使えます
 
-�E�E�B���h�E�ő剻���̃C�x���g�z�M
-�@�ˍő剻�{�^���Ńt���X�N���[���ɕύX����ȂǂɎg���܂�
+・ウィンドウ最大化時のイベント配信
+　⇒最大化ボタンでフルスクリーンに変更するなどに使えます
 
-�E�}���`���j�^�֘A�̊֐�
-�@�˃E�B���h�E���ǂ̃��j�^�ɂ��邩�C�܂������Ă��邩�Ȃǂ𒲂ׂ��܂�
-
-
-���g����
-
-manual.tjs ���Q�Ƃ��Ă��������B
-�Â� Windows ���ł̓���m�F�͂��Ă��܂���B
+・マルチモニタ関連の関数
+　⇒ウィンドウがどのモニタにあるか，またがっているかなどを調べられます
 
 
-�����C�Z���X
+●使い方
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+manual.tjs を参照してください。
+古い Windows 環境での動作確認はしていません。
+
+
+●ライセンス
+
+このプラグインのライセンスは吉里吉里本体に準拠してください。
 

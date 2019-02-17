@@ -1,32 +1,32 @@
-������͂ȂɁH
+●これはなに？
 
-OGRE �x�[�X�� drawdevice �����̃e�X�g�R�[�h�ł�
+OGRE ベースの drawdevice 実装のテストコードです
 
-���R���p�C�����@
+●コンパイル方法
 
-�R���p�C�����ɐݒ肵�Ă������ϐ�
+コンパイル時に設定しておく環境変数
 
- OGRE_HOME  OGRE �� SDK ���W�J����Ă�t�H���_��
+ OGRE_HOME  OGRE の SDK が展開されてるフォルダ名
 
-���e�X�g���@
+●テスト方法
 
-(1) �R���p�C������� drawdeviceirrlicht.dll ��
-    $(OGRE_HOME)\bin\$(ConfigurationName) �ɔz�u�����
+(1) コンパイルすると drawdeviceirrlicht.dll が
+    $(OGRE_HOME)\bin\$(ConfigurationName) に配置される
 
-(2) $(OGRE_HOME)\bin\$(ConfigurationName)�Ɉȉ���z�u
+(2) $(OGRE_HOME)\bin\$(ConfigurationName)に以下を配置
 
   krkr.exe
-  sample �� data �Ƀ��l�[��
+  sample → data にリネーム
 
-(3) �Y���t�H���_�� krkr.exe �����s
+(3) 該当フォルダで krkr.exe を実行
 
-�@���\���v���p�e�B�̃f�o�b�O�Ɉȉ����w�肷��Ηǂ��ł�
+　※構成プロパティのデバッグに以下を指定すれば良いです
 
-  �R�}���h        : $(Outdir)\krkr.exe
-  ��ƃf�B���N�g��: $(Outdir)
+  コマンド        : $(Outdir)\krkr.exe
+  作業ディレクトリ: $(Outdir)
 
-�����ӓ_
+●注意点
 
-�@TJS ���Ƀf�[�^��ǂݍ��ތ����܂��Ȃ����߁A
-�@�T���v���������I�� dll ���ɖ��ߍ��܂�Ă܂��B
-�@�f�[�^�� SDK �̃t�@�C���𑊑΃p�X�ŎQ�Ƃ��Ă��܂��B
+　TJS 側にデータを読み込む口がまだないため、
+　サンプルが強制的に dll 中に埋め込まれてます。
+　データは SDK のファイルを相対パスで参照しています。

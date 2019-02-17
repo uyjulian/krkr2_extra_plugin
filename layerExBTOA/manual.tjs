@@ -1,52 +1,52 @@
 /**
- * �[���R�[�h�ɂ��}�j���A��
+ * 擬似コードによるマニュアル
  */
 class Layer {
 
 	/**
-	 * ���C���E������ Blue CHANNEL ���������� Alpha CHANNEL�ɕ�������
-	 * @description ���N���b�v��Ή�
+	 * レイヤ右半分の Blue CHANNEL を左半分の Alpha CHANNELに複製する
+	 * @description ※クリップ非対応
 	 */
 	function copyRightBlueToLeftAlpha();
 	
 	/**
-	 * ���C���������� Blue CHANNEL ���㔼���� Alpha CHANNEL�ɕ�������
-	 * @description ���N���b�v��Ή�
+	 * レイヤ下半分の Blue CHANNEL を上半分の Alpha CHANNELに複製する
+	 * @description ※クリップ非対応
 	 */
 	function copyBottomBlueToTopAlpha();
 	
 	/**
-	 * ���C���� Alpha CHANNEL ��0xff�Ŗ��߂�
+	 * レイヤの Alpha CHANNEL を0xffで埋める
 	 */
 	function fillAlpha();
 	
 	/**
-	 * ���C���� Alpha CHANNEL �� Province Image�i�̈�摜�j�ɃR�s�[����
-	 * @param threshold 臒l�B�ȗ����܂���void�Ȃ炻�̂܂܃R�s�[����
-	 *                  ���l���w�肷���Alpha��臒l�ȏ�Ȃ�matched�C����ȊO��otherwise�ɖ��߂�
-	 * @param matched   threshold���w�肵������臒l�ȏ�Ŗ��߂�ꍇ�̒l�B0-255�͈̔͊O�ɂ���Ɠh��Ԃ��Ȃ�
-	 * @param otherwise threshold���w�肵������臒l�����Ŗ��߂�ꍇ�̒l�B0-255�͈̔͊O�ɂ���Ɠh��Ԃ��Ȃ�
+	 * レイヤの Alpha CHANNEL を Province Image（領域画像）にコピーする
+	 * @param threshold 閾値。省略時またはvoidならそのままコピーする
+	 *                  数値を指定するとAlphaが閾値以上ならmatched，それ以外をotherwiseに埋める
+	 * @param matched   thresholdを指定した時に閾値以上で埋める場合の値。0-255の範囲外にすると塗りつぶさない
+	 * @param otherwise thresholdを指定した時に閾値未満で埋める場合の値。0-255の範囲外にすると塗りつぶさない
 	 */
 	function copyAlphaToProvince(threshold,matched=1,otherwise=0);
 	
 	/**
-	 * ���C���� Alpha CHANNEL �� src �� Alpha CHANNEL �ŏ�Z����
-	 * @param dleft   ���[�ʒu
-	 * @param dtop    ��[�ʒu
-	 * @param src     ��Z�p�̃������\�[�X�摜
-	 * @param sleft   �\�[�X�̍��[�ʒu
-	 * @param stop    �\�[�X�̏�[�ʒu
-	 * @param swidth  �\�[�X�̉���
-	 * @param sheight �\�[�X�̏c��
-	 * @param clear   ���Z�͈͊O�̈�����̒l�iopacity�j�œh��Ԃ�
-	 *                �ȗ����܂���0-255�̒l�ȊO�̏ꍇ�͓h��Ԃ��Ȃ�
+	 * レイヤの Alpha CHANNEL を src の Alpha CHANNEL で乗算する
+	 * @param dleft   左端位置
+	 * @param dtop    上端位置
+	 * @param src     乗算用のαを持つソース画像
+	 * @param sleft   ソースの左端位置
+	 * @param stop    ソースの上端位置
+	 * @param swidth  ソースの横幅
+	 * @param sheight ソースの縦幅
+	 * @param clear   演算範囲外領域をこの値（opacity）で塗りつぶす
+	 *                省略時または0-255の値以外の場合は塗りつぶさない
 	 */
 	function clipAlphaRect(dleft, dtop, src, sleft, stop, swidth, sheight, clear);
 
 	/**
-	 * �̈�摜���w�肵���l�̏ꏊ���w�肵���F�œh��Ԃ�
-	 * @param index �̈�摜�̃C���f�b�N�X�l (0�`255)
-	 * @param color �h��Ԃ��F (0xAARRGGBB)
+	 * 領域画像が指定した値の場所を指定した色で塗りつぶす
+	 * @param index 領域画像のインデックス値 (0〜255)
+	 * @param color 塗りつぶす色 (0xAARRGGBB)
 	 */
 	function fillByProvince(index, color);
 };

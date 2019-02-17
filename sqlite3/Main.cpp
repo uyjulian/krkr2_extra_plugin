@@ -6,17 +6,17 @@
 #include "sqlite3_xp3_vfs/xp3_vfs.h"
 
 
-// ƒƒbƒZ[ƒWƒR[ƒh
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ‰
 #define	WM_SQLITE_STATECHANGE (WM_APP+8)
 #define	WM_SQLITE_PROGRESS    (WM_APP+9)
 #define PROGRESS_COUNT 100
 
 /**
- * ƒXƒe[ƒgƒƒ“ƒg tTJSVariant ‚ğƒoƒCƒ“ƒh
- * @param stmt ƒXƒe[ƒgƒƒ“ƒg
- * @param param ƒoƒCƒ“ƒh‚·‚éƒf[ƒ^
- * @param pos ƒoƒCƒ“ƒhˆÊ’u
- * @return ƒGƒ‰[ƒR[ƒh
+ * ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ tTJSVariant ã‚’ãƒã‚¤ãƒ³ãƒ‰
+ * @param stmt ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ
+ * @param param ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param pos ãƒã‚¤ãƒ³ãƒ‰ä½ç½®
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static int
 bindParam(sqlite3_stmt *stmt, const tTJSVariant &param, int pos)
@@ -42,9 +42,9 @@ bindParam(sqlite3_stmt *stmt, const tTJSVariant &param, int pos)
 }
 
 /**
- * ƒoƒCƒ“ƒhˆÊ’u‚ğæ“¾
- * @param name ƒpƒ‰ƒ[ƒ^–¼
- * @return ƒoƒCƒ“ƒhˆÊ’u
+ * ãƒã‚¤ãƒ³ãƒ‰ä½ç½®ã‚’å–å¾—
+ * @param name ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å
+ * @return ãƒã‚¤ãƒ³ãƒ‰ä½ç½®
  */
 static int
 getBindPos(sqlite3_stmt *stmt, const tTJSVariant &name)
@@ -73,9 +73,9 @@ getBindPos(sqlite3_stmt *stmt, const tTJSVariant &name)
 }
 
 /**
- * ƒoƒCƒ“ƒhˆ—‚ÌŒÄ‚Ño‚µ—p
+ * ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã®å‘¼ã³å‡ºã—ç”¨
  */
-class BindCaller : public tTJSDispatch /** EnumMembers —p */
+class BindCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	sqlite3_stmt *stmt;
@@ -108,10 +108,10 @@ public:
 };
 
 /**
- * •¡”ƒpƒ‰ƒ[ƒ^‚ğƒoƒCƒ“ƒh
- * @param stmt ƒXƒe[ƒgƒƒ“ƒg
- * @param params •¡”ƒpƒ‰ƒ[ƒ^‚Ì”z—ñ‚Ü‚½‚Í«‘
- * @return ƒGƒ‰[ƒR[ƒh
+ * è¤‡æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
+ * @param stmt ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ
+ * @param params è¤‡æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®é…åˆ—ã¾ãŸã¯è¾æ›¸
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static int
 bindParams(sqlite3_stmt *stmt, const tTJSVariant &params)
@@ -142,10 +142,10 @@ bindParams(sqlite3_stmt *stmt, const tTJSVariant &params)
 }
 
 /**
- * ƒXƒe[ƒgƒƒ“ƒg‚©‚ç tTJSVariant ‚ğæ“¾
- * @param stmt ƒXƒe[ƒgƒƒ“ƒg
- * @param variant Ši”[æ
- * @param num ƒJƒ‰ƒ€”Ô†
+ * ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‹ã‚‰ tTJSVariant ã‚’å–å¾—
+ * @param stmt ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆ
+ * @param variant æ ¼ç´å…ˆ
+ * @param num ã‚«ãƒ©ãƒ ç•ªå·
  */
 static void
 getColumnData(sqlite3_stmt *stmt, tTJSVariant &variant, int num)
@@ -172,19 +172,19 @@ getColumnData(sqlite3_stmt *stmt, tTJSVariant &variant, int num)
 extern void initContainFunc(sqlite3 *db);
 
 /**
- * SqliteƒNƒ‰ƒX
+ * Sqliteã‚¯ãƒ©ã‚¹
  */
 class Sqlite {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param database ƒf[ƒ^ƒx[ƒXƒtƒ@ƒCƒ‹–¼
-	 * @param readonly “Ç‚İ‚İê—p
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param database ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param readonly èª­ã¿è¾¼ã¿å°‚ç”¨
 	 */
 	Sqlite(const tjs_char *database, bool readonly=false) : db(NULL) {
 		if (readonly) {
-			// “Ç‚İ‚İê—p‚Í‹g—¢‹g—¢‚Ìˆ—Œn‚ğg‚¤
+			// èª­ã¿è¾¼ã¿å°‚ç”¨æ™‚ã¯å‰é‡Œå‰é‡Œã®å‡¦ç†ç³»ã‚’ä½¿ã†
 			int	len = ::WideCharToMultiByte(CP_UTF8, 0, database, -1, NULL, 0, NULL, NULL);
 			if (len > 0) {
 				char *buf = new char[len + 1];
@@ -194,10 +194,10 @@ public:
 				delete[] buf;
 			}
 		} else {
-			// ‚»‚¤‚Å‚È‚¢ê‡‚ÍOS‚Ìˆ—Œn‚ğg‚¤
+			// ãã†ã§ãªã„å ´åˆã¯OSã®å‡¦ç†ç³»ã‚’ä½¿ã†
 			ttstr filename = database;
 			if (*database == '\0' || *database == ':') {
-				// ‹ó•¶š‚Ü‚½‚Í ':' ‚Ån‚Ü‚éê‡‚Í sqlite ‚Ì“Áê‚Èˆµ‚¢
+				// ç©ºæ–‡å­—ã¾ãŸã¯ ':' ã§å§‹ã¾ã‚‹å ´åˆã¯ sqlite ã®ç‰¹æ®Šãªæ‰±ã„
 				sqlite3_open16(database, &db);
 			} else {
 				filename = TVPNormalizeStorageName(filename);
@@ -215,7 +215,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~Sqlite() {
 		if (db) {
@@ -224,7 +224,7 @@ public:
 	}
 
 	/**
-	 * SQL‚ğÀs‚·‚é
+	 * SQLã‚’å®Ÿè¡Œã™ã‚‹
 	 */
 	static tjs_error exec(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, Sqlite *self) {
 		if (numparams < 1) {
@@ -237,21 +237,21 @@ public:
 			if (numparams <= 1 || (ret = ::bindParams(stmt, *params[1])) == SQLITE_OK) {
 				if (numparams > 2 && params[2]->Type() == tvtObject) {
 					tTJSVariantClosure &callback = params[2]->AsObjectClosureNoAddRef();
-					// ƒJƒ‰ƒ€”
+					// ã‚«ãƒ©ãƒ æ•°
 					int argc = sqlite3_column_count(stmt);
-					// ˆø”‰Šú‰»
+					// å¼•æ•°åˆæœŸåŒ–
 					tTJSVariant **args = new tTJSVariant*[argc];
 					for (int i=0;i<argc;i++) {
 						args[i] = new tTJSVariant();
 					}
 					while ((ret = sqlite3_step(stmt)) == SQLITE_ROW) {
-						// ˆø”‚É“WŠJ
+						// å¼•æ•°ã«å±•é–‹
 						for (int i=0;i<argc;i++) {
 							::getColumnData(stmt, *args[i], i);
 						}
 						callback.FuncCall(0, NULL, NULL, NULL, argc, args, NULL);
 					}
-					// ˆø””jŠü
+					// å¼•æ•°ç ´æ£„
 					for (int i=0;i<argc;i++) {
 						delete args[i];
 					}
@@ -269,7 +269,7 @@ public:
 	}
 
 	/**
-	 * ’læ“¾—p‚ÉSQL‚ğÀs‚·‚éB
+	 * å€¤å–å¾—ç”¨ã«SQLã‚’å®Ÿè¡Œã™ã‚‹ã€‚
 	 */
 	static tjs_error execValue(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, Sqlite *self) {
 		if (numparams < 1) {
@@ -314,7 +314,7 @@ public:
 	}
 	
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(Sqlite **result, tjs_int numparams, tTJSVariant **params, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -377,13 +377,13 @@ NCB_REGISTER_CLASS(Sqlite) {
 };
 
 /**
- * Sqlite‚ÌƒXƒe[ƒgƒƒ“ƒg‚ğˆµ‚¤ƒNƒ‰ƒX
+ * Sqliteã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
  */
 class SqliteStatement {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	SqliteStatement(tTJSVariant &sqlite) : sqlite(sqlite), db(NULL), stmt(NULL) {
 		Sqlite *sq = ncbInstanceAdaptor<Sqlite>::GetNativeInstance(sqlite.AsObjectNoAddRef());
@@ -393,13 +393,13 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~SqliteStatement() {
 		close();
 	}
 
-	// ƒXƒe[ƒg‚ğŠJ‚­
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é–‹ã
 	static tjs_error open(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, SqliteStatement *self) {
 		if (numparams < 1) {
 			return TJS_E_BADPARAMCOUNT;
@@ -411,7 +411,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ƒXƒe[ƒg‚ğ•Â‚¶‚é
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é–‰ã˜ã‚‹
 	void close() {
 		if (stmt) {
 			sqlite3_finalize(stmt);
@@ -419,7 +419,7 @@ public:
 		}
 	}
 
-	// sqlæ“¾
+	// sqlå–å¾—
 	tTJSString getSql() const {
 		ttstr ret;
 		const char *sql = sqlite3_sql(stmt);
@@ -433,18 +433,18 @@ public:
 		return ret;
 	}
 
-	// ƒoƒCƒ“ƒhó‘Ô‚ÌƒŠƒZƒbƒg
+	// ãƒã‚¤ãƒ³ãƒ‰çŠ¶æ…‹ã®ãƒªã‚»ãƒƒãƒˆ
 	int reset() {
 		bindPos = 1;
 		return sqlite3_reset(stmt);
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ÌƒoƒCƒ“ƒh
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ãƒ‰
 	int bind(tTJSVariant params) {
 		return ::bindParams(stmt, params);
 	}
 
-	// w’èˆÊ’uƒoƒCƒ“ƒh
+	// æŒ‡å®šä½ç½®ãƒã‚¤ãƒ³ãƒ‰
 	static tjs_error bindAt(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, SqliteStatement *self) {
 		if (numparams < 1) {
 			return TJS_E_BADPARAMCOUNT;
@@ -456,7 +456,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ’PƒÀs
+	// å˜ç´”å®Ÿè¡Œ
 	int exec() {
 		int ret = sqlite3_step(stmt);
 		if (ret != SQLITE_ROW) {
@@ -465,7 +465,7 @@ public:
 		return ret;
 	}
 
-	// ƒXƒeƒbƒvÀs
+	// ã‚¹ãƒ†ãƒƒãƒ—å®Ÿè¡Œ
 	bool step() {
 		if (sqlite3_step(stmt) == SQLITE_ROW) {
 			return true;
@@ -474,32 +474,32 @@ public:
 		return false;
 	}
 
-	// ƒf[ƒ^”
+	// ãƒ‡ãƒ¼ã‚¿æ•°
 	int getCount() const {
 		return sqlite3_data_count(stmt);
 	}
 
-	// ƒJƒ‰ƒ€”
+	// ã‚«ãƒ©ãƒ æ•°
 	int getColumnCount() const {
 		return sqlite3_column_count(stmt);
 	}
 
-	// w’èƒJƒ‰ƒ€‚ª NULL‚©H
+	// æŒ‡å®šã‚«ãƒ©ãƒ ãŒ NULLã‹ï¼Ÿ
 	bool isNull(tTJSVariant column) const {
 		return sqlite3_column_type(stmt, getColumnNo(column)) == SQLITE_NULL;
 	}
 
-	// ƒJƒ‰ƒ€‚ÌŒ^
+	// ã‚«ãƒ©ãƒ ã®å‹
 	int getType(tTJSVariant column) const {
 		return sqlite3_column_type(stmt, getColumnNo(column));
 	}
 
-	// ƒJƒ‰ƒ€–¼
+	// ã‚«ãƒ©ãƒ å
 	ttstr getName(tTJSVariant column) const {
 		return (const tjs_char *)sqlite3_column_name16(stmt, getColumnNo(column));
 	}
 
-	// ’l‚Ìæ“¾
+	// å€¤ã®å–å¾—
 	static tjs_error get(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, SqliteStatement *self) {
 		if (result) {
 			if (numparams == 0) {
@@ -548,7 +548,7 @@ public:
 	}
 	
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(SqliteStatement **result, tjs_int numparams, tTJSVariant **params, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -574,9 +574,9 @@ public:
 protected:
 
 	/**
-	 * ƒJƒ‰ƒ€”Ô†‚ğæ“¾
-	 * @param column ƒJƒ‰ƒ€w’è
-	 * @return ƒJƒ‰ƒ€”Ô†
+	 * ã‚«ãƒ©ãƒ ç•ªå·ã‚’å–å¾—
+	 * @param column ã‚«ãƒ©ãƒ æŒ‡å®š
+	 * @return ã‚«ãƒ©ãƒ ç•ªå·
 	 */
 	int getColumnNo(const tTJSVariant &column) const {
 		switch (column.Type()) {
@@ -599,10 +599,10 @@ protected:
 	}
 
 	/**
-	 * sql ‚ğŠJ‚­
-	 * @param sql ƒXƒe[ƒg‚Æ‚µ‚ÄŠJ‚­sql
-	 * @param params ƒpƒ‰ƒ[ƒ^
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * sql ã‚’é–‹ã
+	 * @param sql ã‚¹ãƒ†ãƒ¼ãƒˆã¨ã—ã¦é–‹ãsql
+	 * @param params ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	int _open(const tjs_char *sql, const tTJSVariant *params = NULL) {
 		close();
@@ -616,7 +616,7 @@ protected:
 		return ret;
 	}
 
-	// w’èˆÊ’uƒoƒCƒ“ƒh
+	// æŒ‡å®šä½ç½®ãƒã‚¤ãƒ³ãƒ‰
 	int _bindAt(tTJSVariant &value, tTJSVariant *pos=NULL) {
 		if (pos) {
 			bindPos = ::getBindPos(stmt, *pos);
@@ -657,13 +657,13 @@ NCB_REGISTER_CLASS(SqliteStatement) {
 
 
 /**
- * Sqlite‚ÌƒXƒŒƒbƒhˆ—‚ğˆµ‚¤ƒNƒ‰ƒX
+ * Sqliteã®ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
  */
 class SqliteThread {
 
 public:
 
-	// ƒXƒe[ƒg
+	// ã‚¹ãƒ†ãƒ¼ãƒˆ
 	enum State {
 		INIT,
 		WORKING,
@@ -671,7 +671,7 @@ public:
 	};
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	SqliteThread(iTJSDispatch2 *objthis, tTJSVariant &window, tTJSVariant &sqlite)
 		 : objthis(objthis), window(window), sqlite(sqlite), db(NULL), stmt(NULL), progressUpdateCount(PROGRESS_COUNT),
@@ -685,14 +685,14 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~SqliteThread() {
 		abort();
 		setReceiver(false);
 	}
 
-	// ‘I‘ğˆ—ŠJn
+	// é¸æŠå‡¦ç†é–‹å§‹
 	static tjs_error select(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, SqliteThread *self) {
 		if (numparams < 1) {
 			return TJS_E_BADPARAMCOUNT;
@@ -708,7 +708,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// XVˆ—ŠJn
+	// æ›´æ–°å‡¦ç†é–‹å§‹
 	static tjs_error update(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, SqliteThread *self) {
 		if (numparams < 2) {
 			return TJS_E_BADPARAMCOUNT;
@@ -724,24 +724,24 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ˆ—’†’f
+	// å‡¦ç†ä¸­æ–­
 	void abort() {
 		stopThread();
 		updateData.Clear();
 		selectResult.Clear();
 	}
 
-	// ƒXƒe[ƒgæ“¾
+	// ã‚¹ãƒ†ãƒ¼ãƒˆå–å¾—
 	int getState() {
 		return state;
 	}
 
-	// ˆ—Œ‹‰Êæ“¾
+	// å‡¦ç†çµæœå–å¾—
 	const tTJSVariant &getSelectResult() const {
 		return selectResult;
 	}
 	
-	// ƒGƒ‰[ƒR[ƒhæ“¾
+	// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å–å¾—
 	int getErrorCode() {
 		return errorCode;
 	}
@@ -755,7 +755,7 @@ public:
 	}
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(SqliteThread **result, tjs_int numparams, tTJSVariant **params, iTJSDispatch2 *objthis) {
 		if (numparams < 2) {
@@ -774,9 +774,9 @@ public:
 protected:
 
 	/**
-	 * sql ‚ğŠJ‚­
-	 * @param sql ƒXƒe[ƒg‚Æ‚µ‚ÄŠJ‚­sql
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * sql ã‚’é–‹ã
+	 * @param sql ã‚¹ãƒ†ãƒ¼ãƒˆã¨ã—ã¦é–‹ãsql
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	int open(const tjs_char *sql, const tTJSVariant *params = NULL) {
 		if (threadHandle) {
@@ -801,7 +801,7 @@ protected:
 		}
 	}
 
-	// ƒXƒe[ƒg•ÏX
+	// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´
 	void onStateChange(State state) {
 		if (state == DONE) {
 			stopThread();
@@ -812,14 +812,14 @@ protected:
 		TVPPostEvent(objthis, objthis, eventName, 0, TVP_EPT_POST, 1, &param);
 	}
 
-	// ÀsŒo‰ß
+	// å®Ÿè¡ŒçµŒé
 	void onProgress(int n) {
 		tTJSVariant param = n;
 		static ttstr eventName(TJS_W("onProgress"));
 		TVPPostEvent(objthis, objthis, eventName, 0, TVP_EPT_POST, 1, &param);
 	}
 	
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -831,7 +831,7 @@ protected:
 	}
 
 	/**
-	 * ƒCƒxƒ“ƒgóMˆ—
+	 * ã‚¤ãƒ™ãƒ³ãƒˆå—ä¿¡å‡¦ç†
 	 */
 	static bool __stdcall receiver(void *userdata, tTVPWindowMessage *Message) {
 		switch (Message->Msg) {
@@ -858,12 +858,12 @@ protected:
 	}
 
 	// -----------------------------------------------
-	// ƒXƒŒƒbƒhˆ—
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†
 	// -----------------------------------------------
 
-	// ƒƒbƒZ[ƒW‘—M
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 	void postMessage(UINT msg, WPARAM wparam=NULL, LPARAM lparam=NULL) {
-		// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾‚µ‚Ä’Ê’m
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦é€šçŸ¥
 		tTJSVariant val;
 		window.AsObjectClosureNoAddRef().PropGet(0, TJS_W("HWND"), NULL, &val, NULL);
 		HWND hwnd = reinterpret_cast<HWND>((tjs_int)(val));
@@ -874,7 +874,7 @@ protected:
 	// -----------------------------------------------------------------------------------
 	
 	/**
-	 * ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÅÀs‚·‚éˆ—
+	 * ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§å®Ÿè¡Œã™ã‚‹å‡¦ç†
 	 */
 	void selectThreadMain() {
 		postMessage(WM_SQLITE_STATECHANGE, (WPARAM)this, (LPARAM)WORKING);
@@ -909,14 +909,14 @@ protected:
 		postMessage(WM_SQLITE_STATECHANGE, (WPARAM)this, (LPARAM)DONE);
 	}
 
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static unsigned __stdcall selectThreadFunc(void *data) {
 		((SqliteThread*)data)->selectThreadMain();
 		_endthreadex(0);
 		return 0;
 	}
 
-	// ƒXƒŒƒbƒhˆ—ŠJn
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†é–‹å§‹
 	void startSelectThread() {
 		iTJSDispatch2 *array = TJSCreateArrayObject();
 		selectResult = tTJSVariant(array, array);
@@ -929,7 +929,7 @@ protected:
 	// -----------------------------------------------------------------------------------
 
 	/**
-	 * ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÅÀs‚·‚éˆ—
+	 * ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§å®Ÿè¡Œã™ã‚‹å‡¦ç†
 	 */
 	void updateThreadMain() {
 		postMessage(WM_SQLITE_STATECHANGE, (WPARAM)this, (LPARAM)WORKING);
@@ -968,14 +968,14 @@ protected:
 		postMessage(WM_SQLITE_STATECHANGE, (WPARAM)this, (LPARAM)DONE);
 	}
 
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static unsigned __stdcall updateThreadFunc(void *data) {
 		((SqliteThread*)data)->updateThreadMain();
 		_endthreadex(0);
 		return 0;
 	}
 
-	// ƒXƒŒƒbƒhˆ—ŠJn
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†é–‹å§‹
 	void startUpdateThread(tTJSVariant &data) {
 		updateData = data;
 		errorCode = SQLITE_OK;
@@ -985,7 +985,7 @@ protected:
 
 	// -----------------------------------------------------------------------------------
 	
-	// ƒXƒŒƒbƒhˆ—I—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†çµ‚äº†
 	void stopThread() {
 		if (threadHandle) {
 			canceled = true;
@@ -998,21 +998,21 @@ protected:
 
 	
 private:
-	iTJSDispatch2 *objthis; ///< ©ŒÈƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *objthis; ///< è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 	tTJSVariant window;
 	tTJSVariant sqlite;
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
 	int progressUpdateCount;
 	
-	// ƒXƒŒƒbƒhˆ——p
-	HANDLE threadHandle; ///< ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹
-	bool canceled; ///< ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ç”¨
+	HANDLE threadHandle; ///< ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«
+	bool canceled; ///< ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 	
-	tTJSVariant updateData; ///< UPDATE—pƒf[ƒ^(”z—ñ)
-	State state; ///< ƒXƒe[ƒg
-	int errorCode; ///< ƒGƒ‰[ƒR[ƒh
-	tTJSVariant selectResult; ///< SELECT‚ÌŒ‹‰Ê(”z—ñ)
+	tTJSVariant updateData; ///< UPDATEç”¨ãƒ‡ãƒ¼ã‚¿(é…åˆ—)
+	State state; ///< ã‚¹ãƒ†ãƒ¼ãƒˆ
+	int errorCode; ///< ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	tTJSVariant selectResult; ///< SELECTã®çµæœ(é…åˆ—)
 };
 
 #define ENUM2(n) Variant(#n, (int)SqliteThread::n)

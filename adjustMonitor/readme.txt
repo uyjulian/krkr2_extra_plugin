@@ -1,16 +1,16 @@
 Title: AdjustMoni plugin
-Author: �˂�
-Version: �˂� 2009/07/01/A
+Author: ねい
+Version: ねい 2009/07/01/A
 
-������͂ȂɁH
+●これはなに？
 
-�}���`���j�^�Ή��A�E�B���h�E(��`)�ʒu�����v���O�C���ł��B
-�E�B���h�E�����j�^�̊O�ɏo�Ȃ��悤�ɂ��铙�̗p�r�Ɏg�p�ł��܂��B
+マルチモニタ対応、ウィンドウ(矩形)位置調整プラグインです。
+ウィンドウがモニタの外に出ないようにする等の用途に使用できます。
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

@@ -1,25 +1,25 @@
 Title: sqlite plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‘g‚Ýž‚ÝSQLƒf[ƒ^ƒx[ƒXƒGƒ“ƒWƒ“ sqlite (http://www.sqlite.org) 
-‚Ì‹g—¢‹g—¢ƒoƒCƒ“ƒh‚Å‚·B
+çµ„ã¿è¾¼ã¿SQLãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ sqlite (http://www.sqlite.org) 
+ã®å‰é‡Œå‰é‡Œãƒã‚¤ãƒ³ãƒ‰ã§ã™ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-E’Pƒ‚ÈŽg‚¢•û‚Ìê‡‚Í Sqlite ƒIƒuƒWƒFƒNƒg‚ðŽg‚¢‚Ü‚·B
-EƒXƒe[ƒgˆ—‚ðs‚¢‚½‚¢ê‡‚Í SqliteStatement ƒIƒuƒWƒFƒNƒg‚ðŽg‚¢‚Ü‚·B
-E•ÊƒXƒŒƒbƒh‚Åˆ—‚³‚¹‚½‚¢ê‡‚Í SqliteThread ƒIƒuƒWƒFƒNƒg‚ðŽg‚¢‚Ü‚·B
+ãƒ»å˜ç´”ãªä½¿ã„æ–¹ã®å ´åˆã¯ Sqlite ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½¿ã„ã¾ã™ã€‚
+ãƒ»ã‚¹ãƒ†ãƒ¼ãƒˆå‡¦ç†ã‚’è¡Œã„ãŸã„å ´åˆã¯ SqliteStatement ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½¿ã„ã¾ã™ã€‚
+ãƒ»åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‡¦ç†ã•ã›ãŸã„å ´åˆã¯ SqliteThread ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½¿ã„ã¾ã™ã€‚
 
-Ú×‚Í manual.tjs ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+è©³ç´°ã¯ manual.tjs ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
-œSQLŠg’£
+â—SQLæ‹¡å¼µ
 
- cnt(a,b)   •¶Žš—ñ a ‚É b ‚ªŠÜ‚Ü‚ê‚ê‚Î^
- ncnt(a,b)  ³‹K‰»‚³‚ê‚½•¶Žš—ñ a ‚É ³‹K‰»‚³‚ê‚½•¶Žš—ñ b ‚ªŠÜ‚Ü‚ê‚Ä‚ê‚Î^
+ cnt(a,b)   æ–‡å­—åˆ— a ã« b ãŒå«ã¾ã‚Œã‚Œã°çœŸ
+ ncnt(a,b)  æ­£è¦åŒ–ã•ã‚ŒãŸæ–‡å­—åˆ— a ã« æ­£è¦åŒ–ã•ã‚ŒãŸæ–‡å­—åˆ— b ãŒå«ã¾ã‚Œã¦ã‚Œã°çœŸ
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-sqlite ‚Í public domain ‚Å‚·B
-‚±‚Ìƒvƒ‰ƒOƒCƒ“Ž©‘Ì‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+sqlite ã¯ public domain ã§ã™ã€‚
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è‡ªä½“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

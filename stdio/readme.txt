@@ -1,15 +1,15 @@
 Title: stdio plugin
-Author: �n粍�
+Author: 渡邊剛
 
-������͂ȂɁH
+●これはなに？
 
-�g���g���ƕW�����o�͂�ڑ����邽�߂̃v���O�C���ł�
+吉里吉里と標準入出力を接続するためのプラグインです
 
-���g����
+●使い方
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。
 

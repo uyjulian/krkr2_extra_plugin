@@ -1,14 +1,14 @@
-Title: win32ole ƒvƒ‰ƒOƒCƒ“
-Author: ‚í‚½‚È‚×‚²‚¤
+Title: win32ole ãƒ—ãƒ©ã‚°ã‚¤ãƒ³
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚Ì OLE/ActiveX ‹@”\Šg’£‚Å‚·B
+å‰é‡Œå‰é‡Œã® OLE/ActiveX æ©Ÿèƒ½æ‹¡å¼µã§ã™ã€‚
 
-œŽg—p•û–@
+â—ä½¿ç”¨æ–¹æ³•
 
-Ú×‚Ímanual.tjs ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+è©³ç´°ã¯manual.tjs ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

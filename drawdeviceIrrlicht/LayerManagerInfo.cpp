@@ -3,7 +3,7 @@
 #include "LayerManagerInfo.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerManagerInfo::LayerManagerInfo(int id, bool visible)
 	: id(id), visible(visible), driver(NULL), texture(NULL), destBuffer(NULL)
@@ -11,28 +11,28 @@ LayerManagerInfo::LayerManagerInfo(int id, bool visible)
 };
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerManagerInfo::~LayerManagerInfo()
 {
 	free();
 }
 
-// Š„‚è“–‚Äˆ—
+// å‰²ã‚Šå½“ã¦å‡¦ç†
 void
 LayerManagerInfo::alloc(iTVPLayerManager *manager, irr::video::IVideoDriver *driver)
 {
 	free();
 	tjs_int w, h;
 	if (manager->GetPrimaryLayerSize(w, h) && w > 0 && h > 0) {
-		// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚Í2‚ÌŠKæ Irrlicht ‚ª‚±‚ÌƒTƒCƒY‚É’²®‚µ‚Ä‚©‚çƒeƒNƒXƒ`ƒƒ‚ğ‚Â‚­‚Á‚Ä‚é‚Ì‚Å‚ ‚í‚¹‚Ä‚¨‚­
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºã¯2ã®éšä¹— Irrlicht ãŒã“ã®ã‚µã‚¤ã‚ºã«èª¿æ•´ã—ã¦ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã¤ãã£ã¦ã‚‹ã®ã§ã‚ã‚ã›ã¦ãŠã
 		tjs_int tw = 1; while(tw < w) tw <<= 1;
 		tjs_int th = 1; while(th < h) th <<= 1;
 		char name[20];
 		snprintf(name, sizeof name-1, "krkr%d", id);
 		texture = driver->addTexture(irr::core::dimension2d<irr::s32>(tw, th), name, irr::video::ECF_A8R8G8B8);
 		if (texture == NULL) {
-			TVPThrowExceptionMessage(L"ƒeƒNƒXƒ`ƒƒ‚ÌŠ„‚è“–‚Ä‚É¸”s‚µ‚Ü‚µ‚½");
+			TVPThrowExceptionMessage(L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ã¾ã—ãŸ");
 		} else {
 			this->driver = driver;
 			manager->RequestInvalidation(tTVPRect(0,0,w,h));
@@ -52,7 +52,7 @@ LayerManagerInfo::free()
 }
 
 /**
- * ƒeƒNƒXƒ`ƒƒ‚ğƒƒbƒN‚µ‚Ä•`‰æ—Ìˆæî•ñ‚ğæ“¾‚·‚é
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒƒã‚¯ã—ã¦æç”»é ˜åŸŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹
  */
 void
 LayerManagerInfo::lock()
@@ -69,22 +69,22 @@ LayerManagerInfo::lock()
 }
 
 /**
- * ƒƒbƒN‚³‚ê‚½ƒeƒNƒXƒ`ƒƒ‚Éƒrƒbƒgƒ}ƒbƒv•`‰æ‚ğs‚¤
+ * ãƒ­ãƒƒã‚¯ã•ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»ã‚’è¡Œã†
  */
 void
 LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
 					   const tTVPRect &cliprect, tTVPLayerType type, tjs_int opacity)
 {
-	// bits, bitmapinfo ‚Å•\‚³‚ê‚éƒrƒbƒgƒ}ƒbƒv‚Ì cliprect ‚Ì—Ìˆæ‚ğAx, y ‚É•`‰æ‚·‚éB
+	// bits, bitmapinfo ã§è¡¨ã•ã‚Œã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã® cliprect ã®é ˜åŸŸã‚’ã€x, y ã«æç”»ã™ã‚‹ã€‚
 
 	if (destBuffer) {
-		int srcPitch = -bitmapinfo->bmiHeader.biWidth * 4; // XXX ‚«‚ß‚¤‚¿
+		int srcPitch = -bitmapinfo->bmiHeader.biWidth * 4; // XXX ãã‚ã†ã¡
 		unsigned char *srcBuffer = (unsigned char *)bits - srcPitch * (bitmapinfo->bmiHeader.biHeight - 1);
 		int srcx   = cliprect.left;
 		int srcy   = cliprect.top;
 		int width  = cliprect.get_width();
 		int height = cliprect.get_height();
-		// ƒNƒŠƒbƒsƒ“ƒO
+		// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		if (x < 0) {
 			srcx  += x;
 			width += x;
@@ -112,7 +112,7 @@ LayerManagerInfo::copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO
 }
 
 /**
- * ƒeƒNƒXƒ`ƒƒ‚ÌƒƒbƒN‚Ì‰ğœ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ­ãƒƒã‚¯ã®è§£é™¤
  */
 void
 LayerManagerInfo::unlock()
@@ -124,7 +124,7 @@ LayerManagerInfo::unlock()
 }
 
 /**
- * ‰æ–Ê‚Ö‚Ì•`‰æ
+ * ç”»é¢ã¸ã®æç”»
  */
 void
 LayerManagerInfo::draw(irr::video::IVideoDriver *driver, irr::core::rect<irr::s32> destRect)

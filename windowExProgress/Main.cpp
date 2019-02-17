@@ -13,7 +13,7 @@
 #endif
 
 /**
- * •\¦‰æ‘œî•ñ
+ * è¡¨ç¤ºç”»åƒæƒ…å ±
  */
 class ImageInfo {
 
@@ -25,13 +25,13 @@ public:
 		removeBitmap();
 	}
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	void show(HDC dc, PAINTSTRUCT &ps) {
 		if (bitmap) {
-			// ƒrƒbƒgƒ}ƒbƒv•`‰æ
+			// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»
 			::BitBlt(dc, left, top, width, height, bmpdc, 0, 0, SRCCOPY);
 		} else {
-			// ‹éŒ`•`‰æ
+			// çŸ©å½¢æç”»
 			if (width > 0 && height > 0) {
 				SelectObject(dc, CreateSolidBrush(color));
 				::Rectangle(dc, left, top, width, height);
@@ -41,7 +41,7 @@ public:
 	}
 	
 	/**
-	 * ƒrƒbƒgƒ}ƒbƒv‚ğİ’è
+	 * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’è¨­å®š
 	 */
 	void setColor(int left, int top, int width, int height, int color) {
 		removeBitmap();
@@ -53,7 +53,7 @@ public:
 	}
 	
 	/**
-	 * ƒrƒbƒgƒ}ƒbƒv‚ğİ’è
+	 * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’è¨­å®š
 	 */
 	bool setBitmap(int left, int top, iTJSDispatch2 *lay) {
 		
@@ -115,7 +115,7 @@ protected:
 
 
 /**
- * •\¦ƒƒbƒZ[ƒWî•ñ
+ * è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æƒ…å ±
  */
 class MessageInfo {
 	
@@ -164,14 +164,14 @@ protected:
 };
 
 /**
- * ƒZ[ƒuˆ—ƒXƒŒƒbƒh—pî•ñ
- * ƒvƒƒOƒŒƒXˆ—‚ğÀs‚·‚éƒEƒCƒ“ƒhƒE
+ * ã‚»ãƒ¼ãƒ–å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨æƒ…å ±
+ * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  */
 class ProgressWindow {
 
 public:
 	/**
-	 * ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
 	 */
 	static void registerWindowClass() {
 		WNDCLASSEX wcex;
@@ -192,14 +192,14 @@ public:
 	}
 
 	/**
-	 * ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Ìíœ
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®å‰Šé™¤
 	 */
 	static void unregisterWindowClass() {
 		UnregisterClass(CLASSNAME, GetModuleHandle(NULL));
 	}
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	ProgressWindow(iTJSDispatch2 *window, iTJSDispatch2 *init) : window(window), hParent(0), hWnd(0), thread(0), doneflag(false), cancelflag(false), percent(0),
 	progressBarEnable(true), progressBarHandle(0), progressBarStyle(0),
@@ -230,7 +230,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~ProgressWindow() {
 		CloseHandle(prepare);
@@ -239,8 +239,8 @@ public:
 	}
 	
 	/**
-	 * ƒvƒƒOƒŒƒX’Ê’m
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚½‚ç true
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹é€šçŸ¥
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ãŸã‚‰ true
 	 */
 	bool doProgress(int percent) {
 		if (percent != this->percent) {
@@ -253,25 +253,25 @@ public:
 	}
 
 	/**
-	 * ƒvƒƒOƒŒƒXˆ—‚ÌƒeƒLƒXƒg‚ğ·‚µ‘Ö‚¦‚é
-	 * @param name ¯•Ê–¼
-	 * @param text •\¦ƒeƒLƒXƒg
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’å·®ã—æ›¿ãˆã‚‹
+	 * @param name è­˜åˆ¥å
+	 * @param text è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆ
 	 */
 	void setProgressMessage(const tjs_char *name, const tjs_char *text) {
 	}
 	
 protected:
-	iTJSDispatch2 *window; //< eƒEƒCƒ“ƒhƒE
-	HWND hParent; //< eƒnƒ“ƒhƒ‹
-	HWND hWnd; //< ©•ª‚Ìƒnƒ“ƒhƒ‹
-	HANDLE thread; //< ƒvƒƒOƒŒƒXˆ—‚ÌƒXƒŒƒbƒh
-	HANDLE prepare; //< €”õ‘Ò‚¿ƒCƒxƒ“ƒg
-	bool doneflag;   // I—¹ƒtƒ‰ƒO
-	bool cancelflag; // ƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO
-	int percent; // ƒp[ƒZƒ“ƒgw’è
+	iTJSDispatch2 *window; //< è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	HWND hParent; //< è¦ªãƒãƒ³ãƒ‰ãƒ«
+	HWND hWnd; //< è‡ªåˆ†ã®ãƒãƒ³ãƒ‰ãƒ«
+	HANDLE thread; //< ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã®ã‚¹ãƒ¬ãƒƒãƒ‰
+	HANDLE prepare; //< æº–å‚™å¾…ã¡ã‚¤ãƒ™ãƒ³ãƒˆ
+	bool doneflag;   // çµ‚äº†ãƒ•ãƒ©ã‚°
+	bool cancelflag; // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°
+	int percent; // ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆæŒ‡å®š
 
 	bool progressBarEnable;
-	HWND progressBarHandle; //< ƒvƒƒOƒŒƒXƒo[‚Ìƒnƒ“ƒhƒ‰
+	HWND progressBarHandle; //< ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ©
 	int progressBarLeft;
 	int progressBarStyle;
 	int progressBarTop;
@@ -291,13 +291,13 @@ protected:
 	ImageInfo *backGround;
 	
 	/**
-	 * ƒEƒCƒ“ƒhƒEƒvƒƒV[ƒWƒƒ
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 	 */
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 		ProgressWindow *self = (ProgressWindow*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 		if (self) {
 			switch (message) {
-			case WM_PAINT: // ‰æ–ÊXV
+			case WM_PAINT: // ç”»é¢æ›´æ–°
 				{
 					PAINTSTRUCT ps;
 					HDC dc = BeginPaint(hWnd, &ps);
@@ -305,7 +305,7 @@ protected:
 					EndPaint(hWnd, &ps);
 				}
 				return 0;
-			case WM_COMMAND: // ƒLƒƒƒ“ƒZƒ‹’Ê’m
+			case WM_COMMAND: // ã‚­ãƒ£ãƒ³ã‚»ãƒ«é€šçŸ¥
 				switch (wParam) {
 				case ID_CANCEL:
 					self->cancel();
@@ -318,7 +318,7 @@ protected:
 	}
 	
 	/*
-	 * ƒEƒCƒ“ƒhƒEƒCƒxƒ“ƒgˆ—ƒŒƒV[ƒo
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ãƒ¬ã‚·ãƒ¼ãƒ
 	 */
 	static bool __stdcall receiver(void *userdata, tTVPWindowMessage *Message) {
 		ProgressWindow *self = (ProgressWindow*)userdata;
@@ -335,7 +335,7 @@ protected:
 		return false;
 	}
 
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -346,7 +346,7 @@ protected:
 		}
 	}
 	
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static unsigned __stdcall threadFunc(void *data) {
 		((ProgressWindow*)data)->main();
 		_endthreadex(0);
@@ -354,7 +354,7 @@ protected:
 	}
 
 	/**
-	 * ˆ—ŠJn
+	 * å‡¦ç†é–‹å§‹
 	 */
 	void start() {
 		end();
@@ -362,7 +362,7 @@ protected:
 		tTJSVariant krkrHwnd;
 		if (TJS_SUCCEEDED(window->PropGet(0, TJS_W("HWND"), NULL, &krkrHwnd, window))) {
 			hParent = ::FindWindowEx((HWND)(tjs_int)krkrHwnd, NULL, KRKRDISPWINDOWCLASS, NULL);
-            // KRKRDISPWINDOWCLASS‚ªŒ©‚Â‚©‚ç‚È‚¢ê‡‚Í‹g—¢‹g—¢Z‚È‚Ì‚Å©g‚ğhParent‚Æ‚·‚é 
+            // KRKRDISPWINDOWCLASSãŒè¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯å‰é‡Œå‰é‡ŒZãªã®ã§è‡ªèº«ã‚’hParentã¨ã™ã‚‹ 
             if (! hParent)
               hParent = (HWND)(tjs_int)krkrHwnd;
 			if (hParent) {
@@ -375,7 +375,7 @@ protected:
 	}
 	
 	/**
-	 * ˆ—I—¹
+	 * å‡¦ç†çµ‚äº†
 	 */
 	void end() {
 		doneflag = true;
@@ -388,11 +388,11 @@ protected:
 	}
 
 	/**
-	 * ÀsƒƒCƒ“ˆ—
-	 * ƒEƒCƒ“ƒhƒE‚Ì¶¬‚©‚ç”jŠü‚Ü‚Å‚ğ“Æ—§‚µ‚½ƒXƒŒƒbƒh‚Ås‚¤
+	 * å®Ÿè¡Œãƒ¡ã‚¤ãƒ³å‡¦ç†
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç”Ÿæˆã‹ã‚‰ç ´æ£„ã¾ã§ã‚’ç‹¬ç«‹ã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†
 	 */
 	void main() {
-		// ƒEƒCƒ“ƒhƒE¶¬
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 		if (hParent && !hWnd) {
 			RECT rect;
 			POINT point;
@@ -409,9 +409,9 @@ protected:
 				::SetWindowLong(hWnd, GWL_USERDATA, (LONG)this);
 				::ShowWindow(hWnd,TRUE);
 				create();
-				// ‘Ò‚¿‡‚í‚¹Š®—¹
+				// å¾…ã¡åˆã‚ã›å®Œäº†
 				SetEvent(prepare);
-				// ƒƒbƒZ[ƒWƒ‹[ƒv‚ÌÀs
+				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—ã®å®Ÿè¡Œ
 				MSG msg;
 				while (!doneflag) {
 					if (::PeekMessage(&msg, 0, 0, 0, PM_NOREMOVE)) {
@@ -425,7 +425,7 @@ protected:
 					    Sleep(0);
 					}
 				}
-				// ƒEƒCƒ“ƒhƒE‚Ì”jŠü
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç ´æ£„
 				::DestroyWindow(hWnd);
 				hWnd = 0;
 			}
@@ -443,7 +443,7 @@ protected:
 	}
 	
 	/**
-	 * •`‰æ“à—e¶¬
+	 * æç”»å†…å®¹ç”Ÿæˆ
 	 */
 	void create() {
 
@@ -453,7 +453,7 @@ protected:
 		int sheight = rect.bottom - rect.top;
 		
 		if (progressBarEnable) {
-			// ƒvƒƒOƒŒƒXƒo[‚Ì”z’uŒˆ’è
+			// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®é…ç½®æ±ºå®š
 			if (progressBarWidth < 0) {
 				progressBarWidth = swidth / 3;
 			}
@@ -466,7 +466,7 @@ protected:
 			if (progressBarTop < 0) {
 				progressBarTop = (sheight - progressBarHeight)/2;
 			}
-			// ƒvƒƒOƒŒƒXƒo[‚ğì¬
+			// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’ä½œæˆ
 			progressBarHandle = CreateWindowEx(0, PROGRESS_CLASS, _T(""),
 											   WS_VISIBLE | WS_CHILD | (progressBarStyle & (PBS_SMOOTH|PBS_VERTICAL)),
 											   progressBarLeft, progressBarTop, progressBarWidth, progressBarHeight,
@@ -479,7 +479,7 @@ protected:
 		}
 
 		if (cancelButtonEnable) {
-			// ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“‚Ì”z’uŒˆ’è
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ã®é…ç½®æ±ºå®š
 			if (cancelButtonWidth < 0) {
 				cancelButtonWidth = cancelButtonCaption.length() * 16 + 8;
 			}
@@ -492,7 +492,7 @@ protected:
 			if (cancelButtonTop < 0) {
 				cancelButtonTop = sheight - cancelButtonHeight * 3;
 			}
-			// ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“‚ğì¬
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ã‚’ä½œæˆ
 			cancelButtonHandle = CreateWindow(_T("BUTTON"), cancelButtonCaption.c_str(),
 											  WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
 											  cancelButtonLeft, cancelButtonTop, cancelButtonWidth, cancelButtonHeight,
@@ -501,18 +501,18 @@ protected:
 	}
 	
 	/**
-	 * ‰æ–ÊXVˆ—
+	 * ç”»é¢æ›´æ–°å‡¦ç†
 	 */
 	void show(HDC dc, PAINTSTRUCT &ps) {
-		// ”wŒi‚Å“h‚è‚Â‚Ô‚µ
+		// èƒŒæ™¯ã§å¡—ã‚Šã¤ã¶ã—
 
-		// ƒAƒjƒƒpƒ^[ƒ“‚ğ•`‰æ
+		// ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æç”»
 
-		// ƒeƒLƒXƒg‚ğ•\¦
+		// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤º
 	}
 
 	/**
-	 * ƒLƒƒƒ“ƒZƒ‹’Ê’m
+	 * ã‚­ãƒ£ãƒ³ã‚»ãƒ«é€šçŸ¥
 	 */
 	void cancel() {
 		cancelflag = true;
@@ -520,31 +520,31 @@ protected:
 };
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ÉƒŒƒCƒ„ƒZ[ƒu‹@”\‚ğŠg’£
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ¬ã‚¤ãƒ¤ã‚»ãƒ¼ãƒ–æ©Ÿèƒ½ã‚’æ‹¡å¼µ
  */
 class WindowExProgress {
 
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
-	ProgressWindow *progressWindow; //< ƒvƒƒOƒŒƒX•\¦—p
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
+	ProgressWindow *progressWindow; //< ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹è¡¨ç¤ºç”¨
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	WindowExProgress(iTJSDispatch2 *objthis) : objthis(objthis), progressWindow(NULL) {}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~WindowExProgress() {
 		delete progressWindow;
 	}
 
 	/**
-	 * ƒvƒƒOƒŒƒXˆ—‚ğŠJn‚·‚éB
-	 * ‹g—¢‹g—¢‚ªÀsƒuƒƒbƒN’†‚Å‚à³í‚É•\¦Œp‘±‚µ‚Ü‚·B
-	 * @param init ‰Šú‰»ƒf[ƒ^(«‘)
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹ã€‚
+	 * å‰é‡Œå‰é‡ŒãŒå®Ÿè¡Œãƒ–ãƒ­ãƒƒã‚¯ä¸­ã§ã‚‚æ­£å¸¸ã«è¡¨ç¤ºç¶™ç¶šã—ã¾ã™ã€‚
+	 * @param init åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿(è¾æ›¸)
 	 */
 	void startProgress(iTJSDispatch2 *init) {
 		if (progressWindow) {
@@ -554,9 +554,9 @@ public:
 	}
 	
 	/**
-	 * ƒvƒƒOƒŒƒXˆ—‚ÌŒo‰ßó‘Ô‚ğ’Ê’m‚·‚éB
-	 * @param percent Œo‰ßó‘Ô‚ğƒp[ƒZƒ“ƒgw’è
-	 * @return ƒLƒƒƒ“ƒZƒ‹—v‹‚ª‚ ‚ê‚Î true
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã®çµŒéçŠ¶æ…‹ã‚’é€šçŸ¥ã™ã‚‹ã€‚
+	 * @param percent çµŒéçŠ¶æ…‹ã‚’ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆæŒ‡å®š
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«è¦æ±‚ãŒã‚ã‚Œã° true
 	 */
 	bool doProgress(int percent) {
 		if (!progressWindow) {
@@ -566,7 +566,7 @@ public:
 	}
 
 	/**
-	 * ƒvƒƒOƒŒƒXˆ—‚ğI—¹‚·‚éB
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹ã€‚
 	 */
 	void endProgress() {
 		if (!progressWindow) {
@@ -579,14 +579,14 @@ public:
 
 //---------------------------------------------------------------------------
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowExProgress)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
@@ -603,7 +603,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(WindowExProgress, Window) {
 };
 
 /**
- * “o˜^ˆ—Œã
+ * ç™»éŒ²å‡¦ç†å¾Œ
  */
 static void PreRegistCallback()
 {
@@ -611,7 +611,7 @@ static void PreRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—‘O
+ * é–‹æ”¾å‡¦ç†å‰
  */
 static void PostUnregistCallback()
 {

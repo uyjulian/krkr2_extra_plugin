@@ -80,7 +80,7 @@ class TestWindow extends Window {
 		cls.bmpItem = MenuItem.biPopupClose;
 		min.rightJustify = true;
 
-		// iq‚ğì‚é^q‚ªÁ‚¦‚é‚ÆID‚ª•Ï‚í‚é‚Ì‚ÅbmpItem‚ª•\¦‚³‚ê‚È‚¢j
+		// ï¼ˆå­ã‚’ä½œã‚‹ï¼å­ãŒæ¶ˆãˆã‚‹ã¨IDãŒå¤‰ã‚ã‚‹ã®ã§bmpItemãŒè¡¨ç¤ºã•ã‚Œãªã„ï¼‰
 		var sub = new MenuItem(this, "xxx");
 		sub.onClick = function { System.inform("xxx"); focusMenuByKey(); } incontextof this;
 
@@ -90,7 +90,7 @@ class TestWindow extends Window {
 
 		dm("mark", mark.HMENU);
 		
-		// Window’¼‰º‚Ì HMENU ‚ªæ“¾‚Å‚«‚é‚©ƒeƒXƒg
+		// Windowç›´ä¸‹ã® HMENU ãŒå–å¾—ã§ãã‚‹ã‹ãƒ†ã‚¹ãƒˆ
 		var prop = &(MenuItem.HMENU);
 		dm("HMENU", *(prop incontextof menu));
 
@@ -215,29 +215,29 @@ timer.interval = 5000;
 timer.enabled = true;
 
 dm("----------------");
-dm("ƒ‚ƒjƒ^ˆê——æ“¾ƒeƒXƒg");
+dm("ãƒ¢ãƒ‹ã‚¿ä¸€è¦§å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetDisplayMonitors();
 
 dm("----------------");
-dm("”ÍˆÍw’è‚Â‚«ƒ‚ƒjƒ^æ“¾ƒeƒXƒg");
+dm("ç¯„å›²æŒ‡å®šã¤ããƒ¢ãƒ‹ã‚¿å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetDisplayMonitors(-100, -100, 200, 200);
 
 dm("----------------");
-dm("ƒvƒ‰ƒCƒ}ƒŠƒ‚ƒjƒ^æ“¾ƒeƒXƒg");
+dm("ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¢ãƒ‹ã‚¿å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetMonitorInfo();
 
 dm("----------------");
-dm("À•Ww’èƒ‚ƒjƒ^æ“¾ƒeƒXƒg");
+dm("åº§æ¨™æŒ‡å®šãƒ¢ãƒ‹ã‚¿å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetMonitorInfo("true",   -1, -1);
 TestGetMonitorInfo("false",  -1, -1);
 
 dm("----------------");
-dm("‹éŒ`w’èƒ‚ƒjƒ^æ“¾ƒeƒXƒg");
+dm("çŸ©å½¢æŒ‡å®šãƒ¢ãƒ‹ã‚¿å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetMonitorInfo("true",  -100, -100, 100, 100);
 TestGetMonitorInfo("false", -100, -100, 100, 100);
 
 dm("----------------");
-dm("ƒEƒBƒ“ƒhƒEw’èƒ‚ƒjƒ^æ“¾ƒeƒXƒg");
+dm("ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æŒ‡å®šãƒ¢ãƒ‹ã‚¿å–å¾—ãƒ†ã‚¹ãƒˆ");
 TestGetMonitorInfo("true",   testWin);
 TestGetMonitorInfo("false",  testWin);
 

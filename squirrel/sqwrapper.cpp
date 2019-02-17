@@ -1,6 +1,6 @@
 /**
- * Squirrel ©¨ ‹g—¢‹g—¢ƒuƒŠƒbƒWˆ—
- * ‹g—¢‹g—¢‚ÌƒIƒuƒWƒFƒNƒg‚Í UserData ‚Æ‚µ‚ÄŠÇ—‚·‚é
+ * Squirrel â†â†’ å‰é‡Œå‰é‡Œãƒ–ãƒªãƒƒã‚¸å‡¦ç†
+ * å‰é‡Œå‰é‡Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ UserData ã¨ã—ã¦ç®¡ç†ã™ã‚‹
  */
 
 #include <windows.h>
@@ -12,7 +12,7 @@
 // sqfunc.cpp
 extern SQRESULT ERROR_BADINSTANCE(HSQUIRRELVM v);
 
-// ŠO•”QÆ
+// å¤–éƒ¨å‚ç…§
 
 SQRESULT ERROR_KRKR(HSQUIRRELVM v, tjs_error error) {
 	switch (error) {
@@ -37,12 +37,12 @@ SQRESULT ERROR_KRKR(HSQUIRRELVM v, tjs_error error) {
 	}
 }
 
-// Ši”[Eæ“¾—p
+// æ ¼ç´ãƒ»å–å¾—ç”¨
 void sq_pushvariant(HSQUIRRELVM v, tTJSVariant &variant);
 SQRESULT sq_getvariant(HSQUIRRELVM v, int idx, tTJSVariant *result);
 
 /**
- * ƒGƒ‰[ˆ—
+ * ã‚¨ãƒ©ãƒ¼å‡¦ç†
  */
 void
 SQEXCEPTION(HSQUIRRELVM v)
@@ -58,22 +58,22 @@ SQEXCEPTION(HSQUIRRELVM v)
 #define SQUIRRELOBJCLASS L"SquirrelObject"
 
 /**
- * HSQOBJECT —p iTJSDispatch2 ƒ‰ƒbƒp[
+ * HSQOBJECT ç”¨ iTJSDispatch2 ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class iTJSDispatch2Wrapper : public tTJSDispatch
 {
 protected:
-	/// “à•”•Û—pEƒOƒ[ƒoƒ‹VM‚Å•Û‚·‚é‚æ‚¤‚É‚·‚é
+	/// å†…éƒ¨ä¿æŒç”¨ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«VMã§ä¿æŒã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	HSQUIRRELVM gv;
 	HSQOBJECT obj;
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 * @param obj IDispatch
 	 */
 	iTJSDispatch2Wrapper(HSQUIRRELVM v, int idx) {
-		// ƒOƒ[ƒoƒ‹‚ÉˆÚ‚µ‚½ã‚Å•Û‚·‚é
+		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã«ç§»ã—ãŸä¸Šã§ä¿æŒã™ã‚‹
 		sq_resetobject(&obj);
 		gv = sqobject::getGlobalVM();
 		sq_move(gv, v, idx);
@@ -83,7 +83,7 @@ public:
 	}
 	
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~iTJSDispatch2Wrapper() {
 		sq_release(gv, &obj);
@@ -94,7 +94,7 @@ public:
 	}
 
 public:
-	// ƒIƒuƒWƒFƒNƒg¶¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	tjs_error TJS_INTF_METHOD CreateNew(
 		tjs_uint32 flag,
 		const tjs_char * membername,
@@ -111,8 +111,8 @@ public:
 		}
 		int ret = S_FALSE;
 		sq_pushobject(gv, obj);
-		sq_pushroottable(gv);			// this ‘Š“–•”•ª
-		for (int i=0;i<numparams;i++) {	// ƒpƒ‰ƒ[ƒ^ŒQ
+		sq_pushroottable(gv);			// this ç›¸å½“éƒ¨åˆ†
+		for (int i=0;i<numparams;i++) {	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
 			sq_pushvariant(gv, *param[i]);
 		}
 		if (SQ_SUCCEEDED(sq_call(gv, numparams + 1, result ? SQTrue:SQFalse, SQTrue))) {
@@ -130,7 +130,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ƒIƒuƒWƒFƒNƒg‹@”\ŒÄ‚Ño‚µ
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ©Ÿèƒ½å‘¼ã³å‡ºã—
 	tjs_error TJS_INTF_METHOD FuncCall(
 		tjs_uint32 flag,
 		const tjs_char * membername,
@@ -148,7 +148,7 @@ public:
 			}
 			sq_pushobject(gv, obj);
 			sq_pushroottable(gv);
-			for (int i=0;i<numparams;i++) {	// ƒpƒ‰ƒ[ƒ^ŒQ
+			for (int i=0;i<numparams;i++) {	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
 				sq_pushvariant(gv, *param[i]);
 			}
 			if (SQ_SUCCEEDED(sq_call(gv, numparams + 1, result ? SQTrue:SQFalse, SQTrue))) {
@@ -167,10 +167,10 @@ public:
 			sq_pushstring(gv, membername,-1);
 			if (SQ_SUCCEEDED(sq_get(gv,-2))) {
 				sq_pushobject(gv, obj); // this
-				for (int i=0;i<numparams;i++) {	// ƒpƒ‰ƒ[ƒ^ŒQ
+				for (int i=0;i<numparams;i++) {	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
 					sq_pushvariant(gv, *param[i]);
 				}
-				// ‹A‚è’l‚ª‚ ‚éê‡
+				// å¸°ã‚Šå€¤ãŒã‚ã‚‹å ´åˆ
 				if (SQ_SUCCEEDED(sq_call(gv, numparams + 1, result ? SQTrue:SQFalse, SQTrue))) {
 					if (result) {
 						sq_getvariant(gv, -1, result);
@@ -189,14 +189,14 @@ public:
 		}
 	}
 
-	// ƒvƒƒpƒeƒBæ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	tjs_error TJS_INTF_METHOD PropGet(
 		tjs_uint32 flag,
 		const tjs_char * membername,
 		tjs_uint32 *hint,
 		tTJSVariant *result,
 		iTJSDispatch2 *objthis) {
-		// ƒvƒƒpƒeƒB‚Í‚È‚¢
+		// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ãªã„
 		if (!membername) {
 			return TJS_E_NOTIMPL;
 		}
@@ -210,7 +210,7 @@ public:
 		} else {
 			sq_pop(gv,1);
 			if (sq_istable(obj) || sq_isarray(obj)) {
-				// table‚Ìê‡‚Í void ‚ğ•Ô‚·
+				// tableã®å ´åˆã¯ void ã‚’è¿”ã™
 				if (result) {
 					result->Clear();
 				}
@@ -221,7 +221,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ƒvƒƒpƒeƒBæ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	tjs_error TJS_INTF_METHOD PropGetByNum(
 		tjs_uint32 flag,
 		int num,
@@ -238,7 +238,7 @@ public:
 		} else {
 			sq_pop(gv,1);
 			if (sq_istable(obj) || sq_isarray(obj)) {
-				// table‚Ìê‡‚Í void ‚ğ•Ô‚·
+				// tableã®å ´åˆã¯ void ã‚’è¿”ã™
 				if (result) {
 					result->Clear();
 				}
@@ -249,14 +249,14 @@ public:
 		return TJS_S_OK;
 	}
 	
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	tjs_error TJS_INTF_METHOD PropSet(
 		tjs_uint32 flag,
 		const tjs_char *membername,
 		tjs_uint32 *hint,
 		const tTJSVariant *param,
 		iTJSDispatch2 *objthis) {
-		// ƒvƒƒpƒeƒB‚Í‚È‚¢
+		// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ãªã„
 		if (!membername) {
 			return TJS_E_NOTIMPL;
 		}
@@ -281,7 +281,7 @@ public:
 		return TJS_S_OK;
 	}
 
-	// ƒvƒƒpƒeƒBİ’è
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
 	tjs_error TJS_INTF_METHOD PropSetByNum(
 		tjs_uint32 flag,
 		int num,
@@ -326,11 +326,11 @@ public:
 
 
 //----------------------------------------------------------------------------
-// tTJSVariant ‚ğ UserData ‚Æ‚µ‚Ä•Û‚·‚é‚½‚ß‚Ì‹@\
+// tTJSVariant ã‚’ UserData ã¨ã—ã¦ä¿æŒã™ã‚‹ãŸã‚ã®æ©Ÿæ§‹
 //----------------------------------------------------------------------------
 
 /**
- * tTJSVariant—pƒIƒuƒWƒFƒNƒgŠJ•úˆ—
+ * tTJSVariantç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–‹æ”¾å‡¦ç†
  */
 static SQRESULT
 variantRelease(SQUserPointer up, SQInteger size)
@@ -344,7 +344,7 @@ variantRelease(SQUserPointer up, SQInteger size)
 
 static const SQUserPointer TJSTYPETAG = (SQUserPointer)"TJSTYPETAG";
 
-// iTJSDispatch2* æ“¾—p
+// iTJSDispatch2* å–å¾—ç”¨
 static bool GetVariant(HSQUIRRELVM v, int idx, tTJSVariant *result)
 {
 	SQUserPointer otag;
@@ -356,7 +356,7 @@ static bool GetVariant(HSQUIRRELVM v, int idx, tTJSVariant *result)
 	return false;
 }
 
-// iTJSDispatch2* æ“¾—p
+// iTJSDispatch2* å–å¾—ç”¨
 static iTJSDispatch2 *GetDispatch(HSQUIRRELVM v, int idx)
 {
 	tTJSVariant var;
@@ -367,7 +367,7 @@ static iTJSDispatch2 *GetDispatch(HSQUIRRELVM v, int idx)
 }
 
 /**
- * iTJSDispatch2 —pƒvƒƒpƒeƒB‚Ì‘¶İŠm”F
+ * iTJSDispatch2 ç”¨ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å­˜åœ¨ç¢ºèª
  * @param v squirrel VM
  */
 static SQRESULT
@@ -388,7 +388,7 @@ exist(HSQUIRRELVM v)
 }
 
 /**
- * iTJSDispatch2 —pƒvƒƒpƒeƒB‚Ìæ“¾
+ * iTJSDispatch2 ç”¨ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
  * @param v squirrel VM
  */
 static SQRESULT
@@ -410,7 +410,7 @@ get(HSQUIRRELVM v)
 }
 
 /**
- * iTJSDispatch2 —pƒvƒƒpƒeƒB‚Ìİ’è
+ * iTJSDispatch2 ç”¨ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®è¨­å®š
  * @param v squirrel VM
  */
 static SQRESULT
@@ -431,25 +431,25 @@ set(HSQUIRRELVM v)
 }
 
 /**
- * iTJSDispatch2 —pƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÌŒÄ‚Ño‚µ
+ * iTJSDispatch2 ç”¨ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å‘¼ã³å‡ºã—
  * @param v squirrel VM
  */
 static SQRESULT
 callConstructor(HSQUIRRELVM v)
 {
-	// param1 ƒIƒuƒWƒFƒNƒg
-	// param2 ƒIƒŠƒWƒiƒ‹ƒIƒuƒWƒFƒNƒg
-	// param3 ` –{—ˆ‚Ìˆø”‚Û
+	// param1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// param2 ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// param3 ã€œ æœ¬æ¥ã®å¼•æ•°ã½
 
 	iTJSDispatch2 *dispatch	= GetDispatch(v, 1);
 	if (dispatch) {
 
-		// this ‚ğæ“¾
+		// this ã‚’å–å¾—
 		iTJSDispatch2 *thisobj = GetDispatch(v, 2);
 		
 		tjs_int argc = (tjs_int)(sq_gettop(v) - 2);
 		
-		// ˆø”•ÏŠ·
+		// å¼•æ•°å¤‰æ›
 		tTJSVariant **args = new tTJSVariant*[argc];
 		for (int i=0;i<argc;i++) {
 			args[i] = new tTJSVariant();
@@ -468,7 +468,7 @@ callConstructor(HSQUIRRELVM v)
 			ret = ERROR_KRKR(v, error);
 		}
 			
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		for (int i=0;i<argc;i++) {
 			delete args[i];
 		}
@@ -480,32 +480,32 @@ callConstructor(HSQUIRRELVM v)
 }
 
 /**
- * iTJSDispatch2 —pƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ
+ * iTJSDispatch2 ç”¨ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—
  * @param v squirrel VM
  */
 static SQRESULT
 callMethod(HSQUIRRELVM v)
 {
-	// param1 ƒIƒuƒWƒFƒNƒg
-	// param2 ƒIƒŠƒWƒiƒ‹ƒIƒuƒWƒFƒNƒg
-	// param3 ` –{—ˆ‚Ìˆø”‚Û
+	// param1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// param2 ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// param3 ã€œ æœ¬æ¥ã®å¼•æ•°ã½
 
 	iTJSDispatch2 *dispatch	= GetDispatch(v, 1);
 	if (dispatch) {
 
-		// this ‚ğæ“¾
+		// this ã‚’å–å¾—
 		iTJSDispatch2 *thisobj = GetDispatch(v, 2);
 		
 		tjs_int argc = (tjs_int)(sq_gettop(v) - 2);
 		
-		// ˆø”•ÏŠ·
+		// å¼•æ•°å¤‰æ›
 		tTJSVariant **args = new tTJSVariant*[argc];
 		for (tjs_int i=0;i<argc;i++) {
 			args[i] = new tTJSVariant();
 			sq_getvariant(v, i+3, args[i]);
 		}
 
-		// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 		SQRESULT ret = 0;
 		tTJSVariant result;
 		tjs_error error;
@@ -520,7 +520,7 @@ callMethod(HSQUIRRELVM v)
 			ret = ERROR_KRKR(v, error);
 		}
 			
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		for (int i=0;i<argc;i++) {
 			delete args[i];
 		}
@@ -532,7 +532,7 @@ callMethod(HSQUIRRELVM v)
 }
 
 /**
- * tTJSVariant ‚ğ squirrel ‚Ì‹óŠÔ‚É“Š“ü‚·‚é
+ * tTJSVariant ã‚’ squirrel ã®ç©ºé–“ã«æŠ•å…¥ã™ã‚‹
  * @param v squirrel VM
  * @param variant tTJSVariant
  */
@@ -547,26 +547,26 @@ sq_pushvariant(HSQUIRRELVM v, tTJSVariant &variant)
 		{
 			iTJSDispatch2 *obj = variant.AsObjectNoAddRef();
 			if (obj == NULL) {
-				// NULL‚Ìˆ—
+				// NULLã®å‡¦ç†
 				sq_pushuserpointer(v, NULL);
 			} else if (!TJSObject::pushVariant(v, variant)) {
 				if (obj->IsInstanceOf(0, NULL, NULL, SQUIRRELOBJCLASS, obj) == TJS_S_TRUE) {
 					iTJSDispatch2Wrapper *wobj = (iTJSDispatch2Wrapper*)obj;
 					wobj->push(v);
 				} else {
-					// UserData Šm•Û
+					// UserData ç¢ºä¿
 					tTJSVariant *self = (tTJSVariant*)sq_newuserdata(v, sizeof tTJSVariant);
 					if (self) {
 						new (self) tTJSVariant();
 						*self = variant;
-						// ŠJ•úƒƒWƒbƒN‚ğ’Ç‰Á
+						// é–‹æ”¾ãƒ­ã‚¸ãƒƒã‚¯ã‚’è¿½åŠ 
 						sq_setreleasehook(v, -1, variantRelease);
 						
-						// ƒ^ƒO“o˜^
+						// ã‚¿ã‚°ç™»éŒ²
 						sq_settypetag(v, -1, TJSTYPETAG);
 						
 						
-						// ƒƒ\ƒbƒhŒQ‚ğ’Ç‰Á
+						// ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤ã‚’è¿½åŠ 
 						sq_newtable(v);
 
 						sq_pushstring(v, L"_exist", -1);
@@ -614,7 +614,7 @@ sq_pushvariant(HSQUIRRELVM v, tTJSVariant &variant)
 
 static void wrap(HSQUIRRELVM v, int idx, tTJSVariant *result)
 {
-	// ƒ‰ƒbƒsƒ“ƒO
+	// ãƒ©ãƒƒãƒ”ãƒ³ã‚°
 	iTJSDispatch2 *tjsobj = new iTJSDispatch2Wrapper(v, idx);
 	if (tjsobj) {
 		*result = tTJSVariant(tjsobj, tjsobj);
@@ -623,10 +623,10 @@ static void wrap(HSQUIRRELVM v, int idx, tTJSVariant *result)
 }
 
 /**
- * tTJSVariant ‚ğ squirrel ‚Ì‹óŠÔ‚©‚çæ“¾‚·‚é
+ * tTJSVariant ã‚’ squirrel ã®ç©ºé–“ã‹ã‚‰å–å¾—ã™ã‚‹
  * @param v squirrel VM
- * @param idx ƒXƒ^ƒbƒN‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param result tTJSVariant ‚ğ•Ô‚·æ
+ * @param idx ã‚¹ã‚¿ãƒƒã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param result tTJSVariant ã‚’è¿”ã™å…ˆ
  */
 SQRESULT
 sq_getvariant(HSQUIRRELVM v, int idx, tTJSVariant *result)

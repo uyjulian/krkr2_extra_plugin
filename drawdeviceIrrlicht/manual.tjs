@@ -1,11 +1,11 @@
 /**
- * ‹g—¢‹g—¢ Irrclicht ƒvƒ‰ƒOƒCƒ“
+ * å‰é‡Œå‰é‡Œ Irrclicht ãƒ—ãƒ©ã‚°ã‚¤ãƒ³
  *
  */
 class Irrlicht {
 
 	// -----------------------------------------------------------------------------
-	// ƒf[ƒ^•Û—pƒNƒ‰ƒX(new‚Å‚«‚Ü‚·)
+	// ãƒ‡ãƒ¼ã‚¿ä¿æŒç”¨ã‚¯ãƒ©ã‚¹(newã§ãã¾ã™)
 	// -----------------------------------------------------------------------------
 	
 	class SColor {
@@ -215,7 +215,7 @@ class Irrlicht {
 	}
 	
 	// -----------------------------------------------------------------------------
-	// ƒCƒ“ƒ^[ƒtƒF[ƒXƒNƒ‰ƒX(À‘Ì‚ğnew‚Å‚«‚Ü‚¹‚ñ)
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹(å®Ÿä½“ã‚’newã§ãã¾ã›ã‚“)
 	// -----------------------------------------------------------------------------
 
 	class IAttributes {
@@ -371,13 +371,13 @@ class Irrlicht {
 	class ITextSceneNode {}
 
 	/**
-	 * ‰æ‘œî•ñƒNƒ‰ƒX
+	 * ç”»åƒæƒ…å ±ã‚¯ãƒ©ã‚¹
 	 */
 	class IImage {
 	};
 
 	/**
-	 * ƒeƒNƒXƒ`ƒƒƒNƒ‰ƒX
+	 * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¯ãƒ©ã‚¹
 	 */
 	class ITexture {
 	};
@@ -387,9 +387,9 @@ class Irrlicht {
 	// -----------------------------------------------------------------------------
 	
 	/**
-	 * ƒhƒ‰ƒCƒo‹@”\ƒCƒ“ƒ^[ƒtƒF[ƒX
-	 * DrawDevice ‚Ü‚½‚Í Window ‚ÌƒvƒƒpƒeƒB‚©‚çQÆ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * ¦ new ‚µ‚Ä‚à³í“®ì‚µ‚Ü‚¹‚ñB
+	 * ãƒ‰ãƒ©ã‚¤ãƒæ©Ÿèƒ½ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	 * DrawDevice ã¾ãŸã¯ Window ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å‚ç…§ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * â€» new ã—ã¦ã‚‚æ­£å¸¸å‹•ä½œã—ã¾ã›ã‚“ã€‚
 	 */
 	class IVideoDriver {
 
@@ -407,10 +407,10 @@ class Irrlicht {
 		function createRenderTargetTexture();
 		
 		/**
-		 * ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚Ì¶¬
-		 * @return ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‰æ‘œ(IImage)
-		 * ¦ƒEƒCƒ“ƒhƒE‚Ì—Ìˆæ‚©‚çƒLƒƒƒvƒ`ƒƒ[‚µ‚Ä‚é‚æ‚¤‚È‚Ì‚Åã‚É
-		 * •Ê‚ÌƒEƒCƒ“ƒhƒE‚ªæ‚Á‚Ä‚¢‚é‚Æ‚»‚Ì‚Ü‚ÜƒLƒƒƒvƒ`ƒƒ[‚³‚ê‚Ü‚·
+		 * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã®ç”Ÿæˆ
+		 * @return ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆç”»åƒ(IImage)
+		 * â€»ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é ˜åŸŸã‹ã‚‰ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã—ã¦ã‚‹ã‚ˆã†ãªã®ã§ä¸Šã«
+		 * åˆ¥ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä¹—ã£ã¦ã„ã‚‹ã¨ãã®ã¾ã¾ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã•ã‚Œã¾ã™
 		 */
 		function createScreenShot();
 
@@ -443,30 +443,30 @@ class Irrlicht {
 	};
 
 	/**
-	 * ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‹@”\ƒCƒ“ƒ^[ƒtƒF[ƒX
-	 * DrawDevice ‚Ü‚½‚Í Window ‚ÌƒvƒƒpƒeƒB‚©‚çQÆ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * ¦ new ‚µ‚Ä‚à³í“®ì‚µ‚Ü‚¹‚ñB
+	 * ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æ©Ÿèƒ½ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	 * DrawDevice ã¾ãŸã¯ Window ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å‚ç…§ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * â€» new ã—ã¦ã‚‚æ­£å¸¸å‹•ä½œã—ã¾ã›ã‚“ã€‚
 	 */
 	class ISceneManager {
 		/**
-		 * ƒV[ƒ“ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
-		 * @param filename ƒtƒ@ƒCƒ‹–¼
+		 * ã‚·ãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+		 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
 		 */
 		function loadScene(filename);
 		/**
-		 * ƒV[ƒ“ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
-		 * @param file ƒtƒ@ƒCƒ‹(IReadFile)
+		 * ã‚·ãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+		 * @param file ãƒ•ã‚¡ã‚¤ãƒ«(IReadFile)
 		 */
 		function loadSceneFile(file);
 
 		/**
-		 * ƒV[ƒ“ƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µ
-		 * @param filename ƒtƒ@ƒCƒ‹–¼
+		 * ã‚·ãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãå‡ºã—
+		 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
 		 */
 		function saveScene(filename);
 		/**
-		 * ƒV[ƒ“ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
-		 * @param file ƒtƒ@ƒCƒ‹(IWriteFile)
+		 * ã‚·ãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+		 * @param file ãƒ•ã‚¡ã‚¤ãƒ«(IWriteFile)
 		 */
 		function saveSceneFile(file);
 		
@@ -474,31 +474,31 @@ class Irrlicht {
 		function setAmbientLight(light);
 
 		/**
-		 * ŒõŒ¹‚Ìİ’è
-		 * @param parent eƒm[ƒh(null‚¾‚Æƒ‹[ƒg)
-		 * @param position ˆÊ’uw’è
-		 * @param color Fw’è
-		 * @param radius ”ÍˆÍw’è
-		 * @param id IDw’è
-		 * @return ŒõŒ¹î•ñ(ILightSceneNode)
+		 * å…‰æºã®è¨­å®š
+		 * @param parent è¦ªãƒãƒ¼ãƒ‰(nullã ã¨ãƒ«ãƒ¼ãƒˆ)
+		 * @param position ä½ç½®æŒ‡å®š
+		 * @param color è‰²æŒ‡å®š
+		 * @param radius ç¯„å›²æŒ‡å®š
+		 * @param id IDæŒ‡å®š
+		 * @return å…‰æºæƒ…å ±(ILightSceneNode)
 		 */
 		function addLightSceneNode(parent, position, color, radius, id);
 		
 		/**
-		 * ƒJƒƒ‰‚Ìİ’è
-		 * @param parent eƒm[ƒh(null‚¾‚Æƒ‹[ƒg)
-		 * @param position ˆÊ’uw’è
-		 * @param lookat QÆˆÊ’u
-		 * @param id IDw’è
-		 * @return ƒJƒƒ‰î•ñ(ICameraSceneNode)
+		 * ã‚«ãƒ¡ãƒ©ã®è¨­å®š
+		 * @param parent è¦ªãƒãƒ¼ãƒ‰(nullã ã¨ãƒ«ãƒ¼ãƒˆ)
+		 * @param position ä½ç½®æŒ‡å®š
+		 * @param lookat å‚ç…§ä½ç½®
+		 * @param id IDæŒ‡å®š
+		 * @return ã‚«ãƒ¡ãƒ©æƒ…å ±(ICameraSceneNode)
 		 */
 		function addCameraSceneNode(parent, position, lookat, id);
 	}
 
 	/**
-	 * GUIŠÂ‹«‹@”\ƒCƒ“ƒ^[ƒtƒF[ƒX
-	 * DrawDevice ‚Ü‚½‚Í Window ‚ÌƒvƒƒpƒeƒB‚©‚çQÆ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * ¦ new ‚µ‚Ä‚à³í“®ì‚µ‚Ü‚¹‚ñB
+	 * GUIç’°å¢ƒæ©Ÿèƒ½ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	 * DrawDevice ã¾ãŸã¯ Window ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å‚ç…§ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * â€» new ã—ã¦ã‚‚æ­£å¸¸å‹•ä½œã—ã¾ã›ã‚“ã€‚
 	 */
 	class IGUIEnvironment {
 	};
@@ -510,10 +510,10 @@ class Irrlicht {
 	const ELL_NONE = 3;
 	
 	/**
-	 * ƒƒOo—Í‹@”\
-	 * GUIŠÂ‹«‹@”\ƒCƒ“ƒ^[ƒtƒF[ƒX
-	 * DrawDevice ‚Ü‚½‚Í Window ‚ÌƒvƒƒpƒeƒB‚©‚çQÆ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * ¦ new ‚µ‚Ä‚à³í“®ì‚µ‚Ü‚¹‚ñB
+	 * ãƒ­ã‚°å‡ºåŠ›æ©Ÿèƒ½
+	 * GUIç’°å¢ƒæ©Ÿèƒ½ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	 * DrawDevice ã¾ãŸã¯ Window ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å‚ç…§ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * â€» new ã—ã¦ã‚‚æ­£å¸¸å‹•ä½œã—ã¾ã›ã‚“ã€‚
 	 */
 	class ILogger {
 		function getLogLevel();
@@ -523,9 +523,9 @@ class Irrlicht {
 	};
 
 	/**
-	 * ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€
-	 * DrawDevice ‚Ü‚½‚Í Window ‚ÌƒvƒƒpƒeƒB‚©‚çQÆ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * ¦ new ‚µ‚Ä‚à³í“®ì‚µ‚Ü‚¹‚ñB
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+	 * DrawDevice ã¾ãŸã¯ Window ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰å‚ç…§ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * â€» new ã—ã¦ã‚‚æ­£å¸¸å‹•ä½œã—ã¾ã›ã‚“ã€‚
 	 */
 	class IFileSystem {
 		// @return IReadFile
@@ -541,62 +541,62 @@ class Irrlicht {
 	};
 	
 	// -----------------------------------------------------------------------------
-	//@Irrlicht Šî–{‹@”\ƒNƒ‰ƒX
+	//ã€€Irrlicht åŸºæœ¬æ©Ÿèƒ½ã‚¯ãƒ©ã‚¹
 	// -----------------------------------------------------------------------------
 
-	// ƒCƒxƒ“ƒgw’èBBase.eventMask ‚É OR ‚µ‚Äw’è‚·‚é
-	// ƒAƒ^ƒbƒ`
+	// ã‚¤ãƒ™ãƒ³ãƒˆæŒ‡å®šã€‚Base.eventMask ã« OR ã—ã¦æŒ‡å®šã™ã‚‹
+	// ã‚¢ã‚¿ãƒƒãƒæ™‚
 	const EMASK_ATTACH       = 1<<0; 
-	// ƒfƒ^ƒbƒ`
+	// ãƒ‡ã‚¿ãƒƒãƒæ™‚
 	const EMASK_DETACH       = 1<<1; 
-	// IrrlichtƒCƒxƒ“ƒg
+	// Irrlichtã‚¤ãƒ™ãƒ³ãƒˆ
 	const EMASK_EVENT        = 1<<2; 
-	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ•`‰æ‘O
+	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æç”»å‰
 	const EMASK_BEFORE_SCENE = 1<<3; 
-	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ•`‰æŒã
+	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£æç”»å¾Œ
 	const EMASK_AFTER_SCENE  = 1<<4; 
-	// GUI•`‰æ‘O
+	// GUIæç”»å‰
 	const EMASK_BEFORE_GUI   = 1<<5; 
-	// GUI•`‰æŒã
+	// GUIæç”»å¾Œ
 	const EMASK_AFTER_GUI    = 1<<6; 
 	
 	/**
-	 * ƒfƒoƒCƒX‹¤’Ê‹@”\•ªiÀÛ‚É‚Í‚±‚ÌƒNƒ‰ƒX‚Í‚ ‚è‚Ü‚¹‚ñj
+	 * ãƒ‡ãƒã‚¤ã‚¹å…±é€šæ©Ÿèƒ½åˆ†ï¼ˆå®Ÿéš›ã«ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã¯ã‚ã‚Šã¾ã›ã‚“ï¼‰
 	 */
 	class Base {
-		property videoDriver; //< ƒhƒ‰ƒCƒo(IVideoDriverƒNƒ‰ƒX)B“Ç‚İo‚µê—p
-		property sceneManager; //< ƒV[ƒ“ƒ}ƒl[ƒWƒƒ(ISceneManagerƒNƒ‰ƒX)B“Ç‚İo‚µê—p
-		property guiEnvironment; //< GUIŠÂ‹«iIGUIEnvironmentƒNƒ‰ƒXjB“Ç‚İo‚µê—p
-		property logger; //< ƒƒOŠÂ‹« (ILoggerƒNƒ‰ƒXjB“Ç‚İo‚µê—p
-		property fileSystem; //< ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€(IFileSystemƒNƒ‰ƒX)B“Ç‚İo‚µê—p
+		property videoDriver; //< ãƒ‰ãƒ©ã‚¤ãƒ(IVideoDriverã‚¯ãƒ©ã‚¹)ã€‚èª­ã¿å‡ºã—å°‚ç”¨
+		property sceneManager; //< ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£(ISceneManagerã‚¯ãƒ©ã‚¹)ã€‚èª­ã¿å‡ºã—å°‚ç”¨
+		property guiEnvironment; //< GUIç’°å¢ƒï¼ˆIGUIEnvironmentã‚¯ãƒ©ã‚¹ï¼‰ã€‚èª­ã¿å‡ºã—å°‚ç”¨
+		property logger; //< ãƒ­ã‚°ç’°å¢ƒ (ILoggerã‚¯ãƒ©ã‚¹ï¼‰ã€‚èª­ã¿å‡ºã—å°‚ç”¨
+		property fileSystem; //< ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ (IFileSystemã‚¯ãƒ©ã‚¹)ã€‚èª­ã¿å‡ºã—å°‚ç”¨
 
 		/**
-		 * ƒCƒxƒ“ƒgƒ}ƒXƒNBTJS‘¤‚Ö‚ÌŒÄ‚Ñ•Ô‚µƒCƒxƒ“ƒg‚ğw’è‚·‚éB
-		 * ƒfƒtƒHƒ‹ƒg‚Í EMASK_ATTACH|EMASK_DETACH
+		 * ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¹ã‚¯ã€‚TJSå´ã¸ã®å‘¼ã³è¿”ã—ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŒ‡å®šã™ã‚‹ã€‚
+		 * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ EMASK_ATTACH|EMASK_DETACH
 		 */
 		property eventMask;
 
 		// -------------------------------------
 		
 		/**
-		 * ƒIƒuƒWƒFƒNƒg¶¬‚âƒtƒ‹ƒXƒNƒŠ[ƒ“‰»‚È‚Ç‚ÌÄ\’z‚ÌŒã‚ÅA
-		 * ƒhƒ‰ƒCƒo‚ª‰Šú‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆæ™‚ã‚„ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–ãªã©ã®å†æ§‹ç¯‰ã®å¾Œã§ã€
+		 * ãƒ‰ãƒ©ã‚¤ãƒãŒåˆæœŸåŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onAttach(self);
 
 		/**
-		 * ƒIƒuƒWƒFƒNƒg”jŠü‚âAƒtƒ‹ƒXƒNƒŠ[ƒ“‰»‚É‚æ‚éÄ\’z‚Ì‘O‚ÅA
-		 * ƒhƒ‰ƒCƒo‚ª”jŠü‚³‚ê‚é’¼‘O‚ÉŒÄ‚Î‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„æ™‚ã‚„ã€ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–ã«ã‚ˆã‚‹å†æ§‹ç¯‰ã®å‰ã§ã€
+		 * ãƒ‰ãƒ©ã‚¤ãƒãŒç ´æ£„ã•ã‚Œã‚‹ç›´å‰ã«å‘¼ã°ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onDetach(self);
 
 		// -------------------------------------
 
 		/**
-		 * Irrlicht ‚©‚ç‚ÌƒCƒxƒ“ƒg’Ê’m
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * Irrlicht ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 * @param event SEvent
 		 */
 		function onEvent(self, event);
@@ -604,193 +604,193 @@ class Irrlicht {
 		// -------------------------------------
 
 		/**
-		 * ƒV[ƒ“•`‰æ‘O‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * ã‚·ãƒ¼ãƒ³æç”»å‰ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onBeforeScene(self);
 
 		/**
-		 * ƒV[ƒ“•`‰æŒã‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * ã‚·ãƒ¼ãƒ³æç”»å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onAfterScene(self);
 
 		/**
-		 * GUI•`‰æ‘O‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * GUIæç”»å‰ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onBeforeGUI(self);
 
 		/**
-		 * GUI•`‰æŒã‚ÉŒÄ‚Ño‚³‚ê‚éƒCƒxƒ“ƒg
-		 * @param self ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+		 * GUIæç”»å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+		 * @param self ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		 */
 		function onAfterGUI(self);
 	};
 
 	/**
-	 * ƒŒƒCƒ„‚Ö‚Ì•`‰æ‹@”\‚ğ’ñ‹Ÿ‚·‚é Irrlicht Device
+	 * ãƒ¬ã‚¤ãƒ¤ã¸ã®æç”»æ©Ÿèƒ½ã‚’æä¾›ã™ã‚‹ Irrlicht Device
 	 */
 	class SimpleDevice extends Base {
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param window e‚É‚È‚éƒEƒCƒ“ƒhƒE
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@‰¡•BƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚¤ê‡‚Í 2‚ÌŠKæƒTƒCƒY‚É‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-		 * @param height ƒoƒbƒNƒoƒbƒtƒ@c•BƒŒƒ“ƒ_[‚½[ƒKƒbƒg‚ğg‚¤ê‡‚Í 2‚ÌŠKæƒTƒCƒY‚É‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-		 * @param useRender ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚¤ê‡‚Í trueBƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚Íƒ¿“§‰ß‚µ‚Ü‚·B
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param window è¦ªã«ãªã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…ã€‚ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã†å ´åˆã¯ 2ã®éšä¹—ã‚µã‚¤ã‚ºã«ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+		 * @param height ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…ã€‚ãƒ¬ãƒ³ãƒ€ãƒ¼ãŸãƒ¼ã‚¬ãƒƒãƒˆã‚’ä½¿ã†å ´åˆã¯ 2ã®éšä¹—ã‚µã‚¤ã‚ºã«ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+		 * @param useRender ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã†å ´åˆã¯ trueã€‚ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¯Î±é€éã—ã¾ã™ã€‚
 		 *
-		 * ¶¬‚µ‚½“_‚Å‚Í Irrlicht‚ÌƒfƒoƒCƒX‚Í‘¶İ‚µ‚Ü‚¹‚ñB
-		 * ¶¬Œã‚ÌÅ‰‚ÌƒCƒxƒ“ƒgˆ—‘O‚É‰Šú‰»‚³‚ê‚ÄA
-		 * ƒhƒ‰ƒCƒoAƒV[ƒ“ƒ}ƒl[ƒWƒƒAGUI‚ªˆµ‚¦‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
-		 * ˆ—‚Í onAttach() ƒCƒxƒ“ƒg‚ğ‘Ò‚Á‚Ä‚©‚çs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
+		 * ç”Ÿæˆã—ãŸæ™‚ç‚¹ã§ã¯ Irrlichtã®ãƒ‡ãƒã‚¤ã‚¹ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚
+		 * ç”Ÿæˆå¾Œã®æœ€åˆã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†å‰ã«åˆæœŸåŒ–ã•ã‚Œã¦ã€
+		 * ãƒ‰ãƒ©ã‚¤ãƒã€ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã€GUIãŒæ‰±ãˆã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
+		 * å‡¦ç†ã¯ onAttach() ã‚¤ãƒ™ãƒ³ãƒˆã‚’å¾…ã£ã¦ã‹ã‚‰è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		 */
 		function SimpleDevice(window, width, height);
 
-		property width; //< ƒoƒbƒNƒoƒbƒtƒ@‰¡•
-		property height; //< ƒoƒbƒNƒoƒbƒtƒ@c•
+		property width; //< ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…
+		property height; //< ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…
 
 		/**
-		 * ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒYİ’è
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@‰¡•
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@c•
-		 * ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚Á‚Ä‚éê‡‚Í•ÏX‚Å‚«‚Ü‚¹‚ñ
+		 * ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºè¨­å®š
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…
+		 * ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã£ã¦ã‚‹å ´åˆã¯å¤‰æ›´ã§ãã¾ã›ã‚“
 		 */
 		function setSize(width, height);
 
 		/**
-		 * ƒŒƒCƒ„‚É‘Î‚µ‚ÄŒ»İ‚Ìó‘Ô‚ğ•`‰æ‚·‚éB
-		 * ƒoƒbƒNƒoƒbƒtƒ@‚©‚çAw’è‚³‚ê‚½ƒŒƒCƒ„‚Ì•`‰æ—Ìˆæ‚É‘Î‚µ‚ÄŠgkƒRƒs[‚³‚ê‚Ü‚·B
-		 * ¦ƒŒƒCƒ„‚ÌƒNƒŠƒbƒsƒ“ƒO—Ìˆæ‚Í–³‹‚³‚ê‚Ü‚·B
-		 * @param layer •`‰ææƒŒƒCƒ„
-		 * @param sleft ƒ\[ƒX—Ìˆæ‚Ì¶ãÀ•WX ¦ˆÈ‰º‚ğÈ—ª‚µ‚½ê‡‚Í‘S—Ìˆæ
-		 * @param stop ƒ\[ƒX—Ìˆæ‚Ì¶ãÀ•WX
-		 * @param swidth ƒ\[ƒX—Ìˆæ‚Ì‰¡•
-		 * @param sheight ƒ\[ƒX—Ìˆæ‚Ìc•
+		 * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦ç¾åœ¨ã®çŠ¶æ…‹ã‚’æç”»ã™ã‚‹ã€‚
+		 * ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã€æŒ‡å®šã•ã‚ŒãŸãƒ¬ã‚¤ãƒ¤ã®æç”»é ˜åŸŸã«å¯¾ã—ã¦æ‹¡ç¸®ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚
+		 * â€»ãƒ¬ã‚¤ãƒ¤ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°é ˜åŸŸã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
+		 * @param layer æç”»å…ˆãƒ¬ã‚¤ãƒ¤
+		 * @param sleft ã‚½ãƒ¼ã‚¹é ˜åŸŸã®å·¦ä¸Šåº§æ¨™X â€»ä»¥ä¸‹ã‚’çœç•¥ã—ãŸå ´åˆã¯å…¨é ˜åŸŸ
+		 * @param stop ã‚½ãƒ¼ã‚¹é ˜åŸŸã®å·¦ä¸Šåº§æ¨™X
+		 * @param swidth ã‚½ãƒ¼ã‚¹é ˜åŸŸã®æ¨ªå¹…
+		 * @param sheight ã‚½ãƒ¼ã‚¹é ˜åŸŸã®ç¸¦å¹…
 		 */
 		function updateToLayer(layer, sleft, stop, swidth, sheight);
 	};
 	
 	/**
-	 * ‹g—¢‹g—¢—p drawdevice ƒNƒ‰ƒX
+	 * å‰é‡Œå‰é‡Œç”¨ drawdevice ã‚¯ãƒ©ã‚¹
 	 *
-	 * Irrlicht ‚Ì‰æ–Êã‚É‹g—¢‹g—¢ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„(•¡”)‚ğ”z’u‰Â”\‚È drawDevice ‚Å‚·
-	 * Irrlicht ƒV[ƒ“‰æ–Ê ¨ ‹g—¢‹g—¢ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„i¶¬‡j¨ Irrlicht GUI ‚Ì
-	 * ‡‚Å•`‰æ‚ªs‚í‚ê‚Ü‚·Bƒ}ƒEƒXƒCƒxƒ“ƒg‚ÍAIrrlicht GUI ‚¨‚æ‚ÑAÅ‰‚É‚Â‚­‚Á‚½
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘Î‚µ‚Ä”zM‚³‚ê‚Ü‚·B
+	 * Irrlicht ã®ç”»é¢ä¸Šã«å‰é‡Œå‰é‡Œãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤(è¤‡æ•°)ã‚’é…ç½®å¯èƒ½ãª drawDevice ã§ã™
+	 * Irrlicht ã‚·ãƒ¼ãƒ³ç”»é¢ â†’ å‰é‡Œå‰é‡Œãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ï¼ˆç”Ÿæˆé †ï¼‰â†’ Irrlicht GUI ã®
+	 * é †ã§æç”»ãŒè¡Œã‚ã‚Œã¾ã™ã€‚ãƒã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆã¯ã€Irrlicht GUI ãŠã‚ˆã³ã€æœ€åˆã«ã¤ãã£ãŸ
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦é…ä¿¡ã•ã‚Œã¾ã™ã€‚
 	 *
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÍAIrrlicht ‚©‚ç "krkr0", "krkr1", ... ‚Æ‚¢‚¤–¼‘O‚ÌƒeƒNƒXƒ`ƒƒ
-	 * ‚Æ‚µ‚ÄQÆ‰Â”\‚ÅA‹g—¢‹g—¢‚Ì•`‰æ“à—e‚ªí”½‰f‚³‚ê‚½ó‘Ô‚É‚È‚Á‚Ä‚Ü‚·
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã¯ã€Irrlicht ã‹ã‚‰ "krkr0", "krkr1", ... ã¨ã„ã†åå‰ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	 * ã¨ã—ã¦å‚ç…§å¯èƒ½ã§ã€å‰é‡Œå‰é‡Œã®æç”»å†…å®¹ãŒå¸¸æ™‚åæ˜ ã•ã‚ŒãŸçŠ¶æ…‹ã«ãªã£ã¦ã¾ã™
 	 */
 	class DrawDevice extends Base {
 
-		property interface; //< drawdevice î•ñi“à•”QÆ—pjB“Ç‚İo‚µê—p
+		property interface; //< drawdevice æƒ…å ±ï¼ˆå†…éƒ¨å‚ç…§ç”¨ï¼‰ã€‚èª­ã¿å‡ºã—å°‚ç”¨
 		
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@‰¡•
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@c•
-		 * c•‚Æ‰¡•‚Í]—ˆ“I‹@\‚Å‚Ì primaryLayer ‚Ì width/height ‚É‘Š“–‚·‚é‚à‚Ì‚Å‚·B
-		 * ì¬‚³‚ê‚½ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„(•¡”)‚Í‚·‚×‚Ä‚±‚±‚Åw’è‚µ‚½—Ìˆæ‚É‘Î‚µ‚Ä
-		 * ˆø‚«‰„‚Î‚µ•\¦‚³‚ê‚Ü‚·B
-		 * —á:
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…
+		 * ç¸¦å¹…ã¨æ¨ªå¹…ã¯å¾“æ¥çš„æ©Ÿæ§‹ã§ã® primaryLayer ã® width/height ã«ç›¸å½“ã™ã‚‹ã‚‚ã®ã§ã™ã€‚
+		 * ä½œæˆã•ã‚ŒãŸãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤(è¤‡æ•°)ã¯ã™ã¹ã¦ã“ã“ã§æŒ‡å®šã—ãŸé ˜åŸŸã«å¯¾ã—ã¦
+		 * å¼•ãå»¶ã°ã—è¡¨ç¤ºã•ã‚Œã¾ã™ã€‚
+		 * ä¾‹:
 		 *     drawDevice = new Irrlicht.DrawDevice(800,400);
-		 *     base1 = new Layer(this, null); base1.setSize(800,400); // ‰æ–Ê‚Æ“¯‚¶‰ğ‘œ“x
-		 *     base2 = new Layer(this, null); base1.setSize(400,200); // ‰æ–Ê‚Ì”¼•ª‚Ì‰ğ‘œ“x
-		 *     base3 = new Layer(this, null); base1.setSize(800,200); // c‚¾‚¯‰ğ‘œ“x”¼•ª
+		 *     base1 = new Layer(this, null); base1.setSize(800,400); // ç”»é¢ã¨åŒã˜è§£åƒåº¦
+		 *     base2 = new Layer(this, null); base1.setSize(400,200); // ç”»é¢ã®åŠåˆ†ã®è§£åƒåº¦
+		 *     base3 = new Layer(this, null); base1.setSize(800,200); // ç¸¦ã ã‘è§£åƒåº¦åŠåˆ†
 		 *
-		 * ¶¬‚µ‚½“_‚Å‚Í Irrlicht‚ÌƒfƒoƒCƒX‚Í‘¶İ‚µ‚Ü‚¹‚ñB
-		 * DrawDevice ‚Æ‚µ‚Ä‚Ì•`‰æˆ—ŠJn (SetTargetWindow ŒÄ‚Ño‚µ)‚É‰Šú‰»‚³‚ê‚ÄA
-		 * ƒhƒ‰ƒCƒoAƒV[ƒ“ƒ}ƒl[ƒWƒƒAGUI‚ªˆµ‚¦‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
-		 * ˆ—‚Í onAttach() ƒCƒxƒ“ƒg‚ğ‘Ò‚Á‚Ä‚©‚çs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
+		 * ç”Ÿæˆã—ãŸæ™‚ç‚¹ã§ã¯ Irrlichtã®ãƒ‡ãƒã‚¤ã‚¹ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚
+		 * DrawDevice ã¨ã—ã¦ã®æç”»å‡¦ç†é–‹å§‹æ™‚ (SetTargetWindow å‘¼ã³å‡ºã—æ™‚)ã«åˆæœŸåŒ–ã•ã‚Œã¦ã€
+		 * ãƒ‰ãƒ©ã‚¤ãƒã€ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã€GUIãŒæ‰±ãˆã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
+		 * å‡¦ç†ã¯ onAttach() ã‚¤ãƒ™ãƒ³ãƒˆã‚’å¾…ã£ã¦ã‹ã‚‰è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		 */
 		function DrawDevice(width, height);
 
-		property width;  //< ƒoƒbƒNƒoƒbƒtƒ@‰¡•
-		property height; //< ƒoƒbƒNƒoƒbƒtƒ@c•
+		property width;  //< ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…
+		property height; //< ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…
 		
 		/**
-		 * ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒYİ’è
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@‰¡•
-		 * @param width ƒoƒbƒNƒoƒbƒtƒ@c•
+		 * ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºè¨­å®š
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡æ¨ªå¹…
+		 * @param width ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç¸¦å¹…
 		 */
 		function setSize(width, height);
 		
 		/**
-		 * Šg‘åƒ‚[ƒh: ‰Šú’l‚Í true
-		 * true: ƒoƒbƒNƒoƒbƒtƒ@‚©‚ç‰æ–Ê‚Ö‚Ì“]‘—‚ÉŠg‘åk¬‚µ‚Ü‚·
-		 * false: ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğÀÛ‚Ì‰æ–Êã‚Ì‰ğ‘œ“x‚É’Ç]‚³‚¹‚Ü‚·
-		 * false ‚É‚µ‚½ê‡AIrrlicht ‘¤‚ÌÀ•WŒn‚ªƒtƒ‹ƒXƒNƒŠ[ƒ“‰»‚µ‚½‚âA
-		 * Window.setZoom ‚µ‚½‚É•Ï‰»‚·‚é‚Ì‚Å’ˆÓ‚ª•K—v‚Å‚·B
+		 * æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰: åˆæœŸå€¤ã¯ true
+		 * true: ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ç”»é¢ã¸ã®è»¢é€æ™‚ã«æ‹¡å¤§ç¸®å°ã—ã¾ã™
+		 * false: ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å®Ÿéš›ã®ç”»é¢ä¸Šã®è§£åƒåº¦ã«è¿½å¾“ã•ã›ã¾ã™
+		 * false ã«ã—ãŸå ´åˆã€Irrlicht å´ã®åº§æ¨™ç³»ãŒãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–ã—ãŸæ™‚ã‚„ã€
+		 * Window.setZoom ã—ãŸæ™‚ã«å¤‰åŒ–ã™ã‚‹ã®ã§æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚
 		 */
 		property zoomMode;
 
-		property destWidth;  //< À•`‰æ—Ìˆæ‰¡•(“Ç‚İæ‚èê—p)
-		property destHeight; //< À•`‰æ—Ìˆæc•(“Ç‚İæ‚èê—p)
+		property destWidth;  //< å®Ÿæç”»é ˜åŸŸæ¨ªå¹…(èª­ã¿å–ã‚Šå°‚ç”¨)
+		property destHeight; //< å®Ÿæç”»é ˜åŸŸç¸¦å¹…(èª­ã¿å–ã‚Šå°‚ç”¨)
 		
 		/*
-		 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•W€‚Ì visible
-		 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ğ¶¬‚É•\¦‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ‚Ü‚·B
+		 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®æ¨™æº–ã® visible
+		 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã‚’ç”Ÿæˆæ™‚ã«è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 		 */
 		property defaultVisible;
 		
 		/**
-		 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-		 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-		 * @param visible •\¦ó‘Ô
+		 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+		 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+		 * @param visible è¡¨ç¤ºçŠ¶æ…‹
 		 */
 		function setVisible(id, visible);
 		
 		/**
-		 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-		 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-		 * @return visible •\¦ó‘Ô
+		 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+		 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+		 * @return visible è¡¨ç¤ºçŠ¶æ…‹
 		 */
 		function getVisible(id);
 	};
 
 	/**
-	 * qƒEƒCƒ“ƒhƒE‚Æ‚µ‚Ä‹@”\‚·‚éIrrlicht Device
+	 * å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¨ã—ã¦æ©Ÿèƒ½ã™ã‚‹Irrlicht Device
 	 */
 	class Window extends Base {
 
 		/**
-		 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		 * @param window e‚É‚È‚éƒEƒCƒ“ƒhƒE
-		 * @param left ”z’uˆÊ’uX
-		 * @param top ”z’uˆÊ’uY
-		 * @param width ”z’uƒTƒCƒY
-		 * @param height ”z’uƒTƒCƒY
+		 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		 * @param window è¦ªã«ãªã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+		 * @param left é…ç½®ä½ç½®X
+		 * @param top é…ç½®ä½ç½®Y
+		 * @param width é…ç½®ã‚µã‚¤ã‚º
+		 * @param height é…ç½®ã‚µã‚¤ã‚º
 		 *
-		 * ¶¬‚µ‚½“_‚Å‚Í Irrlicht‚ÌƒfƒoƒCƒX‚Í‘¶İ‚µ‚Ü‚¹‚ñB
-		 * ¶¬Œã‚ÌÅ‰‚ÌƒCƒxƒ“ƒgˆ—‘O‚É‰Šú‰»‚³‚ê‚ÄA
-		 * ƒhƒ‰ƒCƒoAƒV[ƒ“ƒ}ƒl[ƒWƒƒAGUI‚ªˆµ‚¦‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
-		 * ˆ—‚Í onAttach() ƒCƒxƒ“ƒg‚ğ‘Ò‚Á‚Ä‚©‚çs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
+		 * ç”Ÿæˆã—ãŸæ™‚ç‚¹ã§ã¯ Irrlichtã®ãƒ‡ãƒã‚¤ã‚¹ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚
+		 * ç”Ÿæˆå¾Œã®æœ€åˆã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†å‰ã«åˆæœŸåŒ–ã•ã‚Œã¦ã€
+		 * ãƒ‰ãƒ©ã‚¤ãƒã€ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã€GUIãŒæ‰±ãˆã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
+		 * å‡¦ç†ã¯ onAttach() ã‚¤ãƒ™ãƒ³ãƒˆã‚’å¾…ã£ã¦ã‹ã‚‰è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		 */
 		function Window(window, left, top, width, height);
 
-		property left; //< ”z’uˆÊ’uX
-		property top;  //< ”z’uˆÊ’uY
-		property width; //< ‰¡•
-		property height; //< c•
+		property left; //< é…ç½®ä½ç½®X
+		property top;  //< é…ç½®ä½ç½®Y
+		property width; //< æ¨ªå¹…
+		property height; //< ç¸¦å¹…
 
 		
 		/**
-		 * ƒ}ƒEƒXƒCƒxƒ“ƒg‚ğe‘‹‚É“§‰ß‚·‚é:ƒfƒtƒHƒ‹ƒg true
+		 * ãƒã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¦ªçª“ã«é€éã™ã‚‹:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ true
 		 */
 		property transparentEvent;
 
 		/**
-		 * ”z’uˆÊ’uw’è
-		 * @param left ”z’uˆÊ’uX
-		 * @param top ”z’uˆÊ’uY
+		 * é…ç½®ä½ç½®æŒ‡å®š
+		 * @param left é…ç½®ä½ç½®X
+		 * @param top é…ç½®ä½ç½®Y
 		 */
 		function setPos(left, top);
 
 		/**
-		 * ”z’uƒTƒCƒYw’è
-		 * @param width ”z’uƒTƒCƒY‰¡•
-		 * @param height ”z’uƒTƒCƒYc•
+		 * é…ç½®ã‚µã‚¤ã‚ºæŒ‡å®š
+		 * @param width é…ç½®ã‚µã‚¤ã‚ºæ¨ªå¹…
+		 * @param height é…ç½®ã‚µã‚¤ã‚ºç¸¦å¹…
 		 */
 		function setSize(width, height);
 	}	
@@ -799,20 +799,20 @@ class Irrlicht {
 
 
 /**
- * ƒŒƒCƒ„‚É‘Î‚·‚é‹@”\Šg’£
+ * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã™ã‚‹æ©Ÿèƒ½æ‹¡å¼µ
  */
 class Layer {
 
 	/**
-	 * Irrlicht.IImage ‚©‚ç‰æ‘œ‚ğƒRƒs[BƒŒƒCƒ„‚ÌƒTƒCƒY‚ÍŒ³‚ÌIImage‚ÌƒTƒCƒY‚É‚È‚è‚Ü‚·
-	 * @param src Irrlicht.IImage ‰æ‘œ
+	 * Irrlicht.IImage ã‹ã‚‰ç”»åƒã‚’ã‚³ãƒ”ãƒ¼ã€‚ãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã¯å…ƒã®IImageã®ã‚µã‚¤ã‚ºã«ãªã‚Šã¾ã™
+	 * @param src Irrlicht.IImage ç”»åƒ
 	 */
 	function copyIImage(src);
 
 	/**
-	 * Irrlicht.ITexture ‚©‚ç‰æ‘œ‚ğƒRƒs[BƒŒƒCƒ„‚ÌƒTƒCƒY‚ÍŒ³‚ÌITexture‚ÌƒTƒCƒY‚É‚È‚è‚Ü‚·
-	 * ¦ƒeƒNƒXƒ`ƒƒ‚ª ARGB32 ‚Å‚È‚¢ê‡‚ÍƒRƒs[‚Å‚«‚Ü‚¹‚ñ
-	 * @param src Irrlicht.ITexture ƒeƒNƒXƒ`ƒƒ
+	 * Irrlicht.ITexture ã‹ã‚‰ç”»åƒã‚’ã‚³ãƒ”ãƒ¼ã€‚ãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã¯å…ƒã®ITextureã®ã‚µã‚¤ã‚ºã«ãªã‚Šã¾ã™
+	 * â€»ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒ ARGB32 ã§ãªã„å ´åˆã¯ã‚³ãƒ”ãƒ¼ã§ãã¾ã›ã‚“
+	 * @param src Irrlicht.ITexture ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	 */
 	function copyITexture(src);
 }

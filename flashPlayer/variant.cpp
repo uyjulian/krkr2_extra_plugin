@@ -3,9 +3,9 @@
 #include "tp_stub.h"
 
 /**
- * VARIANT ‚ğ tTJSVariant ‚ÉŠi”[‚·‚é
- * @param result •ÏŠ·æ
- * @param variant •ÏŠ·Œ³
+ * VARIANT ã‚’ tTJSVariant ã«æ ¼ç´ã™ã‚‹
+ * @param result å¤‰æ›å…ˆ
+ * @param variant å¤‰æ›å…ƒ
  */
 void
 storeVariant(tTJSVariant &result, VARIANT &variant)
@@ -46,7 +46,7 @@ storeVariant(tTJSVariant &result, VARIANT &variant)
 			if (SUCCEEDED(SafeArrayAccessData(psa, (LPVOID*)&p))) {
 				// p;
 				//psa->rgsabound->cElements;
-				// XXX variant ‚É‚Ç‚¤“ü‚ê‚æ‚¤H
+				// XXX variant ã«ã©ã†å…¥ã‚Œã‚ˆã†ï¼Ÿ
 				SafeArrayUnaccessData(psa);
 			}
 		}

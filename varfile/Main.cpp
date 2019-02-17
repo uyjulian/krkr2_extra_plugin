@@ -6,41 +6,41 @@
 
 #define BASENAME L"var"
 
-// Ž«‘‚©‚Ç‚¤‚©‚Ì”»’è
+// è¾žæ›¸ã‹ã©ã†ã‹ã®åˆ¤å®š
 static bool isDirectory(tTJSVariant &base) {
 	return base.Type() == tvtObject && base.AsObjectNoAddRef() != NULL;
 }
 
-// ƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©‚Ì”»’è
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹ã®åˆ¤å®š
 static bool isFile(tTJSVariant &file) {
 	return file.Type() == tvtOctet;
 }
 
 /**
- * VariantŽQÆŒ^ƒXƒgƒŠ[ƒ€
+ * Variantå‚ç…§åž‹ã‚¹ãƒˆãƒªãƒ¼ãƒ 
  */
 class VariantStream : public IStream {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	VariantStream(tTJSVariant &parent) : refCount(1), parent(parent), hBuffer(0), stream(0), cur(0) {};
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ðŠJ‚­
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	 */
 	bool open(const ttstr &name, tjs_uint32 flags) {
 		close();
 		this->name = name;
 
-		// “Ç‚Ýž‚Ý‚Ì‚Ý‚Ìê‡
+		// èª­ã¿è¾¼ã¿ã®ã¿ã®å ´åˆ
 		if (flags == TJS_BS_READ) {
 			parent.AsObjectClosureNoAddRef().PropGet(0, name.c_str(), NULL, &value, NULL);
 			return isFile(value);
 		}
 
-		// ‘‚«ž‚Ý‚ª•K—v‚Èê‡
+		// æ›¸ãè¾¼ã¿ãŒå¿…è¦ãªå ´åˆ
 		hBuffer = ::GlobalAlloc(GMEM_MOVEABLE, 0);
 		if (FAILED(::CreateStreamOnHGlobal(hBuffer, FALSE, &stream))) {
 			::GlobalFree(hBuffer);
@@ -48,7 +48,7 @@ public:
 			return false;
 		}
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì“à—e‚ð•¡»
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†…å®¹ã‚’è¤‡è£½
 		if (flags == TJS_BS_UPDATE || flags == TJS_BS_APPEND) {
 			parent.AsObjectClosureNoAddRef().PropGet(0, name.c_str(), NULL, &value, NULL);
 			if (isFile(value)) {
@@ -182,7 +182,7 @@ public:
 protected:
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚ð•Â‚¶‚éˆ—
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹å‡¦ç†
 	 */
 	void close() {
 		if (stream) {
@@ -190,7 +190,7 @@ protected:
 			stream = NULL;
 		}
 		if (hBuffer) {
-			// ‘‚«–ß‚µˆ—
+			// æ›¸ãæˆ»ã—å‡¦ç†
 			if (name != "") {
 				unsigned char* pBuffer = (unsigned char*)::GlobalLock(hBuffer);
 				if (pBuffer) {
@@ -207,18 +207,18 @@ protected:
 	}
 
     /**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~VariantStream() {
 		close();
 	}
 
-	// “Ç‚Ýž‚Ý—pƒƒ‚ƒŠ—ÌˆæŽæ“¾
+	// èª­ã¿è¾¼ã¿ç”¨ãƒ¡ãƒ¢ãƒªé ˜åŸŸå–å¾—
 	const tjs_uint8 *getBase() {
 		return isFile(value) ? value.AsOctetNoAddRef()->GetData() : NULL;
 	}
 
-	// “Ç‚Ýž‚Ý—pƒƒ‚ƒŠƒTƒCƒYŽæ“¾
+	// èª­ã¿è¾¼ã¿ç”¨ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºå–å¾—
 	tTVInteger getSize() {
 		return isFile(value) ? value.AsOctetNoAddRef()->GetLength() : 0;
 	}
@@ -234,19 +234,19 @@ private:
 };
 
 /**
- * ƒƒ“ƒo“o˜^ˆ——p
+ * ãƒ¡ãƒ³ãƒç™»éŒ²å‡¦ç†ç”¨
  */
-class GetLister : public tTJSDispatch /** EnumMembers —p */
+class GetLister : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	GetLister(iTVPStorageLister *lister) : lister(lister) {};
 
-	// EnumMember—pŒJ‚è•Ô‚µŽÀs•”
-	// param[0] ƒƒ“ƒo–¼
-	// param[1] ƒtƒ‰ƒO
-	// param[2] ƒƒ“ƒo‚Ì’l
+	// EnumMemberç”¨ç¹°ã‚Šè¿”ã—å®Ÿè¡Œéƒ¨
+	// param[0] ãƒ¡ãƒ³ãƒå
+	// param[1] ãƒ•ãƒ©ã‚°
+	// param[2] ãƒ¡ãƒ³ãƒã®å€¤
 	virtual tjs_error TJS_INTF_METHOD FuncCall( // function invocation
 												tjs_uint32 flag,			// calling flag
 												const tjs_char * membername,// member name ( NULL for a default member )
@@ -274,14 +274,14 @@ private:
 
 
 /**
- * VarƒXƒgƒŒ[ƒW
+ * Varã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
  */
 class VarStorage : public iTVPStorageMedia
 {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	VarStorage() : refCount(1) {
 	}
@@ -367,19 +367,19 @@ public:
 protected:
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~VarStorage() {
 	}
 	
 	/*
-	 * eƒtƒHƒ‹ƒ_‚ÆƒpƒX‚ð•Ô‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @param fname ƒtƒ@ƒCƒ‹–¼‚ð•Ô‚·
-	 * @return eƒtƒHƒ‹ƒ_
+	 * è¦ªãƒ•ã‚©ãƒ«ãƒ€ã¨ãƒ‘ã‚¹ã‚’è¿”ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @param fname ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã™
+	 * @return è¦ªãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	tTJSVariant getParentName(const ttstr &name, ttstr &fname) {
-		// ƒhƒƒCƒ“•”‚ð•ª—£
+		// ãƒ‰ãƒ¡ã‚¤ãƒ³éƒ¨ã‚’åˆ†é›¢
 		const tjs_char *p = name.c_str();
 		const tjs_char *q;
 		if ((q = wcschr(p, '/'))) {
@@ -390,7 +390,7 @@ protected:
 		} else {
 			TVPThrowExceptionMessage(TJS_W("invalid path:%1"), name);
 		}
-		// ƒpƒX–¼
+		// ãƒ‘ã‚¹å
 		ttstr path = ttstr(q+1);
 		iTJSDispatch2 *global = TVPGetScriptDispatch();
 		tTJSVariant base(global, global);
@@ -398,14 +398,14 @@ protected:
 			p = path.c_str();
 			q = wcschr(p, '/');
 			if (q == NULL) {
-				// ƒtƒ@ƒCƒ‹
+				// ãƒ•ã‚¡ã‚¤ãƒ«
 				break;
 			} else if (q == p) {
-				// ƒtƒHƒ‹ƒ_–¼‚ª‹ó
+				// ãƒ•ã‚©ãƒ«ãƒ€åãŒç©º
 				base.Clear();
 				break;
 			} else {
-				// ƒtƒHƒ‹ƒ_
+				// ãƒ•ã‚©ãƒ«ãƒ€
 				ttstr member = ttstr(p, q-p);
 				tTJSVariant value;
 				tTJSVariantClosure &o = base.AsObjectClosureNoAddRef();
@@ -425,15 +425,15 @@ protected:
 	}
 	
 	/*
-	 * ƒtƒ@ƒCƒ‹–¼‚É‡’v‚·‚é•Ï”‚ð’T‚µ‚Ä•Ô‚·
-	 * @param name ƒtƒ@ƒCƒ‹–¼
-	 * @return ”­Œ©‚µ‚½ƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒtƒHƒ‹ƒ_BŒ©‚Â‚©‚ç‚È‚¢ê‡‚Í tvtVoid
+	 * ãƒ•ã‚¡ã‚¤ãƒ«åã«åˆè‡´ã™ã‚‹å¤‰æ•°ã‚’æŽ¢ã—ã¦è¿”ã™
+	 * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ç™ºè¦‹ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ•ã‚©ãƒ«ãƒ€ã€‚è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ tvtVoid
 	 */
 	tTJSVariant getFile(const ttstr &name) {
 		ttstr fname;
 		tTJSVariant base = getParentName(name, fname);
 		if (isDirectory(base) && fname.length() > 0) {
-			// ƒtƒ@ƒCƒ‹
+			// ãƒ•ã‚¡ã‚¤ãƒ«
 			tTJSVariant value;
 			if (TJS_SUCCEEDED(base.AsObjectClosureNoAddRef().PropGet(0, fname.c_str(), NULL, &value, NULL))) {
 				base = value;
@@ -445,13 +445,13 @@ protected:
 	}
 
 private:
-	tjs_uint refCount; //< ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg
+	tjs_uint refCount; //< ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆ
 };
 
 VarStorage *var = NULL;
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PreRegistCallback()
 {
@@ -462,7 +462,7 @@ static void PreRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {

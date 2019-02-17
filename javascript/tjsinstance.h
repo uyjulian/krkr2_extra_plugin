@@ -4,24 +4,24 @@
 #include "tjsbase.h"
 
 /**
- * ‹g—¢‹g—¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Û‚·‚éJavaScript—pƒNƒ‰ƒXî•ñ
- * ƒƒ“ƒoî•ñ‚ğƒvƒƒgƒ^ƒCƒv‚É“o˜^‚µ‚Ü‚·
+ * å‰é‡Œå‰é‡Œã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä¿æŒã™ã‚‹JavaScriptç”¨ã‚¯ãƒ©ã‚¹æƒ…å ±
+ * ãƒ¡ãƒ³ãƒæƒ…å ±ã‚’ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã«ç™»éŒ²ã—ã¾ã™
  */
 class TJSInstance : public TJSBase, iTJSNativeInstance {
 
 public:
-	// ‰Šú‰»—p
+	// åˆæœŸåŒ–ç”¨
 	static void init(Isolate *isolate, Local<ObjectTemplate> &globalTemplate);
 
 	/**
-	 * ‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚ğ Javascrip ƒIƒuƒWƒFƒNƒg‚É•ÏŠ·
-	 * @param result Ši”[æ
-	 * @param variant •ÏŠ·Œ³
-	 * @return •ÏŠ·¬Œ÷‚µ‚½‚ç true
+	 * å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ Javascrip ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›
+	 * @param result æ ¼ç´å…ˆ
+	 * @param variant å¤‰æ›å…ƒ
+	 * @return å¤‰æ›æˆåŠŸã—ãŸã‚‰ true
 	 */
 	static bool getJSObject(Local<Object> &result, const tTJSVariant &variant);
 
-	// ƒƒ\ƒbƒhŒÄ‚Ño‚µ—p
+	// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ç”¨
 	static tjs_error getProp(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, tTJSVariant *result);
 	static tjs_error setProp(Isolate *isolate, Local<Object> &obj, const tjs_char *membername, const tTJSVariant *param);
 	static tjs_error remove(Isolate *isolate, Local<Object> &obj, const tjs_char *membername);
@@ -31,16 +31,16 @@ public:
 	// ---------------------------------------------------------------
 
 	/**
-	 * call ˆ——p‚ÌŒû
-	 * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚©‚çJavascriptƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒƒ\ƒbƒh‚ğ’¼ÚŒÄ‚Ño‚·
+	 * call å‡¦ç†ç”¨ã®å£
+	 * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰Javascriptã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç›´æ¥å‘¼ã³å‡ºã™
 	 */
 	static tjs_error call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 						  tTJSVariant *result,
 						  tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
 	
 	/**
-	 * missing ˆ——p‚ÌŒû
-	 * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚Éƒƒ“ƒo‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í JavascriptƒCƒ“ƒXƒ^ƒ“ƒX‚ğQÆ‚·‚é
+	 * missing å‡¦ç†ç”¨ã®å£
+	 * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ Javascriptã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‚ç…§ã™ã‚‹
 	 */
 	static tjs_error missing(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 							 tTJSVariant *result,
@@ -49,40 +49,40 @@ public:
 	// ---------------------------------------------------------------
 	
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚Ìƒƒ\ƒbƒh
-	 * @param args ˆø”
-	 * @return Œ‹‰Ê
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰
+	 * @param args å¼•æ•°
+	 * @return çµæœ
 	 */
 	static void tjsInvoker(const FunctionCallbackInfo<Value>& args);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒQƒbƒ^[
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
 	 */
 	static void tjsGetter(Local<String> property, const PropertyCallbackInfo<Value>& info);
 	
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒZƒbƒ^[
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
 	 */
 	static void tjsSetter(Local<String> property, Local<Value> value, const PropertyCallbackInfo<void>& info);
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param obj ©ŒÈƒIƒuƒWƒFƒNƒg
-	 * @param instance ƒoƒCƒ“ƒh‘ÎÛ‚ÌTJSƒIƒuƒWƒFƒNƒg
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param obj è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param instance ãƒã‚¤ãƒ³ãƒ‰å¯¾è±¡ã®TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	TJSInstance(Isolate *isolate, Local<Object> &obj, const tTJSVariant &instance);
 	
 private:
 
 	/**
-	 * ‹g—¢‹g—¢ƒNƒ‰ƒX‚©‚ç Javascript ƒNƒ‰ƒX‚ğ¶¬
-	 * @param args ˆø”
-	 * @return Œ‹‰Ê
+	 * å‰é‡Œå‰é‡Œã‚¯ãƒ©ã‚¹ã‹ã‚‰ Javascript ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆ
+	 * @param args å¼•æ•°
+	 * @return çµæœ
 	 */
 	static void createTJSClass(const FunctionCallbackInfo<Value>& args);
 
 	/**
-	 * ”jŠüˆ—
+	 * ç ´æ£„å‡¦ç†
 	 */
 	void invalidate();
 
@@ -95,35 +95,35 @@ private:
 	}
 	
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚Ì—LŒøŠm”F
-	 * @param args ˆø”
-	 * @return Œ‹‰Ê
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ‰åŠ¹ç¢ºèª
+	 * @param args å¼•æ•°
+	 * @return çµæœ
 	 */
 	static void tjsIsValid(const FunctionCallbackInfo<Value>& args);
 
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚éƒI[ƒoƒ‰ƒCƒhˆ—
-	 * @param args ˆø”
-	 * @return Œ‹‰Ê
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰å‡¦ç†
+	 * @param args å¼•æ•°
+	 * @return çµæœ
 	 */
 	static void tjsOverride(const FunctionCallbackInfo<Value>& args);
 	
 	/**
-	 * TJSƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param args ˆø”
-	 * @return Œ‹‰Ê
+	 * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param args å¼•æ•°
+	 * @return çµæœ
 	 */
 	static void tjsConstructor(const FunctionCallbackInfo<Value>& args);
 
 	// NativeClass ID
 	static int classId;
 	
-	// ©ŒÈQÆ—p
+	// è‡ªå·±å‚ç…§ç”¨
 	Persistent<Object> self;
 	Isolate *isolate;
 
 public:
-	// NativeInstance ‘Î‰—pƒƒ“ƒo
+	// NativeInstance å¯¾å¿œç”¨ãƒ¡ãƒ³ãƒ
 	virtual tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj);
 	virtual void TJS_INTF_METHOD Invalidate();
 	virtual void TJS_INTF_METHOD Destruct();

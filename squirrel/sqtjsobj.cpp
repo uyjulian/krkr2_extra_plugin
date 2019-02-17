@@ -2,7 +2,7 @@
 #include "tp_stub.h"
 #include "sqtjsobj.h"
 
-// sqwrapper.cpp ‚æ‚è
+// sqwrapper.cpp ã‚ˆã‚Š
 extern void sq_pushvariant(HSQUIRRELVM v, tTJSVariant &variant);
 extern SQRESULT sq_getvariant(HSQUIRRELVM v, int idx, tTJSVariant *result);
 extern SQRESULT ERROR_KRKR(HSQUIRRELVM v, tjs_error error);
@@ -10,24 +10,24 @@ extern void SQEXCEPTION(HSQUIRRELVM v);
 
 #include <sqfunc.h>
 
-// Œ^î•ñ
+// å‹æƒ…å ±
 static const SQChar *tjsClassAttrName = _SC("tjsClass");
 
 /**
- * ƒƒ“ƒo“o˜^ˆ——p
+ * ãƒ¡ãƒ³ãƒç™»éŒ²å‡¦ç†ç”¨
  */
-class MemberRegister : public tTJSDispatch /** EnumMembers —p */
+class MemberRegister : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	MemberRegister(HSQUIRRELVM v, tTJSVariant &tjsClassObj) : v(v), tjsClassObj(tjsClassObj) {
 	};
 
-	// EnumMember—pŒJ‚è•Ô‚µÀs•”
-	// param[0] ƒƒ“ƒo–¼
-	// param[1] ƒtƒ‰ƒO
-	// param[2] ƒƒ“ƒo‚Ì’l
+	// EnumMemberç”¨ç¹°ã‚Šè¿”ã—å®Ÿè¡Œéƒ¨
+	// param[0] ãƒ¡ãƒ³ãƒå
+	// param[1] ãƒ•ãƒ©ã‚°
+	// param[2] ãƒ¡ãƒ³ãƒã®å€¤
 	virtual tjs_error TJS_INTF_METHOD FuncCall( // function invocation
 												tjs_uint32 flag,			// calling flag
 												const tjs_char * membername,// member name ( NULL for a default member )
@@ -62,14 +62,14 @@ public:
 
 protected:
 
-	// null “o˜^
+	// null ç™»éŒ²
 	void registNull(const tjs_char *functionName) {
 		sq_pushstring(v, functionName, -1);
 		sq_pushnull(v);
 		sq_createslot(v, -3);
 	}
 
-	// ƒtƒ@ƒ“ƒNƒVƒ‡ƒ““o˜^
+	// ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ç™»éŒ²
 	void registerFunction(const tjs_char *functionName, tTJSVariant &function, bool staticMember) {
 		sq_pushstring(v, functionName, -1);
 		sq_pushvariant(v, function);
@@ -83,7 +83,7 @@ protected:
 		}
 	}
 
-	// ƒvƒƒpƒeƒB“o˜^
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ç™»éŒ²
 	void registerProperty(const tjs_char *propertyName, tTJSVariant &property, bool staticMember) {
 
 		ttstr name = L"set";
@@ -122,20 +122,20 @@ private:
 
 // -----------------------------------------------------------------------
 
-// TJSObject“o˜^—p‚ÌƒNƒ‰ƒXID
+// TJSObjectç™»éŒ²ç”¨ã®ã‚¯ãƒ©ã‚¹ID
 int TJSObject::classId;
 
-// ‰Šú‰»—p
+// åˆæœŸåŒ–ç”¨
 void
 TJSObject::init(HSQUIRRELVM vm)
 {
-	// squirrel ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ TJS‘¤‚Å•Û‚·‚é‚½‚ß‚ÌID‚ğæ“¾
+	// squirrel ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ TJSå´ã§ä¿æŒã™ã‚‹ãŸã‚ã®IDã‚’å–å¾—
 	classId = TJSRegisterNativeClass(L"SquirrelClass");
 	
-	// TJSObjectƒNƒ‰ƒX‚ğ’è‹`
+	// TJSObjectã‚¯ãƒ©ã‚¹ã‚’å®šç¾©
 	SQTemplate<TJSObject, sqobject::Object> cls(vm);
 
-	// ƒƒ\ƒbƒh“o˜^
+	// ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
 	sq_pushroottable(vm);
 	sq_pushstring(vm, _SC("createTJSClass"), -1);
 	sq_newclosure(vm, createTJSClass, 0);
@@ -146,16 +146,16 @@ TJSObject::init(HSQUIRRELVM vm)
 	sq_pop(vm, 1);
 }
 
-// ‰Šú‰»—p
+// åˆæœŸåŒ–ç”¨
 void
 TJSObject::done(HSQUIRRELVM vm)
 {
-	// ƒNƒ‰ƒXQÆ‚ğ‰ğ•ú
+	// ã‚¯ãƒ©ã‚¹å‚ç…§ã‚’è§£æ”¾
 	SQClassType<TJSObject>::done(vm);
 }
 
 /**
- * ƒNƒ‰ƒX‚Ì“o˜^
+ * ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²
  * @param HSQUIRRELVM v
  */
 SQRESULT
@@ -166,11 +166,11 @@ TJSObject::createTJSClass(HSQUIRRELVM v)
 		return sq_throwerror(v, _SC("invalid param"));
 	}
 
-	// ƒNƒ‰ƒX‚ğ¶¬
+	// ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆ
 	sq_pushobject(v, SQClassType<TJSObject>::ClassObject());
-	sq_newclass(v, true); // Œp³‚·‚é
+	sq_newclass(v, true); // ç¶™æ‰¿ã™ã‚‹
 
-	// ƒƒ“ƒo“o˜^
+	// ãƒ¡ãƒ³ãƒç™»éŒ²
 	const tjs_char *tjsClassName = NULL;
 	tTJSVariant tjsClassObj;
 	for (SQInteger i=top;i>1;i--) {
@@ -187,12 +187,12 @@ TJSObject::createTJSClass(HSQUIRRELVM v)
 	}
 
 	if (tjsClassName) {
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^“o˜^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç™»éŒ²
 		sq_pushstring(v, _SC("constructor"), -1);
 		sq_pushvariant(v, tjsClassObj);
 		sq_newclosure(v, tjsConstructor, 1);
 		sq_createslot(v, -3);
-		// ƒNƒ‰ƒX‘®«‚É tjsƒNƒ‰ƒX‚ğ“o˜^
+		// ã‚¯ãƒ©ã‚¹å±æ€§ã« tjsã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²
 		sq_pushnull(v);
 		sq_newtable(v);
 		if (SQ_SUCCEEDED(sq_setattributes(v,-3))) {
@@ -215,7 +215,7 @@ TJSObject::createTJSClass(HSQUIRRELVM v)
 			sq_pop(v,2);
 		}
 		
-		// TJS‹@”\ƒƒ\ƒbƒh‚ğ“o˜^
+		// TJSæ©Ÿèƒ½ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç™»éŒ²
 		sq_pushstring(v, _SC("tjsIsValid"), -1);
 		sq_newclosure(v, TJSObject::tjsIsValid, 0);
 		sq_createslot(v, -3);
@@ -229,7 +229,7 @@ TJSObject::createTJSClass(HSQUIRRELVM v)
 }
 
 /**
- * squirrel ‚©‚ç‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚ğæ“¾
+ * squirrel ã‹ã‚‰å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
  */
 bool
 TJSObject::getVariant(HSQUIRRELVM v, SQInteger idx, tTJSVariant *variant)
@@ -239,7 +239,7 @@ TJSObject::getVariant(HSQUIRRELVM v, SQInteger idx, tTJSVariant *variant)
 			idx = sq_gettop(v) + 1 + idx;
 		}
 		bool ret = false;
-		// ƒNƒ‰ƒX‘®«‚©‚çƒIƒuƒWƒFƒNƒgî•ñ‚ğˆø‚«o‚·
+		// ã‚¯ãƒ©ã‚¹å±æ€§ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’å¼•ãå‡ºã™
 		sq_pushnull(v);
 		if (SQ_SUCCEEDED(sq_getattributes(v, idx))) {
 			sq_pushstring(v, tjsClassAttrName, -1);
@@ -266,16 +266,16 @@ TJSObject::getVariant(HSQUIRRELVM v, SQInteger idx, tTJSVariant *variant)
 }
 
 /**
- * ‹g—¢‹g—¢ƒIƒuƒWƒFƒNƒg‚ğ squirrel ‚É“o˜^Bsquirrel ‘¤‚Å¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚ÍŒ³‚ÌƒIƒuƒWƒFƒNƒgî•ñ‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·
- * @return “o˜^¬Œ÷
+ * å‰é‡Œå‰é‡Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ squirrel ã«ç™»éŒ²ã€‚squirrel å´ã§ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’ãã®ã¾ã¾è¿”ã™
+ * @return ç™»éŒ²æˆåŠŸ
  */
 bool
 TJSObject::pushVariant(HSQUIRRELVM v, tTJSVariant &variant)
 {
-	// “o˜^Ï‚İƒCƒ“ƒXƒ^ƒ“ƒX‚©‚Ç‚¤‚©‚Ì”»’è
+	// ç™»éŒ²æ¸ˆã¿ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã©ã†ã‹ã®åˆ¤å®š
 	iTJSNativeInstance *ninstance;
 	if (TJS_SUCCEEDED(variant.AsObjectNoAddRef()->NativeInstanceSupport(TJS_NIS_GETINSTANCE, classId, &ninstance))) {
-		// Œ³X squirrel ‘¤‚©‚ç“o˜^‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚ÍŒ³‚Ì squirrel ƒIƒuƒWƒFƒNƒgî•ñ‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·
+		// å…ƒã€… squirrel å´ã‹ã‚‰ç™»éŒ²ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯å…ƒã® squirrel ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’ãã®ã¾ã¾è¿”ã™
 		TJSObject *self = (TJSObject*)ninstance;
 		self->self.push(v);
 		return true;
@@ -287,7 +287,7 @@ TJSObject::pushVariant(HSQUIRRELVM v, tTJSVariant &variant)
 
 
 //---------------------------------------------------------------------------
-// missingŠÖ”
+// missingé–¢æ•°
 //---------------------------------------------------------------------------
 class tMissingFunction : public tTJSDispatch
 {
@@ -299,8 +299,8 @@ class tMissingFunction : public tTJSDispatch
 };
 
 /**
- * missing ˆ——p‚ÌŒû
- * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚Éƒƒ“ƒo‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í squirrelƒCƒ“ƒXƒ^ƒ“ƒX‚ğQÆ‚·‚é
+ * missing å‡¦ç†ç”¨ã®å£
+ * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒ¡ãƒ³ãƒãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ squirrelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‚ç…§ã™ã‚‹
  */
 tjs_error TJSObject::missing(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 							 tTJSVariant *result,
@@ -308,7 +308,7 @@ tjs_error TJSObject::missing(tjs_uint32 flag, const tjs_char * membername, tjs_u
 	
 	if (numparams < 3) {return TJS_E_BADPARAMCOUNT;};
 
-	// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é squirrel ƒIƒuƒWƒFƒNƒg‚ğæ“¾
+	// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ squirrel ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 	iTJSNativeInstance *ninstance;
 	if (TJS_SUCCEEDED(objthis->NativeInstanceSupport(TJS_NIS_GETINSTANCE, classId, &ninstance))) {
 		TJSObject *self = (TJSObject*)ninstance;
@@ -344,7 +344,7 @@ tjs_error TJSObject::missing(tjs_uint32 flag, const tjs_char * membername, tjs_u
 }
 
 //---------------------------------------------------------------------------
-// callSQŠÖ”
+// callSQé–¢æ•°
 //---------------------------------------------------------------------------
 class tCallSQFunction : public tTJSDispatch
 {
@@ -356,8 +356,8 @@ class tCallSQFunction : public tTJSDispatch
 };
 
 /**
- * call ˆ——p‚ÌŒû
- * TJSƒCƒ“ƒXƒ^ƒ“ƒX‚©‚çsquirrelƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒƒ\ƒbƒh‚ğ’¼ÚŒÄ‚Ño‚·
+ * call å‡¦ç†ç”¨ã®å£
+ * TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰squirrelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç›´æ¥å‘¼ã³å‡ºã™
  */
 tjs_error
 TJSObject::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
@@ -365,7 +365,7 @@ TJSObject::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 				tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 {
 	if (numparams < 1) {return TJS_E_BADPARAMCOUNT;};
-	// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é squirrel ƒIƒuƒWƒFƒNƒg‚ğæ“¾
+	// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ squirrel ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 	iTJSNativeInstance *ninstance;
 	if (TJS_SUCCEEDED(objthis->NativeInstanceSupport(TJS_NIS_GETINSTANCE, classId, &ninstance))) {
 		TJSObject *self = (TJSObject*)ninstance;
@@ -374,7 +374,7 @@ TJSObject::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 		sq_pushstring(gv, param[0]->GetString(), -1); // methodName
 		if (SQ_SUCCEEDED(sq_get(gv, -2))) {
 			self->self.push(gv); // this
-			for (int i=1;i<numparams;i++) {	// ˆø”
+			for (int i=1;i<numparams;i++) {	// å¼•æ•°
 				sq_pushvariant(gv, *param[i]);
 			}
 			if (SQ_SUCCEEDED(sq_call(gv, numparams, result ? SQTrue:SQFalse, SQTrue))) {
@@ -398,18 +398,18 @@ TJSObject::call(tjs_uint32 flag, const tjs_char * membername, tjs_uint32 *hint,
 
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 TJSObject::TJSObject(HSQUIRRELVM v, int idx, tTJSVariant &instance) : instance(instance)
 {
 	initSelf(v, idx);
 	iTJSDispatch2 *objthis = instance.AsObjectNoAddRef();
 
-	// TJSƒCƒ“ƒXƒ^ƒ“ƒX‚ÉƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚µ‚Ä‚¨‚­
+	// TJSã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã—ã¦ãŠã
 	iTJSNativeInstance *ninstance = this;
 	objthis->NativeInstanceSupport(TJS_NIS_REGISTER, classId, &ninstance);
 
-	// callSQ ƒƒ\ƒbƒh“o˜^
+	// callSQ ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
 	tCallSQFunction *callSQ = new tCallSQFunction();
 	if (callSQ) {
 		tTJSVariant val(callSQ, objthis);
@@ -417,14 +417,14 @@ TJSObject::TJSObject(HSQUIRRELVM v, int idx, tTJSVariant &instance) : instance(i
 		callSQ->Release();
 	}
 	
-	// missing ƒƒ\ƒbƒh“o˜^
+	// missing ãƒ¡ã‚½ãƒƒãƒ‰ç™»éŒ²
 	tMissingFunction *missing = new tMissingFunction();
 	if (missing) {
 		tTJSVariant val(missing, objthis);
 		const tjs_char *missingName = TJS_W("missing");
 		objthis->PropSet(TJS_MEMBERENSURE, missingName, NULL, &val, objthis);
 		missing->Release();
-		// missing —LŒø‰»
+		// missing æœ‰åŠ¹åŒ–
 		tTJSVariant name(missingName);
 		objthis->ClassInstanceInfo(TJS_CII_SET_MISSING, 0, &name);
 	}
@@ -434,7 +434,7 @@ static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
 	return false;
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TJSObject::~TJSObject()
 {
 }
@@ -447,9 +447,9 @@ static void TJS_USERENTRY TryInvalidate(void * data) {
 void
 TJSObject::invalidate()
 {
-	// TJSƒIƒuƒWƒFƒNƒg‚ğ”j‰ó‚µ‚ÄQÆ‚ğƒNƒŠƒA‚·‚é
-	// ‚±‚ê‚É‚æ‚èATJS‘¤‚Å‰ñûˆ—‚ª‘–‚è‚±‚ÌƒIƒuƒWƒFƒNƒg©‘Ì‚Í
-	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒNƒŠƒAˆ—‚Å”jŠü‚³‚ê‚é
+	// TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç ´å£Šã—ã¦å‚ç…§ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+	// ã“ã‚Œã«ã‚ˆã‚Šã€TJSå´ã§å›åå‡¦ç†ãŒèµ°ã‚Šã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè‡ªä½“ã¯
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚¯ãƒªã‚¢å‡¦ç†ã§ç ´æ£„ã•ã‚Œã‚‹
 	if (instance.Type() == tvtObject && instance.AsObjectClosureNoAddRef().IsValid(0, NULL, NULL, NULL) == TJS_S_TRUE) {
 		TVPDoTryBlock(TryInvalidate, Catch, NULL, (void *)&instance);
 	}
@@ -457,7 +457,7 @@ TJSObject::invalidate()
 }
 
 /**
- * ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒŠ[ƒT
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªãƒªãƒ¼ã‚µ
  */
 SQRESULT
 TJSObject::release(SQUserPointer up, SQInteger size)
@@ -471,36 +471,36 @@ TJSObject::release(SQUserPointer up, SQInteger size)
 }
 
 // ---------------------------
-// NativeInstance ‘Î‰—pƒƒ“ƒo
+// NativeInstance å¯¾å¿œç”¨ãƒ¡ãƒ³ãƒ
 // ---------------------------
 
-// ¶¬ŒÄ‚Ñ•Ô‚µ
+// ç”Ÿæˆæ™‚å‘¼ã³è¿”ã—
 tjs_error TJS_INTF_METHOD
 TJSObject::Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj)
 {
 	return TJS_S_OK;
 }
 
-// InvalidateŒÄ‚Ñ•Ô‚µ
+// Invalidateæ™‚å‘¼ã³è¿”ã—
 void TJS_INTF_METHOD
 TJSObject::Invalidate()
 {
 }
 
-// ”jŠüŒÄ‚Ñ•Ô‚µ
+// ç ´æ£„æ™‚å‘¼ã³è¿”ã—
 void TJS_INTF_METHOD
 TJSObject::Destruct()
 {
 	delete this;
 }
 
-// TJS‚Ì—áŠO‰ñ”ğŒÄ‚Ño‚µˆ——p
+// TJSã®ä¾‹å¤–å›é¿å‘¼ã³å‡ºã—å‡¦ç†ç”¨
 class FuncInfo {
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	FuncInfo(HSQUIRRELVM v, tTJSVariant &instance, int offset=0) : v(v), instance(instance), argc(0), args(NULL), result(SQ_OK) {
-		// ˆø”¶¬
+		// å¼•æ•°ç”Ÿæˆ
 		if (offset > 0) {
 			argc = (tjs_int)(sq_gettop(v) - offset);
 			if (argc > 0) {
@@ -513,9 +513,9 @@ public:
 		}
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~FuncInfo() {
-		// ˆø””jŠü
+		// å¼•æ•°ç ´æ£„
 		if (args) {
 			for (int i=0;i<argc;i++) {
 				delete args[i];
@@ -625,7 +625,7 @@ private:
 	static bool TJS_USERENTRY Catch(void * data, const tTVPExceptionDesc & desc) {
 		FuncInfo *info = (FuncInfo*)data;
 		info->result = sq_throwerror(info->v, desc.message.c_str());
-		// —áŠO‚Íí‚É–³‹
+		// ä¾‹å¤–ã¯å¸¸ã«ç„¡è¦–
 		return false;
 	}
 
@@ -642,15 +642,15 @@ private:
 };
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2` ˆø”
- * ©—R•Ï”1 TJSƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2ã€œ å¼•æ•°
+ * è‡ªç”±å¤‰æ•°1 TJSã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 SQRESULT
 TJSObject::tjsConstructor(HSQUIRRELVM v)
 {
-	// ƒNƒ‰ƒX‚ğ¶¬‚·‚é
+	// ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
 	tTJSVariant tjsClassObj;
 	if (SQ_SUCCEEDED(sq_getvariant(v, -1, &tjsClassObj)) && tjsClassObj.Type() == tvtObject) {
 		FuncInfo info(v, tjsClassObj, 2);
@@ -670,10 +670,10 @@ TJSObject::tjsConstructor(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚Ìƒƒ\ƒbƒh
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2` ˆø”
- * ©—R•Ï”1 ƒƒ\ƒbƒh
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2ã€œ å¼•æ•°
+ * è‡ªç”±å¤‰æ•°1 ãƒ¡ã‚½ãƒƒãƒ‰
  */
 SQRESULT
 TJSObject::tjsInvoker(HSQUIRRELVM v)
@@ -687,9 +687,9 @@ TJSObject::tjsInvoker(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒQƒbƒ^[
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ©—R•Ï”1 ƒvƒƒpƒeƒB
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * è‡ªç”±å¤‰æ•°1 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  */
 SQRESULT
 TJSObject::tjsGetter(HSQUIRRELVM v)
@@ -703,10 +703,10 @@ TJSObject::tjsGetter(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌƒvƒƒpƒeƒBƒZƒbƒ^[
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2 İ’è’l
- * ©—R•Ï”1 ƒvƒƒpƒeƒB
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2 è¨­å®šå€¤
+ * è‡ªç”±å¤‰æ•°1 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  */
 SQRESULT
 TJSObject::tjsSetter(HSQUIRRELVM v)
@@ -720,11 +720,11 @@ TJSObject::tjsSetter(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“Iƒƒ\ƒbƒh
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2` ˆø”
- * ©—R•Ï”1 ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
- * ©—R•Ï”2 ƒƒ\ƒbƒh
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ¡ã‚½ãƒƒãƒ‰
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2ã€œ å¼•æ•°
+ * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * è‡ªç”±å¤‰æ•°2 ãƒ¡ã‚½ãƒƒãƒ‰
  */
 SQRESULT
 TJSObject::tjsStaticInvoker(HSQUIRRELVM v)
@@ -738,10 +738,10 @@ TJSObject::tjsStaticInvoker(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“IƒvƒƒpƒeƒBƒQƒbƒ^[
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ©—R•Ï”1 ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
- * ©—R•Ï”2 ƒvƒƒpƒeƒB
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚²ãƒƒã‚¿ãƒ¼
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * è‡ªç”±å¤‰æ•°2 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  */
 SQRESULT
 TJSObject::tjsStaticGetter(HSQUIRRELVM v)
@@ -755,11 +755,11 @@ TJSObject::tjsStaticGetter(HSQUIRRELVM v)
 }
 	
 /**
- * TJSƒIƒuƒWƒFƒNƒg—p‚ÌÃ“IƒvƒƒpƒeƒBƒZƒbƒ^[
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2 İ’è’l
- * ©—R•Ï”1 ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
- * ©—R•Ï”2 ƒvƒƒpƒeƒB
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨ã®é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2 è¨­å®šå€¤
+ * è‡ªç”±å¤‰æ•°1 ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * è‡ªç”±å¤‰æ•°2 ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  */
 SQRESULT
 TJSObject::tjsStaticSetter(HSQUIRRELVM v)
@@ -773,8 +773,8 @@ TJSObject::tjsStaticSetter(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚Ì—LŒøŠm”F
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ‰åŠ¹ç¢ºèª
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 SQRESULT 
 TJSObject::tjsIsValid(HSQUIRRELVM v)
@@ -790,10 +790,10 @@ TJSObject::tjsIsValid(HSQUIRRELVM v)
 }
 
 /**
- * TJSƒIƒuƒWƒFƒNƒg‚ÌƒI[ƒoƒ‰ƒCƒhˆ—
- * ˆø”1 ƒIƒuƒWƒFƒNƒg
- * ˆø”2 –¼‘O
- * ˆø”3 ’lBÈ—ª‚Í squirrel ƒCƒ“ƒXƒ^ƒ“ƒX‚©‚ç–¼‘O‚ÅQÆ
+ * TJSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰å‡¦ç†
+ * å¼•æ•°1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * å¼•æ•°2 åå‰
+ * å¼•æ•°3 å€¤ã€‚çœç•¥æ™‚ã¯ squirrel ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰åå‰ã§å‚ç…§
  */
 SQRESULT 
 TJSObject::tjsOverride(HSQUIRRELVM v)
@@ -805,12 +805,12 @@ TJSObject::tjsOverride(HSQUIRRELVM v)
 		const SQChar *methodName = sqobject::getString(v,2);
 		int n = sq_gettop(v);
 		if (n >= 3) {
-			// ˆø”‚Å–¾¦w’è‚³‚ê‚Ä‚¢‚é
+			// å¼•æ•°ã§æ˜ç¤ºæŒ‡å®šã•ã‚Œã¦ã„ã‚‹
 			if (SQ_FAILED(result = sq_getvariant(v, 3, &value))) {
 				return result;
 			}
 		} else {
-			// ©ŒÈƒIƒuƒWƒFƒNƒg‚©‚ç–¼‘O‚ÅŒŸõ‚µ‚Ä“o˜^
+			// è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰åå‰ã§æ¤œç´¢ã—ã¦ç™»éŒ²
 			sq_push(v, 1);
 			sq_pushstring(v, methodName, -1);
 			if (SQ_FAILED(result = sq_get(v, -2))) {
@@ -819,7 +819,7 @@ TJSObject::tjsOverride(HSQUIRRELVM v)
 			} else {
 				SQObjectType type = sq_gettype(v, -1);
 				if (type == OT_CLOSURE || type == OT_NATIVECLOSURE) {
-					// ƒNƒ[ƒWƒƒ‚Ìê‡‚Í bindenv ‚µ‚Ä‚¨‚­
+					// ã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£ã®å ´åˆã¯ bindenv ã—ã¦ãŠã
 					sq_push(v, 1);
 					if (SQ_FAILED(result = sq_bindenv(v, -2))) {
 						sq_pop(v, 2); // func, self

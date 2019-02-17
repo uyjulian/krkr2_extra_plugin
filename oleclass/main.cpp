@@ -6,7 +6,7 @@
 
 // ATL
 #if _MSC_VER == 1200
-// Microsoft SDK ‚Ì‚à‚Ì‚Æ‚©‚¿‚ ‚¤‚Ì‚Å”rœ
+// Microsoft SDK ã®ã‚‚ã®ã¨ã‹ã¡ã‚ã†ã®ã§æ’é™¤
 #define __IHTMLControlElement_INTERFACE_DEFINED__
 #endif
 
@@ -21,7 +21,7 @@ static CComModule _Module;
 #include <atlhost.h>
 #include <ExDispID.h>
 
-// ƒƒOo—Í—p
+// ãƒ­ã‚°å‡ºåŠ›ç”¨
 static void log(const tjs_char *format, ...)
 {
 	va_list args;
@@ -40,13 +40,13 @@ extern IDispatch *createEventSink(GUID diid, ITypeInfo *pTypeInfo, iTJSDispatch2
 extern HRESULT findIID(IDispatch *pDispatch, const tjs_char *pitf, IID *piid, ITypeInfo **ppTypeInfo);
 
 /*
- * WIN32OLE ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * WIN32OLE ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
-class WIN32OLE // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class WIN32OLE // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
 public:
-	iTJSDispatch2 *objthis; //< ©•ª©g
-	IDispatch *pDispatch; //< •Û‚µ‚Ä‚éƒCƒ“ƒXƒ^ƒ“ƒX
+	iTJSDispatch2 *objthis; //< è‡ªåˆ†è‡ªèº«
+	IDispatch *pDispatch; //< ä¿æŒã—ã¦ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 
 protected:
 
@@ -58,7 +58,7 @@ protected:
 	vector<EventInfo> events;
 
 	/**
-	 * ƒCƒxƒ“ƒgî•ñ‚ÌÁ‹
+	 * ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ã®æ¶ˆå»
 	 */
 	void clearEvent() {
 		if (pDispatch) {
@@ -72,7 +72,7 @@ protected:
 	}
 
 	/**
-	 * “o˜^î•ñ‚ÌÁ‹
+	 * ç™»éŒ²æƒ…å ±ã®æ¶ˆå»
 	 */
 	void clear() {
 		clearEvent();
@@ -84,8 +84,8 @@ protected:
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param objthis TJS2ƒCƒ“ƒXƒ^ƒ“ƒX
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param objthis TJS2ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 	 * @param progIdorCLSID
 	 */
 	WIN32OLE(iTJSDispatch2 *objthis, const tjs_char *progIdOrCLSID) : objthis(objthis), pDispatch(NULL) {
@@ -98,7 +98,7 @@ public:
 			}
 			SysFreeString(oleName);
 			if (SUCCEEDED(hr)) {
-				// COM Ú‘±‚µ‚ÄIDispatch ‚ğæ“¾‚·‚é
+				// COM æ¥ç¶šã—ã¦IDispatch ã‚’å–å¾—ã™ã‚‹
 				/* get IDispatch interface */
 				hr = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IDispatch, (void**)&pDispatch);
 				if (!SUCCEEDED(hr)) {
@@ -112,13 +112,13 @@ public:
 		objthis->ClassInstanceInfo(TJS_CII_SET_MISSING, 0, &name);
 	}
 	
-	// ƒIƒuƒWƒFƒNƒg‚ª–³Œø‰»‚³‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡åŠ¹åŒ–ã•ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹
 	virtual ~WIN32OLE()	{
 		clear();
 	}
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(WIN32OLE **result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -133,13 +133,13 @@ public:
 protected:
 
 	/**
-	 * ƒƒ\ƒbƒhÀs
-	 * ƒƒ“ƒo–¼‚ğ’¼Úw’è
-	 * @param wFlag Àsƒtƒ‰ƒO
-	 * @param membername ƒƒ“ƒo–¼
-	 * @param result Œ‹‰Ê
-	 * @param numparams ˆø”‚Ì”
-	 * @param param ˆø”
+	 * ãƒ¡ã‚½ãƒƒãƒ‰å®Ÿè¡Œ
+	 * ãƒ¡ãƒ³ãƒåã‚’ç›´æ¥æŒ‡å®š
+	 * @param wFlag å®Ÿè¡Œãƒ•ãƒ©ã‚°
+	 * @param membername ãƒ¡ãƒ³ãƒå
+	 * @param result çµæœ
+	 * @param numparams å¼•æ•°ã®æ•°
+	 * @param param å¼•æ•°
 	 */
 	tjs_error invoke(DWORD wFlags,
 					 const tjs_char *membername,
@@ -158,12 +158,12 @@ protected:
 	}
 	
 	/**
-	 * ƒƒ\ƒbƒhÀs
-	 * ƒpƒ‰ƒ[ƒ^‚Ì‚P‚Â–Ú‚ªƒƒ\ƒbƒh–¼
-	 * @param wFlag Àsƒtƒ‰ƒO
-	 * @param result Œ‹‰Ê
-	 * @param numparams ˆø”‚Ì”
-	 * @param param ˆø”
+	 * ãƒ¡ã‚½ãƒƒãƒ‰å®Ÿè¡Œ
+	 * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ï¼‘ã¤ç›®ãŒãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param wFlag å®Ÿè¡Œãƒ•ãƒ©ã‚°
+	 * @param result çµæœ
+	 * @param numparams å¼•æ•°ã®æ•°
+	 * @param param å¼•æ•°
 	 */
 	tjs_error invoke(DWORD wFlags,
 					 tTJSVariant *result,
@@ -190,7 +190,7 @@ protected:
 	}
 
 	/**
-	 * ƒƒ\ƒbƒhÀs
+	 * ãƒ¡ã‚½ãƒƒãƒ‰å®Ÿè¡Œ
 	 */
 	tjs_error missing(tTJSVariant *result, tjs_int numparams, tTJSVariant **param) {
 		
@@ -243,7 +243,7 @@ public:
 protected:
 
 	/**
-	 * ƒCƒxƒ“ƒg‚ğ“o˜^
+	 * ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™»éŒ²
 	 */
 	bool addEvent(const tjs_char *diidName, iTJSDispatch2 *receiver) {
 		bool ret = false;
@@ -267,7 +267,7 @@ protected:
 public:
 
 	/**
-	 * ƒCƒxƒ“ƒg“o˜^
+	 * ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²
 	 */
 	static tjs_error addEventMethod(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -289,23 +289,23 @@ public:
 			success = self->addEvent(diidName, objthis);
 		}
 		if (!success) {
-			log(L"ƒCƒxƒ“ƒg[%ws]‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½", diidName);
+			log(L"ã‚¤ãƒ™ãƒ³ãƒˆ[%ws]ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ", diidName);
 		}
 		return TJS_S_OK;
 	}
 	
 	/**
-	 * ’è”‚Ìæ“¾
+	 * å®šæ•°ã®å–å¾—
 	 */
 protected:
 
 	/**
-	 * ’è”‚Ìæ“¾
+	 * å®šæ•°ã®å–å¾—
 	 * @param pTypeInfo TYPEINFO
-	 * @param target Ši”[æ
+	 * @param target æ ¼ç´å…ˆ
 	 */
 	void getConstant(ITypeInfo *pTypeInfo, iTJSDispatch2 *target) {
-		// ŒÂ”î•ñ
+		// å€‹æ•°æƒ…å ±
 		TYPEATTR  *pTypeAttr = NULL;
 		if (SUCCEEDED(pTypeInfo->GetTypeAttr(&pTypeAttr))) {
 			for (int i=0; i<pTypeAttr->cVars; i++) {
@@ -336,9 +336,9 @@ protected:
 	}
 
 	/**
-	 * ’è”‚Ìæ“¾
+	 * å®šæ•°ã®å–å¾—
 	 * @param pTypeLib TYPELIB
-	 * @param target Ši”[æ
+	 * @param target æ ¼ç´å…ˆ
 	 */
 	void getConstant(ITypeLib *pTypeLib, iTJSDispatch2 *target) {
 		unsigned int count = pTypeLib->GetTypeInfoCount();
@@ -352,8 +352,8 @@ protected:
 	}
 
 	/**
-	 * ’è”‚Ìæ“¾
-	 * @param target Ši”[æ
+	 * å®šæ•°ã®å–å¾—
+	 * @param target æ ¼ç´å…ˆ
 	 */
 	void getConstant(iTJSDispatch2 *target) {
 		if (pDispatch) {
@@ -374,7 +374,7 @@ protected:
 
 public:
 	/**
-	 * ƒƒ\ƒbƒhÀs
+	 * ãƒ¡ã‚½ãƒƒãƒ‰å®Ÿè¡Œ
 	 */
 	static tjs_error getConstantMethod(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
 		WIN32OLE *self = ncbInstanceAdaptor<WIN32OLE>::GetNativeInstance(objthis);
@@ -399,12 +399,12 @@ public:
 extern IDocHostUIHandlerDispatch *createExternalUI();
 
 /*
- * ActiveX ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * ActiveX ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 class ActiveX : public WIN32OLE, public CWindowImpl<ActiveX, CAxWindow>
 {
 protected:
-	iTJSDispatch2 *window;  //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *window;  //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 	ttstr progId;
 	int left;
 	int top;
@@ -413,10 +413,10 @@ protected:
 
 	IDocHostUIHandlerDispatch *externalUI;
 
-	// ƒCƒxƒ“ƒgˆ—
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 	static bool __stdcall messageHandler(void *userdata, tTVPWindowMessage *Message);
 
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(tTVPWindowMessageReceiver receiver, bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -430,9 +430,9 @@ protected:
 	}
 
 	/**
-	 * ƒEƒCƒ“ƒhƒE‚ğ¶¬
-	 * @param krkr ‹g—¢‹g—¢‚ÌƒEƒCƒ“ƒhƒE
-	 * @return ¬Œ÷‚µ‚½‚ç true
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
+	 * @param krkr å‰é‡Œå‰é‡Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @return æˆåŠŸã—ãŸã‚‰ true
 	 */
 	void createWindow(HWND krkr) {
 		RECT rect;
@@ -452,36 +452,36 @@ protected:
 			Create(0, rect, NULL, WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
 		}
 		if (m_hWnd) {
-			// ƒRƒ“ƒgƒ[ƒ‹¶¬
+			// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”Ÿæˆ
 			OLECHAR *oleName = SysAllocString(progId.c_str());
 			hr = CreateControl(oleName);
 			if (SUCCEEDED(hr)) {
-				// ŠO•”ƒfƒBƒXƒpƒbƒ`ƒƒ‚ğ“o˜^
+				// å¤–éƒ¨ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒãƒ£ã‚’ç™»éŒ²
 				{
 					IDispatchEx *dispatchEx = new IDispatchWrapper(objthis);
 					SetExternalDispatch(dispatchEx);
 					dispatchEx->Release();
 				}
-				// ŠO•”UIƒnƒ“ƒhƒ‰‚ğ“o˜^
+				// å¤–éƒ¨UIãƒãƒ³ãƒ‰ãƒ©ã‚’ç™»éŒ²
 				if (externalUI) {
 					SetExternalUIHandler(externalUI);
 				}
-				// IDispatchæ“¾
+				// IDispatchå–å¾—
 				hr = QueryControl(IID_IDispatch, (void**)&pDispatch);
 			} else {
 				log(L"CreateControl failed %ws", progId.c_str());
 			}
 			SysFreeString(oleName);
 		}
-		// XXX ¶¬Š®—¹Œãˆ—ŒÄ‚Ño‚µ
+		// XXX ç”Ÿæˆå®Œäº†å¾Œå‡¦ç†å‘¼ã³å‡ºã—
 		// if (SUCCEEDED(hr)) { onCreate(); }
 	}
 		
 	/**
-	 * î•ñ‚ğ”jŠü
+	 * æƒ…å ±ã‚’ç ´æ£„
 	 */
 	void clear() {
-		// XXX ”jŠü‘Oˆ—ŒÄ‚Ño‚µ
+		// XXX ç ´æ£„å‰å‡¦ç†å‘¼ã³å‡ºã—
 		// if (m_hWnd) {onDestroy();};
 		WIN32OLE::clear();
 		if (m_hWnd) {
@@ -490,7 +490,7 @@ protected:
 		}
 	}
 
-	// ”z’u’²®—p
+	// é…ç½®èª¿æ•´ç”¨
 	void _setPos() {
 		if (m_hWnd) {
 			SetWindowPos(0, left, top, width, height, 0);
@@ -502,10 +502,10 @@ BEGIN_MSG_MAP(ActiveX)
 END_MSG_MAP()
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param objthis TJS2ƒCƒ“ƒXƒ^ƒ“ƒX
-	 * @param numparams ƒpƒ‰ƒ[ƒ^”
-	 * @param param ƒpƒ‰ƒ[ƒ^”z—ñ
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param objthis TJS2ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+	 * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
+	 * @param param ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é…åˆ—
 	 */
 	ActiveX(iTJSDispatch2 *objthis, tjs_int numparams, tTJSVariant **param) : WIN32OLE(objthis, NULL), window(NULL), externalUI(NULL), left(0), top(0), width(-1), height(-1) {
 		
@@ -520,7 +520,7 @@ END_MSG_MAP()
 		
 		HWND handle = 0;
 		if (numparams >= 2 && param[1]->Type() == tvtObject) {
-			// ƒEƒCƒ“ƒhƒE‚ªw’è
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒæŒ‡å®š
 			iTJSDispatch2 *win = param[1]->AsObjectNoAddRef();
 			if (win->IsInstanceOf(0, NULL, NULL, L"Window", win) == TJS_S_TRUE) {
 				window = win;
@@ -530,7 +530,7 @@ END_MSG_MAP()
 				if (win->PropGet(0, TJS_W("HWND"), NULL, &hwnd, win) == TJS_S_OK) {
 					HWND handle = (HWND)(int)hwnd;
 					if (handle) {
-						// Šù‚É¶¬Ï‚İ
+						// æ—¢ã«ç”Ÿæˆæ¸ˆã¿
 						createWindow(handle);
 					}
 				}
@@ -538,13 +538,13 @@ END_MSG_MAP()
 				TVPThrowExceptionMessage(L"must set window object");
 			}
 		} else {
-			// “Æ—§ƒEƒCƒ“ƒhƒE
+			// ç‹¬ç«‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 			createWindow(0);
 		}
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~ActiveX() {
 		clear();
@@ -560,15 +560,15 @@ END_MSG_MAP()
 	}
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
-	 * @param name  ¯•Ê–¼
-	 * @param left  •\¦ˆÊ’u
-	 * @param top   •\¦ˆÊ’u
-	 * @param width  •\¦ƒTƒCƒY
-	 * @param height ‚‚³w’è
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
+	 * @param name  è­˜åˆ¥å
+	 * @param left  è¡¨ç¤ºä½ç½®
+	 * @param top   è¡¨ç¤ºä½ç½®
+	 * @param width  è¡¨ç¤ºã‚µã‚¤ã‚º
+	 * @param height é«˜ã•æŒ‡å®š
 	 */
 	static tjs_error factory(ActiveX **result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis) {
-		// ƒpƒ‰ƒ[ƒ^‚ÍÅ’á‚Ğ‚Æ‚Â•K{
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯æœ€ä½ã²ã¨ã¤å¿…é ˆ
 		if (numparams < 1) {
 			return TJS_E_BADPARAMCOUNT;
 		}
@@ -579,8 +579,8 @@ END_MSG_MAP()
 	}
 
 	/**
-	 * ŠO•”Šg’£ƒnƒ“ƒhƒ‰‚Ì“o˜^
-	 * ¦–Àã IE ê—p‚Ìˆ—
+	 * å¤–éƒ¨æ‹¡å¼µãƒãƒ³ãƒ‰ãƒ©ã®ç™»éŒ²
+	 * â€»äº‹å®Ÿä¸Š IE å°‚ç”¨ã®å‡¦ç†
 	 */
 	void setExternalUI() {
 		if (externalUI == NULL) {
@@ -645,7 +645,7 @@ END_MSG_MAP()
 	}
 	
 	/**
-	 * ‘‹êŠw’è
+	 * çª“å ´æ‰€æŒ‡å®š
 	 */	
 	void setPos(int l, int t) {
 		left = l;
@@ -654,7 +654,7 @@ END_MSG_MAP()
 	}
 
 	/**
-	 * ‘‹ƒTƒCƒYw’è
+	 * çª“ã‚µã‚¤ã‚ºæŒ‡å®š
 	 */	
 	void setSize(int w, int h) {
 		width = w;
@@ -663,7 +663,7 @@ END_MSG_MAP()
 	}
 };
 
-// ƒCƒxƒ“ƒgˆ—
+// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 bool __stdcall
 ActiveX::messageHandler(void *userdata, tTVPWindowMessage *Message)
 {
@@ -744,7 +744,7 @@ NCB_ATTACH_CLASS(ScriptsOle, Scripts) {
 static BOOL gOLEInitialized = false;
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 static void PreRegistCallback()
 {
@@ -752,21 +752,21 @@ static void PreRegistCallback()
 		if (SUCCEEDED(OleInitialize(NULL))) {
 			gOLEInitialized = true;
 		} else {
-			log(L"OLE ‰Šú‰»¸”s");
+			log(L"OLE åˆæœŸåŒ–å¤±æ•—");
 		}
 	}
 	
-	// ATLŠÖ˜A‰Šú‰»
+	// ATLé–¢é€£åˆæœŸåŒ–
 	_Module.Init(NULL, NULL);
 	AtlAxWinInit();
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {
-	// ATL I—¹
+	// ATL çµ‚äº†
 	_Module.Term();
 
 	if (gOLEInitialized) {

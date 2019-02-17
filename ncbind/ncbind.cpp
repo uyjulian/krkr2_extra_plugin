@@ -21,51 +21,51 @@ static tjs_int GlobalRefCountAtInit = 0;
 
 EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
-	// �X�^�u�̏�����(�K���L�q����)
+	// スタブの初期化(必ず記述する)
 	TVPInitImportStub(exporter);
 
 	NCB_LOG_W("V2Link");
 
-	// AutoRegister�œo�^���ꂽ�N���X����o�^����
+	// AutoRegisterで登録されたクラス等を登録する
 	ncbAutoRegister::AllRegist();
 
-	// ���̎��_�ł� TVPPluginGlobalRefCount �̒l��
+	// この時点での TVPPluginGlobalRefCount の値を
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// �Ƃ��čT���Ă����BTVPPluginGlobalRefCount �͂��̃v���O�C������
-	// �Ǘ�����Ă��� tTJSDispatch �h���I�u�W�F�N�g�̎Q�ƃJ�E���^�̑��v�ŁA
-	// ������ɂ͂���Ɠ������A����������Ȃ��Ȃ��ĂȂ��ƂȂ�Ȃ��B
-	// �����Ȃ��ĂȂ���΁A�ǂ����ʂ̂Ƃ���Ŋ֐��Ȃǂ��Q�Ƃ���Ă��āA
-	// �v���O�C���͉���ł��Ȃ��ƌ������ƂɂȂ�B
+	// として控えておく。TVPPluginGlobalRefCount はこのプラグイン内で
+	// 管理されている tTJSDispatch 派生オブジェクトの参照カウンタの総計で、
+	// 解放時にはこれと同じか、これよりも少なくなってないとならない。
+	// そうなってなければ、どこか別のところで関数などが参照されていて、
+	// プラグインは解放できないと言うことになる。
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 EXPORT(HRESULT) V2Unlink()
 {
-	// �g���g��������A�v���O�C����������悤�Ƃ���Ƃ��ɌĂ΂��֐�
+	// 吉里吉里側から、プラグインを解放しようとするときに呼ばれる関数
 
-	// �������炩�̏����Ńv���O�C��������ł��Ȃ��ꍇ��
-	// ���̎��_�� E_FAIL ��Ԃ��悤�ɂ���B
-	// �����ł́ATVPPluginGlobalRefCount �� GlobalRefCountAtInit ����
-	// �傫���Ȃ��Ă���Ύ��s�Ƃ������Ƃɂ���B
+	// もし何らかの条件でプラグインを解放できない場合は
+	// この時点で E_FAIL を返すようにする。
+	// ここでは、TVPPluginGlobalRefCount が GlobalRefCountAtInit よりも
+	// 大きくなっていれば失敗ということにする。
 	if (TVPPluginGlobalRefCount > GlobalRefCountAtInit) {
 		NCB_LOG_W("V2Unlink ...failed");
 		return E_FAIL;
-		// E_FAIL ���A��ƁAPlugins.unlink ���\�b�h�͋U��Ԃ�
+		// E_FAIL が帰ると、Plugins.unlink メソッドは偽を返す
 	} else {
 		NCB_LOG_W("V2Unlink");
 	}
 	/*
-		�������A�N���X�̏ꍇ�A�����Ɂu�I�u�W�F�N�g���g�p���ł���v�Ƃ������Ƃ�
-		�m�邷�ׂ�����܂���B��{�I�ɂ́APlugins.unlink �ɂ��v���O�C���̉����
-		�댯�ł���ƍl���Ă������� (�������� Plugins.link �Ń����N������A�Ō��
-		�Ńv���O�C������������A�v���O�����I���Ɠ����Ɏ����I�ɉ��������̂��g)�B
+		ただし、クラスの場合、厳密に「オブジェクトが使用中である」ということを
+		知るすべがありません。基本的には、Plugins.unlink によるプラグインの解放は
+		危険であると考えてください (いったん Plugins.link でリンクしたら、最後ま
+		でプラグインを解放せず、プログラム終了と同時に自動的に解放させるのが吉)。
 	*/
 
-	// AutoRegister�œo�^���ꂽ�N���X�����폜����
+	// AutoRegisterで登録されたクラス等を削除する
 	ncbAutoRegister::AllUnregist();
 
-	// �X�^�u�̎g�p�I��(�K���L�q����)
+	// スタブの使用終了(必ず記述する)
 	TVPUninitImportStub();
 
 	return S_OK;
@@ -73,9 +73,9 @@ EXPORT(HRESULT) V2Unlink()
 
 
 //---------------------------------------------------------------------------
-// static�ϐ��̎���
+// static変数の実体
 
-// auto register �擪�|�C���^
+// auto register 先頭ポインタ
 ncbAutoRegister::ThisClassT const*
 ncbAutoRegister::_top[ncbAutoRegister::LINE_COUNT] = NCB_INNER_AUTOREGISTER_LINES_INSTANCE;
 

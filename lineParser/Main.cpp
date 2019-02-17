@@ -6,7 +6,7 @@
 using namespace std;
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -83,7 +83,7 @@ public:
 	}
 
 	/**
-	 * ‰üsƒ`ƒFƒbƒN
+	 * æ”¹è¡Œãƒã‚§ãƒƒã‚¯
 	 */
 	bool endOfLine(int c) {
 		bool eol = (c =='\r' || c == '\n');
@@ -145,7 +145,7 @@ public:
 	}
 
 	/**
-	 * ‰üsƒ`ƒFƒbƒN
+	 * æ”¹è¡Œãƒã‚§ãƒƒã‚¯
 	 */
 	bool endOfLine(tjs_char c) {
 		bool eol = (c =='\r' || c == '\n');
@@ -180,11 +180,11 @@ addMember(iTJSDispatch2 *dispatch, const tjs_char *name, iTJSDispatch2 *member)
 	tTJSVariant var = tTJSVariant(member);
 	member->Release();
 	dispatch->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		name, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&var, // “o˜^‚·‚é’l
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		name, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&var, // ç™»éŒ²ã™ã‚‹å€¤
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -217,10 +217,10 @@ static void
 delMember(iTJSDispatch2 *dispatch, const tjs_char *name)
 {
 	dispatch->DeleteMember(
-		0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-		name, // ƒƒ“ƒo–¼
-		NULL, // ƒqƒ“ƒg
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+		name, // ãƒ¡ãƒ³ãƒå
+		NULL, // ãƒ’ãƒ³ãƒˆ
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -232,7 +232,7 @@ static tjs_int32 TJS_NATIVE_CLASSID_NAME = -1;
 /**
  * LineParser
  */
-class NI_LineParser : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class NI_LineParser : public tTJSNativeInstance // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
 protected:
 	iTJSDispatch2 *target;
@@ -242,7 +242,7 @@ protected:
 public:
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_LineParser() {
 		target = NULL;
@@ -251,10 +251,10 @@ public:
 	}
 
 	/**
-	 * TJS ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param numparams ƒpƒ‰ƒ[ƒ^”
+	 * TJS ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 	 * @param param
-	 * @param tjs_obj this ƒIƒuƒWƒFƒNƒg
+	 * @param tjs_obj this ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) {
 		if (numparams > 0) {
@@ -264,7 +264,7 @@ public:
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹ƒNƒ[ƒYˆ—
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚ºå‡¦ç†
 	 */
 	void clear() {
 		if (file) {
@@ -285,7 +285,7 @@ public:
 	}
 
 	/**
-	 * ƒp[ƒT‚Ì‰Šú‰»ˆ—
+	 * ãƒ‘ãƒ¼ã‚µã®åˆæœŸåŒ–å‡¦ç†
 	 */
 	void init(tTJSVariantString *text) {
 		clear();
@@ -294,7 +294,7 @@ public:
 	}
 
 	/**
-	 * ‰Šú‰»ˆ—
+	 * åˆæœŸåŒ–å‡¦ç†
 	 */
 	void initStorage(tTJSVariantString *filename, bool utf8=false) {
 		clear();
@@ -303,9 +303,9 @@ public:
 	}
 
 	/**
-	 * s‚Ìæ“¾
-	 * @param line s
-	 * @return ¬Œ÷‚·‚é‚Ætrue
+	 * è¡Œã®å–å¾—
+	 * @param line è¡Œ
+	 * @return æˆåŠŸã™ã‚‹ã¨true
 	 */
 	bool getNextLine(ttstr &line) {
 		if (file) {
@@ -320,15 +320,15 @@ public:
 	}
 
 	/**
-	 * Œ»İ‚Ìs”Ô†‚Ìæ“¾
-	 * @return s”Ô†
+	 * ç¾åœ¨ã®è¡Œç•ªå·ã®å–å¾—
+	 * @return è¡Œç•ªå·
 	 */
 	tjs_int32 getLineNumber() {
 		return lineNo;
 	}
 	
 	/**
-	 * ƒp[ƒX‚ÌÀs
+	 * ãƒ‘ãƒ¼ã‚¹ã®å®Ÿè¡Œ
 	 */
 	void parse(iTJSDispatch2 *objthis) {
 		iTJSDispatch2 *target = this->target ? this->target : objthis;
@@ -438,10 +438,10 @@ static iTJSDispatch2 * Create_NC_LineParser()
 
 	TJS_END_NATIVE_MEMBERS
 
-	// ’è”‚Ì“o˜^
+	// å®šæ•°ã®ç™»éŒ²
 
 	/*
-	 * ‚±‚ÌŠÖ”‚Í classobj ‚ğ•Ô‚µ‚Ü‚·B
+	 * ã“ã®é–¢æ•°ã¯ classobj ã‚’è¿”ã—ã¾ã™ã€‚
 	 */
 	return classobj;
 }
@@ -461,10 +461,10 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason,
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	
 	if (global) {
@@ -472,38 +472,38 @@ extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 		global->Release();
 	}
 			
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if (global)	{
 		delMember(global, L"LineParser");
 		global->Release();
 	}
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

@@ -5,7 +5,7 @@
 
 
 //-----------------------------------------------------------------------
-// TJS®‚ğ•¶š—ñ‚É•ÏŠ·‚·‚éƒR[ƒh(saveStruct.dll‚æ‚èˆø—p)
+// TJSå¼ã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã‚³ãƒ¼ãƒ‰(saveStruct.dllã‚ˆã‚Šå¼•ç”¨)
 //----------------------------------------------------------------------
 static void
 quoteString(const tjs_char *str, IWriter *writer)
@@ -45,9 +45,9 @@ static void quoteOctet(tTJSVariantOctet *octet, IWriter *writer)
 static void getVariantString(tTJSVariant &var, IWriter *writer);
 
 /**
- * «‘‚Ì“à—e•\¦—p‚ÌŒÄ‚Ño‚µƒƒWƒbƒN
+ * è¾æ›¸ã®å†…å®¹è¡¨ç¤ºç”¨ã®å‘¼ã³å‡ºã—ãƒ­ã‚¸ãƒƒã‚¯
  */
-class DictMemberDispCaller : public tTJSDispatch /** EnumMembers —p */
+class DictMemberDispCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	IWriter *writer;
@@ -97,7 +97,7 @@ static void getDictString(iTJSDispatch2 *dict, IWriter *writer)
 	writer->write((tjs_char)']');
 }
 
-// Array ƒNƒ‰ƒXƒƒ“ƒo
+// Array ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒ
 static iTJSDispatch2 *ArrayCountProp   = NULL;   // Array.count
 
 static void getArrayString(iTJSDispatch2 *array, IWriter *writer)
@@ -174,16 +174,16 @@ getVariantString(tTJSVariant &var, IWriter *writer)
 
 
 //----------------------------------------------------------------------
-// ƒNƒŠƒbƒvƒ{[ƒhŠg’£
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰æ‹¡å¼µ
 //----------------------------------------------------------------------
-// ƒNƒŠƒbƒvƒ{[ƒhƒtƒH[ƒ}ƒbƒg
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 static const wchar_t *TJS_FORMAT = L"application/x-kirikiri-tjs";
 static const wchar_t *LAYER_FORMAT = L"application/x-kirikiri-layer";
-// ƒNƒŠƒbƒvƒ{[ƒhID
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ID
 tjs_uint CF_TJS;
 tjs_uint CF_LAYER;
 
-// \‘¢‘Ì
+// æ§‹é€ ä½“
 struct ClipboardData
 {
   ClipboardData(UINT _format, HGLOBAL _hData) : format(_format), hData(_hData) {};
@@ -198,7 +198,7 @@ struct LAYERINFOHEADER {
 
 typedef std::vector<ClipboardData> clipboard_data_array;
 
-// Šg’£ƒNƒ‰ƒX
+// æ‹¡å¼µã‚¯ãƒ©ã‚¹
 class ClipboardEx
 {
 public:
@@ -206,7 +206,7 @@ public:
   static const tjs_uint cbfBitmap = 2;
   static const tjs_uint cbfTJS = 3;
 
-  // “Á’è‚ÌƒtƒH[ƒ}ƒbƒg‚ªƒNƒŠƒbƒvƒ{[ƒh‚É‘¶İ‚·‚é‚©’²‚×‚é
+  // ç‰¹å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«å­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹
   static bool hasFormat(tjs_uint format) 
   {
     switch(format)
@@ -225,7 +225,7 @@ public:
     return true;
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒh‚Éƒf[ƒ^‚ğİ’è‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
   static void setDatum(const clipboard_data_array &datum) {
     if (! OpenClipboard(NULL))
       TVPThrowExceptionMessage(L"copying to clipboard failed.");
@@ -239,7 +239,7 @@ public:
     CloseClipboard();
   }
 
-  // ANSIƒeƒLƒXƒg‚Ìƒf[ƒ^‚ğì¬‚·‚é
+  // ANSIãƒ†ã‚­ã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
   static HGLOBAL createAnsiTextData(ttstr &unicode) {
     HGLOBAL ansihandle = NULL;
 
@@ -257,7 +257,7 @@ public:
     return ansihandle;
   }
 
-  // UNICODEƒeƒLƒXƒg‚Ìƒf[ƒ^‚ğì¬‚·‚é
+  // UNICODEãƒ†ã‚­ã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
   static HGLOBAL createUnicodeTextData(ttstr &unicode) {
     HGLOBAL unicodehandle = NULL;
 
@@ -275,7 +275,7 @@ public:
     return unicodehandle;
   }
 
-  // TJS®‚Ìƒf[ƒ^‚ğì¬‚·‚é
+  // TJSå¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
   static HGLOBAL createTJSData(tTJSVariant data) {
     // data validation;
     ncbPropAccessor obj(data);
@@ -304,7 +304,7 @@ public:
     return unicodehandle;
   }    
 
-  // DIBŒ`®‚ÅƒŒƒCƒ„“à—e‚ÌƒNƒŠƒbƒvƒ{[ƒhƒf[ƒ^‚ğì¬‚·‚é
+  // DIBå½¢å¼ã§ãƒ¬ã‚¤ãƒ¤å†…å®¹ã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
   static HGLOBAL createBitmapData(tTJSVariant layer) {
     HGLOBAL dibhandle = NULL;
 
@@ -342,7 +342,7 @@ public:
     return dibhandle;
   }
 
-  // ‹g—¢‹g—¢ƒŒƒCƒ„‚Ì“à•”Œ`®‚ÅƒŒƒCƒ„“à—e‚ÌƒNƒŠƒbƒvƒ{[ƒhƒf[ƒ^‚ğì¬‚·‚é
+  // å‰é‡Œå‰é‡Œãƒ¬ã‚¤ãƒ¤ã®å†…éƒ¨å½¢å¼ã§ãƒ¬ã‚¤ãƒ¤å†…å®¹ã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
   static HGLOBAL createLayerData(tTJSVariant layer) {
     HGLOBAL dibhandle = NULL;
 
@@ -375,7 +375,7 @@ public:
     return dibhandle;
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒh‚ÉTJS®‚ğİ’è‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«TJSå¼ã‚’è¨­å®šã™ã‚‹
   static void setTJS(tTJSVariant data) {
     clipboard_data_array datum;
 
@@ -392,7 +392,7 @@ public:
     }
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒh‚©‚çTJS®‚ğæ“¾‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰TJSå¼ã‚’å–å¾—ã™ã‚‹
   static tTJSVariant getTJS(void) {
     tTJSVariant result;
 
@@ -427,7 +427,7 @@ public:
     return result;
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒŒƒCƒ„‚Ì“à—e‚ğİ’è‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ¬ã‚¤ãƒ¤ã®å†…å®¹ã‚’è¨­å®šã™ã‚‹
   static void setAsBitmap(tTJSVariant layer) {
     clipboard_data_array datum;
 
@@ -445,7 +445,7 @@ public:
     }
   }
     
-  // ƒNƒŠƒbƒvƒ{[ƒh‚©‚çƒŒƒCƒ„‚Ì“à—e‚ğæ“¾‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ¬ã‚¤ãƒ¤ã®å†…å®¹ã‚’å–å¾—ã™ã‚‹
   static bool getAsBitmap(tTJSVariant layer) {
     if (! OpenClipboard(NULL))
       return false;
@@ -552,7 +552,7 @@ public:
     return result;
   }
 
-  // •¡”Œ`®‚Ìƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚ÄƒZƒbƒg‚·‚é
+  // è¤‡æ•°å½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ã¦ã‚»ãƒƒãƒˆã™ã‚‹
   static void setMultipleData(tTJSVariant data) {
     ncbPropAccessor obj(data);
     clipboard_data_array datum;
@@ -586,7 +586,7 @@ public:
   }
 };
 
-// ƒAƒ^ƒbƒ`
+// ã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS(ClipboardEx, Clipboard)
 {
   NCB_METHOD(hasFormat);
@@ -597,17 +597,17 @@ NCB_ATTACH_CLASS(ClipboardEx, Clipboard)
 }
 
 //----------------------------------------------------------------------
-// Window’Ç‰ÁŠÖ”
+// Windowè¿½åŠ é–¢æ•°
 //----------------------------------------------------------------------
 class WindowClipboardEx
 {
 private:
-  iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+  iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
   bool clipboardWatchEnabled;
   HWND curHWND, nextHWND;
 
 public:
-  // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+  // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
   WindowClipboardEx(iTJSDispatch2 *objthis)
     : objthis(objthis)
     , clipboardWatchEnabled(false)
@@ -615,7 +615,7 @@ public:
     , nextHWND(NULL) {
   }
 
-  // ƒfƒXƒgƒ‰ƒNƒ^
+  // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
   virtual ~WindowClipboardEx(void) {
     if (clipboardWatchEnabled) {
       disjoinClipboardViewerChain();
@@ -623,7 +623,7 @@ public:
     }
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒhŠÄ‹‚ğƒIƒ“ƒIƒt‚·‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ç›£è¦–ã‚’ã‚ªãƒ³ã‚ªãƒ•ã™ã‚‹
   void setClipboardWatchEnabled(bool state) {
     if (clipboardWatchEnabled == state)
       return;
@@ -637,13 +637,13 @@ public:
     }
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒhŠÄ‹‚Ìó‘Ô‚ğæ“¾
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ç›£è¦–ã®çŠ¶æ…‹ã‚’å–å¾—
   bool getClipboardWatchEnabled(void) const {
     return clipboardWatchEnabled;
   }
 
   void registerReceiver(bool enable) {
-    // ƒŒƒV[ƒoXV
+    // ãƒ¬ã‚·ãƒ¼ãƒæ›´æ–°
     tTJSVariant mode    = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
     tTJSVariant proc     = (tTVInteger)(tjs_int)MyReceiverHook;
     tTJSVariant userdata = (tTVInteger)(tjs_int)objthis;
@@ -651,53 +651,53 @@ public:
     objthis->FuncCall(0, L"registerMessageReceiver", NULL, NULL, 3, p, objthis);
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒhƒrƒ…[ƒA[ƒ`ƒF[ƒ“‚ÉQ‰Á
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒã‚§ãƒ¼ãƒ³ã«å‚åŠ 
   void joinClipboardViewerChain(void) {
-    // ƒƒbƒZ[ƒWƒ`ƒFƒCƒ“‚ÉQ‰Á
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚§ã‚¤ãƒ³ã«å‚åŠ 
     tTJSVariant hwndValue;
     objthis->PropGet(0, TJS_W("HWND"), NULL, &hwndValue, objthis);
     curHWND = reinterpret_cast<HWND>(tjs_int(hwndValue));
     nextHWND = SetClipboardViewer(curHWND);
   }
 
-  // ƒNƒŠƒbƒvƒ{[ƒhƒrƒ…[ƒA[ƒ`ƒF[ƒ“‚©‚çŠO‚ê‚é
+  // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒã‚§ãƒ¼ãƒ³ã‹ã‚‰å¤–ã‚Œã‚‹
   void disjoinClipboardViewerChain(void) {
     ChangeClipboardChain(curHWND, nextHWND);
     curHWND = nextHWND = NULL;
   }
 
-  // ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚·
+  // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™
   void exexDrawClipboardCallback(void) {
     objthis->FuncCall(0, L"onDrawClipboard", NULL, NULL, 0, NULL, objthis);
   }
 
-  // ƒƒbƒZ[ƒWˆ—
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
   static bool __stdcall MyReceiverHook(void *userdata, tTVPWindowMessage *Message) {
-    iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ‚ÌƒIƒuƒWƒFƒNƒg
-    // ‹g—¢‹g—¢‚Ì“à•”ˆ—‚ÌŠÖŒW‚ÅƒCƒxƒ“ƒgˆ—’†‚Í“o˜^”jŠüŒã‚Å‚àŒÄ‚Î‚ê‚é‚±‚Æ‚ª‚ ‚é‚Ì‚Å
-    // Window ‚Ì–{‘ÌƒIƒuƒWƒFƒNƒg‚©‚çƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚ğæ‚è’¼‚·
+    iTJSDispatch2 *obj = (iTJSDispatch2*)userdata; // Window ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    // å‰é‡Œå‰é‡Œã®å†…éƒ¨å‡¦ç†ã®é–¢ä¿‚ã§ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ä¸­ã¯ç™»éŒ²ç ´æ£„å¾Œã§ã‚‚å‘¼ã°ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ã®ã§
+    // Window ã®æœ¬ä½“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–ã‚Šç›´ã™
     WindowClipboardEx *self = ncbInstanceAdaptor<WindowClipboardEx>::GetNativeInstance(obj);
     return self->MyReceiver(Message);
   }
 
   bool MyReceiver(tTVPWindowMessage *Message) {
     switch (Message->Msg) {
-      // ƒEƒBƒ“ƒhƒE‚ÌDETACH‚É‡‚í‚¹‚ÄAˆê’Uƒ`ƒFƒCƒ“‚©‚çŠO‚ê‚é
+      // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®DETACHã«åˆã‚ã›ã¦ã€ä¸€æ—¦ãƒã‚§ã‚¤ãƒ³ã‹ã‚‰å¤–ã‚Œã‚‹
     case TVP_WM_DETACH:
       if (clipboardWatchEnabled)
 	disjoinClipboardViewerChain();
       break;
-      // ƒEƒBƒ“ƒhƒE‚ÌATTACH‚É‡‚í‚¹‚ÄAƒ`ƒFƒCƒ“‚ÉÄ‚ÑQ‰Á‚·‚é
+      // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ATTACHã«åˆã‚ã›ã¦ã€ãƒã‚§ã‚¤ãƒ³ã«å†ã³å‚åŠ ã™ã‚‹
     case TVP_WM_ATTACH:
       if (clipboardWatchEnabled)
 	joinClipboardViewerChain();
       break;
-      // ƒNƒŠƒbƒvƒ{[ƒhXVƒƒbƒZ[ƒW‚Ìˆ—
+      // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰æ›´æ–°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†
     case WM_DRAWCLIPBOARD:
       if (nextHWND) SendMessage(nextHWND , Message->Msg , Message->WParam, Message->LParam);
       exexDrawClipboardCallback();
       return true;
-      // ƒNƒŠƒbƒvƒ{[ƒhƒ`ƒFƒCƒ“•ÏXƒƒbƒZ[ƒW‚Ìˆ—
+      // ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒã‚§ã‚¤ãƒ³å¤‰æ›´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†
     case WM_CHANGECBCHAIN:
       if ((HWND)(Message->WParam) == nextHWND) nextHWND = (HWND)(Message->LParam);
       else if (nextHWND) SendMessage(nextHWND , Message->Msg , Message->WParam, Message->LParam);
@@ -708,39 +708,39 @@ public:
 };
 
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowClipboardEx)
 {
-  NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-    ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+  NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+    ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
     if (!obj) {
-      obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-      SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+      obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+      SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
     }
     return obj;
   }
 };
 
 
-// ƒtƒbƒN•t‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ä»˜ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(WindowClipboardEx, Window) {
   Property(L"clipboardWatchEnabled", &WindowClipboardEx::getClipboardWatchEnabled, &WindowClipboardEx::setClipboardWatchEnabled);
 }
 
 
 //----------------------------------------------------------------------
-// DLL“o˜^‚ÉŒÄ‚Ño‚·ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+// DLLç™»éŒ²æ™‚ã«å‘¼ã³å‡ºã™ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
 //----------------------------------------------------------------------
 static void RegistCallback(void)
 {
-  // ’è”‚ğ“o˜^
+  // å®šæ•°ã‚’ç™»éŒ²
   TVPExecuteExpression(L"global.cbfBitmap = 2");
   TVPExecuteExpression(L"global.cbfTJS = 3");
-  // TJS®‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÌƒtƒH[ƒ}ƒbƒg‚Æ‚µ‚Ä“o˜^
+  // TJSå¼ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨ã—ã¦ç™»éŒ²
   CF_TJS = RegisterClipboardFormat(TJS_FORMAT);
   CF_LAYER = RegisterClipboardFormat(LAYER_FORMAT);
 
-  // Array.count ‚ğæ“¾
+  // Array.count ã‚’å–å¾—
   {
     tTJSVariant varScripts;
     TVPExecuteExpression(TJS_W("Array"), &varScripts);
@@ -758,16 +758,16 @@ static void RegistCallback(void)
 }
 
 
-// “o˜^
+// ç™»éŒ²
 NCB_PRE_REGIST_CALLBACK(RegistCallback);
 
 
 //----------------------------------------------------------------------
-// DLL‰ğ•ú‚ÉŒÄ‚Ño‚·ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+// DLLè§£æ”¾æ™‚ã«å‘¼ã³å‡ºã™ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
 //----------------------------------------------------------------------
 static void TJS_USERENTRY tryDeleteConst(void *data)
 {
-  // ’è”‚ğíœ
+  // å®šæ•°ã‚’å‰Šé™¤
   TVPExecuteScript(L"delete global[\"cbfBitmap\"];");
   TVPExecuteScript(L"delete global[\"cbfTJS\"];");
 }
@@ -779,7 +779,7 @@ static bool TJS_USERENTRY catchDeleteConst(void *data, const tTVPExceptionDesc &
 static void UnregistCallback(void)
 {
   TVPDoTryBlock(&tryDeleteConst, &catchDeleteConst, NULL, NULL);
-  // Array.count‚ğ‰ğ•ú
+  // Array.countã‚’è§£æ”¾
   if (ArrayCountProp) {
     ArrayCountProp->Release();
     ArrayCountProp = NULL;
@@ -787,6 +787,6 @@ static void UnregistCallback(void)
 }
 
 
-// “o˜^
+// ç™»éŒ²
 NCB_POST_UNREGIST_CALLBACK(UnregistCallback);
 

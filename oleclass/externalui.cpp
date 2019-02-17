@@ -1,9 +1,9 @@
 /**
- * DHTML�̊O���ďo��(window.external)�Ɗe��UI�������󗝂��邽�߂̃C���^�[�t�F�[�X�N���X�B
- * ���ꂼ��N���X���̑Ή����郁�\�b�h���Ăяo���Ă���B�p�����Ē��g���L�q���邱�Ƃ�
- * �������ύX�ł���B�p�����[�^��COM�X�^�C���̂���(VARIANT)�ɂȂ�̂Œ���
- * XXX TJS �̃��\�b�h���Ăяo���ł���悤�Ɍ�ŉ��Ǘ\��B���݂̂��̂́u���������Ȃ��v
- * ���߂̂��̂ɂȂ��Ă���B
+ * DHTMLの外部呼出し(window.external)と各種UI処理を受理するためのインターフェースクラス。
+ * それぞれクラス中の対応するメソッドを呼び出している。継承して中身を記述することで
+ * 挙動が変更できる。パラメータはCOMスタイルのもの(VARIANT)になるので注意
+ * XXX TJS のメソッドを呼び出しできるように後で改良予定。現在のものは「処理をしない」
+ * ためのものになっている。
  */ 
 class CExternalUI : public IDocHostUIHandlerDispatch {
 
@@ -22,7 +22,7 @@ public:
 	}
 
 	//----------------------------------------------------------------------------
-	// IUnknown ����
+	// IUnknown 実装
 	
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,
 											 void __RPC_FAR *__RPC_FAR *ppvObject) {
@@ -45,18 +45,18 @@ public:
 		}
 	}
 
-	// XXX MSHTML ����̌Ăяo�������������̂ŊJ�����Ȃ��悤�ɂ��Ă���
+	// XXX MSHTML からの呼び出しがおかしいので開放しないようにしている
 	ULONG STDMETHODCALLTYPE AddRef() {
 		return 1;
 	}
 
-	// XXX MSHTML ����̌Ăяo�������������̂ŊJ�����Ȃ��悤�ɂ��Ă���
+	// XXX MSHTML からの呼び出しがおかしいので開放しないようにしている
 	ULONG STDMETHODCALLTYPE Release() {
 		return 1;
 	}
 
 	//----------------------------------------------------------------------------
-	// IDispatch ����
+	// IDispatch 実装
 
 	STDMETHOD(GetTypeInfoCount)(UINT* pctinfo) {
 		return E_NOTIMPL;
@@ -67,9 +67,9 @@ public:
 	}
 
 	/**
-	 * ���\�b�h����ID�̑Ή����Ƃ郁�\�b�h
-	 * regszNames �Ƀ��\�b�h���̔z�񂪂���̂ŁA
-	 * rgdispid �ɑΉ����� dispid ��Ԃ��Ă��
+	 * メソッド名とIDの対応をとるメソッド
+	 * regszNames にメソッド名の配列がくるので、
+	 * rgdispid に対応する dispid を返してやる
 	 */
 	STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames, UINT cNames,
 							 LCID lcid, DISPID* rgdispid) {
@@ -77,9 +77,9 @@ public:
 	}
 
 	/**
-	 * ���\�b�h���s
-	 * dispidMember �Ń��\�b�h���w�肳���B������ pdispparams �� VARIANT �̔z��
-	 * �̌`�ł킽�����̂ł�����g��
+	 * メソッド実行
+	 * dispidMember でメソッドが指定される。引数は pdispparams に VARIANT の配列
+	 * の形でわたされるのでそれを使う
 	 */
 	STDMETHOD(Invoke)(DISPID dispidMember, REFIID riid,
 					  LCID lcid, WORD wFlags, DISPPARAMS* pdispparams, VARIANT* pvarResult,
@@ -88,12 +88,12 @@ public:
 	}
 
 	//----------------------------------------------------------------------------
-	// IDocHostUIHandlerDispatch �̎���
+	// IDocHostUIHandlerDispatch の実装
 
 	
 	/**
-	 * �R���e�L�X�g���j���[����
-	 * �������Ȃ����ƂŃ��j���[�������Ă���
+	 * コンテキストメニュー処理
+	 * 何もしないことでメニューを消している
 	 */
 	HRESULT STDMETHODCALLTYPE ShowContextMenu( 
 		/* [in] */ DWORD dwID,

@@ -4,7 +4,7 @@
 #include <string>
 //---------------------------------------------------------------------------
 
-// Àsƒtƒ@ƒCƒ‹‚ª‚ ‚éêŠ‚É WHND ‚ğ•Û‘¶‚·‚é
+// å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹å ´æ‰€ã« WHND ã‚’ä¿å­˜ã™ã‚‹
 void
 storeHWND(HWND hwnd)
 {
@@ -23,7 +23,7 @@ storeHWND(HWND hwnd)
 }
 
 //---------------------------------------------------------------------------
-// ƒƒbƒZ[ƒWóMŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡é–¢æ•°
 //---------------------------------------------------------------------------
 static bool __stdcall MyReceiver(void *userdata, tTVPWindowMessage *Message)
 {
@@ -36,7 +36,7 @@ static bool __stdcall MyReceiver(void *userdata, tTVPWindowMessage *Message)
 		storeHWND((HWND)Message->LParam);
 		break;
 	case WM_COPYDATA:
-		// ƒRƒsƒyw¦
+		// ã‚³ãƒ”ãƒšæŒ‡ç¤º
 		{
 			HWND             hwndFrom = (HWND)Message->WParam;
 			COPYDATASTRUCT*  pcds     = (COPYDATASTRUCT*)Message->LParam;
@@ -47,17 +47,17 @@ static bool __stdcall MyReceiver(void *userdata, tTVPWindowMessage *Message)
 		}
 		break;
 	default:
-		// ‚»‚Ì‘¼‚Í–³‹
+		// ãã®ä»–ã¯ç„¡è¦–
 		break;
 	}
 	return false;
-	/* true ‚ğ•Ô‚·‚Æ ‹g—¢‹g—¢‚ÌƒEƒBƒ“ƒhƒE‚Í‚»‚ÌƒƒbƒZ[ƒW‚ÉŠÖ’m‚µ‚È‚­‚È‚éB
-		   TVP_WM_DETACH ‚â TVP_WM_ATTACH ‚Ö‚Ì‰“š‚ÉŠÖ‚µ‚Ä‚Í–ß‚è’l‚Í–³‹‚³‚ê‚é */
+	/* true ã‚’è¿”ã™ã¨ å‰é‡Œå‰é‡Œã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«é–¢çŸ¥ã—ãªããªã‚‹ã€‚
+		   TVP_WM_DETACH ã‚„ TVP_WM_ATTACH ã¸ã®å¿œç­”ã«é–¢ã—ã¦ã¯æˆ»ã‚Šå€¤ã¯ç„¡è¦–ã•ã‚Œã‚‹ */
 }
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-// ŠJnŠÖ”
+// é–‹å§‹é–¢æ•°
 //---------------------------------------------------------------------------
 class tWMRStartFunction : public tTJSDispatch
 {
@@ -67,9 +67,9 @@ class tWMRStartFunction : public tTJSDispatch
 		tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 	{
 		if(numparams < 1) return TJS_E_BADPARAMCOUNT;
-		// ƒEƒCƒ“ƒhƒE‚ğw’è
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æŒ‡å®š
 		iTJSDispatch2 *obj = param[0]->AsObjectNoAddRef();
-		// registerMessageReceiver ‚ğŒÄ‚Ô
+		// registerMessageReceiver ã‚’å‘¼ã¶
 		tTJSVariant mode, proc, userdata;
 		tTJSVariant *p[3] = {&mode, &proc, &userdata};
 		mode = (tTVInteger)(tjs_int)wrmRegister;
@@ -78,7 +78,7 @@ class tWMRStartFunction : public tTJSDispatch
 		obj->FuncCall(0, TJS_W("registerMessageReceiver"), NULL,
 					  NULL, 3, p, obj);
 
-		// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾‚µ‚Ä‹L˜^
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦è¨˜éŒ²
 		tTJSVariant val;
 		obj->PropGet(0, TJS_W("HWND"), NULL, &val, obj);
 		storeHWND(reinterpret_cast<HWND>((tjs_int)(val)));
@@ -90,7 +90,7 @@ class tWMRStartFunction : public tTJSDispatch
 
 
 //---------------------------------------------------------------------------
-// I—¹ŠÖ”
+// çµ‚äº†é–¢æ•°
 //---------------------------------------------------------------------------
 class tWMRStopFunction : public tTJSDispatch
 {
@@ -101,10 +101,10 @@ class tWMRStopFunction : public tTJSDispatch
 	{
 		if(numparams < 1) return TJS_E_BADPARAMCOUNT;
 
-		// *param[0] ‚Í Window ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚Å‚ ‚é•K—v‚ª‚ ‚é
+		// *param[0] ã¯ Window ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 		iTJSDispatch2 *obj = param[0]->AsObjectNoAddRef();
 
-		// registerMessageReceiver ‚ğŒÄ‚Ô
+		// registerMessageReceiver ã‚’å‘¼ã¶
 		tTJSVariant mode, proc, userdata;
 		tTJSVariant *p[3] = {&mode, &proc, &userdata};
 		mode = (tTVInteger)(tjs_int)wrmUnregister;
@@ -135,118 +135,118 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason, void* lpReserved
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
-	// WMRStartFunction, WMRStopFunction ‚Ìì¬‚Æ“o˜^
+	// WMRStartFunction, WMRStopFunction ã®ä½œæˆã¨ç™»éŒ²
 	tTJSVariant val;
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// 1 ‚Ü‚¸ƒIƒuƒWƒFƒNƒg‚ğì¬
+	// 1 ã¾ãšã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 	WMRStartFunction = new tWMRStartFunction();
 
-	// 2 TestFunction ‚ğ tTJSVariant Œ^‚É•ÏŠ·
+	// 2 TestFunction ã‚’ tTJSVariant å‹ã«å¤‰æ›
 	val = tTJSVariant(WMRStartFunction);
 
-	// 3 ‚·‚Å‚É val ‚ª TestFunction ‚ğ•Û‚µ‚Ä‚¢‚é‚Ì‚ÅAWMRStartFunction ‚Í
-	//   Release ‚·‚é
+	// 3 ã™ã§ã« val ãŒ TestFunction ã‚’ä¿æŒã—ã¦ã„ã‚‹ã®ã§ã€WMRStartFunction ã¯
+	//   Release ã™ã‚‹
 	WMRStartFunction->Release();
 
 
-	// 4 global ‚Ì PropSet ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚·‚é
+	// 4 global ã® PropSet ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã™ã‚‹
 	global->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		TJS_W("wmrStart"), // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&val, // “o˜^‚·‚é’l
-		global // ƒRƒ“ƒeƒLƒXƒg ( global ‚Å‚æ‚¢ )
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		TJS_W("wmrStart"), // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&val, // ç™»éŒ²ã™ã‚‹å€¤
+		global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ ( global ã§ã‚ˆã„ )
 		);
 
-	// 1 ‚Ü‚¸ƒIƒuƒWƒFƒNƒg‚ğì¬
+	// 1 ã¾ãšã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 	WMRStopFunction = new tWMRStopFunction();
 
-	// 2 TestFunction ‚ğ tTJSVariant Œ^‚É•ÏŠ·
+	// 2 TestFunction ã‚’ tTJSVariant å‹ã«å¤‰æ›
 	val = tTJSVariant(WMRStopFunction);
 
-	// 3 ‚·‚Å‚É val ‚ª TestFunction ‚ğ•Û‚µ‚Ä‚¢‚é‚Ì‚ÅAWMRStopFunction ‚Í
-	//   Release ‚·‚é
+	// 3 ã™ã§ã« val ãŒ TestFunction ã‚’ä¿æŒã—ã¦ã„ã‚‹ã®ã§ã€WMRStopFunction ã¯
+	//   Release ã™ã‚‹
 	WMRStopFunction->Release();
 
 
-	// 4 global ‚Ì PropSet ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚·‚é
+	// 4 global ã® PropSet ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã™ã‚‹
 	global->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		TJS_W("wmrStop"), // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&val, // “o˜^‚·‚é’l
-		global // ƒRƒ“ƒeƒLƒXƒg ( global ‚Å‚æ‚¢ )
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		TJS_W("wmrStop"), // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&val, // ç™»éŒ²ã™ã‚‹å€¤
+		global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ ( global ã§ã‚ˆã„ )
 		);
 
 
-	// - global ‚ğ Release ‚·‚é
+	// - global ã‚’ Release ã™ã‚‹
 	global->Release();
 
-	// val ‚ğƒNƒŠƒA‚·‚éB
-	// ‚±‚ê‚Í•K‚¸s‚¤B‚»‚¤‚µ‚È‚¢‚Æ val ‚ª•Û‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg
-	// ‚ª Release ‚³‚ê‚¸AŸ‚Ég‚¤ TVPPluginGlobalRefCount ‚ª³Šm‚É‚È‚ç‚È‚¢B
+	// val ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
+	// ã“ã‚Œã¯å¿…ãšè¡Œã†ã€‚ãã†ã—ãªã„ã¨ val ãŒä¿æŒã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// ãŒ Release ã•ã‚Œãšã€æ¬¡ã«ä½¿ã† TVPPluginGlobalRefCount ãŒæ­£ç¢ºã«ãªã‚‰ãªã„ã€‚
 	val.Clear();
 
 
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall _export V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚É“o˜^‚µ‚½ŠÖ”‚ğíœ‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²ã—ãŸé–¢æ•°ã‚’å‰Šé™¤ã™ã‚‹
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if(global)
 	{
-		// TJS ©‘Ì‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚Æ‚«‚È‚Ç‚Í
-		// global ‚Í NULL ‚É‚È‚è“¾‚é‚Ì‚Å global ‚ª NULL ‚Å‚È‚¢
-		// ‚±‚Æ‚ğƒ`ƒFƒbƒN‚·‚é
+		// TJS è‡ªä½“ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã¨ããªã©ã¯
+		// global ã¯ NULL ã«ãªã‚Šå¾—ã‚‹ã®ã§ global ãŒ NULL ã§ãªã„
+		// ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 		global->DeleteMember(
-			0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-			TJS_W("wmrStart"), // ƒƒ“ƒo–¼
-			NULL, // ƒqƒ“ƒg
-			global // ƒRƒ“ƒeƒLƒXƒg
+			0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+			TJS_W("wmrStart"), // ãƒ¡ãƒ³ãƒå
+			NULL, // ãƒ’ãƒ³ãƒˆ
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 			);
 		global->DeleteMember(
-			0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-			TJS_W("wmrStop"), // ƒƒ“ƒo–¼
-			NULL, // ƒqƒ“ƒg
-			global // ƒRƒ“ƒeƒLƒXƒg
+			0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+			TJS_W("wmrStop"), // ãƒ¡ãƒ³ãƒå
+			NULL, // ãƒ’ãƒ³ãƒˆ
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 			);
-			// “o˜^‚µ‚½ŠÖ”‚ª•¡”‚ ‚éê‡‚Í ‚±‚ê‚ğŒJ‚è•Ô‚·
+			// ç™»éŒ²ã—ãŸé–¢æ•°ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ ã“ã‚Œã‚’ç¹°ã‚Šè¿”ã™
 	}
 
-	// - global ‚ğ Release ‚·‚é
+	// - global ã‚’ Release ã™ã‚‹
 	if(global) global->Release();
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

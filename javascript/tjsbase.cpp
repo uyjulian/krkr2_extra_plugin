@@ -6,7 +6,7 @@ TJSBase::wrap(Isolate *isolate, Local<Object> &obj)
 	obj->SetHiddenValue(String::NewFromTwoByte(isolate, TJSINSTANCENAME), External::New(isolate, this));
 }
 
-// ƒpƒ‰ƒ[ƒ^æ“¾
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 bool
 TJSBase::getVariant(Isolate *isolate, tTJSVariant &result, Local<Object> &obj)
 {

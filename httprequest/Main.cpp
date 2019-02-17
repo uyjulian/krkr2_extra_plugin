@@ -4,16 +4,16 @@
 using namespace std;
 #include <process.h>
 
-// ƒƒbƒZ[ƒWƒR[ƒh
-#define	WM_HTTP_READYSTATE	(WM_APP+6)	// ƒXƒe[ƒg•ÏX
-#define	WM_HTTP_PROGRESS	(WM_APP+7)	// ƒvƒƒOƒŒƒXó‘Ô
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ‰
+#define	WM_HTTP_READYSTATE	(WM_APP+6)	// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´
+#define	WM_HTTP_PROGRESS	(WM_APP+7)	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹çŠ¶æ…‹
 
-// ƒG[ƒWƒFƒ“ƒg–¼
+// ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå
 #define AGENT_NAME _T("KIRIKIRI")
 #define DEFAULT_ENCODING _T("UTF-8")
 #define CTYPE_URLENCODED _T("application/x-www-form-urlencoded")
 
-// ƒGƒ“ƒR[ƒfƒBƒ“ƒO–¼‚©‚çƒR[ƒhƒy[ƒW‚ğæ“¾
+// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°åã‹ã‚‰ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸ã‚’å–å¾—
 extern void initEncoding();
 extern void doneEncoding();
 extern int getEncoding(const wchar_t *encoding);
@@ -22,11 +22,11 @@ extern void convWCToMB(int enc, const wchar_t *wc, UINT *wclen, char *mb, UINT *
 extern UINT getMBToWCLen(int enc, const char *mb, UINT mblen);
 extern void convMBToWC(int enc, const char *mb, UINT *mblen, wchar_t *wc, UINT *wclen);
 
-// ƒJƒEƒ“ƒ^
+// ã‚«ã‚¦ãƒ³ã‚¿
 static std::map<iTJSDispatch2 *, int> sRefCount;
 
 /**
- * HttpRequest ƒNƒ‰ƒX
+ * HttpRequest ã‚¯ãƒ©ã‚¹
  */
 class HttpRequest {
 
@@ -41,10 +41,10 @@ public:
 	};
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param objthis ©ŒÈƒIƒuƒWƒFƒNƒg
-	 * @param window eƒEƒCƒ“ƒhƒE
-	 * @param cert HTTP’ÊM‚ÉØ–¾‘ƒ`ƒFƒbƒN‚ğs‚¤
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param objthis è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param window è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @param cert HTTPé€šä¿¡æ™‚ã«è¨¼æ˜æ›¸ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 	 */
 	HttpRequest(iTJSDispatch2 *objthis, iTJSDispatch2 *window, bool cert, const tjs_char *agentName)
 		 : objthis(objthis), window(window), http(agentName, cert),
@@ -59,7 +59,7 @@ public:
 	}
 	
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~HttpRequest() {
 		abort();
@@ -71,12 +71,12 @@ public:
 	}
 
 	/**
-	 * w’è‚µ‚½ƒƒ\ƒbƒh‚Åw’èURL‚ÉƒŠƒNƒGƒXƒg‚·‚é
-	 * ¦í‚É”ñ“¯Šú‚Å‚ÌŒÄ‚Ño‚µ‚É‚È‚è‚Ü‚·
-	 * @param method GET|PUT|POST ‚Ì‚¢‚¸‚ê‚©
-	 * @param url ƒŠƒNƒGƒXƒgæ‚ÌURL
-	 * @param userName ƒ†[ƒU–¼Bw’è‚·‚é‚Æ”FØƒwƒbƒ_‚ğ‚Â‚¯‚Ü‚·
-	 * @param password ƒpƒXƒ[ƒh
+	 * æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã§æŒ‡å®šURLã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã™ã‚‹
+	 * â€»å¸¸ã«éåŒæœŸã§ã®å‘¼ã³å‡ºã—ã«ãªã‚Šã¾ã™
+	 * @param method GET|PUT|POST ã®ã„ãšã‚Œã‹
+	 * @param url ãƒªã‚¯ã‚¨ã‚¹ãƒˆå…ˆã®URL
+	 * @param userName ãƒ¦ãƒ¼ã‚¶åã€‚æŒ‡å®šã™ã‚‹ã¨èªè¨¼ãƒ˜ãƒƒãƒ€ã‚’ã¤ã‘ã¾ã™
+	 * @param password ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
 	 */
 	void _open(const tjs_char *method, const tjs_char *url, const tjs_char *userName, const tjs_char *password) {
 		abort();
@@ -96,9 +96,9 @@ public:
 	}
 	
 	/**
-	 * ‘—M‚É‘—‚ç‚ê‚éƒwƒbƒ_[‚ğ’Ç‰Á‚·‚é
-	 * @param name ƒwƒbƒ_–¼
-	 * @param value ’l
+	 * é€ä¿¡æ™‚ã«é€ã‚‰ã‚Œã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
+	 * @param name ãƒ˜ãƒƒãƒ€å
+	 * @param value å€¤
 	 */
 	void setRequestHeader(const tjs_char *name, const tjs_char *value) {
 		checkRunning();
@@ -106,10 +106,10 @@ public:
 	}
 
 	/**
-	 * ‘—Mˆ—
-	 * @param ‘—Mƒf[ƒ^
-	 * @param sendStorage ‘—Mƒtƒ@ƒCƒ‹
-	 * @param saveStorage •Û‘¶æƒtƒ@ƒCƒ‹
+	 * é€ä¿¡å‡¦ç†
+	 * @param é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+	 * @param sendStorage é€ä¿¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param saveStorage ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«
 	 */
 	void _send(tTJSVariant *data, const tjs_char *sendStorage, const tjs_char *saveStorage, bool async=true) {
 		checkRunning();
@@ -169,7 +169,7 @@ public:
 	}
 	
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—M
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡
 	 */
 	static tjs_error send(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, HttpRequest *self) {
 		self->_send(numparams > 0 ? params[0] : NULL, NULL, numparams > 1 ? params[1]->GetString() : NULL);
@@ -177,7 +177,7 @@ public:
 	}
 
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—M
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡
 	 */
 	static tjs_error sendSync(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, HttpRequest *self) {
 		self->_send(numparams > 0 ? params[0] : NULL, NULL, numparams > 1 ? params[1]->GetString() : NULL, false);
@@ -188,7 +188,7 @@ public:
 	}
   
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—M
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡
 	 */
 	static tjs_error sendStorage(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, HttpRequest *self) {
 		if (numparams < 1) {
@@ -199,7 +199,7 @@ public:
 	}
   
 	/**
-	 * ƒŠƒNƒGƒXƒg‚Ì‘—M
+	 * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®é€ä¿¡
 	 */
 	static tjs_error sendStorageSync(tTJSVariant *result, tjs_int numparams, tTJSVariant **params, HttpRequest *self) {
 		if (numparams < 1) {
@@ -236,7 +236,7 @@ public:
 	
 
 	/**
-	 * Œ»İÀs’†‚Ì‘—óM‚ÌƒLƒƒƒ“ƒZƒ‹
+	 * ç¾åœ¨å®Ÿè¡Œä¸­ã®é€å—ä¿¡ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	 */
 	void abort() {
 		stopThread();
@@ -245,8 +245,8 @@ public:
 	}
 	
 	/**
-	 * ‚·‚×‚Ä‚Ì HTTPƒwƒbƒ_‚ğæ“¾‚·‚é
-	 * @return HTTPƒwƒbƒ_‚ªŠi”[‚³‚ê‚½«‘
+	 * ã™ã¹ã¦ã® HTTPãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã™ã‚‹
+	 * @return HTTPãƒ˜ãƒƒãƒ€ãŒæ ¼ç´ã•ã‚ŒãŸè¾æ›¸
 	 */
 	tTJSVariant getAllResponseHeaders() {
 		iTJSDispatch2 *dict = TJSCreateDictionaryObject();
@@ -263,30 +263,30 @@ public:
 	}
 
 	/**
-	 * w’è‚µ‚½HTTPƒwƒbƒ_‚ğæ“¾‚·‚é
-	 * @param name ƒwƒbƒ_ƒ‰ƒxƒ‹–¼
-	 * @return ƒwƒbƒ_‚Ì’l
+	 * æŒ‡å®šã—ãŸHTTPãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã™ã‚‹
+	 * @param name ãƒ˜ãƒƒãƒ€ãƒ©ãƒ™ãƒ«å
+	 * @return ãƒ˜ãƒƒãƒ€ã®å€¤
 	 */
 	const tjs_char *getResponseHeader(const tjs_char *name) {
 		return http.getResponseHeader(name);
 	}
 
 	/**
-	 * ’ÊMó‘ÔB“Ç‚İ‚İê—p
-	 * @return Œ»İ‚Ì’ÊMó‘Ô
-	 * 0: ‰Šúó‘Ô
-	 * 1: “Ç‚İ‚İ’†
-	 * 2: “Ç‚İ‚ñ‚¾
-	 * 3: ‰ğÍ’†
-	 * 4: Š®—¹
+	 * é€šä¿¡çŠ¶æ…‹ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ç¾åœ¨ã®é€šä¿¡çŠ¶æ…‹
+	 * 0: åˆæœŸçŠ¶æ…‹
+	 * 1: èª­ã¿è¾¼ã¿ä¸­
+	 * 2: èª­ã¿è¾¼ã‚“ã 
+	 * 3: è§£æä¸­
+	 * 4: å®Œäº†
 	 */
 	int getReadyState() const {
 		return readyState;
 	}
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚ğƒeƒLƒXƒg‚ÌŒ`‚Å•Ô‚·
-	 * @param encoding ƒGƒ“ƒR[ƒfƒBƒ“ƒOw’è
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’ãƒ†ã‚­ã‚¹ãƒˆã®å½¢ã§è¿”ã™
+	 * @param encoding ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®š
 	 */
 	tTJSString _getResponseText(const tjs_char *encoding) {
 		tTJSString ret;
@@ -315,15 +315,15 @@ public:
 	}
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^B“Ç‚İ‚İê—p
-	 * @return ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿
 	 */
 	tTJSVariant getResponse() {
 		const TCHAR *contentType = http.getContentType();
 		if (_tcsncmp(http.getContentType(), _T("text/"), 5) == 0) {
 			return _getResponseText(http.getEncoding());
 //		} else if (_tcscmp(contentType, CTYPE_URLENCODED) == 0) {
-//			// URLENCODED‚Èƒf[ƒ^‚ğ‰ğÍ‚µ‚Ä«‘‚ğ\’z
+//			// URLENCODEDãªãƒ‡ãƒ¼ã‚¿ã‚’è§£æã—ã¦è¾æ›¸ã‚’æ§‹ç¯‰
 		} else if (outputData.size() > 0) {
 			return tTJSVariant((const tjs_uint8 *)&outputData[0], outputData.size());
 		}
@@ -331,8 +331,8 @@ public:
 	}
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^B“Ç‚İ‚İê—p
-	 * @return ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿
 	 */
 	tTJSVariant getResponseData() {
 		if (outputData.size() > 0) {
@@ -342,16 +342,16 @@ public:
 	}
 
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì HTTPƒXƒe[ƒ^ƒXƒR[ƒhB“Ç‚İ‚İê—p
-	 * @return ƒXƒe[ƒ^ƒXƒR[ƒh
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ã€‚èª­ã¿è¾¼ã¿å°‚ç”¨
+	 * @return ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
 	 */
 	int getStatus() {
 		return statusCode;
 	}
 	
 	/**
-	 * ƒŒƒXƒ|ƒ“ƒX‚Ì HTTPƒXƒe[ƒ^ƒX‚Ì•¶š—ñ
-	 * @return ƒŒƒXƒ|ƒ“ƒX•¶š—ñ
+	 * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã® HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®æ–‡å­—åˆ—
+	 * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹æ–‡å­—åˆ—
 	 */
 	const tjs_char *getStatusText() {
 		return statusText.c_str();
@@ -370,7 +370,7 @@ public:
 	}
 	
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒtƒ@ƒNƒgƒŠ
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	 */
 	static tjs_error factory(HttpRequest **result, tjs_int numparams, tTJSVariant **params, iTJSDispatch2 *objthis) {
 		if (numparams < 1) {
@@ -400,8 +400,8 @@ protected:
 	}
 
 	/**
-	 * readyState ‚ª•Ï‰»‚µ‚½ê‡‚ÌƒCƒxƒ“ƒgˆ—
-	 * @param readyState V‚µ‚¢ƒXƒe[ƒg
+	 * readyState ãŒå¤‰åŒ–ã—ãŸå ´åˆã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+	 * @param readyState æ–°ã—ã„ã‚¹ãƒ†ãƒ¼ãƒˆ
 	 */
 	void onReadyStateChange(int readyState) {
 		this->readyState = readyState;
@@ -414,9 +414,9 @@ protected:
 	}
 	
 	/**
-	 * ƒf[ƒ^“Ç‚İ‚İ’†‚ÌƒCƒxƒ“ƒgˆ—
-	 * @param upload ‘—M’†
-	 * @param percent i’»
+	 * ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+	 * @param upload é€ä¿¡ä¸­
+	 * @param percent é€²æ—
 	 */
 	void onProgress(bool upload, tjs_real percent) {
 		tTJSVariant params[2];
@@ -426,7 +426,7 @@ protected:
 		TVPPostEvent(objthis, objthis, eventName, 0, TVP_EPT_POST, 2, params);
 	}
 	
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(bool enable) {
 		tTJSVariant mode     = enable ? (tTVInteger)(tjs_int)wrmRegister : (tTVInteger)(tjs_int)wrmUnregister;
 		tTJSVariant proc     = (tTVInteger)(tjs_int)receiver;
@@ -438,7 +438,7 @@ protected:
 	}
 
 	/**
-	 * ƒCƒxƒ“ƒgóMˆ—
+	 * ã‚¤ãƒ™ãƒ³ãƒˆå—ä¿¡å‡¦ç†
 	 */
 	static bool __stdcall receiver(void *userdata, tTVPWindowMessage *Message) {
         HttpRequest *self = (HttpRequest*)Message->WParam;
@@ -455,11 +455,11 @@ protected:
 	}
 
 	// -----------------------------------------------
-	// ƒXƒŒƒbƒhˆ—
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†
 	// -----------------------------------------------
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‘—Mˆ—‚ğŠª‚«–ß‚µ
+	 * ãƒ•ã‚¡ã‚¤ãƒ«é€ä¿¡å‡¦ç†ã‚’å·»ãæˆ»ã—
 	 */
         void rewindUpload(void) {
 	  if (inputStream) {
@@ -471,7 +471,7 @@ protected:
 	}
   
         /**
-	 * ‘—MŠª‚«–ß‚µ‚ÌƒR[ƒ‹ƒoƒbƒNˆ—
+	 * é€ä¿¡å·»ãæˆ»ã—ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
 	 */
         static void rewindUploadCallback(void *context) {
 	  HttpRequest *self = (HttpRequest*)context;
@@ -480,16 +480,16 @@ protected:
 	}
     
 	/**
-	 * ƒtƒ@ƒCƒ‹‘—Mˆ—
-	 * @param buffer “Ç‚İæ‚èƒoƒbƒtƒ@
-	 * @param size “Ç‚İo‚µ‚½ƒTƒCƒY
+	 * ãƒ•ã‚¡ã‚¤ãƒ«é€ä¿¡å‡¦ç†
+	 * @param buffer èª­ã¿å–ã‚Šãƒãƒƒãƒ•ã‚¡
+	 * @param size èª­ã¿å‡ºã—ãŸã‚µã‚¤ã‚º
 	 */
 	bool upload(void *buffer, DWORD &size, bool async=true) {
 		if (inputStream) {
-			// ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			inputStream->Read(buffer, size, &size);
 		} else {
-			// ƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş
+			// ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€
 			DWORD s = inputData.size() - inputSize;
 			if (s < size) {
 				size = s;
@@ -509,8 +509,8 @@ protected:
 	}
 
 	/**
-	 * ’ÊM‚ÌƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚È‚ç false
+	 * é€šä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã‚‰ false
 	 */
 	static bool uploadCallback(void *context, void *buffer, DWORD &size) {
 		HttpRequest *self = (HttpRequest*)context;
@@ -518,8 +518,8 @@ protected:
 	}
 
 	/**
-	 * ’ÊM‚ÌƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚È‚ç false
+	 * é€šä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã‚‰ false
 	 */
 	static bool uploadCallbackSync(void *context, void *buffer, DWORD &size) {
 		HttpRequest *self = (HttpRequest*)context;
@@ -527,10 +527,10 @@ protected:
 	}
 
   /**
-	 * ƒtƒ@ƒCƒ‹“Ç‚İæ‚èˆ—
-	 * @param buffer “Ç‚İæ‚èƒoƒbƒtƒ@
-	 * @param size “Ç‚İo‚µ‚½ƒTƒCƒY
-	 * @param async ”ñ“¯Šú‚Ítrue
+	 * ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿å–ã‚Šå‡¦ç†
+	 * @param buffer èª­ã¿å–ã‚Šãƒãƒƒãƒ•ã‚¡
+	 * @param size èª­ã¿å‡ºã—ãŸã‚µã‚¤ã‚º
+	 * @param async éåŒæœŸæ™‚ã¯true
 	 */
 	bool download(const void *buffer, DWORD size, bool async=true) {
 		if (outputStream) {
@@ -563,8 +563,8 @@ protected:
 	}
 	
 	/**
-	 * ’ÊM‚ÌƒR[ƒ‹ƒoƒbƒNˆ—
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚È‚ç false
+	 * é€šä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã‚‰ false
 	 */
 	static bool downloadCallback(void *context, const void *buffer, DWORD size) {
 		HttpRequest *self = (HttpRequest*)context;
@@ -572,8 +572,8 @@ protected:
 	}
 
 	/**
-	 * ’ÊM‚ÌƒR[ƒ‹ƒoƒbƒNˆ—(“¯Šú—p)
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚È‚ç false
+	 * é€šä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†(åŒæœŸç”¨)
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã‚‰ false
 	 */
 	static bool downloadCallbackSync(void *context, const void *buffer, DWORD size) {
 		HttpRequest *self = (HttpRequest*)context;
@@ -582,7 +582,7 @@ protected:
 
   
 	/**
-	 * ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÅÀs‚·‚éˆ—
+	 * ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§å®Ÿè¡Œã™ã‚‹å‡¦ç†
 	 */
 	void threadMain(bool async=true) {
 
@@ -636,21 +636,21 @@ protected:
 		if (async) ::PostMessage(hwnd, WM_HTTP_READYSTATE, (WPARAM)this, (LPARAM)READYSTATE_LOADED);
 	}
 
-	// ÀsƒXƒŒƒbƒh
+	// å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
 	static unsigned __stdcall threadFunc(void *data) {
 		((HttpRequest*)data)->threadMain();
 		_endthreadex(0);
 		return 0;
 	}
 
-	// ƒXƒŒƒbƒhˆ—ŠJn
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†é–‹å§‹
 	void startThread() {
 		stopThread();
 		canceled = false;
 		threadHandle = (HANDLE)_beginthreadex(NULL, 0, threadFunc, this, 0, NULL);
 	}
 
-	// ƒXƒŒƒbƒhˆ—I—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†çµ‚äº†
 	void stopThread() {
 		if (threadHandle) {
 			canceled = true;
@@ -661,32 +661,32 @@ protected:
 	}
 	
 private:
-	iTJSDispatch2 *objthis; ///< ©ŒÈƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
-	iTJSDispatch2 *window; ///< ƒEƒCƒ“ƒhƒEƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ(ƒCƒxƒ“ƒgæ“¾‚É•K—v)
-	HWND hwnd; ///< ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰BƒƒCƒ“ƒXƒŒƒbƒh’â~’†‚É Window ‚ÉƒAƒNƒZƒX‚·‚é‚ÆŒÅ‚Ü‚é‚Ì‚Åˆ—‘O‚É‚Æ‚Á‚Ä‚¨‚­
+	iTJSDispatch2 *objthis; ///< è‡ªå·±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
+	iTJSDispatch2 *window; ///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§(ã‚¤ãƒ™ãƒ³ãƒˆå–å¾—ã«å¿…è¦)
+	HWND hwnd; ///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©ã€‚ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰åœæ­¢ä¸­ã« Window ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã¨å›ºã¾ã‚‹ã®ã§å‡¦ç†å‰ã«ã¨ã£ã¦ãŠã
 	
-	// HTTP’ÊMˆ——p
+	// HTTPé€šä¿¡å‡¦ç†ç”¨
 	HttpConnection http;
 
-	// ƒXƒŒƒbƒhˆ——p
-	HANDLE threadHandle; ///< ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹
-	bool canceled; ///< ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ç”¨
+	HANDLE threadHandle; ///< ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«
+	bool canceled; ///< ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 
-	// ƒŠƒNƒGƒXƒg
-	IStream *inputStream;   ///< ‘—M—pƒXƒgƒŠ[ƒ€
-	vector<BYTE>inputData;  ///< ‘—M—pƒf[ƒ^
-	DWORD inputLength; ///< ‘—Mƒf[ƒ^ƒTƒCƒY
-	DWORD inputSize;   ///< ‘—MÏ‚İƒf[ƒ^ƒTƒCƒY
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	IStream *inputStream;   ///< é€ä¿¡ç”¨ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+	vector<BYTE>inputData;  ///< é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
+	DWORD inputLength; ///< é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	DWORD inputSize;   ///< é€ä¿¡æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-	// ƒŒƒXƒ|ƒ“ƒX
-	IStream *outputStream;  ///< óM—pƒXƒgƒŠ[ƒ€
-	vector<BYTE>outputData; ///< óM—pƒf[ƒ^
-	DWORD outputLength; ///< óMƒf[ƒ^ƒTƒCƒY
-	DWORD outputSize;   ///< óMÏ‚İƒf[ƒ^ƒTƒCƒY
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹
+	IStream *outputStream;  ///< å—ä¿¡ç”¨ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+	vector<BYTE>outputData; ///< å—ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
+	DWORD outputLength; ///< å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	DWORD outputSize;   ///< å—ä¿¡æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
 	int readyState;
-	int statusCode; ///< HTTPƒXƒe[ƒ^ƒXƒR[ƒh
-	ttstr statusText; ///< HTTPƒXƒe[ƒ^ƒXƒeƒLƒXƒg
+	int statusCode; ///< HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
+	ttstr statusText; ///< HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ†ã‚­ã‚¹ãƒˆ
 };
 
 #define ENUM(n) Variant(#n, (int)HttpRequest::READYSTATE_ ## n)

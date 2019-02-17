@@ -1,22 +1,22 @@
 Title: fstat Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-Storages �Ɉȉ��̋@�\��ǉ����܂�
-�E�t�@�C���̃T�C�Y����t�̏����擾���邽�߂̃��\�b�h
-�E�t�@�C�����g���g���̃X�g���[�W��Ԃ��璊�o���郁�\�b�h
-�E�t�@�C�����폜���郁�\�b�h
-�E�f�B���N�g���ꗗ�̎擾
-�E�f�B���N�g�����폜���郁�\�b�h
-�E�f�B���N�g���I���_�C�A���O���J��(by Kiyobee)
+Storages に以下の機能を追加します
+・ファイルのサイズや日付の情報を取得するためのメソッド
+・ファイルを吉里吉里のストレージ空間から抽出するメソッド
+・ファイルを削除するメソッド
+・ディレクトリ一覧の取得
+・ディレクトリを削除するメソッド
+・ディレクトリ選択ダイアログを開く(by Kiyobee)
 
-���g�p���@
+●使用方法
 
-manual.tjs �Q��
+manual.tjs 参照
 
-�����C�Z���X
+●ライセンス
 
-���C�Z���X�͋g���g���{�̂ɏ������Ă��������B
-dirlist ���\�b�h�͕W���� dirlist �v���O�C����
-���̂܂܈ړ����������̂��̂ł��B
+ライセンスは吉里吉里本体に準拠してください。
+dirlist メソッドは標準の dirlist プラグインを
+そのまま移動しただけのものです。

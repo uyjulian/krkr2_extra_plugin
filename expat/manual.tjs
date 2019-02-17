@@ -1,52 +1,52 @@
 /**
- * �[���R�[�h�ɂ��}�j���A��
+ * 擬似コードによるマニュアル
  *
  * Copyright 2005-2009 GoWatanabe
  *
- * expat �ɂ�鏈���������Ȃ��Ď����I�Ƀ��\�b�h�ĂѕԂ��������s���܂�
- * ��̓I�� DOM �̎������ XML.tjs �Q��
+ * expat による処理がおこなわれて自動的にメソッド呼び返し処理が行われます
+ * 具体的な DOM の実装例は XML.tjs 参照
  */
 class XMLParser {
 
     /**
-     * �e�L�X�g�ɑ΂���p�[�X���������s����B
-     * @param text �e�L�X�g�B�ȗ����͌��ݐݒ蒆�̃e�L�X�g�ɑ΂��ď������s�Ȃ�
+     * テキストに対するパース処理を実行する。
+     * @param text テキスト。省略時は現在設定中のテキストに対して処理を行なう
      */
     function parse(text);
 
     /**
-     * �e�L�X�g�ɑ΂���p�[�X���������s����B
-     * @param filename �e�L�X�g�̃t�@�C����
+     * テキストに対するパース処理を実行する。
+     * @param filename テキストのファイル名
      */
     function parseStorage(filename);
 
 	/**
-	 * �G���[�R�[�h���l
+	 * エラーコード数値
 	 */
 	property errorCode;
 	
 	/**
-	 * �G���[�R�[�h������
+	 * エラーコード文字列
 	 */
 	property errorString;
 
 	/**
-	 * ���݂̃o�C�g�C���f�b�N�X
+	 * 現在のバイトインデックス
 	 */
 	property currentByteIndex;
 
 	/**
-	 * ���݂̍s�ԍ�
+	 * 現在の行番号
 	 */
 	property currentLineNumber;
 
 	/**
-	 * ���݂̍s�ԍ�
+	 * 現在の行番号
 	 */
 	property currentColumnNumber;
 
 	/**
-	 * ���݂̃o�C�g�J�E���g
+	 * 現在のバイトカウント
 	 */
 	property currentButeCount;
 	

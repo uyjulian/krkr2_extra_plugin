@@ -1,16 +1,16 @@
-Title: ����Ă�����
-Author: �n粍�
+Title: 解説てきすと
+Author: 渡邊剛
 
-������͂ȂɁH
+●これはなに？
 
- gameswf ���g���g���Ŏg����悤�ɂ��悤�Ƃ������݂̓r��
+ gameswf を吉里吉里で使えるようにしようという試みの途中
 
-������
+●現状
 
-���܂��܃R�[�h�������B
-Vector �`��̃o�b�N�G���h�� Cairo �ł����Ă݂܂�
+ちまちまコードかき中。
+Vector 描画のバックエンドは Cairo でいってみます
 
-�R���p�C���ɂƂ肠�����K�v�Ȃ���
+コンパイルにとりあえず必要なもの
 
 layerExCairo   
  zlib/			http://www.zlib.net/
@@ -19,4 +19,4 @@ layerExCairo
 tu-testbed/		http://sourceforge.net/projects/tu-testbed/
 libjpeg/		http://www.ijg.org/
 
-�K�X�R���p�C�����ʂ�悤�ɗv����
+適宜コンパイルが通るように要調整

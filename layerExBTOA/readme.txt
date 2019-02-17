@@ -1,22 +1,22 @@
 Title: layerExBTOA
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-���C���̃��̈�� Province�摜�������郁�\�b�h���W�߂����̂ł�
+レイヤのα領域や Province画像をいじるメソッドを集めたものです
 
-���g����
+●使い方
 
-�e���\�b�h�ɂ��Ă� manual.tjs �Q��
+各メソッドについては manual.tjs 参照
 
-������p�Ɏg���ꍇ�́AVideoOverlay �N���X���g���ă��C���ɓ���(�E�����Ƀ��摜)
-��`�悵�����ƁAonFrameUpdate() �� copyRightBlueToLeftAlpha() ��
-�Ăяo���Ă��������B�����͓����摜�f�[�^(imageWidth�̃T�C�Y)�ɑ΂��čs���܂��B
+α動画用に使う場合は、VideoOverlay クラスを使ってレイヤに動画(右半分にα画像)
+を描画したあと、onFrameUpdate() で copyRightBlueToLeftAlpha() を
+呼び出してください。処理は内部画像データ(imageWidthのサイズ)に対して行われます。
 
-�`��惌�C���� width �� VideoOverlay �N���X�ɂ���ē���̃T�C�Y��
-�g������Ă�̂ŁA���̃^�C�~���O�Ŕ����ɍĒ������Ă��������B
+描画先レイヤの width は VideoOverlay クラスによって動画のサイズに
+拡張されてるので、このタイミングで半分に再調整してください。
 
-��P
+例１
 class AlphaVideo extends VideoOverlay
 {
   function AlphaVideo(window) {
@@ -32,21 +32,21 @@ class AlphaVideo extends VideoOverlay
   }
 }
 
-��Q
-Movie.tjs ���A���t�@���[�r�[�Ή��ɉ��������T���v���ł��B
-�ύX�_�� Movie.patch ���Q�Ƃ��Ă��������B
+例２
+Movie.tjs をアルファムービー対応に改造したサンプルです。
+変更点は Movie.patch を参照してください。
 
-video �^�O�� alphatype �̃I�v�V�������g������܂��B
+video タグに alphatype のオプションが拡張されます。
 
-alphatype=0 �� �A���t�@���g�p���Ȃ��ʏ�̃��[�h
-alphatype=1 �� copyRightBlueToLeftAlpha ���g�p�i�E���ɃA���t�@�j
-alphatype=2 �� copyBottomBlueToTopAlpha ���g�p�i�����ɃA���t�@�j
+alphatype=0 で アルファを使用しない通常のモード
+alphatype=1 で copyRightBlueToLeftAlpha を使用（右側にアルファ）
+alphatype=2 で copyBottomBlueToTopAlpha を使用（下側にアルファ）
 
-�A���t�@���[�r�[�� mode=layer �ł����@�\���Ȃ����Ƃɂ����ӂ��������B
-�܂��Aimage �^�O�� mode �����ŁA���炩���ߑΏۂ̃��C���̓��߃��[�h��
-�ύX���Ă����Ȃ��ƁA�������A���t�@���o�Ȃ��ꍇ������܂��B
+アルファムービーは mode=layer でしか機能しないことにご注意ください。
+また、image タグの mode 属性で、あらかじめ対象のレイヤの透過モードを
+変更しておかないと、正しくアルファが出ない場合があります。
 
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

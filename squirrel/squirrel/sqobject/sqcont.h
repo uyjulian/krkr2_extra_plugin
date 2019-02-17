@@ -6,18 +6,18 @@
 #define __SQCONT_H__
 
 /**
- * continuous handler �p����
- * function(currentTick, diffTick) �̌`�Œ���I�ɌĂяo����郁�\�b�h�Q��o�^����@�\
+ * continuous handler 用処理
+ * function(currentTick, diffTick) の形で定期的に呼び出されるメソッド群を登録する機能
  */
 namespace sqobject {
 
-/// �@�\�o�^
+/// 機能登録
 void registerContinuous();
-/// �n���h�������Ăяo���BThread::main �̑O�ŌĂяo���K�v������
+/// ハンドラ処理呼び出し。Thread::main の前で呼び出す必要がある
 void beforeContinuous();
-/// �n���h�������Ăяo���BThread::main �̌�ŌĂяo���K�v������
+/// ハンドラ処理呼び出し。Thread::main の後で呼び出す必要がある
 void afterContinuous();
-/// �@�\�I��
+/// 機能終了
 void doneContinuous();
 
 };

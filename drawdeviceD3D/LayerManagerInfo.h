@@ -8,64 +8,64 @@
 #include <vfw.h>
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ—p•tî•ñ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ç”¨ä»˜éšæƒ…å ±
  */
 class LayerManagerInfo {
 
 protected:
-	// ¯•Ê—pID
+	// è­˜åˆ¥ç”¨ID
 	int id;
 
-	// Œ³ƒŒƒCƒ„ƒTƒCƒY
+	// å…ƒãƒ¬ã‚¤ãƒ¤ã‚µã‚¤ã‚º
 	int srcWidth;
 	int srcHeight;
 
-	// Š„‚è“–‚ÄƒeƒNƒXƒ`ƒƒ
+	// å‰²ã‚Šå½“ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	IDirectDrawSurface7 *texture;
-	tjs_uint textureWidth; //< ƒeƒNƒXƒ`ƒƒ‚Ì‰¡•
-	tjs_uint textureHeight; //< ƒeƒNƒXƒ`ƒƒ‚Ìc•
+	tjs_uint textureWidth; //< ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ¨ªå¹…
+	tjs_uint textureHeight; //< ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¸¦å¹…
 
-	bool useDirectTransfer; //< ƒƒ‚ƒŠ’¼Ú“]‘—‚ğs‚¤‚©‚Ç‚¤‚©
+	bool useDirectTransfer; //< ãƒ¡ãƒ¢ãƒªç›´æ¥è»¢é€ã‚’è¡Œã†ã‹ã©ã†ã‹
 	
-	void *textureBuffer; //< ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ìƒƒ‚ƒŠƒ|ƒCƒ“ƒ^
-	long texturePitch; //< ƒeƒNƒXƒ`ƒƒ‚Ìƒsƒbƒ`
+	void *textureBuffer; //< ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã®ãƒ¡ãƒ¢ãƒªãƒã‚¤ãƒ³ã‚¿
+	long texturePitch; //< ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ãƒƒãƒ
 
-	HDC offScreenDC; //< DIB•`‰æ—p‚Ì HDC
-	HDRAWDIB drawDibHandle; //< DIB•`‰æ—pƒnƒ“ƒhƒ‹
+	HDC offScreenDC; //< DIBæç”»ç”¨ã® HDC
+	HDRAWDIB drawDibHandle; //< DIBæç”»ç”¨ãƒãƒ³ãƒ‰ãƒ«
 
-	bool lastOK;     //< ‘O‰ñ‚Ìˆ—‚Í¬Œ÷‚µ‚½‚©
+	bool lastOK;     //< å‰å›ã®å‡¦ç†ã¯æˆåŠŸã—ãŸã‹
 	
 public:
-	// •\¦‘ÎÛ‚©‚Ç‚¤‚©
+	// è¡¨ç¤ºå¯¾è±¡ã‹ã©ã†ã‹
 	bool visible;
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param id ƒŒƒCƒ„ID
-	 * @param visible ‰Šú•\¦ó‘Ô
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param id ãƒ¬ã‚¤ãƒ¤ID
+	 * @param visible åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
 	 */
 	LayerManagerInfo(int id, bool visible);
 	virtual ~LayerManagerInfo();
 	
 	/**
-	 * ƒeƒNƒXƒ`ƒƒŠ„‚è“–‚Äˆ—
+	 * ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰²ã‚Šå½“ã¦å‡¦ç†
 	 */
 	void alloc(iTVPLayerManager *manager, IDirectDraw7 *directDraw, IDirect3DDevice7 *direct3DDevice);
 
 	/*
-	 * ƒeƒNƒXƒ`ƒƒ‰ğ•ú
+	 * ãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
 	 */
 	void free();
 	
-	// ƒeƒNƒXƒ`ƒƒ•`‰æ‘€ì—p
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£æç”»æ“ä½œç”¨
 	void lock();
 	void copy(tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
 			  const tTVPRect &cliprect, tTVPLayerType type, tjs_int opacity);
 	void unlock();
 
 	/**
-	 * •`‰æ
+	 * æç”»
 	 */
 	void draw(IDirect3DDevice7 *direct3DDevice7, int destWidth, int destHeight);
 };

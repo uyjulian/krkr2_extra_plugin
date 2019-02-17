@@ -1,19 +1,19 @@
 /**
- * ‹g—¢‹g—¢2Œü‚¯‹g—¢‹g—¢Z drawdevice ƒNƒ‰ƒX
+ * å‰é‡Œå‰é‡Œ2å‘ã‘å‰é‡Œå‰é‡ŒZ drawdevice ã‚¯ãƒ©ã‚¹
  *
- * Direct3D9 ‚ğg—p‚·‚é drawdevice ‚Å‚·
+ * Direct3D9 ã‚’ä½¿ç”¨ã™ã‚‹ drawdevice ã§ã™
  */
 class DrawDeviceZ
 {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	function DrawDeviceZ();
 
 	/**
-	 * Drawer‚ÌÄ\’z‚ğs‚¤(-smoothzoomƒIƒvƒVƒ‡ƒ“‚È‚Ç‚ªÄ”½‰f‚³‚ê‚Ü‚·j
+	 * Drawerã®å†æ§‹ç¯‰ã‚’è¡Œã†(-smoothzoomã‚ªãƒ—ã‚·ãƒ§ãƒ³ãªã©ãŒå†åæ˜ ã•ã‚Œã¾ã™ï¼‰
 	 */
 	function recreate();
 
-	property interface { getter; } //< drawdevice ƒCƒ“ƒ^[ƒtƒF[ƒXî•ñi“à•”QÆ—pj
+	property interface { getter; } //< drawdevice ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹æƒ…å ±ï¼ˆå†…éƒ¨å‚ç…§ç”¨ï¼‰
 };

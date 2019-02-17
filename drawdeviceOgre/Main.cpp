@@ -1,26 +1,26 @@
 #include "ncbind/ncbind.hpp"
 #include "OgreDrawDevice.h"
 
-// Ogre Šî–{î•ñ
+// Ogre åŸºæœ¬æƒ…å ±
 static OgreInfo *ogreInfo = NULL;
 
 /**
- * Ogre ƒx[ƒX DrawDevice ‚ÌƒNƒ‰ƒX
+ * Ogre ãƒ™ãƒ¼ã‚¹ DrawDevice ã®ã‚¯ãƒ©ã‚¹
  */
 class OgreDrawDevice {
 public:
-	// ƒfƒoƒCƒXî•ñ
+	// ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 	iTVPDrawDevice *device;
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	OgreDrawDevice() {
 		device = new tTVPOgreDrawDevice(ogreInfo);
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~OgreDrawDevice() {
 		if (device) {
@@ -30,14 +30,14 @@ public:
 	}
 	
 	/**
-	 * @return ƒfƒoƒCƒXî•ñ
+	 * @return ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 	 */
 	tjs_int64 GetDevice() {
 		return reinterpret_cast<tjs_int64>(device);
 	}
 
 	// ---------------------------------------------
-	// ˆÈ‰º Ogre ‚ğ§Œä‚·‚é‚½‚ß‚Ì‹@”\‚ğ‡Ÿ’Ç‰Á—\’è
+	// ä»¥ä¸‹ Ogre ã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®æ©Ÿèƒ½ã‚’é †æ¬¡è¿½åŠ äºˆå®š
 	// ---------------------------------------------
 	
 };
@@ -49,12 +49,12 @@ NCB_REGISTER_CLASS(OgreDrawDevice) {
 }
 
 /**
- * “o˜^ˆ—‘O
+ * ç™»éŒ²å‡¦ç†å‰
  */
 static void
 PreRegistCallback()
 {
-	// OGRE ‚ÌŠî–{î•ñ¶¬
+	// OGRE ã®åŸºæœ¬æƒ…å ±ç”Ÿæˆ
 	ogreInfo = new OgreInfo();
 	if (!ogreInfo->config()) {
 		delete ogreInfo;
@@ -64,11 +64,11 @@ PreRegistCallback()
 }
 
 /**
- * ŠJ•úˆ—Œã
+ * é–‹æ”¾å‡¦ç†å¾Œ
  */
 static void PostUnregistCallback()
 {
-	// ogre I—¹
+	// ogre çµ‚äº†
 	delete ogreInfo;
 }
 

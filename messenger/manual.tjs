@@ -1,91 +1,91 @@
 /**
- * �[���R�[�h�ɂ��}�j���A��
+ * 擬似コードによるマニュアル
  *
- * @description ����}�V����ŋN�����Ă���g���g���Ԃł̑��ݒʐM�@�\�����
- * �O���A�v������̒ʐM�@�\��񋟂��܂��B
- * ���Ƃ肳��� �f�[�^�� WM_COPYDATA ��p���ē]������܂��B
+ * @description 同一マシン上で起動している吉里吉里間での相互通信機能および
+ * 外部アプリからの通信機能を提供します。
+ * やりとりされる データは WM_COPYDATA を用いて転送されます。
  */
 class Window {
 
 	// ---------------------------------------------------
-	// �E�C���h�E���b�Z�[�W�����g��
+	// ウインドウメッセージ処理拡張
 	// ---------------------------------------------------
 
 	/**
-	 * ���b�Z�[�W��M�@�\���L�����ǂ������w�肵�܂��B
-	 * @description true �ɂ���ƃ��b�Z�[�W����M����悤�ɂȂ�܂��B
-	 * ���b�Z�[�W��M���L���Ȃ� true
+	 * メッセージ受信機能が有効かどうかを指定します。
+	 * @description true にするとメッセージを受信するようになります。
+	 * メッセージ受信が有効なら true
 	 */
 	property messageEnable;
 	
 	/**
-	 * HWND ����ۑ����邩�ǂ������w�肵�܂��B
-	 * @description ����̒l���w�肷��ƁA���s�t�@�C����.�L�[�̒l �Ƃ������O��
-	 * �t�@�C�����쐬����A���̒��Ɍ��݂� HWND ��񂪏o�͂����悤�ɂȂ�܂��B
-	 * �O���A�v���P�[�V�������烁�b�Z�[�W�𑗂肽���ꍇ�́A���̃t�@�C����
-	 * �L�^���ꂽ HWND ���Q�Ƃ��邱�Ƃ��ł��܂��B
-	 * �t���X�N���[�����ȂǁAHWND ���ς�������ɂ͓��e�������I�ɍX�V����܂��B
-	 * ���̂��߁A�O���A�v���P�[�V�����͑���Ƃ��͖��� HWND �̒l���Q�Ƃ��Ȃ����K�v������܂��B
-	 * @return �ۑ��p�L�[�̒l
+	 * HWND 情報を保存するかどうかを指定します。
+	 * @description これの値を指定すると、実行ファイル名.キーの値 という名前の
+	 * ファイルが作成され、その中に現在の HWND 情報が出力されるようになります。
+	 * 外部アプリケーションからメッセージを送りたい場合は、このファイルに
+	 * 記録された HWND を参照することができます。
+	 * フルスクリーン時など、HWND が変わった時には内容が自動的に更新されます。
+	 * このため、外部アプリケーションは送るときは毎回 HWND の値を参照しなおす必要があります。
+	 * @return 保存用キーの値
 	 */
 	property storeHWND;
 
 	// ---------------------------------------------------
 
 	/**
-	 * ���[�U��`�̃��b�Z�[�W�n���h����o�^���܂��B
+	 * ユーザ定義のメッセージハンドラを登録します。
 	 *
-	 * @param mode wrmRegister:�o�^ wrmUnRegister:����
-	 * @param msg ���l:���b�Z�[�W�ԍ� ������:RegisterWindowMessage ���Ēl������
-	 * @param proc �Ăяo���t�@���N�V����
-	 * @param userdata ���[�U�f�[�^�p�����[�^
-	 * @return �o�^���ꂽ���b�Z�[�W�ԍ���Ԃ�
+	 * @param mode wrmRegister:登録 wrmUnRegister:解除
+	 * @param msg 数値:メッセージ番号 文字列:RegisterWindowMessage して値を決定
+	 * @param proc 呼び出しファンクション
+	 * @param userdata ユーザデータパラメータ
+	 * @return 登録されたメッセージ番号を返す
 	 * @description
-	 * ��TJS2 ����֐���o�^�����ꍇ�itypeof proc == Object �̏ꍇ)
+	 * ※TJS2 から関数を登録した場合（typeof proc == Object の場合)
 	 * function receiver(userdata, wparam, lparam)
-	 * �̌`���̃t�@���N�V�����ł���Ƃ݂Ȃ���܂��B
-	 * ���̎��Auserdata �͓n�����l���̂܂܂��A
-	 * wparam, lparam �͌����b�Z�[�W�̃f�[�^���琮���ɃL���X�g�����l��n���܂��B
+	 * の形式のファンクションであるとみなされます。
+	 * この時、userdata は渡した値そのままを、
+	 * wparam, lparam は元メッセージのデータから整数にキャストした値を渡します。
 	 *
-	 * ��TJS2 ���當�����o�^�����ꍇ (typeof proc == String �̏ꍇ)
-	 * �Y���I�u�W�F�N�g�̎w�肳�ꂽ������̊֐��� function name(userdata, wparam, lparam)
-	 * �̈����ŌĂт����܂�
+	 * ※TJS2 から文字列を登録した場合 (typeof proc == String の場合)
+	 * 該当オブジェクトの指定された文字列の関数を function name(userdata, wparam, lparam)
+	 * の引数で呼びだします
 	 *
-	 * ���v���O�C��������֐���o�^����ꍇ (typeof proc == Integer �̏ꍇ)
+	 * ※プラグイン側から関数を登録する場合 (typeof proc == Integer の場合)
 	 * static bool __stdcall receiver(iTJSDispatch2 *winobj, void *userdata, tTVPWindowMessage *Message)
-	 * �ł���Ƃ݂Ȃ���܂��B�ݒ莞�͐����ɃL���X�g���Ă��������B
-	 * winobj �͊Y������E�C���h�E�̃I�u�W�F�N�g�ł�
-	 * userdata �͐����ɃL���X�g�����l�łЂ��킽����܂��B
+	 * であるとみなされます。設定時は整数にキャストしてください。
+	 * winobj は該当するウインドウのオブジェクトです
+	 * userdata は整数にキャストした値でひきわたされます。
 	 */
 	function registerUserMessageReceiver(mode, msg, proc, userdata);
 
 	/**
-	 * �჌�x�����b�Z�[�W���M�����s���܂��B
-	 * @description �S�g���g���Ɏw��̃��b�Z�[�W�����M����܂�
-	 * @param msg ���b�Z�[�W�ԍ�
-	 * @param wparam WPARAM (���������ŏ�������܂�)
-	 * @param lparam LPARAM (���������ŏ�������܂�)
+	 * 低レベルメッセージ送信を実行します。
+	 * @description 全吉里吉里に指定のメッセージが送信されます
+	 * @param msg メッセージ番号
+	 * @param wparam WPARAM (整数扱いで処理されます)
+	 * @param lparam LPARAM (整数扱いで処理されます)
 	 */
 	function sendUserMessage(msg, wparam, lparam);
 	
 	// ---------------------------------------------------
 	
 	/**
-	 * ���b�Z�[�W�̑��M���s���܂��B
-	 * @description �N�����Ă���g���g�����ׂĂ� WM_COPYDATA ���b�Z�[�W�𑗐M���܂��B
-	 * ���ʃL�[�ƃ��b�Z�[�W�̈Ӗ��͂��ꂼ��̃A�v���œK���ɒ�߂Ă��������B
-	 * @param key ���ʃL�[(������:256�����܂łȂ̂Œ���)
-	 * @param message ���b�Z�[�W(������)
+	 * メッセージの送信を行います。
+	 * @description 起動している吉里吉里すべてに WM_COPYDATA メッセージを送信します。
+	 * 識別キーとメッセージの意味はそれぞれのアプリで適当に定めてください。
+	 * @param key 識別キー(文字列:256文字までなので注意)
+	 * @param message メッセージ(文字列)
 	 */
 	function sendMessage(key, message);
 
 	/**
-	 * �C�x���g�F���b�Z�[�W��M�B
-	 * @description �ق��̋g���g���A���邢�͊O���A�v������ WM_COPYDATA ���b�Z�[�W����M�����Ƃ��ɌĂяo����܂�
-	 * �Ăяo�����͂���̌Ăяo�����I������܂Ń��b�N����Ă��܂����߁A
-	 * ���₩�ɏ������I������悤�ɂ��Ă��������B
-	 * @param key ���ʃL�[(������:256�����܂łȂ̂Œ���)
-	 * @param message ���b�Z�[�W(������)
+	 * イベント：メッセージ受信。
+	 * @description ほかの吉里吉里、あるいは外部アプリから WM_COPYDATA メッセージを受信したときに呼び出されます
+	 * 呼び出し元はこれの呼び出しが終了するまでロックされてしまうため、
+	 * 速やかに処理を終了するようにしてください。
+	 * @param key 識別キー(文字列:256文字までなので注意)
+	 * @param message メッセージ(文字列)
 	 */
 	function onMessageReceived(key, message);
 

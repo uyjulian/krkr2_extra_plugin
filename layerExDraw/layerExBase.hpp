@@ -4,7 +4,7 @@
 #include "tp_stub.h"
 
 /**
- * ƒvƒƒpƒeƒB‚ÌƒLƒƒƒbƒVƒ…ˆ——p
+ * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨
  */
 struct ObjectCache
 {
@@ -59,7 +59,7 @@ private:
 };
 
 /**
- * ƒŒƒCƒ„Šg’£ˆ—‚Ìƒx[ƒX
+ * ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µå‡¦ç†ã®ãƒ™ãƒ¼ã‚¹
  */
 struct layerExBase
 {
@@ -71,7 +71,7 @@ struct layerExBase
 	typedef tjs_int        GeometryT;
 	DispatchT _obj;
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	layerExBase(DispatchT obj)
 		: _obj(obj),
@@ -89,12 +89,12 @@ struct layerExBase
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~layerExBase() {}
 
 	/**
-	 * Ä•`‰æw’è
+	 * å†æç”»æŒ‡å®š
 	 */
 	virtual void redraw() {
 		tTJSVariant  vars [4] = { _pClipLeft, _pClipTop, _pClipWidth, _pClipHeight };
@@ -103,7 +103,7 @@ struct layerExBase
 	}
 
 	/**
-	 * î•ñXV
+	 * æƒ…å ±æ›´æ–°
 	 */
 	virtual void reset() {
 		_width  = (GeometryT)_pWidth;
@@ -123,7 +123,7 @@ protected:
 	BufferT   _buffer;
 	PitchT    _pitch;
 
-	// ƒNƒŠƒbƒvî•ñ
+	// ã‚¯ãƒªãƒƒãƒ—æƒ…å ±
 	ObjectT   _pClipLeft, _pClipTop, _pClipWidth, _pClipHeight;
 	GeometryT _clipLeft, _clipTop, _clipWidth, _clipHeight;
 };

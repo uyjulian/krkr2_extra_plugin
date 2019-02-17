@@ -1,44 +1,44 @@
 Title: addFont plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-�g���g���Ńv���C�x�[�g�ȃt�H���g�t�@�C��(.ttf/.otf)��
-�������߂̃v���O�C���ł��B
+吉里吉里でプライベートなフォントファイル(.ttf/.otf)を
+扱うためのプラグインです。
 
-�����
-  Win2000 �ȍ~
-  9X �n�ł͗��p�ł��܂���
+動作環境
+  Win2000 以降
+  9X 系では利用できません
 
-���g����
+●使い方
 
 /**
- * @param fontfilename �t�H���g�t�@�C����
- * @param extract �e���|�����W�J���邩�ǂ���
- * @return void:�t�@�C�����J���̂Ɏ��s 
- *  0:�t�H���g�o�^�Ɏ��s ���l:�o�^�����t�H���g�̐�
+ * @param fontfilename フォントファイル名
+ * @param extract テンポラリ展開するかどうか
+ * @return void:ファイルを開くのに失敗 
+ *  0:フォント登録に失敗 数値:登録したフォントの数
  */
 System.addFont(fontfilename, extract);
 
-�A�[�J�C�u�O�ɂ���t�H���g�̏ꍇ:
- ���̂܂܃V�X�e���t�H���g�Ɠ��l�ɗ��p���邱�Ƃ��ł��܂��B
+アーカイブ外にあるフォントの場合:
+ そのままシステムフォントと同様に利用することができます。
 
-�A�[�J�C�u���ɂ���t�H���g�̏ꍇ:
+アーカイブ内にあるフォントの場合:
 
- extract == true �̏ꍇ
-  ��������e���|�����̈�Ƀt�H���g�t�@�C����W�J���܂��B
- ���̂܂܃V�X�e���t�H���g�Ɠ��l�ɗ��p���邱�Ƃ��ł��܂��B
+ extract == true の場合
+  いったんテンポラリ領域にフォントファイルを展開します。
+ そのままシステムフォントと同様に利用することができます。
 
- extract == false �̏ꍇ
-  �t�H���g�̓������W�J����܂��B
-�@���̎��A�t�H���g�͗񋓑ΏۂɂȂ�܂���B
-  ���̂��߁AFont.doUserSelect �ŎQ�Ƃł��Ȃ����Afont.face ��
-  ���O���w�肵�Ă��t�H���g���Q�Ƃ��邱�Ƃ��ł��܂���B
+ extract == false の場合
+  フォントはメモリ展開されます。
+　この時、フォントは列挙対象になりません。
+  このため、Font.doUserSelect で参照できない他、font.face に
+  名前を指定してもフォントを参照することができません。
 
-  �ŐV�J���n�g���g���ł́Afont.face = ",DF�S�V�b�N"; 
-  �ƁA�J���}���ŏ��ɂ���邱�Ƃŋ����I�Ƀt�H���g�Q��
-  ������Ƃ��ł��܂��B
+  最新開発系吉里吉里では、font.face = ",DFゴシック"; 
+  と、カンマを最初にいれることで強制的にフォント参照
+  させるとができます。
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

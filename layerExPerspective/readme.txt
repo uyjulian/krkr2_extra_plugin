@@ -1,28 +1,28 @@
 Title: csvparser plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚É“§Ž‹•ÏŒ`‚ðs‚¤ƒRƒs[–½—ß‚ðŠg’£‚µ‚Ü‚·
+å‰é‡Œå‰é‡Œã«é€è¦–å¤‰å½¢ã‚’è¡Œã†ã‚³ãƒ”ãƒ¼å‘½ä»¤ã‚’æ‹¡å¼µã—ã¾ã™
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒRƒ“ƒpƒCƒ‹•û–@
+â—ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ–¹æ³•
 
-‚±‚ÌƒtƒHƒ‹ƒ_‚Ìƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹‚É‚ÍˆÈ‰º‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ª•K—v‚É‚È‚è‚Ü‚·
+ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«ã¯ä»¥ä¸‹ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå¿…è¦ã«ãªã‚Šã¾ã™
 
-EAGG 2.3
+ãƒ»AGG 2.3
 
   Anti Grain Geometry 
 
-@(1) ƒJƒŒƒ“ƒgƒtƒHƒ‹ƒ_‚É agg23/ ‚Æ‚µ‚Ä”z’u‚µ‚Ü‚·
-@   ¦•W€‚ÌWIN—p”z•z‚ð“WŠJ‚µ‚½‚¾‚¯‚Ì‚à‚Ì‚Å‚·
+ã€€(1) ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ã‚©ãƒ«ãƒ€ã« agg23/ ã¨ã—ã¦é…ç½®ã—ã¾ã™
+ã€€   â€»æ¨™æº–ã®WINç”¨é…å¸ƒã‚’å±•é–‹ã—ãŸã ã‘ã®ã‚‚ã®ã§ã™
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-Agg 2.3 ‚Í Agg “ÆŽ©ƒ‰ƒCƒZƒ“ƒX‚Å”z•z‚³‚ê‚Ä‚¢‚Ü‚·
+Agg 2.3 ã¯ Agg ç‹¬è‡ªãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã§é…å¸ƒã•ã‚Œã¦ã„ã¾ã™
 
 The Anti-Grain Geometry Project
 A high quality rendering engine for C++
@@ -36,4 +36,4 @@ is granted provided this copyright notice appears in all copies.
 This software is provided "as is" without express or implied
 warranty, and with no claim as to its suitability for any purpose.
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“Ž©‘Ì‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³è‡ªä½“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

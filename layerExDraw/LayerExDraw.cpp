@@ -4,11 +4,11 @@
 #include <vector>
 #include <stdio.h>
 
-// GDI+ Šî–{î•ñ
+// GDI+ åŸºæœ¬æƒ…å ±
 static GdiplusStartupInput gdiplusStartupInput;
 static ULONG_PTR gdiplusToken;
 
-/// ƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒgî•ñ
+/// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±
 static PrivateFontCollection *privateFontCollection = NULL;
 static vector<void*> fontDatas;
 
@@ -24,17 +24,17 @@ inline static PointF ToPointF(POINTFX *p)
   return PointF(ToFloat(p->x), -ToFloat(p->y));
 }
 
-// GDI+ ‰Šú‰»
+// GDI+ åˆæœŸåŒ–
 void initGdiPlus()
 {
 	// Initialize GDI+.
 	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 }
 
-// GDI+ I—¹
+// GDI+ çµ‚äº†
 void deInitGdiPlus()
 {
-	// ƒtƒHƒ“ƒgƒf[ƒ^‚Ì‰ğ•ú
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	delete privateFontCollection;
 	vector<void*>::const_iterator i = fontDatas.begin();
 	while (i != fontDatas.end()) {
@@ -46,31 +46,31 @@ void deInitGdiPlus()
 }
 
 /**
- * ‰æ‘œ“Ç‚İ‚İˆ—
- * @param name ƒtƒ@ƒCƒ‹–¼
- * @return ‰æ‘œî•ñ
+ * ç”»åƒèª­ã¿è¾¼ã¿å‡¦ç†
+ * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ç”»åƒæƒ…å ±
  */
 Image *loadImage(const tjs_char *name)
 {
 	Image *image = NULL;
 	ttstr filename = TVPGetPlacedPath(name);
 	if (filename.length()) {
-		/* ƒtƒ@ƒCƒ‹‚ğˆ¬‚Á‚½‚Ü‚Ü‚É‚È‚é‚Ì‚Å”p~
+		/* ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¡ã£ãŸã¾ã¾ã«ãªã‚‹ã®ã§å»ƒæ­¢
 		ttstr localname(TVPGetLocallyAccessibleName(filename));
 		if (localname.length()) {
-			// Àƒtƒ@ƒCƒ‹‚ª‘¶İ
+			// å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨
 			image = Image::FromFile(localname.c_str(),false);
 		}
 		else
 		 */
 		{
-			// ’¼Ú‹g—¢‹g—¢‚©‚ç‚à‚ç‚Á‚½ƒXƒgƒŠ[ƒ€‚ğg‚¤‚Æ‚È‚º‚©wmf/emf‚ÅOutOfMemory
-			// ‚È‚éê‡‚ª‚ ‚é‚æ‚¤‚È‚Ì‚Å‚¢‚Á‚½‚ñƒƒ‚ƒŠ‚Éƒƒ‚ƒŠ‚É“WŠJ‚µ‚Ä‚©‚çg‚¤
+			// ç›´æ¥å‰é‡Œå‰é‡Œã‹ã‚‰ã‚‚ã‚‰ã£ãŸã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ä½¿ã†ã¨ãªãœã‹wmf/emfã§OutOfMemory
+			// ãªã‚‹å ´åˆãŒã‚ã‚‹ã‚ˆã†ãªã®ã§ã„ã£ãŸã‚“ãƒ¡ãƒ¢ãƒªã«ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã—ã¦ã‹ã‚‰ä½¿ã†
 			IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
 			if (in) {
 				STATSTG stat;
 				in->Stat(&stat, STATFLAG_NONAME);
-				// ƒTƒCƒY‚ ‚Ó‚ê–³‹’ˆÓ
+				// ã‚µã‚¤ã‚ºã‚ãµã‚Œç„¡è¦–æ³¨æ„
 				ULONG size = (ULONG)stat.cbSize.QuadPart;
 				HGLOBAL hBuffer = ::GlobalAlloc(GMEM_MOVEABLE, size);
 				if (hBuffer)	{
@@ -106,7 +106,7 @@ RectF *getBounds(Image *image)
 	REAL dpix = image->GetHorizontalResolution();
 	REAL dpiy = image->GetVerticalResolution();
 
-	// ƒsƒNƒZƒ‹‚É•ÏŠ·
+	// ãƒ”ã‚¯ã‚»ãƒ«ã«å¤‰æ›
 	REAL x, y, width, height;
 	switch (srcUnit) {
 	case UnitPoint:		// 3 -- Each unit is a printer's point, or 1/72 inch.
@@ -144,12 +144,12 @@ RectF *getBounds(Image *image)
 }
 
 // --------------------------------------------------------
-// ƒtƒHƒ“ƒgî•ñ
+// ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±
 // --------------------------------------------------------
 
 /**
- * ƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì’Ç‰Á
- * @param fontFileName ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹–¼
+ * ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®è¿½åŠ 
+ * @param fontFileName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
  */
 void
 GdiPlus::addPrivateFont(const tjs_char *fontFileName)
@@ -161,16 +161,16 @@ GdiPlus::addPrivateFont(const tjs_char *fontFileName)
 	if (filename.length()) {
 		ttstr localname(TVPGetLocallyAccessibleName(filename));
 		if (localname.length()) {
-			// Àƒtƒ@ƒCƒ‹‚ª‘¶İ
+			// å®Ÿãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨
 			privateFontCollection->AddFontFile(localname.c_str());
 			return;
 		} else {
-			// ƒƒ‚ƒŠ‚Éƒ[ƒh‚µ‚Ä“WŠJ
+			// ãƒ¡ãƒ¢ãƒªã«ãƒ­ãƒ¼ãƒ‰ã—ã¦å±•é–‹
 			IStream *in = TVPCreateIStream(filename, TJS_BS_READ);
 			if (in) {
 				STATSTG stat;
 				in->Stat(&stat, STATFLAG_NONAME);
-				// ƒTƒCƒY‚ ‚Ó‚ê–³‹’ˆÓ
+				// ã‚µã‚¤ã‚ºã‚ãµã‚Œç„¡è¦–æ³¨æ„
 				ULONG size = (ULONG)stat.cbSize.QuadPart;
 				char *data = new char[size];
 				if (in->Read(data, size, &size) == S_OK) {
@@ -188,9 +188,9 @@ GdiPlus::addPrivateFont(const tjs_char *fontFileName)
 }
 
 /**
- * ”z—ñ‚ÉƒtƒHƒ“ƒg‚Ìƒtƒ@ƒ~ƒŠ[–¼‚ğŠi”[
- * @param array Ši”[æ”z—ñ
- * @param fontCollection ƒtƒHƒ“ƒg–¼‚ğæ“¾‚·‚éŒ³‚Ì FontCollection
+ * é…åˆ—ã«ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ•ã‚¡ãƒŸãƒªãƒ¼åã‚’æ ¼ç´
+ * @param array æ ¼ç´å…ˆé…åˆ—
+ * @param fontCollection ãƒ•ã‚©ãƒ³ãƒˆåã‚’å–å¾—ã™ã‚‹å…ƒã® FontCollection
  */
 static void addFontFamilyName(iTJSDispatch2 *array, FontCollection *fontCollection)
 {
@@ -210,8 +210,8 @@ static void addFontFamilyName(iTJSDispatch2 *array, FontCollection *fontCollecti
 }
 
 /**
- * ƒtƒHƒ“ƒgˆê——‚Ìæ“¾
- * @param privateOnly true ‚È‚çƒvƒ‰ƒCƒx[ƒgƒtƒHƒ“ƒg‚Ì‚İæ“¾
+ * ãƒ•ã‚©ãƒ³ãƒˆä¸€è¦§ã®å–å¾—
+ * @param privateOnly true ãªã‚‰ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®ã¿å–å¾—
  */
 tTJSVariant
 GdiPlus::getFontList(bool privateOnly)
@@ -230,19 +230,19 @@ GdiPlus::getFontList(bool privateOnly)
 }
 
 // --------------------------------------------------------
-// ƒtƒHƒ“ƒgî•ñ
+// ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±
 // --------------------------------------------------------
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 FontInfo::FontInfo() : fontFamily(NULL), emSize(12), style(0), gdiPlusUnsupportedFont(false), forceSelfPathDraw(false), propertyModified(true) {}
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
- * @param familyName ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[
- * @param emSize ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
- * @param style ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * @param familyName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼
+ * @param emSize ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+ * @param style ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
  */
 FontInfo::FontInfo(const tjs_char *familyName, REAL emSize, INT style) : fontFamily(NULL), gdiPlusUnsupportedFont(false), forceSelfPathDraw(false), propertyModified(true)
 {
@@ -252,7 +252,7 @@ FontInfo::FontInfo(const tjs_char *familyName, REAL emSize, INT style) : fontFam
 }
 
 /**
- * ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 FontInfo::FontInfo(const FontInfo &orig)
 {
@@ -262,7 +262,7 @@ FontInfo::FontInfo(const FontInfo &orig)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 FontInfo::~FontInfo()
 {
@@ -270,7 +270,7 @@ FontInfo::~FontInfo()
 }
 
 /**
- * ƒtƒHƒ“ƒgî•ñ‚ÌƒNƒŠƒA
+ * ãƒ•ã‚©ãƒ³ãƒˆæƒ…å ±ã®ã‚¯ãƒªã‚¢
  */
 void
 FontInfo::clear()
@@ -283,7 +283,7 @@ FontInfo::clear()
 }
 
 /**
- * ƒtƒHƒ“ƒg‚Ìw’è
+ * ãƒ•ã‚©ãƒ³ãƒˆã®æŒ‡å®š
  */
 void
 FontInfo::setFamilyName(const tjs_char *familyName)
@@ -442,7 +442,7 @@ FontInfo::getLineSpacing() const
 }
 
 // --------------------------------------------------------
-// ƒAƒsƒAƒ‰ƒ“ƒXî•ñ
+// ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹æƒ…å ±
 // --------------------------------------------------------
 
 Appearance::Appearance() {}
@@ -453,14 +453,14 @@ Appearance::~Appearance()
 }
 
 /**
- * î•ñ‚ÌƒNƒŠƒA
+ * æƒ…å ±ã®ã‚¯ãƒªã‚¢
  */
 void
 Appearance::clear()
 {
 	drawInfos.clear();
 
-	// customLineCaps‚àíœ
+	// customLineCapsã‚‚å‰Šé™¤
 	vector<CustomLineCap*>::const_iterator i = customLineCaps.begin();
 	while (i != customLineCaps.end()) {
 		delete *i;
@@ -470,18 +470,18 @@ Appearance::clear()
 }
 
 // --------------------------------------------------------
-// ŠeŒ^•ÏŠ·ˆ—
+// å„å‹å¤‰æ›å‡¦ç†
 // --------------------------------------------------------
 
 extern bool IsArray(const tTJSVariant &var);
 
 /**
- * À•Wî•ñ‚Ì¶¬
+ * åº§æ¨™æƒ…å ±ã®ç”Ÿæˆ
  */
 extern PointF getPoint(const tTJSVariant &var);
 
 /**
- * “_‚Ì”z—ñ‚ğæ“¾
+ * ç‚¹ã®é…åˆ—ã‚’å–å¾—
  */
 void getPoints(const tTJSVariant &var, vector<PointF> &points)
 {
@@ -514,12 +514,12 @@ static void getPoints(ncbPropAccessor &info, const tjs_char *n, vector<PointF> &
 // -----------------------------
 
 /**
- * ‹éŒ`î•ñ‚Ì¶¬
+ * çŸ©å½¢æƒ…å ±ã®ç”Ÿæˆ
  */
 extern RectF getRect(const tTJSVariant &var);
 
 /**
- * ‹éŒ`‚Ì”z—ñ‚ğæ“¾
+ * çŸ©å½¢ã®é…åˆ—ã‚’å–å¾—
  */
 void getRects(const tTJSVariant &var, vector<RectF> &rects)
 {
@@ -536,7 +536,7 @@ void getRects(const tTJSVariant &var, vector<RectF> &rects)
 // -----------------------------
 
 /**
- * À”‚Ì”z—ñ‚ğæ“¾
+ * å®Ÿæ•°ã®é…åˆ—ã‚’å–å¾—
  */
 static void getReals(const tTJSVariant &var, vector<REAL> &points)
 {
@@ -566,7 +566,7 @@ static void getReals(ncbPropAccessor &info, const tjs_char *n, vector<REAL> &poi
 // -----------------------------
 
 /**
- * F‚Ì”z—ñ‚ğæ“¾
+ * è‰²ã®é…åˆ—ã‚’å–å¾—
  */
 static void getColors(const tTJSVariant &var, vector<Color> &colors)
 {
@@ -666,7 +666,7 @@ void commonBrushParameter(ncbPropAccessor &info, T *brush)
 }
 
 /**
- * ƒuƒ‰ƒV‚Ì¶¬
+ * ãƒ–ãƒ©ã‚·ã®ç”Ÿæˆ
  */
 Brush* createBrush(const tTJSVariant colorOrBrush)
 {
@@ -674,7 +674,7 @@ Brush* createBrush(const tTJSVariant colorOrBrush)
 	if (colorOrBrush.Type() != tvtObject) {
 		brush = new SolidBrush(Color((tjs_int)colorOrBrush));
 	} else {
-		// í•Ê‚²‚Æ‚Éì‚è•ª‚¯‚é
+		// ç¨®åˆ¥ã”ã¨ã«ä½œã‚Šåˆ†ã‘ã‚‹
 		ncbPropAccessor info(colorOrBrush);
 		BrushType type = (BrushType)info.getIntValue(L"type", BrushTypeSolidColor);
 		switch (type) {
@@ -711,7 +711,7 @@ Brush* createBrush(const tTJSVariant colorOrBrush)
 				WrapMode wrapMode = (WrapMode)info.getIntValue(L"wrapMode", WrapModeTile);
 				pbrush = new PathGradientBrush(&points[0], (int)points.size(), wrapMode);
 
-				// ‹¤’Êƒpƒ‰ƒ[ƒ^
+				// å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 				commonBrushParameter(info, pbrush);
 
 				tTJSVariant var;
@@ -759,12 +759,12 @@ Brush* createBrush(const tTJSVariant colorOrBrush)
 				} else if (info.checkVariant(L"rect", var)) {
 					RectF rect = getRect(var);
 					if (info.HasValue(L"angle")) {
-						// ƒAƒ“ƒOƒ‹w’è‚ª‚ ‚éê‡
+						// ã‚¢ãƒ³ã‚°ãƒ«æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 						lbrush = new LinearGradientBrush(rect, color1, color2,
 														 (REAL)info.getRealValue(L"angle", 0),
 														 (BOOL)info.getIntValue(L"isAngleScalable", 0));
 					} else {
-						// –³‚¢ê‡‚Íƒ‚[ƒh‚ğQÆ
+						// ç„¡ã„å ´åˆã¯ãƒ¢ãƒ¼ãƒ‰ã‚’å‚ç…§
 						lbrush = new LinearGradientBrush(rect, color1, color2,
 														 (LinearGradientMode)info.getIntValue(L"mode", LinearGradientModeHorizontal));
 					}
@@ -772,7 +772,7 @@ Brush* createBrush(const tTJSVariant colorOrBrush)
 					TVPThrowExceptionMessage(L"must set point1,2 or rect");
 				}
 
-				// ‹¤’Êƒpƒ‰ƒ[ƒ^
+				// å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 				commonBrushParameter(info, lbrush);
 
 				// SetWrapMode
@@ -791,10 +791,10 @@ Brush* createBrush(const tTJSVariant colorOrBrush)
 }
 
 /**
- * ƒuƒ‰ƒV‚Ì’Ç‰Á
- * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
- * @param ox •\¦ƒIƒtƒZƒbƒgX
- * @param oy •\¦ƒIƒtƒZƒbƒgY
+ * ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
+ * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+ * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+ * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
  */
 void
 Appearance::addBrush(tTJSVariant colorOrBrush, REAL ox, REAL oy)
@@ -803,11 +803,11 @@ Appearance::addBrush(tTJSVariant colorOrBrush, REAL ox, REAL oy)
 }
 
 /**
- * ƒyƒ“‚Ì’Ç‰Á
- * @param colorOrBrush ARGBFw’è‚Ü‚½‚Íƒuƒ‰ƒVî•ñi«‘j
- * @param widthOrOption ƒyƒ“•‚Ü‚½‚Íƒyƒ“î•ñi«‘j
- * @param ox •\¦ƒIƒtƒZƒbƒgX
- * @param oy •\¦ƒIƒtƒZƒbƒgY
+ * ãƒšãƒ³ã®è¿½åŠ 
+ * @param colorOrBrush ARGBè‰²æŒ‡å®šã¾ãŸã¯ãƒ–ãƒ©ã‚·æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+ * @param widthOrOption ãƒšãƒ³å¹…ã¾ãŸã¯ãƒšãƒ³æƒ…å ±ï¼ˆè¾æ›¸ï¼‰
+ * @param ox è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+ * @param oy è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
  */
 void
 Appearance::addPen(tTJSVariant colorOrBrush, tTJSVariant widthOrOption, REAL ox, REAL oy)
@@ -931,14 +931,14 @@ Appearance::getLineCap(tTJSVariant &in, LineCap &cap, CustomLineCap* &custom, RE
 
 
 // --------------------------------------------------------
-// ƒtƒHƒ“ƒg•`‰æŒn
+// ãƒ•ã‚©ãƒ³ãƒˆæç”»ç³»
 // --------------------------------------------------------
 
 void
 LayerExDraw::updateRect(RectF &rect)
 {
 	if (updateWhenDraw) {
-		// XVˆ—
+		// æ›´æ–°å‡¦ç†
 		tTJSVariant  vars [4] = { rect.X, rect.Y, rect.Width, rect.Height };
 		tTJSVariant *varsp[4] = { vars, vars+1, vars+2, vars+3 };
 		_pUpdate(4, varsp);
@@ -946,7 +946,7 @@ LayerExDraw::updateRect(RectF &rect)
 }
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerExDraw::LayerExDraw(DispatchT obj)
 	: layerExBase(obj), width(-1), height(-1), pitch(0), buffer(NULL), bitmap(NULL), graphics(NULL),
@@ -959,7 +959,7 @@ LayerExDraw::LayerExDraw(DispatchT obj)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 LayerExDraw::~LayerExDraw()
 {
@@ -976,7 +976,7 @@ void
 LayerExDraw::reset()
 {
 	layerExBase::reset();
-	// •ÏX‚³‚ê‚Ä‚¢‚éê‡‚Í‚Â‚­‚è‚È‚¨‚µ
+	// å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã¤ãã‚ŠãªãŠã—
 	if (!(graphics &&
 		  width  == _width &&
 		  height == _height &&
@@ -994,7 +994,7 @@ LayerExDraw::reset()
 		graphics->SetTransform(&calcTransform);
 		clipWidth = clipHeight = -1;
 	}
-	// ƒNƒŠƒbƒsƒ“ƒO—Ìˆæ•ÏX‚Ìê‡‚Íİ’è‚µ‚È‚¨‚µ
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°é ˜åŸŸå¤‰æ›´ã®å ´åˆã¯è¨­å®šã—ãªãŠã—
 	if (_clipLeft != clipLeft ||
 		_clipTop  != clipTop  ||
 		_clipWidth != clipWidth ||
@@ -1019,8 +1019,8 @@ LayerExDraw::updateViewTransform()
 }
 
 /**
- * •\¦ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚Ìw’è
- * @param matrix ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€ƒ}ƒgƒŠƒbƒNƒX
+ * è¡¨ç¤ºãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã®æŒ‡å®š
+ * @param matrix ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
  */
 void
 LayerExDraw::setViewTransform(const Matrix *trans)
@@ -1073,8 +1073,8 @@ LayerExDraw::updateTransform()
 }
 
 /**
- * ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚Ìw’è
- * @param matrix ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€ƒ}ƒgƒŠƒbƒNƒX
+ * ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã®æŒ‡å®š
+ * @param matrix ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
  */
 void
 LayerExDraw::setTransform(const Matrix *trans)
@@ -1115,8 +1115,8 @@ LayerExDraw::translateTransform(REAL dx, REAL dy)
 }
 
 /**
- * ‰æ–Ê‚ÌÁ‹
- * @param argb Á‹F
+ * ç”»é¢ã®æ¶ˆå»
+ * @param argb æ¶ˆå»è‰²
  */
 void
 LayerExDraw::clear(ARGB argb)
@@ -1130,17 +1130,17 @@ LayerExDraw::clear(ARGB argb)
 }
 
 /**
- * ƒpƒX‚Ì—Ìˆæî•ñ‚ğæ“¾
- * @param app •\¦•\Œ»
- * @param path •`‰æ‚·‚éƒpƒX
+ * ãƒ‘ã‚¹ã®é ˜åŸŸæƒ…å ±ã‚’å–å¾—
+ * @param app è¡¨ç¤ºè¡¨ç¾
+ * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
  */
 RectF
 LayerExDraw::getPathExtents(const Appearance *app, const GraphicsPath *path)
 {
-	// —Ìˆæ‹L˜^—p
+	// é ˜åŸŸè¨˜éŒ²ç”¨
 	RectF rect;
 
-	// •`‰æî•ñ‚ğg‚Á‚ÄŸX•`‰æ
+	// æç”»æƒ…å ±ã‚’ä½¿ã£ã¦æ¬¡ã€…æç”»
 	bool first = true;
 	vector<Appearance::DrawInfo>::const_iterator i = app->drawInfos.begin();
 	while (i != app->drawInfos.end()) {
@@ -1199,18 +1199,18 @@ LayerExDraw::fill(Graphics *graphics, const Brush *brush, const Matrix *matrix, 
 }
 
 /**
- * ƒpƒX‚ğ•`‰æ‚·‚é
- * @param app •\¦•\Œ»
- * @param path •`‰æ‚·‚éƒpƒX
- * @return XV—Ìˆæî•ñ
+ * ãƒ‘ã‚¹ã‚’æç”»ã™ã‚‹
+ * @param app è¡¨ç¤ºè¡¨ç¾
+ * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::_drawPath(const Appearance *app, const GraphicsPath *path)
 {
-	// —Ìˆæ‹L˜^—p
+	// é ˜åŸŸè¨˜éŒ²ç”¨
 	RectF rect;
 
-	// •`‰æî•ñ‚ğg‚Á‚ÄŸX•`‰æ
+	// æç”»æƒ…å ±ã‚’ä½¿ã£ã¦æ¬¡ã€…æç”»
 	bool first = true;
 	vector<Appearance::DrawInfo>::const_iterator i = app->drawInfos.begin();
 	while (i != app->drawInfos.end()) {
@@ -1259,9 +1259,9 @@ LayerExDraw::_drawPath(const Appearance *app, const GraphicsPath *path)
 }
 
 /**
- * ƒpƒX‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param path ƒpƒX
+ * ãƒ‘ã‚¹ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param path ãƒ‘ã‚¹
  */
 RectF
 LayerExDraw::drawPath(const Appearance *app, const Path *path)
@@ -1270,14 +1270,14 @@ LayerExDraw::drawPath(const Appearance *app, const Path *path)
 }
 
 /**
- * ‰~ŒÊ‚Ì•`‰æ
- * @param x ¶ãÀ•W
- * @param y ¶ãÀ•W
- * @param width ‰¡•
- * @param height c•
- * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
- * @param sweepAngle •`‰æŠp“x
- * @return XV—Ìˆæî•ñ
+ * å††å¼§ã®æç”»
+ * @param x å·¦ä¸Šåº§æ¨™
+ * @param y å·¦ä¸Šåº§æ¨™
+ * @param width æ¨ªå¹…
+ * @param height ç¸¦å¹…
+ * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+ * @param sweepAngle æç”»è§’åº¦
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawArc(const Appearance *app, REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle)
@@ -1288,8 +1288,8 @@ LayerExDraw::drawArc(const Appearance *app, REAL x, REAL y, REAL width, REAL hei
 }
 
 /**
- * ƒxƒWƒF‹Èü‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x1
  * @param y1
  * @param x2
@@ -1298,7 +1298,7 @@ LayerExDraw::drawArc(const Appearance *app, REAL x, REAL y, REAL width, REAL hei
  * @param y3
  * @param x4
  * @param y4
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawBezier(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y2, REAL x3, REAL y3, REAL x4, REAL y4)
@@ -1309,10 +1309,10 @@ LayerExDraw::drawBezier(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y
 }
 
 /**
- * ˜A‘±ƒxƒWƒF‹Èü‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * é€£ç¶šãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawBeziers(const Appearance *app, tTJSVariant points)
@@ -1325,10 +1325,10 @@ LayerExDraw::drawBeziers(const Appearance *app, tTJSVariant points)
 }
 
 /**
- * Closed cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * Closed cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawClosedCurve(const Appearance *app, tTJSVariant points)
@@ -1341,11 +1341,11 @@ LayerExDraw::drawClosedCurve(const Appearance *app, tTJSVariant points)
 }
 
 /**
- * Closed cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * Closed cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @pram tension tension
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawClosedCurve2(const Appearance *app, tTJSVariant points, REAL tension)
@@ -1358,10 +1358,10 @@ LayerExDraw::drawClosedCurve2(const Appearance *app, tTJSVariant points, REAL te
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawCurve(const Appearance *app, tTJSVariant points)
@@ -1374,11 +1374,11 @@ LayerExDraw::drawCurve(const Appearance *app, tTJSVariant points)
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @parma tension tension
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawCurve2(const Appearance *app, tTJSVariant points, REAL tension)
@@ -1391,13 +1391,13 @@ LayerExDraw::drawCurve2(const Appearance *app, tTJSVariant points, REAL tension)
 }
 
 /**
- * cardinal spline ‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
+ * cardinal spline ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
  * @param offset
  * @param numberOfSegments
  * @param tension tension
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawCurve3(const Appearance *app, tTJSVariant points, int offset, int numberOfSegments, REAL tension)
@@ -1410,14 +1410,14 @@ LayerExDraw::drawCurve3(const Appearance *app, tTJSVariant points, int offset, i
 }
 
 /**
- * ‰~‚Ì•`‰æ
- * @param x ¶ãÀ•W
- * @param y ¶ãÀ•W
- * @param width ‰¡•
- * @param height c•
- * @param startAngle Œv•ûŒü‰~ŒÊŠJnˆÊ’u
- * @param sweepAngle •`‰æŠp“x
- * @return XV—Ìˆæî•ñ
+ * å††éŒã®æç”»
+ * @param x å·¦ä¸Šåº§æ¨™
+ * @param y å·¦ä¸Šåº§æ¨™
+ * @param width æ¨ªå¹…
+ * @param height ç¸¦å¹…
+ * @param startAngle æ™‚è¨ˆæ–¹å‘å††å¼§é–‹å§‹ä½ç½®
+ * @param sweepAngle æç”»è§’åº¦
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawPie(const Appearance *app, REAL x, REAL y, REAL width, REAL height, REAL startAngle, REAL sweepAngle)
@@ -1428,13 +1428,13 @@ LayerExDraw::drawPie(const Appearance *app, REAL x, REAL y, REAL width, REAL hei
 }
 
 /**
- * ‘È‰~‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * æ¥•å††ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x
  * @param y
  * @param width
  * @param height
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawEllipse(const Appearance *app, REAL x, REAL y, REAL width, REAL height)
@@ -1445,13 +1445,13 @@ LayerExDraw::drawEllipse(const Appearance *app, REAL x, REAL y, REAL width, REAL
 }
 
 /**
- * ü•ª‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param x1 n“_XÀ•W
- * @param y1 n“_YÀ•W
- * @param x2 I“_XÀ•W
- * @param y2 I“_YÀ•W
- * @return XV—Ìˆæî•ñ
+ * ç·šåˆ†ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param x1 å§‹ç‚¹Xåº§æ¨™
+ * @param y1 å§‹ç‚¹Yåº§æ¨™
+ * @param x2 çµ‚ç‚¹Xåº§æ¨™
+ * @param y2 çµ‚ç‚¹Yåº§æ¨™
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawLine(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y2)
@@ -1462,10 +1462,10 @@ LayerExDraw::drawLine(const Appearance *app, REAL x1, REAL y1, REAL x2, REAL y2)
 }
 
 /**
- * ˜A‘±ü•ª‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * é€£ç¶šç·šåˆ†ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawLines(const Appearance *app, tTJSVariant points)
@@ -1478,10 +1478,10 @@ LayerExDraw::drawLines(const Appearance *app, tTJSVariant points)
 }
 
 /**
- * ‘½ŠpŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param points “_‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * å¤šè§’å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param points ç‚¹ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawPolygon(const Appearance *app, tTJSVariant points)
@@ -1495,13 +1495,13 @@ LayerExDraw::drawPolygon(const Appearance *app, tTJSVariant points)
 
 
 /**
- * ‹éŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
+ * çŸ©å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
  * @param x
  * @param y
  * @param width
  * @param height
- * @return XV—Ìˆæî•ñ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawRectangle(const Appearance *app, REAL x, REAL y, REAL width, REAL height)
@@ -1513,10 +1513,10 @@ LayerExDraw::drawRectangle(const Appearance *app, REAL x, REAL y, REAL width, RE
 }
 
 /**
- * •¡”‹éŒ`‚Ì•`‰æ
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param rects ‹éŒ`î•ñ‚Ì”z—ñ
- * @return XV—Ìˆæî•ñ
+ * è¤‡æ•°çŸ©å½¢ã®æç”»
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param rects çŸ©å½¢æƒ…å ±ã®é…åˆ—
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawRectangles(const Appearance *app, tTJSVariant rects)
@@ -1529,13 +1529,13 @@ LayerExDraw::drawRectangles(const Appearance *app, tTJSVariant rects)
 }
 
 /**
- * •¶š—ñ‚ÌƒpƒXƒx[ƒX‚Å‚Ì•`‰æ
- * @param font ƒtƒHƒ“ƒg
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param x •`‰æˆÊ’uX
- * @param y •`‰æˆÊ’uY
- * @param text •`‰æƒeƒLƒXƒg
- * @return XV—Ìˆæî•ñ
+ * æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ãƒ™ãƒ¼ã‚¹ã§ã®æç”»
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param x æç”»ä½ç½®X
+ * @param y æç”»ä½ç½®Y
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawPathString(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text)
@@ -1543,7 +1543,7 @@ LayerExDraw::drawPathString(const FontInfo *font, const Appearance *app, REAL x,
   if (font->getSelfPathDraw())
     return drawPathString2(font, app, x, y, text);
 
-	// •¶š—ñ‚ÌƒpƒX‚ğ€”õ
+	// æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ã‚’æº–å‚™
 	GraphicsPath path;
 	path.AddString(text, -1, font->fontFamily, font->style, font->emSize, PointF(x, y), StringFormat::GenericDefault());
 	return _drawPath(app, &path);
@@ -1551,7 +1551,7 @@ LayerExDraw::drawPathString(const FontInfo *font, const Appearance *app, REAL x,
 
 static void transformRect(Matrix &calcTransform, RectF &rect)
 {
-	PointF points[4]; // Œ³À•W’l
+	PointF points[4]; // å…ƒåº§æ¨™å€¤
 	points[0].X = rect.X;
 	points[0].Y = rect.Y;
 	points[1].X = rect.X + rect.Width;
@@ -1560,7 +1560,7 @@ static void transformRect(Matrix &calcTransform, RectF &rect)
 	points[2].Y = rect.Y + rect.Height;
 	points[3].X = rect.X + rect.Width;
 	points[3].Y = rect.Y + rect.Height;
-	// •`‰æ—Ìˆæ‚ğÄŒvZ
+	// æç”»é ˜åŸŸã‚’å†è¨ˆç®—
 	calcTransform.TransformPoints(points, 4);
 	REAL minx = points[0].X;
 	REAL maxx = points[0].X;
@@ -1579,13 +1579,13 @@ static void transformRect(Matrix &calcTransform, RectF &rect)
 }
 
 /**
- * •¶š—ñ‚Ì•`‰æ
- * @param font ƒtƒHƒ“ƒg
- * @param app ƒAƒsƒAƒ‰ƒ“ƒXiƒuƒ‰ƒV‚Ì‚İQÆ‚³‚ê‚Ü‚·j
- * @param x •`‰æˆÊ’uX
- * @param y •`‰æˆÊ’uY
- * @param text •`‰æƒeƒLƒXƒg
- * @return XV—Ìˆæî•ñ
+ * æ–‡å­—åˆ—ã®æç”»
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹ï¼ˆãƒ–ãƒ©ã‚·ã®ã¿å‚ç…§ã•ã‚Œã¾ã™ï¼‰
+ * @param x æç”»ä½ç½®X
+ * @param y æç”»ä½ç½®Y
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawString(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text)
@@ -1598,24 +1598,24 @@ LayerExDraw::drawString(const FontInfo *font, const Appearance *app, REAL x, REA
 		metaGraphics->SetTextRenderingHint(textRenderingHint);
 	}
 
-	// —Ìˆæ‹L˜^—p
+	// é ˜åŸŸè¨˜éŒ²ç”¨
 	RectF rect;
-	// •`‰æƒtƒHƒ“ƒg
+	// æç”»ãƒ•ã‚©ãƒ³ãƒˆ
 	Font f(font->fontFamily, font->emSize, font->style, UnitPixel);
 
-	// •`‰æî•ñ‚ğg‚Á‚ÄŸX•`‰æ
+	// æç”»æƒ…å ±ã‚’ä½¿ã£ã¦æ¬¡ã€…æç”»
 	bool first = true;
 	vector<Appearance::DrawInfo>::const_iterator i = app->drawInfos.begin();
 	while (i != app->drawInfos.end()) {
 		if (i->info) {
-			if (i->type == 1) { // ƒuƒ‰ƒV‚Ì‚İ
+			if (i->type == 1) { // ãƒ–ãƒ©ã‚·ã®ã¿
 				Brush *brush = (Brush*)i->info;
 				PointF p(x + i->ox, y + i->oy);
 				graphics->DrawString(text, -1, &f, p, StringFormat::GenericDefault(), brush);
 				if (metaGraphics) {
 					metaGraphics->DrawString(text, -1, &f, p, StringFormat::GenericDefault(), brush);
 				}
-				// XV—ÌˆæŒvZ
+				// æ›´æ–°é ˜åŸŸè¨ˆç®—
 				if (first) {
 					graphics->MeasureString(text, -1, &f, p, StringFormat::GenericDefault(), &rect);
 					transformRect(calcTransform, rect);
@@ -1636,10 +1636,10 @@ LayerExDraw::drawString(const FontInfo *font, const Appearance *app, REAL x, REA
 }
 
 /**
- * •¶š—ñ‚Ì•`‰æ—Ìˆæî•ñ‚Ìæ“¾
- * @param font ƒtƒHƒ“ƒg
- * @param text •`‰æƒeƒLƒXƒg
- * @return •`‰æ—Ìˆæî•ñ
+ * æ–‡å­—åˆ—ã®æç”»é ˜åŸŸæƒ…å ±ã®å–å¾—
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æç”»é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::measureString(const FontInfo *font, const tjs_char *text)
@@ -1655,10 +1655,10 @@ LayerExDraw::measureString(const FontInfo *font, const tjs_char *text)
 }
 
 /**
- * •¶š—ñ‚ÉŠOÚ‚·‚é—Ìˆæî•ñ‚Ìæ“¾
- * @param font ƒtƒHƒ“ƒg
- * @param text •`‰æƒeƒLƒXƒg
- * @return —Ìˆæî•ñ‚Ì«‘ left, top, width, height
+ * æ–‡å­—åˆ—ã«å¤–æ¥ã™ã‚‹é ˜åŸŸæƒ…å ±ã®å–å¾—
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
  */
 RectF
 LayerExDraw::measureStringInternal(const FontInfo *font, const tjs_char *text)
@@ -1681,11 +1681,11 @@ LayerExDraw::measureStringInternal(const FontInfo *font, const tjs_char *text)
 }
 
 /**
- * ‰æ‘œ‚Ì•`‰æBƒRƒs[æ‚ÍŒ³‰æ‘œ‚Ì Bounds ‚ğ”z—¶‚µ‚½ˆÊ’uAƒTƒCƒY‚Í Pixel w’è‚É‚È‚è‚Ü‚·B
- * @param x ƒRƒs[æŒ´“_
- * @param y  ƒRƒs[æŒ´“_
- * @param src ƒRƒs[Œ³‰æ‘œ
- * @return XV—Ìˆæî•ñ
+ * ç”»åƒã®æç”»ã€‚ã‚³ãƒ”ãƒ¼å…ˆã¯å…ƒç”»åƒã® Bounds ã‚’é…æ…®ã—ãŸä½ç½®ã€ã‚µã‚¤ã‚ºã¯ Pixel æŒ‡å®šã«ãªã‚Šã¾ã™ã€‚
+ * @param x ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹
+ * @param y  ã‚³ãƒ”ãƒ¼å…ˆåŸç‚¹
+ * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawImage(REAL x, REAL y, Image *src) 
@@ -1701,15 +1701,15 @@ LayerExDraw::drawImage(REAL x, REAL y, Image *src)
 }
 
 /**
- * ‰æ‘œ‚Ì‹éŒ`ƒRƒs[
- * @param dleft ƒRƒs[æ¶’[
- * @param dtop  ƒRƒs[æã’[
- * @param src ƒRƒs[Œ³‰æ‘œ
- * @param sleft Œ³‹éŒ`‚Ì¶’[
- * @param stop  Œ³‹éŒ`‚Ìã’[
- * @param swidth Œ³‹éŒ`‚Ì‰¡•
- * @param sheight  Œ³‹éŒ`‚Ìc•
- * @return XV—Ìˆæî•ñ
+ * ç”»åƒã®çŸ©å½¢ã‚³ãƒ”ãƒ¼
+ * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+ * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+ * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+ * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+ * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+ * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+ * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawImageRect(REAL dleft, REAL dtop, Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight)
@@ -1718,17 +1718,17 @@ LayerExDraw::drawImageRect(REAL dleft, REAL dtop, Image *src, REAL sleft, REAL s
 }
 
 /**
- * ‰æ‘œ‚ÌŠg‘åk¬ƒRƒs[
- * @param dleft ƒRƒs[æ¶’[
- * @param dtop  ƒRƒs[æã’[
- * @param dwidth ƒRƒs[æ‚Ì‰¡•
- * @param dheight  ƒRƒs[æ‚Ìc•
- * @param src ƒRƒs[Œ³‰æ‘œ
- * @param sleft Œ³‹éŒ`‚Ì¶’[
- * @param stop  Œ³‹éŒ`‚Ìã’[
- * @param swidth Œ³‹éŒ`‚Ì‰¡•
- * @param sheight  Œ³‹éŒ`‚Ìc•
- * @return XV—Ìˆæî•ñ
+ * ç”»åƒã®æ‹¡å¤§ç¸®å°ã‚³ãƒ”ãƒ¼
+ * @param dleft ã‚³ãƒ”ãƒ¼å…ˆå·¦ç«¯
+ * @param dtop  ã‚³ãƒ”ãƒ¼å…ˆä¸Šç«¯
+ * @param dwidth ã‚³ãƒ”ãƒ¼å…ˆã®æ¨ªå¹…
+ * @param dheight  ã‚³ãƒ”ãƒ¼å…ˆã®ç¸¦å¹…
+ * @param src ã‚³ãƒ”ãƒ¼å…ƒç”»åƒ
+ * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+ * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+ * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+ * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawImageStretch(REAL dleft, REAL dtop, REAL dwidth, REAL dheight, Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight)
@@ -1737,20 +1737,20 @@ LayerExDraw::drawImageStretch(REAL dleft, REAL dtop, REAL dwidth, REAL dheight, 
 }
 
 /**
- * ‰æ‘œ‚ÌƒAƒtƒBƒ“•ÏŠ·ƒRƒs[
- * @param sleft Œ³‹éŒ`‚Ì¶’[
- * @param stop  Œ³‹éŒ`‚Ìã’[
- * @param swidth Œ³‹éŒ`‚Ì‰¡•
- * @param sheight  Œ³‹éŒ`‚Ìc•
- * @param affine ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚Ìí—Ş(true:•ÏŠ·s—ñ, false:À•Ww’è), 
- * @return XV—Ìˆæî•ñ
+ * ç”»åƒã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚³ãƒ”ãƒ¼
+ * @param sleft å…ƒçŸ©å½¢ã®å·¦ç«¯
+ * @param stop  å…ƒçŸ©å½¢ã®ä¸Šç«¯
+ * @param swidth å…ƒçŸ©å½¢ã®æ¨ªå¹…
+ * @param sheight  å…ƒçŸ©å½¢ã®ç¸¦å¹…
+ * @param affine ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç¨®é¡(true:å¤‰æ›è¡Œåˆ—, false:åº§æ¨™æŒ‡å®š), 
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF
 LayerExDraw::drawImageAffine(Image *src, REAL sleft, REAL stop, REAL swidth, REAL sheight, bool affine, REAL A, REAL B, REAL C, REAL D, REAL E, REAL F)
 {
 	RectF rect;
 	if (src) {
-		PointF points[4]; // Œ³À•W’l
+		PointF points[4]; // å…ƒåº§æ¨™å€¤
 		if (affine) {
 #define AFFINEX(x,y) A*x+C*y+E
 #define AFFINEY(x,y) B*x+D*y+F
@@ -1777,7 +1777,7 @@ LayerExDraw::drawImageAffine(Image *src, REAL sleft, REAL stop, REAL swidth, REA
 			metaGraphics->DrawImage(src, points, 3, sleft, stop, swidth, sheight, UnitPixel, NULL, NULL, NULL);
 		}
 
-		// •`‰æ—Ìˆæ‚ğæ“¾
+		// æç”»é ˜åŸŸã‚’å–å¾—
 		calcTransform.TransformPoints(points, 4);
 		REAL minx = points[0].X;
 		REAL maxx = points[0].X;
@@ -1814,7 +1814,7 @@ LayerExDraw::createRecord()
 }
 
 /**
- * ‹L˜^î•ñ‚Ì”jŠü
+ * è¨˜éŒ²æƒ…å ±ã®ç ´æ£„
  */
 void
 LayerExDraw::destroyRecord()
@@ -1839,7 +1839,7 @@ LayerExDraw::destroyRecord()
 
 
 /**
- * @param record •`‰æ“à—e‚ğ‹L˜^‚·‚é‚©‚Ç‚¤‚©
+ * @param record æç”»å†…å®¹ã‚’è¨˜éŒ²ã™ã‚‹ã‹ã©ã†ã‹
  */
 void
 LayerExDraw::setRecord(bool record)
@@ -1878,26 +1878,26 @@ LayerExDraw::redraw(Image *image)
 }
 
 /**
- * ‹L˜^“à—e‚ğ Image ‚Æ‚µ‚Äæ“¾
- * @return ¬Œ÷‚µ‚½‚ç true
+ * è¨˜éŒ²å†…å®¹ã‚’ Image ã¨ã—ã¦å–å¾—
+ * @return æˆåŠŸã—ãŸã‚‰ true
  */
 Image *
 LayerExDraw::getRecordImage()
 {
 	Image *image = NULL;
 	if (metafile) {
-		// ƒƒ^î•ñ‚ğæ“¾‚·‚é‚É‚Íˆê“x•Â‚¶‚é•K—v‚ª‚ ‚é
+		// ãƒ¡ã‚¿æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã«ã¯ä¸€åº¦é–‰ã˜ã‚‹å¿…è¦ãŒã‚ã‚‹
 		if (metaGraphics) {
 			delete metaGraphics;
 			metaGraphics = NULL;
 		}
 
-		//•Â‚¶‚½‚ ‚ÆŒp‘±‚·‚é‚½‚ß‚ÌÄ•`‰ææ‚ğ•Ê“r\’z
+		//é–‰ã˜ãŸã‚ã¨ç¶™ç¶šã™ã‚‹ãŸã‚ã®å†æç”»å…ˆã‚’åˆ¥é€”æ§‹ç¯‰
 		HGLOBAL oldBuffer = metaBuffer;
 		metaBuffer = NULL;
 		createRecord();
 		
-		// Ä•`‰æ
+		// å†æç”»
 		if (oldBuffer) {
 			IStream* pStream = NULL;
 			if(::CreateStreamOnHGlobal(oldBuffer, FALSE, &pStream) == S_OK) 	{
@@ -1914,12 +1914,12 @@ LayerExDraw::getRecordImage()
 }
 
 /**
- * ‹L˜^“à—e‚ÌŒ»İ‚Ì‰ğ‘œ“x‚Å‚ÌÄ•`‰æ
+ * è¨˜éŒ²å†…å®¹ã®ç¾åœ¨ã®è§£åƒåº¦ã§ã®å†æç”»
  */
 bool
 LayerExDraw::redrawRecord()
 {
-	// Ä•`‰æˆ—
+	// å†æç”»å‡¦ç†
 	Image *image = getRecordImage();
 	if (image) {
 		delete image;
@@ -1929,20 +1929,20 @@ LayerExDraw::redrawRecord()
 }
 
 /**
- * ‹L˜^“à—e‚Ì•Û‘¶
- * @param filename •Û‘¶ƒtƒ@ƒCƒ‹–¼
- * @return ¬Œ÷‚µ‚½‚ç true
+ * è¨˜éŒ²å†…å®¹ã®ä¿å­˜
+ * @param filename ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return æˆåŠŸã—ãŸã‚‰ true
  */
 bool
 LayerExDraw::saveRecord(const tjs_char *filename)
 {
 	bool ret = false;
 	if (metafile) {		
-		// ƒƒ^î•ñ‚ğæ“¾‚·‚é‚É‚Íˆê“x•Â‚¶‚é•K—v‚ª‚ ‚é
+		// ãƒ¡ã‚¿æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã«ã¯ä¸€åº¦é–‰ã˜ã‚‹å¿…è¦ãŒã‚ã‚‹
 		delete metaGraphics;
 		metaGraphics = NULL;
 		ULONG size;
-		// ƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 		if (metaBuffer && (size = (ULONG)::GlobalSize(metaBuffer)) > 0) {
 			IStream *out = TVPCreateIStream(filename, TJS_BS_WRITE);
 			if (out) {
@@ -1954,7 +1954,7 @@ LayerExDraw::saveRecord(const tjs_char *filename)
 				out->Release();
 			}
 		}
-		// Ä•`‰æˆ—
+		// å†æç”»å‡¦ç†
 		Image *image = getRecordImage();
 		if (image) {
 			delete image;
@@ -1965,9 +1965,9 @@ LayerExDraw::saveRecord(const tjs_char *filename)
 
 
 /**
- * ‹L˜^“à—e‚Ì“Ç‚İ‚İ
- * @param filename “Ç‚İ‚İƒtƒ@ƒCƒ‹–¼
- * @return ¬Œ÷‚µ‚½‚ç true
+ * è¨˜éŒ²å†…å®¹ã®èª­ã¿è¾¼ã¿
+ * @param filename èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return æˆåŠŸã—ãŸã‚‰ true
  */
 bool
 LayerExDraw::loadRecord(const tjs_char *filename)
@@ -1983,11 +1983,11 @@ LayerExDraw::loadRecord(const tjs_char *filename)
 }
 
 /**
- * ƒOƒŠƒtƒAƒEƒgƒ‰ƒCƒ“‚Ìæ“¾
- * @param font ƒtƒHƒ“ƒg
- * @param offset ƒIƒtƒZƒbƒg
- * @param path ƒOƒŠƒt‚ğ‘‚«o‚·ƒpƒX
- * @param glyph •`‰æ‚·‚éƒOƒŠƒt
+ * ã‚°ãƒªãƒ•ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ã®å–å¾—
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param offset ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param path ã‚°ãƒªãƒ•ã‚’æ›¸ãå‡ºã™ãƒ‘ã‚¹
+ * @param glyph æç”»ã™ã‚‹ã‚°ãƒªãƒ•
  */
 void
 LayerExDraw::getGlyphOutline(const FontInfo *fontInfo, PointF &offset, GraphicsPath *path, UINT glyph)
@@ -1997,7 +1997,7 @@ LayerExDraw::getGlyphOutline(const FontInfo *fontInfo, PointF &offset, GraphicsP
   GLYPHMETRICS gm;
 
   DWORD flags = GGO_BEZIER;
-  // ƒtƒBƒbƒeƒBƒ“ƒOw’è‚ª–³‚¯‚ê‚Î UNHINTED‚É‚·‚éBxs
+  // ãƒ•ã‚£ãƒƒãƒ†ã‚£ãƒ³ã‚°æŒ‡å®šãŒç„¡ã‘ã‚Œã° UNHINTEDã«ã™ã‚‹ã€‚xs
   if (! (textRenderingHint & 1))
     flags |= GGO_UNHINTED;
 
@@ -2078,11 +2078,11 @@ LayerExDraw::getGlyphOutline(const FontInfo *fontInfo, PointF &offset, GraphicsP
 }
 
 /*
- * ƒeƒLƒXƒgƒAƒEƒgƒ‰ƒCƒ“‚Ìæ“¾
- * @param font ƒtƒHƒ“ƒg
- * @param offset ƒIƒtƒZƒbƒg
- * @param path ƒOƒŠƒt‚ğ‘‚«o‚·ƒpƒX
- * @param text •`‰æ‚·‚éƒeƒLƒXƒg
+ * ãƒ†ã‚­ã‚¹ãƒˆã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ã®å–å¾—
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param offset ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param path ã‚°ãƒªãƒ•ã‚’æ›¸ãå‡ºã™ãƒ‘ã‚¹
+ * @param text æç”»ã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
  */
 void
 LayerExDraw::getTextOutline(const FontInfo *fontInfo, PointF &offset, GraphicsPath *path, ttstr text)
@@ -2115,15 +2115,15 @@ LayerExDraw::getTextOutline(const FontInfo *fontInfo, PointF &offset, GraphicsPa
 }
 
 /**
- * •¶š—ñ‚Ì•`‰æXV—Ìˆæî•ñ‚Ìæ“¾(OpenTypeƒtƒHƒ“ƒg‘Î‰)
- * @param font ƒtƒHƒ“ƒg
- * @param text •`‰æƒeƒLƒXƒg
- * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+ * æ–‡å­—åˆ—ã®æç”»æ›´æ–°é ˜åŸŸæƒ…å ±ã®å–å¾—(OpenTypeãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
  */
 RectF 
 LayerExDraw::measureString2(const FontInfo *font, const tjs_char *text)
 {
-  // •¶š—ñ‚ÌƒpƒX‚ğ€”õ
+  // æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ã‚’æº–å‚™
   GraphicsPath path;
   PointF offset(0, 0);
   this->getTextOutline(font, offset, &path, text);
@@ -2137,15 +2137,15 @@ LayerExDraw::measureString2(const FontInfo *font, const tjs_char *text)
 }
 
 /**
- * •¶š—ñ‚ÉŠOÚ‚·‚é—Ìˆæî•ñ‚Ìæ“¾(OpenType‚ÌPostScriptƒtƒHƒ“ƒg‘Î‰)
- * @param font ƒtƒHƒ“ƒg
- * @param text •`‰æƒeƒLƒXƒg
- * @return XV—Ìˆæî•ñ‚Ì«‘ left, top, width, height
+ * æ–‡å­—åˆ—ã«å¤–æ¥ã™ã‚‹é ˜åŸŸæƒ…å ±ã®å–å¾—(OpenTypeã®PostScriptãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±ã®è¾æ›¸ left, top, width, height
  */
 RectF 
 LayerExDraw::measureStringInternal2(const FontInfo *font, const tjs_char *text)
 {
-  // •¶š—ñ‚ÌƒpƒX‚ğ€”õ
+  // æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ã‚’æº–å‚™
   GraphicsPath path;
   PointF offset(0, 0);
   this->getTextOutline(font, offset, &path, text);
@@ -2158,18 +2158,18 @@ LayerExDraw::measureStringInternal2(const FontInfo *font, const tjs_char *text)
 }
 
 /**
- * •¶š—ñ‚Ì•`‰æ(OpenTypeƒtƒHƒ“ƒg‘Î‰)
- * @param font ƒtƒHƒ“ƒg
- * @param app ƒAƒsƒAƒ‰ƒ“ƒX
- * @param x •`‰æˆÊ’uX
- * @param y •`‰æˆÊ’uY
- * @param text •`‰æƒeƒLƒXƒg
- * @return XV—Ìˆæî•ñ
+ * æ–‡å­—åˆ—ã®æç”»(OpenTypeãƒ•ã‚©ãƒ³ãƒˆå¯¾å¿œ)
+ * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param app ã‚¢ãƒ”ã‚¢ãƒ©ãƒ³ã‚¹
+ * @param x æç”»ä½ç½®X
+ * @param y æç”»ä½ç½®Y
+ * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+ * @return æ›´æ–°é ˜åŸŸæƒ…å ±
  */
 RectF 
 LayerExDraw::drawPathString2(const FontInfo *font, const Appearance *app, REAL x, REAL y, const tjs_char *text)
 {
-  // •¶š—ñ‚ÌƒpƒX‚ğ€”õ
+  // æ–‡å­—åˆ—ã®ãƒ‘ã‚¹ã‚’æº–å‚™
   GraphicsPath path;
   PointF offset(x + LONG(0.167 * font->emSize) - 0.5f, y - 0.5f);
   this->getTextOutline(font, offset, &path, text);
@@ -2203,9 +2203,9 @@ static bool getEncoder(const tjs_char* mimeType, CLSID* pClsid)
 }
 
 /**
- * ƒGƒ“ƒR[ƒhƒpƒ‰ƒ[ƒ^î•ñ‚ÌQÆ—p
+ * ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±ã®å‚ç…§ç”¨
  */
-class EncoderParameterGetter : public tTJSDispatch /** EnumMembers —p */
+class EncoderParameterGetter : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 public:
 	struct EncoderInfo {
@@ -2275,12 +2275,12 @@ public:
 };
 
 /**
- * ‰æ‘œ‚Ì•Û‘¶
+ * ç”»åƒã®ä¿å­˜
  */
 tjs_error
 LayerExDraw::saveImage(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 {
-	// rawcallback ‚¾‚Æ hook ‚ª‚«‚¢‚Ä‚È‚¢–Í—l
+	// rawcallback ã ã¨ hook ãŒãã„ã¦ãªã„æ¨¡æ§˜
 	LayerExDraw *self = ncbInstanceAdaptor<LayerExDraw>::GetNativeInstance(objthis);
 	if (!self) {
 		self = new LayerExDraw(objthis);
@@ -2303,7 +2303,7 @@ LayerExDraw::saveImage(tTJSVariant *result, tjs_int numparams, tTJSVariant **par
 	}
 
 	EncoderParameterGetter *caller = new EncoderParameterGetter();
-	// ƒpƒ‰ƒ[ƒ^«‘‚ª‚ ‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¾æ›¸ãŒã‚ã‚‹
 	if (numparams > 2 && param[2]->Type() == tvtObject) {
 		tTJSVariantClosure closure(caller);
 		param[2]->AsObjectClosureNoAddRef().EnumMembers(TJS_IGNOREPROP, &closure, NULL);
@@ -2344,7 +2344,7 @@ LayerExDraw::getColorRegionRects(ARGB color)
 			}
 		}
 
-		// ‹éŒ`ˆê——æ“¾
+		// çŸ©å½¢ä¸€è¦§å–å¾—
 		Matrix matrix;
 		int count = region.GetRegionScansCount(&matrix);
 		if (count > 0) {

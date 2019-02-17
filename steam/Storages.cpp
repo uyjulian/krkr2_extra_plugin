@@ -12,14 +12,14 @@ extern ttstr convertUtf8StringToTtstr(const std::string &buf);
 #define BASENAME L"steam"
 
 /**
- * Steam ƒtƒ@ƒCƒ‹î•ñ•Û—pƒNƒ‰ƒX
- * QÆ‚ª‚È‚­‚È‚Á‚½“_‚Æ Commit ‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å‘‚«–ß‚µ‚ğs‚¤
+ * Steam ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ä¿æŒç”¨ã‚¯ãƒ©ã‚¹
+ * å‚ç…§ãŒãªããªã£ãŸæ™‚ç‚¹ã¨ Commit ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§æ›¸ãæˆ»ã—ã‚’è¡Œã†
  */
 class SteamFile {
 public:
 	typedef std::map<std::string, SteamFile*> FileMap;
 
-	// ƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
 	static bool exist(const std::string &name) {
 		FileMap::iterator it = fileMap.find(name);
 		if (it != fileMap.end()) {
@@ -32,15 +32,15 @@ public:
 		return false;
 	}
 
-	// ƒtƒ@ƒCƒ‹ˆê——æ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§å–å¾—
 	static void getList(std::set<std::string> &names) {
-		// ƒAƒNƒZƒX’†ƒtƒ@ƒCƒ‹–¼
+		// ã‚¢ã‚¯ã‚»ã‚¹ä¸­ãƒ•ã‚¡ã‚¤ãƒ«å
 		FileMap::const_iterator it = fileMap.begin();
 		while (it != fileMap.end()) {
 			names.insert(it->first);
 			it++;
 		}
-		// ƒXƒgƒŒ[ƒW‚É‚ ‚éƒtƒ@ƒCƒ‹–¼ˆê——
+		// ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã«ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åä¸€è¦§
 		ISteamRemoteStorage *storage = SteamRemoteStorage();
 		if (storage) {
 			int count = storage->GetFileCount();
@@ -51,7 +51,7 @@ public:
 		}
 	}
 	
-	// ƒtƒ@ƒCƒ‹‚ğæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
 	static SteamFile *getInstance(const std::string &name) {
 		SteamFile *ret = 0;
 		FileMap::iterator it = fileMap.find(name);
@@ -78,7 +78,7 @@ public:
 		return ret;
 	}
 
-	// IStream ‚Ìæ“¾
+	// IStream ã®å–å¾—
 	IStream *getStream() {
 		IStream *ret = 0;
 		if (pStream) {
@@ -87,12 +87,12 @@ public:
 		return ret;
 	}
 
-	// XV’Ê’m
+	// æ›´æ–°é€šçŸ¥
 	void write() {
 		writeFlag = true;
 	}
 	
-	// ƒRƒ~ƒbƒg’Ê’m
+	// ã‚³ãƒŸãƒƒãƒˆé€šçŸ¥
 	void commit() {
 		if (hBuffer) {
 			DWORD size = ::GlobalSize(hBuffer);
@@ -114,8 +114,8 @@ public:
 protected:
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param name –¼‘O
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param name åå‰
 	 */
 	SteamFile(const char *filename) : name(filename), refCount(1), hBuffer(0), pStream(0), initSize(0), writeFlag(false) {
 		fileMap[name] = this;
@@ -137,7 +137,7 @@ protected:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~SteamFile() {
 		if (pStream) {
@@ -165,8 +165,8 @@ protected:
 SteamFile::FileMap SteamFile::fileMap;
 
 /**
- * Steam ƒtƒ@ƒCƒ‹—p‚Ì IStream
- * XV‚Ì’Ê’m‚âI—¹‚ğE‚¤‚½‚ß‚É IStream ‚ğƒ‰ƒbƒsƒ“ƒO‚µ‚Ä‚ ‚é
+ * Steam ãƒ•ã‚¡ã‚¤ãƒ«ç”¨ã® IStream
+ * æ›´æ–°ã®é€šçŸ¥ã‚„çµ‚äº†ã‚’æ‹¾ã†ãŸã‚ã« IStream ã‚’ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã—ã¦ã‚ã‚‹
  */
 class SteamStream : public IStream {
 
@@ -322,7 +322,7 @@ protected:
 
 
 /**
- * Steam ƒXƒgƒŒ[ƒW
+ * Steam ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸
  */
 class SteamStorage : public iTVPStorageMedia
 {
@@ -417,19 +417,19 @@ public:
 	}
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	SteamStorage() : refCount(1) {
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~SteamStorage() {
 	}
 
 protected:
-	tjs_uint refCount; //< ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg
+	tjs_uint refCount; //< ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆ
 };
 
 static SteamStorage *instance = NULL;

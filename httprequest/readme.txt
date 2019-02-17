@@ -1,12 +1,12 @@
 Title: HttpRequest Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-XMLHttpRequest ���ۂ��Ȃɂ��ł��B�ڍׂ� manual.tjs ���Q�Ƃ��Ă��������B
-�t�@�C���̑���M�̓o�b�N�O���E���h�ōs���邽�߁A�g���g���̎��s��
-�W�����ɏ����ł��܂��B
+XMLHttpRequest っぽいなにかです。詳細は manual.tjs を参照してください。
+ファイルの送受信はバックグラウンドで行われるため、吉里吉里の実行を
+妨げずに処理できます。
 
-�����C�Z���X
+●ライセンス
 
-�g���g���{�̂ɏ������Ă��������B
+吉里吉里本体に準拠してください。

@@ -8,7 +8,7 @@ using namespace std;
 #include "tp_stub.h"
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -22,7 +22,7 @@ static void log(const tjs_char *format, ...)
 
 //---------------------------------------------------------------------------
 
-// Array ƒNƒ‰ƒXƒƒ“ƒo
+// Array ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒ
 static iTJSDispatch2 *ArrayCountProp   = NULL;   // Array.count
 
 // -----------------------------------------------------------------
@@ -33,11 +33,11 @@ addMember(iTJSDispatch2 *dispatch, const tjs_char *name, iTJSDispatch2 *member)
 	tTJSVariant var = tTJSVariant(member);
 	member->Release();
 	dispatch->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		name, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&var, // “o˜^‚·‚é’l
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		name, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&var, // ç™»éŒ²ã™ã‚‹å€¤
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -76,10 +76,10 @@ static void
 delMember(iTJSDispatch2 *dispatch, const tjs_char *name)
 {
 	dispatch->DeleteMember(
-		0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-		name, // ƒƒ“ƒo–¼
-		NULL, // ƒqƒ“ƒg
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+		name, // ãƒ¡ãƒ³ãƒå
+		NULL, // ãƒ’ãƒ³ãƒˆ
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -101,7 +101,7 @@ getRealValue(iTJSDispatch2 *obj, const tjs_char *name)
 
 //---------------------------------------------------------------------------
 
-// GDI Šî–{î•ñ
+// GDI åŸºæœ¬æƒ…å ±
 GdiplusStartupInput gdiplusStartupInput;
 ULONG_PTR gdiplusToken;
 
@@ -113,15 +113,15 @@ ULONG_PTR gdiplusToken;
 static tjs_int32 TJS_NATIVE_CLASSID_NAME = -1;
 
 /**
- * GDI+ ƒuƒ‰ƒVƒIƒuƒWƒFƒNƒg
+ * GDI+ ãƒ–ãƒ©ã‚·ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
-class NI_Brush : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class NI_Brush : public tTJSNativeInstance // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
 protected:
 	Brush *brush;
 	
 	/**
-	 * ƒuƒ‰ƒV‚ÌÁ‹
+	 * ãƒ–ãƒ©ã‚·ã®æ¶ˆå»
 	 */
 	void clearBrush() {
 		delete brush;
@@ -130,8 +130,8 @@ protected:
 	
 public:
 	/**
-	 * ŒÅ’èFƒuƒ‰ƒV‚Ì’Ç‰Á
-	 * @param argb Fw’è
+	 * å›ºå®šè‰²ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
+	 * @param argb è‰²æŒ‡å®š
 	 */
 	void setSolidBrush(ARGB argb) {
 		clearBrush();
@@ -139,7 +139,7 @@ public:
 	}
 
 	/**
-	 * sƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒuƒ‰ƒV‚Ì’Ç‰Á
+	 * è¡Œã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
 	 */
 	void setLinearGradientBrush(double x1, double y1, double x2, double y2, ARGB col1, ARGB col2) {
 		clearBrush();
@@ -147,17 +147,17 @@ public:
 	}
 
 	/**
-	 * ƒpƒXƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒuƒ‰ƒV‚Ì’Ç‰Á
+	 * ãƒ‘ã‚¹ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
 	 *
 	 */
 	void setPathGradientBrush(int numparams, tTJSVariant **param) {
 
 		clearBrush();
 		
-		// “_‚Ì”
+		// ç‚¹ã®æ•°
 		int n = numparams / 2;
 		
-		// ƒ‚[ƒh
+		// ãƒ¢ãƒ¼ãƒ‰
 		WrapMode mode = WrapModeClamp;
 		if (n * 2 < numparams) {
 			mode = (WrapMode)(int)*param[numparams - 1];
@@ -175,17 +175,17 @@ public:
 	
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_Brush() {
 		brush = NULL;
 	}
 
 	/**
-	 * TJS ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param numparams ƒpƒ‰ƒ[ƒ^”
+	 * TJS ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 	 * @param param
-	 * @param tjs_obj this ƒIƒuƒWƒFƒNƒg
+	 * @param tjs_obj this ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) {
 		if (numparams > 0) {
@@ -202,8 +202,8 @@ public:
 	}
 	
 	/**
-	 * @param objthis ƒIƒuƒWƒFƒNƒg
-	 * @return GDI+ —p Brush ƒCƒ“ƒXƒ^ƒ“ƒXBæ“¾¸”s‚µ‚½‚ç NULL
+	 * @param objthis ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return GDI+ ç”¨ Brush ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
 	 */
 	static Brush *getBrush(iTJSDispatch2 *objthis) {
 		if (!objthis) return NULL;
@@ -255,7 +255,7 @@ static iTJSDispatch2 * Create_NC_Brush()
 	TJS_END_NATIVE_MEMBERS
 
 	/*
-		‚±‚ÌŠÖ”‚Í classobj ‚ğ•Ô‚µ‚Ü‚·B
+		ã“ã®é–¢æ•°ã¯ classobj ã‚’è¿”ã—ã¾ã™ã€‚
 	*/
 	return classobj;
 }
@@ -268,15 +268,15 @@ static iTJSDispatch2 * Create_NC_Brush()
 static tjs_int32 TJS_NATIVE_CLASSID_NAME = -1;
 
 /**
- * GDI+ ƒyƒ“ƒIƒuƒWƒFƒNƒg
+ * GDI+ ãƒšãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
-class NI_Pen : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class NI_Pen : public tTJSNativeInstance // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
 protected:
 	Pen *pen;
 
 	/**
-	 * ƒyƒ“‚ÌÁ‹
+	 * ãƒšãƒ³ã®æ¶ˆå»
 	 */
 	void clearPen() {
 		delete pen;
@@ -284,9 +284,9 @@ protected:
 	}
 
 	/**
-	 * ƒuƒ‰ƒVƒyƒ“‚Ì’Ç‰Á
-	 * @param brush ƒuƒ‰ƒV
-	 * @param width ƒyƒ“•
+	 * ãƒ–ãƒ©ã‚·ãƒšãƒ³ã®è¿½åŠ 
+	 * @param brush ãƒ–ãƒ©ã‚·
+	 * @param width ãƒšãƒ³å¹…
 	 */
 	void setBrushPen(const Brush *brush, REAL width=1.0) {
 		clearPen();
@@ -294,9 +294,9 @@ protected:
 	}
 
 	/**
-	 * ŒÅ’èFƒyƒ“‚Ì’Ç‰Á
-	 * @param argb Fw’è
-	 * @param width ƒyƒ“•
+	 * å›ºå®šè‰²ãƒšãƒ³ã®è¿½åŠ 
+	 * @param argb è‰²æŒ‡å®š
+	 * @param width ãƒšãƒ³å¹…
 	 */
 	void setColorPen(ARGB argb, REAL width=1.0) {
 		clearPen();
@@ -306,21 +306,21 @@ protected:
 	
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_Pen() {
 		pen = NULL;
 	}
 
 	/**
-	 * TJS ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param numparams ƒpƒ‰ƒ[ƒ^”
+	 * TJS ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 	 * @param param
-	 * @param tjs_obj this ƒIƒuƒWƒFƒNƒg
+	 * @param tjs_obj this ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) {
 
-		// ü‚Ì‘¾‚³‚Ìw’è‚ª‚ ‚éê‡
+		// ç·šã®å¤ªã•ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 		if (numparams > 1) {
 			switch (param[0]->Type()) {
 			case tvtObject:
@@ -353,8 +353,8 @@ public:
 	}
 	
 	/**
-	 * @param objthis ƒIƒuƒWƒFƒNƒg
-	 * @return GDI+ —p PenƒCƒ“ƒXƒ^ƒ“ƒXBæ“¾¸”s‚µ‚½‚ç NULL
+	 * @param objthis ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return GDI+ ç”¨ Penã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
 	 */
 	static Pen *getPen(iTJSDispatch2 *objthis) {
 		if (!objthis) return NULL;
@@ -449,7 +449,7 @@ static iTJSDispatch2 * Create_NC_Pen()
 	TJS_END_NATIVE_MEMBERS
 
 	/*
-		‚±‚ÌŠÖ”‚Í classobj ‚ğ•Ô‚µ‚Ü‚·B
+		ã“ã®é–¢æ•°ã¯ classobj ã‚’è¿”ã—ã¾ã™ã€‚
 	*/
 	return classobj;
 }
@@ -462,11 +462,11 @@ static iTJSDispatch2 * Create_NC_Pen()
 static tjs_int32 TJS_NATIVE_CLASSID_NAME = -1;
 
 /**
- * GDI+ ƒtƒHƒ“ƒgƒIƒuƒWƒFƒNƒg
+ * GDI+ ãƒ•ã‚©ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
-class NI_Font : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+class NI_Font : public tTJSNativeInstance // ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 {
-	/// ƒtƒHƒ“ƒg•Û—p
+	/// ãƒ•ã‚©ãƒ³ãƒˆä¿æŒç”¨
 	Font *font;
 
 	void clearFont() {
@@ -476,10 +476,10 @@ class NI_Font : public tTJSNativeInstance // ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
 
 public:
 	/**
-	 * ƒtƒHƒ“ƒgİ’è
-	 * @param familyName ƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[–¼
-	 * @param emSize ƒTƒCƒYw’è(pixcel’PˆÊ)
-	 * @param style ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+	 * ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š
+	 * @param familyName ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼å
+	 * @param emSize ã‚µã‚¤ã‚ºæŒ‡å®š(pixcelå˜ä½)
+	 * @param style ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 	 */
 	void setFont(const tjs_char *familyName, REAL emSize=12, INT style=FontStyleRegular) {
 		if (familyName) {
@@ -490,17 +490,17 @@ public:
 	
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_Font() {
 		font = NULL;
 	}
 
 	/**
-	 * TJS ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param numparams ƒpƒ‰ƒ[ƒ^”
+	 * TJS ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param numparams ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 	 * @param param
-	 * @param tjs_obj this ƒIƒuƒWƒFƒNƒg
+	 * @param tjs_obj this ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	tjs_error TJS_INTF_METHOD Construct(tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) {
 		if (numparams > 2) {
@@ -521,8 +521,8 @@ public:
 	}
 	
 	/**
-	 * @param objthis ƒIƒuƒWƒFƒNƒg
-	 * @return GDI+ —p Font ƒCƒ“ƒXƒ^ƒ“ƒXBæ“¾¸”s‚µ‚½‚ç NULL
+	 * @param objthis ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return GDI+ ç”¨ Font ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
 	 */
 	static Font *getFont(iTJSDispatch2 *objthis) {
 		if (!objthis) return NULL;
@@ -558,7 +558,7 @@ static iTJSDispatch2 * Create_NC_Font()
 		}
 		TJS_END_NATIVE_CONSTRUCTOR_DECL(/*TJS class name*/Font)
 
-		TJS_BEGIN_NATIVE_METHOD_DECL(/*func. name*/print) // print ƒƒ\ƒbƒh
+		TJS_BEGIN_NATIVE_METHOD_DECL(/*func. name*/print) // print ãƒ¡ã‚½ãƒƒãƒ‰
 		{
 			TJS_GET_NATIVE_INSTANCE(/*var. name*/_this,
 				/*var. type*/NI_Font);
@@ -572,7 +572,7 @@ static iTJSDispatch2 * Create_NC_Font()
 	TJS_END_NATIVE_MEMBERS
 
 	/*
-		‚±‚ÌŠÖ”‚Í classobj ‚ğ•Ô‚µ‚Ü‚·B
+		ã“ã®é–¢æ•°ã¯ classobj ã‚’è¿”ã—ã¾ã™ã€‚
 	*/
 	return classobj;
 }
@@ -582,18 +582,18 @@ static iTJSDispatch2 * Create_NC_Font()
 //---------------------------------------------------------------------------
 
 /*
- * ƒŒƒCƒ„‚É’¼Œ‹‚µ‚½ GDI+ î•ñ‚ğ•Û‚·‚é‚½‚ß‚ÌƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX
+ * ãƒ¬ã‚¤ãƒ¤ã«ç›´çµã—ãŸ GDI+ æƒ…å ±ã‚’ä¿æŒã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 class NI_GdiPlusInfo : public tTJSNativeInstance
 {
 protected:
 
-	/// ƒŒƒCƒ„‚ğQÆ‚·‚éƒrƒbƒgƒ}ƒbƒv
+	/// ãƒ¬ã‚¤ãƒ¤ã‚’å‚ç…§ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 	Bitmap * _bitmap;
-	/// ƒŒƒCƒ„‚É‘Î‚µ‚Ä•`‰æ‚·‚éƒRƒ“ƒeƒLƒXƒg
+	/// ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æç”»ã™ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 	Graphics * _graphics;
 
-	// ƒŒƒCƒ„î•ñ”äŠr•Û—p
+	// ãƒ¬ã‚¤ãƒ¤æƒ…å ±æ¯”è¼ƒä¿æŒç”¨
 	tjs_int _width;
 	tjs_int _height;
 	tjs_int _pitch;
@@ -602,17 +602,17 @@ protected:
 public:
 
 	/**
-	 * GDI+ —p•`‰æƒOƒ‰ƒtƒBƒbƒN‚ğ‰Šú‰»‚·‚é
-	 * ƒŒƒCƒ„‚Ìƒrƒbƒgƒ}ƒbƒvî•ñ‚ª•ÏX‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Å–ˆ‰ñƒ`ƒFƒbƒN‚·‚éB
-	 * •ÏX‚³‚ê‚Ä‚¢‚éê‡‚Í•`‰æ—p‚ÌƒRƒ“ƒeƒLƒXƒg‚ğ‘g‚İ‚È‚¨‚·
-	 * @param layerobj ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
+	 * GDI+ ç”¨æç”»ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
+	 * ãƒ¬ã‚¤ãƒ¤ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æƒ…å ±ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§æ¯å›ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
+	 * å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æç”»ç”¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’çµ„ã¿ãªãŠã™
+	 * @param layerobj ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	void reset(iTJSDispatch2 *layerobj) {
 		
 		NI_LayerExBase *base = NI_LayerExBase::getNative(layerobj, false);
 		base->reset(layerobj);
 
-		// •ÏX‚³‚ê‚Ä‚È‚¢ê‡‚Í‚Â‚­‚è‚È‚¨‚µ
+		// å¤‰æ›´ã•ã‚Œã¦ãªã„å ´åˆã¯ã¤ãã‚ŠãªãŠã—
 		if (!(_graphics &&
 			  _width  == base->_width &&
 			  _height == base->_height &&
@@ -627,14 +627,14 @@ public:
 			_bitmap = new Bitmap(_width, _height, _pitch, PixelFormat32bppARGB, (unsigned char*)_buffer);
 			_graphics = new Graphics(_bitmap);
 
-			// Graphics ‰Šú‰»
+			// Graphics åˆæœŸåŒ–
 
 			
-			// À•WŒn‰Šú‰»
+			// åº§æ¨™ç³»åˆæœŸåŒ–
 			
-			// ƒ}ƒgƒŠƒbƒNƒX“K—p
+			// ãƒãƒˆãƒªãƒƒã‚¯ã‚¹é©ç”¨
 				
-			// ƒXƒ€[ƒWƒ“ƒOw’è
+			// ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°æŒ‡å®š
 			_graphics->SetSmoothingMode(SmoothingModeHighQuality);
 		}
 	}
@@ -647,7 +647,7 @@ public:
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_GdiPlusInfo(iTJSDispatch2 *layerobj) {
 		_bitmap = NULL;
@@ -659,7 +659,7 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	~NI_GdiPlusInfo() {
 		delete _graphics;
@@ -667,21 +667,21 @@ public:
 	}
 
 	// ------------------------------------------------------------------
-	// •`‰æƒƒ\ƒbƒhŒQ
+	// æç”»ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤
 	// ------------------------------------------------------------------
 public:
 
 	/**
-	 * ‰æ–Ê‚ÌÁ‹
-	 * @param argb Á‹F
+	 * ç”»é¢ã®æ¶ˆå»
+	 * @param argb æ¶ˆå»è‰²
 	 */
 	void clear(ARGB argb = 0x00000000) {
 		_graphics->Clear(Color(argb));
 	}
 
 	/**
-	 * ‘È‰~‚Ì•`‰æ
-	 * @param pen ƒyƒ“
+	 * æ¥•å††ã®æç”»
+	 * @param pen ãƒšãƒ³
 	 * @param x
 	 * @param y
 	 * @param width
@@ -694,8 +694,8 @@ public:
 	}
 
 	/**
-	 * ‘È‰~‚Ì“h‚è‚Â‚Ô‚µ
-	 * @param brush ƒuƒ‰ƒV
+	 * æ¥•å††ã®å¡—ã‚Šã¤ã¶ã—
+	 * @param brush ãƒ–ãƒ©ã‚·
 	 * @param x
 	 * @param y
 	 * @param width
@@ -708,11 +708,11 @@ public:
 	}
 	
 	/**
-	 * ü•ª‚Ì•`‰æ
-	 * @param x1 n“_XÀ•W
-	 * @param y1 n“_YÀ•W
-	 * @param x2 I“_XÀ•W
-	 * @param y2 I“_YÀ•W
+	 * ç·šåˆ†ã®æç”»
+	 * @param x1 å§‹ç‚¹Xåº§æ¨™
+	 * @param y1 å§‹ç‚¹Yåº§æ¨™
+	 * @param x2 çµ‚ç‚¹Xåº§æ¨™
+	 * @param y2 çµ‚ç‚¹Yåº§æ¨™
 	 */
 	void drawLine(Pen *pen, REAL x1, REAL y1, REAL x2, REAL y2) {
 		if (pen) {
@@ -721,7 +721,7 @@ public:
 	}
 
 	/**
-	 * ‹éŒ`‚Ì•`‰æ
+	 * çŸ©å½¢ã®æç”»
 	 * @param x
 	 * @param y
 	 * @param width
@@ -734,7 +734,7 @@ public:
 	}
 	
 	/**
-	 * ‹éŒ`‚Ì“h‚è‚Â‚Ô‚µ
+	 * çŸ©å½¢ã®å¡—ã‚Šã¤ã¶ã—
 	 * @param x
 	 * @param y
 	 * @param width
@@ -747,7 +747,7 @@ public:
 	}
 
 	/**
-	 * ƒxƒWƒF‹Èü‚Ì•`‰æ
+	 * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
 	 * @param width
 	 * @param height
 	 */
@@ -758,13 +758,13 @@ public:
 	}
 
 	/**
-	 * ƒxƒWƒF‹Èü‚Ì•`‰æ
+	 * ãƒ™ã‚¸ã‚§æ›²ç·šã®æç”»
 	 * @param width
 	 * @param height
 	 */
 	void drawBeziers(Pen *pen, iTJSDispatch2 *array) {
 		if (pen) {
-			// “_‚ÌŒÂ”æ“¾
+			// ç‚¹ã®å€‹æ•°å–å¾—
 			tjs_int count = 0;
 			{
 				tTJSVariant result;
@@ -787,12 +787,12 @@ public:
 	
 	
 	/**
-	 * •¶š—ñ‚Ì•`‰æ
-	 * @param text •`‰æƒeƒLƒXƒg
-	 * @param font ƒtƒHƒ“ƒg
-	 * @param x Œ´“_X
-	 * @param y Œ´“_Y
-	 * @param brush ƒuƒ‰ƒV
+	 * æ–‡å­—åˆ—ã®æç”»
+	 * @param text æç”»ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @param font ãƒ•ã‚©ãƒ³ãƒˆ
+	 * @param x åŸç‚¹X
+	 * @param y åŸç‚¹Y
+	 * @param brush ãƒ–ãƒ©ã‚·
 	 */
 	void drawString(const tjs_char *text, Font *font, REAL x, REAL y, Brush *brush) {
 		if (text && font && brush) {
@@ -802,28 +802,28 @@ public:
 	}
 	
 	/**
-	 * ‰æ‘œ‚Ì•`‰æ
-	 * @param name ‰æ‘œ–¼
-	 * @param x •\¦ˆÊ’uX
-	 * @param y •\¦ˆÊ’uY
-	 * @param rect •\¦Œ³—Ìˆæw’èBNULL ‚Ìê‡‚Í‘S‘Ì
+	 * ç”»åƒã®æç”»
+	 * @param name ç”»åƒå
+	 * @param x è¡¨ç¤ºä½ç½®X
+	 * @param y è¡¨ç¤ºä½ç½®Y
+	 * @param rect è¡¨ç¤ºå…ƒé ˜åŸŸæŒ‡å®šã€‚NULL ã®å ´åˆã¯å…¨ä½“
 	 */
 	void drawImage(const ttstr &name, REAL x=0, REAL y=0, RectF *rect = NULL) {
 
-		// ‰æ‘œ“Ç‚İ‚İ
+		// ç”»åƒèª­ã¿è¾¼ã¿
 		IStream *in = TVPCreateIStream(name, TJS_BS_READ);
 		if(!in) {
 			TVPThrowExceptionMessage((ttstr(TJS_W("cannot open : ")) + ttstr(name)).c_str());
 		}
 
 		try {
-			// ‰æ‘œ¶¬
+			// ç”»åƒç”Ÿæˆ
 			Image image(in);
 			int ret;
 			if ((ret = image.GetLastStatus()) != Ok) {
 				TVPThrowExceptionMessage((ttstr(TJS_W("cannot load : ")) + ttstr(name) + ttstr(L" : ") + ttstr(ret)).c_str());
 			}
-			// •`‰æˆ—
+			// æç”»å‡¦ç†
 			if (rect) {
 				_graphics->DrawImage(&image, x, y, rect->X, rect->Y, rect->Width, rect->Height, UnitPixel);
 			} else {
@@ -838,30 +838,30 @@ public:
 	
 public:
 	/**
-	 * ƒpƒX‚ğ•`‰æ‚·‚é
-	 * @param path •`‰æ‚·‚éƒpƒX
+	 * ãƒ‘ã‚¹ã‚’æç”»ã™ã‚‹
+	 * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
 	 */
 	void drawPath(Pen *pen, GraphicsPath *path) {
 		_graphics->DrawPath(pen, path);
 	}
 
 	/**
-	 * ƒpƒX‚Å“h‚è‚Â‚Ô‚·
-	 * @param path •`‰æ‚·‚éƒpƒX
+	 * ãƒ‘ã‚¹ã§å¡—ã‚Šã¤ã¶ã™
+	 * @param path æç”»ã™ã‚‹ãƒ‘ã‚¹
 	 */
 	void fillPath(Brush *brush, GraphicsPath *path) {
 		_graphics->FillPath(brush, path);
 	}
 };
 
-// ƒNƒ‰ƒXID
+// ã‚¯ãƒ©ã‚¹ID
 static tjs_int32 ClassID_GdiPlusInfo = -1;
 
 /**
- * ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg‚©‚ç GDI+ —pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
- * ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‚Á‚Ä‚È‚¢ê‡‚Í©“®“I‚ÉŠ„‚è“–‚Ä‚é
- * @param objthis ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
- * @return GDI+ —pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXBæ“¾¸”s‚µ‚½‚ç NULL
+ * ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ GDI+ ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+ * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æŒã£ã¦ãªã„å ´åˆã¯è‡ªå‹•çš„ã«å‰²ã‚Šå½“ã¦ã‚‹
+ * @param objthis ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @return GDI+ ç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å–å¾—å¤±æ•—ã—ãŸã‚‰ NULL
  */
 NI_GdiPlusInfo *
 getGdiPlusNative(iTJSDispatch2 *layerobj)
@@ -871,7 +871,7 @@ getGdiPlusNative(iTJSDispatch2 *layerobj)
 	NI_GdiPlusInfo *_this;
 	if (TJS_FAILED(layerobj->NativeInstanceSupport(TJS_NIS_GETINSTANCE,
 												   ClassID_GdiPlusInfo, (iTJSNativeInstance**)&_this))) {
-		// ƒŒƒCƒ„Šg’£•”¶¬
+		// ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µéƒ¨ç”Ÿæˆ
 		if (NI_LayerExBase::getNative(layerobj) == NULL) {
 			return NULL;
 		}
@@ -887,7 +887,7 @@ getGdiPlusNative(iTJSDispatch2 *layerobj)
 }
 
 /**
- * ‹éŒ`•`‰æ
+ * çŸ©å½¢æç”»
  */
 class tDrawEllipseFunction : public tTJSDispatch
 {
@@ -913,7 +913,7 @@ public:
 };
 
 /**
- * ‹éŒ`“h‚è‚Â‚Ô‚µ
+ * çŸ©å½¢å¡—ã‚Šã¤ã¶ã—
  */
 class tFillEllipseFunction : public tTJSDispatch
 {
@@ -939,7 +939,7 @@ public:
 };
 
 /**
- * ü•ª•`‰æ
+ * ç·šåˆ†æç”»
  */
 class tDrawLineFunction : public tTJSDispatch
 {
@@ -965,7 +965,7 @@ public:
 };
 
 /**
- * ‹éŒ`•`‰æ
+ * çŸ©å½¢æç”»
  */
 class tDrawRectangleFunction : public tTJSDispatch
 {
@@ -991,7 +991,7 @@ public:
 };
 
 /**
- * ‹éŒ`“h‚è‚Â‚Ô‚µ
+ * çŸ©å½¢å¡—ã‚Šã¤ã¶ã—
  */
 class tFillRectangleFunction : public tTJSDispatch
 {
@@ -1017,7 +1017,7 @@ public:
 };
 
 /**
- * ƒxƒWƒF•`‰æ
+ * ãƒ™ã‚¸ã‚§æç”»
  */
 class tDrawBezierFunction : public tTJSDispatch
 {
@@ -1048,7 +1048,7 @@ public:
 };
 
 /**
- * ƒxƒWƒF•`‰æ
+ * ãƒ™ã‚¸ã‚§æç”»
  */
 class tDrawBeziersFunction : public tTJSDispatch
 {
@@ -1072,7 +1072,7 @@ public:
 
 
 /**
- * ƒeƒLƒXƒg•`‰æ
+ * ãƒ†ã‚­ã‚¹ãƒˆæç”»
  */
 class tDrawStringFunction : public tTJSDispatch
 {
@@ -1098,7 +1098,7 @@ public:
 };
 
 /**
- * ‹éŒ`•`‰æ
+ * çŸ©å½¢æç”»
  */
 class tDrawImageFunction : public tTJSDispatch
 {
@@ -1140,49 +1140,49 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason,
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
 	// Initialize GDI+.
 	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒgƒ`ƒFƒbƒN
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚§ãƒƒã‚¯
 	if ((NI_LayerExBase::classId = TJSFindNativeClassID(L"LayerExBase")) <= 0) {
 		NI_LayerExBase::classId = TJSRegisterNativeClass(L"LayerExBase");
 	}
 	
-	// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg“o˜^
+	// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
 	ClassID_GdiPlusInfo = TJSRegisterNativeClass(TJS_W("GdiPlusInfo"));
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	
 	if (global) {
 
-		// Arary ƒNƒ‰ƒXƒƒ“ƒo[æ“¾
+		// Arary ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒãƒ¼å–å¾—
 		{
 			tTJSVariant varScripts;
 			TVPExecuteExpression(TJS_W("Array"), &varScripts);
 			iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
-			// ƒƒ“ƒoæ“¾
+			// ãƒ¡ãƒ³ãƒå–å¾—
 			ArrayCountProp = getMember(dispatch, TJS_W("count"));
 		}
 
-		// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		{
 			tTJSVariant varScripts;
 			TVPExecuteExpression(TJS_W("Layer"), &varScripts);
 			iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
 			if (dispatch) {
-				// ƒvƒƒpƒeƒB‰Šú‰»
+				// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åˆæœŸåŒ–
 				NI_LayerExBase::init(dispatch);
 				
-				// ŒÅ—LŠg’£ƒNƒ‰ƒX’Ç‰Á
+				// å›ºæœ‰æ‹¡å¼µã‚¯ãƒ©ã‚¹è¿½åŠ 
 				addMember(dispatch, L"Pen",    Create_NC_Pen());
 				addMember(dispatch, L"Brush",  Create_NC_Brush());
 				addMember(dispatch, L"Font",   Create_NC_Font());
 				
-				// ƒƒ“ƒo’Ç‰Á
+				// ãƒ¡ãƒ³ãƒè¿½åŠ 
 				addMember(dispatch, L"drawEllipse",   new tDrawEllipseFunction());
 				addMember(dispatch, L"fillEllipse",   new tFillEllipseFunction());
 				addMember(dispatch, L"drawLine",      new tDrawLineFunction());
@@ -1201,39 +1201,39 @@ extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 		global->Release();
 	}
 			
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 extern "C" HRESULT _stdcall  V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-		// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+		// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
-	// ƒvƒƒpƒeƒBŠJ•ú
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£é–‹æ”¾
 	NI_LayerExBase::unInit();
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 
-	// - global ‚Ì DeleteMember ƒƒ\ƒbƒh‚ğ—p‚¢AƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+	// - global ã® DeleteMember ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨ã„ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 	if (global)	{
 
 		{
-			// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+			// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 			tTJSVariant varScripts;
 			TVPExecuteExpression(TJS_W("Layer"), &varScripts);
 			iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
@@ -1262,7 +1262,7 @@ extern "C" HRESULT _stdcall  V2Unlink()
 
 	GdiplusShutdown(gdiplusToken);
 	
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

@@ -5,13 +5,13 @@
 #include "tp_stub.h"
 
 /**
- * ƒŒƒCƒ„Šg’£ Šî–{î•ñ•Û—pƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXB
+ * ãƒ¬ã‚¤ãƒ¤æ‹¡å¼µ åŸºæœ¬æƒ…å ±ä¿æŒç”¨ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
  */
 class NI_LayerExBase : public tTJSNativeInstance
 {
 protected:
-	// ƒŒƒCƒ„‚©‚çî•ñ‚ğæ“¾‚·‚é‚½‚ß‚ÌƒvƒƒpƒeƒB
-	// ­‚µ‚Å‚à‚‘¬‰»‚·‚é‚½‚ßƒLƒƒƒbƒVƒ…‚µ‚Ä‚¨‚­
+	// ãƒ¬ã‚¤ãƒ¤ã‹ã‚‰æƒ…å ±ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+	// å°‘ã—ã§ã‚‚é«˜é€ŸåŒ–ã™ã‚‹ãŸã‚ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ã¦ãŠã
 	static iTJSDispatch2 * _leftProp;
 	static iTJSDispatch2 * _topProp;
 	static iTJSDispatch2 * _widthProp;
@@ -21,43 +21,43 @@ protected:
 	static iTJSDispatch2 * _updateProp;
 
 public:
-	// ƒŒƒCƒ„î•ñ”äŠr•Û—p
+	// ãƒ¬ã‚¤ãƒ¤æƒ…å ±æ¯”è¼ƒä¿æŒç”¨
 	tjs_int _width;
 	tjs_int _height;
 	tjs_int _pitch;
 	unsigned char *_buffer;
 
 public:
-	// ƒNƒ‰ƒX‚h‚c•Û—p
+	// ã‚¯ãƒ©ã‚¹ï¼©ï¼¤ä¿æŒç”¨
 	static int classId;
 	static void init(iTJSDispatch2 *layerobj);
 	static void unInit();
 	
 	/**
-	 * ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg‚Ìæ“¾
-	 * @param layerobj ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
-	 * @return ƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg
+	 * ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
+	 * @param layerobj ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	static NI_LayerExBase *getNative(iTJSDispatch2 *objthis, bool create=true);
 
 	/**
-	 * Ä•`‰æ—v¿
-	 * @param layerobj ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
+	 * å†æç”»è¦è«‹
+	 * @param layerobj ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	void redraw(iTJSDispatch2 *layerobj);
 	
 	/**
-	 * ƒOƒ‰ƒtƒBƒbƒN‚ğ‰Šú‰»‚·‚é
-	 * ƒŒƒCƒ„‚Ìƒrƒbƒgƒ}ƒbƒvî•ñ‚ª•ÏX‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Å–ˆ‰ñƒ`ƒFƒbƒN‚·‚éB
-	 * •ÏX‚³‚ê‚Ä‚¢‚éê‡‚Í•`‰æ—p‚ÌƒRƒ“ƒeƒLƒXƒg‚ğ‘g‚İ‚È‚¨‚·
-	 * @param layerobj ƒŒƒCƒ„ƒIƒuƒWƒFƒNƒg
-	 * @return ‰Šú‰»Às‚³‚ê‚½ê‡‚Í true ‚ğ•Ô‚·
+	 * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
+	 * ãƒ¬ã‚¤ãƒ¤ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æƒ…å ±ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§æ¯å›ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
+	 * å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æç”»ç”¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’çµ„ã¿ãªãŠã™
+	 * @param layerobj ãƒ¬ã‚¤ãƒ¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @return åˆæœŸåŒ–å®Ÿè¡Œã•ã‚ŒãŸå ´åˆã¯ true ã‚’è¿”ã™
 	 */
 	void reset(iTJSDispatch2 *layerobj);
 	
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	NI_LayerExBase();
 };

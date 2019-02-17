@@ -3,26 +3,26 @@
 #include "dialog_config.hpp"
 
 struct DialogTemplate {
-	// İ’è‚©‚çŒ^‚ğƒGƒCƒŠƒAƒX‚·‚é
+	// è¨­å®šã‹ã‚‰å‹ã‚’ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã™ã‚‹
 	typedef DialogConfig::SizeT   SizeT;
 	typedef DialogConfig::NameT   NameT;
 	typedef DialogConfig::StringT StringT;
 
 	virtual ~DialogTemplate() {}
 
-	// ƒf[ƒ^‚Ì‘‚«o‚µ
-	// c ‚É•K—vƒTƒCƒY‚ğ‰ÁZ‚·‚éiƒAƒ‰ƒCƒ“•ª‚Ì—\”õ‚¾‚¯—]•ª‚É‰ÁZ‚³‚ê‚é‚±‚Æ‚ª‚ ‚éj
-	// p == 0 ‚È‚çƒf[ƒ^‚Í‘‚©‚È‚¢
+	// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãå‡ºã—
+	// c ã«å¿…è¦ã‚µã‚¤ã‚ºã‚’åŠ ç®—ã™ã‚‹ï¼ˆã‚¢ãƒ©ã‚¤ãƒ³åˆ†ã®äºˆå‚™ã ã‘ä½™åˆ†ã«åŠ ç®—ã•ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ï¼‰
+	// p == 0 ãªã‚‰ãƒ‡ãƒ¼ã‚¿ã¯æ›¸ã‹ãªã„
 	virtual void Write(BYTE* &p, SizeT &c) = 0;
 
-	// ƒoƒbƒtƒ@o—Í•ƒTƒCƒYŒvZ—p ƒwƒ‹ƒpŠÖ”
+	// ãƒãƒƒãƒ•ã‚¡å‡ºåŠ›ï¼†ã‚µã‚¤ã‚ºè¨ˆç®—ç”¨ ãƒ˜ãƒ«ãƒ‘é–¢æ•°
 
-	// 1ƒoƒCƒg‘‚«o‚µ
+	// 1ãƒã‚¤ãƒˆæ›¸ãå‡ºã—
 	static inline void WriteByte(BYTE* &p, SizeT &c, BYTE v) {
 		c++;
 		if (p) *p++ = v;
 	}
-	// 2ƒoƒCƒg‘‚«o‚µ
+	// 2ãƒã‚¤ãƒˆæ›¸ãå‡ºã—
 	static inline void WriteWord(BYTE* &p, SizeT &c, WORD v) {
 		c += 2;
 		if (p) {
@@ -30,7 +30,7 @@ struct DialogTemplate {
 			*p++ = (BYTE)((v>>8) & 0xFF);
 		}
 	}
-	// 4ƒoƒCƒg‘‚«o‚µ
+	// 4ãƒã‚¤ãƒˆæ›¸ãå‡ºã—
 	static inline void WriteDWord(BYTE* &p, SizeT &c, DWORD v) {
 		c += 4;
 		if (p) {
@@ -41,25 +41,25 @@ struct DialogTemplate {
 		}
 	}
 
-	// •¶š—ñ‘‚«o‚µ
+	// æ–‡å­—åˆ—æ›¸ãå‡ºã—
 	static inline void WriteString(BYTE* &p, SizeT &c, NameT r) {
 		while (*r) WriteWord(p, c, *r++);
 		/**/       WriteWord(p, c, 0);
 	}
 
-	// ƒAƒ‰ƒCƒ“ƒƒ“ƒg
+	// ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆ
 	static inline void Alignment(BYTE* &p, SizeT &c, SizeT al) {
-		c += al; // ‘å‚«‚¢•ª‚É‚Í–â‘è‚È‚¢‚Ì‚ÅƒTƒCƒYŒvZ—p‚É‚ÍƒAƒ‰ƒCƒ“•ª‚ğ‘«‚·
+		c += al; // å¤§ãã„åˆ†ã«ã¯å•é¡Œãªã„ã®ã§ã‚µã‚¤ã‚ºè¨ˆç®—ç”¨ã«ã¯ã‚¢ãƒ©ã‚¤ãƒ³åˆ†ã‚’è¶³ã™
 		if (p) {
 			ULONG n = al-1;
 			p = (BYTE*) (((ULONG)p + n) & ~n);
 		}
 	}
 
-	// sz_Or_Ord Œ^F•¶š—ñ‚©ID‚Ì‚Ç‚¿‚ç‚©
-	//  0x0000 : —v‘f‚È‚µ
+	// sz_Or_Ord å‹ï¼šæ–‡å­—åˆ—ã‹IDã®ã©ã¡ã‚‰ã‹
+	//  0x0000 : è¦ç´ ãªã—
 	//  0xFFFF 0x???? : ID
-	//  ‚»‚Ì‘¼ : Null•¶š‚ÅI‚í‚éUnicode•¶š—ñ
+	//  ãã®ä»– : Nullæ–‡å­—ã§çµ‚ã‚ã‚‹Unicodeæ–‡å­—åˆ—
 
 	typedef enum { SZORD_NONE, SZORD_ID, SZORD_STR } SZORD;
 	struct sz_Or_Ord{
@@ -80,30 +80,30 @@ struct DialogTemplate {
 };
 
 struct DialogHeader : public DialogTemplate {
-	// DLGTEMPLATEEX; // ”z’u‚Í•K‚¸ DWORD ƒAƒ‰ƒCƒ“‚Ì‚±‚Æ
-	WORD dlgVer;			// ƒo[ƒWƒ‡ƒ“ií‚É1j
-	WORD signature;			// ƒVƒOƒlƒ`ƒƒií‚É0xFFFFj
-	DWORD helpID;			// ƒRƒ“ƒeƒLƒXƒgƒwƒ‹ƒvID
-	DWORD exStyle;			// exƒXƒ^ƒCƒ‹
-	DWORD style;			// ƒXƒ^ƒCƒ‹
-	WORD dlgItems;			// ƒAƒCƒeƒ€‚ÌŒÂ”
+	// DLGTEMPLATEEX; // é…ç½®ã¯å¿…ãš DWORD ã‚¢ãƒ©ã‚¤ãƒ³ã®ã“ã¨
+	WORD dlgVer;			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆå¸¸ã«1ï¼‰
+	WORD signature;			// ã‚·ã‚°ãƒãƒãƒ£ï¼ˆå¸¸ã«0xFFFFï¼‰
+	DWORD helpID;			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ˜ãƒ«ãƒ—ID
+	DWORD exStyle;			// exã‚¹ã‚¿ã‚¤ãƒ«
+	DWORD style;			// ã‚¹ã‚¿ã‚¤ãƒ«
+	WORD dlgItems;			// ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
 	short x;				// x (dialog unit)
 	short y;				// y (dialog unit)
 	short cx;				// w (dialog unit)
 	short cy;				// h (dialog unit)
 
-	sz_Or_Ord menu;			// ƒƒjƒ…[ID
-	sz_Or_Ord windowClass;	// ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX
-	StringT title;			// ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚Ìƒ^ƒCƒgƒ‹(Unicode)
+	sz_Or_Ord menu;			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
+	sz_Or_Ord windowClass;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹
+	StringT title;			// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®ã‚¿ã‚¤ãƒˆãƒ«(Unicode)
 
-	// ˆÈ‰º‚Í DS_SETFONT ‚ªw’è‚³‚ê‚½ê‡‚Ì‚İ‘¶İ
-	short pointSize;		// ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-	short weight;			// ƒtƒHƒ“ƒg‚ÌƒEƒFƒCƒg(0`1000)
-	BYTE  italic;			// ƒtƒHƒ“ƒg‚ÌƒCƒ^ƒŠƒbƒN(TRUEorFALSE)
-	BYTE  charset;			// ƒtƒHƒ“ƒg‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	StringT typeFace;		// ƒtƒHƒ“ƒg‚Ìƒ^ƒCƒvƒtƒFƒCƒX
+	// ä»¥ä¸‹ã¯ DS_SETFONT ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã®ã¿å­˜åœ¨
+	short pointSize;		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+	short weight;			// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚¦ã‚§ã‚¤ãƒˆ(0ã€œ1000)
+	BYTE  italic;			// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚¤ã‚¿ãƒªãƒƒã‚¯(TRUEorFALSE)
+	BYTE  charset;			// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	StringT typeFace;		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚¿ã‚¤ãƒ—ãƒ•ã‚§ã‚¤ã‚¹
 
-	// ‰Šú’l
+	// åˆæœŸå€¤
 	DialogHeader()
 		:   dlgVer(1),
 			signature(0xFFFF),
@@ -121,7 +121,7 @@ struct DialogHeader : public DialogTemplate {
 			charset(0)
 		{}
 
-	// ‘‚«o‚µ
+	// æ›¸ãå‡ºã—
 	void Write(BYTE* &p, SizeT &c) {
 		Alignment( p, c, 4);
 
@@ -150,19 +150,19 @@ struct DialogHeader : public DialogTemplate {
 };
 
 struct DialogItems : public DialogTemplate {
-	// DLGITEMTEMPLATEEX; // ”z’u‚Í•K‚¸ DWORD ƒAƒ‰ƒCƒ“‚Ì‚±‚Æ
-	DWORD helpID;			// ƒRƒ“ƒeƒLƒXƒgƒwƒ‹ƒvID
-	DWORD exStyle;			// exƒXƒ^ƒCƒ‹
-	DWORD style;			// ƒXƒ^ƒCƒ‹
+	// DLGITEMTEMPLATEEX; // é…ç½®ã¯å¿…ãš DWORD ã‚¢ãƒ©ã‚¤ãƒ³ã®ã“ã¨
+	DWORD helpID;			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ˜ãƒ«ãƒ—ID
+	DWORD exStyle;			// exã‚¹ã‚¿ã‚¤ãƒ«
+	DWORD style;			// ã‚¹ã‚¿ã‚¤ãƒ«
 	short x;				// x (dialog unit)
 	short y;				// y (dialog unit)
 	short cx;				// w (dialog unit)
 	short cy;				// h (dialog unit)
-	DWORD id;				// ‚±‚ÌƒRƒ“ƒgƒ[ƒ‹ID
+	DWORD id;				// ã“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ID
 
-	sz_Or_Ord windowClass;	// ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX
-	sz_Or_Ord title;		// ƒ^ƒCƒgƒ‹
-	WORD extraCount;		// Šg’£ƒf[ƒ^‚ÌƒTƒCƒYiWORDƒAƒ‰ƒCƒ“j
+	sz_Or_Ord windowClass;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹
+	sz_Or_Ord title;		// ã‚¿ã‚¤ãƒˆãƒ«
+	WORD extraCount;		// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºï¼ˆWORDã‚¢ãƒ©ã‚¤ãƒ³ï¼‰
 	BYTE const *extraData;
 
 	DialogItems()
@@ -178,7 +178,7 @@ struct DialogItems : public DialogTemplate {
 			extraData(0)
 		{}
 
-	// ‘‚«o‚µ
+	// æ›¸ãå‡ºã—
 	void Write(BYTE* &p, SizeT &c) {
 		Alignment( p, c, 4);
 

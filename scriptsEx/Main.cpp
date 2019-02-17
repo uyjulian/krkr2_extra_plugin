@@ -3,7 +3,7 @@
 #include <algorithm>
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—p
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨
  */
 class ScriptsAdd {
 
@@ -11,46 +11,46 @@ public:
 	ScriptsAdd(){};
 
 	/**
-	 * ƒƒ“ƒo–¼ˆê——‚Ìæ“¾
+	 * ãƒ¡ãƒ³ãƒåä¸€è¦§ã®å–å¾—
 	 */
 	static tjs_error TJS_INTF_METHOD getKeys(tTJSVariant *result,
 											 tjs_int numparams,
 											 tTJSVariant **param,
 											 iTJSDispatch2 *objthis);
 	/**
-	 * ƒƒ“ƒo‚ÌŒÂ”‚Ìæ“¾
+	 * ãƒ¡ãƒ³ãƒã®å€‹æ•°ã®å–å¾—
 	 */
 	static tjs_error TJS_INTF_METHOD getCount(tTJSVariant *result,
 											  tjs_int numparams,
 											  tTJSVariant **param,
 											  iTJSDispatch2 *objthis);
 	/**
-	 * ƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+	 * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 	 */
 	static tTJSVariant getObjectContext(tTJSVariant obj);
 
 	/**
-	 * ƒRƒ“ƒeƒLƒXƒg‚ª null ‚©‚Ç‚¤‚©”»’è
+	 * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒ null ã‹ã©ã†ã‹åˆ¤å®š
 	 */
 	static bool isNullContext(tTJSVariant obj);
 	
 	//----------------------------------------------------------------------
-	// \‘¢‘Ì”äŠrŠÖ”
+	// æ§‹é€ ä½“æ¯”è¼ƒé–¢æ•°
 	static bool equalStruct(tTJSVariant v1, tTJSVariant v2);
 
 	//----------------------------------------------------------------------
-	// \‘¢‘Ì”äŠrŠÖ”(”š‚Ì”äŠr‚Í‚ä‚é‚¢)
+	// æ§‹é€ ä½“æ¯”è¼ƒé–¢æ•°(æ•°å­—ã®æ¯”è¼ƒã¯ã‚†ã‚‹ã„)
 	static bool equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2);
 
 	//----------------------------------------------------------------------
-	// ‘S”z—ñE«‘„‰ñ
+	// å…¨é…åˆ—ãƒ»è¾æ›¸å·¡å›
 	static tjs_error TJS_INTF_METHOD foreach(tTJSVariant *result,
 											 tjs_int numparams,
 											 tTJSVariant **param,
 											 iTJSDispatch2 *objthis);
 
 	//----------------------------------------------------------------------
-	// hash’læ“¾
+	// hashå€¤å–å¾—
 	static tjs_error TJS_INTF_METHOD getMD5HashString(tTJSVariant *result,
 													  tjs_int numparams,
 													  tTJSVariant **param,
@@ -58,11 +58,11 @@ public:
 
 
 	//----------------------------------------------------------------------
-	// ƒIƒuƒWƒFƒNƒg•¡»
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¤‡è£½
 	static tTJSVariant clone(tTJSVariant v1);
 
 	//----------------------------------------------------------------------
-	// ƒtƒ‰ƒOw’è‚Â‚«ƒvƒƒpƒeƒB‘€ì
+	// ãƒ•ãƒ©ã‚°æŒ‡å®šã¤ããƒ—ãƒ­ãƒ‘ãƒ†ã‚£æ“ä½œ
 	static tjs_error TJS_INTF_METHOD propSet(tTJSVariant *result,
 											 tjs_int numparams,
 											 tTJSVariant **param,
@@ -73,7 +73,7 @@ public:
 											 iTJSDispatch2 *objthis);
 
 	//----------------------------------------------------------------------
-	// (const)‚Â‚««‘^”z—ñ‚ğˆÀ‘S‚É•]‰¿
+	// (const)ã¤ãè¾æ›¸ï¼é…åˆ—ã‚’å®‰å…¨ã«è©•ä¾¡
 	static tjs_error TJS_INTF_METHOD safeEvalStorage(tTJSVariant *result,
 													 tjs_int numparams,
 													 tTJSVariant **param,
@@ -81,15 +81,15 @@ public:
 
 private:
 		/**
-	 * ƒƒ“ƒo–¼ˆê——‚Ìæ“¾
+	 * ãƒ¡ãƒ³ãƒåä¸€è¦§ã®å–å¾—
 	 */
 	static void _getKeys(tTJSVariant *result, tTJSVariant &obj);
 };
 
 /**
- * «‘‚ÌƒL[ˆê——æ“¾—p
+ * è¾æ›¸ã®ã‚­ãƒ¼ä¸€è¦§å–å¾—ç”¨
  */
-class DictMemberGetCaller : public tTJSDispatch /** EnumMembers —p */
+class DictMemberGetCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 public:
 	DictMemberGetCaller(iTJSDispatch2 *array) : array(array) {};
@@ -120,7 +120,7 @@ protected:
 
 
 //----------------------------------------------------------------------
-// «‘‚ğì¬
+// è¾æ›¸ã‚’ä½œæˆ
 tTJSVariant createDictionary(void)
 {
 	iTJSDispatch2 *obj = TJSCreateDictionaryObject();
@@ -130,7 +130,7 @@ tTJSVariant createDictionary(void)
 }
 
 //----------------------------------------------------------------------
-// ”z—ñ‚ğì¬
+// é…åˆ—ã‚’ä½œæˆ
 tTJSVariant createArray(void)
 {
 	iTJSDispatch2 *obj = TJSCreateArrayObject();
@@ -140,7 +140,7 @@ tTJSVariant createArray(void)
 }
 
 //----------------------------------------------------------------------
-// «‘‚Ì—v‘f‚ğ‘S”äŠr‚·‚éCaller
+// è¾æ›¸ã®è¦ç´ ã‚’å…¨æ¯”è¼ƒã™ã‚‹Caller
 class DictMemberCompareCaller : public tTJSDispatch
 {
 public:
@@ -186,7 +186,7 @@ public:
 };
 
 //----------------------------------------------------------------------
-// «‘‚Ì—v‘f‚ğ‘S”äŠr‚·‚éCaller(”š‚Ì”äŠr‚Í‚ä‚é‚¢)
+// è¾æ›¸ã®è¦ç´ ã‚’å…¨æ¯”è¼ƒã™ã‚‹Caller(æ•°å­—ã®æ¯”è¼ƒã¯ã‚†ã‚‹ã„)
 class DictMemberCompareNumericLooseCaller : public tTJSDispatch
 {
 public:
@@ -227,7 +227,7 @@ public:
 };
 
 //----------------------------------------------------------------------
-// «‘‚ğ„‰ñ‚·‚écaller
+// è¾æ›¸ã‚’å·¡å›ã™ã‚‹caller
 class DictIterateCaller : public tTJSDispatch
 {
 public:
@@ -271,7 +271,7 @@ public:
 };
 
 //----------------------------------------------------------------------
-// •Ï”
+// å¤‰æ•°
 tjs_uint32 countHint;
 
 void
@@ -284,7 +284,7 @@ ScriptsAdd::_getKeys(tTJSVariant *result, tTJSVariant &obj)
 		obj.AsObjectClosureNoAddRef().EnumMembers(TJS_IGNOREPROP|TJS_ENUM_NO_VALUE, &closure, NULL);
 		caller->Release();
 		static tjs_uint sortHint = NULL;
-		// •Ô‚·ƒL[‚Íƒ\[ƒg‚·‚é
+		// è¿”ã™ã‚­ãƒ¼ã¯ã‚½ãƒ¼ãƒˆã™ã‚‹
 		array->FuncCall(0, TJS_W("sort"), &sortHint, 0, 0, 0, array);
 		*result = tTJSVariant(array, array);
 		array->Release();
@@ -292,7 +292,7 @@ ScriptsAdd::_getKeys(tTJSVariant *result, tTJSVariant &obj)
 }
 
 	/**
-	 * ƒƒ“ƒo–¼ˆê——‚Ìæ“¾
+	 * ãƒ¡ãƒ³ãƒåä¸€è¦§ã®å–å¾—
 	 */
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::getKeys(tTJSVariant *result,
@@ -306,7 +306,7 @@ ScriptsAdd::getKeys(tTJSVariant *result,
 }
 
 /**
- * ƒƒ“ƒo‚ÌŒÂ”‚Ìæ“¾
+ * ãƒ¡ãƒ³ãƒã®å€‹æ•°ã®å–å¾—
  */
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::getCount(tTJSVariant *result,
@@ -325,7 +325,7 @@ ScriptsAdd::getCount(tTJSVariant *result,
 
 
 /**
- * ƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+ * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
  */
 tTJSVariant
 ScriptsAdd::getObjectContext(tTJSVariant obj)
@@ -335,7 +335,7 @@ ScriptsAdd::getObjectContext(tTJSVariant obj)
 }
 
 /**
- * ƒRƒ“ƒeƒLƒXƒg‚ª null ‚©‚Ç‚¤‚©”»’è
+ * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒ null ã‹ã©ã†ã‹åˆ¤å®š
  */
 bool
 ScriptsAdd::isNullContext(tTJSVariant obj)
@@ -344,11 +344,11 @@ ScriptsAdd::isNullContext(tTJSVariant obj)
 }
 
 //----------------------------------------------------------------------
-// \‘¢‘Ì”äŠrŠÖ”
+// æ§‹é€ ä½“æ¯”è¼ƒé–¢æ•°
 bool
 ScriptsAdd::equalStruct(tTJSVariant v1, tTJSVariant v2)
 {
-	// ƒ^ƒCƒv‚ªƒIƒuƒWƒFƒNƒg‚È‚ç“Áê”»’è
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã‚‰ç‰¹æ®Šåˆ¤å®š
 	if (v1.Type() == tvtObject
 		&& v2.Type() == tvtObject) {
 		if (v1.AsObjectNoAddRef() == v2.AsObjectNoAddRef())
@@ -357,21 +357,21 @@ ScriptsAdd::equalStruct(tTJSVariant v1, tTJSVariant v2)
 		tTJSVariantClosure &o1 = v1.AsObjectClosureNoAddRef();
 		tTJSVariantClosure &o2 = v2.AsObjectClosureNoAddRef();
 
-		// ŠÖ”‚Ç‚¤‚µ‚È‚ç“Á•Êˆµ‚¢‚ÅŠÖ””äŠr
+		// é–¢æ•°ã©ã†ã—ãªã‚‰ç‰¹åˆ¥æ‰±ã„ã§é–¢æ•°æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Function", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Function", NULL)== TJS_S_TRUE)
 			return v1.DiscernCompare(v2);
 
-		// Array‚Ç‚¤‚µ‚È‚ç‘S€–Ú‚ğ”äŠr
+		// Arrayã©ã†ã—ãªã‚‰å…¨é …ç›®ã‚’æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE) {
-			// ’·‚³‚ªˆê’v‚µ‚Ä‚¢‚È‚¯‚ê‚Î”äŠr¸”s
+			// é•·ã•ãŒä¸€è‡´ã—ã¦ã„ãªã‘ã‚Œã°æ¯”è¼ƒå¤±æ•—
 			tTJSVariant o1Count, o2Count;
 			(void)o1.PropGet(0, L"count", &countHint, &o1Count, NULL);
 			(void)o2.PropGet(0, L"count", &countHint, &o2Count, NULL);
 			if (! o1Count.DiscernCompare(o2Count))
 				return false;
-			// ‘S€–Ú‚ğ‡”Ô‚É”äŠr
+			// å…¨é …ç›®ã‚’é †ç•ªã«æ¯”è¼ƒ
 			tjs_int count = o1Count;
 			tTJSVariant o1Val, o2Val;
 			for (tjs_int i = 0; i < count; i++) {
@@ -383,17 +383,17 @@ ScriptsAdd::equalStruct(tTJSVariant v1, tTJSVariant v2)
 			return true;
 		}
 
-		// Dictionary‚Ç‚¤‚µ‚È‚ç‘S€–Ú‚ğ”äŠr
+		// Dictionaryã©ã†ã—ãªã‚‰å…¨é …ç›®ã‚’æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Dictionary", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Dictionary", NULL)== TJS_S_TRUE) {
-			// ƒL[ˆê——‚ªˆê’v‚µ‚Ä‚È‚¯‚ê‚Î”äŠr¸”s
+			// ã‚­ãƒ¼ä¸€è¦§ãŒä¸€è‡´ã—ã¦ãªã‘ã‚Œã°æ¯”è¼ƒå¤±æ•—
 			tTJSVariant k1, k2;
 			_getKeys(&k1, v1);
 			_getKeys(&k2, v2);
 			if (!equalStruct(k1, k2)) {
 				return false;
 			}
-			// ‘S€–Ú‚ğ‡”Ô‚É”äŠr
+			// å…¨é …ç›®ã‚’é †ç•ªã«æ¯”è¼ƒ
 			DictMemberCompareCaller *caller = new DictMemberCompareCaller(o2);
 			tTJSVariantClosure closure(caller);
 			tTJSVariant(o1.EnumMembers(TJS_IGNOREPROP, &closure, NULL));
@@ -407,11 +407,11 @@ ScriptsAdd::equalStruct(tTJSVariant v1, tTJSVariant v2)
 }
 
 //----------------------------------------------------------------------
-// \‘¢‘Ì”äŠrŠÖ”(”š‚Ì”äŠr‚Í‚ä‚é‚¢)
+// æ§‹é€ ä½“æ¯”è¼ƒé–¢æ•°(æ•°å­—ã®æ¯”è¼ƒã¯ã‚†ã‚‹ã„)
 bool
 ScriptsAdd::equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2)
 {
-	// ƒ^ƒCƒv‚ªƒIƒuƒWƒFƒNƒg‚È‚ç“Áê”»’è
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã‚‰ç‰¹æ®Šåˆ¤å®š
 	if (v1.Type() == tvtObject
 		&& v2.Type() == tvtObject) {
 		if (v1.AsObjectNoAddRef() == v2.AsObjectNoAddRef())
@@ -420,21 +420,21 @@ ScriptsAdd::equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2)
 		tTJSVariantClosure &o1 = v1.AsObjectClosureNoAddRef();
 		tTJSVariantClosure &o2 = v2.AsObjectClosureNoAddRef();
 
-		// ŠÖ”‚Ç‚¤‚µ‚È‚ç“Á•Êˆµ‚¢‚ÅŠÖ””äŠr
+		// é–¢æ•°ã©ã†ã—ãªã‚‰ç‰¹åˆ¥æ‰±ã„ã§é–¢æ•°æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Function", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Function", NULL)== TJS_S_TRUE)
 			return v1.DiscernCompare(v2);
 
-		// Array‚Ç‚¤‚µ‚È‚ç‘S€–Ú‚ğ”äŠr
+		// Arrayã©ã†ã—ãªã‚‰å…¨é …ç›®ã‚’æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE) {
-			// ’·‚³‚ªˆê’v‚µ‚Ä‚¢‚È‚¯‚ê‚Î”äŠr¸”s
+			// é•·ã•ãŒä¸€è‡´ã—ã¦ã„ãªã‘ã‚Œã°æ¯”è¼ƒå¤±æ•—
 			tTJSVariant o1Count, o2Count;
 			(void)o1.PropGet(0, L"count", &countHint, &o1Count, NULL);
 			(void)o2.PropGet(0, L"count", &countHint, &o2Count, NULL);
 			if (! o1Count.DiscernCompare(o2Count))
 				return false;
-			// ‘S€–Ú‚ğ‡”Ô‚É”äŠr
+			// å…¨é …ç›®ã‚’é †ç•ªã«æ¯”è¼ƒ
 			tjs_int count = o1Count;
 			tTJSVariant o1Val, o2Val;
 			for (tjs_int i = 0; i < count; i++) {
@@ -446,16 +446,16 @@ ScriptsAdd::equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2)
 			return true;
 		}
 
-		// Dictionary‚Ç‚¤‚µ‚È‚ç‘S€–Ú‚ğ”äŠr
+		// Dictionaryã©ã†ã—ãªã‚‰å…¨é …ç›®ã‚’æ¯”è¼ƒ
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Dictionary", NULL)== TJS_S_TRUE
 			&& o2.IsInstanceOf(0, NULL, NULL, L"Dictionary", NULL)== TJS_S_TRUE) {
-			// €–Ú”‚ªˆê’v‚µ‚Ä‚¢‚È‚¯‚ê‚Î”äŠr¸”s
+			// é …ç›®æ•°ãŒä¸€è‡´ã—ã¦ã„ãªã‘ã‚Œã°æ¯”è¼ƒå¤±æ•—
 			tjs_int o1Count, o2Count;
 			(void)o1.GetCount(&o1Count, NULL, NULL, NULL);
 			(void)o2.GetCount(&o2Count, NULL, NULL, NULL);
 			if (o1Count != o2Count)
 				return false;
-			// ‘S€–Ú‚ğ‡”Ô‚É”äŠr
+			// å…¨é …ç›®ã‚’é †ç•ªã«æ¯”è¼ƒ
 			DictMemberCompareNumericLooseCaller *caller = new DictMemberCompareNumericLooseCaller(o2);
 			tTJSVariantClosure closure(caller);
 			tTJSVariant(o1.EnumMembers(TJS_IGNOREPROP, &closure, NULL));
@@ -465,7 +465,7 @@ ScriptsAdd::equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2)
 		}
 	}
 
-	// ”š‚Ìê‡‚Í
+	// æ•°å­—ã®å ´åˆã¯
 	if ((v1.Type() == tvtInteger || v1.Type() == tvtReal)
 		&& (v2.Type() == tvtInteger || v2.Type() == tvtReal))
 		return v1.NormalCompare(v2);
@@ -474,7 +474,7 @@ ScriptsAdd::equalStructNumericLoose(tTJSVariant v1, tTJSVariant v2)
 }
 
 //----------------------------------------------------------------------
-// ‘S”z—ñE«‘„‰ñ
+// å…¨é…åˆ—ãƒ»è¾æ›¸å·¡å›
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::foreach(tTJSVariant *result,
 					tjs_int numparams,
@@ -485,15 +485,15 @@ ScriptsAdd::foreach(tTJSVariant *result,
 	tTJSVariantClosure &obj = param[0]->AsObjectClosureNoAddRef();
 	tTJSVariantClosure &funcClosure = param[1]->AsObjectClosureNoAddRef();
 
-	// Às‘ÎÛŠÖ”‚ğ‘I‘ğ
-	// –³–¼ŠÖ”‚È‚ç this ƒRƒ“ƒeƒLƒXƒg‚Å“®ì‚³‚¹‚é
+	// å®Ÿè¡Œå¯¾è±¡é–¢æ•°ã‚’é¸æŠ
+	// ç„¡åé–¢æ•°ãªã‚‰ this ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã§å‹•ä½œã•ã›ã‚‹
 	iTJSDispatch2 *func     = funcClosure.Object;
 	iTJSDispatch2 *functhis = funcClosure.ObjThis;
 	if (functhis == 0) {
 		functhis = objthis;
 	}
 
-	// ”z—ñ‚Ìê‡
+	// é…åˆ—ã®å ´åˆ
 	if (obj.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE) {
 
 		tTJSVariant key, value;
@@ -544,9 +544,9 @@ ScriptsAdd::foreach(tTJSVariant *result,
 
 
 /**
- * octet ‚Ì MD5ƒnƒbƒVƒ…’l‚Ìæ“¾
- * @param octet ‘ÎÛƒIƒNƒeƒbƒg
- * @return ƒnƒbƒVƒ…’li32•¶š‚Ì16i”ƒnƒbƒVƒ…•¶š—ñi¬•¶šjj
+ * octet ã® MD5ãƒãƒƒã‚·ãƒ¥å€¤ã®å–å¾—
+ * @param octet å¯¾è±¡ã‚ªã‚¯ãƒ†ãƒƒãƒˆ
+ * @return ãƒãƒƒã‚·ãƒ¥å€¤ï¼ˆ32æ–‡å­—ã®16é€²æ•°ãƒãƒƒã‚·ãƒ¥æ–‡å­—åˆ—ï¼ˆå°æ–‡å­—ï¼‰ï¼‰
  */
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::getMD5HashString(tTJSVariant *result,
@@ -576,7 +576,7 @@ ScriptsAdd::getMD5HashString(tTJSVariant *result,
 
 
 //----------------------------------------------------------------------
-// «‘‚Ì—v‘f‚ğ‘Sclone‚·‚éCaller
+// è¾æ›¸ã®è¦ç´ ã‚’å…¨cloneã™ã‚‹Caller
 class DictMemberCloneCaller : public tTJSDispatch
 {
 public:
@@ -601,16 +601,16 @@ protected:
 };
 
 //----------------------------------------------------------------------
-// \‘¢‘Ì”äŠrŠÖ”
+// æ§‹é€ ä½“æ¯”è¼ƒé–¢æ•°
 tTJSVariant
 ScriptsAdd::clone(tTJSVariant obj)
 {
-	// ƒ^ƒCƒv‚ªƒIƒuƒWƒFƒNƒg‚È‚ç×‚©‚­”»’è
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã‚‰ç´°ã‹ãåˆ¤å®š
 	if (obj.Type() == tvtObject) {
 
 		tTJSVariantClosure &o1 = obj.AsObjectClosureNoAddRef();
 		
-		// Array‚Ì•¡»
+		// Arrayã®è¤‡è£½
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Array", NULL)== TJS_S_TRUE) {
 			iTJSDispatch2 *array = TJSCreateArrayObject();
 			tTJSVariant o1Count;
@@ -629,7 +629,7 @@ ScriptsAdd::clone(tTJSVariant obj)
 			return result;
 		}
 		
-		// Dictionary‚Ì•¡»
+		// Dictionaryã®è¤‡è£½
 		if (o1.IsInstanceOf(0, NULL, NULL, L"Dictionary", NULL)== TJS_S_TRUE) {
 			iTJSDispatch2 *dict = TJSCreateDictionaryObject();
 			DictMemberCloneCaller *caller = new DictMemberCloneCaller(dict);
@@ -641,7 +641,7 @@ ScriptsAdd::clone(tTJSVariant obj)
 			return result;
 		}
 
-		// cloneƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ‚É¬Œ÷‚·‚ê‚Î‚»‚ê‚ğ•Ô‚·
+		// cloneãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ã«æˆåŠŸã™ã‚Œã°ãã‚Œã‚’è¿”ã™
 		tTJSVariant result;
 		static tjs_uint cloneHint = 0;
 		if (o1.FuncCall(0, L"clone", &cloneHint, &result, 0, NULL, NULL)== TJS_S_TRUE) {
@@ -653,7 +653,7 @@ ScriptsAdd::clone(tTJSVariant obj)
 }
 
 //----------------------------------------------------------------------
-// ƒtƒ‰ƒOw’è‚Â‚«ƒvƒƒpƒeƒB‘€ì
+// ãƒ•ãƒ©ã‚°æŒ‡å®šã¤ããƒ—ãƒ­ãƒ‘ãƒ†ã‚£æ“ä½œ
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::propSet(tTJSVariant *result,
 					tjs_int numparams,
@@ -684,7 +684,7 @@ ScriptsAdd::propGet(tTJSVariant *result,
 }
 
 //----------------------------------------------------------------------
-// (const)‚Â‚««‘^”z—ñ‚ğˆÀ‘S‚É•]‰¿
+// (const)ã¤ãè¾æ›¸ï¼é…åˆ—ã‚’å®‰å…¨ã«è©•ä¾¡
 tjs_error TJS_INTF_METHOD
 ScriptsAdd::safeEvalStorage(tTJSVariant *result,
 							tjs_int numparams,

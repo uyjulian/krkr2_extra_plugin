@@ -1,62 +1,62 @@
 /**
- * ‹g—¢‹g—¢—p Direct3D drawdevice ƒNƒ‰ƒX
+ * å‰é‡Œå‰é‡Œç”¨ Direct3D drawdevice ã‚¯ãƒ©ã‚¹
  *
- * Direct3D ‚Å•¡”‚Ì‹g—¢‹g—¢ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ğ”z’u‰Â”\‚È drawdevice ‚Å‚·
+ * Direct3D ã§è¤‡æ•°ã®å‰é‡Œå‰é‡Œãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã‚’é…ç½®å¯èƒ½ãª drawdevice ã§ã™
  */
 class DrawDeviceD3D {
 
-	// drawdevice î•ñi“à•”QÆ—pjB“Ç‚İo‚µê—p
+	// drawdevice æƒ…å ±ï¼ˆå†…éƒ¨å‚ç…§ç”¨ï¼‰ã€‚èª­ã¿å‡ºã—å°‚ç”¨
 	property interface;
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param width •`‰æ—Ìˆæ‰¡•
-	 * @param width •`‰æ—Ìˆæc•
-	 * @description c•‚Æ‰¡•‚Í]—ˆ“I‹@\‚Å‚Ì primaryLayer ‚Ì width/height ‚É‘Š“–‚·‚é‚à‚Ì‚Å‚·B
-	 * ì¬‚³‚ê‚½ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„(•¡”)‚Í‚·‚×‚Ä‚±‚±‚Åw’è‚µ‚½—Ìˆæ‚É‘Î‚µ‚Ä
-	 * ˆø‚«‰„‚Î‚µ•\¦‚³‚ê‚Ü‚·B
-	 * —á:
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param width æç”»é ˜åŸŸæ¨ªå¹…
+	 * @param width æç”»é ˜åŸŸç¸¦å¹…
+	 * @description ç¸¦å¹…ã¨æ¨ªå¹…ã¯å¾“æ¥çš„æ©Ÿæ§‹ã§ã® primaryLayer ã® width/height ã«ç›¸å½“ã™ã‚‹ã‚‚ã®ã§ã™ã€‚
+	 * ä½œæˆã•ã‚ŒãŸãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤(è¤‡æ•°)ã¯ã™ã¹ã¦ã“ã“ã§æŒ‡å®šã—ãŸé ˜åŸŸã«å¯¾ã—ã¦
+	 * å¼•ãå»¶ã°ã—è¡¨ç¤ºã•ã‚Œã¾ã™ã€‚
+	 * ä¾‹:
 	 *     drawDevice = new DrawDeviceD3D(800,400);
-	 *     base1 = new Layer(this, null); base1.setSize(800,400); // ‰æ–Ê‚Æ“¯‚¶‰ğ‘œ“x
-	 *     base2 = new Layer(this, null); base1.setSize(400,200); // ‰æ–Ê‚Ì”¼•ª‚Ì‰ğ‘œ“x
-	 *     base3 = new Layer(this, null); base1.setSize(800,200); // c‚¾‚¯‰ğ‘œ“x”¼•ª
+	 *     base1 = new Layer(this, null); base1.setSize(800,400); // ç”»é¢ã¨åŒã˜è§£åƒåº¦
+	 *     base2 = new Layer(this, null); base1.setSize(400,200); // ç”»é¢ã®åŠåˆ†ã®è§£åƒåº¦
+	 *     base3 = new Layer(this, null); base1.setSize(800,200); // ç¸¦ã ã‘è§£åƒåº¦åŠåˆ†
 	 */
 	function DrawDeviceD3D(width, height);
 
-	// •`‰æ—Ìˆæ‰¡•
+	// æç”»é ˜åŸŸæ¨ªå¹…
 	property width;
-	// •`‰æ—Ìˆæc•
+	// æç”»é ˜åŸŸç¸¦å¹…
 	property height;
 
 	/**
-	 * •`‰æ—Ìˆæ‚Ìİ’è
-	 * @param width •`‰æ—Ìˆæ‰¡•
-	 * @param width •`‰æ—Ìˆæc•
+	 * æç”»é ˜åŸŸã®è¨­å®š
+	 * @param width æç”»é ˜åŸŸæ¨ªå¹…
+	 * @param width æç”»é ˜åŸŸç¸¦å¹…
 	 */
 	function setSize(width, height);
 	
-	// À•`‰æ—Ìˆæ‰¡•
+	// å®Ÿæç”»é ˜åŸŸæ¨ªå¹…
 	property destWidth;
-	// À•`‰æ—Ìˆæc•
+	// å®Ÿæç”»é ˜åŸŸç¸¦å¹…
 	property destHeight;
 
 	/*
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•W€‚Ì visible
-	 * @description ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ğ¶¬‚É•\¦‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ‚Ü‚·B
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®æ¨™æº–ã® visible
+	 * @description ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã‚’ç”Ÿæˆæ™‚ã«è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 	 */
 	property defaultVisible;
 	
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @param visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @param visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	function setVisible(id, visible);
 	
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @return visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @return visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	function getVisible(id);
 };

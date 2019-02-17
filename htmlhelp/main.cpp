@@ -5,7 +5,7 @@
 #include <string>
 
 
-// ttstr‚ğUTF8•¶š—ñ‚Ö•ÏŠ·
+// ttstrã‚’UTF8æ–‡å­—åˆ—ã¸å¤‰æ›
 std::string convertTtstrToUtf8String(ttstr &buf)
 {
   int maxlen = buf.length() * 6 + 1;
@@ -17,10 +17,10 @@ std::string convertTtstrToUtf8String(ttstr &buf)
 }
 
 
-// ƒNƒbƒL[
+// ã‚¯ãƒƒã‚­ãƒ¼
 DWORD sCookie = NULL;
 
-// HTMLƒwƒ‹ƒv‚ğ‰Šú‰»
+// HTMLãƒ˜ãƒ«ãƒ—ã‚’åˆæœŸåŒ–
 void RegisterFunc(void)
 {
   HtmlHelp(NULL, NULL, HH_INITIALIZE, (DWORD)&sCookie);
@@ -28,7 +28,7 @@ void RegisterFunc(void)
 
 NCB_PRE_REGIST_CALLBACK(RegisterFunc);
 
-// HTMLƒwƒ‹ƒv‚ğI—¹
+// HTMLãƒ˜ãƒ«ãƒ—ã‚’çµ‚äº†
 void UnregisterFunc(void)
 {
   HtmlHelp(NULL, NULL, HH_UNINITIALIZE, (DWORD)sCookie);
@@ -36,11 +36,11 @@ void UnregisterFunc(void)
 
 NCB_POST_UNREGIST_CALLBACK(UnregisterFunc);
 
-// ƒNƒ‰ƒX‚É“o˜^
+// ã‚¯ãƒ©ã‚¹ã«ç™»éŒ²
 class HtmlHelpClass
 {
 public:
-  // ƒgƒsƒbƒN‚ğ•\¦‚·‚é
+  // ãƒˆãƒ”ãƒƒã‚¯ã‚’è¡¨ç¤ºã™ã‚‹
   static void displayTopic(ttstr path) {
     HtmlHelp(NULL,
 	     path.c_str(),

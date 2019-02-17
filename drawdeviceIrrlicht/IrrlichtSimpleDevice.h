@@ -4,70 +4,70 @@
 #include "IrrlichtBase.h"
 
 /**
- * Irrlicht •`‰æƒfƒoƒCƒX
+ * Irrlicht æç”»ãƒ‡ãƒã‚¤ã‚¹
  */
 class IrrlichtSimpleDevice : public IrrlichtBase
 {
 
 protected:
-	HWND hwnd; //< ‹g—¢‹g—¢‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	iTJSDispatch2 *window; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ(eƒEƒCƒ“ƒhƒE)
-	tjs_int width;  //< Irrlicht À‰æ–Ê‚Ì‰æ–Ê‰¡•
-	tjs_int height; //< Irrlicht À‰æ–Ê‚Ì‰æ–Êc•
-	bool useRender; //< ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚¤
-	irr::video::ITexture *target; //< ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg
+	HWND hwnd; //< å‰é‡Œå‰é‡Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	iTJSDispatch2 *window; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§(è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦)
+	tjs_int width;  //< Irrlicht å®Ÿç”»é¢ã®ç”»é¢æ¨ªå¹…
+	tjs_int height; //< Irrlicht å®Ÿç”»é¢ã®ç”»é¢ç¸¦å¹…
+	bool useRender; //< ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã†
+	irr::video::ITexture *target; //< ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 
 	tjs_int dwidth;
 	tjs_int dheight;
-	HBITMAP hbmp; // •`‰ææDIB
+	HBITMAP hbmp; // æç”»å…ˆDIB
 	HBITMAP oldbmp;
-	HDC destDC; // •`‰ææDC
+	HDC destDC; // æç”»å…ˆDC
 	void *bmpbuffer;
 
 	void clearDC();
 	void updateDC(int dwidth, int dheight);
 		
 	
-	// ƒCƒxƒ“ƒgˆ—
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 	static bool __stdcall messageHandler(void *userdata, tTVPWindowMessage *Message);
 	
-	// ƒ†[ƒUƒƒbƒZ[ƒWƒŒƒV[ƒo‚Ì“o˜^/‰ğœ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚·ãƒ¼ãƒã®ç™»éŒ²/è§£é™¤
 	void setReceiver(tTVPWindowMessageReceiver receiver, bool enable);
 
 	/**
-	 * ƒEƒCƒ“ƒhƒE‚ğ¶¬
-	 * @param krkr ‹g—¢‹g—¢‚ÌƒEƒCƒ“ƒhƒE
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
+	 * @param krkr å‰é‡Œå‰é‡Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	 */
 	void createWindow(HWND krkr);
 
 	/**
-	 * ƒEƒCƒ“ƒhƒE‚ğ”jŠü
+	 * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
 	 */
 	void destroyWindow();
 
-	/// ƒfƒoƒCƒXŠ„‚è“–‚ÄŒãˆ—
+	/// ãƒ‡ãƒã‚¤ã‚¹å‰²ã‚Šå½“ã¦å¾Œå‡¦ç†
 	virtual void onAttach();
 
-	/// ƒfƒoƒCƒX”jŠü‘Oˆ—
+	/// ãƒ‡ãƒã‚¤ã‚¹ç ´æ£„å‰å‡¦ç†
 	virtual void onDetach();
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param widow e‚É‚È‚éƒEƒCƒ“ƒhƒE
-	 * @param width ‰¡•
-	 * @param height c•
-	 * @param useRender ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğg‚¤(ƒ¿‚ª—LŒø)
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param widow è¦ªã«ãªã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @param width æ¨ªå¹…
+	 * @param height ç¸¦å¹…
+	 * @param useRender ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½¿ã†(Î±ãŒæœ‰åŠ¹)
 	 */
 	IrrlichtSimpleDevice(iTJSDispatch2 *objthis, iTJSDispatch2 *window, int width, int height, bool useRender);
 		
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~IrrlichtSimpleDevice();
 
 	// -----------------------------------------------------------------------
-	// ¶¬ƒtƒ@ƒNƒgƒŠ
+	// ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	// -----------------------------------------------------------------------
 
 	static tjs_error Factory(IrrlichtSimpleDevice **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
@@ -77,12 +77,12 @@ public:
 	// -----------------------------------------------------------------------
 public:
 	/**
-	 * Continuous ƒR[ƒ‹ƒoƒbƒN
+	 * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	 */
 	virtual void TJS_INTF_METHOD OnContinuousCallback(tjs_uint64 tick);
 	
 	// -----------------------------------------------------------------------
-	// ‹¤’Êƒƒ\ƒbƒhŒÄ‚Ño‚µ—p
+	// å…±é€šãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ç”¨
 	// -----------------------------------------------------------------------
 
 public:
@@ -115,7 +115,7 @@ public:
 	}
 
 	// -----------------------------------------------------------------------
-	// ŒÅ—Lƒƒ\ƒbƒh
+	// å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰
 	// -----------------------------------------------------------------------
 protected:
 	void _setSize();
@@ -144,7 +144,7 @@ public:
 	}
 	
 	/**
-	 * ‘‹ƒTƒCƒYw’è
+	 * çª“ã‚µã‚¤ã‚ºæŒ‡å®š
 	 */	
 	void setSize(int w, int h) {
 		if (width != w || height != h) {
@@ -155,15 +155,15 @@ public:
 	}
 
 	/**
-	 * ƒŒƒCƒ„‚É‘Î‚µ‚ÄXV•`‰æ
-	 * ƒoƒbƒNƒoƒbƒtƒ@‚©‚çƒRƒs[‚µ‚Ü‚·B
-	 * @param layer ƒŒƒCƒ„
-	 * @param srcRect ƒ\[ƒX—Ìˆæ
+	 * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æ›´æ–°æç”»
+	 * ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã—ã¾ã™ã€‚
+	 * @param layer ãƒ¬ã‚¤ãƒ¤
+	 * @param srcRect ã‚½ãƒ¼ã‚¹é ˜åŸŸ
 	 */
 	void _updateToLayer(iTJSDispatch2 *layer, irr::core::rect<irr::s32> *srcRect = NULL);
 
 	/**
-	 * ƒŒƒCƒ„‚É‘Î‚µ‚ÄXV•`‰æ(ŒÄ‚Ño‚µ—p)
+	 * ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æ›´æ–°æç”»(å‘¼ã³å‡ºã—ç”¨)
 	 */
 	static tjs_error updateToLayer(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
 };

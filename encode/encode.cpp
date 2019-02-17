@@ -1,17 +1,17 @@
 /*
- * String <-> Octet —ñ‚Ì•ÏŠ·ŠÖ”
+ * String <-> Octet åˆ—ã®å¤‰æ›é–¢æ•°
  *
  * Written by Kouhei Yanagita
  */
 
 /*
 
-Octet —ñ -> •¶š—ñ
+Octet åˆ— -> æ–‡å­—åˆ—
  String Encode.decode(Octet data, String encoding)
 
  encoding = [ 'Shift_JIS' | 'EUC-JP' | 'UTF-8' ]
 
-•¶š—ñ -> Octet —ñ
+æ–‡å­—åˆ— -> Octet åˆ—
  Octet  Encode.encode(String str, String encoding)
 
  encoding = [ 'Shift_JIS' | 'EUC-JP' | 'UTF-8' ]
@@ -19,8 +19,8 @@ Octet —ñ -> •¶š—ñ
  */
 
 /*
-  Uconv <http://www.yoshidam.net/Ruby_ja.html> (‹g“c³lì) ‚Ì
-  ƒ\[ƒXƒR[ƒh‚ğˆê•”—˜—p‚µ‚Ä‚¢‚Ü‚·B
+  Uconv <http://www.yoshidam.net/Ruby_ja.html> (å‰ç”°æ­£äººæ°ä½œ) ã®
+  ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’ä¸€éƒ¨åˆ©ç”¨ã—ã¦ã„ã¾ã™ã€‚
 */
 
 //---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ public:
             return DecodeEUCJP(param);
         }
         else {
-            ttstr msg = encoding + TJS_W("‚Í•s–¾‚ÈƒGƒ“ƒR[ƒfƒBƒ“ƒO‚Å‚·");
+            ttstr msg = encoding + TJS_W("ã¯ä¸æ˜ãªã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã§ã™");
             TVPThrowExceptionMessage(msg.c_str());
         }
     }
@@ -78,7 +78,7 @@ public:
             return EncodeShiftJIS(str);
         }
         else {
-            ttstr msg = encoding + TJS_W("‚Í•s–¾‚ÈƒGƒ“ƒR[ƒfƒBƒ“ƒO‚Å‚·");
+            ttstr msg = encoding + TJS_W("ã¯ä¸æ˜ãªã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã§ã™");
             TVPThrowExceptionMessage(msg.c_str());
         }        
     }
@@ -97,14 +97,14 @@ private:
                 }
                 else if (data[i] <= 0xdf) {
                     if (len <= i + 1) {
-                        TVPThrowExceptionMessage(TJS_W("•s³‚È UTF-8 ƒV[ƒPƒ“ƒX‚Å‚·"));
+                        TVPThrowExceptionMessage(TJS_W("ä¸æ­£ãª UTF-8 ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã™"));
                     }
                     v.push_back(((data[i] & 0x1f) << 6) | (data[i+1] & 0x3f));
                     i += 1;
                 }
                 else if (data[i] <= 0xef) {
                     if (len <= i + 2) {
-                        TVPThrowExceptionMessage(TJS_W("•s³‚È UTF-8 ƒV[ƒPƒ“ƒX‚Å‚·"));
+                        TVPThrowExceptionMessage(TJS_W("ä¸æ­£ãª UTF-8 ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã™"));
                     }
                     v.push_back(((data[i] & 0x0f) << 12) | ((data[i+1] & 0x3f) << 6) | (data[i+2] & 0x3f));
                     i += 2;
@@ -267,7 +267,7 @@ private:
     {
         tjs_int narrow_len = str.GetNarrowStrLen();
         if (narrow_len == -1) {
-            TVPThrowExceptionMessage(TJS_W("•¶š—ñ‚Ì•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½"));
+            TVPThrowExceptionMessage(TJS_W("æ–‡å­—åˆ—ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸ"));
         }
         else {
             std::vector<char> v;

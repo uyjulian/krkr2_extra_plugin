@@ -1,20 +1,20 @@
 Title: sigcheck plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚Ì–¼ƒ`ƒFƒbƒN‚ðs‚¤‚±‚Æ‚ª‚Å‚«‚éƒvƒ‰ƒOƒCƒ“‚Å‚·B
-ŠO•”ƒtƒ@ƒCƒ‹iƒlƒbƒg‚©‚çƒ_ƒEƒ“ƒ[ƒh‚µ‚½A‚È‚Çj‚Ì³“–ƒ`ƒFƒbƒN‚É—˜—p‚Å‚«‚Ü‚·B
+å‰é‡Œå‰é‡Œã®ç½²åãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆãƒãƒƒãƒˆã‹ã‚‰ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸã€ãªã©ï¼‰ã®æ­£å½“ãƒã‚§ãƒƒã‚¯ã«åˆ©ç”¨ã§ãã¾ã™ã€‚
 
-œƒRƒ“ƒpƒCƒ‹Žž‚Ì’ˆÓ
+â—ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ã®æ³¨æ„
 
-libtomcrypt ‚Æ libtommath ‚ª•K—v‚Å‚·B
-ƒ\[ƒX‚ÌƒJƒŒƒ“ƒg‚É‚»‚ê‚¼‚ê‚»‚Ì–¼‘O‚Å“WŠJ‚µ‚Ä‚­‚¾‚³‚¢B
+libtomcrypt ã¨ libtommath ãŒå¿…è¦ã§ã™ã€‚
+ã‚½ãƒ¼ã‚¹ã®ã‚«ãƒ¬ãƒ³ãƒˆã«ãã‚Œãžã‚Œãã®åå‰ã§å±•é–‹ã—ã¦ãã ã•ã„ã€‚
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

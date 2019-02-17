@@ -3,7 +3,7 @@
 #include "OgreDrawDevice.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 tTVPOgreDrawDevice::tTVPOgreDrawDevice(OgreInfo *info)
 {
@@ -13,7 +13,7 @@ tTVPOgreDrawDevice::tTVPOgreDrawDevice(OgreInfo *info)
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 tTVPOgreDrawDevice::~tTVPOgreDrawDevice()
 {
@@ -21,48 +21,48 @@ tTVPOgreDrawDevice::~tTVPOgreDrawDevice()
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚ÌÄÝ’è
- * @param hwnd ƒnƒ“ƒhƒ‹
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å†è¨­å®š
+ * @param hwnd ãƒãƒ³ãƒ‰ãƒ«
  */
 void
 tTVPOgreDrawDevice::attach(HWND hwnd)
 {
-	// ƒTƒCƒYî•ñ
+	// ã‚µã‚¤ã‚ºæƒ…å ±
 	RECT rect;
 	GetClientRect(hwnd, &rect);
 	width  = rect.right - rect.left;
 	height = rect.bottom - rect.top;
 
-	// ƒnƒ“ƒhƒ‹‚ð•¶Žš—ñ‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’æ–‡å­—åˆ—åŒ–
 	char hwndName[100];
 	snprintf(hwndName, sizeof hwndName, "%d", hwnd);
 
-	// ƒEƒCƒ“ƒhƒE–¼Ì
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦åç§°
 	windowName = "window";
 	windowName += hwndName;
 	
-	// ‰Šú‰»ƒpƒ‰ƒ[ƒ^
+	// åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	NameValuePairList params;
 	params["parentWindowHandle"] = hwndName;
 	params["left"] = "0";
 	params["top"] = "0";
 	
-	// ƒEƒCƒ“ƒhƒE¶¬
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 	_renderWindow = ogreInfo->root->createRenderWindow(windowName,
 													   width,
 													   height,
 													   false,
 													   &params);
 
-	// XX ƒeƒXƒg—p
+	// XX ãƒ†ã‚¹ãƒˆç”¨
 	init();
 	
-	// ogre ‹ì“®ŠJŽn
+	// ogre é§†å‹•é–‹å§‹
 	ogreInfo->start();
 }
 
 /**
- * ƒEƒCƒ“ƒhƒE‚Ì‰ðœ
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è§£é™¤
  */
 void
 tTVPOgreDrawDevice::detach()
@@ -78,8 +78,8 @@ tTVPOgreDrawDevice::detach()
 }
 
 /***
- * ƒEƒCƒ“ƒhƒE‚ÌŽw’è
- * @param wnd ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æŒ‡å®š
+ * @param wnd ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©
  */
 void TJS_INTF_METHOD
 tTVPOgreDrawDevice::SetTargetWindow(HWND wnd)
@@ -91,56 +91,56 @@ tTVPOgreDrawDevice::SetTargetWindow(HWND wnd)
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—ŠJŽn
+ * ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†é–‹å§‹
  */
 void TJS_INTF_METHOD
 tTVPOgreDrawDevice::StartBitmapCompletion(iTVPLayerManager * manager)
 {
-	// bitmapˆ—ŠJŽn
+	// bitmapå‡¦ç†é–‹å§‹
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—
+ * ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†
  */
 void TJS_INTF_METHOD
 tTVPOgreDrawDevice::NotifyBitmapCompleted(iTVPLayerManager * manager,
 	tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
 	const tTVPRect &cliprect, tTVPLayerType type, tjs_int opacity)
 {
-	// bits, bitmapinfo ‚Å•\‚³‚ê‚éƒrƒbƒgƒ}ƒbƒv‚Ì cliprect ‚Ì—Ìˆæ‚ðAx, y ‚É•`‰æ‚·‚éB
+	// bits, bitmapinfo ã§è¡¨ã•ã‚Œã‚‹ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã® cliprect ã®é ˜åŸŸã‚’ã€x, y ã«æç”»ã™ã‚‹ã€‚
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—I—¹
+ * ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†çµ‚äº†
  */
 void TJS_INTF_METHOD
 tTVPOgreDrawDevice::EndBitmapCompletion(iTVPLayerManager * manager)
 {
-	// bitmap ˆ—I—¹
+	// bitmap å‡¦ç†çµ‚äº†
 }
 
 //---------------------------------------------------------------------------
 
 /**
- * ƒeƒXƒg—p‰Šú‰»ˆ—
+ * ãƒ†ã‚¹ãƒˆç”¨åˆæœŸåŒ–å‡¦ç†
  */
 void
 tTVPOgreDrawDevice::init()
 {
-	// ƒJƒƒ‰‰Šú‰»
+	// ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 	Camera *camera = _sceneManager->createCamera("Player");
 	camera->setPosition(Vector3(0,0,500));
 	camera->lookAt(Vector3(0,0,-300));
 	camera->setNearClipDistance(5);
 
-	// ƒrƒ…[ƒ|[ƒg‰Šú‰»
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆåˆæœŸåŒ–
 	Viewport* vp = _renderWindow->addViewport(camera);
 	vp->setBackgroundColour(ColourValue(0,0,0));
 
-	// ƒŠƒ\[ƒX‰Šú‰»
+	// ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	
-	// ƒeƒXƒg—p‚ÉƒIƒuƒWƒFƒNƒg‚ð”z’u‚µ‚Ä‚Ý‚é
+	// ãƒ†ã‚¹ãƒˆç”¨ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…ç½®ã—ã¦ã¿ã‚‹
 	_sceneManager->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
 	Entity *ent = _sceneManager->createEntity("head", "ogrehead.mesh");
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ent);

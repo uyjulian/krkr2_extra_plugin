@@ -1,105 +1,105 @@
 /**
- * ‹[—‹Lqƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼è¨˜è¿°ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 
 /**
- * @description Windows ƒlƒCƒeƒBƒuƒ_ƒCƒAƒƒO‚ğ‘€ì‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚Å‚·B
- * API‚Ìƒ‰ƒbƒp’ö“x‚Ì‹@”\‚µ‚©‚È‚¢‚Ì‚Å”ñí‚Ég‚¢‚É‚­‚¢‚Å‚·‚ªC
- * Œãq‚Ìtjs‚Å‹Lq‚³‚ê‚½ WIN32DialogEX ‚ğg‚¤‚ÆK‚¹‚É‚È‚ê‚Ü‚·B
+ * @description Windows ãƒã‚¤ãƒ†ã‚£ãƒ–ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’æ“ä½œã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+ * APIã®ãƒ©ãƒƒãƒ‘ç¨‹åº¦ã®æ©Ÿèƒ½ã—ã‹ãªã„ã®ã§éå¸¸ã«ä½¿ã„ã«ãã„ã§ã™ãŒï¼Œ
+ * å¾Œè¿°ã®tjsã§è¨˜è¿°ã•ã‚ŒãŸ WIN32DialogEX ã‚’ä½¿ã†ã¨å¹¸ã›ã«ãªã‚Œã¾ã™ã€‚
  */
 class WIN32Dialog {
 	/**
-	 * @description ƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^•ÛƒNƒ‰ƒX
+	 * @description ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä¿æŒã‚¯ãƒ©ã‚¹
 	 */
 	class Header {
 		/**
-		 * “à—e‚ğİ’è‚·‚é
-		 * @param elm «‘”z—ñ
+		 * å†…å®¹ã‚’è¨­å®šã™ã‚‹
+		 * @param elm è¾æ›¸é…åˆ—
 		 * elm = %[ helpID, exStyle, style, x, y, cx, cy, menu, windowClass, title, pointSize, weight, italic, charset, typeFace ];
-		 * Ú×‚Í DLGTEMPLATEEX ‚Ì’è‹`‚ğQÆ‚Ì‚±‚Æ
+		 * è©³ç´°ã¯ DLGTEMPLATEEX ã®å®šç¾©ã‚’å‚ç…§ã®ã“ã¨
 		 */
 		function store(elm);
 
 		/**
-		 * ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌŒÂ”
+		 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
 		 */
 		property dlgItems { getter; setter; }
 	}
 	/**
-	 * @description ƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒgƒAƒCƒeƒ€ƒf[ƒ^•ÛƒNƒ‰ƒX
+	 * @description ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ä¿æŒã‚¯ãƒ©ã‚¹
 	 */
 	class Items {
 		/**
-		 * “à—e‚ğİ’è‚·‚é
-		 * @param elm «‘”z—ñ
+		 * å†…å®¹ã‚’è¨­å®šã™ã‚‹
+		 * @param elm è¾æ›¸é…åˆ—
 		 * elm = %[ helpID, exStyle, style, x, y, cx, cy, id, windowClass, title ];
-		 * Ú×‚Í DLGITEMTEMPLATEEX ‚Ì’è‹`‚ğQÆ‚Ì‚±‚Æ
-		 * extraCount ‚Æ•t‘®ƒf[ƒ^‚Í–¢À‘•‚É‚Â‚«’è‹`‚Å‚«‚Ü‚¹‚ñB
+		 * è©³ç´°ã¯ DLGITEMTEMPLATEEX ã®å®šç¾©ã‚’å‚ç…§ã®ã“ã¨
+		 * extraCount ã¨ä»˜å±ãƒ‡ãƒ¼ã‚¿ã¯æœªå®Ÿè£…ã«ã¤ãå®šç¾©ã§ãã¾ã›ã‚“ã€‚
 		 */
 		function store(elm);
 	}
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param owner ƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN—p‚ÌƒI[ƒi[‚ğİ’èBnull‚©this‚Å©•ª©g‚Ö‘—‚éB
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param owner ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ã®ã‚ªãƒ¼ãƒŠãƒ¼ã‚’è¨­å®šã€‚nullã‹thisã§è‡ªåˆ†è‡ªèº«ã¸é€ã‚‹ã€‚
 	 */
 	function WIN32Dialog(owner);
 
 	/**
-	 * ƒ_ƒCƒAƒƒOƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
-	 * @param dllfile  dllƒtƒ@ƒCƒ‹iƒ[ƒJƒ‹ƒXƒgƒŒ[ƒWŒ`®j
-	 * @param resource ƒ_ƒCƒAƒƒOƒŠƒ\[ƒX–¼
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
+	 * @param dllfile  dllãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸å½¢å¼ï¼‰
+	 * @param resource ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚½ãƒ¼ã‚¹å
 	 */
 	function loadResource(dllfile, resource);
 
 	/**
-	 * ƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒg‚ğ¶¬‚·‚é
-	 * @param header ƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒgƒwƒbƒ_  iWIN32Dialog.HeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Å‚ ‚é‚±‚Æj
-	 * @param items* ƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒgƒAƒCƒeƒ€iWIN32Dialog.Items ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Å‚ ‚é‚±‚Æj
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ç”Ÿæˆã™ã‚‹
+	 * @param header ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ˜ãƒƒãƒ€  ï¼ˆWIN32Dialog.Headerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã‚ã‚‹ã“ã¨ï¼‰
+	 * @param items* ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼ˆWIN32Dialog.Items ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã‚ã‚‹ã“ã¨ï¼‰
 	 */
 	function makeTemplate(header, items*);
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ğŠJ‚­
-	 * @param window eƒEƒBƒ“ƒhƒE(‹g—¢‹g—¢‚Ì Window ƒNƒ‰ƒX)CÈ—ª‚Ü‚½‚Ívoid‚Íe‚È‚µ
-	 * @description ‚ ‚ç‚©‚¶‚ß makeTemplate ‚Åƒ_ƒCƒAƒƒOƒeƒ“ƒvƒŒ[ƒg‚ª¶¬‚³‚ê‚Ä‚¢‚é‚©
-	 * ‚Ü‚½‚Í loadResource ‚Åƒ_ƒCƒAƒƒOƒŠƒ\[ƒX‚Ì“Ç‚İ‚ñ‚Å‚¢‚é‚±‚Æ
-	 * makeTemplate ‚æ‚è loadResource ‚Ìƒf[ƒ^—Dæ‚³‚ê‚é‚Ì‚Å’ˆÓ
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
+	 * @param window è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(å‰é‡Œå‰é‡Œã® Window ã‚¯ãƒ©ã‚¹)ï¼Œçœç•¥æ™‚ã¾ãŸã¯voidæ™‚ã¯è¦ªãªã—
+	 * @description ã‚ã‚‰ã‹ã˜ã‚ makeTemplate ã§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãŒç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã‹
+	 * ã¾ãŸã¯ loadResource ã§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ã“ã¨
+	 * makeTemplate ã‚ˆã‚Š loadResource ã®ãƒ‡ãƒ¼ã‚¿å„ªå…ˆã•ã‚Œã‚‹ã®ã§æ³¨æ„
 	 */
 	function open(window);
 	
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚é
-	 * @param result EndDialog API‚É“n‚·Œ‹‰Ê’l
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚‹
+	 * @param result EndDialog APIã«æ¸¡ã™çµæœå€¤
 	 */
 	function close(result);
 
 	/**
-	 * GetDlgItem ‚Ìƒ‰ƒbƒp[
-	 * @param id ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @return ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌHWND
+	 * GetDlgItem ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param id ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @return ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®HWND
 	 */
 	function getItem(id);
 
 	/**
-	 * GetDlgCtrlID ‚Ìƒ‰ƒbƒp[
-	 * @param hwnd ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌHWND
-	 * @return ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
+	 * GetDlgCtrlID ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param hwnd ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®HWND
+	 * @return ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
 	 */
 	function getItemID(hwnd);
 
 	/**
-	 * GetClassName ‚Ìƒ‰ƒbƒp[
-	 * @param id ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @return ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌƒNƒ‰ƒX–¼
+	 * GetClassName ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param id ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @return ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¯ãƒ©ã‚¹å
 	 */
 	function getItemClassName(id);
 
 	/**
-	 * Get/SetDlgItemInt/Text ‚Ìƒ‰ƒbƒp[
-	 * @param id    ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @param value İ’è‚·‚é’liset‚Ìê‡‚Ì‚İj
-	 * @return      æ“¾Œ‹‰Êiget‚Ìê‡‚Ì‚İj
+	 * Get/SetDlgItemInt/Text ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param id    ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @param value è¨­å®šã™ã‚‹å€¤ï¼ˆsetã®å ´åˆã®ã¿ï¼‰
+	 * @return      å–å¾—çµæœï¼ˆgetã®å ´åˆã®ã¿ï¼‰
 	 */
 	function setItemInt(id, value);
 	function getItemInt(id);
@@ -107,27 +107,27 @@ class WIN32Dialog {
 	function getItemText(id);
 
 	/**
-	 * ƒAƒCƒeƒ€‚Ì—LŒøE–³Œø‚ğİ’èEæ“¾‚·‚é
-	 * @param id    ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @param value —LŒøE–³Œø‚Ìİ’èiset‚Ìê‡‚Ì‚İj
-	 * @return      æ“¾Œ‹‰Êiget‚Ìê‡‚Ì‚İj
+	 * ã‚¢ã‚¤ãƒ†ãƒ ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®šãƒ»å–å¾—ã™ã‚‹
+	 * @param id    ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @param value æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã®è¨­å®šï¼ˆsetã®å ´åˆã®ã¿ï¼‰
+	 * @return      å–å¾—çµæœï¼ˆgetã®å ´åˆã®ã¿ï¼‰
 	 */
 	function setItemEnabled(id, value);
 	function getItemEnabled(id);
 
 	/**
-	 * ƒAƒCƒeƒ€‚ÉƒtƒH[ƒJƒX‚ğİ’è‚·‚é
-	 * @param id    ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
+	 * ã‚¢ã‚¤ãƒ†ãƒ ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’è¨­å®šã™ã‚‹
+	 * @param id    ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
 	 */
 	function setItemFocus(id);
 
 	/**
-	 * ƒAƒCƒeƒ€‚ÌˆÊ’uE‘å‚«‚³‚ğ•ÏXEæ“¾‚·‚é
-	 * @param id    ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @param x     ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌXÀ•W
-	 * @param y     ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌYÀ•W
-	 * @param w     ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚Ì•
-	 * @param h     ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚Ì‚‚³
+	 * ã‚¢ã‚¤ãƒ†ãƒ ã®ä½ç½®ãƒ»å¤§ãã•ã‚’å¤‰æ›´ãƒ»å–å¾—ã™ã‚‹
+	 * @param id    ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @param x     ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®Xåº§æ¨™
+	 * @param y     ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®Yåº§æ¨™
+	 * @param w     ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®å¹…
+	 * @param h     ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®é«˜ã•
 	 */
 	function setItemPos( id, x, y);
 	function setItemSize(id, w, h);
@@ -137,63 +137,63 @@ class WIN32Dialog {
 	function getItemHeight(id);
 
 	/**
-	 * ƒAƒCƒeƒ€‚ÉBitmap‚ğİ’è‚·‚é
-	 * @param id    ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @param bmp   ƒrƒbƒgƒ}ƒbƒv‚Éİ’è‚·‚éWIN32Dialog.Bitmap‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
-	 *              WIN32DialogEX‚Å‚ÍLayerƒCƒ“ƒXƒ^ƒ“ƒX‚ªw’è‰Â”\
+	 * ã‚¢ã‚¤ãƒ†ãƒ ã«Bitmapã‚’è¨­å®šã™ã‚‹
+	 * @param id    ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @param bmp   ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«è¨­å®šã™ã‚‹WIN32Dialog.Bitmapã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+	 *              WIN32DialogEXã§ã¯Layerã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒæŒ‡å®šå¯èƒ½
 	 */
 	function setItemBitmap(id, bmp);
 
 	/**
-	 * SendDlgItemMessage ‚Ìƒ‰ƒbƒp[
-	 * @param id     ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€‚ÌID
-	 * @param msg    ‘—‚éƒƒbƒZ[ƒW
-	 * @param wparam ‘—‚éwparam
-	 * @param lparam ‘—‚élparam
+	 * SendDlgItemMessage ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param id     ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+	 * @param msg    é€ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	 * @param wparam é€ã‚‹wparam
+	 * @param lparam é€ã‚‹lparam
 	 * @return LRESULT
 	 */
 	function sendItemMessage(id, msg, wparam, lparam);
 
 	/**
-	 * GetDialogBaseUnit ‚Ìƒ‰ƒbƒp[
-	 * @return Œ‹‰Ê«‘(%[ h:…•½’PˆÊ, v:‚’¼’PˆÊ ])
+	 * GetDialogBaseUnit ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @return çµæœè¾æ›¸(%[ h:æ°´å¹³å˜ä½, v:å‚ç›´å˜ä½ ])
 	 */
 	function getBaseUnits();
 
 	/**
-	 * MapDialogRect ‚Ìƒ‰ƒbƒp[
-	 * @param rect ‹éŒ`—Ìˆæ«‘”z—ñ(%[ left, top, right, bottom ])
-	 * @return Œ‹‰Ê«‘”z—ñ(%[ left, top, right, bottom ])
+	 * MapDialogRect ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param rect çŸ©å½¢é ˜åŸŸè¾æ›¸é…åˆ—(%[ left, top, right, bottom ])
+	 * @return çµæœè¾æ›¸é…åˆ—(%[ left, top, right, bottom ])
 	 */
 	function mapRect(rect);
 
 	/**
-	 * InvalidateRect ‚Ìƒ‰ƒbƒp[
-	 * @param rect ‹éŒ`—Ìˆæ«‘”z—ñ(%[ left, top, right, bottom ])
-	 * @param erase Á‹‚·‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	 * @return ¬Œ÷‚È‚çtrue
+	 * InvalidateRect ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param rect çŸ©å½¢é ˜åŸŸè¾æ›¸é…åˆ—(%[ left, top, right, bottom ])
+	 * @param erase æ¶ˆå»ã™ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	 * @return æˆåŠŸãªã‚‰true
 	 */
 	function invalidateRect(rect, erase);
 
 	/**
-	 * ƒ_ƒCƒAƒƒOÀ•W‚ğİ’è
-	 * @param x xÀ•W
-	 * @param y yÀ•W
-	 * ƒ_ƒCƒAƒƒO•\¦’†ˆÈŠO‚ÍƒGƒ‰[‚É‚È‚é‚Ì‚Å’ˆÓBonInit‚È‚Ç‚É‚ÄÀ•W‚ğ•ÏX‚·‚é‚±‚Æ
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°åº§æ¨™ã‚’è¨­å®š
+	 * @param x xåº§æ¨™
+	 * @param y yåº§æ¨™
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤ºä¸­ä»¥å¤–ã¯ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§æ³¨æ„ã€‚onInitãªã©ã«ã¦åº§æ¨™ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨
 	 */
 	function setPos(x, y);
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚Ì‘å‚«‚³‚ğİ’è
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®å¤§ãã•ã‚’è¨­å®š
 	 * @param w width
 	 * @param h height
-	 * ƒ_ƒCƒAƒƒO•\¦’†ˆÈŠO‚ÍƒGƒ‰[‚É‚È‚é‚Ì‚Å’ˆÓB
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤ºä¸­ä»¥å¤–ã¯ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§æ³¨æ„ã€‚
 	 */
 	function setSize(w, h);
 
 	/**
-	 * ƒ_ƒCƒAƒƒOƒTƒCƒY‚Ìæ“¾
-	 * @description “Ç‚İæ‚èê—pBƒTƒCƒY‚Ì•ÏX‚Í‚Å‚«‚È‚¢‚Ì‚Å’ˆÓ
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚µã‚¤ã‚ºã®å–å¾—
+	 * @description èª­ã¿å–ã‚Šå°‚ç”¨ã€‚ã‚µã‚¤ã‚ºã®å¤‰æ›´ã¯ã§ããªã„ã®ã§æ³¨æ„
 	 */
 	property left   { getter; }
 	property top    { getter; }
@@ -201,187 +201,187 @@ class WIN32Dialog {
 	property height { getter; }
 
 	/**
-	 * WM_INITDIALOG ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param msg    DlgProc ‚ÌƒƒbƒZ[ƒW == WM_INITDIALOG
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
-	 * @description ƒR[ƒ‹ƒoƒbƒN‚Íowner‚É‘Î‚µ‚ÄŒÄ‚Î‚ê‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢
-	 * owner.onInit‚ª–¢’è‹`‚È‚ç‰½‚à‚µ‚Ü‚¹‚ñB
+	 * WM_INITDIALOG ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param msg    DlgProc ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ == WM_INITDIALOG
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
+	 * @description ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ownerã«å¯¾ã—ã¦å‘¼ã°ã‚Œã‚‹ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„
+	 * owner.onInitãŒæœªå®šç¾©ãªã‚‰ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 	 */
 	function onInit(msg, wparam, lparam);
 
 	/**
-	 * WM_COMMAND ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param msg    DlgProc ‚ÌƒƒbƒZ[ƒW == WM_COMMAND
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
-	 * @description ƒR[ƒ‹ƒoƒbƒN‚Íowner‚É‘Î‚µ‚ÄŒÄ‚Î‚ê‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
-	 * owner.onCommand‚ª–¢’è‹`‚È‚ç‰½‚à‚µ‚Ü‚¹‚ñB
+	 * WM_COMMAND ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param msg    DlgProc ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ == WM_COMMAND
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
+	 * @description ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ownerã«å¯¾ã—ã¦å‘¼ã°ã‚Œã‚‹ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
+	 * owner.onCommandãŒæœªå®šç¾©ãªã‚‰ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 	 */
 	function onCommand(msg, wparam, lparam);
 
 	/**
-	 * WM_HSCROLL ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param msg    DlgProc ‚ÌƒƒbƒZ[ƒW == WM_HSCROLL
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
+	 * WM_HSCROLL ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param msg    DlgProc ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ == WM_HSCROLL
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
 	 */
 	function onHScroll(msg, wparam, lparam);
 
 	/**
-	 * WM_VSCROLL ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param msg    DlgProc ‚ÌƒƒbƒZ[ƒW == WM_VSCROLL
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
+	 * WM_VSCROLL ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param msg    DlgProc ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ == WM_VSCROLL
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
 	 */
 	function onVScroll(msg, wparam, lparam);
 
 	/**
-	 * WM_NOTIFY ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param notify HMHDRƒAƒNƒZƒX—pƒNƒ‰ƒX
+	 * WM_NOTIFY ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param notify HMHDRã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚¯ãƒ©ã‚¹
 	 */
 	function onNotify(msg, wparam, lparam);
 
 	/**
-	 * WM_KEYDOWN ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
+	 * WM_KEYDOWN ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
 	 */
 	function onKeyDown(wparam, lparam)
 	{
 	}
 
 	/**
-	 * WM_KEYUP ‚ÌƒR[ƒ‹ƒoƒbƒN
-	 * @param wparam DlgProc ‚ÌWPARAM
-	 * @param lparam DlgProc ‚ÌLPARAM
+	 * WM_KEYUP ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @param wparam DlgProc ã®WPARAM
+	 * @param lparam DlgProc ã®LPARAM
 	 */
 	function onKeyUp(wparam, lparam)
 	{
 	}
 
 	/**
-	 * MessageBox ‚Ìƒ‰ƒbƒp[
-	 * @param window  ƒI[ƒi[windowiw’è‚µ‚È‚¢ê‡‚Ínull‚ğ“n‚·‚±‚Æj
-	 * @param text    ƒƒbƒZ[ƒWƒeƒLƒXƒg
-	 * @param caption ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚ÌƒLƒƒƒvƒVƒ‡ƒ“
-	 * @param type    •\¦‚·‚éƒ{ƒ^ƒ“‚âƒAƒCƒRƒ“‚Ìƒtƒ‰ƒO‚Ì‘g‚İ‡‚í‚¹
-	 * @return        ‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“‚ÌID
-	 * type ‚É“Æ©ƒtƒ‰ƒO MB_OWNER_CENTER ‚ğİ’è‚·‚é‚ÆƒI[ƒi[ƒEƒBƒ“ƒhƒE‚Ì’†‰›‚É•\¦‚µ‚æ‚¤‚Æ‚·‚é
-	 * i‚½‚¾‚µƒ_ƒCƒAƒƒO‚ª‰æ–ÊŠO‚É‚È‚éê‡‚ÍƒfƒXƒNƒgƒbƒv‚Ì’†‰›‚É‚È‚éj
+	 * MessageBox ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param window  ã‚ªãƒ¼ãƒŠãƒ¼windowï¼ˆæŒ‡å®šã—ãªã„å ´åˆã¯nullã‚’æ¸¡ã™ã“ã¨ï¼‰
+	 * @param text    ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @param caption ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³
+	 * @param type    è¡¨ç¤ºã™ã‚‹ãƒœã‚¿ãƒ³ã‚„ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ•ãƒ©ã‚°ã®çµ„ã¿åˆã‚ã›
+	 * @return        æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã®ID
+	 * type ã«ç‹¬è‡ªãƒ•ãƒ©ã‚° MB_OWNER_CENTER ã‚’è¨­å®šã™ã‚‹ã¨ã‚ªãƒ¼ãƒŠãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¤®ã«è¡¨ç¤ºã—ã‚ˆã†ã¨ã™ã‚‹
+	 * ï¼ˆãŸã ã—ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒç”»é¢å¤–ã«ãªã‚‹å ´åˆã¯ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ä¸­å¤®ã«ãªã‚‹ï¼‰
 	 */
 	/*static*/function messageBox(window, text, caption, type);
 
 	/**
-	 * ChooseColor ‚Ìƒ‰ƒbƒp[
-	 * @param window  ƒI[ƒi[windowiw’è‚µ‚È‚¢ê‡‚Ínull‚ğ“n‚·‚±‚Æj
-	 * @param elm     ƒIƒvƒVƒ‡ƒ“i«‘‚Ü‚½‚ÍÈ—ª‰Â”\j
-	 *                %[ color:‰Šú‘I‘ğF, palette:[ ƒpƒŒƒbƒgF1, ... , ƒpƒŒƒbƒgF16 ],
-	 *                   disableCustomColor:F‚Ìì¬‚ğ–³Œø‚É‚·‚é, openCustomColor:Fì¬‚ğÅ‰‚©‚çŠJ‚¢‚½ó‘Ô‚É‚·‚é ]
-	 * @return        ‘I‘ğ‚³‚ê‚½F(0xRRGGBB) ƒLƒƒƒ“ƒZƒ‹‚Ívoid
-	 *                elm.palette ‚ª“n‚³‚ê‚½ê‡‚ÍC‚»‚Ì“à—e‚àXV‚³‚ê‚é
+	 * ChooseColor ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param window  ã‚ªãƒ¼ãƒŠãƒ¼windowï¼ˆæŒ‡å®šã—ãªã„å ´åˆã¯nullã‚’æ¸¡ã™ã“ã¨ï¼‰
+	 * @param elm     ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼ˆè¾æ›¸ã¾ãŸã¯çœç•¥å¯èƒ½ï¼‰
+	 *                %[ color:åˆæœŸé¸æŠè‰², palette:[ ãƒ‘ãƒ¬ãƒƒãƒˆè‰²1, ... , ãƒ‘ãƒ¬ãƒƒãƒˆè‰²16 ],
+	 *                   disableCustomColor:è‰²ã®ä½œæˆã‚’ç„¡åŠ¹ã«ã™ã‚‹, openCustomColor:è‰²ä½œæˆã‚’æœ€åˆã‹ã‚‰é–‹ã„ãŸçŠ¶æ…‹ã«ã™ã‚‹ ]
+	 * @return        é¸æŠã•ã‚ŒãŸè‰²(0xRRGGBB) ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã¯void
+	 *                elm.palette ãŒæ¸¡ã•ã‚ŒãŸå ´åˆã¯ï¼Œãã®å†…å®¹ã‚‚æ›´æ–°ã•ã‚Œã‚‹
 	 */
 	/*static*/function chooseColor(window, elm);
 
 	/**
-	 * ƒ‚[ƒhƒŒƒXƒ_ƒCƒAƒƒO—p‚Ìƒtƒ‰ƒO
-	 * @description true‚È‚ç‚Îƒ‚[ƒhƒŒƒXó‘Ô‚Åƒ_ƒCƒAƒƒO‚ğŠJ‚«‚Ü‚·B
-	 * ƒ‚[ƒhƒŒƒX‚Å‚Íƒ_ƒCƒAƒƒO‚Ìstyle‚ÉWS_VISIBLE‚ğw’è‚µ‚È‚¢ê‡‚Í
-	 * open()‚É©“®‚Å•\¦‚³‚ê‚È‚¢‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+	 * ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ã®ãƒ•ãƒ©ã‚°
+	 * @description trueãªã‚‰ã°ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹çŠ¶æ…‹ã§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã¾ã™ã€‚
+	 * ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ã§ã¯ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®styleã«WS_VISIBLEã‚’æŒ‡å®šã—ãªã„å ´åˆã¯
+	 * open()æ™‚ã«è‡ªå‹•ã§è¡¨ç¤ºã•ã‚Œãªã„ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
 	 */
 	property modeless { getter; setter; }
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ÌƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
 	 */
 	property HWND { getter; }
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ÌƒAƒCƒRƒ“‰æ‘œ
-	 * @description WIN32Dialog.BitmapƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX:‚»‚Ì‰æ‘œ
-	 *   null:Àsƒtƒ@ƒCƒ‹‚ÌƒAƒCƒRƒ“
-	 *   void:ƒAƒCƒRƒ“‚È‚µ
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒ
+	 * @description WIN32Dialog.Bitmapã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹:ãã®ç”»åƒ
+	 *   null:å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ã‚¤ã‚³ãƒ³
+	 *   void:ã‚¢ã‚¤ã‚³ãƒ³ãªã—
 	 */
 	property icon { setter; getter; }
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ğ open ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ open ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
 	 */
 	property isValid { getter; }
 
 	/**
-	 * ShowWindow ‚Ìƒ‰ƒbƒp[
-	 * @param nCmdShow SW_*ƒtƒ‰ƒO
-	 * @description å‚Éƒ‚[ƒhƒŒƒXƒ_ƒCƒAƒƒO—p‚Å‚·B
+	 * ShowWindow ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param nCmdShow SW_*ãƒ•ãƒ©ã‚°
+	 * @description ä¸»ã«ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ã§ã™ã€‚
 	 */
 	function show(nCmdShow);
 
 	/**
-	 * InitCommonControls, InitCommonControlsEx ‚Ìƒ‰ƒbƒp[
-	 * @param icc ‰Šú‰»ƒtƒ‰ƒO ICC_*(`Ex‚Ì‚İ)
-	 * @return    ¬Œ÷‚µ‚½‚©(`Ex‚Ì‚İ)
+	 * InitCommonControls, InitCommonControlsEx ã®ãƒ©ãƒƒãƒ‘ãƒ¼
+	 * @param icc åˆæœŸåŒ–ãƒ•ãƒ©ã‚° ICC_*(ã€œExã®ã¿)
+	 * @return    æˆåŠŸã—ãŸã‹(ã€œExã®ã¿)
 	 */
 	function InitCommonControls();
 	function InitCommonControlsEx(icc);
 
 	/**
-	 * ƒvƒƒpƒeƒBƒV[ƒg‚ğ•\¦‚·‚éií‚Éƒ‚[ƒ_ƒ‹Fƒ‚[ƒhƒŒƒX‚Í–¢À‘•j
-	 * @param window  ƒI[ƒi[windowiw’è‚µ‚È‚¢ê‡‚Ínull‚ğ“n‚·‚±‚Æj
-	 * @param sheets  ƒV[ƒgî•ñiWIN32DialogƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”z—ñj
-	 * @param elm     ƒIƒvƒVƒ‡ƒ“i«‘‚Ü‚½‚ÍÈ—ª‰Â”\j
-	 *                %[ caption:ƒvƒƒpƒeƒBƒV[ƒgƒ^ƒCƒgƒ‹, page:‰Šúƒy[ƒW”Ô†, icon:ƒAƒCƒRƒ“ ]
-	 * @return        ::PropertySheet‚Ì•Ô‚è’l
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚·ãƒ¼ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ï¼ˆå¸¸ã«ãƒ¢ãƒ¼ãƒ€ãƒ«ï¼šãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ã¯æœªå®Ÿè£…ï¼‰
+	 * @param window  ã‚ªãƒ¼ãƒŠãƒ¼windowï¼ˆæŒ‡å®šã—ãªã„å ´åˆã¯nullã‚’æ¸¡ã™ã“ã¨ï¼‰
+	 * @param sheets  ã‚·ãƒ¼ãƒˆæƒ…å ±ï¼ˆWIN32Dialogã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®é…åˆ—ï¼‰
+	 * @param elm     ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼ˆè¾æ›¸ã¾ãŸã¯çœç•¥å¯èƒ½ï¼‰
+	 *                %[ caption:ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚·ãƒ¼ãƒˆã‚¿ã‚¤ãƒˆãƒ«, page:åˆæœŸãƒšãƒ¼ã‚¸ç•ªå·, icon:ã‚¢ã‚¤ã‚³ãƒ³ ]
+	 * @return        ::PropertySheetã®è¿”ã‚Šå€¤
 	 */
 	/*static*/function openPropertySheet(window, sheets, elm);
 
-	// PSM_* ƒƒbƒZ[ƒW‚ğƒvƒƒpƒeƒBƒV[ƒgƒEƒBƒ“ƒhƒE‚É‘—M‚·‚é
+	// PSM_* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚·ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«é€ä¿¡ã™ã‚‹
 	function propSheetMessage(msg, wparam, lparam);
-	// DWL_MSGRESULT‚Ì’l‚ğİ’è‚·‚é
+	// DWL_MSGRESULTã®å€¤ã‚’è¨­å®šã™ã‚‹
 	function setMessageResult(value);
-	// ƒvƒƒpƒeƒBƒV[ƒg‚Æ‚µ‚Ä•\¦’†‚©‚Ç‚¤‚©
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚·ãƒ¼ãƒˆã¨ã—ã¦è¡¨ç¤ºä¸­ã‹ã©ã†ã‹
 	property propsheet { getter; }
 
 	/**
-	 * ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
-	 * @param id      ƒvƒƒOƒŒƒXƒo[‚Ìƒ_ƒCƒAƒƒOƒAƒCƒeƒ€IDiprogressValueƒvƒƒpƒeƒB‚ÅXV‚³‚ê‚é‘ÎÛj
-	 * @param window  [optional] ƒI[ƒi[window (void=ƒI[ƒi[‚È‚µ,null=Application)
-	 * @param dsapp   [optional] ƒvƒƒOƒŒƒX•\¦’†‚ÍƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒEƒBƒ“ƒhƒE‚ğ–³Œø‚É‚·‚é‚©
-	 * @param breathe [optional] progressValue‚Ìsetter‚Åbreathe‚·‚é‚©‚Ç‚¤‚©
-	 * @return        ¬Œ÷‚µ‚½‚çtrue
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
+	 * @param id      ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ IDï¼ˆprogressValueãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã§æ›´æ–°ã•ã‚Œã‚‹å¯¾è±¡ï¼‰
+	 * @param window  [optional] ã‚ªãƒ¼ãƒŠãƒ¼window (void=ã‚ªãƒ¼ãƒŠãƒ¼ãªã—,null=Application)
+	 * @param dsapp   [optional] ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹è¡¨ç¤ºä¸­ã¯ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹
+	 * @param breathe [optional] progressValueã®setterã§breatheã™ã‚‹ã‹ã©ã†ã‹
+	 * @return        æˆåŠŸã—ãŸã‚‰true
 	 * @description
-	 * ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚Ìstyle‚É‚ÍWS_VISIBLE‚ğw’è‚µ‚È‚¢‚±‚Æ
-	 * •Â‚¶‚é‚Æ‚«‚Í•K‚¸ closeProgress() ‚ğg—p‚·‚é‚±‚Æ
-	 * ƒvƒƒOƒŒƒX•\¦‚Ìê‡ConInitˆÈŠO‚ÌƒR[ƒ‹ƒoƒbƒN‚Í—ˆ‚È‚¢‚Ì‚Å’ˆÓ
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®styleã«ã¯WS_VISIBLEã‚’æŒ‡å®šã—ãªã„ã“ã¨
+	 * é–‰ã˜ã‚‹ã¨ãã¯å¿…ãš closeProgress() ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹è¡¨ç¤ºã®å ´åˆï¼ŒonInitä»¥å¤–ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯æ¥ãªã„ã®ã§æ³¨æ„
 	 */
 	function openProgress(id, window, dsapp, breathe);
 
-	// ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚é
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚‹
 	function closeProgress();                     
-	// ƒvƒƒOƒŒƒXó‘Ô‚©‚Ç‚¤‚©
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹çŠ¶æ…‹ã‹ã©ã†ã‹
 	property progress         {         getter; } 
-	// ƒvƒƒOƒŒƒXƒo[‚ğXV‚·‚éi0-100‚Ì”’l or •‰”‚Ìê‡ƒ}[ƒL[ó‘Ô‚Ì‘¬“xj
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’æ›´æ–°ã™ã‚‹ï¼ˆ0-100ã®æ•°å€¤ or è² æ•°ã®å ´åˆãƒãƒ¼ã‚­ãƒ¼çŠ¶æ…‹ã®é€Ÿåº¦ï¼‰
 	property progressValue    { setter; getter; } 
-	// ƒvƒƒOƒŒƒX‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚©‚Ç‚¤‚©i¦‘ÎÛƒ{ƒ^ƒ“‚ÍIDCANCELŒÅ’èj
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‹ã©ã†ã‹ï¼ˆâ€»å¯¾è±¡ãƒœã‚¿ãƒ³ã¯IDCANCELå›ºå®šï¼‰
 	property progressCanceled { setter; getter; } 
 
 	/**
-	 * ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚ğ—˜—p‚·‚é.
+	 * ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’åˆ©ç”¨ã™ã‚‹.
 @description
-	—˜—pè‡‚ğŒŸ“¢’†
-	 * insertTab(IDC_TAB, 0, "Šî–{"); // ƒ^ƒu‚ğ’Ç‰Á
-	 * // deleteTab(IDC_TAB, 0); // ƒ^ƒu‚ğíœ
-	 * // deleteAllTab(IDC_TAB); // ƒ^ƒu‚ğ‚·‚×‚Äíœ
-	 * var dlg = new WIN32Dialog(); dlg.loadResource("resource.dll", "INNER"); // Border=None, Style=Child ‚É‚µ‚½ƒ_ƒCƒAƒƒO
-	 * selectTab(IDC_TAB, dlg); // •\¦
-	 * insertTab(IDC_TAB, 1, "Šg’£");
+	åˆ©ç”¨æ‰‹é †ã‚’æ¤œè¨ä¸­
+	 * insertTab(IDC_TAB, 0, "åŸºæœ¬"); // ã‚¿ãƒ–ã‚’è¿½åŠ 
+	 * // deleteTab(IDC_TAB, 0); // ã‚¿ãƒ–ã‚’å‰Šé™¤
+	 * // deleteAllTab(IDC_TAB); // ã‚¿ãƒ–ã‚’ã™ã¹ã¦å‰Šé™¤
+	 * var dlg = new WIN32Dialog(); dlg.loadResource("resource.dll", "INNER"); // Border=None, Style=Child ã«ã—ãŸãƒ€ã‚¤ã‚¢ãƒ­ã‚°
+	 * selectTab(IDC_TAB, dlg); // è¡¨ç¤º
+	 * insertTab(IDC_TAB, 1, "æ‹¡å¼µ");
 	 * var dlg2 = new WIN32Dialog(); dlg2.loadResource("resource.dll", "INNER2");
 	 * dlg.show(SW_HIDE);
-	 * selectTab(IDC_TAB, dlg2); // Ø‚è‘Ö‚¦
-	 * // onNotify ‚Å notify->code == TCN_SELCHANGE ‚©‚Â notify->idFrom == IDC_TAB ‚Ìê‡‚Éƒ†[ƒU[‚É‚æ‚éƒ^ƒu‚ÌØ‚è‘Ö‚¦
-	 * // getCurSel(tab_id) ‚Åƒ^ƒu‚Ì”Ô†‚ğæ“¾‚µA‘Î‰‚·‚éƒ_ƒCƒAƒƒO‚ğ SW_SHOWA‚»‚êˆÈŠO‚ğ SW_HIDE ‚·‚é
-	 * // ƒ^ƒu”Ô†‚Æ‘Î‰‚·‚éƒ_ƒCƒAƒƒO‚Í©•ª‚ÅŠÇ—‚·‚é‚±‚Æ
-	 * ¦ dlg,dlg2 ‚Ì open ‚Í selectTab ‚³‚ê‚½‚Æ‚«‚És‚í‚ê‚é‚Ì‚ÅAshow(SW_HIDE) ‚·‚é‚Æ‚«‚Í isValid ‚Å open ‚³‚ê‚Ä‚¢‚é‚©Šm”F‚Ì‚±‚Æ
+	 * selectTab(IDC_TAB, dlg2); // åˆ‡ã‚Šæ›¿ãˆ
+	 * // onNotify ã§ notify->code == TCN_SELCHANGE ã‹ã¤ notify->idFrom == IDC_TAB ã®å ´åˆã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã‚ˆã‚‹ã‚¿ãƒ–ã®åˆ‡ã‚Šæ›¿ãˆ
+	 * // getCurSel(tab_id) ã§ã‚¿ãƒ–ã®ç•ªå·ã‚’å–å¾—ã—ã€å¯¾å¿œã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ SW_SHOWã€ãã‚Œä»¥å¤–ã‚’ SW_HIDE ã™ã‚‹
+	 * // ã‚¿ãƒ–ç•ªå·ã¨å¯¾å¿œã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã¯è‡ªåˆ†ã§ç®¡ç†ã™ã‚‹ã“ã¨
+	 * â€» dlg,dlg2 ã® open ã¯ selectTab ã•ã‚ŒãŸã¨ãã«è¡Œã‚ã‚Œã‚‹ã®ã§ã€show(SW_HIDE) ã™ã‚‹ã¨ãã¯ isValid ã§ open ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã®ã“ã¨
 
 	 */
 	function insertTab(tab_id, pos, label);
@@ -391,25 +391,25 @@ class WIN32Dialog {
 	function selectTab(tab_id, dialog);
 
 	/**
-	 * ScrollInfo ‚Ìİ’è
-	 * @param id ƒXƒNƒ[ƒ‹ƒo[‚Ìƒ_ƒCƒAƒƒOƒAƒCƒeƒ€ID
-	 * @param pos ƒXƒ‰ƒCƒ_[‚ÌˆÊ’u
-	 * @param min æ‚è‚¤‚éÅ¬‚Ì’l
-	 * @param max æ‚è‚¤‚éÅ‘å‚Ì’l
-	 * @param page ƒy[ƒW‚Ì’l
+	 * ScrollInfo ã®è¨­å®š
+	 * @param id ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ID
+	 * @param pos ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ä½ç½®
+	 * @param min å–ã‚Šã†ã‚‹æœ€å°ã®å€¤
+	 * @param max å–ã‚Šã†ã‚‹æœ€å¤§ã®å€¤
+	 * @param page ãƒšãƒ¼ã‚¸ã®å€¤
 	 */
 	function setScrollInfo(id, pos, min, max, page);
 
 	/**
-	 * ScrollInfo ‚Ìæ“¾
-	 * @param id ƒXƒNƒ[ƒ‹ƒo[‚Ìƒ_ƒCƒAƒƒOƒAƒCƒeƒ€ID
+	 * ScrollInfo ã®å–å¾—
+	 * @param id ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ ID
 	 * @return %[pos, min, max, page]
 	 */
 	function getScrollInfo(id);
 
 	/**
-	 * ƒEƒBƒ“ƒhƒEƒXƒ^ƒCƒ‹“™‚Ì’è”
-	 * Ú×‚Í API ƒ}ƒjƒ…ƒAƒ‹‚È‚Ç‚ğQÆ‚Ì‚±‚Æ
+	 * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ç­‰ã®å®šæ•°
+	 * è©³ç´°ã¯ API ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ã‚’å‚ç…§ã®ã“ã¨
 	 */
 	// Window Styles
 	const WS_*;
@@ -481,58 +481,58 @@ class WIN32Dialog {
 }
 
 /**
- * @description WIN32Dialog ‚ğ‹g—¢‹g—¢Œü‚¯‚É‚à‚¤­‚µg‚¢‚â‚·‚­‚µ‚½ƒNƒ‰ƒX
- * Scripts.execStorage("win32dialog.tjs")‚Æ‚µ‚Äg‚¢‚Ü‚·B
- * Ú×‚Í“–ŠYƒ\[ƒX‚âƒTƒ“ƒvƒ‹‚È‚Ç‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+ * @description WIN32Dialog ã‚’å‰é‡Œå‰é‡Œå‘ã‘ã«ã‚‚ã†å°‘ã—ä½¿ã„ã‚„ã™ãã—ãŸã‚¯ãƒ©ã‚¹
+ * Scripts.execStorage("win32dialog.tjs")ã¨ã—ã¦ä½¿ã„ã¾ã™ã€‚
+ * è©³ç´°ã¯å½“è©²ã‚½ãƒ¼ã‚¹ã‚„ã‚µãƒ³ãƒ—ãƒ«ãªã©ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
  */
 class WIN32DialogEX extends WIN32Dialog {
 	/**
-	 * ƒeƒ“ƒvƒŒ[ƒg‚ğ—¬‚µ‚Ş
-	 * @param elm ƒeƒ“ƒvƒŒ[ƒg—p«‘”z—ñ
+	 * ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’æµã—è¾¼ã‚€
+	 * @param elm ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆç”¨è¾æ›¸é…åˆ—
 	 * elm = %[ helpID, exStyle, style, x, y, cx, cy, menu, windowClass, title, pointSize, weight, italic, charset, typeFace,
-	 *          items: [ ƒRƒ“ƒgƒ[ƒ‹1, ƒRƒ“ƒgƒ[ƒ‹2, ... ] ];
-	 * @description ƒRƒ“ƒgƒ[ƒ‹‚ÍCƒRƒ“ƒgƒ[ƒ‹¶¬—p‚ÌŠÖ”‚ğŒÄ‚Ñ‚Ü‚·B
+	 *          items: [ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«1, ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«2, ... ] ];
+	 * @description ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã¯ï¼Œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”Ÿæˆç”¨ã®é–¢æ•°ã‚’å‘¼ã³ã¾ã™ã€‚
 	 */
 	function store(elm);
 
 	/**
-	 * ƒAƒCƒeƒ€‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-	 * @param elm ƒpƒ‰ƒ[ƒ^«‘
-	 * @description •K‚¸ store() ‚ÌŒã‚ÅŒÄ‚Ô‚±‚ÆBƒpƒ‰ƒ[ƒ^Ú×‚Í win32dialog.tjs ‚â testscript.tjs ‚ğQÆ
+	 * ã‚¢ã‚¤ãƒ†ãƒ ã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+	 * @param elm ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¾æ›¸
+	 * @description å¿…ãš store() ã®å¾Œã§å‘¼ã¶ã“ã¨ã€‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è©³ç´°ã¯ win32dialog.tjs ã‚„ testscript.tjs ã‚’å‚ç…§
 	 */
 	function setInitParams(elm);
 
 	/**
-	 * ƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
-	 * @return %[ result:EndDialog‚ÌnResult’l, items:ƒAƒCƒeƒ€‚Ìó‘Ô«‘ ];
-	 * @description WIN32Dialog.open ‚Æ•Ô‚è’l‚ªˆÙ‚È‚é‚Ì‚Å’ˆÓ‚Ì‚±‚Æ
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
+	 * @return %[ result:EndDialogã®nResultå€¤, items:ã‚¢ã‚¤ãƒ†ãƒ ã®çŠ¶æ…‹è¾æ›¸ ];
+	 * @description WIN32Dialog.open ã¨è¿”ã‚Šå€¤ãŒç•°ãªã‚‹ã®ã§æ³¨æ„ã®ã“ã¨
 	 */
 	function open(parent);
 
 	/**
-	 * w’èƒEƒBƒ“ƒhƒE‚Ì’†‰›ˆÊ’u‚Éƒ_ƒCƒAƒƒO‚ğˆÚ“®
-	 * @param win ƒEƒBƒ“ƒhƒEiÈ—ª‚Íopen‚Ìˆø”ƒEƒBƒ“ƒhƒE‚É‘Î‚µ‚Äj
-	 * null‚ğ“n‚·‚Æ‰æ–Ê‚É‘Î‚µ‚Ä’†‰›‚É‚È‚é
+	 * æŒ‡å®šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¤®ä½ç½®ã«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç§»å‹•
+	 * @param win ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆçœç•¥æ™‚ã¯openæ™‚ã®å¼•æ•°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«å¯¾ã—ã¦ï¼‰
+	 * nullã‚’æ¸¡ã™ã¨ç”»é¢ã«å¯¾ã—ã¦ä¸­å¤®ã«ãªã‚‹
 	 */
 	function setCenterPosition(win = parent);
 
 	/**
-	 * ƒ_ƒCƒAƒƒOƒŠƒ\[ƒX‚ğ“Ç‚İ‚ŞiƒI[ƒo[ƒ‰ƒCƒhj
-	 * @param dllfile  dllƒtƒ@ƒCƒ‹i©“®“I‚ÉStorages.getPlacedPath/getLocalNameˆ—‚³‚ê‚éj
-	 * @param resource ƒ_ƒCƒAƒƒOƒŠƒ\[ƒX–¼
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€ï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ï¼‰
+	 * @param dllfile  dllãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆè‡ªå‹•çš„ã«Storages.getPlacedPath/getLocalNameå‡¦ç†ã•ã‚Œã‚‹ï¼‰
+	 * @param resource ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚½ãƒ¼ã‚¹å
 	 */
 	function loadResource(dllfile, resource);
 
 	/**
-	 * ŠeíƒRƒ“ƒgƒ[ƒ‹‚ğ¶¬‚·‚é‚½‚ß‚ÌŠÖ”
-	 * @param  text ƒeƒLƒXƒg
-	 * @param    id ƒRƒ“ƒgƒ[ƒ‹ID
-	 * @param     x xÀ•Wiƒ_ƒCƒAƒƒOÀ•W’PˆÊj
-	 * @param     y yÀ•Wiƒ_ƒCƒAƒƒOÀ•W’PˆÊj
-	 * @param     w ‰¡• iƒ_ƒCƒAƒƒOÀ•W’PˆÊj
-	 * @param     h ‚‚³ iƒ_ƒCƒAƒƒOÀ•W’PˆÊj
-	 * @param style ƒXƒ^ƒCƒ‹
-	 * @param    ex Šg’£ƒXƒ^ƒCƒ‹
+	 * å„ç¨®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’ç”Ÿæˆã™ã‚‹ãŸã‚ã®é–¢æ•°
+	 * @param  text ãƒ†ã‚­ã‚¹ãƒˆ
+	 * @param    id ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ID
+	 * @param     x xåº§æ¨™ï¼ˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°åº§æ¨™å˜ä½ï¼‰
+	 * @param     y yåº§æ¨™ï¼ˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°åº§æ¨™å˜ä½ï¼‰
+	 * @param     w æ¨ªå¹… ï¼ˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°åº§æ¨™å˜ä½ï¼‰
+	 * @param     h é«˜ã• ï¼ˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°åº§æ¨™å˜ä½ï¼‰
+	 * @param style ã‚¹ã‚¿ã‚¤ãƒ«
+	 * @param    ex æ‹¡å¼µã‚¹ã‚¿ã‚¤ãƒ«
 	 */
 	function DefPushButton(  text, id, x, y, w, h, style, ex);
 	function    PushButton(  text, id, x, y, w, h, style, ex);

@@ -7,19 +7,19 @@
 #include "ncbind.hpp"
 #include <commctrl.h>
 
-// CreateDialogIndirect ‚Ìƒe[ƒuƒ‹‘‚«o‚µ—pƒNƒ‰ƒX
+// CreateDialogIndirect ã®ãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãå‡ºã—ç”¨ã‚¯ãƒ©ã‚¹
 #include "dialog.hpp"
 
 #include "simplethread.hpp"
 
-// MessageBox‚Åƒ_ƒCƒAƒƒO‚ğƒI[ƒi[ƒZƒ“ƒ^[•\¦‚É‚·‚é“Æ©ƒtƒ‰ƒO
+// MessageBoxã§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ã‚ªãƒ¼ãƒŠãƒ¼ã‚»ãƒ³ã‚¿ãƒ¼è¡¨ç¤ºã«ã™ã‚‹ç‹¬è‡ªãƒ•ãƒ©ã‚°
 #define MB_OWNER_CENTER 0x40000000L
 
 struct Header;
 struct Items;
 class Progress;
 
-// BITMAPƒ‰ƒbƒp
+// BITMAPãƒ©ãƒƒãƒ‘
 struct Bitmap {
 	typedef unsigned char PIX;
 	iTJSDispatch2 *lay;
@@ -93,7 +93,7 @@ struct Bitmap {
 	}
 };
 
-// HBRUSHƒ‰ƒbƒp
+// HBRUSHãƒ©ãƒƒãƒ‘
 struct SolidBrush {
 	HBRUSH brush;
 	SolidBrush(DWORD rgb) : brush(NULL) {
@@ -105,7 +105,7 @@ struct SolidBrush {
 	}
 };
 
-// DRAWITEMƒAƒNƒZƒX—pƒNƒ‰ƒX
+// DRAWITEMã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚¯ãƒ©ã‚¹
 struct DrawItem {
 	DrawItem() : ref(0) {}
 	DrawItem(DRAWITEMSTRUCT const *p) : ref(p) {}
@@ -144,7 +144,7 @@ private:
 	DRAWITEMSTRUCT const *ref;
 };
 
-// NMHDR ƒAƒNƒZƒX—pƒNƒ‰ƒX
+// NMHDR ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚¯ãƒ©ã‚¹
 struct NotifyAccessor {
 	NotifyAccessor() : ptr(0), ref(0) {}
 	NotifyAccessor(NMHDR const *p) : ptr((BYTE const *)p), ref(p) {}
@@ -159,7 +159,7 @@ private:
 	NMHDR const* ref;
 };
 
-// ”Ä—pƒoƒCƒiƒŠƒI‘€ìƒuƒWƒFƒNƒg
+// æ±ç”¨ãƒã‚¤ãƒŠãƒªã‚ªæ“ä½œãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 struct Blob {
 	Blob(DWORD size) : ptr(0), size(size) { if (size) { ptr = new BYTE[size]; ZeroMemory(ptr, size); } }
 	Blob(BYTE  *ptr) : ptr(ptr), size(0) {}
@@ -181,7 +181,7 @@ private:
 
 class WIN32Dialog {
 public:
-	// Œ^‚Ìalias
+	// å‹ã®alias
 	typedef ncbPropAccessor PropT;
 	typedef ncbDictionaryAccessor DictT;
 
@@ -245,19 +245,19 @@ public:
 		resource = 0;
 	}
 	BYTE* CreateBuffer(SizeT sz) {
-		// —ÌˆæŠm•Û
+		// é ˜åŸŸç¢ºä¿
 		ref = buf = reinterpret_cast<BYTE*>(TVP_malloc(sz + 4));
 		SizeT c = 0;
 		DialogTemplate::Alignment(ref, c, 4);
 		return ref;
 	}
 
-	// ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 	DspT *_hasCallback(NameT event, tTJSVariant &rslt) {
 		DspT *obj = owner ? owner : objthis;
 		if (!obj) return NULL;
 
-		// ƒR[ƒ‹ƒoƒbƒN‚ª‘¶İ‚·‚é‚©
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå­˜åœ¨ã™ã‚‹ã‹
 		tjs_uint32 hint = 0;
 		if (TJS_FAILED(obj->PropGet(TJS_MEMBERMUSTEXIST, event, &hint, &rslt, obj))) return NULL;
 
@@ -269,39 +269,39 @@ public:
 		DspT *obj = _hasCallback(event, rslt);
 		if (!obj) return FALSE;
 
-		// ˆø”‚ğ“n‚µ‚ÄƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô
+		// å¼•æ•°ã‚’æ¸¡ã—ã¦ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶
 		Try_iTJSDispatch2_FuncCall(obj, 0, event, 0, &rslt, numparams, params, obj);
 		return (rslt.AsInteger() != 0) ? TRUE : FALSE;
 	}
-	// ’ÊíƒR[ƒ‹ƒoƒbƒN
+	// é€šå¸¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	LRESULT callback(NameT event, UINT msg, WPARAM wparam, LPARAM lparam) {
 		tTJSVariant vmsg((tjs_int32)msg), vwp((tjs_int32)wparam), vlp((tjs_int64)lparam);
 		tTJSVariant *params[] = { &vmsg, &vwp, &vlp };
 		return callback(event, 3, params);
 	}
-	// WM_NOTIFY—pƒR[ƒ‹ƒoƒbƒN
+	// WM_NOTIFYç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	LRESULT callback(NameT event, WPARAM wparam, NMHDR const *nmhdr) {
 		NotifyAccessor acc(nmhdr);
 		tTJSVariant vwp((tjs_int32)wparam), vnm;
-		// ƒ{ƒbƒNƒX‰»
+		// ãƒœãƒƒã‚¯ã‚¹åŒ–
 		ncbNativeObjectBoxing::Boxing box;
 		box.operator()<NotifyAccessor&> (vnm, acc, ncbTypedefs::Tag<NotifyAccessor&>());
 
 		tTJSVariant *params[] = { &vwp, &vnm };
 		return callback(event, 2, params);
 	}
-	// WM_DRAWITEM—pƒR[ƒ‹ƒoƒbƒN
+	// WM_DRAWITEMç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	LRESULT callback(NameT event, WPARAM wparam, DRAWITEMSTRUCT const *drawitem) {
 		DrawItem diwrap(drawitem);
 		tTJSVariant vwp((tjs_int32)wparam), vdi;
-		// ƒ{ƒbƒNƒX‰»
+		// ãƒœãƒƒã‚¯ã‚¹åŒ–
 		ncbNativeObjectBoxing::Boxing box;
 		box.operator()<DrawItem&> (vdi, diwrap, ncbTypedefs::Tag<DrawItem&>());
 
 		tTJSVariant *params[] = { &vwp, &vdi };
 		return callback(event, 2, params);
 	}
-	// WM_CTLCOLOR*—pƒR[ƒ‹ƒoƒbƒN
+	// WM_CTLCOLOR*ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	LRESULT callback(NameT event, int id, HDC hdc) {
 		tTJSVariant rslt;
 		DspT *obj = _hasCallback(event, rslt);
@@ -344,7 +344,7 @@ public:
 		return r;
 	}
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	static tjs_error TJS_INTF_METHOD loadResource(VarT *result, tjs_int numparams, VarT **param, WIN32Dialog *self) {
 		if (numparams < 1) return TJS_E_BADPARAMCOUNT;
 		if (param[0]->Type() == tvtString) self->_loadResource(param[0]->GetString());
@@ -352,7 +352,7 @@ public:
 		return TJS_S_OK;
 	}
 protected:
-	// DLL‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+	// DLLã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	void _loadResource(NameT module) {
 		if (!module) return;
 		HMODULE oldres = resource;
@@ -374,7 +374,7 @@ protected:
 	}
 
 public:
-	// ƒeƒ“ƒvƒŒ[ƒgì¬
+	// ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä½œæˆ
 	static tjs_error TJS_INTF_METHOD makeTemplate(VarT *result, tjs_int numparams, VarT **param, WIN32Dialog *self);
 
 	bool IsValid() const { return dialogHWnd != 0; }
@@ -383,10 +383,10 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// Šeí Item ‘€ìŠÖ”
+	// å„ç¨® Item æ“ä½œé–¢æ•°
 	HWND GetItemHWND(int id) const {
 		checkDialogValid();
-		if (!id) return dialogHWnd; // [XXX] ©•ª©g‚ğ‘€ì‚·‚é‚½‚ß‚Éid==0‚ÅdialogHWnd‚ğ•Ô‚·
+		if (!id) return dialogHWnd; // [XXX] è‡ªåˆ†è‡ªèº«ã‚’æ“ä½œã™ã‚‹ãŸã‚ã«id==0ã§dialogHWndã‚’è¿”ã™
 		HWND ret = GetDlgItem(dialogHWnd, id);
 		if (!ret) ThrowLastError();
 		return ret;
@@ -419,7 +419,7 @@ public:
 	long SetItemLong(int id, int index, long newlong) {
 		HWND hwnd = GetItemHWND(id);
 		long r = SetWindowLong(hwnd, index, newlong);
-		// ƒXƒ^ƒCƒ‹•ÏX‚Ì”½‰f
+		// ã‚¹ã‚¿ã‚¤ãƒ«å¤‰æ›´ã®åæ˜ 
 		if (!id && (index == GWL_STYLE || GWL_EXSTYLE))
 			SetWindowPos(hwnd, 0, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_FRAMECHANGED);
 		return r;
@@ -538,10 +538,10 @@ protected:
 	LRESULT _sendItemMessage(int id, UINT msg, WPARAM wparam, LPARAM lparam) {
 		checkDialogValid();
 		return id ? SendDlgItemMessage(dialogHWnd, id, msg, wparam, lparam)
-			:       SendMessage       (dialogHWnd,     msg, wparam, lparam); // [XXX]©•ª©g‚ğ‘€ì‚·‚é‚½‚ß‚Éid==0‚ÅdialogHWnd‚ÖƒƒbƒZ[ƒW
+			:       SendMessage       (dialogHWnd,     msg, wparam, lparam); // [XXX]è‡ªåˆ†è‡ªèº«ã‚’æ“ä½œã™ã‚‹ãŸã‚ã«id==0ã§dialogHWndã¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	}
 
-	// TJS«‘ËRECT‚Ö’l‚ğƒRƒs[
+	// TJSè¾æ›¸â‡’RECTã¸å€¤ã‚’ã‚³ãƒ”ãƒ¼
 	static inline bool _getRect(RECT &rect, PropT &prop) {
 		if (!prop.IsValid()) return false;
 		PropT::DefsT::Tag<LONG> tagInt;
@@ -551,7 +551,7 @@ protected:
 		rect.bottom = prop.GetValue(TJS_W("bottom"), tagInt);
 		return true;
 	}
-	// RECTËTJS«‘‚Ö’l‚ğƒRƒs[
+	// RECTâ‡’TJSè¾æ›¸ã¸å€¤ã‚’ã‚³ãƒ”ãƒ¼
 	static inline bool _setRect(RECT &rect, PropT &prop) {
 		if (!prop.IsValid()) return false;
 		prop.SetValue(TJS_W("left"),   rect.left);
@@ -639,7 +639,7 @@ public:
 
 protected:
 	// -------------------------------------------------------------
-	// ƒ_ƒCƒAƒƒO‚ğŠJ‚­
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
 	int _open(VarT win) {
 		if (propsheet) TVPThrowExceptionMessage(TJS_W("Dialog is already opened by property sheet."));
 		HINSTANCE hinst = GetModuleHandle(0);
@@ -672,7 +672,7 @@ protected:
 		return TVPGetApplicationWindowHandle();
 	}
 
-	// GetLastError‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğæ“¾‚µ‚Ä“Š‚°‚é
+	// GetLastErrorã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—ã—ã¦æŠ•ã’ã‚‹
 	static inline void ThrowLastError() {
 		LPVOID lpMessageBuffer;
 		FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
@@ -685,7 +685,7 @@ protected:
 	}
 
 public:
-	// ƒ_ƒCƒAƒƒOƒvƒƒV[ƒWƒƒ
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 	static LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
 		WIN32Dialog *inst;
 		switch (msg) {
@@ -696,8 +696,8 @@ public:
 				inst->dialogHWnd = hwnd;
 				if (inst->icon && !inst->propsheet) SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)inst->icon);
 
-				// ƒ‚[ƒhƒŒƒXƒ_ƒCƒAƒƒO—pƒtƒbƒN
-				//	http://support.microsoft.com/kb/233263/ja ‚ÉŠî‚Ã‚¢‚Äì¬
+				// ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ãƒ•ãƒƒã‚¯
+				//	http://support.microsoft.com/kb/233263/ja ã«åŸºã¥ã„ã¦ä½œæˆ
 				if(inst->modeless)
 					inst->hHook = SetWindowsHookEx(WH_GETMESSAGE, GetMsgProc, NULL, GetCurrentThreadId());
 				return inst->callback(TJS_W("onInit"),    msg, wparam, lparam);
@@ -767,7 +767,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒvƒƒpƒeƒBƒV[ƒg—p
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚·ãƒ¼ãƒˆç”¨
 
 	bool isPropertySheet() const { return propsheet != 0; }
 
@@ -898,7 +898,7 @@ public:
 			}
 
 			ret = PropertySheet(&head);
-			// Œãn––
+			// å¾Œå§‹æœ«
 			for (tjs_int i = 0; i < pcnt; i++) {
 				if (sheets[i]) sheets[i]->propsheet = 0;
 			}
@@ -914,11 +914,11 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹—p
+	// ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”¨
 
-	//	ƒ^ƒu‘}“ü
+	//	ã‚¿ãƒ–æŒ¿å…¥
 	tjs_int64 InsertTabItem(int tabid, VarT pos, VarT title) {
-		//	ƒ^ƒu‘}“ü
+		//	ã‚¿ãƒ–æŒ¿å…¥
 		if(title.Type() != tvtString) return TJS_E_INVALIDPARAM;
 		ttstr	str	= title.AsStringNoAddRef();
 		LPWSTR	tx	= (LPWSTR)str.c_str();
@@ -931,47 +931,47 @@ public:
 		return TJS_S_OK;
 	}
 
-	//	ƒ^ƒuíœ
+	//	ã‚¿ãƒ–å‰Šé™¤
 	tjs_int64 DeleteTabItem(int tabid, VarT pos) {
 		HWND	htab = GetItemHWND(tabid);
 		TabCtrl_DeleteItem(htab, pos.AsInteger());
 		return TJS_S_OK;
 	}
 
-	//	‚·‚×‚Ä‚Ìƒ^ƒu‚ğíœ
+	//	ã™ã¹ã¦ã®ã‚¿ãƒ–ã‚’å‰Šé™¤
 	tjs_int64 DeleteAllTabItem(int tabid) {
 		HWND	htab = GetItemHWND(tabid);
 		TabCtrl_DeleteAllItems(htab);
 		return TJS_S_OK;
 	}
 
-	//	‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ^ƒu
+	//	é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒ–
 	tjs_int GetCurSelTab(int tabid) {
 		HWND	htab = GetItemHWND(tabid);
 		return TabCtrl_GetCurSel(htab);
 	}
 
-	//	ƒ^ƒu‚ğ‘I‘ğ
+	//	ã‚¿ãƒ–ã‚’é¸æŠ
 	tjs_int SetCurSelTab(int tabid, VarT pos) {
 		HWND	htab = GetItemHWND(tabid);
 		int idx = pos.Type() == tvtVoid ? 0 : (int)pos.AsInteger();
 		return TabCtrl_SetCurSel(htab, idx);
 	}
 
-	//	ƒ^ƒu“à‚Éƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
+	//	ã‚¿ãƒ–å†…ã«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
 	tjs_int64 SelectTab(int tabid, VarT dlg) {
-		//	æ“¾
+		//	å–å¾—
 		HWND	htab = GetItemHWND(tabid);
 		DspT*	obj = dlg.AsObjectNoAddRef();
 		WIN32Dialog* child = SelfAdaptorT::GetNativeInstance(obj);
 		if(!child) return TJS_E_NATIVECLASSCRASH;
 		child->checkDialogValid(); 
 
-		//	eƒEƒBƒ“ƒhƒE‚Ì•ÏX
+		//	è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´
 		HWND	hchild = (HWND)child->getHWND();
 		if(GetParent(hchild) != dialogHWnd) SetParent(hchild, dialogHWnd);
 
-		//	Ø‘Ö
+		//	åˆ‡æ›¿
 		RECT	rect;
 		::GetClientRect(htab, &rect);
 		TabCtrl_AdjustRect(htab, false, &rect);
@@ -983,7 +983,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO—pƒCƒ“ƒ^[ƒtƒF[ƒX
+	// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 
 	ProgressValueT getProgressValue() const;
 	void           setProgressValue(ProgressValueT);
@@ -996,7 +996,7 @@ public:
 	void checkProgress() const { if (!isProgress()) TVPThrowExceptionMessage(TJS_W("dialog is not progress mode.")); }
 
 	// -------------------------------------------------------------
-	// ƒXƒNƒ[ƒ‹ƒo[—pƒCƒ“ƒ^[ƒtƒF[ƒX
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 
 	static tjs_error TJS_INTF_METHOD setScrollInfo(VarT *result, tjs_int num, VarT **param, iTJSDispatch2 *objthis) {
 		if(num < 1) return TJS_E_BADPARAMCOUNT;
@@ -1046,7 +1046,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒAƒCƒRƒ“‘‚«Š·‚¦
+	// ã‚¢ã‚¤ã‚³ãƒ³æ›¸ãæ›ãˆ
 
 #ifndef IDI_TVPWIN32
 #define IDI_TVPWIN32 107 // [XXX]
@@ -1101,7 +1101,7 @@ public:
 	VarT getDialogIcon() const { return iconBitmap; }
 
 	// -------------------------------------------------------------
-	// ƒeƒ“ƒvƒŒ[ƒg’l‘‚«o‚µ—p
+	// ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆå€¤æ›¸ãå‡ºã—ç”¨
 	template <typename T>
 	static void SetValue(PropT *prop, NameT name, T *out) {
 		tjs_uint32 hint = 0;
@@ -1123,7 +1123,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX•\¦
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹è¡¨ç¤º
 	static int MessageBox(iTJSDispatch2* obj, NameT text, NameT caption, UINT type) {
 		bool useHook = false;
 		HWND hwnd = _getOpenParent(obj);
@@ -1168,7 +1168,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// HookExŒnAPI‚ğƒIƒ“ƒfƒ}ƒ“ƒh‚Å“Ç‚İ‚İ
+	// HookExç³»APIã‚’ã‚ªãƒ³ãƒ‡ãƒãƒ³ãƒ‰ã§èª­ã¿è¾¼ã¿
 	static bool HookExAPILoaded, HookExAPIFailed;
 	typedef HHOOK   (WINAPI    *SetWindowsHookExT)(int idHook, HOOKPROC lpfn, HINSTANCE hMod, DWORD dwThreadId);
 	typedef BOOL    (WINAPI *UnhookWindowsHookExT)(HHOOK hhk);
@@ -1205,7 +1205,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒRƒ‚ƒ“ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+	// ã‚³ãƒ¢ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
 	static void InitCommonControls() {
 		::InitCommonControls();
 	}
@@ -1218,7 +1218,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// F‘I‘ğƒ_ƒCƒAƒƒO
+	// è‰²é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 	static inline COLORREF ConvertRGBtoColorRef(DWORD rgb) {
 		return RGB(((rgb>>16)&0xFF), ((rgb>>8)&0xFF), (rgb&0xFF));
 	}
@@ -1276,7 +1276,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ‚»‚Ì‘¼
+	// ãã®ä»–
 	static tjs_int64 GetOctetAddress(tTJSVariant oct) {
 		return (oct.Type() == tvtOctet) ? (tjs_int64)((oct.AsOctetNoAddRef())->GetData()) : 0;
 	}
@@ -1285,7 +1285,7 @@ public:
 	}
 
 	// -------------------------------------------------------------
-	// ƒEƒBƒ“ƒhƒEˆÊ’u‚È‚Ç
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ãªã©
 	void BringToFront(void) {
 		::SetForegroundWindow(dialogHWnd);
 	}
@@ -1301,7 +1301,7 @@ WIN32Dialog::UnhookWindowsHookExT WIN32Dialog::_UnhookWindowsHookEx;
 WIN32Dialog::CallNextHookExT      WIN32Dialog::_CallNextHookEx;
 
 
-// ƒ_ƒCƒAƒƒOƒwƒbƒ_İ’èƒNƒ‰ƒX
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ˜ãƒƒãƒ€è¨­å®šã‚¯ãƒ©ã‚¹
 struct Header : public DialogHeader {
 	Header() : DialogHeader() {}
 
@@ -1349,17 +1349,17 @@ struct Items : public DialogItems {
 		WIN32Dialog::SetSzOrd( &elm, TJS_W("windowClass"), &windowClass);
 		WIN32Dialog::SetSzOrd( &elm, TJS_W("title"),       &title);
 
-		// extraCount/Data ‚Í–¢À‘•‚É‚Â‚«w’è‚Å‚«‚È‚¢
+		// extraCount/Data ã¯æœªå®Ÿè£…ã«ã¤ãæŒ‡å®šã§ããªã„
 		//WIN32Dialog::SetValue( &elm, TJS_W("extraCount"),  &extraCount);
 	}
 };
 
-// ƒeƒ“ƒvƒŒ[ƒgì¬
+// ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä½œæˆ
 tjs_error TJS_INTF_METHOD WIN32Dialog::makeTemplate(VarT *result, tjs_int numparams, VarT **param, WIN32Dialog *self)
 {
 	if (numparams < 1) return TJS_E_BADPARAMCOUNT;
 
-	// Header/ItemsƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾‚ÆƒTƒCƒY‚ÌŒvZ
+	// Header/Itemsã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—ã¨ã‚µã‚¤ã‚ºã®è¨ˆç®—
 	BYTE *p = 0;
 	Header *head = HeadAdaptorT::GetNativeInstance(param[0]->AsObjectNoAddRef(), true);
 	SizeT sz = 0;
@@ -1382,7 +1382,7 @@ tjs_error TJS_INTF_METHOD WIN32Dialog::makeTemplate(VarT *result, tjs_int numpar
 }
 
 // -------------------------------------------------------------
-// ƒvƒƒOƒŒƒX—p
+// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ç”¨
 
 struct ProgressParam {
 	bool   isResource;
@@ -1745,7 +1745,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 
 	Property(TJS_W("isValid"),        &Class::IsValid, (int)0);
 
-	// ’è”’è‹`
+	// å®šæ•°å®šç¾©
 
 	// stock object
 	ENUM(BLACK_BRUSH);
@@ -2446,8 +2446,8 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	Variant(TJS_W("PROGRESS"),       PROGRESS_CLASSW, 0);		// "msctls_progress32"
 	Variant(TJS_W("HOTKEY"),         HOTKEY_CLASSW, 0);			// "msctls_hotkey32"
 
-	// [XXX] ƒRƒ‚ƒ“ƒRƒ“ƒgƒ[ƒ‹‚ÌƒƒbƒZ[ƒW—pENUM‚ª•K—v
-	// æ‚è‹}‚¬ƒgƒ‰ƒbƒNƒo[EƒvƒƒOƒŒƒXEƒŠƒXƒgƒrƒ…[Eƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì‚İ
+	// [XXX] ã‚³ãƒ¢ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ENUMãŒå¿…è¦
+	// å–ã‚Šæ€¥ããƒˆãƒ©ãƒƒã‚¯ãƒãƒ¼ãƒ»ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒ»ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ãƒ»ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ã¿
 
 	// Trackbar Styles
 	ENUM(TBS_AUTOTICKS);
@@ -2773,7 +2773,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	ENUM(LVM_SETUNICODEFORMAT);
 	ENUM(LVM_GETUNICODEFORMAT);
 
-	// `A/Wê‡•ª‚¯
+	// ã€œA/Wå ´åˆåˆ†ã‘
 	//ENUM(LVM_GETITEM);
 	//ENUM(LVM_SETITEM);
 	//ENUM(LVM_INSERTITEM);
@@ -2833,7 +2833,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	ENUM(LVN_LINKCLICK);
 	ENUM(LVN_GETEMPTYMARKUP);
 
-	// `A/Wê‡•ª‚¯
+	// ã€œA/Wå ´åˆåˆ†ã‘
 	//ENUM(LVN_ODFINDITEM);
 	//ENUM(LVN_BEGINLABELEDIT);
 	//ENUM(LVN_ENDLABELEDIT);
@@ -2925,7 +2925,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 
 
 	////////////////
-	// OwnerDraw—p
+	// OwnerDrawç”¨
 	ENUM(ODT_BUTTON);
 	ENUM(ODT_COMBOBOX);
 	ENUM(ODT_LISTBOX);
@@ -2956,7 +2956,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 
 
 	////////////////
-	// PropertySheet—p
+	// PropertySheetç”¨
 
 	ENUM(PSN_SETACTIVE);
 	ENUM(PSN_KILLACTIVE);
@@ -3067,9 +3067,9 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	Property(TJS_W("propsheet"),       &Class::isPropertySheet, 0);
 
 	////////////////
-	// TabControl—p
+	// TabControlç”¨
 #define U_ENUM(n) Variant(#n, (unsigned long)n, 0)
-	U_ENUM(TCN_SELCHANGE);	//	GetCode ‚Å“¾‚ç‚ê‚é’l‚ÍUINT‚¾‚ªTCN_SELCHANGE ‚Íƒ}ƒCƒiƒX‚Ì‚½‚ßAENUM ‚ğg‚¤‚Æ‚»‚Ì‚Ü‚Ü‚Å‚Í”äŠr‚Å‚«‚È‚¢
+	U_ENUM(TCN_SELCHANGE);	//	GetCode ã§å¾—ã‚‰ã‚Œã‚‹å€¤ã¯UINTã ãŒTCN_SELCHANGE ã¯ãƒã‚¤ãƒŠã‚¹ã®ãŸã‚ã€ENUM ã‚’ä½¿ã†ã¨ãã®ã¾ã¾ã§ã¯æ¯”è¼ƒã§ããªã„
 	U_ENUM(TCN_SELCHANGING);
 #ifdef TCN_GETOBJECT
 	U_ENUM(TCN_GETOBJECT);
@@ -3087,7 +3087,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	Method(TJS_W("selectTab"),    &Class::SelectTab);
 
 	////////////////
-	// Progress—p
+	// Progressç”¨
 
 	RawCallback(TJS_W("openProgress"),  &Class::openProgress, 0);
 	Property(TJS_W("progress"),         &Class::isProgress, (int)0);
@@ -3096,13 +3096,13 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	Method(TJS_W("closeProgress"),      &Class::closeProgress);
 
 	////////////////
-	// ƒXƒNƒ[ƒ‹ƒo[—p
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç”¨
 
 	Method(TJS_W("getScrollInfo"), &Class::getScrollInfo);
 	RawCallback(TJS_W("setScrollInfo"), &Class::setScrollInfo, 0);
 
 	////////////////
-	// ƒEƒBƒ“ƒhƒEˆÊ’u‚È‚Ç
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ãªã©
 	Method(TJS_W("bringToFront"), &Class::BringToFront);
 }
 

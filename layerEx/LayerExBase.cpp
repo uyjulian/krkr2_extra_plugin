@@ -13,7 +13,7 @@ iTJSDispatch2 * NI_LayerExBase::_updateProp = NULL;
 void
 NI_LayerExBase::init(iTJSDispatch2 *layerobj)
 {
-	// ƒvƒƒpƒeƒBæ“¾
+	// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å–å¾—
 	tTJSVariant var;
 	
 	if (TJS_FAILED(layerobj->PropGet(TJS_IGNOREPROP, TJS_W("imageLeft"), NULL, &var, layerobj))) {
@@ -65,7 +65,7 @@ NI_LayerExBase::unInit()
 	if (_updateProp) _updateProp->Release();
 }
 
-/// ƒvƒƒpƒeƒB‚©‚ç int ’l‚ğæ“¾‚·‚é
+/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰ int å€¤ã‚’å–å¾—ã™ã‚‹
 static tjs_int64 getPropValue(iTJSDispatch2 *dispatch, iTJSDispatch2 *layerobj)
 {
 	tTJSVariant var;
@@ -85,9 +85,9 @@ NI_LayerExBase::reset(iTJSDispatch2 *layerobj)
 }
 
 /**
- * XVˆ—ŒÄ‚Ño‚µ
- * layer.update(x,y,w,h) ‚ğŒÄ‚Ño‚·
- * ‰æ‘œ—Ìˆæ‘S‘Ì‚ğXV‚Æ‚·‚é
+ * æ›´æ–°å‡¦ç†å‘¼ã³å‡ºã—
+ * layer.update(x,y,w,h) ã‚’å‘¼ã³å‡ºã™
+ * ç”»åƒé ˜åŸŸå…¨ä½“ã‚’æ›´æ–°ã¨ã™ã‚‹
  */
 void
 NI_LayerExBase::redraw(iTJSDispatch2 *layerobj)
@@ -118,7 +118,7 @@ NI_LayerExBase::getNative(iTJSDispatch2 *objthis, bool create)
 }
 	
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 NI_LayerExBase::NI_LayerExBase()
 {

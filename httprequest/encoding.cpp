@@ -27,9 +27,9 @@ doneEncoding()
 }
 
 /**
- * IANA ‚ÌƒGƒ“ƒR[ƒh–¼‚©‚çƒGƒ“ƒR[ƒfƒBƒ“ƒOƒR[ƒh‚ğæ“¾
- * @param encoding ƒGƒ“ƒR[ƒh–¼
- * @return ƒGƒ“ƒR[ƒfƒBƒ“ƒOƒR[ƒh
+ * IANA ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰åã‹ã‚‰ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
+ * @param encoding ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å
+ * @return ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚³ãƒ¼ãƒ‰
  */
 int
 getEncoding(const wchar_t *encoding)

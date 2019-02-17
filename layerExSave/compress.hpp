@@ -16,14 +16,14 @@ protected:
 
 	typedef unsigned char BYTE;
 	typedef std::vector<BYTE> DATA;
-	DATA data;      //< Ši”[ƒf[ƒ^
-	ULONG cur;      //< Ši”[ˆÊ’u
-	ULONG size;     //< Ši”[ƒTƒCƒY
-	ULONG dataSize; //< ƒf[ƒ^—ÌˆæŠm•ÛƒTƒCƒY
+	DATA data;      //< æ ¼ç´ãƒ‡ãƒ¼ã‚¿
+	ULONG cur;      //< æ ¼ç´ä½ç½®
+	ULONG size;     //< æ ¼ç´ã‚µã‚¤ã‚º
+	ULONG dataSize; //< ãƒ‡ãƒ¼ã‚¿é ˜åŸŸç¢ºä¿ã‚µã‚¤ã‚º
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	CompressBase(ProgressFunc *_progress=NULL, void *_progressData=NULL)
 		: progress(_progress), progressData(_progressData),
@@ -39,23 +39,23 @@ public:
 	}
 
 	/**
-	 * ƒfƒXƒgƒ‰ƒNƒ^
+	 * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	virtual ~CompressBase() {}
 
 	/**
-	 * ƒvƒƒOƒŒƒXˆ—
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	 * ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹å‡¦ç†
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 	 */
 	bool doProgress(int percent) {
 		return (progress && progress(percent, progressData));
 	}
 
 	/**
-	 * ƒTƒCƒY•ÏX
-	 * w’èˆÊ’u‚ª‚Í‚¢‚é‚¾‚¯‚ÌƒTƒCƒY‚ğŠm•Û‚·‚éB
-	 * w’è‚µ‚½Å‘åƒTƒCƒY‚ğ•Û‚·‚éB
-	 * @param ƒTƒCƒY
+	 * ã‚µã‚¤ã‚ºå¤‰æ›´
+	 * æŒ‡å®šä½ç½®ãŒã¯ã„ã‚‹ã ã‘ã®ã‚µã‚¤ã‚ºã‚’ç¢ºä¿ã™ã‚‹ã€‚
+	 * æŒ‡å®šã—ãŸæœ€å¤§ã‚µã‚¤ã‚ºã‚’ä¿æŒã™ã‚‹ã€‚
+	 * @param ã‚µã‚¤ã‚º
 	 */
 	inline void resize(size_t s) {
 		if (s > size) {
@@ -68,8 +68,8 @@ public:
 	}
 
 	/**
-	 * 8bit”’l‚Ì‘‚«o‚µ
-	 * @param num ”’l
+	 * 8bitæ•°å€¤ã®æ›¸ãå‡ºã—
+	 * @param num æ•°å€¤
 	 */
 	template <typename ANYINT>
 	inline void writeInt8(ANYINT num) {
@@ -78,8 +78,8 @@ public:
 	}
 	
 	/**
-	 * 32bit”’l‚Ì‘‚«o‚µ
-	 * @param num ”’l
+	 * 32bitæ•°å€¤ã®æ›¸ãå‡ºã—
+	 * @param num æ•°å€¤
 	 */
 	template <typename ANYINT>
 	inline void writeInt32(ANYINT num) {
@@ -93,8 +93,8 @@ public:
 	}
 
 	/**
-	 * 32bit”’l‚Ì‘‚«o‚µ
-	 * @param num ”’l
+	 * 32bitæ•°å€¤ã®æ›¸ãå‡ºã—
+	 * @param num æ•°å€¤
 	 */
 	template <typename ANYINT>
 	inline void writeInt32(ANYINT num, int cur) {
@@ -106,8 +106,8 @@ public:
 	}
 
 	/**
-	 * 32bit”’l‚Ì‘‚«o‚µ
-	 * @param num ”’l
+	 * 32bitæ•°å€¤ã®æ›¸ãå‡ºã—
+	 * @param num æ•°å€¤
 	 */
 	template <typename ANYINT>
 	inline void writeBigInt32(ANYINT num, int cur) {
@@ -119,9 +119,9 @@ public:
 	}
 
 	/**
-	 * ƒoƒbƒtƒ@‚Ì‘‚«o‚µ
-	 * @param buf ƒoƒbƒtƒ@
-	 * @param size o—ÍƒoƒCƒg”
+	 * ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãå‡ºã—
+	 * @param buf ãƒãƒƒãƒ•ã‚¡
+	 * @param size å‡ºåŠ›ãƒã‚¤ãƒˆæ•°
 	 */
 	void writeBuffer(const void *buf, int size) {
 		resize(cur + size);
@@ -130,8 +130,8 @@ public:
 	}
 
 	/**
-	 * ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚É‘‚«o‚·
-	 * @param out o—ÍæƒXƒgƒŠ[ƒ€
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
+	 * @param out å‡ºåŠ›å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	 */
 	void store(IStream *out) {
 		ULONG s;
@@ -139,21 +139,21 @@ public:
 	}
 
 	/**
-	 * ˆ³kˆ—
-	 * @param width ‰æ‘œ‰¡•
-	 * @param height ‰æ‘œc•
-	 * @param buffer ‰æ‘œƒoƒbƒtƒ@
-	 * @param pitch ‰æ‘œƒf[ƒ^‚Ìƒsƒbƒ`
-	 * @param tagsDict ƒ^ƒOî•ñ
-	 * @return ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚ç true
+	 * åœ§ç¸®å‡¦ç†
+	 * @param width ç”»åƒæ¨ªå¹…
+	 * @param height ç”»åƒç¸¦å¹…
+	 * @param buffer ç”»åƒãƒãƒƒãƒ•ã‚¡
+	 * @param pitch ç”»åƒãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒ
+	 * @param tagsDict ã‚¿ã‚°æƒ…å ±
+	 * @return ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚‰ true
 	 */
 	virtual bool compress(long width, long height, BufRefT buffer, long pitch, iTJSDispatch2 *tagsDict) = 0;
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚é
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹
 	 */
 	bool save(iTJSDispatch2 *layer, const tjs_char *filename, iTJSDispatch2 *info) {
-		// ƒŒƒCƒ„‰æ‘œî•ñ
+		// ãƒ¬ã‚¤ãƒ¤ç”»åƒæƒ…å ±
 		BufRefT buffer;
 		long width, height, pitch;
 		if (!GetLayerBufferAndSize(layer, width, height, buffer, pitch)) {
@@ -163,7 +163,7 @@ public:
 		}
 		bool canceled = compress(width, height, buffer, pitch, info);
 
-		// ˆ³k‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Îƒtƒ@ƒCƒ‹•Û‘¶
+		// åœ§ç¸®ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜
 		if (!canceled) {
 			IStream *out = TVPCreateIStream(filename, TJS_BS_WRITE);
 			if (!out) {
@@ -172,7 +172,7 @@ public:
 				TVPThrowExceptionMessage(msg.c_str());
 			}
 			try {
-				// Ši”[
+				// æ ¼ç´
 				store(out);
 			} catch (...) {
 				out->Release();
@@ -187,7 +187,7 @@ public:
 };
 
 /**
- * ”CˆÓ‚ÌŒ^‚Å•Û‘¶
+ * ä»»æ„ã®å‹ã§ä¿å­˜
  */
 template <class COMPRESS>
 struct CompressAndSave {

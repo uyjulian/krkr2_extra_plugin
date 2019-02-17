@@ -1,7 +1,7 @@
 #ifndef _layerexsave_utils_hpp_
 #define _layerexsave_utils_hpp_
 
-// ƒoƒbƒtƒ@QÆ—p‚ÌŒ^
+// ãƒãƒƒãƒ•ã‚¡å‚ç…§ç”¨ã®å‹
 typedef unsigned char const *BufRefT;
 typedef unsigned char       *WrtRefT;
 

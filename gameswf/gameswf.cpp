@@ -4,7 +4,7 @@
 #include "tp_stub.h"
 
 /**
- * ���O�o�͗p
+ * ログ出力用
  */
 void
 message_log(const char* format, ...)
@@ -18,7 +18,7 @@ message_log(const char* format, ...)
 }
 
 /**
- * �G���[���O�o�͗p
+ * エラーログ出力用
  */
 void
 error_log(const char* format, ...)
@@ -35,12 +35,12 @@ error_log(const char* format, ...)
 #include "SWFMovie.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////
-/// ncBind �p�}�N��
+/// ncBind 用マクロ
 
 #include "ncbind/ncbind.hpp"
 
 /**
- * �t�@�C�����ϊ��p proxy
+ * ファイル名変換用 proxy
  */
 void swfload(SWFMovie *swf, const char *name)
 {
@@ -68,28 +68,28 @@ NCB_REGISTER_CLASS(SWFMovie) {
 
 NCB_GET_INSTANCE_HOOK(layerExSWF)
 {
-	// �C���X�^���X�Q�b�^
-	NCB_INSTANCE_GETTER(objthis) { // objthis �� iTJSDispatch2* �^�̈����Ƃ���
+	// インスタンスゲッタ
+	NCB_INSTANCE_GETTER(objthis) { // objthis を iTJSDispatch2* 型の引数とする
 		
-		ClassT* obj = GetNativeInstance(objthis);	// �l�C�e�B�u�C���X�^���X�|�C���^�擾
+		ClassT* obj = GetNativeInstance(objthis);	// ネイティブインスタンスポインタ取得
 		if (!obj) {
-			obj = new ClassT(objthis);				// �Ȃ��ꍇ�͐�������
-			SetNativeInstance(objthis, obj);		// objthis �� obj ���l�C�e�B�u�C���X�^���X�Ƃ��ēo�^����
+			obj = new ClassT(objthis);				// ない場合は生成する
+			SetNativeInstance(objthis, obj);		// objthis に obj をネイティブインスタンスとして登録する
 		}
-		if (obj) obj->reset();						// ���\�b�h���ĂԑO�ɕK���Ă΂��
-		return (_obj = obj);						//< �f�X�g���N�^�Ŏg�p�������ꍇ�̓v���C�x�[�g�ϐ��ɕۑ�
+		if (obj) obj->reset();						// メソッドを呼ぶ前に必ず呼ばれる
+		return (_obj = obj);						//< デストラクタで使用したい場合はプライベート変数に保存
 	}
 
-	// �f�X�g���N�^�i���ۂ̃��\�b�h���Ă΂ꂽ��ɌĂ΂��j
+	// デストラクタ（実際のメソッドが呼ばれた後に呼ばれる）
 	~NCB_GET_INSTANCE_HOOK_CLASS () {
-		if (_obj) _obj->redraw();					// ���\�b�h���Ă񂾌�ɕK���Ă΂��
+		if (_obj) _obj->redraw();					// メソッドを呼んだ後に必ず呼ばれる
 	}
 
 private:
 	ClassT *_obj;
-}; // ���̂� class ��`�Ȃ̂� ; ��Y��Ȃ��ł�
+}; // 実体は class 定義なので ; を忘れないでね
 
-// �t�b�N���A�^�b�`
+// フックつきアタッチ
 NCB_ATTACH_CLASS_WITH_HOOK(layerExSWF, Layer) {
 	NCB_METHOD(drawSWF);
 }

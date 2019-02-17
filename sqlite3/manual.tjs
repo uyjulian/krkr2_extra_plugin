@@ -1,67 +1,67 @@
 /**
- * @description SqliteƒNƒ‰ƒX
+ * @description Sqliteã‚¯ãƒ©ã‚¹
  */
 class Sqlite
 {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param database ƒf[ƒ^ƒx[ƒXƒtƒ@ƒCƒ‹
-	 * @param readonly “Ç‚İ‚İê—p‚ÅŠJ‚­
-	 * @description ¦“Ç‚İ‚İê—p‚Í‹g—¢‹g—¢‚Ìƒtƒ@ƒCƒ‹‹@\‚ªg‚í‚ê‚Ü‚·B‚»‚¤‚Å‚È‚¢ê‡‚ÍOS‚Ì‹@\‚ğg‚¢‚Ü‚·B
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param database ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param readonly èª­ã¿è¾¼ã¿å°‚ç”¨ã§é–‹ã
+	 * @description â€»èª­ã¿è¾¼ã¿å°‚ç”¨æ™‚ã¯å‰é‡Œå‰é‡Œã®ãƒ•ã‚¡ã‚¤ãƒ«æ©Ÿæ§‹ãŒä½¿ã‚ã‚Œã¾ã™ã€‚ãã†ã§ãªã„å ´åˆã¯OSã®æ©Ÿæ§‹ã‚’ä½¿ã„ã¾ã™ã€‚
 	 */
 	function Sqlite(database, readonly=false);
 
 	/**
-	 * SQL‚ğÀs‚·‚éB
-	 * @param sql Às‚·‚éSQL
-	 * @param params sql‚ÉƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @param callback ƒR[ƒ‹ƒoƒbƒN (ˆø”‚ÉƒJƒ‰ƒ€‚ª—ñ‹“‚³‚ê‚Ü‚·)
-	 * @return ¬Œ÷‚È‚ç true
+	 * SQLã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+	 * @param sql å®Ÿè¡Œã™ã‚‹SQL
+	 * @param params sqlã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @param callback ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (å¼•æ•°ã«ã‚«ãƒ©ãƒ ãŒåˆ—æŒ™ã•ã‚Œã¾ã™)
+	 * @return æˆåŠŸãªã‚‰ true
 	 */
 	function exec(sql, params=void, callback=void);
 
 	/**
-	 * ’læ“¾—p‚ÉSQL‚ğÀs‚·‚éB
-	 * @param sql Às‚·‚éSQL
-	 * @param params sql‚ÉƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @return Œ‹‰Ê‚Ì‘æˆêƒJƒ‰ƒ€BƒGƒ‰[‚Ìê‡‚Í void
+	 * å€¤å–å¾—ç”¨ã«SQLã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+	 * @param sql å®Ÿè¡Œã™ã‚‹SQL
+	 * @param params sqlã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @return çµæœã®ç¬¬ä¸€ã‚«ãƒ©ãƒ ã€‚ã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯ void
 	 */
 	function execValue(sql, params);
 
 	/**
-	 * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌŠJn
-	 * @return ¬Œ÷‚È‚ç true
+	 * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®é–‹å§‹
+	 * @return æˆåŠŸãªã‚‰ true
 	 */
 	function begin();
 
 	/**
-	 * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌƒRƒ~ƒbƒg
-	 * @return ¬Œ÷‚È‚ç true
+	 * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚³ãƒŸãƒƒãƒˆ
+	 * @return æˆåŠŸãªã‚‰ true
 	 */
 	function commit();
 
 	/**
-	 * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Ìƒ[ƒ‹ƒoƒbƒN
-	 * @return ¬Œ÷‚È‚ç true
+	 * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	 * @return æˆåŠŸãªã‚‰ true
 	 */
 	function rollback();
 
 	/**
-	 * ’¼‘O‚Ì‘}“ü‚ÌsID
+	 * ç›´å‰ã®æŒ¿å…¥ã®è¡ŒID
 	 */
 	property lastInsertRowId;
 	
 	/**
-	 * ’¼‘O‚ÌƒRƒ}ƒ“ƒhÀs‚ÌƒGƒ‰[ƒR[ƒh
+	 * ç›´å‰ã®ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	property errorCode;
 	
 	/**
-	 * ’¼‘O‚ÌƒRƒ}ƒ“ƒhÀs‚ÌƒGƒ‰[ƒƒbƒZ[ƒW
+	 * ç›´å‰ã®ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	 */
 	property errorMessage;
 
-	// ƒGƒ‰[ƒR[ƒh
+	// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	/* Successful result */
 	const SQLITE_OK         =  0;   
 	/* SQL error or missing database */
@@ -123,90 +123,90 @@ class Sqlite
 };
 
 /**
- * @description Sqlite‚ÌƒXƒe[ƒgƒƒ“ƒg‚ğˆµ‚¤ƒNƒ‰ƒX
+ * @description Sqliteã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
  */
 class SqliteStatement
 {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param sqlite ƒf[ƒ^ƒx[ƒX (SqliteƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX)
-	 * @param sql SQL w’è‚·‚é‚Æ©“®“I‚É open ‚µ‚Ü‚·
-	 * @param params ƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @throw "use Sqlite class Object" ‘æˆêˆø”‚ªˆÙí
-	 * @throw "failed to open" w’è‚³‚ê‚½SQL‚Ìopen‚É¸”s
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param sqlite ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ (Sqliteã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹)
+	 * @param sql SQL æŒ‡å®šã™ã‚‹ã¨è‡ªå‹•çš„ã« open ã—ã¾ã™
+	 * @param params ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @throw "use Sqlite class Object" ç¬¬ä¸€å¼•æ•°ãŒç•°å¸¸
+	 * @throw "failed to open" æŒ‡å®šã•ã‚ŒãŸSQLã®openã«å¤±æ•—
 	 */
 	SqliteStatement(sqlite, sql=void, params=void);
 
 	/**
-	 * V‹KƒXƒe[ƒg‚ğŠJ‚­
+	 * æ–°è¦ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é–‹ã
 	 * @param sql SQL
-	 * @param params ƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * @param params ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	function open(sql, params=void);
 
 	/**
-	 * ƒXƒe[ƒg‚ğ•Â‚¶‚é
+	 * ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é–‰ã˜ã‚‹
 	 */
 	function close();
 	
 	/**
-	 * Œ³SQL(“Ç‚İ‚İê—p)
+	 * å…ƒSQL(èª­ã¿è¾¼ã¿å°‚ç”¨)
 	 */
 	property sql;
 
 	/**
-	 * ƒoƒCƒ“ƒhó‘Ô‚ÌƒŠƒZƒbƒg
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * ãƒã‚¤ãƒ³ãƒ‰çŠ¶æ…‹ã®ãƒªã‚»ãƒƒãƒˆ
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	function reset();
 	
 	/**
-	 * ƒpƒ‰ƒ[ƒ^‚ÌƒoƒCƒ“ƒh
-	 * @parma params ƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ãƒ‰
+	 * @parma params ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	function bind(params);
 
 	/**
-	 * ƒpƒ‰ƒ[ƒ^‚ÌƒoƒCƒ“ƒh
-	 * @parma value ’l
-	 * @param pos ƒpƒ‰ƒ[ƒ^ˆÊ’u(È—ª‚Í‘O‰ñw’è’l‚ÌŸ)
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ãƒ‰
+	 * @parma value å€¤
+	 * @param pos ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½ç½®(çœç•¥æ™‚ã¯å‰å›æŒ‡å®šå€¤ã®æ¬¡)
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	function bindAt(value, pos=void);
 	
 	/**
-	 * ƒXƒe[ƒgƒƒ“ƒgÀs
-	 * @return ƒGƒ‰[ƒR[ƒh
+	 * ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆå®Ÿè¡Œ
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	function exec();
 
 	/**
-	 * ƒXƒe[ƒgƒƒ“ƒgƒXƒeƒbƒvÀs
-	 * @return æ“¾ƒf[ƒ^‚ª‚ ‚ê‚Î true
+	 * ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚¹ãƒ†ãƒƒãƒ—å®Ÿè¡Œ
+	 * @return å–å¾—ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Œã° true
 	 */
 	function step();
 	
 	/**
-	 * ƒf[ƒ^”(“Ç‚İ‚İê—p)
-	 * step ‚ÌŒãİ’è‚³‚ê‚Ü‚·
+	 * ãƒ‡ãƒ¼ã‚¿æ•°(èª­ã¿è¾¼ã¿å°‚ç”¨)
+	 * step ã®å¾Œè¨­å®šã•ã‚Œã¾ã™
 	 */
 	property count;
 
 	/**
-	 * ƒJƒ‰ƒ€”(“Ç‚İ‚İê—p)
+	 * ã‚«ãƒ©ãƒ æ•°(èª­ã¿è¾¼ã¿å°‚ç”¨)
 	 */
 	property columnCount;
 
 	/**
-	 * ƒJƒ‰ƒ€‚ÌNULL”»’è
-	 * @param column ƒJƒ‰ƒ€”Ô†‚Ü‚½‚ÍƒJƒ‰ƒ€–¼
-	 * @return w’èƒJƒ‰ƒ€‚ª NULL ‚©‚Ç‚¤‚©
+	 * ã‚«ãƒ©ãƒ ã®NULLåˆ¤å®š
+	 * @param column ã‚«ãƒ©ãƒ ç•ªå·ã¾ãŸã¯ã‚«ãƒ©ãƒ å
+	 * @return æŒ‡å®šã‚«ãƒ©ãƒ ãŒ NULL ã‹ã©ã†ã‹
 	 */
 	function isNull(column);
 
-	// ƒJƒ‰ƒ€‚ÌŒ^¯•Ê—p
+	// ã‚«ãƒ©ãƒ ã®å‹è­˜åˆ¥ç”¨
 	const SQLITE_INTEGER = 1;
 	cnost SQLITE_FLOAT = 2;
 	cnost SQLITE_TEXT = 3;
@@ -214,113 +214,113 @@ class SqliteStatement
 	cnost SQLITE_NULL = 5;
 
 	/**
-	 * ƒJƒ‰ƒ€‚ÌŒ^‚Ìæ“¾
-	 * @param column ƒJƒ‰ƒ€”Ô†‚Ü‚½‚ÍƒJƒ‰ƒ€–¼
-	 * @return ƒJƒ‰ƒ€‚ÌŒ^ƒR[ƒh
+	 * ã‚«ãƒ©ãƒ ã®å‹ã®å–å¾—
+	 * @param column ã‚«ãƒ©ãƒ ç•ªå·ã¾ãŸã¯ã‚«ãƒ©ãƒ å
+	 * @return ã‚«ãƒ©ãƒ ã®å‹ã‚³ãƒ¼ãƒ‰
 	 */
 	function getType(column);
 
 	/**
-	 * ƒJƒ‰ƒ€–¼‚Ìæ“¾
-	 * @param column ƒJƒ‰ƒ€”Ô†‚Ü‚½‚ÍƒJƒ‰ƒ€–¼
-	 * @return ƒJƒ‰ƒ€–¼
+	 * ã‚«ãƒ©ãƒ åã®å–å¾—
+	 * @param column ã‚«ãƒ©ãƒ ç•ªå·ã¾ãŸã¯ã‚«ãƒ©ãƒ å
+	 * @return ã‚«ãƒ©ãƒ å
 	 */
 	function getName(column);
 	
 	/**
-	 * Œ‹‰Ê‚Ìæ“¾B
-	 * @param column ƒJƒ‰ƒ€”Ô†‚Ü‚½‚ÍƒJƒ‰ƒ€–¼B–¢w’è‚Ìê‡‚ÍAs‘S‚Ä‚ğ”z—ñ‚Å•Ô‚µ‚Ü‚·
-	 * @param defaultValue ƒfƒtƒHƒ‹ƒg’lBƒJƒ‰ƒ€‚ª NULL ‚Ìê‡‚É‚±‚Ì’l‚ğ•Ô‚µ‚Ü‚·
-	 * @return sA‚Ü‚½‚Íw’èƒJƒ‰ƒ€‚Ì’l
+	 * çµæœã®å–å¾—ã€‚
+	 * @param column ã‚«ãƒ©ãƒ ç•ªå·ã¾ãŸã¯ã‚«ãƒ©ãƒ åã€‚æœªæŒ‡å®šã®å ´åˆã¯ã€è¡Œå…¨ã¦ã‚’é…åˆ—ã§è¿”ã—ã¾ã™
+	 * @param defaultValue ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚ã‚«ãƒ©ãƒ ãŒ NULL ã®å ´åˆã«ã“ã®å€¤ã‚’è¿”ã—ã¾ã™
+	 * @return è¡Œã€ã¾ãŸã¯æŒ‡å®šã‚«ãƒ©ãƒ ã®å€¤
 	 */
 	function get(column=void, defaultValue=void);
 
 	/**
-	 * ‚±‚ÌƒNƒ‰ƒX‚Ìƒƒ“ƒo–¼‚Æ‚©‚Ô‚ç‚È‚¢ƒJƒ‰ƒ€‚Ìƒf[ƒ^‚É‚Â‚¢‚Ä‚Í
-	 * state.–¼‘O ‚Å’¼ÚQÆ‰Â”\‚Å‚·
+	 * ã“ã®ã‚¯ãƒ©ã‚¹ã®ãƒ¡ãƒ³ãƒåã¨ã‹ã¶ã‚‰ãªã„ã‚«ãƒ©ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã«ã¤ã„ã¦ã¯
+	 * state.åå‰ ã§ç›´æ¥å‚ç…§å¯èƒ½ã§ã™
 	 */
 };
 
 /**
- * @description sqlite‚ÌƒXƒŒƒbƒhÀsƒTƒ|[ƒg
+ * @description sqliteã®ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œã‚µãƒãƒ¼ãƒˆ
  */
 class SqliteThread
 {
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param window ƒCƒxƒ“ƒgˆ——p‚ÌƒEƒCƒ“ƒhƒE(WindowƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX)
-	 * @param sqlite ƒf[ƒ^ƒx[ƒX (SqliteƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX)
-	 * @throw "use Window class Object" ‘æˆêˆø”‚ªˆÙí
-	 * @throw "use Sqlite class Object" ‘æˆêˆø”‚ªˆÙí
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param window ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ç”¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦(Windowã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹)
+	 * @param sqlite ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ (Sqliteã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹)
+	 * @throw "use Window class Object" ç¬¬ä¸€å¼•æ•°ãŒç•°å¸¸
+	 * @throw "use Sqlite class Object" ç¬¬ä¸€å¼•æ•°ãŒç•°å¸¸
 	 */
 	function SqliteThread(window, sqlite);
 	
 	/**
-	 * ŒŸõˆ—‚ğƒoƒbƒNƒOƒ‰ƒ“ƒh‚ÅÀs‚·‚éB
-	 * @description Œ‹‰Ê‚Í“à•”‚É’~Ï‚³‚ê‚ÄŠ®—¹Œã‚Éˆø‚«“n‚³‚ê‚Ü‚·B
-	 * @param sql Às‚·‚éSQL
-	 * @param params ƒoƒCƒ“ƒh‚·‚éƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)
-	 * @return ˆ—‚ªŠJn‚³‚ê‚½‚ç true
+	 * æ¤œç´¢å‡¦ç†ã‚’ãƒãƒƒã‚¯ã‚°ãƒ©ãƒ³ãƒ‰ã§å®Ÿè¡Œã™ã‚‹ã€‚
+	 * @description çµæœã¯å†…éƒ¨ã«è“„ç©ã•ã‚Œã¦å®Œäº†å¾Œã«å¼•ãæ¸¡ã•ã‚Œã¾ã™ã€‚
+	 * @param sql å®Ÿè¡Œã™ã‚‹SQL
+	 * @param params ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)
+	 * @return å‡¦ç†ãŒé–‹å§‹ã•ã‚ŒãŸã‚‰ true
 	 */
 	function select(sql, params);
 	
 	/**
-	 * XVˆ—‚ğƒoƒbƒNƒOƒ‰ƒ“ƒh‚Åƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“Às‚·‚éB
-	 * @param sql Às‚·‚éSQL
-	 * @param datas XV—pƒpƒ‰ƒ[ƒ^(”z—ñ‚Ü‚½‚Í«‘)‚Ì”z—ñ
-	 * @return ˆ—‚ªŠJn‚³‚ê‚½‚ç true
+	 * æ›´æ–°å‡¦ç†ã‚’ãƒãƒƒã‚¯ã‚°ãƒ©ãƒ³ãƒ‰ã§ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³å®Ÿè¡Œã™ã‚‹ã€‚
+	 * @param sql å®Ÿè¡Œã™ã‚‹SQL
+	 * @param datas æ›´æ–°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(é…åˆ—ã¾ãŸã¯è¾æ›¸)ã®é…åˆ—
+	 * @return å‡¦ç†ãŒé–‹å§‹ã•ã‚ŒãŸã‚‰ true
 	 */
 	function update(sql, datas);
 	
 	/**
-	 * Àsˆ—‚ğ’†~‚³‚¹‚Ü‚·B
-	 * @description ‚Ü‚½‹L˜^‚³‚ê‚Ä‚éˆ—Œ‹‰Ê‚ğ”jŠü‚µ‚Ü‚·B
+	 * å®Ÿè¡Œå‡¦ç†ã‚’ä¸­æ­¢ã•ã›ã¾ã™ã€‚
+	 * @description ã¾ãŸè¨˜éŒ²ã•ã‚Œã¦ã‚‹å‡¦ç†çµæœã‚’ç ´æ£„ã—ã¾ã™ã€‚
 	 */
 	function abort();
 
-	// ƒXƒe[ƒgw’è
-	// ‰Šúó‘Ô
+	// ã‚¹ãƒ†ãƒ¼ãƒˆæŒ‡å®š
+	// åˆæœŸçŠ¶æ…‹
 	const INIT    = 0;
-	// ˆ—’†
+	// å‡¦ç†ä¸­
 	const WORKING = 1;
-	// ˆ—Š®—¹
+	// å‡¦ç†å®Œäº†
 	const DONE    = 2;
 
 	/**
-	 * ÀsƒXƒe[ƒg
+	 * å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ãƒˆ
 	 */
 	property state;
 
 	/**
-	 * ƒGƒ‰[ƒR[ƒh
-	 * @description ˆ—’†‚Å‚ÌÅŒã‚ÌƒGƒ‰[ƒR[ƒh‚ğ•Ô‚µ‚Ü‚·
+	 * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * @description å‡¦ç†ä¸­ã§ã®æœ€å¾Œã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™
 	 */
 	property errorCode;
 	
 	/**
-	 * selectæ“¾ƒf[ƒ^(”z—ñ)
+	 * selectå–å¾—ãƒ‡ãƒ¼ã‚¿(é…åˆ—)
 	 */
 	property selectResult;
 
 	/**
-	 * onProgress ‚ÅŒÄ‚Ño‚·•p“xw’è
-	 * @description w’è‚³‚ê‚Ä‚é”‚ğæ“¾‚·‚é‚½‚Ñ‚ÉŒÄ‚Ño‚µ‚ªs‚í‚ê‚é
+	 * onProgress ã§å‘¼ã³å‡ºã™é »åº¦æŒ‡å®š
+	 * @description æŒ‡å®šã•ã‚Œã¦ã‚‹æ•°ã‚’å–å¾—ã™ã‚‹ãŸã³ã«å‘¼ã³å‡ºã—ãŒè¡Œã‚ã‚Œã‚‹
 	 */
 	property progressUpdateCount;
 
 	// ----------------------------------------------
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	// ----------------------------------------------
 
 	/**
-	 * ó‘Ô•ÏX
-	 * @param state V‹Kó‘Ô
+	 * çŠ¶æ…‹å¤‰æ›´
+	 * @param state æ–°è¦çŠ¶æ…‹
 	 */
 	function onStateChange(state);
 
 	/**
-	 * XVˆ—Œo‰ß
-	 * @param num æ“¾ƒf[ƒ^”
+	 * æ›´æ–°å‡¦ç†çµŒé
+	 * @param num å–å¾—ãƒ‡ãƒ¼ã‚¿æ•°
 	 */
 	function onProgress(num);
 };

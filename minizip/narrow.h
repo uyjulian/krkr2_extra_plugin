@@ -4,7 +4,7 @@
 #include <windows.h>
 
 /**
- * C•¶š—ñˆ——p
+ * Cæ–‡å­—åˆ—å‡¦ç†ç”¨
  */
 class NarrowString {
 private:

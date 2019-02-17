@@ -1,14 +1,14 @@
 #include <windows.h>
 #include "tp_stub.h"
 
-// fps ‚Ì§ŒÀ’l
+// fps ã®åˆ¶é™å€¤
 static int fpsLimitValue = 1000;
 
-// ƒvƒƒpƒeƒB–¼
+// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
 #define FPSLIMITNAME L"fpslimit"
 
 /*
- * fps ‚Ì§ŒÀ’l‚ÌQÆ—p‚ÌƒvƒƒpƒeƒB
+ * fps ã®åˆ¶é™å€¤ã®å‚ç…§ç”¨ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  */
 class tFpsLimitProp : public tTJSDispatch
 {
@@ -38,10 +38,10 @@ public:
 };
 
 
-// ‘O‰ñ‚ÌŒÄ‚Ño‚µ
+// å‰å›ã®å‘¼ã³å‡ºã—æ™‚åˆ»
 static tjs_uint64 prevTime;
 
-// ƒŠƒ~ƒbƒgˆ—
+// ãƒªãƒŸãƒƒãƒˆå‡¦ç†
 class CFPSLimit : public tTVPContinuousEventCallbackIntf {
 public:
 	CFPSLimit() {};
@@ -66,18 +66,18 @@ DllEntryPoint(HINSTANCE /*hinst*/, unsigned long /*reason*/, void* /*lpReserved*
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" __declspec(dllexport) HRESULT __stdcall V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	prevTime = TVPGetTickCount();
 	TVPAddContinuousEventHook(&limit);
 
 	{
-		// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+		// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 		iTJSDispatch2 * global = TVPGetScriptDispatch();
 		
-		// Layer ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		// Layer ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		tTJSVariant varScripts;
 		TVPExecuteExpression(TJS_W("System"), &varScripts);
 		iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
@@ -100,7 +100,7 @@ extern "C" __declspec(dllexport) HRESULT __stdcall V2Unlink()
 {
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	if (global) {
 		tTJSVariant varScripts;

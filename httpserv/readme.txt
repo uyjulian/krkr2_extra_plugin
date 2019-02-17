@@ -1,42 +1,42 @@
-Title: httpserv �v���O�C��
+Title: httpserv プラグイン
 Author: miahmie
 
-������͉����H
+●これは何か？
 
-�V���v���� HTTP server �v���O�C���ł��B
+シンプルな HTTP server プラグインです。
 
-�ȉ��̂悤�Ȑ���������܂��B
+以下のような制限があります。
 
-�E�|�[�g���J����̂� 127.0.0.1 �̃��[�J�����[�v�o�b�N�A�h���X�̂�
-�i�A�h���X�� http://127.0.0.1�`�ƂȂ�܂��B
-  http://localhost�`�ł��J���Ȃ�������܂��񂪁A
-  IE���Ɓu�C���g���l�b�g�ݒ肪�I�t�]�X�v�̒ʒm���o��̂Œ��ӂ��Ă��������j
+・ポートを開けるのは 127.0.0.1 のローカルループバックアドレスのみ
+（アドレスは http://127.0.0.1〜となります。
+  http://localhost〜でも開けなくもありませんが、
+  IEだと「イントラネット設定がオフ云々」の通知が出るので注意してください）
 
-�E���C�u����(POCO)���񋟂��Ă���悤�ȍׂ�������͂ł��Ȃ�
-�icookie���̋@�\���񋟂���Ă��邪�q�����ĂȂ��̂Ŗ��Ή��ł��B
-�@�܂��A�I�����ɃR�l�N�V�������Ȃ������܂܂��ƃG���[����������̂�
-�@keepAlive�͏�ɃI�t�ƂȂ�܂��j
+・ライブラリ(POCO)が提供しているような細かい制御はできない
+（cookie等の機能も提供されているが繋がってないので未対応です。
+　また、終了時にコネクションがつながったままだとエラーが発生するので
+　keepAliveは常にオフとなります）
 
-�E�A�[�J�C�u���t�@�C���̃��X�|���X�͈ꊇ�Ń������ɓǂݍ���œ]������̂�
-  �傫�ȃt�@�C����Ԃ��̂͌�����
+・アーカイブ内ファイルのレスポンスは一括でメモリに読み込んで転送するので
+  大きなファイルを返すのは厳しい
 
-�E�F�X�ƃe�X�g�s���̂��ߌ��J������̂ɑg�ݍ��ނ̂͂����߂ł��Ȃ�
-�i�����c�[���Ȃǂł��g�p���������j
-
-
-���g����
-
-manual.tjs ���Q�Ƃ��Ă��������B
+・色々とテスト不足のため公開するものに組み込むのはお勧めできない
+（内製ツールなどでご使用ください）
 
 
-���R���p�C��
+●使い方
 
-�R���p�C���E�����N�ɂ� POCO (http://pocoproject.org/�j���K�v�ł��B
-�ڍׂ� poco/00-compile-memo.txt ���Q�Ƃ��Ă��������B
+manual.tjs を参照してください。
 
 
-�����C�Z���X
+●コンパイル
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
-POCO ���̂� Boost Software License �����ƂȂ��Ă��܂��B
+コンパイル・リンクには POCO (http://pocoproject.org/）が必要です。
+詳細は poco/00-compile-memo.txt を参照してください。
+
+
+●ライセンス
+
+このプラグインのライセンスは吉里吉里本体に準拠してください。
+POCO 自体は Boost Software License 準拠となっています。
 

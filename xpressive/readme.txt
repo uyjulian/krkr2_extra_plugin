@@ -1,32 +1,32 @@
-Title: xpressive - yet another RegExp ƒvƒ‰ƒOƒCƒ“
+Title: xpressive - yet another RegExp ãƒ—ãƒ©ã‚°ã‚¤ãƒ³
 Author: miahmie
 
-œ‚±‚ê‚Í‰½‚©H
+â—ã“ã‚Œã¯ä½•ã‹ï¼Ÿ
 
-¦ experimentaliŽÀŒ±“Ij‚Èƒvƒ‰ƒOƒCƒ“‚Å‚·I@ŽÀ‘H“Š“ü‚Í‚²‰“—¶‚­‚¾‚³‚¢B
+â€» experimentalï¼ˆå®Ÿé¨“çš„ï¼‰ãªãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ï¼ã€€å®Ÿè·µæŠ•å…¥ã¯ã”é æ…®ãã ã•ã„ã€‚
 
-RegExp ‚ðƒ³‚Ì boost::regexp ‚©‚ç boost::xpressive ‚É’u‚«Š·‚¦‚éƒvƒ‰ƒOƒCƒ“‚Å‚·B
-boost::xpressive ‚ÍCƒeƒ“ƒvƒŒ[ƒg‚Ì‚Ý‚ÌŽÀ‘•‚ÅŠ®Œ‹‚µ‚Ä‚¨‚èC—]•ª‚Èƒ‰ƒCƒuƒ‰ƒŠ‚Ì
-ƒŠƒ“ƒN‚ª•s—v‚È‚½‚ßC”äŠr“Iˆµ‚¢‚â‚·‚¢³‹K•\Œ»ƒ‰ƒCƒuƒ‰ƒŠ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
-
-
-œtjsRegExp.* ‚É‚Â‚¢‚Ä
-
-‚±‚ÌƒtƒHƒ‹ƒ_‚Ì tjsRegExp.* ‚ÍC‹g—¢‹g—¢–{‘Ì‚Ì core/tjs2/tjsRegExp.* ‚ð
-‰ü‘¢‚µ‚½ƒR[ƒh‚É‚È‚Á‚Ä‚¨‚èC‚±‚Ì‚Ü‚Ü‚ÌƒR[ƒh‚Å tjs2 ƒRƒA‚ð¶¬‚·‚é‚±‚Æ‚à
-‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-
-‚»‚Ìê‡C‚ ‚ç‚©‚¶‚ß TJS_USE_XPRESSIVE ƒ}ƒNƒ‚ð’è‹`‚µ‚Ä‚¨‚¢‚Ä‚©‚ç
-ƒRƒ“ƒpƒCƒ‹‚µ‚Ä‚­‚¾‚³‚¢B’è‹`‚µ‚È‚¢ê‡‚Í]—ˆ‚Ì boost::regexp ‚ðŽg—p‚µ‚Ü‚·‚ªC
-ÅV‚Ì boost ‚Å‚Í‚¤‚Ü‚­ƒRƒ“ƒpƒCƒ‹‚Å‚«‚È‚©‚Á‚½‚Ì‚ÅC‚»‚¿‚ç‚àˆê•”C³‚µ‚Ä‚ ‚è‚Ü‚·B
+RegExp ã‚’ç´”æ­£ã® boost::regexp ã‹ã‚‰ boost::xpressive ã«ç½®ãæ›ãˆã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚
+boost::xpressive ã¯ï¼Œãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®ã¿ã®å®Ÿè£…ã§å®Œçµã—ã¦ãŠã‚Šï¼Œä½™åˆ†ãªãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®
+ãƒªãƒ³ã‚¯ãŒä¸è¦ãªãŸã‚ï¼Œæ¯”è¼ƒçš„æ‰±ã„ã‚„ã™ã„æ­£è¦è¡¨ç¾ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ãªã£ã¦ã„ã¾ã™ã€‚
 
 
-œŠù’m‚Ì•s‹ï‡
+â—tjsRegExp.* ã«ã¤ã„ã¦
 
-‚Ü‚¾\•ª‚ÈƒeƒXƒg‚ª‚È‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
+ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã® tjsRegExp.* ã¯ï¼Œå‰é‡Œå‰é‡Œæœ¬ä½“ã® core/tjs2/tjsRegExp.* ã‚’
+æ”¹é€ ã—ãŸã‚³ãƒ¼ãƒ‰ã«ãªã£ã¦ãŠã‚Šï¼Œã“ã®ã¾ã¾ã®ã‚³ãƒ¼ãƒ‰ã§ tjs2 ã‚³ã‚¢ã‚’ç”Ÿæˆã™ã‚‹ã“ã¨ã‚‚
+ã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
+
+ãã®å ´åˆï¼Œã‚ã‚‰ã‹ã˜ã‚ TJS_USE_XPRESSIVE ãƒžã‚¯ãƒ­ã‚’å®šç¾©ã—ã¦ãŠã„ã¦ã‹ã‚‰
+ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ãã ã•ã„ã€‚å®šç¾©ã—ãªã„å ´åˆã¯å¾“æ¥ã® boost::regexp ã‚’ä½¿ç”¨ã—ã¾ã™ãŒï¼Œ
+æœ€æ–°ã® boost ã§ã¯ã†ã¾ãã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã§ããªã‹ã£ãŸã®ã§ï¼Œãã¡ã‚‰ã‚‚ä¸€éƒ¨ä¿®æ­£ã—ã¦ã‚ã‚Šã¾ã™ã€‚
 
 
-œƒ‰ƒCƒZƒ“ƒX
+â—æ—¢çŸ¥ã®ä¸å…·åˆ
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã¾ã ååˆ†ãªãƒ†ã‚¹ãƒˆãŒãªã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
+
+
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
+
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚
 

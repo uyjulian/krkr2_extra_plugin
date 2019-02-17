@@ -1,11 +1,11 @@
 
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 
 class PSD {
 
-	// ƒJƒ‰[ƒ‚[ƒh’è‹`
+	// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 	const color_mode_bitmap 		= 0;
 	const color_mode_grayscale 	= 1;
 	const color_mode_indexed		= 2;
@@ -15,7 +15,7 @@ class PSD {
 	const color_mode_duotone		= 8;
 	const color_mode_lab			= 9;
 
-	// ƒŒƒCƒ„í•Ê’è‹`
+	// ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥å®šç¾©
 	const layer_type_normal = 0;
 	const layer_type_hidden = 1;
 	const layer_type_folder = 2;
@@ -35,7 +35,7 @@ class PSD {
 	const layer_type_gradient_map = 16;
 	const layer_type_photo_filter = 17;
 
-	// ‡¬ƒ‚[ƒh’è‹`
+	// åˆæˆãƒ¢ãƒ¼ãƒ‰å®šç¾©
 	const blend_mode_normal = 0;
 	const blend_mode_dissolve = 1;
 	const blend_mode_darken = 2;
@@ -62,103 +62,103 @@ class PSD {
 	const blend_mode_pass_through = 23;
 	
 	/**
-	 * PSD‰æ‘œ‚Ìƒ[ƒh
-	 * @param filename ƒtƒ@ƒCƒ‹–¼
-	 * @return ƒ[ƒh‚É¬Œ÷‚µ‚½‚ç true
+	 * PSDç”»åƒã®ãƒ­ãƒ¼ãƒ‰
+	 * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
+	 * @return ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function load(filename);
 
-	// ‰æ‘œ‚ÌŠî–{ƒvƒƒpƒeƒB
-	// ‰æ‘œ‰¡•
+	// ç”»åƒã®åŸºæœ¬ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+	// ç”»åƒæ¨ªå¹…
 	property width;
-	// ‰æ‘œc•
+	// ç”»åƒç¸¦å¹…
 	property height;
-	// ƒ`ƒƒƒ“ƒlƒ‹”
+	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°
 	property channels;
-	// ƒJƒ‰[ƒ‚[ƒh
+	// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
 	property color_mode;
-	// ƒŒƒCƒ„”
+	// ãƒ¬ã‚¤ãƒ¤æ•°
 	property layer_count;
 
 	/**
-	 * ƒŒƒCƒ„í•Ê‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„í•Ê
+	 * ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥
 	 */
 	function getLayerType(no);
 
 	/**
-	 * ƒŒƒCƒ„‚Ì–¼‘O‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„–¼Ì
+	 * ãƒ¬ã‚¤ãƒ¤ã®åå‰ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤åç§°
 	 */
 	function getLayerName(no);
 
 	/**
-	 * ƒŒƒCƒ„‚Ìî•ñ‚Ìæ“¾
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * @return ƒŒƒCƒ„î•ñ‚ª‚Í‚¢‚Á‚½«‘
-	 * «‘‚Ì“à—e
-	 * layer_type   ƒŒƒCƒ„í•Ê
-	 * top          ãÀ•W
-	 * left         ¶À•W
-	 * bottom       ’êÀ•W
-	 * right        ‰EÀ•W
-	 * width        ‰¡•
-	 * height       c•
-	 * blend_mode   ‡¬ƒ‚[ƒh
-	 * opacity      •s“§–¾“x
-	 * visible      •\¦ó‘Ô
-	 * name         ƒŒƒCƒ„–¼
-	 * type         ‡¬ƒ‚[ƒhi‹g—¢‹g—¢‚Ì‘Î‰ƒ‚[ƒh)
+	 * ãƒ¬ã‚¤ãƒ¤ã®æƒ…å ±ã®å–å¾—
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * @return ãƒ¬ã‚¤ãƒ¤æƒ…å ±ãŒã¯ã„ã£ãŸè¾æ›¸
+	 * è¾æ›¸ã®å†…å®¹
+	 * layer_type   ãƒ¬ã‚¤ãƒ¤ç¨®åˆ¥
+	 * top          ä¸Šåº§æ¨™
+	 * left         å·¦åº§æ¨™
+	 * bottom       åº•åº§æ¨™
+	 * right        å³åº§æ¨™
+	 * width        æ¨ªå¹…
+	 * height       ç¸¦å¹…
+	 * blend_mode   åˆæˆãƒ¢ãƒ¼ãƒ‰
+	 * opacity      ä¸é€æ˜åº¦
+	 * visible      è¡¨ç¤ºçŠ¶æ…‹
+	 * name         ãƒ¬ã‚¤ãƒ¤å
+	 * type         åˆæˆãƒ¢ãƒ¼ãƒ‰ï¼ˆå‰é‡Œå‰é‡Œã®å¯¾å¿œãƒ¢ãƒ¼ãƒ‰)
 	 */
 	function getLayerInfo(no);
 	
 	/**
-	 * ƒŒƒCƒ„ƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @param layer “Ç‚İo‚µæƒŒƒCƒ„
-	 * @param no ƒŒƒCƒ„”Ô†
-	 * layer_type ‚ª layer_type_normal ‚Ìê‡‚Ì‚İ“Ç‚İ‚İ‚Å‚«‚Ü‚·
-	 * ƒf[ƒ^“à—e‚Ì‚Ù‚©ˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ª©“®“I‚ÉƒŒƒCƒ„‚Éİ’è‚³‚ê‚Ü‚·
-	 * left          ¶À•W
-	 * top           ãÀ•W
-	 * width         ‰¡•
-	 * height        c•
-	 * type          ‡¬ƒ‚[ƒh
-	 * opacity       •s“§–¾“x
-	 * visible       •\¦ó‘Ô
-	 * imageLeft     0‚É‚È‚è‚Ü‚·
-	 * imageTop      0‚É‚È‚è‚Ü‚·
-	 * imageWidth    width ‚É‚È‚è‚Ü‚·
-	 * imageHeight   height ‚É‚È‚è‚Ü‚·
-	 * name          name ‚ªİ’è‚³‚ê‚Ü‚·
+	 * ãƒ¬ã‚¤ãƒ¤ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @param layer èª­ã¿å‡ºã—å…ˆãƒ¬ã‚¤ãƒ¤
+	 * @param no ãƒ¬ã‚¤ãƒ¤ç•ªå·
+	 * layer_type ãŒ layer_type_normal ã®å ´åˆã®ã¿èª­ã¿è¾¼ã¿ã§ãã¾ã™
+	 * ãƒ‡ãƒ¼ã‚¿å†…å®¹ã®ã»ã‹ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒè‡ªå‹•çš„ã«ãƒ¬ã‚¤ãƒ¤ã«è¨­å®šã•ã‚Œã¾ã™
+	 * left          å·¦åº§æ¨™
+	 * top           ä¸Šåº§æ¨™
+	 * width         æ¨ªå¹…
+	 * height        ç¸¦å¹…
+	 * type          åˆæˆãƒ¢ãƒ¼ãƒ‰
+	 * opacity       ä¸é€æ˜åº¦
+	 * visible       è¡¨ç¤ºçŠ¶æ…‹
+	 * imageLeft     0ã«ãªã‚Šã¾ã™
+	 * imageTop      0ã«ãªã‚Šã¾ã™
+	 * imageWidth    width ã«ãªã‚Šã¾ã™
+	 * imageHeight   height ã«ãªã‚Šã¾ã™
+	 * name          name ãŒè¨­å®šã•ã‚Œã¾ã™
 	 */
 	function getLayerData(layer, no);
 
 
 	/**
-	 * ƒXƒ‰ƒCƒXƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @return ƒXƒ‰ƒCƒXî•ñ«‘ %[ top, left, bottom, right, slices:[ %[ id, group_id, left, top, bottom, right ], ... ] ]
-	 *         ƒXƒ‰ƒCƒXî•ñ‚ª‚È‚¢ê‡‚Í void ‚ğ•Ô‚·
+	 * ã‚¹ãƒ©ã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @return ã‚¹ãƒ©ã‚¤ã‚¹æƒ…å ±è¾æ›¸ %[ top, left, bottom, right, slices:[ %[ id, group_id, left, top, bottom, right ], ... ] ]
+	 *         ã‚¹ãƒ©ã‚¤ã‚¹æƒ…å ±ãŒãªã„å ´åˆã¯ void ã‚’è¿”ã™
 	 */
 	function getSlices();
 
 	/**
-	 * ƒKƒCƒhƒf[ƒ^‚Ì“Ç‚İo‚µ
-	 * @return ƒKƒCƒhî•ñ«‘ %[ vertical:[ x1, x2, ... ], horizontal:[ y1, y2, ... ] ]
-	 *         ƒKƒCƒhî•ñ‚ª‚È‚¢ê‡‚Í void ‚ğ•Ô‚·
+	 * ã‚¬ã‚¤ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
+	 * @return ã‚¬ã‚¤ãƒ‰æƒ…å ±è¾æ›¸ %[ vertical:[ x1, x2, ... ], horizontal:[ y1, y2, ... ] ]
+	 *         ã‚¬ã‚¤ãƒ‰æƒ…å ±ãŒãªã„å ´åˆã¯ void ã‚’è¿”ã™
 	 */
 	function getGuides();
 
 
 	/**
-	 * ‡¬Œ‹‰Ê‚Ìæ“¾Bæ“¾—Ìˆæ‚Í‰æ‘œ‘S‘ÌƒTƒCƒY“à‚É‚¨‚³‚Ü‚Á‚Ä‚é•K—v‚ª‚ ‚è‚Ü‚·
-	 * @param layer Ši”[æƒŒƒCƒ„(width,heightƒTƒCƒY‚É’²®‚³‚ê‚é)
-	 * @param left ‡¬Œ‹‰Êæ“¾—Ìˆæ‚Ì¶ãÀ•W
-	 * @param top ‡¬Œ‹‰Êæ“¾—Ìˆæ‚Ì¶ãÀ•W
-	 * @param width æ“¾ƒTƒCƒY‰¡•
-	 * @param height æ“¾ƒTƒCƒYc•
-	 * @return æ“¾‚É¬Œ÷‚µ‚½‚ç true
+	 * åˆæˆçµæœã®å–å¾—ã€‚å–å¾—é ˜åŸŸã¯ç”»åƒå…¨ä½“ã‚µã‚¤ã‚ºå†…ã«ãŠã•ã¾ã£ã¦ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	 * @param layer æ ¼ç´å…ˆãƒ¬ã‚¤ãƒ¤(width,heightã‚µã‚¤ã‚ºã«èª¿æ•´ã•ã‚Œã‚‹)
+	 * @param left åˆæˆçµæœå–å¾—é ˜åŸŸã®å·¦ä¸Šåº§æ¨™
+	 * @param top åˆæˆçµæœå–å¾—é ˜åŸŸã®å·¦ä¸Šåº§æ¨™
+	 * @param width å–å¾—ã‚µã‚¤ã‚ºæ¨ªå¹…
+	 * @param height å–å¾—ã‚µã‚¤ã‚ºç¸¦å¹…
+	 * @return å–å¾—ã«æˆåŠŸã—ãŸã‚‰ true
 	 */
 	function getBlend(layer, left, top, width, height);
 };

@@ -9,7 +9,7 @@
 #define WSO_LOOPTIMEOUT 100
 
 /**
- * ƒRƒ“ƒ\[ƒ‹ƒRƒ}ƒ“ƒh—p‹¤’Ê
+ * ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚³ãƒãƒ³ãƒ‰ç”¨å…±é€š
  */
 
 struct CommandExecute
@@ -37,7 +37,7 @@ struct CommandExecute
 	{
 		::ZeroMemory(&pi, sizeof(pi));
 
-		// ƒZƒLƒ…ƒŠƒeƒB‘®«
+		// ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å±æ€§
 		SECURITY_ATTRIBUTES sa;
 		SECURITY_DESCRIPTOR sd;
 		::ZeroMemory(&sa, sizeof(sa));
@@ -45,7 +45,7 @@ struct CommandExecute
 		sa.lpSecurityDescriptor = NULL;
 		sa.bInheritHandle = TRUE;
 
-		// NTŒn‚Ìê‡‚ÍƒZƒLƒ…ƒŠƒeƒB‹Lqq‚à
+		// NTç³»ã®å ´åˆã¯ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£è¨˜è¿°å­ã‚‚
 		OSVERSIONINFO osv;
 		::ZeroMemory(&osv, sizeof(osv));
 		osv.dwOSVersionInfoSize = sizeof(osv);
@@ -57,7 +57,7 @@ struct CommandExecute
 			sa.lpSecurityDescriptor = &sd;
 		}
 
-		// ƒpƒCƒv‚ğì¬
+		// ãƒ‘ã‚¤ãƒ—ã‚’ä½œæˆ
 		HANDLE hOT=0, hIT=0;
 		HANDLE hPID = ::GetCurrentProcess();
 		if (!(::CreatePipe(&hOT, &hOW, &sa,0) &&
@@ -76,7 +76,7 @@ struct CommandExecute
 		if (hasError()) return false;
 
 		ttstr cmd(L"\"");
-		// ‹g—¢‹g—¢ƒT[ƒ`ƒpƒXã‚É‚ ‚éê‡‚Í‚»‚¿‚ç‚ğ—Dæ
+		// å‰é‡Œå‰é‡Œã‚µãƒ¼ãƒãƒ‘ã‚¹ä¸Šã«ã‚ã‚‹å ´åˆã¯ãã¡ã‚‰ã‚’å„ªå…ˆ
 		if (TVPIsExistentStorage(target)) {
 			ttstr tmp = TVPGetPlacedPath(target);
 			TVPGetLocalName(tmp);
@@ -86,7 +86,7 @@ struct CommandExecute
 		if (param.length() > 0) cmd += L" " + param;
 		LPWSTR cmdline = (LPWSTR)cmd.c_str();
 
-		// qƒvƒƒZƒXì¬
+		// å­ãƒ—ãƒ­ã‚»ã‚¹ä½œæˆ
 		STARTUPINFO si;
 		::ZeroMemory(&si, sizeof(si));
 		si.cb = sizeof(si);
@@ -105,15 +105,15 @@ struct CommandExecute
 #define		BUF_SIZE	1024
 
 	bool wait(LineCallbackT linecb, void *cbdata, int timeout = 0, DWORD cycle = WSO_LOOPTIMEOUT) {
-		// ƒpƒCƒv‚©‚ço—Í‚ğ“Ç‚İ‚İ
+		// ãƒ‘ã‚¤ãƒ—ã‹ã‚‰å‡ºåŠ›ã‚’èª­ã¿è¾¼ã¿
 		ttstr output;
 		DWORD cnt, last=::GetTickCount();
 		::PeekNamedPipe(hOR, 0, 0, 0, &cnt, NULL);
 		char buf[BUF_SIZE], crlf=0;
-		char tmp[BUF_SIZE+1];			//•¶š‚ÌãˆÊƒoƒCƒg‚¾‚¯•ª’f‚³‚ê‚Ä‚µ‚Ü‚Á‚½ê‡‚É•À‚×’¼‚·ƒGƒŠƒA
-		char kind[BUF_SIZE+1];			//•¶š\¬í 0:”¼Šp 1:‘SŠpãˆÊƒoƒCƒg 2:‘SŠp‰ºˆÊƒoƒCƒg
-		char halfchar;					//•ª’f‚³‚ê‚½ãˆÊƒoƒCƒg
-		bool ishalf = false;			//•ª’f‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+		char tmp[BUF_SIZE+1];			//æ–‡å­—ã®ä¸Šä½ãƒã‚¤ãƒˆã ã‘åˆ†æ–­ã•ã‚Œã¦ã—ã¾ã£ãŸå ´åˆã«ä¸¦ã¹ç›´ã™ã‚¨ãƒªã‚¢
+		char kind[BUF_SIZE+1];			//æ–‡å­—æ§‹æˆç¨® 0:åŠè§’ 1:å…¨è§’ä¸Šä½ãƒã‚¤ãƒˆ 2:å…¨è§’ä¸‹ä½ãƒã‚¤ãƒˆ
+		char halfchar;					//åˆ†æ–­ã•ã‚ŒãŸä¸Šä½ãƒã‚¤ãƒˆ
+		bool ishalf = false;			//åˆ†æ–­ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
 		tjs_char wbuf[BUF_SIZE+1];
 		bool rest = false;
 		int line = 0;
@@ -125,7 +125,7 @@ struct CommandExecute
 				buf[cnt] = 0;
 				if( ishalf )
 				{
-					//•ª’f‚³‚ê‚½ãˆÊƒoƒCƒg‚É˜AŒ‹
+					//åˆ†æ–­ã•ã‚ŒãŸä¸Šä½ãƒã‚¤ãƒˆã«é€£çµ
 					ZeroMemory(tmp, sizeof(tmp));
 					tmp[0] = halfchar;
 					memcpy( &tmp[1], buf, cnt );
@@ -135,26 +135,26 @@ struct CommandExecute
 				halfchar = 0;
 				ishalf = false;
 
-				//ƒpƒCƒv‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ÌI’[ƒ}ƒ‹ƒ`ƒoƒCƒg”»’è‚¨‚æ‚Ñ“r’†“r’†‚Å‚Ì
-				//‰üsƒR[ƒh”»’è‚ªŠ‚Å•K—v‚È‚Ì‚Åæ‚Éæ“ª‚©‚ç‘S•”‚È‚ß‚Ä‚¨‚­
+				//ãƒ‘ã‚¤ãƒ—ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç«¯ãƒãƒ«ãƒãƒã‚¤ãƒˆåˆ¤å®šãŠã‚ˆã³é€”ä¸­é€”ä¸­ã§ã®
+				//æ”¹è¡Œã‚³ãƒ¼ãƒ‰åˆ¤å®šãŒéšæ‰€ã§å¿…è¦ãªã®ã§å…ˆã«å…ˆé ­ã‹ã‚‰å…¨éƒ¨ãªã‚ã¦ãŠã
 				ZeroMemory(kind, sizeof(kind));
 				for (DWORD pos = 0; pos < cnt; pos++) {
 					unsigned char cl = buf[pos];
 					if( pos )
 					{
-						//‘O‚ÌƒoƒCƒg‚ª‘SŠpãˆÊƒoƒCƒg‚¾‚Á‚½‚ç–³ğŒ‚Å‰ºˆÊƒoƒCƒgˆµ‚¢
+						//å‰ã®ãƒã‚¤ãƒˆãŒå…¨è§’ä¸Šä½ãƒã‚¤ãƒˆã ã£ãŸã‚‰ç„¡æ¡ä»¶ã§ä¸‹ä½ãƒã‚¤ãƒˆæ‰±ã„
 						if ( kind[pos-1] == 1 )	{
 							kind[pos] = 2;
 							continue;
 						}
 					}
-					//ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•W€“üo—Í‚È‚Ì‚ÅSJIS‘O’ñ‚Å‚ÌŒÅ’èˆ—FãˆÊƒoƒCƒg”»’è
+					//ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ¨™æº–å…¥å‡ºåŠ›ãªã®ã§SJISå‰æã§ã®å›ºå®šå‡¦ç†ï¼šä¸Šä½ãƒã‚¤ãƒˆåˆ¤å®š
 					if ( cl > 0x80 && cl < 0xA0 || cl > 0xDF && cl < 0xFD )
 						kind[pos] = 1;
 				}
 
 				if ( kind[cnt-1] == 1 ) {
-					//ÅIƒoƒCƒg‚ªƒ}ƒ‹ƒ`ƒoƒCƒg‚ÌãˆÊƒoƒCƒg‚©‚Ç‚¤‚©”»’è
+					//æœ€çµ‚ãƒã‚¤ãƒˆãŒãƒãƒ«ãƒãƒã‚¤ãƒˆã®ä¸Šä½ãƒã‚¤ãƒˆã‹ã©ã†ã‹åˆ¤å®š
 					ishalf = true;
 					halfchar = buf[cnt-1];
 					cnt--;
@@ -164,12 +164,12 @@ struct CommandExecute
 				bool mb = false;
 				for (DWORD pos = 0; pos < cnt; pos++) {
 					char ch = buf[pos];
-					//‰üsƒR[ƒh”»’è‚Í”¼Šp(kind=0)‚Å‚ ‚é‚±‚Æ‚ª‘O’ñ
+					//æ”¹è¡Œã‚³ãƒ¼ãƒ‰åˆ¤å®šã¯åŠè§’(kind=0)ã§ã‚ã‚‹ã“ã¨ãŒå‰æ
 					if ( (ch == '\r' || ch == '\n') && ! kind[pos] ) {
 						if (crlf == 0 || crlf == ch) {
 							buf[pos] = 0;
 
-							//	ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğƒƒCƒh•¶š—ñ‚É•ÏŠ·‚µ‚Ä ttstr ‚É“ü‚ê‚È‚¢‚Æ—áŠO‚ªo‚é
+							//	ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦ ttstr ã«å…¥ã‚Œãªã„ã¨ä¾‹å¤–ãŒå‡ºã‚‹
 							ZeroMemory(wbuf, sizeof(wbuf));
 							MultiByteToWideChar(0, 0, buf+start, pos-start, wbuf, sizeof(wbuf)-1);
 							ttstr append(wbuf);
@@ -246,12 +246,12 @@ struct CommandExecute
 
 
 /**
- * ƒƒ\ƒbƒh’Ç‰Á—pƒNƒ‰ƒX
+ * ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ ç”¨ã‚¯ãƒ©ã‚¹
  */
 class WindowShell {
 
 protected:
-	iTJSDispatch2 *objthis; //< ƒIƒuƒWƒFƒNƒgî•ñ‚ÌQÆ
+	iTJSDispatch2 *objthis; //< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®å‚ç…§
 	HWND msgHWND;
 
 	typedef WindowShell SelfClass;
@@ -300,7 +300,7 @@ public:
 	}
 
 protected:
-	// ƒCƒxƒ“ƒgˆ—
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 	void onShellExecuted(WPARAM wp, LPARAM lp) {
 		tTJSVariant process = (tjs_int)wp;
 		tTJSVariant endCode = (tjs_int)lp;
@@ -316,61 +316,61 @@ protected:
 	}
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	WindowShell(iTJSDispatch2 *objthis) : objthis(objthis) {
 		msgHWND = createMessageWindow();
 	}
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~WindowShell() {
 		msgHWND = destroyMessageWindow(msgHWND);
 	}
 
 public:
 	/**
-	 * Àsî•ñ
+	 * å®Ÿè¡Œæƒ…å ±
 	 */
 	struct ExecuteInfo {
-		HWND   message; // ƒƒbƒZ[ƒW‘—Mæ
-		HANDLE process; // ‘Ò‚¿‘ÎÛƒvƒƒZƒX
+		HWND   message; // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å…ˆ
+		HANDLE process; // å¾…ã¡å¯¾è±¡ãƒ—ãƒ­ã‚»ã‚¹
 		CommandExecute *cmd;
 		ExecuteInfo(HWND message, HANDLE process, CommandExecute *cmd = 0)
 			: message(message), process(process), cmd(cmd) {}
 	};
 	
 	/**
-	 * I—¹‘Ò‚¿ƒXƒŒƒbƒhˆ—
-	 * @param data ƒ†[ƒU(ExecuteInfo)
+	 * çµ‚äº†å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†
+	 * @param data ãƒ¦ãƒ¼ã‚¶(ExecuteInfo)
 	 */
 	static void waitProcess(void *data) {
-		// ƒpƒ‰ƒ[ƒ^ˆø‚«Œp‚¬
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ãç¶™ã
 		HWND   message = ((ExecuteInfo*)data)->message;
 		HANDLE process = ((ExecuteInfo*)data)->process;
 		delete data;
 
-		// ƒvƒƒZƒX‘Ò‚¿
+		// ãƒ—ãƒ­ã‚»ã‚¹å¾…ã¡
 		WaitForSingleObject(process, INFINITE);
 		DWORD dt;
-		GetExitCodeProcess(process, &dt); // Œ‹‰Êæ“¾
+		GetExitCodeProcess(process, &dt); // çµæœå–å¾—
 		CloseHandle(process);
 
-		// ‘—M
+		// é€ä¿¡
 		PostMessage(message, WM_SHELLEXECUTED, (WPARAM)process, (LPARAM)dt);
 	}
 	
 	/**
-	 * ƒvƒƒZƒX‚Ì’â~
-	 * @param process ƒvƒƒZƒXID
-	 * @param endCode I—¹ƒR[ƒh
+	 * ãƒ—ãƒ­ã‚»ã‚¹ã®åœæ­¢
+	 * @param process ãƒ—ãƒ­ã‚»ã‚¹ID
+	 * @param endCode çµ‚äº†ã‚³ãƒ¼ãƒ‰
 	 */
 	void terminateProcess(int process, int endCode) {
 		TerminateProcess((HANDLE)process, endCode);
 	}
 
 	/**
-	 * ƒvƒƒZƒX‚ÌÀs
-	 * @param target ƒ^[ƒQƒbƒg
-	 * @praam param ƒpƒ‰ƒ[ƒ^
+	 * ãƒ—ãƒ­ã‚»ã‚¹ã®å®Ÿè¡Œ
+	 * @param target ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
+	 * @praam param ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	 */
 	int shellExecute(LPCTSTR target, LPCTSTR param) {
 		SHELLEXECUTEINFO si;
@@ -390,7 +390,7 @@ public:
 
 
 	/**
-	 * commandExec ƒRƒ“ƒ\[ƒ‹ˆ—
+	 * commandExec ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡¦ç†
 	 */
 	struct ConsoleOutputParam {
 		HWND message;
@@ -402,11 +402,11 @@ public:
 		}
 	};
 	/**
-	 * commandExec I—¹‘Ò‚¿ƒXƒŒƒbƒhˆ—
-	 * @param data ƒ†[ƒU(ExecuteInfo)
+	 * commandExec çµ‚äº†å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†
+	 * @param data ãƒ¦ãƒ¼ã‚¶(ExecuteInfo)
 	 */
 	static void waitCommand(void *data) {
-		// ƒpƒ‰ƒ[ƒ^ˆø‚«Œp‚¬
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ãç¶™ã
 		HWND        message = ((ExecuteInfo*)data)->message;
 		HANDLE      process = ((ExecuteInfo*)data)->process;
 		CommandExecute *cmd = ((ExecuteInfo*)data)->cmd;
@@ -417,13 +417,13 @@ public:
 		DWORD exit = cmd->getExitCode();
 		delete cmd;
 
-		// ‘—M
+		// é€ä¿¡
 		PostMessage(message, WM_SHELLEXECUTED, (WPARAM)process, (LPARAM)exit);
 	}
 	/**
-	 * ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚ÌÀs
-	 * @param target ƒ^[ƒQƒbƒg
-	 * @praam param ƒpƒ‰ƒ[ƒ^
+	 * ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®å®Ÿè¡Œ
+	 * @param target ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
+	 * @praam param ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	 */
 	int commandExecute(ttstr target, ttstr param) {
 		CommandExecute *cmd = new CommandExecute();
@@ -439,7 +439,7 @@ public:
 
 
 	/**
-	 * ƒVƒOƒiƒ‹‘—M
+	 * ã‚·ã‚°ãƒŠãƒ«é€ä¿¡
 	 */
 	bool commandSendSignal(int process, bool type) {
 		DWORD id = getProcessMap((HANDLE)process);
@@ -484,20 +484,20 @@ static void PostUnregistCallback() { WindowShell::UnregisterMessageWindowClass()
 NCB_POST_UNREGIST_CALLBACK(PostUnregistCallback);
 
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXƒQƒbƒ^
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚²ãƒƒã‚¿
 NCB_GET_INSTANCE_HOOK(WindowShell)
 {
-	NCB_INSTANCE_GETTER(objthis) { // objthis ‚ğ iTJSDispatch2* Œ^‚Ìˆø”‚Æ‚·‚é
-		ClassT* obj = GetNativeInstance(objthis);	// ƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒXƒ|ƒCƒ“ƒ^æ“¾
+	NCB_INSTANCE_GETTER(objthis) { // objthis ã‚’ iTJSDispatch2* å‹ã®å¼•æ•°ã¨ã™ã‚‹
+		ClassT* obj = GetNativeInstance(objthis);	// ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		if (!obj) {
-			obj = new ClassT(objthis);				// ‚È‚¢ê‡‚Í¶¬‚·‚é
-			SetNativeInstance(objthis, obj);		// objthis ‚É obj ‚ğƒlƒCƒeƒBƒuƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä“o˜^‚·‚é
+			obj = new ClassT(objthis);				// ãªã„å ´åˆã¯ç”Ÿæˆã™ã‚‹
+			SetNativeInstance(objthis, obj);		// objthis ã« obj ã‚’ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 		}
 		return obj;
 	}
 };
 
-// ƒtƒbƒN‚Â‚«ƒAƒ^ƒbƒ`
+// ãƒ•ãƒƒã‚¯ã¤ãã‚¢ã‚¿ãƒƒãƒ
 NCB_ATTACH_CLASS_WITH_HOOK(WindowShell, Window) {
 	Method(L"shellExecute", &WindowShell::shellExecute);
 	Method(L"commandExecute", &WindowShell::commandExecute);
@@ -512,18 +512,18 @@ static void cmdExecLineCallback(void *va, int line, LPCWSTR text) {
 }
 
 /**
- * ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ŒÄ‚Ño‚µ
+ * ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å‘¼ã³å‡ºã—
  */
 tjs_error TJS_INTF_METHOD commandExecute(
 	tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
 {
 	tTJSVariant vStdOut;
 
-	// ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if (numparams == 0) return TJS_E_BADPARAMCOUNT;
 	if (param[0]->Type() != tvtString) return TJS_E_INVALIDPARAM;
 
-	// ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“/ƒ^ƒCƒ€ƒAƒEƒgæ“¾
+	// ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³/ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå–å¾—
 	int timeout = 0;
 	ttstr target(param[0]->GetString()), cmdprm;
 

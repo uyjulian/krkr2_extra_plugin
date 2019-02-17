@@ -5,7 +5,7 @@
 #include "BasicDrawDevice.h"
 
 /**
- * Irrlicht ƒx[ƒX‚Ì DrawDevice
+ * Irrlicht ãƒ™ãƒ¼ã‚¹ã® DrawDevice
  */
 class IrrlichtDrawDevice : public IrrlichtBase, public tTVPDrawDevice
 {
@@ -13,24 +13,24 @@ class IrrlichtDrawDevice : public IrrlichtBase, public tTVPDrawDevice
 
 protected:
 	bool zoomMode;
-	tjs_int width;        //< ƒ†[ƒUw’è‚Ì‰æ–Ê‰¡•
-	tjs_int height;       //< ƒ†[ƒUw’è‚Ì‰æ–Êc•
-	tjs_int destWidth;    //< À•`‰æ—Ìˆæ‚Ì‰¡•
-	tjs_int destHeight;   //< À•`‰æ—Ìˆæ‚Ìc•
+	tjs_int width;        //< ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ç”»é¢æ¨ªå¹…
+	tjs_int height;       //< ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ç”»é¢ç¸¦å¹…
+	tjs_int destWidth;    //< å®Ÿæç”»é ˜åŸŸã®æ¨ªå¹…
+	tjs_int destHeight;   //< å®Ÿæç”»é ˜åŸŸã®ç¸¦å¹…
 
-	tjs_int screenWidth;  //< Irrlicht À‰æ–Ê‚Ì‰æ–Ê‰¡•
-	tjs_int screenHeight; //< Irrlicht À‰æ–Ê‚Ì‰æ–Êc•
+	tjs_int screenWidth;  //< Irrlicht å®Ÿç”»é¢ã®ç”»é¢æ¨ªå¹…
+	tjs_int screenHeight; //< Irrlicht å®Ÿç”»é¢ã®ç”»é¢ç¸¦å¹…
 	irr::core::rect<irr::s32> screenRect;
 	irr::core::rect<irr::s32> destRect;
 
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	IrrlichtDrawDevice(iTJSDispatch2 *objthis, int width, int height);
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~IrrlichtDrawDevice();
 
 	// -----------------------------------------------------------------------
-	// ¶¬ƒtƒ@ƒNƒgƒŠ
+	// ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
 	// -----------------------------------------------------------------------
 
 	static tjs_error Factory(IrrlichtDrawDevice **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis);
@@ -40,86 +40,86 @@ public:
 	// -----------------------------------------------------------------------
 public:
 	/**
-	 * Continuous ƒR[ƒ‹ƒoƒbƒN
+	 * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	 */
 	virtual void TJS_INTF_METHOD OnContinuousCallback(tjs_uint64 tick);
 	
 protected:
-	// ƒfƒoƒCƒXŠ„‚è“–‚ÄŒãˆ—
+	// ãƒ‡ãƒã‚¤ã‚¹å‰²ã‚Šå½“ã¦å¾Œå‡¦ç†
 	virtual void onAttach();
 
-	// ƒfƒoƒCƒX‰ğ•ú‘Oˆ—
+	// ãƒ‡ãƒã‚¤ã‚¹è§£æ”¾å‰å‡¦ç†
 	virtual void onDetach();
 	
 	/**
-	 * Device¨Irrlicht•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	 * Deviceâ†’Irrlichtæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformToIrrlicht(tjs_int &x, tjs_int &y);
 
-	/** Irrlicht¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	/** Irrlichtâ†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformFromIrrlicht(tjs_int &x, tjs_int &y);
 
 	/**
-	 * Device¨ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	 * Deviceâ†’ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformToManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y);
 
-	/** ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	/** ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformFromManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y);
 
 	/**
-	 * Device¨•W€À•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	 * Deviceâ†’æ¨™æº–åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformTo(tjs_int &x, tjs_int &y);
 	
-	/** •W€À•W¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
-	 * @param		x		XˆÊ’u
-	 * @param		y		YˆÊ’u
-	 * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+	/** æ¨™æº–åº§æ¨™â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+	 * @param		x		Xä½ç½®
+	 * @param		y		Yä½ç½®
+	 * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
 	 */
 	void transformFrom(tjs_int &x, tjs_int &y);
 	
 	// ------------------------------------------------------------
-	// XVˆ—
+	// æ›´æ–°å‡¦ç†
 	// ------------------------------------------------------------
 protected:
 	/**
-	 * ƒNƒ‰ƒXŒÅ—LXVˆ—
-	 * ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‚Ìˆ—ŒãAGUI‚Ìˆ—‘O‚ÉŒÄ‚Î‚ê‚é
+	 * ã‚¯ãƒ©ã‚¹å›ºæœ‰æ›´æ–°å‡¦ç†
+	 * ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‡¦ç†å¾Œã€GUIã®å‡¦ç†å‰ã«å‘¼ã°ã‚Œã‚‹
 	 */
 	void update(irr::video::IVideoDriver *driver);
 	
 public:
-	//---- LayerManager ‚ÌŠÇ—ŠÖ˜A
+	//---- LayerManager ã®ç®¡ç†é–¢é€£
 	virtual void TJS_INTF_METHOD AddLayerManager(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD RemoveLayerManager(iTVPLayerManager * manager);
 
-	//---- •`‰æˆÊ’uEƒTƒCƒYŠÖ˜A
+	//---- æç”»ä½ç½®ãƒ»ã‚µã‚¤ã‚ºé–¢é€£
 	virtual void TJS_INTF_METHOD SetTargetWindow(HWND wnd, bool is_main);
 	virtual void TJS_INTF_METHOD SetDestRectangle(const tTVPRect & rect);
 	virtual void TJS_INTF_METHOD GetSrcSize(tjs_int &w, tjs_int &h);
 	virtual void TJS_INTF_METHOD NotifyLayerResize(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD NotifyLayerImageChange(iTVPLayerManager * manager) {}
 
-	//---- ƒ†[ƒU[ƒCƒ“ƒ^[ƒtƒF[ƒXŠÖ˜A
-	// window ¨ drawdevice
+	//---- ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹é–¢é€£
+	// window â†’ drawdevice
 	virtual void TJS_INTF_METHOD OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags);
 	virtual void TJS_INTF_METHOD OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags);
 	virtual void TJS_INTF_METHOD OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags);
@@ -129,10 +129,10 @@ public:
 	virtual void TJS_INTF_METHOD SetCursorPos(iTVPLayerManager * manager, tjs_int x, tjs_int y);
 	virtual void TJS_INTF_METHOD RequestInvalidation(const tTVPRect & rect);
 	
-	//---- Ä•`‰æŠÖ˜A
+	//---- å†æç”»é–¢é€£
 	virtual void TJS_INTF_METHOD Show();
 	
-	//---- LayerManager ‚©‚ç‚Ì‰æ‘œó‚¯“n‚µŠÖ˜A
+	//---- LayerManager ã‹ã‚‰ã®ç”»åƒå—ã‘æ¸¡ã—é–¢é€£
 	virtual void TJS_INTF_METHOD StartBitmapCompletion(iTVPLayerManager * manager);
 	virtual void TJS_INTF_METHOD NotifyBitmapCompleted(iTVPLayerManager * manager,
 		tjs_int x, tjs_int y, const void * bits, const BITMAPINFO * bitmapinfo,
@@ -140,7 +140,7 @@ public:
 	virtual void TJS_INTF_METHOD EndBitmapCompletion(iTVPLayerManager * manager);
 
 	// -----------------------------------------------------------------------
-	// ‹¤’Êƒƒ\ƒbƒhŒÄ‚Ño‚µ—p
+	// å…±é€šãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ç”¨
 	// -----------------------------------------------------------------------
 
 public:
@@ -173,12 +173,12 @@ public:
 	}
 	
 	// -----------------------------------------------------------------------
-	// ŒÅ—Lƒƒ\ƒbƒh
+	// å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰
 	// -----------------------------------------------------------------------
 	
 public:
 	/**
-	 * @return ƒfƒoƒCƒXî•ñ
+	 * @return ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 	 */
 	tjs_int64 getDevice() {
 		return reinterpret_cast<tjs_int64>((tTVPDrawDevice*)this);
@@ -227,7 +227,7 @@ public:
 	
 protected:
 	/*
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•W€‚Ì visible
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®æ¨™æº–ã® visible
 	 */
 	bool defaultVisible;
 
@@ -241,16 +241,16 @@ public:
 	}
 
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @param visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @param visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	void setVisible(int id, bool visible);
 
 	/**
-	 * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
-	 * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
-	 * @return visible •\¦ó‘Ô
+	 * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+	 * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+	 * @return visible è¡¨ç¤ºçŠ¶æ…‹
 	 */
 	bool getVisible(int id);
 	

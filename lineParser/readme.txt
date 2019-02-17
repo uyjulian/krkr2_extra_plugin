@@ -1,14 +1,14 @@
 Title: lineparser plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-s’PˆÊ‚ÅƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ðˆ—‚·‚éƒp[ƒTƒvƒ‰ƒOƒCƒ“‚Å‚·
+è¡Œå˜ä½ã§ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡¦ç†ã™ã‚‹ãƒ‘ãƒ¼ã‚µãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™
 
-œŽg‚¢•û
+â—ä½¿ã„æ–¹
 
-  manual.tjs ŽQÆ
+  manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-‚±‚Ìƒvƒ‰ƒOƒCƒ“‚Ìƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚

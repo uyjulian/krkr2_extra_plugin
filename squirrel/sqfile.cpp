@@ -3,12 +3,12 @@
 #include "tp_stub.h"
 
 /**
- * ƒtƒ@ƒCƒ‹“Ç‚İ‚İ—pƒf[ƒ^\‘¢
+ * ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ 
  */
 class SQFileInfo {
 
 public:
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	SQFileInfo(const SQChar *filename, bool binary) : is(NULL), buffer(NULL), size(0), readed(0), binary(binary) {
 		is = TVPCreateIStream(filename, TJS_BS_READ);
 		if (is) {
@@ -44,7 +44,7 @@ public:
 		}
 	}
 
-	/// ƒfƒXƒgƒ‰ƒNƒ^
+	/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~SQFileInfo() {
 		if (buffer) {
 			delete [] buffer;
@@ -54,7 +54,7 @@ public:
 		}
 	}
 
-	/// @return “Ç‚İ‚İŠ®—¹‚µ‚½‚ç true
+	/// @return èª­ã¿è¾¼ã¿å®Œäº†ã—ãŸã‚‰ true
 	bool check() {
 		if (buffer) {
 			if (readed < size) {
@@ -69,28 +69,28 @@ public:
 		}
 	}
 
-	/// @return ƒoƒbƒtƒ@
+	/// @return ãƒãƒƒãƒ•ã‚¡
 	const char *getBuffer() {
 		return (const char*)buffer;
 	}
 
-	/// @return ƒTƒCƒY
+	/// @return ã‚µã‚¤ã‚º
 	int getSize() {
 		return (int)size;
 	}
 
 private:
-	IStream *is;  ///< “ü—ÍƒXƒgƒŠ[ƒ€
-	char *buffer; ///< “ü—Íƒf[ƒ^‚Ìƒoƒbƒtƒ@
-	ULONG size;   ///< “Ç‚İ‚İƒTƒCƒY
-	ULONG readed; ///< “Ç‚İ‚İÏ‚İƒTƒCƒY
+	IStream *is;  ///< å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+	char *buffer; ///< å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
+	ULONG size;   ///< èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+	ULONG readed; ///< èª­ã¿è¾¼ã¿æ¸ˆã¿ã‚µã‚¤ã‚º
 	bool binary;
 };
 
 /**
- * ƒtƒ@ƒCƒ‹‚ğ”ñ“¯Šú‚ÉŠJ‚­
- * @param filename ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹–¼
- * @return ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’éåŒæœŸã«é–‹ã
+ * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
  */
 void *sqobjOpenFile(const SQChar *filename, bool binary)
 {
@@ -98,11 +98,11 @@ void *sqobjOpenFile(const SQChar *filename, bool binary)
 }
 
 /**
- * ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚½‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param handler ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
- * @param dataPtr ƒf[ƒ^Ši”[æƒAƒhƒŒƒX(o—Í)
- * @param dataSize ƒf[ƒ^ƒTƒCƒY(o—Í)
- * @return ƒ[ƒhŠ®—¹‚µ‚Ä‚¢‚½‚ç true
+ * ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param handler ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
+ * @param dataPtr ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹(å‡ºåŠ›)
+ * @param dataSize ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(å‡ºåŠ›)
+ * @return ãƒ­ãƒ¼ãƒ‰å®Œäº†ã—ã¦ã„ãŸã‚‰ true
  */
 bool sqobjCheckFile(void *handler, const char **dataAddr, int *dataSize)
 {
@@ -123,8 +123,8 @@ bool sqobjCheckFile(void *handler, const char **dataAddr, int *dataSize)
 }
 
 /**
- * ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
- * @param handler ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‰
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
+ * @param handler ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ©
  */
 void sqobjCloseFile(void *handler)
 {

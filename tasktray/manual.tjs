@@ -1,83 +1,83 @@
 /**
- * �[���R�[�h�ɂ��}�j���A��
+ * 擬似コードによるマニュアル
  */
 
-/// �A�C�R���萔
-global.niifNone = 0;     //> �A�C�R������
-global.niifInfo = 1;   �@//> �C���t�H�A�C�R��
-global.niifWarning = 2;  //> �x���A�C�R��
-global.niifError = 3;    //> �G���[�A�C�R��
+/// アイコン定数
+global.niifNone = 0;     //> アイコン無し
+global.niifInfo = 1;   　//> インフォアイコン
+global.niifWarning = 2;  //> 警告アイコン
+global.niifError = 3;    //> エラーアイコン
 
 /**
- * Window�g��
+ * Window拡張
  */
 class Window {
   /**
-   * �^�X�N�g���C��\�����邩�ǂ������w�肵�܂��B
-   * true �ɂ���ƃA�v���̃A�C�R�����^�X�N�g���C�ɕ\������A
-   * �^�X�N�g���C�ւ̃}�E�X�A�N�Z�X���C�x���g�Ŏ�M���A
-   * �^�X�N�g���C�A�C�R���ɔC�ӂ̃`�b�v�X��\���ł���悤�ɂȂ�܂��B
-   * @return �^�X�N�g���C���L���Ȃ� true
+   * タスクトレイを表示するかどうかを指定します。
+   * true にするとアプリのアイコンがタスクトレイに表示され、
+   * タスクトレイへのマウスアクセスをイベントで受信し、
+   * タスクトレイアイコンに任意のチップスを表示できるようになります。
+   * @return タスクトレイが有効なら true
    */
   property tasktrayEnable;
   
 
   /**
-   * �^�X�N�g���C�ɃA�C�R���Ƀ}�E�X�J�[�\�������킹�����ɕ\�������q���g���w�肵�܂��B
-   * @return �q���g
+   * タスクトレイにアイコンにマウスカーソルを合わせた時に表示されるヒントを指定します。
+   * @return ヒント
    */
   property tasktrayHint;
 
 
   /**
-   * �^�X�N�g���C�Ƀo���[���`�b�v���|�b�v�A�b�v�����܂��B
-   * @param icon �A�C�R���̗L����萔�Ŏw�肵�܂�(�A�C�R���̓^�C�g�����w�肳��Ă���ꍇ�̂ݕ\������܂��j�B
-   * @param title �o���[���`�b�v�̃^�C�g�����w�肵�܂��B
-   * @param text �o���[���`�b�v�̃e�L�X�g���w�肵�܂��B
-   * @param timeout �o���[���`�b�v�̃^�C���A�E�g���~���b�Ŏw�肵�܂��B10�b�`30�b�͈̔͂𒴂���ꍇ�͂��͈̔͂Ɏ����I�Ɋۂߍ��܂�܂��B
+   * タスクトレイにバルーンチップをポップアップさせます。
+   * @param icon アイコンの有無を定数で指定します(アイコンはタイトルが指定されている場合のみ表示されます）。
+   * @param title バルーンチップのタイトルを指定します。
+   * @param text バルーンチップのテキストを指定します。
+   * @param timeout バルーンチップのタイムアウトをミリ秒で指定します。10秒〜30秒の範囲を超える場合はその範囲に自動的に丸め込まれます。
    */
   function popupTasktrayInfo(icon, title, text, timeout);
 
   /**
-   * �C�x���g�F�}�E�X�ړ�
-   * �^�X�N�g���C�A�C�R����ł̃}�E�X�ړ������m�������ɌĂяo����܂��B
-   * �Ăяo�����͂��̌Ăяo�����I������܂Ń��b�N����Ă��܂����߁A
-   * ���₩�ɏ������I������悤�ɂ��Ă��������B
-   * @param �}�E�X��X���W
-   * @param �}�E�X��Y���W
-   * @param shift �}�E�X���ړ����Ă������ɓ����ɉ�����Ă����V�t�g�n�̃L�[�̃{�^���̏��*/
+   * イベント：マウス移動
+   * タスクトレイアイコン上でのマウス移動を検知した時に呼び出されます。
+   * 呼び出し元はこの呼び出しが終了するまでロックされてしまうため、
+   * 速やかに処理を終了するようにしてください。
+   * @param マウスのX座標
+   * @param マウスのY座標
+   * @param shift マウスが移動していた時に同時に押されていたシフト系のキーのボタンの状態*/
   function onTasktrayMouseMove(x, y, shift);
 
   /**
-   * �C�x���g�F�}�E�X�_�E��
-   * �^�X�N�g���C�A�C�R����ł̃}�E�X�̃{�^���������ꂽ�̂����m�������ɌĂяo����܂��B
-   * �Ăяo�����͂��̌Ăяo�����I������܂Ń��b�N����Ă��܂����߁A
-   * ���₩�ɏ������I������悤�ɂ��Ă��������B
-   * @param �}�E�X��X���W
-   * @param �}�E�X��Y���W
-   * @param button �����ꂽ�{�^��
-   * @param shift �����ɉ�����Ă����V�t�g�n�̃L�[�̃{�^���̏��*/
+   * イベント：マウスダウン
+   * タスクトレイアイコン上でのマウスのボタンが押されたのを検知した時に呼び出されます。
+   * 呼び出し元はこの呼び出しが終了するまでロックされてしまうため、
+   * 速やかに処理を終了するようにしてください。
+   * @param マウスのX座標
+   * @param マウスのY座標
+   * @param button 押されたボタン
+   * @param shift 同時に押されていたシフト系のキーのボタンの状態*/
   function onTasktrayMouseDown(x, y, button, shift);
 
   /**
-   * �C�x���g�F�}�E�X�A�b�v
-   * �^�X�N�g���C�A�C�R����ł̃}�E�X�̃{�^���������ꂽ�̂����m�������ɌĂяo����܂��B
-   * �Ăяo�����͂��̌Ăяo�����I������܂Ń��b�N����Ă��܂����߁A
-   * ���₩�ɏ������I������悤�ɂ��Ă��������B
-   * @param �}�E�X��X���W
-   * @param �}�E�X��Y���W
-   * @param button �����ꂽ�{�^��
-   * @param shift �����ɉ�����Ă����V�t�g�n�̃L�[�̃{�^���̏��*/
+   * イベント：マウスアップ
+   * タスクトレイアイコン上でのマウスのボタンが離されたのを検知した時に呼び出されます。
+   * 呼び出し元はこの呼び出しが終了するまでロックされてしまうため、
+   * 速やかに処理を終了するようにしてください。
+   * @param マウスのX座標
+   * @param マウスのY座標
+   * @param button 押されたボタン
+   * @param shift 同時に押されていたシフト系のキーのボタンの状態*/
   function onTasktrayMouseDown(x, y, button, shift);
 
   /**
-   * �C�x���g�F�}�E�X�_�u���N���b�N
-   * �^�X�N�g���C�A�C�R����ł̃}�E�X�̃{�^�����_�u���N���b�N���ꂽ�̂����m�������ɌĂяo����܂��B
-   * �Ăяo�����͂��̌Ăяo�����I������܂Ń��b�N����Ă��܂����߁A
-   * ���₩�ɏ������I������悤�ɂ��Ă��������B
-   * @param �}�E�X��X���W
-   * @param �}�E�X��Y���W
-   * @param button �����ꂽ�{�^��
-   * @param shift �����ɉ�����Ă����V�t�g�n�̃L�[�̃{�^���̏��*/
+   * イベント：マウスダブルクリック
+   * タスクトレイアイコン上でのマウスのボタンがダブルクリックされたのを検知した時に呼び出されます。
+   * 呼び出し元はこの呼び出しが終了するまでロックされてしまうため、
+   * 速やかに処理を終了するようにしてください。
+   * @param マウスのX座標
+   * @param マウスのY座標
+   * @param button 押されたボタン
+   * @param shift 同時に押されていたシフト系のキーのボタンの状態*/
   function onTasktrayDoubleClick(x, y, button, shift);
 };

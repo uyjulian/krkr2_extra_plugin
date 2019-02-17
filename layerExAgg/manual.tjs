@@ -1,33 +1,33 @@
 /**
- * ‹[Ž—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«
  */
 
 /**
- * AGG ‚ÌƒvƒŠƒ~ƒeƒBƒu
+ * AGG ã®ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–
  */
 class AGGPrimitive {
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * @param layer •\Ž¦‘ÎÛƒŒƒCƒ„
-     * @param type ƒvƒŠƒ~ƒeƒBƒu‚ÌŽí—Þ
-     * @throws ‘æˆêˆø”‚ªƒŒƒCƒ„‚Å‚È‚¢ê‡‚Í—áŠO
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     * @param layer è¡¨ç¤ºå¯¾è±¡ãƒ¬ã‚¤ãƒ¤
+     * @param type ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®ç¨®é¡ž
+     * @throws ç¬¬ä¸€å¼•æ•°ãŒãƒ¬ã‚¤ãƒ¤ã§ãªã„å ´åˆã¯ä¾‹å¤–
      */
     function AGGPrimitive(layer, type, ...);
 };
 
 /**
- * ƒŒƒCƒ„‚Ö‚Ì AGG ƒvƒŠƒ~ƒeƒBƒu•`‰æ‹@”\‚ÌŠg’£
+ * ãƒ¬ã‚¤ãƒ¤ã¸ã® AGG ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æç”»æ©Ÿèƒ½ã®æ‹¡å¼µ
  */
 class Layer {
 
     /**
-     * agg ‚Ì•\Ž¦Œ´“_Žw’è
+     * agg ã®è¡¨ç¤ºåŽŸç‚¹æŒ‡å®š
      */
     function aggSetPos();
 
     /**
-     * agg ƒvƒŠƒ~ƒeƒBƒu‚Ì‰ñ“]Žw’è
+     * agg ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®å›žè»¢æŒ‡å®š
      */
     function aggRotate();
 

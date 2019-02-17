@@ -1,16 +1,16 @@
 #include "tp_stub.h"
 
-// dialog.hpp —p‚ÌŠeíİ’è
+// dialog.hpp ç”¨ã®å„ç¨®è¨­å®š
 
 struct DialogConfig {
 
-	// ƒTƒCƒYŒ^
+	// ã‚µã‚¤ã‚ºå‹
 	typedef int SizeT;
 
-	// •¶š—ñQÆ—p
+	// æ–‡å­—åˆ—å‚ç…§ç”¨
 	typedef tjs_char const * NameT;
 
-	// •¶š—ñŒ^ic_str()‚ÅNameT‚ğ•Ô‚·‚±‚Æj
+	// æ–‡å­—åˆ—å‹ï¼ˆc_str()ã§NameTã‚’è¿”ã™ã“ã¨ï¼‰
 	typedef ttstr StringT;
 
 };

@@ -18,13 +18,13 @@ struct MagickPP {
 	typedef ncbInstanceAdaptor<ImageT>           ImageAdaptorT;
 
 
-	// ƒCƒ[ƒW(ŒQ)“Ç‚İ‚İ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸(ç¾¤)èª­ã¿è¾¼ã¿
 	static iTJSDispatch2* readImages(StringT const &spec) {
 
 		ImageListT lst;
 		Magick::readImages(&lst, spec);
 
-		// Array ƒIƒuƒWƒFƒNƒg‚ğì¬
+		// Array ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 		iTJSDispatch2 *array = TJSCreateArrayObject();
 		tjs_uint32 hint = 0;
 
@@ -38,7 +38,7 @@ struct MagickPP {
 		return array;
 	}
 
-	// Corderˆê——æ“¾
+	// Corderä¸€è¦§å–å¾—
 	static iTJSDispatch2* supports() {
 
 		CoderListT cl; 
@@ -47,7 +47,7 @@ struct MagickPP {
 							  CoderInfoT::AnyMatch,  // writable formats
 							  CoderInfoT::AnyMatch); // multi-frame support
 
-		// Array ƒIƒuƒWƒFƒNƒg‚ğì¬
+		// Array ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 		iTJSDispatch2 *array = TJSCreateArrayObject();
 		tjs_uint32 hint = 0;
 
@@ -61,7 +61,7 @@ struct MagickPP {
 		return array;
 	}
 
-	// ImageMagick ƒo[ƒWƒ‡ƒ“æ“¾
+	// ImageMagick ãƒãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—
 	static NameT version() { return MagickVersion; }
 
 

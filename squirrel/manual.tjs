@@ -1,147 +1,147 @@
 /**
- * Scripts ƒNƒ‰ƒX‚Ö‚Ì squirrel ‹@”\Šg’£
+ * Scripts ã‚¯ãƒ©ã‚¹ã¸ã® squirrel æ©Ÿèƒ½æ‹¡å¼µ
  */
 class Scripts {
 
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚Ì“Ç‚Ýž‚Ý
-	 * @param text ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½•¶Žš—ñ
-	 * @throw ƒRƒ“ƒpƒCƒ‹‚ÉŽ¸”s
-	 * @return “Ç‚Ýž‚Ü‚ê‚½ƒXƒNƒŠƒvƒg
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®èª­ã¿è¾¼ã¿
+	 * @param text ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—
+	 * @throw ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«å¤±æ•—
+	 * @return èª­ã¿è¾¼ã¾ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	 */
 	function loadSQ(text);
 	
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚ÌŽÀsB
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param text ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½•¶Žš—ñ
-	 * @param ... ˆø”
-	 * @throw ƒRƒ“ƒpƒCƒ‹‚ÉŽ¸”s
-	 * @throw ŽÀs‚ÉŽ¸”s
-	 * @return ƒXƒNƒŠƒvƒg‚ÌŽÀsŒ‹‰Ê
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œã€‚
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param text ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—
+	 * @param ... å¼•æ•°
+	 * @throw ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«å¤±æ•—
+	 * @throw å®Ÿè¡Œã«å¤±æ•—
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæžœ
 	 */
 	function execSQ(text, ...);
 
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚Ì“Ç‚Ýž‚Ý
-	 * @param filename ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½ƒtƒ@ƒCƒ‹
-	 * @throw ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚ÉŽ¸”s
-	 * @return “Ç‚Ýž‚Ü‚ê‚½ƒXƒNƒŠƒvƒg
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®èª­ã¿è¾¼ã¿
+	 * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«
+	 * @throw ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—
+	 * @return èª­ã¿è¾¼ã¾ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	 */
 	function loadStorageSQ(filename);
 	
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌŽÀsB
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param filename ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½ƒtƒ@ƒCƒ‹
-	 * @param ... ˆø”
-	 * @throw ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚ÉŽ¸”s
-	 * @throw ŒÄ‚Ño‚µ‚ÉŽ¸”s
-	 * @return ƒXƒNƒŠƒvƒg‚ÌŽÀsŒ‹‰Ê
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®å®Ÿè¡Œã€‚
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param ... å¼•æ•°
+	 * @throw ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—
+	 * @throw å‘¼ã³å‡ºã—ã«å¤±æ•—
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæžœ
 	 */
 	function execStorageSQ(filename, ...);
 
 	/**
-	 * Squirrel ƒOƒ[ƒoƒ‹ƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µB
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param name ƒƒ\ƒbƒh–¼
-	 * @param ... ˆø”
-	 * @throw ƒƒ\ƒbƒh‚ÌŽæ“¾‚ÉŽ¸”s
-	 * @throw ƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ‚ÉŽ¸”s
-	 * @return ƒXƒNƒŠƒvƒg‚ÌŽÀsŒ‹‰Ê
+	 * Squirrel ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ã€‚
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param name ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param ... å¼•æ•°
+	 * @throw ãƒ¡ã‚½ãƒƒãƒ‰ã®å–å¾—ã«å¤±æ•—
+	 * @throw ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ã«å¤±æ•—
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæžœ
 	 */
 	function callSQ(name, ...);
 	
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚ÌƒRƒ“ƒpƒCƒ‹ˆ—
-	 * @param text ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½•¶Žš—ñ
-	 * @param store ƒoƒCƒiƒŠƒNƒ[ƒWƒƒŠi”[æƒtƒ@ƒCƒ‹
-	 * @param endian ƒGƒ“ƒfƒBƒAƒ“Žw’è 0:ƒfƒtƒHƒ‹ƒg 1:little 2:big
-	 * @throw ƒRƒ“ƒpƒCƒ‹‚ÉŽ¸”s
-	 * @throw ‘‚«o‚µ‚ÉŽ¸”s
-	 * @return ƒGƒ‰[•¶Žš—ñ‚Ü‚½‚Í void
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‡¦ç†
+	 * @param text ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—
+	 * @param store ãƒã‚¤ãƒŠãƒªã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param endian ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³æŒ‡å®š 0:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ 1:little 2:big
+	 * @throw ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«å¤±æ•—
+	 * @throw æ›¸ãå‡ºã—ã«å¤±æ•—
+	 * @return ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—ã¾ãŸã¯ void
 	 */
 	function compileSQ(text, store, endian=0)
 
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒRƒ“ƒpƒCƒ‹ˆ—
-	 * @param filename ƒRƒ“ƒpƒCƒ‹Œ³ƒtƒ@ƒCƒ‹
-	 * @param store ƒoƒCƒiƒŠƒNƒ[ƒWƒƒŠi”[æƒtƒ@ƒCƒ‹
-	 * @param endian ƒGƒ“ƒfƒBƒAƒ“Žw’è 0:ƒfƒtƒHƒ‹ƒg 1:little 2:big
-	 * @throw ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚ÉŽ¸”s
-	 * @throw ‘‚«o‚µ‚ÉŽ¸”s
-	 * @return ƒGƒ‰[•¶Žš—ñ‚Ü‚½‚Í void
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‡¦ç†
+	 * @param filename ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å…ƒãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param store ãƒã‚¤ãƒŠãƒªã‚¯ãƒ­ãƒ¼ã‚¸ãƒ£æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param endian ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³æŒ‡å®š 0:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ 1:little 2:big
+	 * @throw ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—
+	 * @throw æ›¸ãå‡ºã—ã«å¤±æ•—
+	 * @return ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—ã¾ãŸã¯ void
 	 */
 	function compileStorageSQ(filename, store, endian=0)
 	
 	/**
-	 * ƒf[ƒ^‚ð Squirrel Œ`Ž®‚Å•Û‘¶‚·‚éB‚±‚Ìƒtƒ@ƒCƒ‹‚Í "return" ‚ðæ“ª‚É‚à‚Â‚Ì‚Å
-	 * dofile() ‚Å“Ç‚Ý‚¾‚·‚±‚Æ‚ª‚Å‚«‚Ü‚·
-	 * @param filename Ši”[æƒtƒ@ƒCƒ‹
-	 * @param obj •Û‘¶‘ÎÛƒIƒuƒWƒFƒNƒg
-	 * @param utf8 o—ÍƒGƒ“ƒR[ƒfƒBƒ“ƒOŽw’èBtrue ‚È‚ç UTF-8Afalse‚È‚çŒ»Ý‚ÌƒR[ƒhƒy[ƒW
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ Squirrel å½¢å¼ã§ä¿å­˜ã™ã‚‹ã€‚ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ "return" ã‚’å…ˆé ­ã«ã‚‚ã¤ã®ã§
+	 * dofile() ã§èª­ã¿ã ã™ã“ã¨ãŒã§ãã¾ã™
+	 * @param filename æ ¼ç´å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param obj ä¿å­˜å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param utf8 å‡ºåŠ›ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã€‚true ãªã‚‰ UTF-8ã€falseãªã‚‰ç¾åœ¨ã®ã‚³ãƒ¼ãƒ‰ãƒšãƒ¼ã‚¸
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
 	 */
     function saveSQ(filename, obj, utf8=false, newline=0);
 
     /**
-	 * ƒf[ƒ^‚ð Squirrel Œ`Ž®‚Ì•¶Žš—ñ‚É•ÏŠ·‚·‚é
-	 * @param obj ƒIƒuƒWƒFƒNƒg
-	 * @param newline ‰üsƒR[ƒh 0:CRLF 1:LF
-	 * @return Squirrel Œ`Ž®‚ÌƒeƒLƒXƒg
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’ Squirrel å½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
+	 * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	 * @param newline æ”¹è¡Œã‚³ãƒ¼ãƒ‰ 0:CRLF 1:LF
+	 * @return Squirrel å½¢å¼ã®ãƒ†ã‚­ã‚¹ãƒˆ
 	 */
 	function toSQString(obj, newline=0);
 
     /**
-	 * Squirrel ‚ÌƒOƒ[ƒoƒ‹‹óŠÔ‚É TJS2 ‚ÌƒIƒuƒWƒFƒNƒg/ŠÖ”‚ð“o˜^‚·‚é
-	 * @param name “o˜^–¼Ì
-	 * @param obj ƒIƒuƒWƒFƒNƒgiÈ—ª‚µ‚½ê‡‚Í–¼Ì‚ÅŽQÆ‚³‚ê‚éƒIƒuƒWƒFƒNƒgj
+	 * Squirrel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ç©ºé–“ã« TJS2 ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ/é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
+	 * @param name ç™»éŒ²åç§°
+	 * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆçœç•¥ã—ãŸå ´åˆã¯åç§°ã§å‚ç…§ã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰
 	 */
 	function registerSQ(name, obj);
 
     /**
-	 * Squirrel ‚ÌƒOƒ[ƒoƒ‹‹óŠÔ‚É“o˜^‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ð‰ð•ú‚·‚é
-	 * @param name “o˜^–¼Ì
+	 * Squirrel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ç©ºé–“ã«ç™»éŒ²ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+	 * @param name ç™»éŒ²åç§°
 	 */
 	function unregisterSQ(name);
 
 	// -------------------------------------------------------
 
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚ÌƒXƒŒƒbƒhŽÀsB
-	 * @param text ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½•¶Žš—ñ
-	 * @param ... ˆø”
-	 * @throw ƒRƒ“ƒpƒCƒ‹‚ÉŽ¸”s
-	 * @throw ƒXƒŒƒbƒh¶¬‚ÉŽ¸”s
-	 * @return ThreadƒIƒuƒWƒFƒNƒg
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œã€‚
+	 * @param text ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—
+	 * @param ... å¼•æ•°
+	 * @throw ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«å¤±æ•—
+	 * @throw ã‚¹ãƒ¬ãƒƒãƒ‰ç”Ÿæˆã«å¤±æ•—
+	 * @return Threadã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	function forkSQ(text, ...);
 
 	/**
-	 * Squirrel ƒXƒNƒŠƒvƒg‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒXƒŒƒbƒhŽÀsB
-	 * @param filename ƒXƒNƒŠƒvƒg‚ªŠi”[‚³‚ê‚½ƒtƒ@ƒCƒ‹
-	 * @param ... ˆø”
-	 * @throw ƒXƒŒƒbƒh¶¬‚ÉŽ¸”s
-	 * @return ThreadƒIƒuƒWƒFƒNƒg
+	 * Squirrel ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œã€‚
+	 * @param filename ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param ... å¼•æ•°
+	 * @throw ã‚¹ãƒ¬ãƒƒãƒ‰ç”Ÿæˆã«å¤±æ•—
+	 * @return Threadã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	function forkStorageSQ(filename, ...);
 	
 	/**
-	 * Squirrel‹^Ž—ƒXƒŒƒbƒhˆ—‚Ì‰Ò“­
-	 * @param diff Œo‰ßtick
-	 * @param onThreadDone ƒXƒŒƒbƒhI—¹ŽžƒR[ƒ‹ƒoƒbƒNB‘æˆêˆø”‚ÉƒXƒŒƒbƒhƒIƒuƒWƒFƒNƒg‚ª“n‚Á‚Ä‚­‚é
-	 * @return “®ì‚µ‚Ä‚¢‚éƒXƒŒƒbƒh‚Ì”
+	 * Squirrelç–‘ä¼¼ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ã®ç¨¼åƒ
+	 * @param diff çµŒéŽtick
+	 * @param onThreadDone ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚ç¬¬ä¸€å¼•æ•°ã«ã‚¹ãƒ¬ãƒƒãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ¸¡ã£ã¦ãã‚‹
+	 * @return å‹•ä½œã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
 	 */
 	function driveSQ(diff, onThreadDone);
 
 	/**
-	 * Squirrel‹^Ž—ƒXƒŒƒbƒh—p‚ÌƒgƒŠƒKŒÄ‚Ño‚µ
-	 * @param name ƒgƒŠƒK–¼
+	 * Squirrelç–‘ä¼¼ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨ã®ãƒˆãƒªã‚¬å‘¼ã³å‡ºã—
+	 * @param name ãƒˆãƒªã‚¬å
 	 */
 	function triggerSQ(name);
 
 	/**
-	 * @return squirrel‚ÌƒXƒŒƒbƒh”‚ð•Ô‚·
+	 * @return squirrelã®ã‚¹ãƒ¬ãƒƒãƒ‰æ•°ã‚’è¿”ã™
 	 */
 	property threadCountSQ;
 
@@ -149,70 +149,70 @@ class Scripts {
 	// -------------------------------------------------------
 
 	/**
-	 * Squirrel—p”äŠr
-	 * @description 2‚Â‚ÌƒIƒuƒWƒFƒNƒg‚ð squirrel “I‚É”äŠr‚µ‚Ü‚·
-	 * @param obj1 ƒIƒuƒWƒFƒNƒg‚»‚Ì1
-	 * @param obj2 ƒIƒuƒWƒFƒNƒg‚»‚Ì2
-	 * @return ”äŠrŒ‹‰Ê >0: obj1>obj2 ==0:obj1==obj2 <0:obj1<obj2
+	 * Squirrelç”¨æ¯”è¼ƒ
+	 * @description 2ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ squirrel çš„ã«æ¯”è¼ƒã—ã¾ã™
+	 * @param obj1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãã®1
+	 * @param obj2 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãã®2
+	 * @return æ¯”è¼ƒçµæžœ >0: obj1>obj2 ==0:obj1==obj2 <0:obj1<obj2
 	 */
 	function compareSQ(obj1, obj2);
 }
 
 /**
- * @description Squirrel ‚ÌƒOƒ[ƒoƒ‹ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚ð’¼ÚŒÄ‚Ño‚·‚½‚ß‚ÌƒNƒ‰ƒX
+ * @description Squirrel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç›´æŽ¥å‘¼ã³å‡ºã™ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  */
 class SQFunction {
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param func squirrel ‚ÌƒOƒ[ƒoƒ‹‚ÈŠÖ”‚Ì–¼‘O
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param func squirrel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªé–¢æ•°ã®åå‰
 	 */
 	function SQFunction(func);
 
     /**
-	 * ŠÖ”‚ðŒÄ‚Ño‚·
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param ˆø”‚Í‚»‚Ì‚Ü‚Ü•ÏŠ·‚µ‚Ä‚í‚½‚³‚ê‚Ü‚·
-	 * @return ŠÖ”‚Ì•Ô‚è’l
+	 * é–¢æ•°ã‚’å‘¼ã³å‡ºã™
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param å¼•æ•°ã¯ãã®ã¾ã¾å¤‰æ›ã—ã¦ã‚ãŸã•ã‚Œã¾ã™
+	 * @return é–¢æ•°ã®è¿”ã‚Šå€¤
 	 */
 	function call();
 };
 
 /**
- * @description Squirrel ê—p‚Ì Continuous ƒnƒ“ƒhƒ‰‚ðˆÛŽ‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+ * @description Squirrel å°‚ç”¨ã® Continuous ãƒãƒ³ãƒ‰ãƒ©ã‚’ç¶­æŒã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  */
 class SQContinuous {
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param func squirrel ‚ÌƒOƒ[ƒoƒ‹‚ÈŠÖ” func(tick){} ‚Ì–¼‘O
-	 * ¦tick ‚Í SQInteger ‚ÉƒLƒƒƒXƒg‚³‚ê‚Ä‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param func squirrel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªé–¢æ•° func(tick){} ã®åå‰
+	 * â€»tick ã¯ SQInteger ã«ã‚­ãƒ£ã‚¹ãƒˆã•ã‚Œã¦ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™
 	 */
 	function SQContinuous(func);
 
 	/**
-	 * ŒÄ‚Ño‚µ‚ðŠJŽn‚·‚é
+	 * å‘¼ã³å‡ºã—ã‚’é–‹å§‹ã™ã‚‹
      */
  	function start();
     
     /**
-	 * ŒÄ‚Ño‚µ‚ð’âŽ~‚·‚é
+	 * å‘¼ã³å‡ºã—ã‚’åœæ­¢ã™ã‚‹
 	 */
     function stop();
 };
 
 /**
- * @description squirrel ‘¤‚Å createTJSClass ‚µ‚Ä¶¬‚³‚ê‚½ƒCƒ“ƒXƒ^ƒ“ƒX’†‚Å‚Í
- * ˆÈ‰º‚Ì“ÁŽê‚Èƒƒ\ƒbƒh‚ª—˜—p‰Â”\‚Å‚·BƒCƒxƒ“ƒg‚Ì“`”d‚È‚Ç‚ÅŠˆ—p‰Â”\‚Å‚·B
+ * @description squirrel å´ã§ createTJSClass ã—ã¦ç”Ÿæˆã•ã‚ŒãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä¸­ã§ã¯
+ * ä»¥ä¸‹ã®ç‰¹æ®Šãªãƒ¡ã‚½ãƒƒãƒ‰ãŒåˆ©ç”¨å¯èƒ½ã§ã™ã€‚ã‚¤ãƒ™ãƒ³ãƒˆã®ä¼æ’­ãªã©ã§æ´»ç”¨å¯èƒ½ã§ã™ã€‚
  */
 class TJSObject {
 	/**
-	 * Squirrel ƒCƒ“ƒXƒ^ƒ“ƒXƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ
-	 * @description ‚±‚Ìƒƒ\ƒbƒh‚É‚æ‚éŽÀs’†‚Å‚Í Object/Thread Šg’£‚É‚æ‚é wait ‚Í—˜—p‚Å‚«‚Ü‚¹‚ñ
-	 * @param name ƒƒ\ƒbƒh–¼
-	 * @param ... ˆø”
-	 * @return ƒXƒNƒŠƒvƒg‚ÌŽÀsŒ‹‰Ê
+	 * Squirrel ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—
+	 * @description ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹å®Ÿè¡Œä¸­ã§ã¯ Object/Thread æ‹¡å¼µã«ã‚ˆã‚‹ wait ã¯åˆ©ç”¨ã§ãã¾ã›ã‚“
+	 * @param name ãƒ¡ã‚½ãƒƒãƒ‰å
+	 * @param ... å¼•æ•°
+	 * @return ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œçµæžœ
 	 */
 	function callSQ(name, ...);
 };

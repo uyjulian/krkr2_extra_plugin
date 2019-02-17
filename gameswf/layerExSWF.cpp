@@ -1,30 +1,30 @@
 // ---------------------------------------------------------------
-// SWF ƒ€[ƒr[•`‰æƒŒƒCƒ„
+// SWF ãƒ ãƒ¼ãƒ“ãƒ¼æç”»ãƒ¬ã‚¤ãƒ¤
 // ---------------------------------------------------------------
 
 #include "layerExSWF.hpp"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 layerExSWF::layerExSWF(DispatchT obj) : layerExCairo(obj)
 {
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 layerExSWF::~layerExSWF()
 {
 }
 
-// •`‰æƒ^[ƒQƒbƒg
+// æç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 extern cairo_t *ctarget;
 
 
 /**
- * @param swf ƒ€[ƒr[
- * @param advance Œo‰ßŽžŠÔ(ms)
+ * @param swf ãƒ ãƒ¼ãƒ“ãƒ¼
+ * @param advance çµŒéŽæ™‚é–“(ms)
  */
 void
 layerExSWF::drawSWF(SWFMovie *swf)

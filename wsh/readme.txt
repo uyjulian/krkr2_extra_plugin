@@ -1,19 +1,19 @@
 Title: WSH Plugin
-Author: �킽�Ȃׂ���
+Author: わたなべごう
 
-������͂ȂɁH
+●これはなに？
 
-�g���g���� Windows Script Host �g���ł��B
+吉里吉里の Windows Script Host 拡張です。
 
-���g�p���@
+●使用方法
 
-Scripts �N���X�ɁA�e�� WSH �Ή�����̎��s�@�\���g������܂��B
+Scripts クラスに、各種 WSH 対応言語の実行機能が拡張されます。
 
-��PerlScript, RubyScript, PythonScript �����s����ɂ́A
-�@�ʓr ActivePerl, ActiveScriptRuby�AActivePython �Ȃǂ̃C���X�g�[�����K�v�ł��B
+※PerlScript, RubyScript, PythonScript を実行するには、
+　別途 ActivePerl, ActiveScriptRuby、ActivePython などのインストールが必要です。
 
-�ڍׂ�manual.tjs ���Q�Ƃ��Ă��������B
+詳細はmanual.tjs を参照してください。
 
-�����C�Z���X
+●ライセンス
 
-���̃v���O�C���̃��C�Z���X�͋g���g���{�̂ɏ������Ă��������B
+このプラグインのライセンスは吉里吉里本体に準拠してください。

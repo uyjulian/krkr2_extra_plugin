@@ -1,7 +1,7 @@
 #include "Primitive.hpp"
 
 /**
- * Šî–{ƒvƒŠƒ~ƒeƒBƒu•Û—p
+ * åŸºæœ¬ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ä¿æŒç”¨
  */
 class AGGBasic : public AGGPrimitive
 {
@@ -10,9 +10,9 @@ public:
 
 public:
 	/**
-	 * •`‰æˆ—
-	 * @param rb ƒx[ƒXƒŒƒ“ƒ_ƒ‰
-	 * @param mtx Šî–{ƒAƒtƒBƒ“•ÏŒ`
+	 * æç”»å‡¦ç†
+	 * @param rb ãƒ™ãƒ¼ã‚¹ãƒ¬ãƒ³ãƒ€ãƒ©
+	 * @param mtx åŸºæœ¬ã‚¢ãƒ•ã‚£ãƒ³å¤‰å½¢
 	 */
 	void paint(renderer_base &rb, agg::trans_affine &mtx) {
 
@@ -20,31 +20,31 @@ public:
 		scanline sl;
 		renderer_scanline ren(rb);
 
-		// •ÏŒ`ˆ—
+		// å¤‰å½¢å‡¦ç†
 		agg::trans_affine selfMtx;
 		selfMtx *= agg::trans_affine_scaling(_scale);
 		selfMtx *= agg::trans_affine_rotation(agg::deg2rad(_rotate));
 		selfMtx *= agg::trans_affine_translation(_x, _y);
 
-		// ‘S‘Ì•ÏŒ`
+		// å…¨ä½“å¤‰å½¢
 		selfMtx *= mtx;
 
-		// ü‚ÌŠg’£
+		// ç·šã®æ‹¡å¼µ
 		_path.expand(_expand);
 
-		// •`‰æ
+		// æç”»
 		_path.render(ras, sl, ren, selfMtx, rb.clip_box(), 1.0);
 	}
 
 
 public:
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	AGGBasic(NI_AGGPrimitive *owner, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj);
 	
 };
 
 // --------------------------------------------------------------------
-// ƒvƒŠƒ~ƒeƒBƒuŒÅ—Lƒƒ\ƒbƒh‚Ì’è‹`
+// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å›ºæœ‰ãƒ¡ã‚½ãƒƒãƒ‰ã®å®šç¾©
 // --------------------------------------------------------------------
 
 PRIMFUNC(tLoadMethod,1,AGGBasic)
@@ -52,15 +52,15 @@ PRIMFUNCEND
 tLoadMethod loadMethod;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
- * @param owner AGGPrimitive ‚ÌƒlƒCƒeƒBƒuƒIƒuƒWƒFƒNƒg
- * @param numparams ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒpƒ‰ƒ[ƒ^”
- * @param param ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒpƒ‰ƒ[ƒ^
- * @param tjs_obj ¶¬ƒCƒ“ƒXƒ^ƒ“ƒX
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * @param owner AGGPrimitive ã®ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param numparams ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
+ * @param param ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param tjs_obj ç”Ÿæˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  */
 AGGBasic::AGGBasic(NI_AGGPrimitive *owner, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *tjs_obj) : AGGPrimitive(owner)
 {
-	// tjs_obj ‚Éƒƒ\ƒbƒh’Ç‰Á 
+	// tjs_obj ã«ãƒ¡ã‚½ãƒƒãƒ‰è¿½åŠ  
 
 	addMember(tjs_obj, L"load", &loadMethod);
 }

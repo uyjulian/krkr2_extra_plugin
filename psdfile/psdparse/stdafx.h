@@ -1,18 +1,18 @@
-// stdafx.h : �W���̃V�X�e�� �C���N���[�h �t�@�C���̃C���N���[�h �t�@�C���A�܂���
-// �Q�Ɖ񐔂������A�����܂�ύX����Ȃ��A�v���W�F�N�g��p�̃C���N���[�h �t�@�C��
-// ���L�q���܂��B
+// stdafx.h : 標準のシステム インクルード ファイルのインクルード ファイル、または
+// 参照回数が多く、かつあまり変更されない、プロジェクト専用のインクルード ファイル
+// を記述します。
 //
 
 #pragma once
 
-#ifndef _WIN32_WINNT		// Windows XP �ȍ~�̃o�[�W�����ɌŗL�̋@�\�̎g�p�������܂��B                   
-#define _WIN32_WINNT 0x0501	// ����� Windows �̑��̃o�[�W���������ɓK�؂Ȓl�ɕύX���Ă��������B
+#ifndef _WIN32_WINNT		// Windows XP 以降のバージョンに固有の機能の使用を許可します。                   
+#define _WIN32_WINNT 0x0501	// これを Windows の他のバージョン向けに適切な値に変更してください。
 #endif				
 
 #include <stdio.h>
 #include <tchar.h>
 
-// TODO: �v���O�����ɕK�v�Ȓǉ��w�b�_�[�������ŎQ�Ƃ��Ă��������B
+// TODO: プログラムに必要な追加ヘッダーをここで参照してください。
 #include <string>
 #include <vector>
 #include <map>

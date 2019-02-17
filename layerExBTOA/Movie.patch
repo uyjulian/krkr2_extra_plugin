@@ -1,12 +1,12 @@
 Index: Movie.tjs
 ===================================================================
---- Movie.tjs	(リビジョン 4873)
-+++ Movie.tjs	(作業コピー)
+--- Movie.tjs	(繝ｪ繝薙ず繝ｧ繝ｳ 4873)
++++ Movie.tjs	(菴懈･ｭ繧ｳ繝斐�ｼ)
 @@ -10,6 +10,7 @@
  	var layerNumber = [];
  	var layerPage = [];
  	var storageName;
-+	var useLayerAlpha; // LayerExBTOAを使用してアルファムービーを表示するフラグ
++	var useLayerAlpha; // LayerExBTOA繧剃ｽｿ逕ｨ縺励※繧｢繝ｫ繝輔ぃ繝繝ｼ繝薙�ｼ繧定｡ｨ遉ｺ縺吶ｋ繝輔Λ繧ｰ
  
  	function Movie(owner,id=0)
  	{

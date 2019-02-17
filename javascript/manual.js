@@ -1,62 +1,62 @@
 /**
- * �g���g���N���X�̎擾
- * @param className �g���g���N���X���w��(������)
- * @param ... �p�����Ă���e�N���X���
- * @return �R���X�g���N�^���\�b�h
+ * 吉里吉里クラスの取得
+ * @param className 吉里吉里クラス名指定(文字列)
+ * @param ... 継承している親クラスを列挙
+ * @return コンストラクタメソッド
  *
- * �g���g���̃N���X�� Javascript �N���X�Ƃ��Ď擾���܂��B
+ * 吉里吉里のクラスを Javascript クラスとして取得します。
  *
- * ���g���g�����Őe�N���X�����Q�Ɛ����ł��Ȃ����߁A
- * �e�N���X���p�����Ă���N���X�̖��O�����ׂĎ蓮�ŗ񋓂���K�v������܂��B
+ * ※吉里吉里側で親クラス情報を参照生成できないため、
+ * 親クラスが継承しているクラスの名前をすべて手動で列挙する必要があります。
  */
 function createTJSClass(className, ...);
 
 /**
- * �g���g���N���X�� javascript �ɂ�������N���X�\��
- * ���̃C���X�^���X�ɑ΂���g���g��������̃����o�Q�Ƃ́A���̋g���g���C���X�^���X�̂��ꂪ�Ă΂�܂����A
- * ���݂��ĂȂ������o�̏ꍇ�́Amissing �@�\�ɂ�� javascript ���I�u�W�F�N�g�̓��������o���Q�Ƃ���܂��B
- * �g���g������Ă΂����̂����� javascript�C���X�^���X�̂���ɂɍ����ւ���ꍇ��
- * tjsOverride() �ŋ����㏑���������邱�Ƃ��ł��܂��B�C�x���g�̓o�^�Ɏg���܂��B
+ * 吉里吉里クラスの javascript における基底クラス構造
+ * このインスタンスに対する吉里吉里側からのメンバ参照は、元の吉里吉里インスタンスのそれが呼ばれますが、
+ * 存在してないメンバの場合は、missing 機能により javascript 側オブジェクトの同名メンバが参照されます。
+ * 吉里吉里から呼ばれるものも直接 javascriptインスタンスのそれにに差し替える場合は
+ * tjsOverride() で強制上書きをかけることができます。イベントの登録に使います。
  */
 function TJSObject();
 
 TJSObject.prototype = {
 	
-  // �S���\�b�h/�v���p�e�B���v���g�^�C�v�Ƃ��ēo�^�ςݏ��
+  // 全メソッド/プロパティがプロトタイプとして登録済み状態
 
   /**
-   * �g���g���I�u�W�F�N�g�̗L�����̊m�F
-   * ���C���Ȃǋg���g�����ŋ��� invalidate �����\��������I�u�W�F�N�g�̏󋵊m�F�Ɏg���܂��B
-   * @return valid �Ȃ� true
+   * 吉里吉里オブジェクトの有効性の確認
+   * レイヤなど吉里吉里側で強制 invalidate される可能性があるオブジェクトの状況確認に使います。
+   * @return valid なら true
    */
  tjsIsValid : function(),
 
   /**
-   * �g���g���I�u�W�F�N�g�̋����I�[�o���C�h����
-   * �g���g���C���X�^���X�̃����o�������I�ɏ㏑�����܂��B
-   * �C�x���g�Ȃǂ� javascript ���ł��������ꍇ�Ɏw�肵�܂�
-   * �l���ȗ������ꍇ�͎��ȃI�u�W�F�N�g���Q�Ƃ��܂�
-   * @param name �����o��
-   * @param value �o�^����l(�ȗ���)
+   * 吉里吉里オブジェクトの強制オーバライド処理
+   * 吉里吉里インスタンスのメンバを強制的に上書きします。
+   * イベントなどを javascript 側でうけたい場合に指定します
+   * 値を省略した場合は自己オブジェクトを参照します
+   * @param name メンバ名
+   * @param value 登録する値(省略可)
    */
   tjsOverride : function(name, value=null),
 }
 
 // -----------------------------------------------------------
-// �p���L�q��
+// 継承記述例
 // -----------------------------------------------------------
 
-// �Ǝ����C���N���X
+// 独自レイヤクラス
 function MyObject(arg)
 {
-	// �e�R���X�g���N�^�Ăяo��
+	// 親コンストラクタ呼び出し
 	TJSObject.call(this, arg);
-	// �e�평�����Ȃ�
+	// 各種初期化など
 	this.XXX();
 }
 
-// �Ǝ����C���̃v���g�^�C�v
+// 独自レイヤのプロトタイプ
 MyObject.prototype = {
-  __proto__: TJSObject.prototype // �e�I�u�W�F�N�g�̃v���g�^�C�v���w��
-  ...  // �ȉ����O�̃��\�b�h�ǉ�
+  __proto__: TJSObject.prototype // 親オブジェクトのプロトタイプを指定
+  ...  // 以下自前のメソッド追加
 };

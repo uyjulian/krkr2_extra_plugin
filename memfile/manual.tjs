@@ -1,57 +1,57 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
  *
- * mem://./ƒtƒ@ƒCƒ‹–¼ ‚ÅƒIƒ“ƒƒ‚ƒŠŠm•Û‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒAƒNƒZƒX‰Â”\‚É‚È‚è‚Ü‚·B
+ * mem://./ãƒ•ã‚¡ã‚¤ãƒ«å ã§ã‚ªãƒ³ãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ã«ãªã‚Šã¾ã™ã€‚
  *
  */
 class Storages {
 
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	function isExistMemoryFile(filename);
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠ‚Ì‘¶İŠm”F
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ‘¶İ‚µ‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å­˜åœ¨ç¢ºèª
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return å­˜åœ¨ã—ãŸã‚‰ true
 	 */
 	function isExistMemoryDirectory(filename);
 	
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹‚ªíœ‚³‚ê‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãŒå‰Šé™¤ã•ã‚ŒãŸã‚‰ true
 	 */
 	function deleteMemoryFile(filename);
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒfƒBƒŒƒNƒgƒŠ‚ªíœ‚³‚ê‚½‚ç true
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå‰Šé™¤ã•ã‚ŒãŸã‚‰ true
 	 */
 	function deleteMemoryDirectory(dirname);
 
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹î•ñ‚ğæ“¾‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹î•ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ± %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	function getMemoryFileInfo(filename);
 	
 	/**
-	 * ƒƒ‚ƒŠƒtƒ@ƒCƒ‹î•ñ‚ğæ“¾‚·‚é
-	 * @param filename ‘ÎÛƒtƒ@ƒCƒ‹–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚½‚ç“à—e‚ğ octet ‚Å•Ô‚·B‚È‚¯‚ê‚Î void
+	 * ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param filename å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãŸã‚‰å†…å®¹ã‚’ octet ã§è¿”ã™ã€‚ãªã‘ã‚Œã° void
 	 */
 	function getMemoryFileData(filename);
 
 	/**
-	 * ƒƒ‚ƒŠƒfƒBƒŒƒNƒgƒŠî•ñ‚ğæ“¾‚·‚é
-	 * @param dirname ‘ÎÛƒfƒBƒŒƒNƒgƒŠ–¼ (mem:///‚Í‚Â‚¯‚È‚¢)
-	 * @return ƒtƒ@ƒCƒ‹î•ñ‚Ì”z—ñ %[name:–¼‘O, size:ƒTƒCƒY, isDirectory:ƒfƒBƒŒƒNƒgƒŠ‚È‚çtrue]
+	 * ãƒ¡ãƒ¢ãƒªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	 * @param dirname å¯¾è±¡ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå (mem:///ã¯ã¤ã‘ãªã„)
+	 * @return ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã®é…åˆ— %[name:åå‰, size:ã‚µã‚¤ã‚º, isDirectory:ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰true]
 	 */
 	function getMemoryDirectory(dirname);
 };

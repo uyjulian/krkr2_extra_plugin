@@ -1,20 +1,20 @@
 Title: process Plugin
-Author: ‚í‚½‚È‚×‚²‚¤
+Author: ã‚ãŸãªã¹ã”ã†
 
-œ‚±‚ê‚Í‚È‚ÉH
+â—ã“ã‚Œã¯ãªã«ï¼Ÿ
 
-‹g—¢‹g—¢‚ÉŠO•”ƒvƒƒOƒ‰ƒ€ŽÀs{ŽÀsŠ®—¹ŒŸ’mˆ—‚ð’ñ‹Ÿ‚µ‚Ü‚·B
-System.shellExecute ‚ÆˆÙ‚È‚èA‹N“®‚µ‚½ƒAƒvƒŠ‚ÌŽÀsI—¹‚ðŒŸ’m‚Å‚«‚Ü‚·B
-ŽÀsI—¹ƒCƒxƒ“ƒg‚ÍAƒIƒuƒWƒFƒNƒgŽ©g‚ÌonExecutedƒƒ\ƒbƒh‚É’Ê’m‚³‚ê‚Ü‚·B
+å‰é‡Œå‰é‡Œã«å¤–éƒ¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®Ÿè¡Œï¼‹å®Ÿè¡Œå®Œäº†æ¤œçŸ¥å‡¦ç†ã‚’æä¾›ã—ã¾ã™ã€‚
+System.shellExecute ã¨ç•°ãªã‚Šã€èµ·å‹•ã—ãŸã‚¢ãƒ—ãƒªã®å®Ÿè¡Œçµ‚äº†ã‚’æ¤œçŸ¥ã§ãã¾ã™ã€‚
+å®Ÿè¡Œçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã¯ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè‡ªèº«ã®onExecutedãƒ¡ã‚½ãƒƒãƒ‰ã«é€šçŸ¥ã•ã‚Œã¾ã™ã€‚
 
-¦shellExecuteƒvƒ‰ƒOƒCƒ“‚©‚çWindowƒIƒuƒWƒFƒNƒgˆË‘¶‚ðŽæ‚è‹Ž‚Á‚½ƒo[ƒWƒ‡ƒ“‚Å‚·B
-@Šî–{“I‚ÉŒÝŠ·«‚ª‚È‚¢‚½‚ßA•Ê‚Ì–¼Ì‚Ìƒvƒ‰ƒOƒCƒ“‚Æ‚µ‚ÄŽ}•ª‚¯‚³‚ê‚Ä‚¢‚Ü‚·B
+â€»shellExecuteãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‹ã‚‰Windowã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¾å­˜ã‚’å–ã‚ŠåŽ»ã£ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã™ã€‚
+ã€€åŸºæœ¬çš„ã«äº’æ›æ€§ãŒãªã„ãŸã‚ã€åˆ¥ã®åç§°ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¨ã—ã¦æžåˆ†ã‘ã•ã‚Œã¦ã„ã¾ã™ã€‚
 
-œŽg—p•û–@
+â—ä½¿ç”¨æ–¹æ³•
 
-manual.tjs ŽQÆ
+manual.tjs å‚ç…§
 
-œƒ‰ƒCƒZƒ“ƒX
+â—ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
-ƒ‰ƒCƒZƒ“ƒX‚Í‹g—¢‹g—¢–{‘Ì‚É€‹’‚µ‚Ä‚­‚¾‚³‚¢B
+ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯å‰é‡Œå‰é‡Œæœ¬ä½“ã«æº–æ‹ ã—ã¦ãã ã•ã„ã€‚
 

@@ -4,21 +4,21 @@
 #include <vector>
 
 /**
- * application/x-www-form-urlencoded —p‚Ìƒf[ƒ^‚ğ¶¬‚·‚é
- * ¦“o˜^‚³‚ê‚½ƒf[ƒ^‚Í UTF-8 ‚ÅƒGƒ“ƒR[ƒfƒBƒ“ƒO
+ * application/x-www-form-urlencoded ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
+ * â€»ç™»éŒ²ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¯ UTF-8 ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
  */
 class FormData {
 
 public:
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	FormData() : hasParam(false) {}
 
 	/**
-	 * key ‚Æ value ‚Ì‘g‚ğ URL-encode ‚µ‚Ä’Ç‰Á
-	 * @param key ƒL[
-	 * @param value “o˜^‚·‚é’l
+	 * key ã¨ value ã®çµ„ã‚’ URL-encode ã—ã¦è¿½åŠ 
+	 * @param key ã‚­ãƒ¼
+	 * @param value ç™»éŒ²ã™ã‚‹å€¤
 	 */
 	void addParam(const TCHAR *key, const TCHAR *value) {
 		if (hasParam) {
@@ -31,9 +31,9 @@ public:
 	}
 
 	/**
-	 * key ‚Æ value ‚Ì‘g‚ğ URL-encode ‚µ‚Ä’Ç‰Á
-	 * @param key ƒL[
-	 * @param num “o˜^‚·‚é’li”’lj
+	 * key ã¨ value ã®çµ„ã‚’ URL-encode ã—ã¦è¿½åŠ 
+	 * @param key ã‚­ãƒ¼
+	 * @param num ç™»éŒ²ã™ã‚‹å€¤ï¼ˆæ•°å€¤ï¼‰
 	 */
 	void addParam(const TCHAR *key, int num) {
 		TCHAR value[100];
@@ -42,15 +42,15 @@ public:
 	}
 
 	/**
-	 * key ‚Æ value ‚Ì‘g‚ğ URL-encode ‚µ‚Ä’Ç‰Á
-	 * @param key ƒL[
-	 * @param value “o˜^‚·‚é’liBOOL)
+	 * key ã¨ value ã®çµ„ã‚’ URL-encode ã—ã¦è¿½åŠ 
+	 * @param key ã‚­ãƒ¼
+	 * @param value ç™»éŒ²ã™ã‚‹å€¤ï¼ˆBOOL)
 	 */
 	void addParam(const TCHAR *key, bool value) {
 		addParam(key, value ? _T("1") : _T("0"));
 	}
 
-	// HTTP ‚Å‘—‚éƒf[ƒ^‚ğæ“¾
+	// HTTP ã§é€ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	const BYTE *getData() const {
 		if (data.size() <= 0) {
 			return NULL;
@@ -59,7 +59,7 @@ public:
 		}
 	}
 
-	// URL ƒGƒ“ƒR[ƒh‚µ‚½•¶š—ñ‚ğƒf[ƒ^‚Æ‚µ‚Ä’Ç‹L‚·‚é
+	// URL ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ãŸæ–‡å­—åˆ—ã‚’ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦è¿½è¨˜ã™ã‚‹
 	void _addEncodedString(const char *p) {
 		int ch;
 		while ((ch = *p++)) {
@@ -76,10 +76,10 @@ public:
 	}
 	
 protected:
-	// URL ƒGƒ“ƒR[ƒh‚µ‚½•¶š—ñ‚ğƒf[ƒ^‚Æ‚µ‚Ä’Ç‹L‚·‚é
+	// URL ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ãŸæ–‡å­—åˆ—ã‚’ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦è¿½è¨˜ã™ã‚‹
 	void addEncodedString(const TCHAR *str) {
 #ifdef _UNICODE
-		// UTF-8 •¶š—ñ‚É–ß‚·
+		// UTF-8 æ–‡å­—åˆ—ã«æˆ»ã™
 		int len = _tcslen(str);
 		int mblen = ::WideCharToMultiByte(CP_UTF8, 0, str, len, NULL, 0, NULL, NULL);
 		char *buf = new char[mblen + 1];
@@ -88,14 +88,14 @@ protected:
 		_addEncodedString(str);
 		delete[] buf;
 #else
-		// ‚»‚Ì‚Ü‚Üˆ—
+		// ãã®ã¾ã¾å‡¦ç†
 		_addEncodedString(str);
 #endif
 	}
 	
 private:
-	std::vector<BYTE>data;	    ///< put/post ‚Ìƒf[ƒ^(GET‚Ìƒpƒ‰ƒ[ƒ^‚àŒ“‚Ë‚é)
-	bool hasParam;	        ///< ƒpƒ‰ƒ[ƒ^(ƒf[ƒ^)‚ªƒZƒbƒg‚³‚ê‚½ó‘Ô‚©
+	std::vector<BYTE>data;	    ///< put/post ã®ãƒ‡ãƒ¼ã‚¿(GETã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚‚å…¼ã­ã‚‹)
+	bool hasParam;	        ///< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ãƒ‡ãƒ¼ã‚¿)ãŒã‚»ãƒƒãƒˆã•ã‚ŒãŸçŠ¶æ…‹ã‹
 };
 
 #endif

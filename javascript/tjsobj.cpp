@@ -3,7 +3,7 @@ extern Local<Value> toJSValue(Isolate *, const tTJSVariant &variant);
 extern tTJSVariant toVariant(Isolate *, Local<Value> &value);
 
 /**
- * Javascript‚É‘Î‚µ‚ÄƒGƒ‰[’Ê’m
+ * Javascriptã«å¯¾ã—ã¦ã‚¨ãƒ©ãƒ¼é€šçŸ¥
  */
 Local<Value>
 ERROR_KRKR(Isolate *isolate, tjs_error error)
@@ -50,12 +50,12 @@ ERROR_BADINSTANCE(Isolate *isolate)
 }
 
 //----------------------------------------------------------------------------
-// tTJSVariant‚ğJSƒIƒuƒWƒFƒNƒg‚Æ‚µ‚Ä•Û‚·‚é‚½‚ß‚Ì‹@\
+// tTJSVariantã‚’JSã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã—ã¦ä¿æŒã™ã‚‹ãŸã‚ã®æ©Ÿæ§‹
 //----------------------------------------------------------------------------
 
 Persistent<ObjectTemplate> TJSObject::objectTemplate;
 
-// ƒIƒuƒWƒFƒNƒg’è‹`‰Šú‰»
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®šç¾©åˆæœŸåŒ–
 void
 TJSObject::init(Isolate *isolate)
 {
@@ -66,14 +66,14 @@ TJSObject::init(Isolate *isolate)
 	objectTemplate.Reset(isolate, obj);
 }
 
-// ƒIƒuƒWƒFƒNƒg’è‹`‰ğ•ú
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®šç¾©è§£æ”¾
 void
 TJSObject::done(Isolate *isolate)
 {
 	objectTemplate.Reset();
 }
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TJSObject::TJSObject(Isolate *isolate, Local<Object> &obj, const tTJSVariant &variant) : TJSBase(variant)
 {
 	HandleScope handle_scope(isolate);
@@ -82,7 +82,7 @@ TJSObject::TJSObject(Isolate *isolate, Local<Object> &obj, const tTJSVariant &va
 	ref.SetWeak(this, release); 
 }
 
-// ƒvƒƒpƒeƒB‚Ìæ“¾
+// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 void
 TJSObject::getter(Local<String> property, const PropertyCallbackInfo<Value>& info)
 {
@@ -106,7 +106,7 @@ TJSObject::getter(Local<String> property, const PropertyCallbackInfo<Value>& inf
 	info.GetReturnValue().Set(ERROR_BADINSTANCE(isolate));
 }
 
-// ƒvƒƒpƒeƒB‚Ìİ’è
+// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®è¨­å®š
 void
 TJSObject::setter(Local<String> property, Local<Value> value, const PropertyCallbackInfo<Value>& info)
 {
@@ -126,7 +126,7 @@ TJSObject::setter(Local<String> property, Local<Value> value, const PropertyCall
 	info.GetReturnValue().Set(ERROR_BADINSTANCE(isolate));
 }
 
-// ƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ
+// ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—
 void
 TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 {
@@ -136,7 +136,7 @@ TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 	if (getVariant(isolate, self, args.This())) {
 		Local<Value> ret;
 		
-		// ˆø”•ÏŠ·
+		// å¼•æ•°å¤‰æ›
 		tjs_int argc = args.Length();
 		tTJSVariant **argv = new tTJSVariant*[argc];
 		for (tjs_int i=0;i<argc;i++) {
@@ -145,7 +145,7 @@ TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 		}
 
 		if (self.AsObjectClosureNoAddRef().IsInstanceOf(0, NULL, NULL, L"Class", NULL) == TJS_S_TRUE) {
-			// ƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚È‚çƒRƒ“ƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ
+			// ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã‚‰ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—
 			iTJSDispatch2 *instance = NULL;
 			tjs_error error;
 			if (TJS_SUCCEEDED(error = self.AsObjectClosureNoAddRef().CreateNew(0, NULL, NULL, &instance, argc, argv, NULL))) {
@@ -155,7 +155,7 @@ TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 				ret = ERROR_KRKR(isolate, error);
 			}
 		} else {
-			// ƒƒ\ƒbƒhŒÄ‚Ño‚µ
+			// ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—
 			tTJSVariant result;
 			tjs_error error;
 			if (TJS_SUCCEEDED(error = self.AsObjectClosureNoAddRef().FuncCall(0, NULL, NULL, &result, argc, argv, NULL))) {
@@ -165,7 +165,7 @@ TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 			}
 		}
 
-		// ˆø”‰ğ•ú
+		// å¼•æ•°è§£æ”¾
 		if (argv) {
 			for (int i=0;i<argc;i++) {
 				delete argv[i];
@@ -179,7 +179,7 @@ TJSObject::caller(const FunctionCallbackInfo<Value>& args)
 	args.GetReturnValue().Set(ERROR_BADINSTANCE(isolate));
 }
 
-// tTJSVariant ‚ğƒIƒuƒWƒFƒNƒg‰»
+// tTJSVariant ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŒ–
 Local<Object>
 TJSObject::toJSObject(Isolate *isolate, const tTJSVariant &variant)
 {

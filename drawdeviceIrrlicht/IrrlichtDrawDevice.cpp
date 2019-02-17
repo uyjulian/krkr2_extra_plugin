@@ -12,19 +12,19 @@ using namespace io;
 using namespace gui;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtDrawDevice::IrrlichtDrawDevice(iTJSDispatch2 *objthis, int width, int height)
 	: IrrlichtBase(objthis), width(width), height(height), destWidth(0), destHeight(0), zoomMode(true), defaultVisible(true)
 {
-	// Irrlicht“I‰æ–ÊƒTƒCƒY
+	// Irrlichtçš„ç”»é¢ã‚µã‚¤ã‚º
 	screenWidth = width;
 	screenHeight = height;
 	screenRect = rect<s32>(0,0,screenWidth,screenHeight);
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 IrrlichtDrawDevice::~IrrlichtDrawDevice()
 {
@@ -33,7 +33,7 @@ IrrlichtDrawDevice::~IrrlichtDrawDevice()
 }
 
 /**
- * ¶¬ƒtƒ@ƒNƒgƒŠ
+ * ç”Ÿæˆãƒ•ã‚¡ã‚¯ãƒˆãƒª
  */
 tjs_error
 IrrlichtDrawDevice::Factory(IrrlichtDrawDevice **obj, tjs_int numparams, tTJSVariant **param, iTJSDispatch2 *objthis)
@@ -50,8 +50,8 @@ IrrlichtDrawDevice::Factory(IrrlichtDrawDevice **obj, tjs_int numparams, tTJSVar
 // -----------------------------------------------------------------------
 
 /**
- * Continuous ƒR[ƒ‹ƒoƒbƒN
- * ‹g—¢‹g—¢‚ª‰É‚È‚Æ‚«‚Éí‚ÉŒÄ‚Î‚ê‚é
+ * Continuous ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * å‰é‡Œå‰é‡ŒãŒæš‡ãªã¨ãã«å¸¸ã«å‘¼ã°ã‚Œã‚‹
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::OnContinuousCallback(tjs_uint64 tick)
@@ -63,8 +63,8 @@ void
 IrrlichtDrawDevice::onAttach()
 {
 	if (device) {
-		Window->NotifySrcResize(); // ‚±‚ê‚ğŒÄ‚Ô‚±‚Æ‚Å GetSrcSize(), SetDestRectangle() ‚ÌŒÄ‚Ñ•Ô‚µ‚ª—ˆ‚é
-		// ƒ}ƒl[ƒWƒƒ‚É‘Î‚·‚éƒeƒNƒXƒ`ƒƒ‚ÌŠ„‚è“–‚Ä
+		Window->NotifySrcResize(); // ã“ã‚Œã‚’å‘¼ã¶ã“ã¨ã§ GetSrcSize(), SetDestRectangle() ã®å‘¼ã³è¿”ã—ãŒæ¥ã‚‹
+		// ãƒãƒãƒ¼ã‚¸ãƒ£ã«å¯¾ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‰²ã‚Šå½“ã¦
 		IVideoDriver *driver = device->getVideoDriver();
 		if (driver) {
 			for (std::vector<iTVPLayerManager *>::iterator i = Managers.begin(); i != Managers.end(); i++) {
@@ -90,10 +90,10 @@ IrrlichtDrawDevice::onDetach()
 }
 
 /**
- * Device¨Irrlicht•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+ * Deviceâ†’Irrlichtæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformToIrrlicht(tjs_int &x, tjs_int &y)
@@ -102,10 +102,10 @@ IrrlichtDrawDevice::transformToIrrlicht(tjs_int &x, tjs_int &y)
 	y = screenHeight ? (y * destHeight / screenHeight) : 0;
 }
 
-/** Irrlicht¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+/** Irrlichtâ†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformFromIrrlicht(tjs_int &x, tjs_int &y)
@@ -115,30 +115,30 @@ IrrlichtDrawDevice::transformFromIrrlicht(tjs_int &x, tjs_int &y)
 }
 
 /**
- * Device¨ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+ * Deviceâ†’ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformToManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	tjs_int pl_w, pl_h;
 	manager->GetPrimaryLayerSize(pl_w, pl_h);
 	x = destWidth  ? (x * pl_w / destWidth) : 0;
 	y = destHeight ? (y * pl_h / destHeight) : 0;
 }
 
-/** ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+/** ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformFromManager(iTVPLayerManager * manager, tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	tjs_int pl_w, pl_h;
 	manager->GetPrimaryLayerSize(pl_w, pl_h);
 	x = pl_w ? (x * destWidth  / pl_w) : 0;
@@ -146,10 +146,10 @@ IrrlichtDrawDevice::transformFromManager(iTVPLayerManager * manager, tjs_int &x,
 }
 
 /**
- * Device¨•W€‰æ–Ê‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í DestRect‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+ * Deviceâ†’æ¨™æº–ç”»é¢ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ DestRectã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformTo(tjs_int &x, tjs_int &y)
@@ -158,26 +158,26 @@ IrrlichtDrawDevice::transformTo(tjs_int &x, tjs_int &y)
 	y = destHeight ? (y * height / destHeight) : 0;
 }
 
-/** •W€‰æ–Ê¨Device•ûŒü‚ÌÀ•W‚Ì•ÏŠ·‚ğs‚¤
- * @param		x		XˆÊ’u
- * @param		y		YˆÊ’u
- * @note		x, y ‚Í ƒŒƒCƒ„‚Ì (0,0) ‚ğŒ´“_‚Æ‚·‚éÀ•W‚Æ‚µ‚Ä“n‚³‚ê‚é‚ÆŒ©‚È‚·
+/** æ¨™æº–ç”»é¢â†’Deviceæ–¹å‘ã®åº§æ¨™ã®å¤‰æ›ã‚’è¡Œã†
+ * @param		x		Xä½ç½®
+ * @param		y		Yä½ç½®
+ * @note		x, y ã¯ ãƒ¬ã‚¤ãƒ¤ã® (0,0) ã‚’åŸç‚¹ã¨ã™ã‚‹åº§æ¨™ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã¨è¦‹ãªã™
  */
 void
 IrrlichtDrawDevice::transformFrom(tjs_int &x, tjs_int &y)
 {
-	// ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	x = width ? (x * destWidth  / width) : 0;
 	y = height ? (y * destHeight / height) : 0;
 }
 
 /**
- * ŒÅ—LXVˆ—
+ * å›ºæœ‰æ›´æ–°å‡¦ç†
  */
 void
 IrrlichtDrawDevice::update(irr::video::IVideoDriver *driver)
 {
-	// ŒÂ•ÊƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ì•`‰æ
+	// å€‹åˆ¥ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®æç”»
 	for (std::vector<iTVPLayerManager *>::iterator i = Managers.begin(); i != Managers.end(); i++) {
 		LayerManagerInfo *info = (LayerManagerInfo*)(*i)->GetDrawDeviceData();
 		if (info) {
@@ -188,8 +188,8 @@ IrrlichtDrawDevice::update(irr::video::IVideoDriver *driver)
 
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ì“o˜^
- * @param manager ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç™»éŒ²
+ * @param manager ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::AddLayerManager(iTVPLayerManager * manager)
@@ -201,8 +201,8 @@ IrrlichtDrawDevice::AddLayerManager(iTVPLayerManager * manager)
 }
 
 /**
- * ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ‚Ìíœ
- * @param manager ƒŒƒCƒ„ƒ}ƒl[ƒWƒƒ
+ * ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
+ * @param manager ãƒ¬ã‚¤ãƒ¤ãƒãƒãƒ¼ã‚¸ãƒ£
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::RemoveLayerManager(iTVPLayerManager * manager)
@@ -216,8 +216,8 @@ IrrlichtDrawDevice::RemoveLayerManager(iTVPLayerManager * manager)
 }
 
 /***
- * ƒEƒCƒ“ƒhƒE‚Ìw’è
- * @param wnd ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‰
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æŒ‡å®š
+ * @param wnd ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::SetTargetWindow(HWND wnd, bool is_main)
@@ -281,13 +281,13 @@ IrrlichtDrawDevice::NotifyLayerResize(iTVPLayerManager * manager)
 }
 
 // -------------------------------------------------------------------------------------
-// “ü—ÍƒCƒxƒ“ƒgˆ——p
+// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ç”¨
 // -------------------------------------------------------------------------------------
 
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags)
 {
-	// Irrlicht ‚É‘—‚é
+	// Irrlicht ã«é€ã‚‹
 	if (device) {
 		tjs_int dx = x;
 		tjs_int dy = y;
@@ -310,7 +310,7 @@ IrrlichtDrawDevice::OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_ui
 		}
 		postEvent(ev);
 	}
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -321,7 +321,7 @@ IrrlichtDrawDevice::OnMouseDown(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_ui
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint32 flags)
 {
-	// Irrlicht ‚É‘—‚é
+	// Irrlicht ã«é€ã‚‹
 	if (device) {
 		tjs_int dx = x;
 		tjs_int dy = y;
@@ -344,7 +344,7 @@ IrrlichtDrawDevice::OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint
 		}
 		postEvent(ev);
 	}
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -355,7 +355,7 @@ IrrlichtDrawDevice::OnMouseUp(tjs_int x, tjs_int y, tTVPMouseButton mb, tjs_uint
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags)
 {
-	// Irrlicht ‚É‘—‚é
+	// Irrlicht ã«é€ã‚‹
 	if (device) {
 		tjs_int dx = x;
 		tjs_int dy = y;
@@ -368,7 +368,7 @@ IrrlichtDrawDevice::OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags)
 		ev.MouseInput.Event = EMIE_MOUSE_MOVED;
 		postEvent(ev);
 	}
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -379,7 +379,7 @@ IrrlichtDrawDevice::OnMouseMove(tjs_int x, tjs_int y, tjs_uint32 flags)
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::OnMouseWheel(tjs_uint32 shift, tjs_int delta, tjs_int x, tjs_int y)
 {
-	// Irrlicht ‚É‘—‚é
+	// Irrlicht ã«é€ã‚‹
 	if (device) {
 		tjs_int dx = x;
 		tjs_int dy = y;
@@ -392,7 +392,7 @@ IrrlichtDrawDevice::OnMouseWheel(tjs_uint32 shift, tjs_int delta, tjs_int x, tjs
 		ev.MouseInput.Event = EMIE_MOUSE_WHEEL;
 		postEvent(ev);
 	}
-	// ‹g—¢‹g—¢‚Ìƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚É‘—‚é
+	// å‰é‡Œå‰é‡Œã®ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã«é€ã‚‹
 	iTVPLayerManager * manager = GetLayerManagerAt(PrimaryLayerManagerIndex);
 	if (manager) {
 		transformToManager(manager, x, y);
@@ -424,7 +424,7 @@ IrrlichtDrawDevice::RequestInvalidation(const tTVPRect & rect)
 			tjs_int l = rect.left, t = rect.top, r = rect.right, b = rect.bottom;
 			transformToManager(manager, l, t);
 			transformToManager(manager, r, b);
-			r ++; // Œë·‚Ì‹zû(–{“–‚Í‚à‚¤‚¿‚å‚Á‚ÆŒµ–§‚É‚â‚ç‚È‚¢‚Æ‚È‚ç‚È‚¢‚ª‚»‚ê‚ª–â‘è‚É‚È‚é‚±‚Æ‚Í‚È‚¢)
+			r ++; // èª¤å·®ã®å¸å(æœ¬å½“ã¯ã‚‚ã†ã¡ã‚‡ã£ã¨å³å¯†ã«ã‚„ã‚‰ãªã„ã¨ãªã‚‰ãªã„ãŒãã‚ŒãŒå•é¡Œã«ãªã‚‹ã“ã¨ã¯ãªã„)
 			b ++;
 			manager->RequestInvalidation(tTVPRect(l, t, r, b));
 		}
@@ -433,7 +433,7 @@ IrrlichtDrawDevice::RequestInvalidation(const tTVPRect & rect)
 
 
 // -------------------------------------------------------------------------------------
-// Ä•`‰æˆ——p
+// å†æç”»å‡¦ç†ç”¨
 // -------------------------------------------------------------------------------------
 
 void
@@ -443,11 +443,11 @@ IrrlichtDrawDevice::Show()
 }
 
 // -------------------------------------------------------------------------------------
-// LayerManager‚©‚ç‚Ì‰æ‘œ‚¤‚¯‚í‚½‚µ
+// LayerManagerã‹ã‚‰ã®ç”»åƒã†ã‘ã‚ãŸã—
 // -------------------------------------------------------------------------------------
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—ŠJn
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†é–‹å§‹
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::StartBitmapCompletion(iTVPLayerManager * manager)
@@ -459,7 +459,7 @@ IrrlichtDrawDevice::StartBitmapCompletion(iTVPLayerManager * manager)
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::NotifyBitmapCompleted(iTVPLayerManager * manager,
@@ -473,7 +473,7 @@ IrrlichtDrawDevice::NotifyBitmapCompleted(iTVPLayerManager * manager,
 }
 
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒRƒs[ˆ—I—¹
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚³ãƒ”ãƒ¼å‡¦ç†çµ‚äº†
  */
 void TJS_INTF_METHOD
 IrrlichtDrawDevice::EndBitmapCompletion(iTVPLayerManager * manager)
@@ -485,9 +485,9 @@ IrrlichtDrawDevice::EndBitmapCompletion(iTVPLayerManager * manager)
 }
 
 /**
- * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
- * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
- * @param visible •\¦ó‘Ô
+ * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+ * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+ * @param visible è¡¨ç¤ºçŠ¶æ…‹
  */
 void
 IrrlichtDrawDevice::setVisible(int id, bool visible)
@@ -501,9 +501,9 @@ IrrlichtDrawDevice::setVisible(int id, bool visible)
 }
 
 /**
- * ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì•\¦ó‘Ô‚Ìw’è
- * @param id ƒvƒ‰ƒCƒ}ƒŠƒŒƒCƒ„‚Ì“o˜^ID
- * @return visible •\¦ó‘Ô
+ * ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®è¡¨ç¤ºçŠ¶æ…‹ã®æŒ‡å®š
+ * @param id ãƒ—ãƒ©ã‚¤ãƒãƒªãƒ¬ã‚¤ãƒ¤ã®ç™»éŒ²ID
+ * @return visible è¡¨ç¤ºçŠ¶æ…‹
  */
 bool
 IrrlichtDrawDevice::getVisible(int id)

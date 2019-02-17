@@ -14,7 +14,7 @@ using namespace std;
 #define UNICODE_BOM (0xfeff)
 
 /**
- * ƒƒOo—Í—p
+ * ãƒ­ã‚°å‡ºåŠ›ç”¨
  */
 static void log(const tjs_char *format, ...)
 {
@@ -85,7 +85,7 @@ public:
 	}
 
 	/**
-	 * ‰üsƒ`ƒFƒbƒN
+	 * æ”¹è¡Œãƒã‚§ãƒƒã‚¯
 	 */
 	bool endOfLine(int c) {
 		bool eol = (c =='\r' || c == '\n');
@@ -177,7 +177,7 @@ public:
 	bool isError;
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	IReader() {
 		isError = false;
@@ -186,7 +186,7 @@ public:
 	virtual ~IReader() {};
 	
 	/**
-	 * ƒGƒ‰[ˆ—
+	 * ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	 */
 	void error(const tjs_char *msg) {
 		isError = true;
@@ -194,7 +194,7 @@ public:
 	}
 	
 	/**
-	 * s––‚Ü‚Å“Ç‚İ”ò‚Î‚·
+	 * è¡Œæœ«ã¾ã§èª­ã¿é£›ã°ã™
 	 */
     void toEOL() {
         int c;
@@ -204,7 +204,7 @@ public:
     }
 
     /**
-     * ‹ó”’‚ÆƒRƒƒ“ƒg‚ğœ‹‚µ‚ÄŸ‚Ì•¶š‚ğ•Ô‚·
+     * ç©ºç™½ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚’é™¤å»ã—ã¦æ¬¡ã®æ–‡å­—ã‚’è¿”ã™
      */
 	int next() {
         for (;;) {
@@ -220,7 +220,7 @@ public:
 					for (;;) {
 						c = getc();
 						if (c == EOF) {
-							error(L"ƒRƒƒ“ƒg‚ª•Â‚¶‚Ä‚¢‚Ü‚¹‚ñ");
+							error(L"ã‚³ãƒ¡ãƒ³ãƒˆãŒé–‰ã˜ã¦ã„ã¾ã›ã‚“");
 							return EOF;
                         }
                         if (c == '*') {
@@ -242,9 +242,9 @@ public:
 	}
 
     /**
-     * w’è‚³‚ê‚½•¶š”•ª‚Ì•¶š—ñ‚ğæ“¾
-     * @param str •¶š—ñ‚ÌŠi”[æ
-     * @param n •¶š”
+     * æŒ‡å®šã•ã‚ŒãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’å–å¾—
+     * @param str æ–‡å­—åˆ—ã®æ ¼ç´å…ˆ
+     * @param n æ–‡å­—æ•°
      */
     void next(ttstr &str, int n) {
 		str = "";
@@ -260,7 +260,7 @@ public:
 	
     void parseObject(tTJSVariant &var) {
 
-        // «‘‚ğ¶¬
+        // è¾æ›¸ã‚’ç”Ÿæˆ
         iTJSDispatch2 *dict = TJSCreateDictionaryObject();
         var = tTJSVariant(dict, dict);
 	dict->Release();
@@ -273,7 +273,7 @@ public:
 
             c = next();
 			if (c == EOF) {
-				error(L"ƒIƒuƒWƒFƒNƒg‚Í '}' ‚ÅI—¹‚·‚é•K—v‚ª‚ ‚è‚Ü‚·");
+				error(L"ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ '}' ã§çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™");
 				return;
 			} else if (c == '}') {
 				return;
@@ -290,11 +290,11 @@ public:
 						ungetc();
 					}
 				} else if (c != ':') {
-					error(L"ƒL[‚ÌŒã‚É‚Í ':' ‚Ü‚½‚Í '=' ‚Ü‚½‚Í '=>' ‚ª•K—v‚Å‚·");
+					error(L"ã‚­ãƒ¼ã®å¾Œã«ã¯ ':' ã¾ãŸã¯ '=' ã¾ãŸã¯ '=>' ãŒå¿…è¦ã§ã™");
 					return;
 				}
 
-				// ƒƒ“ƒo“o˜^
+				// ãƒ¡ãƒ³ãƒç™»éŒ²
 				tTJSVariant value;
 				parse(value);
 				
@@ -308,7 +308,7 @@ public:
 			case '}':
 				return;
 			default:
-				error(L" ',' ‚Ü‚½‚Í ';' ‚Ü‚½‚Í '}' ‚ª•K—v‚Å‚·");
+				error(L" ',' ã¾ãŸã¯ ';' ã¾ãŸã¯ '}' ãŒå¿…è¦ã§ã™");
 				return;
 			}
         }
@@ -316,7 +316,7 @@ public:
 
 	void parseArray(tTJSVariant &var) {
         
-        // ”z—ñ‚ğ¶¬
+        // é…åˆ—ã‚’ç”Ÿæˆ
 		iTJSDispatch2 *array = TJSCreateArrayObject();
 		var = tTJSVariant(array, array);
 		array->Release();
@@ -327,7 +327,7 @@ public:
             int ch = next();
 			switch (ch) {
 			case EOF:
-				error(L"”z—ñ‚Í ']' ‚ÅI—¹‚·‚é•K—v‚ª‚ ‚è‚Ü‚·");
+				error(L"é…åˆ—ã¯ ']' ã§çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™");
 				return;
 			case ']':
 				return;
@@ -335,7 +335,7 @@ public:
 			case ';':
 				{
 					ungetc();
-					// ‹ó‚ÌƒJƒ‰ƒ€‚ğ“o˜^
+					// ç©ºã®ã‚«ãƒ©ãƒ ã‚’ç™»éŒ²
 					tTJSVariant value;
 					array->PropSetByNum(TJS_MEMBERENSURE, cnt++, &value, array);
 				}
@@ -354,16 +354,16 @@ public:
             case ']':
                 return;
             default:
-				error(L" ',' ‚Ü‚½‚Í ';' ‚Ü‚½‚Í ']' ‚ª•K—v‚Å‚·");
+				error(L" ',' ã¾ãŸã¯ ';' ã¾ãŸã¯ ']' ãŒå¿…è¦ã§ã™");
                 return;
             }
         }
     }
 
     /**
-	 * ƒNƒI[ƒg•¶š—ñ‚Ìƒp[ƒX
-     * @param quote ƒNƒI[ƒg•¶š
-     * @param var Ši”[æ
+	 * ã‚¯ã‚ªãƒ¼ãƒˆæ–‡å­—åˆ—ã®ãƒ‘ãƒ¼ã‚¹
+     * @param quote ã‚¯ã‚ªãƒ¼ãƒˆæ–‡å­—
+     * @param var æ ¼ç´å…ˆ
      */
 	void parseQuoteString(int quote, tTJSVariant &var) {
 		int c;
@@ -374,7 +374,7 @@ public:
 			case 0:
 			case '\n':
 			case '\r':
-				error(L"•¶š—ñ‚ªI’[‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+				error(L"æ–‡å­—åˆ—ãŒçµ‚ç«¯ã—ã¦ã„ã¾ã›ã‚“");
 				return;
 			case '\\':
 				c = getc();
@@ -423,29 +423,29 @@ public:
 	}
 
 	/**
-	 * w’è‚µ‚½•¶š‚ª”’l‚Ì‚P•¶š–Ú‚Ì\¬—v‘f‚©‚Ç‚¤‚©
+	 * æŒ‡å®šã—ãŸæ–‡å­—ãŒæ•°å€¤ã®ï¼‘æ–‡å­—ç›®ã®æ§‹æˆè¦ç´ ã‹ã©ã†ã‹
 	 */
 	bool isNumberFirst(int ch) {
 		return (ch >= '0' && ch <= '9') || ch == '.' || ch == '-' || ch == '+';
 	}
 
 	/**
-	 * w’è‚µ‚½•¶š‚ª”’l‚Ì\¬—v‘f‚©‚Ç‚¤‚©
+	 * æŒ‡å®šã—ãŸæ–‡å­—ãŒæ•°å€¤ã®æ§‹æˆè¦ç´ ã‹ã©ã†ã‹
 	 */
 	bool isNumber(int ch) {
 		return (ch >= '0' && ch <= '9') || ch == '.' || ch == '-' || ch == '+' || ch == 'e' || ch == 'E';
 	}
 
 	/**
-	 * w’è‚µ‚½•¶š‚ª•¶š—ñ‚Ì\¬—v‘f‚©‚Ç‚¤‚©
+	 * æŒ‡å®šã—ãŸæ–‡å­—ãŒæ–‡å­—åˆ—ã®æ§‹æˆè¦ç´ ã‹ã©ã†ã‹
 	 */
 	bool isString(int ch) {
 		return ch > 0x80 || ch > ' ' && wcschr(L",:]}/\\\"[{;=#", ch) == NULL;
 	}
 
 	/**
-	 * ƒp[ƒX‚ÌÀs
-	 * @param var Œ‹‰ÊŠi”[æ
+	 * ãƒ‘ãƒ¼ã‚¹ã®å®Ÿè¡Œ
+	 * @param var çµæœæ ¼ç´å…ˆ
 	 */
 	void parse(tTJSVariant &var) {
 		
@@ -454,11 +454,11 @@ public:
 		switch (ch) {
 		case '"':
 		case '\'':
-			// ƒNƒI[ƒg•¶š—ñ
+			// ã‚¯ã‚ªãƒ¼ãƒˆæ–‡å­—åˆ—
 			parseQuoteString(ch, var);
 			break;
 		case '{':
-			// ƒIƒuƒWƒFƒNƒg
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 			parseObject(var);
 			break;
 		case '[':
@@ -478,20 +478,20 @@ public:
 		case '-':
 		case '+':
 			{
-				// ”’l
+				// æ•°å€¤
 				bool doubleValue = false;
 				
 				ttstr s;
 				while (isNumber(ch)) {
 					if (ch == '.') {
-						doubleValue = true; // ‚Ğ‚Ç‚¢ˆ—‚¾iÎ)
+						doubleValue = true; // ã²ã©ã„å‡¦ç†ã ï¼ˆç¬‘)
 					}
 					s += ch;
 					ch = getc();
 				}
 				ungetc();
 
-				// ”’l
+				// æ•°å€¤
 				if (doubleValue) {
 					double value = wcstod(s.c_str(), NULL);
 					var = value;
@@ -504,7 +504,7 @@ public:
 		default:
 			if (ch >= 'a' && ch <= 'z') {
 			
-				// •¶š—ñ‚ğ’Šo
+				// æ–‡å­—åˆ—ã‚’æŠ½å‡º
 				ttstr s;
 				while (ch >= 'a' && ch <= 'z') {
 					s += ch;
@@ -512,7 +512,7 @@ public:
 				}
 				ungetc();
 				
-				// ¯•Êq
+				// è­˜åˆ¥å­
 				if (s == L"true") {
 					var = true;
 				} else if (s == L"false") {
@@ -522,12 +522,12 @@ public:
 				} else if (s == L"void") {
 					var.Clear();
 				} else {
-					ttstr msg = L"•s–¾‚ÈƒL[ƒ[ƒh‚Å‚·:";
+					ttstr msg = L"ä¸æ˜ãªã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã§ã™:";
 					msg += s;
 					error(msg.c_str());
 				}
 			} else {
-				ttstr msg = L"•s–¾‚È•¶š‚Å‚·:";
+				ttstr msg = L"ä¸æ˜ãªæ–‡å­—ã§ã™:";
 				error(msg.c_str());
 			}
 		}
@@ -536,9 +536,9 @@ public:
 
 class IFileReader : public IReader {
 
-	/// “ü—Íƒoƒbƒtƒ@
+	/// å…¥åŠ›ãƒãƒƒãƒ•ã‚¡
 	ttstr buf;
-	/// “ü—ÍƒXƒgƒŠ[ƒ€
+	/// å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	iTJSTextReadStream *stream;
 	
 	ULONG pos;
@@ -621,7 +621,7 @@ public:
 
 //---------------------------------------------------------------------------
 
-// Array ƒNƒ‰ƒXƒƒ“ƒo
+// Array ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒ
 static iTJSDispatch2 *ArrayCountProp   = NULL;   // Array.count
 
 // -----------------------------------------------------------------
@@ -632,11 +632,11 @@ addMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName, tTJSDispatch *met
 	tTJSVariant var = tTJSVariant(method);
 	method->Release();
 	dispatch->PropSet(
-		TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-		methodName, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-		NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-		&var, // “o˜^‚·‚é’l
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+		methodName, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+		NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+		&var, // ç™»éŒ²ã™ã‚‹å€¤
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -644,10 +644,10 @@ static void
 delMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName)
 {
 	dispatch->DeleteMember(
-		0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-		methodName, // ƒƒ“ƒo–¼
-		NULL, // ƒqƒ“ƒg
-		dispatch // ƒRƒ“ƒeƒLƒXƒg
+		0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+		methodName, // ãƒ¡ãƒ³ãƒå
+		NULL, // ãƒ’ãƒ³ãƒˆ
+		dispatch // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 		);
 }
 
@@ -677,7 +677,7 @@ static tjs_error eval(IReader &file, tTJSVariant *result)
 	}
 	file.close();
 	if (file.isError) {
-		TVPThrowExceptionMessage(L"JSONƒtƒ@ƒCƒ‹ ‚Ìƒp[ƒX‚É¸”s‚µ‚Ü‚µ‚½");
+		TVPThrowExceptionMessage(L"JSONãƒ•ã‚¡ã‚¤ãƒ« ã®ãƒ‘ãƒ¼ã‚¹ã«å¤±æ•—ã—ã¾ã—ãŸ");
 	}
 	return ret;
 }
@@ -685,8 +685,8 @@ static tjs_error eval(IReader &file, tTJSVariant *result)
 //---------------------------------------------------------------------------
 
 /**
- * JSON ‚ğ•¶š—ñ‚©‚ç“Ç‚İæ‚é
- * @param text JSON ‚Ì•¶š—ñ•\Œ»
+ * JSON ã‚’æ–‡å­—åˆ—ã‹ã‚‰èª­ã¿å–ã‚‹
+ * @param text JSON ã®æ–‡å­—åˆ—è¡¨ç¾
  */
 class tEvalJSON : public tTJSDispatch
 {
@@ -706,8 +706,8 @@ public:
 };
 
 /**
- * JSON ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İæ‚é
- * @param filename ƒtƒ@ƒCƒ‹–¼
+ * JSON ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿å–ã‚‹
+ * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å
  */
 class tEvalJSONStorage : public tTJSDispatch
 {
@@ -769,9 +769,9 @@ quoteString(const tjs_char *str, IWriter *writer)
 static void getVariantString(tTJSVariant &var, IWriter *writer);
 
 /**
- * «‘‚Ì“à—e•\¦—p‚ÌŒÄ‚Ño‚µƒƒWƒbƒN
+ * è¾æ›¸ã®å†…å®¹è¡¨ç¤ºç”¨ã®å‘¼ã³å‡ºã—ãƒ­ã‚¸ãƒƒã‚¯
  */
-class DictMemberDispCaller : public tTJSDispatch /** EnumMembers —p */
+class DictMemberDispCaller : public tTJSDispatch /** EnumMembers ç”¨ */
 {
 protected:
 	IWriter *writer;
@@ -946,16 +946,16 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason,
 static tjs_int GlobalRefCountAtInit = 0;
 extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
 
-	// Arary ƒNƒ‰ƒXƒƒ“ƒo[æ“¾
+	// Arary ã‚¯ãƒ©ã‚¹ãƒ¡ãƒ³ãƒãƒ¼å–å¾—
 	{
 		tTJSVariant varScripts;
 		TVPExecuteExpression(TJS_W("Array"), &varScripts);
 		iTJSDispatch2 *dispatch = varScripts.AsObjectNoAddRef();
-		// ƒƒ“ƒoæ“¾
+		// ãƒ¡ãƒ³ãƒå–å¾—
 		ArrayCountProp = getMember(dispatch, TJS_W("count"));
 	}
 
@@ -971,13 +971,13 @@ extern "C" HRESULT _stdcall V2Link(iTVPFunctionExporter *exporter)
 		}
 	}
 	
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
@@ -1000,14 +1000,14 @@ static bool TJS_USERENTRY catchUnlinkScripts(void *data, const tTVPExceptionDesc
 
 extern "C" HRESULT _stdcall V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”B
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€‚
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
-	// E_FAIL ‚ª‹A‚é‚ÆAPlugins.unlink ƒƒ\ƒbƒh‚Í‹U‚ğ•Ô‚·
+	// E_FAIL ãŒå¸°ã‚‹ã¨ã€Plugins.unlink ãƒ¡ã‚½ãƒƒãƒ‰ã¯å½ã‚’è¿”ã™
 
 	{
           TVPDoTryBlock(&tryUnlinkScripts, &catchUnlinkScripts, NULL, NULL);
@@ -1018,7 +1018,7 @@ extern "C" HRESULT _stdcall V2Unlink()
 		ArrayCountProp = NULL;
 	}
 	
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;

@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SWF ���[�r�[��񏈗��N���X
+// SWF ムービー情報処理クラス
 // ---------------------------------------------------------------
 
 #include <stdio.h>
@@ -33,16 +33,16 @@ SWFMovie::load(const char *name)
 							&movie_width, &movie_height, &movie_fps,
 							NULL, &s_total_tags);
 	if (movie_version == 0) {
-		error_log("error: %s �ɂ��Ă̏�񂪎擾�ł��܂���", name);
+		error_log("error: %s についての情報が取得できません", name);
 		return;
 	} else if (movie_version > 6) {
-		message_log("warning: %s �͑Ή����Ă��Ȃ��o�[�W���� %d �̃t�@�C���ł�", movie_version);
+		message_log("warning: %s は対応していないバージョン %d のファイルです", movie_version);
 	}
 
 	md = gameswf::create_movie(name);
 	if (md != NULL) {
 		m = md->create_instance();
-		// �J�n����
+		// 開始する
 		m->get_root_movie()->execute_frame_tags(0);		
 	}
 	lastFrame = -1;

@@ -1,16 +1,16 @@
-// Movie.tjs - ƒ€[ƒr[Ä¶
-// Copyright (C)2001-2009, W.Dee and contributors  ‰ü•ÏE”z•z‚Í©—R‚Å‚·
+// Movie.tjs - ãƒ ãƒ¼ãƒ“ãƒ¼å†ç”Ÿ
+// Copyright (C)2001-2009, W.Dee and contributors  æ”¹å¤‰ãƒ»é…å¸ƒã¯è‡ªç”±ã§ã™
 
 class Movie extends VideoOverlay
 {
 	var owner;
-	var lastStatus = "unload"; // ’¼‘O‚ÌƒXƒe[ƒ^ƒX
+	var lastStatus = "unload"; // ç›´å‰ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	var opened = false;
-	var id = 0; // ƒ€[ƒr[ƒIƒuƒWƒFƒNƒgID
+	var id = 0; // ãƒ ãƒ¼ãƒ“ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
 	var layerNumber = [];
 	var layerPage = [];
 	var storageName;
-	var useLayerAlpha; // LayerExBTOA‚ğg—p‚µ‚ÄƒAƒ‹ƒtƒ@ƒ€[ƒr[‚ğ•\¦‚·‚éƒtƒ‰ƒO
+	var useLayerAlpha; // LayerExBTOAã‚’ä½¿ç”¨ã—ã¦ã‚¢ãƒ«ãƒ•ã‚¡ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ãƒ•ãƒ©ã‚°
 
 	function Movie(owner,id=0)
 	{
@@ -42,7 +42,7 @@ class Movie extends VideoOverlay
 				dic.enabledAudioStream = enabledAudioStream;
 			}
 
-			// dic.playRate // •Û‚µ‚È‚¢•û‚ª—Ç‚¢H
+			// dic.playRate // ä¿æŒã—ãªã„æ–¹ãŒè‰¯ã„ï¼Ÿ
 			dic.segmentLoopStartFrame = segmentLoopStartFrame;
 			dic.segmentLoopEndFrame = segmentLoopEndFrame;
 			dic.periodEventFrame = periodEventFrame;
@@ -87,7 +87,7 @@ class Movie extends VideoOverlay
 			if( dic.lastStatus != "unload" )
 			{
 				this.open( dic.storageName );
-				periodEventFrame = dic.periodEventFrame;	// ‚±‚Ìİ’è‚Í•K‚¸ƒtƒŒ[ƒ€‚æ‚è‘O‚És‚¤‚±‚Æ
+				periodEventFrame = dic.periodEventFrame;	// ã“ã®è¨­å®šã¯å¿…ãšãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šå‰ã«è¡Œã†ã“ã¨
 				if( dic.frame >= 0 )
 					frame = dic.frame;
 
@@ -116,10 +116,10 @@ class Movie extends VideoOverlay
 
 	function onStatusChanged(status)
 	{
-		// ƒXƒe[ƒ^ƒX‚Ì•ÏX‚ª‚ ‚Á‚½
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å¤‰æ›´ãŒã‚ã£ãŸ
 		if(lastStatus == "play" && status == "stop")
 		{
-			owner.onMovieStop(id); // ’â~
+			owner.onMovieStop(id); // åœæ­¢
 			super.close();
 		}
 
@@ -128,24 +128,24 @@ class Movie extends VideoOverlay
 
 	function onPeriod(type)
 	{
-		// period ƒCƒxƒ“ƒg‚ª”­¶‚µ‚½
+		// period ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãŸ
 		owner.onMoviePeriod(id,type);
 	}
 
 	function onCallbackCommand(cmd, arg)
 	{
-		// ƒR[ƒ‹ƒoƒbƒNƒRƒ}ƒ“ƒh
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚³ãƒãƒ³ãƒ‰
 		if(cmd == "Go")
 		{
 			var spos = arg.indexOf('/');
 			if(spos == -1)
 			{
-				// ƒXƒgƒŒ[ƒWw’è‚ª‚È‚¢
+				// ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸æŒ‡å®šãŒãªã„
 				owner.process('', '*' + arg);
 			}
 			else
 			{
-				// ƒXƒgƒŒ[ƒWw’è‚ª‚ ‚é
+				// ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸æŒ‡å®šãŒã‚ã‚‹
 				var label = arg.substring(spos + 1);
 				if(label != '') label = '*' + label;
 				owner.process(arg.substring(0, spos), label);
@@ -190,7 +190,7 @@ class Movie extends VideoOverlay
 	{
 		getter
 		{
-			// ‘Ò‚Ä‚é‚©‚Ç‚¤‚©
+			// å¾…ã¦ã‚‹ã‹ã©ã†ã‹
 			return lastStatus == "play";
 		}
 	}
@@ -206,13 +206,13 @@ class Movie extends VideoOverlay
 	function open(storage)
 	{
 		this.storageName = storage;
-		// open ƒI[ƒo[ƒ‰ƒCƒh
+		// open ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		try
 		{
 			opened = false;
 			if(mode == vomOverlay)
 			{
-				mode = vomMixer; // ƒ‚[ƒh‚ªoverlay‚Ìê‡‚Ímixer ‚ğs‚·‚é
+				mode = vomMixer; // ãƒ¢ãƒ¼ãƒ‰ãŒoverlayã®å ´åˆã¯mixer ã‚’è©¦è¡Œã™ã‚‹
 				try
 				{
 					super.open(storage);
@@ -220,8 +220,8 @@ class Movie extends VideoOverlay
 				}
 				catch(e)
 				{
-					dm("ƒ€[ƒr[‚ğ Mixer ƒ‚[ƒh‚ÅŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ : " + e.message);
-					dm("ƒI[ƒo[ƒŒƒCƒ‚[ƒh‚ÅŠJ‚«‚Ü‚·");
+					dm("ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’ Mixer ãƒ¢ãƒ¼ãƒ‰ã§é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ : " + e.message);
+					dm("ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã§é–‹ãã¾ã™");
 					mode = vomOverlay;
 				}
 			}
@@ -235,7 +235,7 @@ class Movie extends VideoOverlay
 		catch(e)
 		{
 			if(e.message.indexOf(".dll") != -1) throw e;
-			dm("ƒ€[ƒr[ " + storage + " ‚ğÄ¶‚Å‚«‚Ü‚¹‚ñ : " +
+			dm("ãƒ ãƒ¼ãƒ“ãƒ¼ " + storage + " ã‚’å†ç”Ÿã§ãã¾ã›ã‚“ : " +
 				e.message);
 			return;
 		}
@@ -243,7 +243,7 @@ class Movie extends VideoOverlay
 
 	function play(storage)
 	{
-		// play ƒI[ƒo[ƒ‰ƒCƒh
+		// play ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		if(!opened) open(storage);
 		try
 		{
@@ -253,7 +253,7 @@ class Movie extends VideoOverlay
 		catch(e)
 		{
 			if(e.message.indexOf(".dll") != -1) throw e;
-			dm("ƒ€[ƒr[ " + storage + " ‚ğÄ¶‚Å‚«‚Ü‚¹‚ñ : " +
+			dm("ãƒ ãƒ¼ãƒ“ãƒ¼ " + storage + " ã‚’å†ç”Ÿã§ãã¾ã›ã‚“ : " +
 				e.message);
 			return;
 		}
@@ -267,21 +267,21 @@ class Movie extends VideoOverlay
 		catch(e)
 		{
 			if(e.message.indexOf(".dll") != -1) throw e;
-			dm("ƒ€[ƒr[‚ğÄ¶‚Å‚«‚Ü‚¹‚ñ : " + e.message);
+			dm("ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’å†ç”Ÿã§ãã¾ã›ã‚“ : " + e.message);
 			return;
 		}
 	}
 
 	function stop()
 	{
-		// stop ƒI[ƒo[ƒ‰ƒCƒh
+		// stop ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		super.stop(...);
 		super.close();
 	}
 
 	function setOptions(elm)
 	{
-		// elm ‚©‚çƒIƒvƒVƒ‡ƒ“‚ğİ’è
+		// elm ã‹ã‚‰ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
 		visible = +elm.visible if elm.visible !== void;
 		var l = left, t = top, w = width, h = height;
 		var set = false;

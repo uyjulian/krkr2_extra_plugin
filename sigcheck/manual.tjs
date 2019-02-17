@@ -1,52 +1,52 @@
 /**
- * ‹[—ƒR[ƒh‚É‚æ‚éƒ}ƒjƒ…ƒAƒ‹
- * @description ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Å–¼ƒ`ƒFƒbƒN‚ğs‚¢‚Ü‚·B
- * ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒW‚Æ‚µ‚Ä WM_APP + 2 ‚Æ WM_APP + 3 ‚ğ—˜—p‚µ‚Ä‚¢‚Ü‚·
+ * æ“¬ä¼¼ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
+ * @description ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§ç½²åãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã¾ã™ã€‚
+ * ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨ã—ã¦ WM_APP + 2 ã¨ WM_APP + 3 ã‚’åˆ©ç”¨ã—ã¦ã„ã¾ã™
  */
 class Window {
 
 	/**
-	 * –¼ƒ`ƒFƒbƒN‚ÌŠJn
-	 * @param filename Šm”F‘ÎÛƒtƒ@ƒCƒ‹
-	 * @param publickey ŒöŠJŒ®
-	 * @param info ƒ†[ƒUî•ñ
-	 * @return handler ¯•Êƒnƒ“ƒhƒ‰
-	 * @description ˆ—’†‚É onCheckSignatureProgressA
-	 * I—¹‚É onCheckSignatureDone ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ü‚·B
-	 * exe ‚â dll ‚Ìê‡‚Í–¼‚Íƒtƒ@ƒCƒ‹‚É“à‘Ÿ‚³‚ê‚Ü‚·Bxp3 ‚È‚Ç‚Ìê‡‚ÍA
-	 * Œ³‚Ìƒtƒ@ƒCƒ‹‚É .sig ‚ğ‚Â‚¯‚½ŠO•”ƒtƒ@ƒCƒ‹‚ğ–¼‚Æ‚µ‚Äˆ—‚³‚ê‚Ü‚·B
+	 * ç½²åãƒã‚§ãƒƒã‚¯ã®é–‹å§‹
+	 * @param filename ç¢ºèªå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param publickey å…¬é–‹éµ
+	 * @param info ãƒ¦ãƒ¼ã‚¶æƒ…å ±
+	 * @return handler è­˜åˆ¥ãƒãƒ³ãƒ‰ãƒ©
+	 * @description å‡¦ç†ä¸­ã« onCheckSignatureProgressã€
+	 * çµ‚äº†æ™‚ã« onCheckSignatureDone ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¾ã™ã€‚
+	 * exe ã‚„ dll ã®å ´åˆã¯ç½²åã¯ãƒ•ã‚¡ã‚¤ãƒ«ã«å†…è‡“ã•ã‚Œã¾ã™ã€‚xp3 ãªã©ã®å ´åˆã¯ã€
+	 * å…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã« .sig ã‚’ã¤ã‘ãŸå¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç½²åã¨ã—ã¦å‡¦ç†ã•ã‚Œã¾ã™ã€‚
 	 */
 	function checkSignature(filename, publickey, info);
 
 	/**
-	 * –¼ƒ`ƒFƒbƒN‚ÌƒLƒƒƒ“ƒZƒ‹
-	 * @param handler ¯•Êƒnƒ“ƒhƒ‰
-	 * @description Às’†‚Ì–¼ƒ`ƒFƒbƒN‚ğ‘¬‚â‚©‚É’â~‚³‚¹‚Ü‚·BƒLƒƒƒ“ƒZƒ‹I—¹‚É‚È‚è‚Ü‚·B
+	 * ç½²åãƒã‚§ãƒƒã‚¯ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	 * @param handler è­˜åˆ¥ãƒãƒ³ãƒ‰ãƒ©
+	 * @description å®Ÿè¡Œä¸­ã®ç½²åãƒã‚§ãƒƒã‚¯ã‚’é€Ÿã‚„ã‹ã«åœæ­¢ã•ã›ã¾ã™ã€‚ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã«ãªã‚Šã¾ã™ã€‚
 	 */
 	function cancelCheckSignature(handler);
 
 	/**
-	 * –¼ƒ`ƒFƒbƒN‚Ì’†~
-	 * @param handler ¯•Êƒnƒ“ƒhƒ‰
-	 * @description Às’†‚Ì–¼ƒ`ƒFƒbƒN‚ğ‘¬‚â‚©‚É’â~‚³‚¹‚Ü‚·BI—¹ƒCƒxƒ“ƒg‚Í—ˆ‚Ü‚¹‚ñB
+	 * ç½²åãƒã‚§ãƒƒã‚¯ã®ä¸­æ­¢
+	 * @param handler è­˜åˆ¥ãƒãƒ³ãƒ‰ãƒ©
+	 * @description å®Ÿè¡Œä¸­ã®ç½²åãƒã‚§ãƒƒã‚¯ã‚’é€Ÿã‚„ã‹ã«åœæ­¢ã•ã›ã¾ã™ã€‚çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã¯æ¥ã¾ã›ã‚“ã€‚
 	 */
 	function stopCheckSignature(handler);
 
 	
 	/**
-	 * ƒCƒxƒ“ƒg:–¼ƒ`ƒFƒbƒNi’»
-	 * @param handler ¯•Êƒnƒ“ƒhƒ‰
-	 * @param info ƒ†[ƒUî•ñ
-	 * @param percent i’»“x‡‚¢ 0`100%
+	 * ã‚¤ãƒ™ãƒ³ãƒˆ:ç½²åãƒã‚§ãƒƒã‚¯é€²æ—
+	 * @param handler è­˜åˆ¥ãƒãƒ³ãƒ‰ãƒ©
+	 * @param info ãƒ¦ãƒ¼ã‚¶æƒ…å ±
+	 * @param percent é€²æ—åº¦åˆã„ 0ã€œ100%
 	 */
 	function onCheckSignatureProgress(handler, info, percent);
 
 	/**
-	 * ƒCƒxƒ“ƒg:–¼ƒ`ƒFƒbƒNI—¹
-	 * @param handler ¯•Êƒnƒ“ƒhƒ‰
-	 * @param info ƒ†[ƒUî•ñ
-	 * @param result Œ‹‰Ê -2:ƒGƒ‰[ -1:ƒLƒƒƒ“ƒZƒ‹ 0:ƒ`ƒFƒbƒN¸”s 1:ƒ`ƒFƒbƒN¬Œ÷
-	 * @param errormsg Œ‹‰Ê‚ªƒGƒ‰[‚Ìê‡‚ÌƒGƒ‰[ƒƒbƒZ[ƒW
+	 * ã‚¤ãƒ™ãƒ³ãƒˆ:ç½²åãƒã‚§ãƒƒã‚¯çµ‚äº†
+	 * @param handler è­˜åˆ¥ãƒãƒ³ãƒ‰ãƒ©
+	 * @param info ãƒ¦ãƒ¼ã‚¶æƒ…å ±
+	 * @param result çµæœ -2:ã‚¨ãƒ©ãƒ¼ -1:ã‚­ãƒ£ãƒ³ã‚»ãƒ« 0:ãƒã‚§ãƒƒã‚¯å¤±æ•— 1:ãƒã‚§ãƒƒã‚¯æˆåŠŸ
+	 * @param errormsg çµæœãŒã‚¨ãƒ©ãƒ¼ã®å ´åˆã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	 */
 	function onCheckSignatureDone(handler, info, result, errormsg);
 

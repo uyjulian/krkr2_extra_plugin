@@ -6,7 +6,7 @@
 #include "cairo.h"
 
 /*
- * Cairo •`‰æ—pƒŒƒCƒ„
+ * Cairo æç”»ç”¨ãƒ¬ã‚¤ãƒ¤
  */
 struct layerExCairo : public layerExBase
 {
@@ -17,7 +17,7 @@ protected:
 	PitchT pitch;
 	cairo_surface_t *surface;
 	cairo_t * cairo;
-	bool reseted; //< ƒŠƒZƒbƒgˆ—‚³‚ê‚½‚©‚Ç‚¤‚©
+	bool reseted; //< ãƒªã‚»ãƒƒãƒˆå‡¦ç†ã•ã‚ŒãŸã‹ã©ã†ã‹
 	
 public:
 	layerExCairo(DispatchT obj);
@@ -25,7 +25,7 @@ public:
 	
 public:
 	/**
-	 * ƒŒƒCƒ„î•ñƒŠƒZƒbƒgˆ—
+	 * ãƒ¬ã‚¤ãƒ¤æƒ…å ±ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 	 */
 	virtual void reset();
 };

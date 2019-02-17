@@ -24,7 +24,7 @@ public:
 		self = 0;
 	}
 
-	// Array.split ƒI[ƒo[ƒ‰ƒCƒh
+	// Array.split ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	static tjs_error TJS_INTF_METHOD FuncCall(tTJSVariant *r, tjs_int n, tTJSVariant **p, iTJSDispatch2 *objthis) {
 		return self ? self->Split(r, n, p, objthis) : TJS_E_FAIL;
 	}
@@ -47,11 +47,11 @@ private:
 		val.Clear();
 		val = tTJSVariant(classobj, NULL);
 		global->PropSet(
-			TJS_MEMBERENSURE, // ƒƒ“ƒo‚ª‚È‚©‚Á‚½ê‡‚É‚Íì¬‚·‚é‚æ‚¤‚É‚·‚éƒtƒ‰ƒO
-			classname, // ƒƒ“ƒo–¼ ( ‚©‚È‚ç‚¸ TJS_W( ) ‚ÅˆÍ‚Ş )
-			NULL, // ƒqƒ“ƒg ( –{—ˆ‚Íƒƒ“ƒo–¼‚ÌƒnƒbƒVƒ…’l‚¾‚ªANULL ‚Å‚à‚æ‚¢ )
-			&val, // “o˜^‚·‚é’l
-			global // ƒRƒ“ƒeƒLƒXƒg ( global ‚Å‚æ‚¢ )
+			TJS_MEMBERENSURE, // ãƒ¡ãƒ³ãƒãŒãªã‹ã£ãŸå ´åˆã«ã¯ä½œæˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+			classname, // ãƒ¡ãƒ³ãƒå ( ã‹ãªã‚‰ãš TJS_W( ) ã§å›²ã‚€ )
+			NULL, // ãƒ’ãƒ³ãƒˆ ( æœ¬æ¥ã¯ãƒ¡ãƒ³ãƒåã®ãƒãƒƒã‚·ãƒ¥å€¤ã ãŒã€NULL ã§ã‚‚ã‚ˆã„ )
+			&val, // ç™»éŒ²ã™ã‚‹å€¤
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ ( global ã§ã‚ˆã„ )
 			);
 		classobj->Release();
 
@@ -67,10 +67,10 @@ private:
 	}
 	void Terminate(iTJSDispatch2 *global) {
 		global->DeleteMember(
-			0, // ƒtƒ‰ƒO ( 0 ‚Å‚æ‚¢ )
-			classname, // ƒƒ“ƒo–¼
-			NULL, // ƒqƒ“ƒg
-			global // ƒRƒ“ƒeƒLƒXƒg
+			0, // ãƒ•ãƒ©ã‚° ( 0 ã§ã‚ˆã„ )
+			classname, // ãƒ¡ãƒ³ãƒå
+			NULL, // ãƒ’ãƒ³ãƒˆ
+			global // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 			);
 
 		if (origRegEx.Type() == tvtObject) {
@@ -159,61 +159,61 @@ static tjs_int GlobalRefCountAtInit = 0;
 
 EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
-	// ƒXƒ^ƒu‚Ì‰Šú‰»(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®åˆæœŸåŒ–(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPInitImportStub(exporter);
 
-	// TJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	if (global) {
 
-		// “o˜^ˆ—
+		// ç™»éŒ²å‡¦ç†
 		tTJSNativeClassForRegExp::Link(global);
 
-		// - global ‚ğ Release ‚·‚é
+		// - global ã‚’ Release ã™ã‚‹
 		global->Release();
 	}
 
-	// ‚±‚Ì“_‚Å‚Ì TVPPluginGlobalRefCount ‚Ì’l‚ğ
+	// ã“ã®æ™‚ç‚¹ã§ã® TVPPluginGlobalRefCount ã®å€¤ã‚’
 	GlobalRefCountAtInit = TVPPluginGlobalRefCount;
-	// ‚Æ‚µ‚ÄT‚¦‚Ä‚¨‚­BTVPPluginGlobalRefCount ‚Í‚±‚Ìƒvƒ‰ƒOƒCƒ““à‚Å
-	// ŠÇ—‚³‚ê‚Ä‚¢‚é tTJSDispatch ”h¶ƒIƒuƒWƒFƒNƒg‚ÌQÆƒJƒEƒ“ƒ^‚Ì‘Œv‚ÅA
-	// ‰ğ•ú‚É‚Í‚±‚ê‚Æ“¯‚¶‚©A‚±‚ê‚æ‚è‚à­‚È‚­‚È‚Á‚Ä‚È‚¢‚Æ‚È‚ç‚È‚¢B
-	// ‚»‚¤‚È‚Á‚Ä‚È‚¯‚ê‚ÎA‚Ç‚±‚©•Ê‚Ì‚Æ‚±‚ë‚ÅŠÖ”‚È‚Ç‚ªQÆ‚³‚ê‚Ä‚¢‚ÄA
-	// ƒvƒ‰ƒOƒCƒ“‚Í‰ğ•ú‚Å‚«‚È‚¢‚ÆŒ¾‚¤‚±‚Æ‚É‚È‚éB
+	// ã¨ã—ã¦æ§ãˆã¦ãŠãã€‚TVPPluginGlobalRefCount ã¯ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å†…ã§
+	// ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ tTJSDispatch æ´¾ç”Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ç·è¨ˆã§ã€
+	// è§£æ”¾æ™‚ã«ã¯ã“ã‚Œã¨åŒã˜ã‹ã€ã“ã‚Œã‚ˆã‚Šã‚‚å°‘ãªããªã£ã¦ãªã„ã¨ãªã‚‰ãªã„ã€‚
+	// ãã†ãªã£ã¦ãªã‘ã‚Œã°ã€ã©ã“ã‹åˆ¥ã®ã¨ã“ã‚ã§é–¢æ•°ãªã©ãŒå‚ç…§ã•ã‚Œã¦ã„ã¦ã€
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯è§£æ”¾ã§ããªã„ã¨è¨€ã†ã“ã¨ã«ãªã‚‹ã€‚
 
 	return S_OK;
 }
 //---------------------------------------------------------------------------
 EXPORT(HRESULT) V2Unlink()
 {
-	// ‹g—¢‹g—¢‘¤‚©‚çAƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚µ‚æ‚¤‚Æ‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	// å‰é‡Œå‰é‡Œå´ã‹ã‚‰ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã—ã‚ˆã†ã¨ã™ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 
-	// ‚à‚µ‰½‚ç‚©‚ÌğŒ‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚Å‚«‚È‚¢ê‡‚Í
-	// ‚±‚Ì“_‚Å E_FAIL ‚ğ•Ô‚·‚æ‚¤‚É‚·‚éB
-	// ‚±‚±‚Å‚ÍATVPPluginGlobalRefCount ‚ª GlobalRefCountAtInit ‚æ‚è‚à
-	// ‘å‚«‚­‚È‚Á‚Ä‚¢‚ê‚Î¸”s‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+	// ã‚‚ã—ä½•ã‚‰ã‹ã®æ¡ä»¶ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã§ããªã„å ´åˆã¯
+	// ã“ã®æ™‚ç‚¹ã§ E_FAIL ã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+	// ã“ã“ã§ã¯ã€TVPPluginGlobalRefCount ãŒ GlobalRefCountAtInit ã‚ˆã‚Šã‚‚
+	// å¤§ãããªã£ã¦ã„ã‚Œã°å¤±æ•—ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
 	if (TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
 
 
 	/*
-		‚½‚¾‚µAƒNƒ‰ƒX‚Ìê‡AŒµ–§‚ÉuƒIƒuƒWƒFƒNƒg‚ªg—p’†‚Å‚ ‚év‚Æ‚¢‚¤‚±‚Æ‚ğ
-		’m‚é‚·‚×‚ª‚ ‚è‚Ü‚¹‚ñBŠî–{“I‚É‚ÍAPlugins.unlink ‚É‚æ‚éƒvƒ‰ƒOƒCƒ“‚Ì‰ğ•ú‚Í
-		ŠëŒ¯‚Å‚ ‚é‚Æl‚¦‚Ä‚­‚¾‚³‚¢ (‚¢‚Á‚½‚ñ Plugins.link ‚ÅƒŠƒ“ƒN‚µ‚½‚çAÅŒã‚Ü
-		‚Åƒvƒ‰ƒOƒCƒ“‚ğ‰ğ•ú‚¹‚¸AƒvƒƒOƒ‰ƒ€I—¹‚Æ“¯‚É©“®“I‚É‰ğ•ú‚³‚¹‚é‚Ì‚ª‹g)B
+		ãŸã ã—ã€ã‚¯ãƒ©ã‚¹ã®å ´åˆã€å³å¯†ã«ã€Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒä½¿ç”¨ä¸­ã§ã‚ã‚‹ã€ã¨ã„ã†ã“ã¨ã‚’
+		çŸ¥ã‚‹ã™ã¹ãŒã‚ã‚Šã¾ã›ã‚“ã€‚åŸºæœ¬çš„ã«ã¯ã€Plugins.unlink ã«ã‚ˆã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®è§£æ”¾ã¯
+		å±é™ºã§ã‚ã‚‹ã¨è€ƒãˆã¦ãã ã•ã„ (ã„ã£ãŸã‚“ Plugins.link ã§ãƒªãƒ³ã‚¯ã—ãŸã‚‰ã€æœ€å¾Œã¾
+		ã§ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è§£æ”¾ã›ãšã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ çµ‚äº†ã¨åŒæ™‚ã«è‡ªå‹•çš„ã«è§£æ”¾ã•ã›ã‚‹ã®ãŒå‰)ã€‚
 	*/
 
-	// - ‚Ü‚¸ATJS ‚ÌƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// - ã¾ãšã€TJS ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	iTJSDispatch2 * global = TVPGetScriptDispatch();
 	if(global) {
 
-		// Œãn––
+		// å¾Œå§‹æœ«
 		tTJSNativeClassForRegExp::Unlink(global);
 
-		// - global ‚ğ Release ‚·‚é
+		// - global ã‚’ Release ã™ã‚‹
 		global->Release();
 	}
 
-	// ƒXƒ^ƒu‚Ìg—pI—¹(•K‚¸‹Lq‚·‚é)
+	// ã‚¹ã‚¿ãƒ–ã®ä½¿ç”¨çµ‚äº†(å¿…ãšè¨˜è¿°ã™ã‚‹)
 	TVPUninitImportStub();
 
 	return S_OK;
