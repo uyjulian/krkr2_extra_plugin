@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "ncbind.hpp"
+#include "ncbind/ncbind.hpp"
 
 struct   LongExposure {
 	/**/~LongExposure() { term(); }

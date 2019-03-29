@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "ncbind.hpp"
+#include "ncbind/ncbind.hpp"
 
 // ウィンドウクラス名取得用のバッファサイズ
 #define CLASSNAME_MAX 1024

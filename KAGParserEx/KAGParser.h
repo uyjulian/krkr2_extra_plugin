@@ -12,9 +12,9 @@
 #ifndef KAGParserH
 #define KAGParserH
 //---------------------------------------------------------------------------
-#ifndef __TP_STUB_H__
-#include "tjsNative.h"
-#include "tjsHashSearch.h"
+// #ifndef __TP_STUB_H__
+// #include "tjsNative.h"
+// #include "tjsHashSearch.h"
 
 
 /*[*/
@@ -28,7 +28,7 @@ enum tTVPKAGDebugLevel
 	tkdlVerbose // complete report ( verbose )
 };
 /*]*/
-#endif
+// #endif
 
 
 //---------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <tchar.h>
 #include <comdef.h>
 #include <mlang.h>
 

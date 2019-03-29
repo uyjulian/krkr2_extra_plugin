@@ -1,4 +1,4 @@
-#include <ncbind.hpp>
+#include <ncbind/ncbind.hpp>
 
 #include "psdclass.h"
 

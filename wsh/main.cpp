@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <map>
 
+#undef IID_IActiveScriptParse
+DEFINE_GUID(IID_IActiveScriptParse, 0xbb1a2ae2, 0xa4f9, 0x11cf, 0x8f,0x20, 0x00,0x80,0x5f,0x2c,0xd0,0x64);
+
 #include "ncbind/ncbind.hpp"
 
 #define GLOBAL L"kirikiri"

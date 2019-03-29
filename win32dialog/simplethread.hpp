@@ -3,6 +3,7 @@
 
 #include <process.h>
 #include <vector>
+#include <algorithm>
 
 template <class T>
 class SimpleThreadBase {
@@ -10,7 +11,7 @@ public:
 	typedef std::vector<HANDLE> EventArray;
 
 	struct ThreadStartParam {
-		SimpleThreadBase *self;
+		SimpleThreadBase *self1;
 		HANDLE prepare, stop;
 		T param;
 	};
@@ -65,7 +66,7 @@ protected:
 	void closeEvent(HANDLE ev) {
 		if (ev) {
 			::CloseHandle(ev);
-			events.remove(ev);
+			events.erase(std::remove(events.begin(), events.end(), ev), events.end());
 		}
 	}
 
@@ -73,7 +74,7 @@ protected:
 private:
 	static unsigned __stdcall threadFunc(void *vparam) {
 		ThreadStartParam *param = (ThreadStartParam*)vparam;
-		unsigned retval = param->self->threadMain(param->prepare, param->stop, param->param);
+		unsigned retval = param->self1->threadMain(param->prepare, param->stop, param->param);
 		_endthreadex(retval);
 		return retval;
 	}
@@ -86,6 +87,7 @@ private:
 	}
 };
 
+#if 0
 template <class T>
 class SimpleThreadWithMessageWindow : public SimpleThreadBase<T> {
 public:
@@ -130,8 +132,9 @@ private:
 
 	static LRESULT WINAPI MsgWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 		if (msg >= WM_APP && msg < 0xC000) {
-			SimpleThreadBase *self = (SimpleThreadBase*)(::GetWindowLong(hwnd, GWL_USERDATA));
-			if (self) return self->onMessage(msg, wp, lp);
+			long retval = ::GetWindowLong(hwnd, GWL_USERDATA)
+			SimpleThreadBase<T> *self1 = (SimpleThreadBase<T>*)(retval);
+			if (self1) return self1->onMessage(msg, wp, lp);
 		}
 		return DefWindowProc(hwnd, msg, wp, lp);
 	}
@@ -161,5 +164,7 @@ private:
 		return NULL;
 	}
 };
+
+#endif
 
 #endif

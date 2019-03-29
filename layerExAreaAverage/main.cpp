@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "ncbind.hpp"
+#include "ncbind/ncbind.hpp"
 
 typedef tjs_int	fixdot;
 #define DOTBASE			12

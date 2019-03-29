@@ -87,10 +87,10 @@ public:
 		if (dict != NULL) {
 			tTJSVariant name(this->name);
 			tTJSVariant size((tjs_int64)getSize());
-			tTJSVariant isDirectory(isDirectory() ? 1 : 0);
+			tTJSVariant isDirectoryk(isDirectory() ? 1 : 0);
 			dict->PropSet(TJS_MEMBERENSURE, L"name",  NULL, &name, dict);
 			dict->PropSet(TJS_MEMBERENSURE, L"size",  NULL, &size, dict);
-			dict->PropSet(TJS_MEMBERENSURE, L"isDirectory",  NULL, &isDirectory, dict);
+			dict->PropSet(TJS_MEMBERENSURE, L"isDirectory",  NULL, &isDirectoryk, dict);
 			tTJSVariant ret(dict, dict);
 			dict->Release();
 			return ret;
@@ -257,7 +257,7 @@ public:
 				return _mkdir(name);
 			}
 		}
-		return false;
+		return NULL;
 	}
 
 	/**
@@ -646,7 +646,7 @@ public:
 	 * @return ファイル情報 %[name:名前, size:サイズ, isDirectory:ディレクトリならtrue]
 	 */
 	static tTJSVariant getMemoryFileInfo(ttstr filename) {
-		return mem ? mem->getInfo(filename) : NULL;
+		return mem ? mem->getInfo(filename) : (tTJSVariant)NULL;
 	}
 	
 	/**
@@ -655,7 +655,7 @@ public:
 	 * @return ファイルが存在したら内容を octet で返す。なければ void
 	 */
 	static tTJSVariant getMemoryFileData(ttstr filename) {
-		return mem ? mem->getData(filename) : NULL;
+		return mem ? mem->getData(filename) : (tTJSVariant)NULL;
 	}
 
 	/**
@@ -664,7 +664,7 @@ public:
 	 * @return ファイル情報の配列 %[name:名前, size:サイズ, isDirectory:ディレクトリならtrue]
 	 */
 	static tTJSVariant getMemoryDirectory(ttstr dirname) {
-		return mem ? mem->getDirectory(dirname) : NULL;
+		return mem ? mem->getDirectory(dirname) : (tTJSVariant)NULL;
 	}
 
 protected:

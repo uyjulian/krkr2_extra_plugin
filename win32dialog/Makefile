@@ -1,37 +1,56 @@
-TARGET = win32dialog.dll
-OBJS = ../tp_stub.o ../ncbind/ncbind.o win32dialog.o
-CXXFLAGS += -DUNICODE -O2 -I.. -I../ncbind -DDEBUG -Wall -Wno-unused-parameter
 
-TESTRES = testres.dll
-TESTRESOBJS = testres_dll.o testres_res.o
+CC = i686-w64-mingw32-gcc
+CXX = i686-w64-mingw32-g++
+AR = i686-w64-mingw32-ar
+ASM = nasm
+WINDRES = i686-w64-mingw32-windres
+#CFLAGS += -O0 -g
+# GIT_HASH = $(shell git rev-parse --short HEAD)
+GIT_HASH = nothing
+CUR_TIME = $(shell date +%s)
+ASMFLAGS += -fwin32 -DWIN32
+CFLAGS += -O3 -march=ivybridge -flto
+CFLAGS += -Wall -Wno-unused-value -Wno-format -fpermissive -I. -I.. -I../.. -DGIT_HASH=L\"$(GIT_HASH)\" -DCUR_TIME=L\"$(CUR_TIME)\" -DNDEBUG -DWIN32 -D_WIN32 -D_WINDOWS 
+CFLAGS += -DNTDDI_VERSION=0x06000000 -DWIN32DIALOG_EXPORTS -D_USRDLL -DMINGW_HAS_SECURE_API -DUNICODE -D_UNICODE -DNO_STRICT -DCMAKE_INTDIR=\"Release\"   
+LDFLAGS += -static -static-libstdc++ -static-libgcc -shared -Wl,--kill-at
+LDLIBS += -lodbc32 -lodbccp32 -luuid -lgdi32 -lcomctl32 -lcomdlg32
 
-all: $(TARGET) testres.dll
+%.o: %.c
+	echo -e "\tCC  $<"
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-$(TARGET): $(OBJS)
-	dllwrap -k -def ../ncbind/ncbind.def --driver-name $(CXX) -o $@ $(OBJS)
-	strip $@
+%.o: %.cpp
+	echo -e "\tCXX  $<"
+	$(CXX) -c $(CFLAGS) -o $@ $<
 
-$(TESTRES): $(TESTRESOBJS)
-	dllwrap --driver-name $(CXX) -o $@ $(TESTRESOBJS)
-	strip $@
+%.o: %.asm
+	echo -e "\ASM  $<"
+	$(ASM) $(ASMFLAGS) $< -o$@ 
 
-testres_res.o: testres_res.rc
-	windres -J rc $< $@
+%.o: %.rc
+	echo -e "\tWINDRES  $<"
+	$(WINDRES) --codepage=65001 $< $@
 
+SOURCES := ../../tp_stub.cpp ../../ncbind/ncbind.cpp main.cpp
+OBJECTS := $(SOURCES:.c=.o)
+OBJECTS := $(OBJECTS:.cpp=.o)
+OBJECTS := $(OBJECTS:.asm=.o)
+OBJECTS := $(OBJECTS:.rc=.o)
 
-win32dialog.o: win32dialog.cpp dialog.hpp dialog_config.hpp
+BINARY ?= win32dialog.dll
+ARCHIVE ?= win32dialog.$(GIT_HASH).7z
+
+all: $(BINARY)
+
+archive: $(ARCHIVE)
 
 clean:
-	rm -f $(TARGET) $(OBJS) 
-	rm -f $(TESTRES) $(TESTRESOBJS)
+	rm -f $(OBJECTS) $(BINARY) $(ARCHIVE)
 
+$(ARCHIVE): $(BINARY) 
+	rm -f $(ARCHIVE)
+	7z a $@ $^
 
-KRKR_PLUGINS = ../../../../bin/win32/plugin/
-KRKR_EXE     = ../../../../bin/win32/krkr.exe
-TEST_DIR     = ../../../../tests/win32dialog
-KRKR_OPT     = -debug  "`pwd -W`/$(TEST_DIR)"
-
-test: $(TARGET)
-	cp $(TARGET) $(KRKR_PLUGINS)
-	$(KRKR_EXE) $(KRKR_OPT)
-
+$(BINARY): $(OBJECTS) 
+	@echo -e "\tLNK $@"
+	$(CXX) $(CFLAGS) $(LDFLAGS)  -o $@ $^  $(LDLIBS)

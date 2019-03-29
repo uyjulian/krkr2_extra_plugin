@@ -12,6 +12,7 @@
 
 #include <windows.h>
 #include <math.h>
+#include <algorithm>
 #include "LayerExImage.h"
 
 void
@@ -52,7 +53,7 @@ layerExImage::light(int brightness, int contrast)
 	brightness +=128;
 	BYTE cTable[256];
 	for (int i=0;i<256;i++)	{
-		cTable[i] = (BYTE)max(0,min(255,(int)((i-128)*c + brightness)));
+		cTable[i] = (BYTE)std::max(0,std::min(255,(int)((i-128)*c + brightness)));
 	}
 	lut(cTable);
 	redraw();
@@ -82,8 +83,8 @@ RGBtoHSL(RGBQUAD lRGBColor)
 	G = lRGBColor.rgbGreen;
 	B = lRGBColor.rgbBlue;
 
-	cMax = max( max(R,G), B);	/* calculate lightness */
-	cMin = min( min(R,G), B);
+	cMax = std::max( std::max(R,G), B);	/* calculate lightness */
+	cMin = std::min( std::min(R,G), B);
 	L = (BYTE)((((cMax+cMin)*HSLMAX)+RGBMAX)/(2*RGBMAX));
 
 	if (cMax==cMin){			/* r=g=b --> achromatic case */
@@ -245,8 +246,8 @@ modulate(int &b, int &g, int &r, double h, double s, double l)
 	double blue  = b / 255.0;
 
 	// RGBからHSLに変換
-	double cMax = max(max(red,green), blue);
-	double cMin = min(min(red,green), blue);
+	double cMax = std::max(std::max(red,green), blue);
+	double cMin = std::min(std::min(red,green), blue);
 	double delta = cMax - cMin;
 	double add   = cMax + cMin;
 	double luminance = add/2.0;
@@ -347,11 +348,11 @@ layerExImage::noise(int level)
 		BYTE *p = src;
 		for (int x=0; x<_width; x++){
 			int n = (int)((rand()/(float)RAND_MAX - 0.5)*level);
-			*p++ = (BYTE)max(0,min(255,(int)(*p + n)));
+			*p++ = (BYTE)std::max(0,std::min(255,(int)(*p + n)));
 			n = (int)((rand()/(float)RAND_MAX - 0.5)*level);
-			*p++ = (BYTE)max(0,min(255,(int)(*p + n)));
+			*p++ = (BYTE)std::max(0,std::min(255,(int)(*p + n)));
 			n = (int)((rand()/(float)RAND_MAX - 0.5)*level);
-			*p++ = (BYTE)max(0,min(255,(int)(*p + n)));
+			*p++ = (BYTE)std::max(0,std::min(255,(int)(*p + n)));
 			p++;
 		}
 		src += _pitch;
@@ -378,8 +379,8 @@ layerExImage::generateWhiteNoise()
 }
 
 
-typedef _int32 int32_t;
-typedef unsigned char uint8_t;
+// typedef _int32 int32_t;
+// typedef unsigned char uint8_t;
 
 ////////////////////////////////////////////////////////////////////////////////
 /** 

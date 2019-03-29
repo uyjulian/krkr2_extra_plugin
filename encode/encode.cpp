@@ -31,6 +31,7 @@ Octet 列 -> 文字列
 #include "e2u.h"
 #include "hojo2u.h"
 #include "u2e.h"
+#define EXPORT(hr) extern "C" __declspec(dllexport) hr __stdcall
 //---------------------------------------------------------------------------
 
 
@@ -358,7 +359,7 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason, void *lpReserved
 }
 
 static tjs_int GlobalRefCountAtInit = 0;
-extern "C" HRESULT _stdcall __declspec(dllexport) V2Link(iTVPFunctionExporter *exporter)
+EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
     TVPInitImportStub(exporter);
 
@@ -377,7 +378,7 @@ extern "C" HRESULT _stdcall __declspec(dllexport) V2Link(iTVPFunctionExporter *e
     return S_OK;
 }
 
-extern "C" HRESULT _stdcall __declspec(dllexport) V2Unlink()
+EXPORT(HRESULT) V2Unlink()
 {
     if (TVPPluginGlobalRefCount > GlobalRefCountAtInit) {
         return E_FAIL;

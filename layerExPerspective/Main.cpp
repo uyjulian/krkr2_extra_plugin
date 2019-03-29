@@ -5,6 +5,8 @@
 using namespace std;
 
 #include "tp_stub.h"
+#define EXPORT(hr) extern "C" __declspec(dllexport) hr __stdcall
+
 
 static const char *copyright = 
 "----- AntiGrainGeometry Copyright START -----\n"
@@ -205,7 +207,7 @@ delMethod(iTJSDispatch2 *dispatch, const tjs_char *methodName)
 
 //---------------------------------------------------------------------------
 static tjs_int GlobalRefCountAtInit = 0;
-extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
+EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
 	// スタブの初期化(必ず記述する)
 	TVPInitImportStub(exporter);
@@ -247,7 +249,7 @@ extern "C" HRESULT _stdcall _export V2Link(iTVPFunctionExporter *exporter)
 	return S_OK;
 }
 //---------------------------------------------------------------------------
-extern "C" HRESULT _stdcall _export V2Unlink()
+EXPORT(HRESULT) V2Unlink()
 {
 	// 吉里吉里側から、プラグインを解放しようとするときに呼ばれる関数。
 

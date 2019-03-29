@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <tp_stub.h>
-#include <ncbind.hpp>
+#include <ncbind/ncbind.hpp>
 #include <Htmlhelp.h>
 #include <string>
 

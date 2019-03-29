@@ -669,7 +669,7 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 	DISPPARAMS dispParams;
 	memset(&dispParams, 0, sizeof(DISPPARAMS));
 	dispParams.cArgs = numparams;
-	dispParams.rgvarg = (VARIANT*)malloc(sizeof VARIANTARG * numparams);
+	dispParams.rgvarg = (VARIANT*)malloc(sizeof(VARIANTARG) * numparams);
 	for (int i=0; i<numparams; i++) {
 		VariantInit(&dispParams.rgvarg[numparams - i - 1]);
 		IDispatchWrapper::storeVariant(dispParams.rgvarg[numparams - i - 1], *param[i]);

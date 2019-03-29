@@ -2,6 +2,7 @@
 #include "tp_stub.h"
 #include <stdio.h>
 #include <string>
+#define EXPORT(hr) extern "C" __declspec(dllexport) hr __stdcall
 
 // initStorage/parseStorageの読み込みデフォルトを吉里吉里組み込みのTextStreamにする場合は1
 // 
@@ -684,7 +685,7 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason,
 
 //---------------------------------------------------------------------------
 static tjs_int GlobalRefCountAtInit = 0;
-extern "C" __declspec(dllexport) HRESULT __stdcall V2Link(iTVPFunctionExporter *exporter)
+EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
 	// スタブの初期化(必ず記述する)
 	TVPInitImportStub(exporter);
@@ -718,7 +719,7 @@ extern "C" __declspec(dllexport) HRESULT __stdcall V2Link(iTVPFunctionExporter *
 	return S_OK;
 }
 //---------------------------------------------------------------------------
-extern "C" __declspec(dllexport) HRESULT _stdcall V2Unlink()
+EXPORT(HRESULT) V2Unlink()
 {
 	// 吉里吉里側から、プラグインを解放しようとするときに呼ばれる関数。
 

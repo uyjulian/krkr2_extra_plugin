@@ -608,14 +608,13 @@ IDispatchWrapper::GetNextDispID(
 	if (id == DISPID_STARTENUM) {
 		methodEnums.clear();
 		methodEnumsCount = 0;
-		GetEnumCaller *caller = new GetEnumCaller(&methodEnums);
-		tTJSVariantClosure closure(caller);
+		tTJSVariantClosure closure(new GetEnumCaller(&methodEnums));
 		try {
 			Try_iTJSDispatch2_EnumMembers(obj, TJS_ENUM_NO_VALUE, &closure, obj);
 		} catch (...) {
 			log(L"EnumMembers で例外");
 		}
-		caller->Release();
+		closure.Release();
 	}
 	if (methodEnums.size() > methodEnumsCount) {
 		*pid = methodEnums[methodEnumsCount++];
@@ -670,7 +669,7 @@ iTJSDispatch2Wrapper::Invoke(IDispatch *dispatch,
 	DISPPARAMS dispParams;
 	memset(&dispParams, 0, sizeof(DISPPARAMS));
 	dispParams.cArgs = numparams;
-	dispParams.rgvarg = (VARIANT*)malloc(sizeof VARIANTARG * numparams);
+	dispParams.rgvarg = (VARIANT*)malloc(sizeof(VARIANTARG) * numparams);
 	for (int i=0; i<numparams; i++) {
 		VariantInit(&dispParams.rgvarg[numparams - i - 1]);
 		IDispatchWrapper::storeVariant(dispParams.rgvarg[numparams - i - 1], *param[i]);

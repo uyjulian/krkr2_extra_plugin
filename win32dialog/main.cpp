@@ -4,7 +4,7 @@
 #pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
 
-#include "ncbind.hpp"
+#include "ncbind/ncbind.hpp"
 #include <commctrl.h>
 
 // CreateDialogIndirect のテーブル書き出し用クラス
@@ -485,7 +485,7 @@ public:
 		int id = (int)param[0]->AsInteger();
 		Bitmap *bmp = BitmapAdaptorT::GetNativeInstance(param[1]->AsObjectNoAddRef(), true);
 		if (bmp != NULL)
-			*result = self->_sendItemMessage(id, STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)bmp->createBitmap(self->dialogHWnd));
+			*result = tTJSVariant((tjs_int32)self->_sendItemMessage(id, STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)bmp->createBitmap(self->dialogHWnd)));
 		return  TJS_S_OK;
 	}
 
@@ -531,7 +531,7 @@ public:
 		UINT msg = (UINT)param[1]->AsInteger();
 		WPARAM wp = (numparams > 2) ? (WPARAM)param[2]->AsInteger() : 0;
 		LPARAM lp = (numparams > 3) ? ((param[3]->Type() == tvtString) ? (LPARAM)param[3]->GetString() : (LPARAM)param[3]->AsInteger()) : 0;
-		*result = self->_sendItemMessage(id, msg, wp, lp);
+		*result = tTJSVariant((tjs_int32)self->_sendItemMessage(id, msg, wp, lp));
 		return  TJS_S_OK;
 	}
 protected:
@@ -1026,8 +1026,8 @@ public:
 		return TJS_S_OK;
 	}
 	VarT	getScrollInfo(int id) {
-		DictT	dict;
-		if(dict.IsValid()) {
+		DictT	*dict = new DictT;
+		if(dict->IsValid()) {
 			HWND		hscr	= GetItemHWND(id);
 			SCROLLINFO	si;
 			ZeroMemory(&si, sizeof(SCROLLINFO));
@@ -1035,13 +1035,14 @@ public:
 			si.fMask	= SIF_ALL;
 			GetScrollInfo(hscr, SB_CTL, &si);
 
-			dict.SetValue(TJS_W("pos"), si.nPos);
-			dict.SetValue(TJS_W("min"), si.nMin);
-			dict.SetValue(TJS_W("max"), si.nMax);
-			dict.SetValue(TJS_W("page"), si.nPage);
-			dict.SetValue(TJS_W("trackpos"), si.nTrackPos);
+			dict->SetValue(TJS_W("pos"), si.nPos);
+			dict->SetValue(TJS_W("min"), si.nMin);
+			dict->SetValue(TJS_W("max"), si.nMax);
+			dict->SetValue(TJS_W("page"), si.nPage);
+			dict->SetValue(TJS_W("trackpos"), si.nTrackPos);
 		}
 		VarT	var	= dict;
+		delete dict;
 		return var;
 	}
 
@@ -3026,7 +3027,7 @@ NCB_REGISTER_CLASS(WIN32Dialog) {
 	ENUM(PSWIZB_NEXT);
 	ENUM(PSWIZB_FINISH);
 	ENUM(PSWIZB_DISABLEDFINISH);
-	ENUM(PSWIZBF_ELEVATIONREQUIRED);
+	Variant(TJS_W("PSWIZBF_ELEVATIONREQUIRED"), (long)0x00000001, 0);//ENUM();
 #ifdef   PSWIZB_CANCEL
 	ENUM(PSWIZB_CANCEL);
 	ENUM(PSWIZB_SHOW);

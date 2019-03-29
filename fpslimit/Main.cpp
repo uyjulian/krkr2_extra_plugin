@@ -1,5 +1,6 @@
 #include <windows.h>
 #include "tp_stub.h"
+#define EXPORT(hr) extern "C" __declspec(dllexport) hr __stdcall
 
 // fps の制限値
 static int fpsLimitValue = 1000;
@@ -64,7 +65,7 @@ DllEntryPoint(HINSTANCE /*hinst*/, unsigned long /*reason*/, void* /*lpReserved*
 }
 
 static tjs_int GlobalRefCountAtInit = 0;
-extern "C" __declspec(dllexport) HRESULT __stdcall V2Link(iTVPFunctionExporter *exporter)
+EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 {
 	// スタブの初期化(必ず記述する)
 	TVPInitImportStub(exporter);
@@ -96,7 +97,7 @@ extern "C" __declspec(dllexport) HRESULT __stdcall V2Link(iTVPFunctionExporter *
 
 
 //---------------------------------------------------------------------------
-extern "C" __declspec(dllexport) HRESULT __stdcall V2Unlink()
+EXPORT(HRESULT) V2Unlink()
 {
 	if(TVPPluginGlobalRefCount > GlobalRefCountAtInit) return E_FAIL;
 

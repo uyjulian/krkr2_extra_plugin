@@ -31,4 +31,4 @@
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照してください。
 #include <tp_stub.h>
-#include <ncbind.hpp>
+#include <ncbind/ncbind.hpp>

@@ -129,9 +129,9 @@ public:
 
 	bool setText(iTJSDispatch2 *init) {
 		ncbPropAccessor info(init);
-#define GETINTVALUE(a,def) a = info.getIntValue(L#a, def)
-#define GETBOOLVALUE(a,def) a = info.getIntValue(L#a,def?1:0) != 0
-#define GETSTRVALUE(a,def) a = info.getStrValue(L#a,def)
+#define GETINTVALUE(a,def) a = info.getIntValue(TJS_W(#a), def)
+#define GETBOOLVALUE(a,def) a = info.getIntValue(TJS_W(#a),def?1:0) != 0
+#define GETSTRVALUE(a,def) a = info.getStrValue(TJS_W(#a),def)
 
 		GETINTVALUE(left, 0);
 		GETINTVALUE(top, 0);

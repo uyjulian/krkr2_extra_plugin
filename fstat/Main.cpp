@@ -23,7 +23,6 @@ global.FILE_ATTRIBUTE_TEMPORARY = 0x00000100;");
 
 NCB_TYPECONV_CAST_INTEGER(tjs_uint64);
 
-
 /**
  * メソッド追加用
  */

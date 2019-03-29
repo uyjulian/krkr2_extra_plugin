@@ -322,7 +322,8 @@ public:
 
 	// check file existence
 	virtual bool TJS_INTF_METHOD CheckExistentStorage(const ttstr &name) {
-		return isFile(getFile(name));
+		tTJSVariant f = getFile(name);
+		return isFile(f);
 	}
 
 	// open a storage and return a tTJSBinaryStream instance.
